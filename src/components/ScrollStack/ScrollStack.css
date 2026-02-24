@@ -1,0 +1,53 @@
+.scroll-stack-scroller {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: scroll-position;
+}
+
+.scroll-stack-inner {
+    padding: 10vh 2rem 10vh;
+    min-height: 100vh;
+}
+
+.scroll-stack-card-wrapper {
+    position: relative;
+}
+
+.scroll-stack-card {
+    transform-origin: top center;
+    will-change: transform, filter;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.12);
+    height: auto;
+    width: 100%;
+    margin: 80px auto;
+    /* Increased margin for better scroll trigger calculation */
+    padding: 0;
+    border-radius: 2.5rem;
+    box-sizing: border-box;
+    background: transparent;
+    border: none;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.scroll-stack-card:hover {
+    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.18);
+    transform: scale(1.025) translateY(-5px);
+}
+
+.scroll-stack-end {
+    width: 100%;
+    height: 1px;
+}
