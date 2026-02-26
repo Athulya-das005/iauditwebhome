@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
-import { SiGooglecloud, SiAmazonwebservices, SiGithub, SiDocker, SiKubernetes } from "react-icons/si";
 
 export default function About() {
     const arrowRef = useRef<HTMLSpanElement>(null);
@@ -39,7 +38,7 @@ export default function About() {
             title: "ISO Standards Focus",
             description: "Purpose-built for ISO 9001, 14001, 45001, and 27001 management system audits.",
             animation: (
-                <div style={{ position: 'relative', height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '1rem' }}>
+                <div style={{ position: 'relative', height: '110px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '1rem' }}>
                     <div style={{
                         display: 'grid',
                         gridTemplateColumns: 'repeat(4, 1fr)',
@@ -95,7 +94,7 @@ export default function About() {
             title: "Role-Based Access",
             description: "Auditors, auditees, managers, and corporate users work together securely.",
             animation: (
-                <div style={{ position: 'relative', height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ position: 'relative', height: '110px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     {[
                         { text: "Lead Auditor", color: "#eef2ff", textColor: "#4f46e5", delay: 0, top: '20%', left: '15%' },
                         { text: "ISO 9001", color: "#ecfdf5", textColor: "#059669", delay: 0.5, top: '45%', left: '10%' },
@@ -145,7 +144,7 @@ export default function About() {
             title: "Multi-Site, Multi-Language",
             description: "Run audit programmes across locations, countries, and languages in one platform.",
             animation: (
-                <div style={{ position: 'relative', height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ position: 'relative', height: '110px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -222,20 +221,12 @@ export default function About() {
                                 transition={{ delay: 1 }}
                                 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#111827' }}
                             >
-                                $<motion.span
-                                    initial={{ opacity: 0 }}
-                                    whileInView={{ opacity: 1 }}
-                                >
-                                    2,760
-                                </motion.span>
+                                $<motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>2,760</motion.span>
                             </motion.div>
                         </div>
 
                         <motion.div
-                            animate={{
-                                scale: [1, 1.1, 1],
-                                opacity: [0.3, 0.6, 0.3]
-                            }}
+                            animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
                             transition={{ duration: 2, repeat: Infinity }}
                             style={{
                                 position: 'absolute',
@@ -259,15 +250,15 @@ export default function About() {
     ];
 
     return (
-        <section id="about" className="section" style={{ background: '#ffffff', overflow: 'hidden', fontFamily: '"Pp Neue Montreal", sans-serif' }} ref={containerRef}>
-            <div className="container">
+        <section id="about" className="section" style={{ background: '#ffffff', overflow: 'hidden', fontFamily: '"Pp Neue Montreal", sans-serif', padding: '5rem 0 3rem 0' }} ref={containerRef}>
+            <div className="container" style={{ maxWidth: '1260px', padding: '0 2rem' }}>
                 {/* Header Section */}
                 <div style={{
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'flex-start',
-                    gap: '4rem',
-                    marginBottom: '5rem',
+                    gap: '3rem',
+                    marginBottom: '2rem',
                     flexWrap: 'wrap'
                 }}>
                     <div style={{ flex: '1 1 500px' }}>
@@ -278,18 +269,17 @@ export default function About() {
                             style={{
                                 display: 'inline-flex',
                                 alignItems: 'center',
-                                gap: '0.5rem',
+                                gap: '0.4rem',
                                 color: '#006644',
-                                fontWeight: 700,
-                                fontSize: '0.9rem',
-                                textTransform: 'uppercase',
-                                letterSpacing: '0.05em',
-                                marginBottom: '1.5rem'
+                                fontWeight: 500,
+                                fontSize: '0.8rem',
+                                letterSpacing: '0.01em',
+                                marginBottom: '0.75rem'
                             }}
                         >
-                            <span style={{ fontSize: '1.2rem' }}>✦</span>
+                            <span style={{ fontSize: '1rem' }}>✦</span>
                             About iAudit Global
-                            <span style={{ fontSize: '1.2rem' }}>✦</span>
+                            <span style={{ fontSize: '1rem' }}>✦</span>
                         </motion.div>
                         <motion.h2
                             className="h2"
@@ -297,20 +287,20 @@ export default function About() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
-                            style={{ fontSize: '3.5rem', lineHeight: 1.1, fontWeight: 600, maxWidth: '600px' }}
+                            style={{ fontSize: '2.8rem', lineHeight: 1.1, fontWeight: 500, maxWidth: '650px', letterSpacing: '-0.02em', color: '#111827' }}
                         >
                             ISO audit management that actually works
                         </motion.h2>
                     </div>
 
-                    <div style={{ flex: '1 1 400px', paddingTop: '1.5rem' }}>
+                    <div style={{ flex: '1 1 420px', paddingTop: '0.8rem' }}>
                         <motion.p
                             className="text-lg text-muted"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
-                            style={{ marginBottom: '2.5rem', lineHeight: 1.6 }}
+                            style={{ marginBottom: '1rem', lineHeight: 1.6, fontSize: '0.95rem', color: '#6b7280' }}
                         >
                             iAudit Global was created by certified ISO auditors and consultants who understand the real challenges of running effective audit programmes. Every feature is built around ISO 19011 principles and the PDCA cycle, giving you a structured, evidence-based approach to continual improvement.
                             <br /><br />
@@ -323,8 +313,8 @@ export default function About() {
                             transition={{ delay: 0.3 }}
                         >
                             <Link href="#contact" className="btn btn-outline btn-about" style={{
-                                padding: '1rem 2rem',
-                                fontSize: '1.1rem',
+                                padding: '0.5rem 1.4rem',
+                                fontSize: '0.9rem',
                                 display: 'inline-flex',
                                 alignItems: 'center',
                                 gap: '0.5rem',
@@ -344,7 +334,7 @@ export default function About() {
                 </div>
 
                 {/* Cards Section */}
-                <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
+                <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
                     {cards.map((card, index) => (
                         <motion.div
                             key={index}
@@ -356,22 +346,22 @@ export default function About() {
                                 background: 'white',
                                 borderRadius: '24px',
                                 padding: '1rem',
-                                boxShadow: '0 20px 40px rgba(0, 166, 81, 0.12)', /* Light green shadow */
+                                boxShadow: '0 20px 40px rgba(0, 166, 81, 0.12)',
                                 border: 'none',
                                 overflow: 'hidden'
                             }}
                         >
                             <div style={{
                                 background: '#f8f9fa',
-                                borderRadius: '16px',
-                                marginBottom: '2rem',
+                                borderRadius: '12px',
+                                marginBottom: '1rem',
                                 overflow: 'hidden'
                             }}>
                                 {card.animation}
                             </div>
-                            <div style={{ padding: '0 1rem 1.5rem 1rem', textAlign: 'center' }}>
-                                <h3 className="h3" style={{ fontSize: '1.5rem', marginBottom: '1rem', fontWeight: 600 }}>{card.title}</h3>
-                                <p className="text-muted" style={{ lineHeight: 1.6 }}>{card.description}</p>
+                            <div style={{ padding: '0 0.75rem 1rem 0.75rem', textAlign: 'center' }}>
+                                <h3 className="h3" style={{ fontSize: '1.1rem', marginBottom: '0.4rem', fontWeight: 500, color: '#111827' }}>{card.title}</h3>
+                                <p className="text-muted" style={{ lineHeight: 1.5, fontSize: '0.85rem', color: '#6b7280' }}>{card.description}</p>
                             </div>
                         </motion.div>
                     ))}

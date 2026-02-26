@@ -2,9 +2,9 @@
 
 :root {
   /* Colors - iAudit Brand */
-  --primary: #00A651;
+  --primary: #058c42;
   /* iAudit Green */
-  --primary-hover: #008A44;
+  --primary-hover: #047a39;
   /* Darker Green */
   --secondary: #2C3E50;
   /* Navy/Charcoal */
@@ -20,7 +20,7 @@
 
   /* Layout */
   --container-width: 1440px;
-  --header-height: 100px;
+  --header-height: 80px;
   --radius: 0.5rem;
 
   /* Typography */
@@ -166,6 +166,112 @@ button {
 .btn-outline:hover {
   border-color: var(--foreground);
   background-color: var(--background-secondary);
+}
+
+/* Unified Button Animation Class */
+.btn-animate {
+  outline: none;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #111827;
+  /* Dark Grey (base/hover color) */
+  color: white !important;
+  transition: all 0.4s ease;
+  z-index: 1;
+  border-radius: 6px;
+}
+
+.btn-animate span {
+  position: relative;
+  z-index: 10;
+  transition: color 0.4s;
+  display: flex;
+  align-items: center;
+  gap: inherit;
+}
+
+.btn-animate::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 120%;
+  height: 100%;
+  background: #058c42;
+  /* iAudit Green (initial layer) */
+  z-index: 5;
+  transform: skew(30deg);
+  transition: transform 0.5s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.btn-animate:hover::before {
+  transform: translate3d(100%, 0, 0) skew(30deg);
+}
+
+.btn-animate:hover {
+  background: #111827;
+}
+
+/* Synchronized Inverted Button (White to Green) */
+.btn-outline-animate {
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #058c42;
+  /* Green base revealed */
+  color: #111827 !important;
+  border: 1px solid #d1d5db;
+  transition: all 0.4s ease;
+  z-index: 1;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.btn-outline-animate::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 120%;
+  height: 100%;
+  background: #ffffff;
+  /* White layer slides OUT */
+  z-index: 5;
+  transform: skew(30deg);
+  transition: transform 0.5s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.btn-outline-animate:hover::before {
+  transform: translate3d(100%, 0, 0) skew(30deg);
+}
+
+.btn-animate span,
+.btn-outline-animate span {
+  position: relative;
+  z-index: 10;
+  transition: color 0.4s;
+  display: flex;
+  align-items: center;
+  gap: inherit;
+}
+
+/* Inverted Button Animation (White to Green) */
+.btn-outline-animate:hover {
+  border-color: #058c42;
+  box-shadow: 0 4px 15px rgba(5, 140, 66, 0.15);
+}
+
+.btn-outline-animate:hover span {
+  color: white !important;
 }
 
 /* Responsive */

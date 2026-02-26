@@ -10,7 +10,7 @@ const testimonials = [
         role: "Head of Internal Audit",
         company: "Acme Manufacturing",
         avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
-        color: "#00A651",
+        color: "#058c42",
         batch: "Verified Audit Expert"
     },
     {
@@ -74,7 +74,7 @@ export default function Testimonials() {
 
     return (
         <section id="testimonials" style={{
-            padding: "60px 0 160px",
+            padding: "3.5rem 0 4rem",
             backgroundColor: "#fff",
             fontFamily: '"Pp Neue Montreal", sans-serif',
             overflow: "hidden",
@@ -85,7 +85,7 @@ export default function Testimonials() {
                 position: "absolute",
                 top: 0,
                 left: 0,
-                width: "20%",
+                width: "15%",
                 height: "100%",
                 background: "linear-gradient(to right, #fff 20%, transparent 100%)",
                 zIndex: 15,
@@ -95,40 +95,41 @@ export default function Testimonials() {
                 position: "absolute",
                 top: 0,
                 right: 0,
-                width: "20%",
+                width: "15%",
                 height: "100%",
                 background: "linear-gradient(to left, #fff 20%, transparent 100%)",
                 zIndex: 15,
                 pointerEvents: "none"
             }} />
 
-            <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px", position: "relative" }}>
+            <div style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 2rem", position: "relative" }}>
                 {/* Section Header */}
-                <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+                <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
                     <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         style={{
                             display: "inline-flex",
                             alignItems: "center",
-                            gap: "10px",
-                            color: '#00A651',
-                            fontSize: '0.8rem',
-                            fontWeight: 600,
-                            letterSpacing: '0.1em',
-                            marginBottom: '1.2rem',
-                            textTransform: 'uppercase'
+                            gap: "0.4rem",
+                            color: '#006644',
+                            fontSize: '0.82rem',
+                            fontWeight: 500,
+                            letterSpacing: '0.01em',
+                            marginBottom: '0.75rem'
                         }}
                     >
-                        ✦ Testimonials ✦
+                        <span style={{ fontSize: '1rem' }}>✦</span>
+                        Testimonials
+                        <span style={{ fontSize: '1rem' }}>✦</span>
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         style={{
-                            fontSize: 'clamp(2rem, 4vw, 2.6rem)',
+                            fontSize: '2.8rem',
                             fontWeight: 500,
                             color: '#111827',
                             letterSpacing: '-0.02em',
@@ -143,90 +144,90 @@ export default function Testimonials() {
                     </motion.h2>
                 </div>
 
-                <div style={{ position: "relative", minHeight: "600px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div style={{ position: "relative", minHeight: "520px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     {/* Background Avatars (Clear and Sharp) */}
                     <div style={{ position: "absolute", width: "100%", height: "100%", pointerEvents: "none" }}>
                         <motion.img
-                            animate={{ y: [0, -15, 0] }}
+                            animate={{ y: [0, -10, 0] }}
                             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
                             src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=120&h=120"
-                            style={{ position: "absolute", left: "2%", top: "10%", width: "110px", height: "110px", borderRadius: "50%", border: "1px solid #e5e7eb", boxShadow: "0 8px 16px rgba(0,0,0,0.08)" }}
+                            style={{ position: "absolute", left: "2%", top: "5%", width: "90px", height: "90px", borderRadius: "50%", border: "1px solid #f3f4f6", boxShadow: "0 8px 16px rgba(0,0,0,0.06)" }}
                         />
                         <motion.img
-                            animate={{ y: [0, 18, 0] }}
+                            animate={{ y: [0, 12, 0] }}
                             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
                             src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=100&h=100"
-                            style={{ position: "absolute", right: "4%", top: "25%", width: "100px", height: "100px", borderRadius: "50%", border: "1px solid #e5e7eb", boxShadow: "0 8px 16px rgba(0,0,0,0.08)" }}
+                            style={{ position: "absolute", right: "2%", top: "15%", width: "80px", height: "80px", borderRadius: "50%", border: "1px solid #f3f4f6", boxShadow: "0 8px 16px rgba(0,0,0,0.06)" }}
                         />
                         <motion.img
-                            animate={{ y: [0, -20, 0] }}
+                            animate={{ y: [0, -15, 0] }}
                             transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
                             src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=90&h=90"
-                            style={{ position: "absolute", left: "10%", bottom: "10%", width: "85px", height: "85px", borderRadius: "50%", border: "1px solid #e5e7eb", boxShadow: "0 8px 16px rgba(0,0,0,0.08)" }}
+                            style={{ position: "absolute", left: "6%", bottom: "5%", width: "70px", height: "70px", borderRadius: "50%", border: "1px solid #f3f4f6", boxShadow: "0 8px 16px rgba(0,0,0,0.06)" }}
                         />
                         <motion.img
-                            animate={{ y: [0, 22, 0] }}
+                            animate={{ y: [0, 15, 0] }}
                             transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
                             src="https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=95&h=95"
-                            style={{ position: "absolute", right: "2%", bottom: "15%", width: "95px", height: "95px", borderRadius: "50%", border: "1px solid #e5e7eb", boxShadow: "0 8px 16px rgba(0,0,0,0.08)" }}
+                            style={{ position: "absolute", right: "4%", bottom: "10%", width: "75px", height: "75px", borderRadius: "50%", border: "1px solid #f3f4f6", boxShadow: "0 8px 16px rgba(0,0,0,0.06)" }}
                         />
                     </div>
 
                     {/* Navigation Arrows */}
                     <motion.button
-                        whileHover={{ scale: 1.1, backgroundColor: "#fff" }}
+                        whileHover={{ scale: 1.05, backgroundColor: "#f9fafb" }}
                         whileTap={{ scale: 0.95 }}
                         onClick={prevStep}
                         style={{
                             position: "absolute",
-                            left: "0",
+                            left: "-1rem",
                             zIndex: 20,
                             background: "#fff",
                             border: "1px solid #E5E7EB",
-                            width: "56px",
-                            height: "56px",
+                            width: "48px",
+                            height: "48px",
                             borderRadius: "50%",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
                             cursor: "pointer",
-                            boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-                            transition: "background-color 0.2s ease"
+                            boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+                            transition: "all 0.2s ease"
                         }}
                     >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <polyline points="15 18 9 12 15 6"></polyline>
                         </svg>
                     </motion.button>
 
                     <motion.button
-                        whileHover={{ scale: 1.1, backgroundColor: "#fff" }}
+                        whileHover={{ scale: 1.05, backgroundColor: "#f9fafb" }}
                         whileTap={{ scale: 0.95 }}
                         onClick={nextStep}
                         style={{
                             position: "absolute",
-                            right: "0",
+                            right: "-1rem",
                             zIndex: 20,
                             background: "#fff",
                             border: "1px solid #E5E7EB",
-                            width: "56px",
-                            height: "56px",
+                            width: "48px",
+                            height: "48px",
                             borderRadius: "50%",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
                             cursor: "pointer",
-                            boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-                            transition: "background-color 0.2s ease"
+                            boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+                            transition: "all 0.2s ease"
                         }}
                     >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
                     </motion.button>
 
                     {/* Central Testimonial Slider Area */}
-                    <div style={{ position: "relative", width: "100%", maxWidth: "880px", overflow: "hidden" }}>
+                    <div style={{ position: "relative", width: "100%", maxWidth: "800px", overflow: "hidden" }}>
                         <AnimatePresence initial={false} custom={direction} mode="wait">
                             <motion.div
                                 key={index}
@@ -237,8 +238,8 @@ export default function Testimonials() {
                                 exit="exit"
                                 transition={{
                                     x: { type: "spring", stiffness: 100, damping: 20 },
-                                    opacity: { duration: 0.6 },
-                                    scale: { duration: 0.6 }
+                                    opacity: { duration: 0.5 },
+                                    scale: { duration: 0.5 }
                                 }}
                                 style={{
                                     display: "flex",
@@ -246,18 +247,18 @@ export default function Testimonials() {
                                     alignItems: "center",
                                     textAlign: "center",
                                     width: "100%",
-                                    padding: "40px 20px"
+                                    padding: "2rem 1rem"
                                 }}
                             >
                                 <div style={{
-                                    width: "140px",
-                                    height: "140px",
+                                    width: "120px",
+                                    height: "120px",
                                     borderRadius: "50%",
                                     overflow: "hidden",
-                                    marginBottom: "32px",
-                                    border: `8px solid #f9fafb`,
+                                    marginBottom: "1.5rem",
+                                    border: `6px solid #f9fafb`,
                                     outline: `1px solid #e5e7eb`,
-                                    boxShadow: "0 20px 40px -12px rgba(0,0,0,0.15)",
+                                    boxShadow: "0 15px 30px rgba(0,0,0,0.08)",
                                     background: "#fff"
                                 }}>
                                     <img
@@ -267,35 +268,34 @@ export default function Testimonials() {
                                     />
                                 </div>
 
-                                <div style={{ display: "flex", gap: "6px", marginBottom: "32px" }}>
+                                <div style={{ display: "flex", gap: "0.3rem", marginBottom: "1.5rem" }}>
                                     {[1, 2, 3, 4, 5].map((star) => (
-                                        <svg key={star} width="24" height="24" viewBox="0 0 24 24" fill="#FF7A50">
+                                        <svg key={star} width="20" height="20" viewBox="0 0 24 24" fill="#006644" style={{ opacity: 0.85 }}>
                                             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
                                         </svg>
                                     ))}
                                 </div>
 
                                 <p style={{
-                                    fontSize: "clamp(1.1rem, 2.2vw, 1.5rem)",
+                                    fontSize: "1.25rem",
                                     color: "#374151",
                                     fontWeight: 400,
-                                    lineHeight: 1.6,
-                                    marginBottom: "40px",
-                                    fontStyle: "normal",
+                                    lineHeight: 1.5,
+                                    marginBottom: "2rem",
                                     letterSpacing: "-0.01em",
-                                    maxWidth: "700px"
+                                    maxWidth: "640px"
                                 }}>
                                     "{testimonials[index].quote}"
                                 </p>
 
-                                <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-                                    <h4 style={{ fontSize: "1.2rem", fontWeight: 700, color: "#111827", margin: 0 }}>
+                                <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                                    <h4 style={{ fontSize: "1.1rem", fontWeight: 500, color: "#111827", margin: 0 }}>
                                         {testimonials[index].author}
                                     </h4>
-                                    <p style={{ fontSize: "0.95rem", color: "#6B7280", margin: 0, fontWeight: 500 }}>
+                                    <p style={{ fontSize: "0.9rem", color: "#6B7280", margin: 0, fontWeight: 400 }}>
                                         {testimonials[index].role} • {testimonials[index].company}
                                     </p>
-                                    <p style={{ fontSize: "0.85rem", color: "#9CA3AF", margin: "6px 0 0 0", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                                    <p style={{ fontSize: "0.75rem", color: "#9CA3AF", margin: "4px 0 0 0", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.04em" }}>
                                         {testimonials[index].batch}
                                     </p>
                                 </div>

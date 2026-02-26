@@ -56,40 +56,43 @@ export default function Pricing() {
 
     return (
         <section id="pricing" style={{
-            padding: "120px 0 40px",
+            padding: "3.5rem 0",
             backgroundColor: "#fff",
-            fontFamily: '"Pp Neue Montreal", sans-serif'
+            fontFamily: '"Pp Neue Montreal", sans-serif',
+            overflow: "hidden"
         }}>
-            <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 40px" }}>
+            <div className="container" style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 2rem" }}>
                 {/* Section Header */}
-                <div style={{ textAlign: 'center', marginBottom: '80px' }}>
-                    <motion.span
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         style={{
-                            color: '#00A651',
-                            fontSize: '0.85rem',
-                            fontWeight: 600,
-                            letterSpacing: '0.15em',
-                            display: 'block',
-                            marginBottom: '1.5rem',
-                            textTransform: 'uppercase'
-                        }}
-                    >
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.4rem',
+                            color: '#006644',
+                            fontWeight: 500,
+                            fontSize: '0.82rem',
+                            letterSpacing: '0.01em',
+                            marginBottom: '0.75rem'
+                        }}>
+                        <span style={{ fontSize: '1rem' }}>✦</span>
                         Pricing
-                    </motion.span>
+                        <span style={{ fontSize: '1rem' }}>✦</span>
+                    </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
                         style={{
-                            fontSize: 'clamp(2.5rem, 5vw, 3.8rem)',
+                            fontSize: '2.8rem',
                             fontWeight: 500,
-                            color: '#000',
-                            letterSpacing: '-0.04em',
-                            marginBottom: '1.5rem',
+                            color: '#111827',
+                            letterSpacing: '-0.02em',
+                            marginBottom: '1rem',
                             lineHeight: 1.1
                         }}
                     >
@@ -101,8 +104,8 @@ export default function Pricing() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.1 }}
                         style={{
-                            fontSize: '1.25rem',
-                            color: '#6B7280',
+                            fontSize: '1.05rem',
+                            color: '#4B5563',
                             maxWidth: '700px',
                             margin: '0 auto',
                             fontWeight: 400,
@@ -119,10 +122,10 @@ export default function Pricing() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         style={{
-                            marginTop: '40px',
+                            marginTop: '2rem',
                             display: 'inline-flex',
-                            backgroundColor: '#F8F9FA',
-                            padding: '6px',
+                            backgroundColor: '#F9FAF8',
+                            padding: '4px',
                             borderRadius: '0.75rem',
                             border: '1px solid #E5E7EB'
                         }}
@@ -130,18 +133,18 @@ export default function Pricing() {
                         <button
                             onClick={() => setCurrency("USD")}
                             style={{
-                                padding: '10px 24px',
-                                fontSize: '1rem',
-                                fontWeight: 600,
+                                padding: '8px 20px',
+                                fontSize: '0.9rem',
+                                fontWeight: 500,
                                 borderRadius: '0.5rem',
                                 border: 'none',
                                 cursor: 'pointer',
                                 transition: 'all 0.2s ease',
-                                backgroundColor: currency === "USD" ? "#00A651" : "transparent",
-                                color: currency === "USD" ? "#fff" : "#94A3B8",
+                                backgroundColor: currency === "USD" ? "#006644" : "transparent",
+                                color: currency === "USD" ? "#fff" : "#6B7280",
                                 display: 'flex',
                                 alignItems: 'center',
-                                gap: '8px'
+                                gap: '6px'
                             }}
                         >
                             $ USD
@@ -149,18 +152,18 @@ export default function Pricing() {
                         <button
                             onClick={() => setCurrency("GBP")}
                             style={{
-                                padding: '10px 24px',
-                                fontSize: '1rem',
-                                fontWeight: 600,
+                                padding: '8px 20px',
+                                fontSize: '0.9rem',
+                                fontWeight: 500,
                                 borderRadius: '0.5rem',
                                 border: 'none',
                                 cursor: 'pointer',
                                 transition: 'all 0.2s ease',
-                                backgroundColor: currency === "GBP" ? "#00A651" : "transparent",
-                                color: currency === "GBP" ? "#fff" : "#94A3B8",
+                                backgroundColor: currency === "GBP" ? "#006644" : "transparent",
+                                color: currency === "GBP" ? "#fff" : "#6B7280",
                                 display: 'flex',
                                 alignItems: 'center',
-                                gap: '8px'
+                                gap: '6px'
                             }}
                         >
                             £ GBP
@@ -172,7 +175,7 @@ export default function Pricing() {
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(3, 1fr)',
-                    gap: '24px'
+                    gap: '2rem'
                 }}>
                     {plans.map((plan, index) => (
                         <motion.div
@@ -182,26 +185,26 @@ export default function Pricing() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
                             style={{
-                                padding: '48px',
-                                borderRadius: '2rem',
+                                padding: '2.5rem',
+                                borderRadius: '1.5rem',
                                 border: '1px solid #E5E7EB',
                                 backgroundColor: '#fff',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
                                 position: 'relative',
-                                boxShadow: plan.highlight ? '0 30px 60px -15px rgba(0,0,0,0.05)' : 'none'
+                                boxShadow: plan.highlight ? '0 20px 50px rgba(0, 102, 68, 0.05)' : 'none'
                             }}
                             whileHover={{
-                                y: -12,
-                                borderColor: '#00A651',
-                                boxShadow: '0 40px 80px -20px rgba(0, 166, 81, 0.1)'
+                                y: -8,
+                                borderColor: '#006644',
+                                boxShadow: '0 30px 60px rgba(0, 102, 68, 0.08)'
                             }}
                         >
                             <h3 style={{
-                                fontSize: '1.75rem',
+                                fontSize: '1.4rem',
                                 fontWeight: 500,
-                                marginBottom: '1.5rem',
+                                marginBottom: '1.25rem',
                                 color: '#111827',
                                 letterSpacing: '-0.02em'
                             }}>
@@ -209,18 +212,17 @@ export default function Pricing() {
                             </h3>
 
                             <div style={{
-                                fontSize: '1.1rem',
+                                fontSize: '0.95rem',
                                 color: '#6B7280',
-                                marginBottom: '2.5rem',
+                                marginBottom: '2rem',
                                 display: 'flex',
                                 alignItems: 'baseline',
                                 gap: '4px'
                             }}>
                                 <span style={{
-                                    fontSize: '3rem',
+                                    fontSize: '2.4rem',
                                     fontWeight: 500,
                                     color: '#111827',
-                                    marginTop: '0.5rem',
                                     letterSpacing: '-0.03em'
                                 }}>
                                     {currency === "USD" ? "$" : "£"}{plan.prices[currency]}
@@ -232,21 +234,21 @@ export default function Pricing() {
                                 href="#"
                                 style={{
                                     width: '100%',
-                                    padding: '16px',
+                                    padding: '0.85rem',
                                     textAlign: 'center',
-                                    borderRadius: '0.75rem',
-                                    border: '1px solid #E5E7EB',
-                                    fontSize: '1.05rem',
+                                    borderRadius: '0.6rem',
+                                    border: '1.2px solid #E5E7EB',
+                                    fontSize: '0.95rem',
                                     fontWeight: 500,
                                     color: '#111827',
-                                    marginBottom: '3rem',
+                                    marginBottom: '2.5rem',
                                     textDecoration: 'none',
                                     transition: 'all 0.3s ease'
                                 }}
                                 onMouseOver={(e) => {
-                                    e.currentTarget.style.backgroundColor = '#00A651';
+                                    e.currentTarget.style.backgroundColor = '#006644';
                                     e.currentTarget.style.color = '#fff';
-                                    e.currentTarget.style.borderColor = '#00A651';
+                                    e.currentTarget.style.borderColor = '#006644';
                                 }}
                                 onMouseOut={(e) => {
                                     e.currentTarget.style.backgroundColor = 'transparent';
@@ -258,31 +260,31 @@ export default function Pricing() {
                             </Link>
 
                             <ul style={{
-                                marginTop: '1rem',
+                                marginTop: '0',
                                 display: 'flex',
                                 flexDirection: 'column',
-                                gap: '1.25rem'
+                                gap: '1rem'
                             }}>
                                 {plan.features.map((feature) => (
                                     <li key={feature} style={{
                                         display: 'flex',
                                         alignItems: 'center',
-                                        gap: '12px',
-                                        fontSize: '1rem',
+                                        gap: '10px',
+                                        fontSize: '0.9rem',
                                         color: '#4B5563',
                                         fontWeight: 400
                                     }}>
                                         <div style={{
-                                            width: '20px',
-                                            height: '20px',
+                                            width: '18px',
+                                            height: '18px',
                                             borderRadius: '50%',
-                                            backgroundColor: 'rgba(0, 166, 81, 0.1)',
+                                            backgroundColor: 'rgba(0, 102, 68, 0.08)',
                                             display: 'flex',
                                             alignItems: 'center',
                                             justifyContent: 'center',
                                             flexShrink: 0
                                         }}>
-                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00A651" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#006644" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
                                                 <polyline points="20 6 9 17 4 12"></polyline>
                                             </svg>
                                         </div>
@@ -301,8 +303,8 @@ export default function Pricing() {
                     transition={{ delay: 0.5 }}
                     style={{
                         textAlign: 'center',
-                        marginTop: '40px',
-                        fontSize: '0.95rem',
+                        marginTop: '3rem',
+                        fontSize: '0.85rem',
                         color: '#94A3B8',
                         fontWeight: 400
                     }}

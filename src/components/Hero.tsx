@@ -6,10 +6,15 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import ScrollStack, { ScrollStackItem } from "./ScrollStack/ScrollStack";
 import LogoLoop from "./LogoLoop/LogoLoop";
-import { SiSiemens, SiSchneiderelectric, SiSap, SiBmw, SiMercedes, SiVolkswagen } from 'react-icons/si';
+import HeroDashboard1 from "./HeroDashboard1";
+import HeroDashboard2 from "./HeroDashboard2";
+import { SiSiemens, SiSchneiderelectric, SiSap, SiBmw, SiMercedes, SiVolkswagen } from "react-icons/si";
+
 
 export default function Hero() {
+    const primaryBtnRef = useRef<HTMLAnchorElement>(null);
     const primaryArrowRef = useRef<HTMLSpanElement>(null);
+    const outlineBtnRef = useRef<HTMLAnchorElement>(null);
     const outlineArrowRef = useRef<HTMLSpanElement>(null);
 
     const partnerLogos = [
@@ -22,201 +27,253 @@ export default function Hero() {
     ];
 
     useEffect(() => {
-        // ... existing useEffect content
-        const arrows = [
-            { btn: 'primary', arrow: primaryArrowRef.current },
-            { btn: 'outline', arrow: outlineArrowRef.current }
+        const pairs = [
+            { btn: primaryBtnRef.current, arrow: primaryArrowRef.current },
+            { btn: outlineBtnRef.current, arrow: outlineArrowRef.current },
         ];
 
-        arrows.forEach(({ arrow }) => {
-            if (arrow) {
-                const parent = arrow.closest('a');
-                if (parent) {
-                    const handleMouseEnter = () => {
-                        gsap.to(arrow, {
-                            x: 5,
-                            duration: 0.3,
-                            ease: "power2.out"
-                        });
-                    };
-
-                    const handleMouseLeave = () => {
-                        gsap.to(arrow, {
-                            x: 0,
-                            duration: 0.3,
-                            ease: "power2.out"
-                        });
-                    };
-
-                    parent.addEventListener('mouseenter', handleMouseEnter);
-                    parent.addEventListener('mouseleave', handleMouseLeave);
-                }
-            }
+        pairs.forEach(({ btn, arrow }) => {
+            if (!btn || !arrow) return;
+            const handleEnter = () => {
+                gsap.to(arrow, { x: 4, y: -4, duration: 0.3, ease: "power2.out" });
+                gsap.to(btn, { y: -2, duration: 0.25, ease: "power2.out" });
+            };
+            const handleLeave = () => {
+                gsap.to(arrow, { x: 0, y: 0, duration: 0.3, ease: "power2.out" });
+                gsap.to(btn, { y: 0, duration: 0.25, ease: "power2.out" });
+            };
+            btn.addEventListener("mouseenter", handleEnter);
+            btn.addEventListener("mouseleave", handleLeave);
+            return () => {
+                btn.removeEventListener("mouseenter", handleEnter);
+                btn.removeEventListener("mouseleave", handleLeave);
+            };
         });
     }, []);
 
     return (
-        <section className="section" style={{
-            paddingTop: '8rem',
-            paddingBottom: '2rem',
-            textAlign: 'center',
-            background: 'radial-gradient(circle at center, rgba(0, 166, 81, 0.08) 0%, rgba(255, 255, 255, 0) 70%)',
-            overflow: 'hidden',
-            fontFamily: '"Pp Neue Montreal", sans-serif'
+        <section style={{
+            background: `
+                radial-gradient(ellipse 50% 60% at 0% 0%, rgba(0,166,81,0.15) 0%, transparent 100%),
+                radial-gradient(ellipse 50% 60% at 100% 0%, rgba(0,166,81,0.15) 0%, transparent 100%)
+            `,
+            paddingTop: "100px",
+            paddingBottom: "0",
+            textAlign: "center",
+            overflow: "visible",
+            fontFamily: '"Pp Neue Montreal", sans-serif',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
         }}>
-            <div className="container">
-                <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        style={{
-                            display: 'inline-block',
-                            padding: '0.5rem 1rem',
-                            backgroundColor: 'rgba(0, 166, 81, 0.1)',
-                            color: 'var(--primary)',
-                            borderRadius: '2rem',
-                            fontSize: '0.875rem',
-                            fontWeight: 600,
-                            marginBottom: '1.5rem'
-                        }}>
-                        Built by Auditors, For ISO Audits
-                    </motion.div>
 
-                    <motion.h1
-                        className="h1"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                        style={{ marginBottom: '1rem' }}
-                    >
-                        Still running ISO audits in <span style={{ color: 'var(--primary)' }}>Word, Excel, and email?</span>
-                    </motion.h1>
+            {/* ── Hero Text Block ── */}
+            <div style={{ maxWidth: "1100px", width: "100%", margin: "0 auto", padding: "0 2rem", paddingTop: "44px", paddingBottom: "0" }}>
 
-                    <motion.p
-                        className="text-lg text-muted"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        style={{ marginBottom: '1.5rem', lineHeight: 1.6 }}
-                    >
-                        Plan, execute, and report ISO 9001, 14001, 45001, and 27001 audits in one PDCA-driven platform. Built by certified auditors. Aligned to ISO 19011. Ready in minutes, not months.
-                    </motion.p>
-
-                    <motion.div
-                        className="flex"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                        style={{ justifyContent: 'center', gap: '1rem', marginBottom: '3rem' }}
-                    >
-                        <Link
-                            href="#contact"
-                            className="btn btn-primary"
-                            style={{
-                                padding: '1rem 2rem',
-                                fontSize: '1.125rem',
-                                display: 'inline-flex',
-                                alignItems: 'center',
-                                gap: '0.5rem'
-                            }}
-                        >
-                            Get started free
-                            <span ref={primaryArrowRef} style={{ display: 'inline-flex', alignItems: 'center' }}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg>
-                            </span>
-                        </Link>
-                        <Link
-                            href="#demo"
-                            className="btn btn-outline"
-                            style={{
-                                padding: '1rem 2rem',
-                                fontSize: '1.125rem',
-                                display: 'inline-flex',
-                                alignItems: 'center',
-                                gap: '0.5rem'
-                            }}
-                        >
-                            Book a demo
-                            <span ref={outlineArrowRef} style={{ display: 'inline-flex', alignItems: 'center' }}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg>
-                            </span>
-                        </Link>
-                    </motion.div>
-                </div>
-
-                {/* Scroll Stack Animation - iAudit Dashboard Cards */}
+                {/* Tag */}
                 <motion.div
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-                    style={{ marginTop: '2rem' }}
+                    transition={{ duration: 0.5 }}
+                    style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.41rem",
+                        fontSize: "0.82rem",
+                        fontWeight: 500,
+                        color: "#1a7a5e",
+                        marginBottom: "20px",
+                        letterSpacing: "0.015em",
+                        fontFamily: '"Pp Neue Montreal", sans-serif',
+                    }}
                 >
-                    <ScrollStack
-                        itemDistance={120} /* Higher distance for smoother staggered triggers */
-                        itemStackDistance={35}
-                        baseScale={0.88} /* Tighter stack */
-                        itemScale={0.04} /* Subtler scaling */
-                        useWindowScroll={true}
-                    >
-                        <ScrollStackItem>
-                            <div style={{ position: 'relative', width: '100%', borderRadius: '2.5rem' }}>
-                                <img
-                                    src="/hero-dashboard-planning.png"
-                                    alt="Audit Planning Dashboard"
-                                    style={{ width: '100%', display: 'block', borderRadius: '2.5rem' }}
-                                />
-                            </div>
-                        </ScrollStackItem>
-                        <ScrollStackItem>
-                            <div style={{ position: 'relative', width: '100%', borderRadius: '2.5rem' }}>
-                                <img
-                                    src="/hero-dashboard-collection.png"
-                                    alt="Evidence Collection Dashboard"
-                                    style={{ width: '100%', display: 'block', borderRadius: '2.5rem' }}
-                                />
-                            </div>
-                        </ScrollStackItem>
-                    </ScrollStack>
+                    <span>✦</span>
+                    Built by Auditors, For ISO Audits
+                    <span>✦</span>
                 </motion.div>
 
-                {/* NEW: Trusted by Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    style={{ marginTop: '18rem', paddingBottom: '1rem' }}
+                {/* Main Heading */}
+                <motion.h1
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.55, delay: 0.08 }}
+                    style={{
+                        fontSize: "clamp(2.1rem, 4.2vw, 3.2rem)",
+                        fontWeight: 500,
+                        lineHeight: 1.1,
+                        letterSpacing: "-0.03em",
+                        color: "#0d1117",
+                        maxWidth: "100%",
+                        margin: "0 auto 1.4rem",
+                        fontFamily: '"Pp Neue Montreal", sans-serif',
+                        whiteSpace: "nowrap",
+                        textAlign: "center"
+                    }}
                 >
-                    <motion.h2
-                        className="branding-label"
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        viewport={{ once: true }}
-                    >
-                        Trusted by global organisations. Preferred by lead auditors.
-                    </motion.h2>
+                    Still running ISO audits in{" "}
+                    <span style={{ color: "#058c42" }}>Word, Excel, and email?</span>
+                </motion.h1>
 
-                    <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-                        <LogoLoop
-                            logos={partnerLogos}
-                            speed={50} // Faster for energetic feel
-                            direction="left"
-                            logoHeight={45} // Slightly larger
-                            gap={100} // More breathing room
-                            scaleOnHover
-                            ariaLabel="Our trusted partners"
-                        />
-                    </div>
+                {/* Sub-description */}
+                <motion.p
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.17 }}
+                    style={{
+                        fontSize: "1rem",
+                        fontWeight: 400,
+                        lineHeight: 1.7,
+                        color: "#6b7280",
+                        maxWidth: "600px",
+                        margin: "0 auto 4rem",
+                        fontFamily: '"Pp Neue Montreal", sans-serif',
+                        textAlign: "center"
+                    }}
+                >
+                    Plan, execute, and report ISO 9001, 14001, 45001, and 27001 audits in one PDCA-driven platform. Built by certified auditors. Aligned to ISO 19011. Ready in minutes, not months.
+                </motion.p>
+
+                {/* CTA Buttons */}
+                <motion.div
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.26 }}
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "12px",
+                        flexWrap: "wrap",
+                    }}
+                >
+                    {/* Primary */}
+                    <Link
+                        href="#contact"
+                        ref={primaryBtnRef}
+                        className="btn-animate"
+                        style={{
+                            padding: "13px 24px",
+                            borderRadius: "6px",
+                            fontWeight: 600,
+                            fontSize: "0.925rem",
+                            fontFamily: '"Pp Neue Montreal", sans-serif',
+                            letterSpacing: "0.01em",
+                            willChange: "transform",
+                            boxShadow: "0 2px 12px rgba(5,140,66,0.22)",
+                        }}
+                    >
+                        <span>
+                            Get started free
+                            <span ref={primaryArrowRef} style={{ display: "inline-flex", alignItems: "center" }}>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <line x1="7" y1="17" x2="17" y2="7" />
+                                    <polyline points="7 7 17 7 17 17" />
+                                </svg>
+                            </span>
+                        </span>
+                    </Link>
+
+                    {/* Outline */}
+                    <Link
+                        href="#demo"
+                        ref={outlineBtnRef}
+                        className="btn-outline-animate"
+                        style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "8px",
+                            padding: "13px 24px",
+                            fontWeight: 600,
+                            fontSize: "0.925rem",
+                            fontFamily: '"Pp Neue Montreal", sans-serif',
+                            letterSpacing: "0.01em",
+                            willChange: "transform",
+                        }}
+                    >
+                        <span>
+                            Book a demo
+                            <span ref={outlineArrowRef} style={{ display: "inline-flex", alignItems: "center" }}>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <line x1="7" y1="17" x2="17" y2="7" />
+                                    <polyline points="7 7 17 7 17 17" />
+                                </svg>
+                            </span>
+                        </span>
+                    </Link>
                 </motion.div>
             </div>
-        </section >
+
+            {/* ── Card area ── */}
+            <motion.div
+                initial={{ opacity: 0, y: 60 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.38 }}
+                style={{
+                    width: "100%",
+                    maxWidth: "1200px",
+                    margin: "72px auto 0",
+                    padding: "0 1.5rem",
+                    position: "relative",
+                    zIndex: 2, // Keep dashboard behind everything if it scrolls under, or above if preferred. Here we set it to a base level.
+                }}
+            >
+                <ScrollStack
+                    itemDistance={80}
+                    itemStackDistance={10}
+                    baseScale={0.9}
+                    itemScale={0.03}
+                    useWindowScroll={true}
+                >
+                    <ScrollStackItem>
+                        <div style={{ borderRadius: "20px", overflow: "hidden" }}>
+                            <HeroDashboard1 />
+                        </div>
+                    </ScrollStackItem>
+                    <ScrollStackItem>
+                        <div style={{ borderRadius: "20px", overflow: "hidden" }}>
+                            <HeroDashboard2 />
+                        </div>
+                    </ScrollStackItem>
+                </ScrollStack>
+            </motion.div>
+
+            {/* ── Trusted By / Logo Loop ── */}
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                style={{
+                    width: "100%",
+                    marginTop: "12rem", // Significant gap to allow dashboard travel
+                    paddingBottom: "8rem", // Extra padding at bottom of section
+                    position: "relative",
+                    zIndex: 10, // Ensure it sits comfortably after or over the dashboard depending on user preference
+                    background: "#fff" // Opaque background to cleanly cut off the dashboard as it scrolls under
+                }}
+            >
+                <motion.p
+                    className="branding-label"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    viewport={{ once: true }}
+                >
+                    Trusted by global organisations. Preferred by lead auditors.
+                </motion.p>
+
+                <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+                    <LogoLoop
+                        logos={partnerLogos}
+                        speed={50}
+                        direction="left"
+                        logoHeight={45}
+                        gap={100}
+                        scaleOnHover
+                        ariaLabel="Our trusted partners"
+                    />
+                </div>
+            </motion.div>
+        </section>
     );
 }

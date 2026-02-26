@@ -9,8 +9,8 @@
 }
 
 .scroll-stack-inner {
-    padding: 10vh 2rem 10vh;
-    min-height: 100vh;
+    padding: 0 2rem 15vh;
+    min-height: 120vh;
 }
 
 .scroll-stack-card-wrapper {
@@ -22,13 +22,12 @@
     will-change: transform, filter;
     backface-visibility: hidden;
     transform-style: preserve-3d;
-    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.12);
+    box-shadow: none;
     height: auto;
     width: 100%;
-    margin: 80px auto;
-    /* Increased margin for better scroll trigger calculation */
+    margin: 0 auto;
     padding: 0;
-    border-radius: 2.5rem;
+    border-radius: 0;
     box-sizing: border-box;
     background: transparent;
     border: none;
@@ -39,12 +38,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
 }
 
 .scroll-stack-card:hover {
-    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.18);
-    transform: scale(1.025) translateY(-5px);
+    box-shadow: none;
 }
 
 .scroll-stack-end {

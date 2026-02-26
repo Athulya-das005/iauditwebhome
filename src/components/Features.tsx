@@ -48,29 +48,28 @@ const pdcaSteps = [
 
 export default function Features() {
     return (
-        <section id="features" className="section" style={{ background: '#fcfcfc', borderTop: '1px solid rgba(0,0,0,0.03)', padding: '100px 0', fontFamily: '"Pp Neue Montreal", sans-serif' }}>
-            <div className="container" style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 20px' }}>
-                <div className="text-center" style={{ marginBottom: '80px' }}>
+        <section id="features" className="section" style={{ background: '#fcfcfc', borderTop: '1px solid rgba(0,0,0,0.03)', padding: '5rem 0', fontFamily: '"Pp Neue Montreal", sans-serif' }}>
+            <div className="container" style={{ maxWidth: '1260px', margin: '0 auto', padding: '0 2rem' }}>
+                <div style={{ marginBottom: '4rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
                         style={{
-                            display: 'inline-block',
-                            padding: '0.4rem 1.2rem',
-                            backgroundColor: 'rgba(0, 166, 81, 0.08)',
-                            color: 'var(--primary)',
-                            borderRadius: '2rem',
-                            fontSize: '0.85rem',
-                            fontWeight: 700,
-                            marginBottom: '1.5rem',
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.05em'
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.4rem',
+                            color: '#006644',
+                            fontWeight: 500,
+                            fontSize: '0.8rem',
+                            letterSpacing: '0.01em',
+                            marginBottom: '0.75rem'
                         }}>
+                        <span style={{ fontSize: '1rem' }}>✦</span>
                         The PDCA Framework
+                        <span style={{ fontSize: '1rem' }}>✦</span>
                     </motion.div>
-                    <h2 className="h2" style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: '1.5rem', color: '#111827', lineHeight: 1.1 }}>
+                    <h2 className="h2" style={{ fontSize: '2.8rem', fontWeight: 500, marginBottom: '1.5rem', color: '#111827', lineHeight: 1.1, letterSpacing: '-0.02em', maxWidth: '800px' }}>
                         One platform for every stage of <br />
                         your <span style={{ color: 'var(--primary)' }}>audit programme</span>
                     </h2>
@@ -134,7 +133,7 @@ export default function Features() {
                                 </motion.div>
                                 <span style={{
                                     fontSize: '0.75rem',
-                                    fontWeight: 800,
+                                    fontWeight: 500,
                                     color: '#9ca3af',
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.1em'
@@ -144,10 +143,10 @@ export default function Features() {
                             </div>
 
                             <div style={{ flexGrow: 1 }}>
-                                <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: step.color, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: 500, color: step.color, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.4rem' }}>
                                     {step.title}
                                 </h3>
-                                <h4 style={{ fontSize: '1.4rem', fontWeight: 700, color: '#111827', marginBottom: '1rem', lineHeight: 1.3 }}>
+                                <h4 style={{ fontSize: '1.2rem', fontWeight: 500, color: '#111827', marginBottom: '0.75rem', lineHeight: 1.3 }}>
                                     {step.subtitle}
                                 </h4>
                                 <p style={{ marginBottom: '1.5rem', fontSize: '0.95rem', lineHeight: 1.6, color: '#6b7280' }}>
@@ -164,8 +163,8 @@ export default function Features() {
                                         display: 'inline-flex',
                                         alignItems: 'center',
                                         gap: '0.5rem',
-                                        fontSize: '0.95rem',
-                                        fontWeight: 700
+                                        fontSize: '0.9rem',
+                                        fontWeight: 500
                                     }}
                                 >
                                     Get started

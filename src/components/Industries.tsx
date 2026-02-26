@@ -161,28 +161,28 @@ const loopItems = [...industries, ...industries];
 
 export default function Industries() {
     return (
-        <section id="industries" style={{ background: "#fff", padding: "100px 0 80px", overflow: "hidden", fontFamily: '"Pp Neue Montreal", sans-serif' }}>
-            <div style={{ maxWidth: "1300px", margin: "0 auto", padding: "0 40px" }}>
+        <section id="industries" style={{ background: "#fff", padding: "5rem 0", overflow: "hidden", fontFamily: '"Pp Neue Montreal", sans-serif' }}>
+            <div className="container" style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 2rem" }}>
 
-                <div style={{ textAlign: "center", marginBottom: "48px" }}>
+                <div style={{ textAlign: "center", marginBottom: "4rem", display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         style={{
-                            display: "inline-block",
-                            padding: "0.4rem 1.1rem",
-                            backgroundColor: "rgba(0, 166, 81, 0.08)",
-                            color: "var(--primary)",
-                            borderRadius: "2rem",
-                            fontSize: "0.78rem",
-                            fontWeight: 700,
-                            marginBottom: "1.1rem",
-                            textTransform: "uppercase",
-                            letterSpacing: "0.07em",
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.4rem',
+                            color: '#006644',
+                            fontWeight: 500,
+                            fontSize: '0.8rem',
+                            letterSpacing: '0.01em',
+                            marginBottom: '0.75rem'
                         }}
                     >
+                        <span style={{ fontSize: '1rem' }}>✦</span>
                         Industries we serve
+                        <span style={{ fontSize: '1rem' }}>✦</span>
                     </motion.div>
 
                     <motion.h2
@@ -191,11 +191,13 @@ export default function Industries() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
                         style={{
-                            fontSize: "3.5rem",
-                            fontWeight: 800,
+                            fontSize: "3.0rem",
+                            fontWeight: 500,
                             color: "#111827",
-                            lineHeight: 1.15,
+                            lineHeight: 1.1,
                             margin: 0,
+                            letterSpacing: '-0.02em',
+                            maxWidth: '900px'
                         }}
                     >
                         ISO audit management{" "}
@@ -229,24 +231,24 @@ function IndustryCard({ item }: { item: (typeof industries)[0] }) {
             <div style={{
                 position: "relative",
                 zIndex: 1,
-                padding: "48px",
+                padding: "24px",
                 height: "100%",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-start",
-                gap: "1.2rem",
+                gap: "1rem",
                 boxSizing: "border-box",
             }}>
                 {/* Sketch illustration area — fixed size */}
                 <div style={{
                     width: "100%",
-                    height: "120px",
+                    height: "100px",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     background: `${item.color}25`,
                     borderRadius: "14px",
-                    padding: "20px",
+                    padding: "16px",
                     boxSizing: "border-box",
                     border: `1px solid ${item.color}30`,
                 }}>
@@ -257,8 +259,8 @@ function IndustryCard({ item }: { item: (typeof industries)[0] }) {
                 <div style={{ display: "flex", flexDirection: "column", gap: "1rem", flex: 1 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                         <h3 style={{
-                            fontSize: "2.3rem",
-                            fontWeight: 800,
+                            fontSize: "1.35rem",
+                            fontWeight: 500,
                             color: "#111827",
                             lineHeight: 1.2,
                             margin: 0,
@@ -266,8 +268,8 @@ function IndustryCard({ item }: { item: (typeof industries)[0] }) {
                             {item.title}
                         </h3>
                         <span style={{
-                            fontSize: "1.8rem",
-                            fontWeight: 900,
+                            fontSize: "1.2rem",
+                            fontWeight: 600,
                             color: `${item.color}25`,
                             lineHeight: 1,
                             flexShrink: 0,
@@ -278,9 +280,10 @@ function IndustryCard({ item }: { item: (typeof industries)[0] }) {
                     </div>
 
                     <p style={{
-                        fontSize: "1.25rem",
+                        fontSize: "0.9rem",
                         color: "#4b5563",
-                        lineHeight: 1.8,
+                        lineHeight: 1.5,
+                        fontWeight: 400,
                         margin: 0,
                     }}>
                         {item.description}
