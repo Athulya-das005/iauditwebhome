@@ -3,35 +3,29 @@
 import { motion } from "framer-motion";
 
 export default function HeroDashboard2() {
-    const sidebarItems = [
-        { category: "OVERVIEW", items: ["Dashboard"] },
-        { category: "MANAGEMENT", items: ["Company", "Users", "Self Assessment", "Gap Analysis", "Audit Program", "Audit Plan", "Audit", "Findings", "Audit Templates", "Audit Reports"] },
-        { category: "BILLING", items: ["Subscription"] }
-    ];
 
     const kpis = [
-        { label: "Companies", value: "1", trend: "+12%", color: "#3b82f6", bg: "#eff6ff", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><line x1="9" y1="21" x2="9" y2="9" /><line x1="3" y1="9" x2="21" y2="9" /></svg> },
-        { label: "Sites", value: "2", trend: "+5%", color: "#f59e0b", bg: "#fffbeb", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg> },
-        { label: "Audit Programs", value: "4", trend: "+8%", color: "#8b5cf6", bg: "#f5f3ff", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2" /><rect x="8" y="2" width="8" height="4" rx="1" ry="1" /></svg> },
-        { label: "Total Audits", value: "14", trend: "+2%", color: "#058c42", bg: "#f0fdf4", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg> },
+        { label: "Companies", value: "12", desc: "from last month", trend: "↗ +12%", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18" /><path d="M5 21V7l8-4v18" /><path d="M13 21V3l8 4v14" /><path d="M9 11v2" /><path d="M9 15v2" /><path d="M17 11v2" /><path d="M17 15v2" /></svg> },
+        { label: "Sites", value: "34", desc: "from last month", trend: "↗ +5%", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg> },
+        { label: "Departments", value: "87", desc: "from last month", trend: "↗ +15%", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg> },
+        { label: "Audit Programs", value: "9", desc: "from last month", trend: "↗ +8%", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2" /><rect x="8" y="2" width="8" height="4" rx="1" ry="1" /><path d="M9 12l2 2 4-4" /></svg> },
+        { label: "Total Audits", value: "46", desc: "from last month", trend: "↗ +3%", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> },
     ];
 
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+            transition: { staggerChildren: 0.08, delayChildren: 0.1 }
         }
     };
 
     const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1,
-            transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
-        }
+        hidden: { y: 15, opacity: 0 },
+        visible: { y: 0, opacity: 1 }
     };
+
+    const commonTransition = { duration: 0.6, ease: "easeOut" as const };
 
     return (
         <motion.div
@@ -40,260 +34,203 @@ export default function HeroDashboard2() {
             variants={containerVariants}
             style={{
                 background: "#ffffff",
-                borderRadius: "20px",
+                borderRadius: "16px",
                 display: "flex",
                 overflow: "hidden",
                 fontFamily: '"Pp Neue Montreal", Inter, sans-serif',
                 height: "100%",
-                minHeight: "520px",
+                minHeight: "440px",
                 userSelect: "none",
-                boxShadow: "0 10px 40px rgba(0,0,0,0.04)",
+                boxShadow: "0 8px 30px rgba(0,0,0,0.03)",
                 border: "1px solid #f1f5f9"
             }}
         >
-            {/* Sidebar */}
-            <div style={{
-                width: "210px",
-                flexShrink: 0,
-                background: "#f8fafc",
-                borderRight: "1px solid #f1f5f9",
-                display: "flex",
-                flexDirection: "column",
-                padding: "24px 0",
-            }}>
-                {/* Logo Refined */}
-                <div style={{ padding: "0 24px 28px", display: "flex", alignItems: "center", gap: "10px" }}>
-                    <div style={{ width: 28, height: 28, background: "#058c42", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(5,140,66,0.15)" }}>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                    </div>
-                    <span style={{ fontWeight: 700, fontSize: "15px", color: "#058c42", letterSpacing: "-0.02em" }}>audit <span style={{ color: "#1f2937" }}>Global</span></span>
-                </div>
-
-                {/* Nav Groups Refined */}
-                <div style={{ overflowY: "auto", flex: 1, padding: "0 12px" }}>
-                    {sidebarItems.map((group) => (
-                        <div key={group.category} style={{ marginBottom: "22px" }}>
-                            <div style={{ fontSize: "10px", fontWeight: 700, color: "#94a3b8", padding: "0 12px 10px", letterSpacing: "0.08em" }}>{group.category}</div>
-                            {group.items.map(item => (
-                                <div key={item} style={{
-                                    padding: "9px 12px",
-                                    borderRadius: "10px",
-                                    fontSize: "13px",
-                                    fontWeight: (item === "Dashboard" ? 600 : 500),
-                                    color: (item === "Dashboard" ? "#058c42" : "#64748b"),
-                                    background: (item === "Dashboard" ? "rgba(5, 140, 66, 0.06)" : "transparent"),
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: "10px",
-                                    marginBottom: "2px",
-                                    cursor: "pointer",
-                                    transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)"
-                                }}>
-                                    <div style={{ width: 14, height: 14, opacity: (item === "Dashboard" ? 1 : 0.5), color: (item === "Dashboard" ? "#058c42" : "currentColor") }}>
-                                        {item === "Dashboard" ? (
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /></svg>
-                                        ) : (
-                                            <div style={{ width: 6, height: 6, borderRadius: "50%", background: "currentColor", margin: "auto" }} />
-                                        )}
-                                    </div>
-                                    {item}
-                                </div>
-                            ))}
-                        </div>
-                    ))}
-                </div>
-
-                {/* User Profile Hook */}
-                <div style={{ padding: "16px 20px", borderTop: "1px solid #f1f5f9", marginTop: "auto", display: "flex", alignItems: "center", gap: "10px" }}>
-                    <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#e2e8f0", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
-                    </div>
-                    <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: "11px", fontWeight: 700, color: "#1f2937" }}>Adam Smith</div>
-                        <div style={{ fontSize: "10px", color: "#94a3b8" }}>Lead Auditor</div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div style={{ flex: 1, background: "#ffffff", padding: "28px", display: "flex", flexDirection: "column", gap: "28px", overflow: "hidden" }}>
-
-                {/* Header Row */}
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <div>
-                        <h2 style={{ fontSize: "20px", fontWeight: 700, color: "#0f172a", margin: 0 }}>Dashboard Overview</h2>
-                        <p style={{ fontSize: "13px", color: "#64748b", marginTop: "2px" }}>Welcome back, Adam. Here is your audit progress.</p>
-                    </div>
-                </div>
-
-                {/* KPI Row - Center Aligned Cleanly */}
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "16px" }}>
+            <div style={{ flex: 1, background: "#f8fafb", padding: "28px 32px", display: "flex", flexDirection: "column", gap: "24px", overflow: "hidden" }}>
+                {/* 5 KPIs */}
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "12px" }}>
                     {kpis.map((kpi) => (
                         <motion.div
                             key={kpi.label}
                             variants={itemVariants}
-                            whileHover={{ y: -4, shadow: "0 12px 30px rgba(0,0,0,0.06)" }}
+                            transition={commonTransition}
+                            whileHover={{ y: -3, boxShadow: "0 8px 24px rgba(0,0,0,0.04)" }}
                             style={{
                                 background: "#fff",
-                                padding: "24px 16px",
-                                borderRadius: "16px",
+                                padding: "14px",
+                                borderRadius: "12px",
                                 border: "1px solid #f1f5f9",
                                 display: "flex",
                                 flexDirection: "column",
-                                alignItems: "center",
-                                textAlign: "center",
-                                transition: "box-shadow 0.3s ease"
+                                transition: "box-shadow 0.2s ease"
                             }}
                         >
-                            <div style={{ width: 42, height: 42, background: kpi.bg, color: kpi.color, borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "16px" }}>
-                                {kpi.icon}
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "12px" }}>
+                                <div style={{ width: 36, height: 36, background: "#ecfdf5", color: "#10b981", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                    {kpi.icon}
+                                </div>
+                                <div style={{
+                                    fontSize: "11px",
+                                    fontWeight: 700,
+                                    color: "#10b981",
+                                    background: "#ecfdf5",
+                                    padding: "2px 8px",
+                                    borderRadius: "12px",
+                                }}>
+                                    {kpi.trend}
+                                </div>
                             </div>
-                            <div style={{ fontSize: "32px", fontWeight: 800, color: "#0f172a", lineHeight: 1 }}>{kpi.value}</div>
-                            <div style={{ fontSize: "13px", fontWeight: 600, color: "#64748b", marginTop: "8px" }}>{kpi.label}</div>
-                            <div style={{
-                                fontSize: "11px",
-                                fontWeight: 700,
-                                color: (kpi.trend.includes("+") ? "#10b981" : "#64748b"),
-                                background: (kpi.trend.includes("+") ? "#f0fdf4" : "#f1f5f9"),
-                                padding: "2px 8px",
-                                borderRadius: "10px",
-                                marginTop: "8px"
-                            }}>
-                                {kpi.trend} from last month
-                            </div>
+                            <div style={{ fontSize: "24px", fontWeight: 700, color: "#111827", lineHeight: 1 }}>{kpi.value}</div>
+                            <div style={{ fontSize: "12px", fontWeight: 500, color: "#6b7280", marginTop: "4px" }}>{kpi.label}</div>
+                            <div style={{ fontSize: "10.5px", color: "#9ca3af", marginTop: "2px" }}>{kpi.desc}</div>
                         </motion.div>
                     ))}
                 </div>
 
-                {/* Charts Area Refined */}
-                <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: "24px", flex: 1 }}>
-
-                    {/* Left: Audit Trend Premium */}
+                <div style={{ display: "grid", gridTemplateColumns: "2.8fr 1fr", gap: "14px", flex: 1, minHeight: 0 }}>
+                    {/* Left: Audit Trend */}
                     <motion.div
                         variants={itemVariants}
-                        style={{ background: "#fff", padding: "24px", borderRadius: "16px", border: "1px solid #f1f5f9", display: "flex", flexDirection: "column", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.01)" }}
+                        transition={commonTransition}
+                        style={{ background: "#fff", padding: "18px 20px", borderRadius: "12px", border: "1px solid #f1f5f9", display: "flex", flexDirection: "column", minHeight: 0 }}
                     >
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px" }}>
                             <div>
-                                <div style={{ fontSize: "16px", fontWeight: 700, color: "#0f172a" }}>Audit Performance</div>
-                                <div style={{ fontSize: "13px", color: "#94a3b8", marginTop: "2px" }}>Audits scheduled vs. completed per month</div>
+                                <div style={{ fontSize: "14px", fontWeight: 700, color: "#111827" }}>Audit Trend</div>
+                                <div style={{ fontSize: "11px", color: "#6b7280", marginTop: "2px" }}>Scheduled vs completed audits</div>
                             </div>
-                            <div style={{ display: "flex", gap: "10px" }}>
-                                <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: 600 }}>
-                                    <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#058c42" }} /> Scheduled
-                                </div>
-                                <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", color: "#64748b", fontWeight: 600 }}>
-                                    <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#1e293b" }} /> Completed
-                                </div>
+                            <div style={{ fontSize: "20px", color: "#9ca3af", cursor: "pointer", lineHeight: 0.5 }}>...</div>
+                        </div>
+
+                        <div style={{ display: "flex", gap: "24px", marginBottom: "10px" }}>
+                            <div>
+                                <div style={{ fontSize: "11px", color: "#6b7280" }}>Total Scheduled</div>
+                                <div style={{ fontSize: "20px", fontWeight: 700, color: "#111827" }}>38</div>
+                            </div>
+                            <div>
+                                <div style={{ fontSize: "11px", color: "#6b7280" }}>Total Completed</div>
+                                <div style={{ fontSize: "20px", fontWeight: 700, color: "#111827" }}>27</div>
                             </div>
                         </div>
 
-                        {/* Chart with Gradients and Clean Lines */}
-                        <div style={{ flex: 1, position: "relative", marginTop: "10px" }}>
-                            <svg width="100%" height="100%" viewBox="0 0 400 120" preserveAspectRatio="none">
+                        <div style={{ flex: 1, position: "relative", minHeight: "120px", marginTop: "10px" }}>
+                            <svg width="100%" height="100%" viewBox="0 0 500 120" preserveAspectRatio="none">
                                 <defs>
-                                    <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="0%" stopColor="#058c42" stopOpacity="0.12" />
-                                        <stop offset="100%" stopColor="#058c42" stopOpacity="0" />
+                                    <linearGradient id="areaGradientCompact" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stopColor="#10b981" stopOpacity="0.1" />
+                                        <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
                                     </linearGradient>
                                 </defs>
-                                {/* Subtle horizontal grid lines */}
-                                {[0, 30, 60, 90, 120].map(y => (
-                                    <line key={y} x1="0" y1={y} x2="400" y2={y} stroke="#f8fafc" strokeWidth="1" />
-                                ))}
-                                {/* Area Fill Animation */}
+                                {/* Grid lines */}
+                                <line x1="20" y1="20" x2="500" y2="20" stroke="#f1f5f9" strokeWidth="1" strokeDasharray="4 4" />
+                                <text x="10" y="24" fontSize="10" fill="#9ca3af">8</text>
+                                <line x1="20" y1="50" x2="500" y2="50" stroke="#f1f5f9" strokeWidth="1" strokeDasharray="4 4" />
+                                <text x="10" y="54" fontSize="10" fill="#9ca3af">6</text>
+                                <line x1="20" y1="80" x2="500" y2="80" stroke="#f1f5f9" strokeWidth="1" strokeDasharray="4 4" />
+                                <text x="10" y="84" fontSize="10" fill="#9ca3af">4</text>
+                                <line x1="20" y1="110" x2="500" y2="110" stroke="#f1f5f9" strokeWidth="1" strokeDasharray="4 4" />
+                                <text x="10" y="114" fontSize="10" fill="#9ca3af">2</text>
+
+                                {/* Scheduled Line (Green) */}
                                 <motion.path
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
-                                    transition={{ duration: 1.5, delay: 1 }}
-                                    d="M 0 100 Q 50 100, 100 20 T 200 100 L 400 100 V 120 H 0 Z"
-                                    fill="url(#areaGradient)"
+                                    transition={{ duration: 1.2, delay: 0.8 }}
+                                    d="M 40 98 C 75 98, 75 68, 110 68 C 145 68, 145 88, 180 88 C 215 88, 215 38, 250 38 C 285 38, 285 8, 320 8 C 355 8, 355 110, 390 110 C 425 110, 425 77, 460 77 V 120 H 40 Z"
+                                    fill="url(#areaGradientCompact)"
                                 />
-                                {/* Scheduled Path */}
                                 <motion.path
                                     initial={{ pathLength: 0 }}
                                     animate={{ pathLength: 1 }}
-                                    transition={{ duration: 1.8, ease: "easeInOut", delay: 0.5 }}
-                                    d="M 0 100 Q 50 100, 100 20 T 200 100 L 400 100"
-                                    fill="none"
-                                    stroke="#058c42"
-                                    strokeWidth="3"
-                                    strokeLinecap="round"
+                                    transition={{ duration: 1.5, ease: "easeInOut", delay: 0.4 }}
+                                    d="M 40 98 C 75 98, 75 68, 110 68 C 145 68, 145 88, 180 88 C 215 88, 215 38, 250 38 C 285 38, 285 8, 320 8 C 355 8, 355 110, 390 110 C 425 110, 425 77, 460 77"
+                                    fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round"
                                 />
-                                {/* Completed Path */}
+                                {/* Dots for green */}
+                                <circle cx="40" cy="98" r="4" fill="#10b981" stroke="#fff" strokeWidth="2" />
+                                <circle cx="110" cy="68" r="4" fill="#10b981" stroke="#fff" strokeWidth="2" />
+                                <circle cx="180" cy="88" r="4" fill="#10b981" stroke="#fff" strokeWidth="2" />
+                                <circle cx="250" cy="38" r="4" fill="#10b981" stroke="#fff" strokeWidth="2" />
+                                <circle cx="320" cy="8" r="4" fill="#10b981" stroke="#fff" strokeWidth="2" />
+                                <circle cx="390" cy="110" r="4" fill="#10b981" stroke="#fff" strokeWidth="2" />
+                                <circle cx="460" cy="77" r="4" fill="#10b981" stroke="#fff" strokeWidth="2" />
+
+                                {/* Completed Line (Dark Blue) */}
                                 <motion.path
                                     initial={{ pathLength: 0 }}
                                     animate={{ pathLength: 1 }}
-                                    transition={{ duration: 1.8, ease: "easeInOut", delay: 0.8 }}
-                                    d="M 0 100 Q 50 100, 100 85 T 200 100 L 400 100"
-                                    fill="none"
-                                    stroke="#1e293b"
-                                    strokeWidth="3"
-                                    strokeLinecap="round"
+                                    transition={{ duration: 1.5, ease: "easeInOut", delay: 0.6 }}
+                                    d="M 40 110 C 75 110, 75 95, 110 95 C 145 95, 145 83, 180 83 C 215 83, 215 98, 250 98 C 285 98, 285 62, 320 62 C 355 62, 355 41, 390 41 C 425 41, 425 92, 460 92"
+                                    fill="none" stroke="#374151" strokeWidth="2.5" strokeLinecap="round"
                                 />
-                                {/* Data Points */}
-                                <motion.circle initial={{ r: 0 }} animate={{ r: 5 }} transition={{ delay: 1.4 }} cx="100" cy="20" fill="#058c42" stroke="#fff" strokeWidth="2" />
-                                <motion.circle initial={{ r: 0 }} animate={{ r: 5 }} transition={{ delay: 1.7 }} cx="100" cy="85" fill="#1e293b" stroke="#fff" strokeWidth="2" />
+                                {/* Dots for dark */}
+                                <circle cx="40" cy="110" r="4" fill="#374151" stroke="#fff" strokeWidth="2" />
+                                <circle cx="110" cy="95" r="4" fill="#374151" stroke="#fff" strokeWidth="2" />
+                                <circle cx="180" cy="83" r="4" fill="#374151" stroke="#fff" strokeWidth="2" />
+                                <circle cx="250" cy="98" r="4" fill="#374151" stroke="#fff" strokeWidth="2" />
+                                <circle cx="320" cy="62" r="4" fill="#374151" stroke="#fff" strokeWidth="2" />
+                                <circle cx="390" cy="41" r="4" fill="#374151" stroke="#fff" strokeWidth="2" />
+                                <circle cx="460" cy="92" r="4" fill="#374151" stroke="#fff" strokeWidth="2" />
                             </svg>
-                            <div style={{ display: "flex", justifyContent: "space-between", marginTop: "16px", fontSize: "11px", color: "#94a3b8", fontWeight: 600 }}>
-                                <span>JAN</span><span>FEB</span><span>MAR</span><span>APR</span><span>MAY</span><span>JUN</span><span>JUL</span>
+                            <div style={{ display: "flex", justifyContent: "space-between", marginTop: "8px", marginLeft: "40px", marginRight: "10px", fontSize: "10px", color: "#6b7280" }}>
+                                <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span>
                             </div>
+                        </div>
+
+                        <div style={{ display: "flex", gap: "16px", marginTop: "16px", fontSize: "11px", color: "#6b7280", alignItems: "center" }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}><div style={{ width: 8, height: 8, borderRadius: "50%", background: "#10b981" }} /> Scheduled</div>
+                            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}><div style={{ width: 8, height: 8, borderRadius: "50%", background: "#374151" }} /> Completed</div>
                         </div>
                     </motion.div>
 
-                    {/* Right: Finding Distribution Refined */}
+                    {/* Right: Finding Distribution */}
                     <motion.div
                         variants={itemVariants}
-                        style={{ background: "#fff", padding: "24px", borderRadius: "16px", border: "1px solid #f1f5f9", display: "flex", flexDirection: "column", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.01)" }}
+                        transition={commonTransition}
+                        style={{ background: "#fff", padding: "18px 20px", borderRadius: "12px", border: "1px solid #f1f5f9", display: "flex", flexDirection: "column", minHeight: 0 }}
                     >
-                        <div style={{ marginBottom: "24px" }}>
-                            <div style={{ fontSize: "16px", fontWeight: 700, color: "#0f172a" }}>Findings Breakdown</div>
-                            <div style={{ fontSize: "13px", color: "#94a3b8", marginTop: "2px" }}>Total non-conformances</div>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px" }}>
+                            <div>
+                                <div style={{ fontSize: "14px", fontWeight: 700, color: "#111827" }}>Finding Distribution</div>
+                                <div style={{ fontSize: "11px", color: "#6b7280", marginTop: "2px" }}>Audit non-conformances</div>
+                            </div>
+                            <div style={{ fontSize: "20px", color: "#9ca3af", cursor: "pointer", lineHeight: 0.5 }}>...</div>
                         </div>
 
                         <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-                            <div style={{ position: "relative", width: 160, height: 160 }}>
-                                <svg width="160" height="160" viewBox="0 0 160 160">
-                                    <circle cx="80" cy="80" r="60" fill="none" stroke="#f1f5f9" strokeWidth="16" />
-                                    {/* Major N/C - Red */}
-                                    <motion.circle
-                                        initial={{ strokeDasharray: "0 377" }}
-                                        animate={{ strokeDasharray: "94 377" }}
-                                        transition={{ duration: 1.5, delay: 0.5 }}
-                                        cx="80" cy="80" r="60" fill="none" stroke="#ef4444" strokeWidth="16" strokeLinecap="round" transform="rotate(-90 80 80)" />
-                                    {/* Minor N/C - Orange */}
-                                    <motion.circle
-                                        initial={{ strokeDasharray: "0 377" }}
-                                        animate={{ strokeDasharray: "94 377" }}
-                                        transition={{ duration: 1.5, delay: 0.8 }}
-                                        cx="80" cy="80" r="60" fill="none" stroke="#f97316" strokeWidth="16" strokeLinecap="round" transform="rotate(0 80 80)" />
-                                    {/* OFI - Gold */}
-                                    <motion.circle
-                                        initial={{ strokeDasharray: "0 377" }}
-                                        animate={{ strokeDasharray: "188 377" }}
-                                        transition={{ duration: 1.5, delay: 1.1 }}
-                                        cx="80" cy="80" r="60" fill="none" stroke="#eab308" strokeWidth="16" strokeLinecap="round" transform="rotate(90 80 80)" />
+                            <div style={{ position: "relative", width: 140, height: 140 }}>
+                                <svg width="140" height="140" viewBox="0 0 160 160">
+                                    <circle cx="80" cy="80" r="55" fill="none" stroke="#f1f5f9" strokeWidth="20" />
+                                    {/* Yellow (OFI) 50% = 188 length around */}
+                                    <motion.circle initial={{ strokeDasharray: "0 345" }} animate={{ strokeDasharray: "172.5 345" }} transition={{ duration: 1.2, delay: 0.5 }} cx="80" cy="80" r="55" fill="none" stroke="#eab308" strokeWidth="20" strokeLinecap="butt" transform="rotate(-90 80 80)" />
+                                    {/* Orange (Minor) 25% = 86 length */}
+                                    <motion.circle initial={{ strokeDasharray: "0 345" }} animate={{ strokeDasharray: "86 345" }} transition={{ duration: 1.2, delay: 0.7 }} cx="80" cy="80" r="55" fill="none" stroke="#f97316" strokeWidth="20" strokeLinecap="butt" transform="rotate(90 80 80)" />
+                                    {/* Red (Major) 25% = 86 length */}
+                                    <motion.circle initial={{ strokeDasharray: "0 345" }} animate={{ strokeDasharray: "86 345" }} transition={{ duration: 1.2, delay: 0.9 }} cx="80" cy="80" r="55" fill="none" stroke="#ef4444" strokeWidth="20" strokeLinecap="butt" transform="rotate(180 80 80)" />
+                                    {/* Separators */}
+                                    <line x1="80" y1="20" x2="80" y2="30" stroke="#fff" strokeWidth="4"></line>
+                                    <line x1="140" y1="80" x2="130" y2="80" stroke="#fff" strokeWidth="4"></line>
+                                    <line x1="80" y1="140" x2="80" y2="130" stroke="#fff" strokeWidth="4"></line>
                                 </svg>
                                 <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-                                    <div style={{ fontSize: "11px", color: "#94a3b8", fontWeight: 700, textTransform: "uppercase" }}>TOTAL</div>
-                                    <div style={{ fontSize: "36px", fontWeight: 800, color: "#0f172a", lineHeight: 1 }}>04</div>
+                                    <div style={{ fontSize: "11px", color: "#6b7280" }}>Total</div>
+                                    <div style={{ fontSize: "24px", fontWeight: 700, color: "#111827", lineHeight: 1, marginTop: "2px" }}>4</div>
                                 </div>
                             </div>
 
-                            <div style={{ width: "100%", marginTop: "32px" }}>
+                            <div style={{ width: "100%", marginTop: "24px", display: "flex", flexDirection: "column", gap: "10px" }}>
                                 {[
-                                    { label: "OFI (Opportunity)", value: 2, pct: "50%", color: "#eab308" },
-                                    { label: "Minor N/C", value: 1, pct: "25%", color: "#f97316" },
-                                    { label: "Major N/C", value: 1, pct: "25%", color: "#ef4444" },
+                                    { color: "#eab308", label: "OFI", val: "2", pct: "50%" },
+                                    { color: "#f97316", label: "Minor N/C", val: "1", pct: "25%" },
+                                    { color: "#ef4444", label: "Major N/C", val: "1", pct: "25%" },
                                 ].map((item, i) => (
-                                    <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px", fontSize: "13px" }}>
-                                        <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "#64748b", fontWeight: 500 }}>
-                                            <div style={{ width: 10, height: 10, borderRadius: "50%", background: item.color }} />
+                                    <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "11px" }}>
+                                        <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "#6b7280", fontWeight: 500 }}>
+                                            <div style={{ width: 8, height: 8, borderRadius: "50%", background: item.color }} />
                                             {item.label}
                                         </div>
-                                        <div style={{ display: "flex", gap: "12px", fontWeight: 700, color: "#0f172a" }}>
-                                            <span>{item.value}</span>
-                                            <span style={{ color: "#94a3b8", fontWeight: 500 }}>{item.pct}</span>
+                                        <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                                            <span style={{ fontWeight: 700, color: "#111827" }}>{item.val}</span>
+                                            <span style={{ color: "#9ca3af", width: "25px", textAlign: "right" }}>{item.pct}</span>
                                         </div>
                                     </div>
                                 ))}

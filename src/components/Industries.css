@@ -62,7 +62,13 @@
 
 @media (max-width: 768px) {
     .industry-card {
-        width: 300px;
-        height: 460px;
+        width: 240px;
+        height: 320px;
+        border-radius: 20px;
+    }
+
+    .industries-marquee-track {
+        animation-duration: 30s;
+        /* Faster scroll for smaller distance */
     }
 }

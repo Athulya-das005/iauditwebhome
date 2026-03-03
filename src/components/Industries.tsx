@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import "./Industries.css";
 
 // Sketch-style SVG illustrations for each industry
@@ -160,11 +161,25 @@ const industries = [
 const loopItems = [...industries, ...industries];
 
 export default function Industries() {
-    return (
-        <section id="industries" style={{ background: "#fff", padding: "5rem 0", overflow: "hidden", fontFamily: '"Pp Neue Montreal", sans-serif' }}>
-            <div className="container" style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 2rem" }}>
+    const [isMobile, setIsMobile] = useState(false);
 
-                <div style={{ textAlign: "center", marginBottom: "4rem", display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
+    return (
+        <section id="industries" style={{
+            background: "#fff",
+            padding: isMobile ? "3.5rem 0" : "5rem 0",
+            overflow: "hidden",
+            fontFamily: '"Pp Neue Montreal", sans-serif'
+        }}>
+            <div className="container" style={{ maxWidth: "1260px", margin: "0 auto", padding: isMobile ? "0 1.25rem" : "0 2rem" }}>
+
+                <div style={{ textAlign: "center", marginBottom: isMobile ? "2.5rem" : "4rem", display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
@@ -175,13 +190,13 @@ export default function Industries() {
                             gap: '0.4rem',
                             color: '#006644',
                             fontWeight: 500,
-                            fontSize: '0.8rem',
+                            fontSize: isMobile ? "0.75rem" : '0.8rem',
                             letterSpacing: '0.01em',
                             marginBottom: '0.75rem'
                         }}
                     >
                         <span style={{ fontSize: '1rem' }}>✦</span>
-                        Industries we serve
+                        Industries We Serve
                         <span style={{ fontSize: '1rem' }}>✦</span>
                     </motion.div>
 
@@ -191,17 +206,18 @@ export default function Industries() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
                         style={{
-                            fontSize: "3.0rem",
+                            fontSize: isMobile ? "2.2rem" : "3.0rem",
                             fontWeight: 500,
                             color: "#111827",
-                            lineHeight: 1.1,
+                            lineHeight: isMobile ? 1.2 : 1.1,
                             margin: 0,
                             letterSpacing: '-0.02em',
                             maxWidth: '900px'
                         }}
                     >
                         ISO audit management{" "}
-                        <span style={{ color: "var(--primary)" }}>for every sector</span>
+                        <br className="only-mobile" />
+                        <span style={{ color: "var(--primary)" }}>For Every Sector</span>
                     </motion.h2>
                 </div>
 
@@ -220,8 +236,9 @@ export default function Industries() {
 
 function IndustryCard({ item }: { item: (typeof industries)[0] }) {
     return (
-        <div
+        <motion.div
             className="industry-card"
+            whileHover="hover"
             style={{
                 background: `${item.color}18`,
                 border: `1.5px solid ${item.color}33`,
@@ -236,7 +253,7 @@ function IndustryCard({ item }: { item: (typeof industries)[0] }) {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-start",
-                gap: "1rem",
+                gap: "1.2rem",
                 boxSizing: "border-box",
             }}>
                 {/* Sketch illustration area — fixed size */}
@@ -256,7 +273,7 @@ function IndustryCard({ item }: { item: (typeof industries)[0] }) {
                 </div>
 
                 {/* Number + title + description */}
-                <div style={{ display: "flex", flexDirection: "column", gap: "1rem", flex: 1 }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.8rem", flex: 1 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                         <h3 style={{
                             fontSize: "1.35rem",
@@ -289,7 +306,33 @@ function IndustryCard({ item }: { item: (typeof industries)[0] }) {
                         {item.description}
                     </p>
                 </div>
+
+                {/* Learn more link */}
+                <div style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    color: "var(--primary)",
+                    fontSize: "0.95rem",
+                    fontWeight: 500,
+                    marginTop: "auto",
+                    paddingTop: "0.5rem"
+                }}>
+                    Learn More
+                    <motion.span
+                        variants={{
+                            hover: { x: 5 }
+                        }}
+                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                        style={{ display: "flex", alignItems: "center" }}
+                    >
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </motion.span>
+                </div>
             </div>
-        </div>
+        </motion.div>
     );
 }

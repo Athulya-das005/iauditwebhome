@@ -9,12 +9,18 @@ const BOT_AVATAR = "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e
 
 export default function Benefits() {
     const [chatStep, setChatStep] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+
         const timer1 = setTimeout(() => setChatStep(1), 800);
         const timer2 = setTimeout(() => setChatStep(2), 2000);
         const timer3 = setTimeout(() => setChatStep(3), 3500);
         return () => {
+            window.removeEventListener("resize", checkMobile);
             clearTimeout(timer1);
             clearTimeout(timer2);
             clearTimeout(timer3);
@@ -35,12 +41,17 @@ export default function Benefits() {
     };
 
     return (
-        <section id="benefits" style={{ background: "#fff", padding: "3.5rem 0", overflow: "hidden", fontFamily: '"Pp Neue Montreal", sans-serif' }}>
-            <div className="container" style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 2rem" }}>
+        <section id="benefits" style={{
+            background: "#fff",
+            padding: isMobile ? "3.5rem 0" : "5rem 0",
+            overflow: "hidden",
+            fontFamily: '"Pp Neue Montreal", sans-serif'
+        }}>
+            <div className="container" style={{ maxWidth: "1260px", margin: "0 auto", padding: isMobile ? "0 1.25rem" : "0 2rem" }}>
                 <div style={{
                     display: "grid",
-                    gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 1fr)",
-                    gap: "60px",
+                    gridTemplateColumns: isMobile ? "1fr" : "minmax(0, 1.2fr) minmax(0, 1fr)",
+                    gap: isMobile ? "40px" : "60px",
                     alignItems: "center"
                 }}>
 
@@ -53,18 +64,19 @@ export default function Benefits() {
                         style={{
                             background: "#064e3b",
                             borderRadius: "24px",
-                            padding: "32px",
+                            padding: isMobile ? "24px" : "32px",
                             position: "relative",
-                            aspectRatio: "1.25/1",
+                            aspectRatio: isMobile ? "1.1/1" : "1.25/1",
                             display: "flex",
                             flexDirection: "column",
                             overflow: "hidden",
                             boxShadow: "0 20px 60px rgba(0, 166, 81, 0.15), 0 4px 12px rgba(0,0,0,0.02)",
-                            border: "1px solid rgba(255,255,255,0.05)"
+                            border: "1px solid rgba(255,255,255,0.05)",
+                            order: isMobile ? 2 : 1
                         }}
                     >
                         {/* Chat Header */}
-                        <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "40px", position: "relative", zIndex: 10 }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: isMobile ? "30px" : "40px", position: "relative", zIndex: 10 }}>
                             <div style={{ width: "56px", height: "56px", borderRadius: "50%", background: "rgba(255,255,255,0.1)", overflow: "hidden", border: "2px solid rgba(255,255,255,0.2)" }}>
                                 <img src={BOT_AVATAR} alt="Audit Mate" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                             </div>
@@ -97,11 +109,11 @@ export default function Benefits() {
                                         padding: "16px 20px",
                                         borderRadius: "1.1rem 1.1rem 1.1rem 0",
                                         width: "fit-content",
-                                        fontSize: "0.9rem",
+                                        maxWidth: "90%",
+                                        fontSize: isMobile ? "0.85rem" : "0.9rem",
                                         fontWeight: 500,
                                         alignSelf: "flex-start",
                                         boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
-                                        whiteSpace: "nowrap"
                                     }}
                                 >
                                     <div style={{ fontWeight: 500, fontSize: "0.8rem", display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
@@ -121,11 +133,11 @@ export default function Benefits() {
                                         padding: "16px 24px",
                                         borderRadius: "1.1rem 1.1rem 0 1.1rem",
                                         width: "fit-content",
-                                        fontSize: "0.9rem",
+                                        maxWidth: "90%",
+                                        fontSize: isMobile ? "0.85rem" : "0.9rem",
                                         fontWeight: 500,
                                         alignSelf: "flex-end",
                                         boxShadow: "0 20px 40px rgba(255, 122, 92, 0.25)",
-                                        whiteSpace: "nowrap",
                                         textAlign: "left"
                                     }}
                                 >
@@ -143,12 +155,12 @@ export default function Benefits() {
                                         padding: "16px 20px",
                                         borderRadius: "1.1rem 1.1rem 1.1rem 0",
                                         width: "fit-content",
-                                        fontSize: "0.9rem",
+                                        maxWidth: "90%",
+                                        fontSize: isMobile ? "0.85rem" : "0.9rem",
                                         fontWeight: 500,
                                         alignSelf: "flex-start",
                                         boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
                                         lineHeight: 1.4,
-                                        whiteSpace: "nowrap"
                                     }}
                                 >
                                     <div style={{ fontWeight: 500, fontSize: "0.8rem", display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
@@ -173,7 +185,7 @@ export default function Benefits() {
                     </motion.div>
 
                     {/* Right: Content */}
-                    <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", order: isMobile ? 1 : 2 }}>
                         <div>
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.9 }}
@@ -185,7 +197,7 @@ export default function Benefits() {
                                     gap: '0.4rem',
                                     color: '#006644',
                                     fontWeight: 500,
-                                    fontSize: '0.8rem',
+                                    fontSize: isMobile ? "0.75rem" : '0.8rem',
                                     letterSpacing: '0.01em',
                                     marginBottom: '0.75rem'
                                 }}>
@@ -199,15 +211,15 @@ export default function Benefits() {
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.1 }}
                                 style={{
-                                    fontSize: '2.8rem',
+                                    fontSize: isMobile ? "1.85rem" : '2.8rem',
                                     fontWeight: 500,
                                     marginBottom: '1rem',
-                                    lineHeight: 1.1,
+                                    lineHeight: isMobile ? 1.25 : 1.1,
                                     color: '#111827',
                                     letterSpacing: '-0.02em'
                                 }}
                             >
-                                Your AI audit assistant, built into the platform
+                                Your AI Audit Assistant, Built Into The Platform
                             </motion.h2>
                         </div>
 
@@ -220,9 +232,9 @@ export default function Benefits() {
                                 viewport={{ once: true }}
                                 variants={fadeInUp}
                             >
-                                <div style={{ fontSize: "1.05rem", color: "#111827", lineHeight: 1.5 }}>
-                                    <strong style={{ fontWeight: 500 }}>Integrate with tools like Slack, Notion, and Trello:</strong>{" "}
-                                    <span style={{ color: "#4b5563", fontWeight: 400 }}>Connect seamlessly with tools like Slack, Notion, and Trello to enhance workflow efficiency and collaboration.</span>
+                                <div style={{ fontSize: isMobile ? "0.95rem" : "1.05rem", color: "#111827", lineHeight: 1.5 }}>
+                                    <strong style={{ fontWeight: 500 }}>Generate audit templates and checklists instantly:</strong>{" "}
+                                    <span style={{ color: "#4b5563", fontWeight: 400 }}>Build clause-aligned checklists, draft audit plans, and create sample questions for any standard or process in seconds.</span>
                                 </div>
                             </motion.div>
 
@@ -235,9 +247,9 @@ export default function Benefits() {
                                 variants={fadeInUp}
                                 style={{ paddingLeft: "16px", borderLeft: "3px solid var(--primary)" }}
                             >
-                                <div style={{ fontSize: "1.05rem", color: "#111827", lineHeight: 1.5 }}>
-                                    <strong style={{ fontWeight: 500 }}>Automate real-time responses:</strong>{" "}
-                                    <span style={{ color: "#4b5563", fontWeight: 400 }}>Detect triggers, process inputs, and deliver smart actions without manual effort.</span>
+                                <div style={{ fontSize: isMobile ? "0.95rem" : "1.05rem", color: "#111827", lineHeight: 1.5 }}>
+                                    <strong style={{ fontWeight: 500 }}>Get ISO guidance without leaving your workspace:</strong>{" "}
+                                    <span style={{ color: "#4b5563", fontWeight: 400 }}>Ask Audit Mate to explain clauses, suggest evidence, and clarify PDCA links while your data stays entirely with you.</span>
                                 </div>
                             </motion.div>
                         </div>
@@ -249,7 +261,7 @@ export default function Benefits() {
                             viewport={{ once: true }}
                             variants={fadeInUp}
                         >
-                            <Link href="#get-started" className="btn-outline-animate" style={{
+                            <Link href="https://apps.iaudit.global" className="btn-outline-animate" style={{
                                 padding: "0.75rem 1.6rem",
                                 fontSize: "0.9rem",
                                 display: "inline-flex",
@@ -259,7 +271,7 @@ export default function Benefits() {
                                 textDecoration: "none",
                             }}>
                                 <span>
-                                    Get started
+                                    Get Started
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <line x1="7" y1="17" x2="17" y2="7"></line>
                                         <polyline points="7 7 17 7 17 17"></polyline>

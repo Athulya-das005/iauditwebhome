@@ -3,8 +3,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "Flovity - AI Automation",
-  description: "Automate your business with AI agents",
+  title: "iAudit Global",
+  description: "Internal audit management software",
 };
 
 export default function RootLayout({

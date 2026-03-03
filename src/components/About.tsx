@@ -2,10 +2,19 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 
 export default function About() {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     const arrowRef = useRef<HTMLSpanElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -250,18 +259,18 @@ export default function About() {
     ];
 
     return (
-        <section id="about" className="section" style={{ background: '#ffffff', overflow: 'hidden', fontFamily: '"Pp Neue Montreal", sans-serif', padding: '5rem 0 3rem 0' }} ref={containerRef}>
-            <div className="container" style={{ maxWidth: '1260px', padding: '0 2rem' }}>
+        <section id="about" className="section" style={{ background: '#ffffff', overflow: 'hidden', fontFamily: '"Pp Neue Montreal", sans-serif', padding: isMobile ? '3rem 0' : '4rem 0 3rem 0' }} ref={containerRef}>
+            <div className="container" style={{ maxWidth: '1260px', padding: isMobile ? '0 1.25rem' : '0 2rem' }}>
                 {/* Header Section */}
                 <div style={{
                     display: 'flex',
+                    flexDirection: isMobile ? 'column' : 'row',
                     justifyContent: 'space-between',
                     alignItems: 'flex-start',
-                    gap: '3rem',
-                    marginBottom: '2rem',
-                    flexWrap: 'wrap'
+                    gap: isMobile ? '1.5rem' : '3rem',
+                    marginBottom: isMobile ? '2.5rem' : '2rem',
                 }}>
-                    <div style={{ flex: '1 1 500px' }}>
+                    <div style={{ flex: '1 1 auto' }}>
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -287,13 +296,21 @@ export default function About() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
-                            style={{ fontSize: '2.8rem', lineHeight: 1.1, fontWeight: 500, maxWidth: '650px', letterSpacing: '-0.02em', color: '#111827' }}
+                            style={{
+                                fontSize: isMobile ? '2.2rem' : '2.8rem',
+                                lineHeight: 1.1,
+                                fontWeight: 500,
+                                maxWidth: '650px',
+                                letterSpacing: '-0.02em',
+                                color: '#111827',
+                                margin: isMobile ? '0 0 1rem 0' : '0'
+                            }}
                         >
-                            ISO audit management that actually works
+                            ISO Audit Management That Actually Works
                         </motion.h2>
                     </div>
 
-                    <div style={{ flex: '1 1 420px', paddingTop: '0.8rem' }}>
+                    <div style={{ flex: '1 1 auto', paddingTop: isMobile ? '0' : '0.8rem' }}>
                         <motion.p
                             className="text-lg text-muted"
                             initial={{ opacity: 0, y: 20 }}
@@ -312,21 +329,24 @@ export default function About() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.3 }}
                         >
-                            <Link href="#contact" className="btn btn-outline btn-about" style={{
-                                padding: '0.5rem 1.4rem',
-                                fontSize: '0.9rem',
+                            <Link href="https://apps.iaudit.global" className="btn-outline-animate" style={{
+                                padding: '0.65rem 1.6rem',
+                                fontSize: '0.925rem',
                                 display: 'inline-flex',
                                 alignItems: 'center',
-                                gap: '0.5rem',
-                                borderColor: '#006644',
-                                color: '#006644'
+                                gap: '0.6rem',
+                                borderRadius: '6px',
+                                fontFamily: '"Pp Neue Montreal", sans-serif',
+                                width: isMobile ? '100%' : 'fit-content',
                             }}>
-                                Get started
-                                <span ref={arrowRef} style={{ display: 'inline-flex', alignItems: 'center' }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        <polyline points="12 5 19 12 12 19"></polyline>
-                                    </svg>
+                                <span>
+                                    Get started
+                                    <span ref={arrowRef} style={{ display: 'inline-flex', alignItems: 'center', marginLeft: '4px' }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            <polyline points="12 5 19 12 12 19"></polyline>
+                                        </svg>
+                                    </span>
                                 </span>
                             </Link>
                         </motion.div>

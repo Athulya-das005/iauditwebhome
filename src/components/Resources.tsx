@@ -1,27 +1,27 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
 const resources = [
     {
         id: 1,
-        title: "Internal Audit Best Practices for Small Businesses",
+        title: "Internal Audit Best Practices For Small Businesses",
         date: "November 20, 2025",
         image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800&h=500",
         link: "#"
     },
     {
         id: 2,
-        title: "Empowering a Culture of Continuous Improvement through Audit",
+        title: "Empowering A Culture Of Continuous Improvement Through Audit",
         date: "November 20, 2025",
         image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800&h=500",
         link: "#"
     },
     {
         id: 3,
-        title: "How to Train and Motivate Internal Auditors Without Burning Them Out",
+        title: "How To Train And Motivate Internal Auditors Without Burning Them Out",
         date: "November 20, 2025",
         image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800&h=500",
         link: "#"
@@ -29,13 +29,22 @@ const resources = [
 ];
 
 export default function Resources() {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     return (
         <section id="resources" style={{
-            padding: "3.5rem 0 4rem",
+            padding: isMobile ? "3rem 0" : "3.5rem 0 4rem",
             backgroundColor: "#fff",
             fontFamily: '"Pp Neue Montreal", sans-serif'
         }}>
-            <div style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 2rem" }}>
+            <div style={{ maxWidth: "1260px", margin: "0 auto", padding: isMobile ? "0 1.25rem" : "0 2rem" }}>
                 {/* Section Header */}
                 <div style={{ marginBottom: '3rem' }}>
                     <motion.div
@@ -62,7 +71,7 @@ export default function Resources() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         style={{
-                            fontSize: '2.8rem',
+                            fontSize: isMobile ? '2.2rem' : '2.8rem',
                             fontWeight: 500,
                             color: '#111827',
                             letterSpacing: '-0.02em',
@@ -72,15 +81,15 @@ export default function Resources() {
                             fontFamily: '"Pp Neue Montreal", sans-serif'
                         }}
                     >
-                        Insights for smarter audit programmes
+                        Insights For Smarter Audit Programmes
                     </motion.h2>
                 </div>
 
                 {/* Grid */}
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(3, 1fr)',
-                    gap: '2rem'
+                    gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+                    gap: isMobile ? '1.5rem' : '2rem'
                 }}>
                     {resources.map((item, idx) => (
                         <motion.div
@@ -156,7 +165,7 @@ export default function Resources() {
                                         onMouseOver={(e) => e.currentTarget.style.gap = '10px'}
                                         onMouseOut={(e) => e.currentTarget.style.gap = '6px'}
                                     >
-                                        Learn more
+                                        Learn More
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                             <line x1="5" y1="12" x2="19" y2="12"></line>
                                             <polyline points="12 5 19 12 12 19"></polyline>

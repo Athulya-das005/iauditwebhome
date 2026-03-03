@@ -2,27 +2,15 @@
 
 export default function HeroDashboard1() {
     const navItems = [
-        { label: "Dashboard", active: true },
-        { label: "Audits", active: false },
-        { label: "Schedule", active: false },
-        { label: "Documents", active: false },
-        { label: "Reports", active: false },
-        { label: "Settings", active: false },
+        { label: "Dashboard", active: false },
+        { label: "Audit Program", active: false },
+        { label: "Audit Plan", active: false },
+        { label: "Audit", active: false },
+        { label: "Findings", active: true, icon: "alert" },
+        { label: "Audit Reports", active: false },
     ];
 
-    const upcomingAudits = [
-        { name: "ISO 9001 — Internal", date: "28 Feb", dot: "#058c42" },
-        { name: "ISO 14001 — Supplier", date: "05 Mar", dot: "#f59e0b" },
-        { name: "ISO 45001 — Site", date: "12 Mar", dot: "#3b82f6" },
-    ];
 
-    const bars = [38, 55, 45, 60, 35, 70, 50];
-    const barDays = ["M", "T", "W", "T", "F", "S", "S"];
-    const barColors = ["#cbd5e1", "#058c42", "#cbd5e1", "#058c42", "#cbd5e1", "#f59e0b", "#cbd5e1"];
-
-    const r = 30;
-    const circ = 2 * Math.PI * r;
-    const pct = 0.89;
 
     return (
         <div style={{
@@ -54,6 +42,7 @@ export default function HeroDashboard1() {
                 </div>
 
                 {/* Nav */}
+                <div style={{ padding: "0 15px", fontSize: "10px", fontWeight: 700, color: "#9ca3af", letterSpacing: "0.05em", marginBottom: "6px" }}>MANAGEMENT</div>
                 {navItems.map((item) => (
                     <div key={item.label} style={{
                         padding: "9px 15px",
@@ -68,7 +57,11 @@ export default function HeroDashboard1() {
                         alignItems: "center",
                         gap: "8px",
                     }}>
-                        <span style={{ width: 6, height: 6, borderRadius: "50%", background: item.active ? "#058c42" : "#d1d5db", display: "inline-block", flexShrink: 0 }} />
+                        {item.icon === "alert" ? (
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                        ) : (
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        )}
                         {item.label}
                     </div>
                 ))}
@@ -86,108 +79,100 @@ export default function HeroDashboard1() {
             {/* Main area */}
             <div style={{ flex: 1, padding: "20px 24px", overflow: "hidden", display: "flex", flexDirection: "column", gap: "14px" }}>
                 {/* Header */}
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                     <div>
-                        <div style={{ fontSize: "18px", fontWeight: 700, color: "#0a0d12" }}>Audit Dashboard</div>
-                        <div style={{ fontSize: "12px", color: "#9ca3af", marginTop: "2px" }}>Q1 2025 Overview</div>
-                    </div>
-                    <div style={{ display: "flex", gap: "7px", alignItems: "center" }}>
-                        <div style={{ height: "32px", width: "145px", background: "#f1f5f9", borderRadius: "9px", display: "flex", alignItems: "center", paddingLeft: "10px", gap: "6px" }}>
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
-                            <span style={{ fontSize: "12px", color: "#9ca3af" }}>Search…</span>
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "20px", fontWeight: 700, color: "#111827" }}>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                            Audit Findings
                         </div>
-                        <div style={{ width: 32, height: 32, background: "#f1f5f9", borderRadius: "9px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" strokeWidth="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" /></svg>
-                        </div>
-                        <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#058c42", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", color: "#fff", fontWeight: 700 }}>RA</div>
+                        <div style={{ fontSize: "12px", color: "#6b7280", marginTop: "4px" }}>All OFI, Minor N/C and Major N/C findings across every audit.</div>
                     </div>
+                    <button style={{ display: "flex", alignItems: "center", gap: "6px", padding: "6px 12px", background: "#f9fafb", border: "1px solid #e5e7eb", borderRadius: "6px", fontSize: "12px", fontWeight: 500, color: "#374151", cursor: "pointer" }}>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 2v6h-6"></path><path d="M3 12a9 9 0 1 0 2-7l5-5"></path></svg>
+                        Refresh
+                    </button>
                 </div>
 
-                {/* KPI Row */}
+                {/* Cards */}
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}>
                     {[
-                        { label: "Total Audits", value: "45", change: "+12%", up: true, bg: "#f0fdf4", border: "#bbf7d0", color: "#16a34a" },
-                        { label: "Open NCRs", value: "12", change: "+3 new", up: false, bg: "#fff7ed", border: "#fed7aa", color: "#ea580c" },
-                        { label: "Due This Month", value: "8", change: "3 urgent", up: false, bg: "#fffbeb", border: "#fde68a", color: "#d97706" },
-                    ].map(kpi => (
-                        <div key={kpi.label} style={{ background: kpi.bg, border: `1px solid ${kpi.border}`, borderRadius: "12px", padding: "13px 16px" }}>
-                            <div style={{ fontSize: "11px", color: "#6b7280", marginBottom: "4px" }}>{kpi.label}</div>
-                            <div style={{ fontSize: "24px", fontWeight: 800, color: "#0a0d12", lineHeight: 1 }}>{kpi.value}</div>
-                            <div style={{ fontSize: "11px", color: kpi.color, marginTop: "4px", fontWeight: 500 }}>
-                                {kpi.up ? "↑" : "●"} {kpi.change}
-                            </div>
+                        { label: "OFI", value: "2", color: "#f59e0b" },
+                        { label: "MINOR N/C", value: "1", color: "#111827" },
+                        { label: "MAJOR N/C", value: "1", color: "#dc2626" },
+                    ].map(card => (
+                        <div key={card.label} style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "12px 16px", background: "#fff", display: "flex", flexDirection: "column" }}>
+                            <div style={{ fontSize: "11px", fontWeight: 700, color: card.color, marginBottom: "8px" }}>{card.label}</div>
+                            <div style={{ fontSize: "28px", fontWeight: 700, color: card.color, lineHeight: 1 }}>{card.value}</div>
+                            <div style={{ fontSize: "11px", color: "#9ca3af", marginTop: "4px" }}>findings</div>
                         </div>
                     ))}
                 </div>
 
-                {/* Bottom 2-col */}
-                <div style={{ display: "grid", gridTemplateColumns: "1.1fr 1fr", gap: "10px", flex: 1 }}>
-                    {/* Left: Upcoming */}
-                    <div style={{ background: "#f9fafb", borderRadius: "12px", padding: "15px" }}>
-                        <div style={{ fontSize: "12.5px", fontWeight: 700, color: "#374151", marginBottom: "10px" }}>Upcoming Audits</div>
-                        {upcomingAudits.map(a => (
-                            <div key={a.name} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "9px" }}>
-                                <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
-                                    <div style={{ width: 8, height: 8, borderRadius: "50%", background: a.dot, flexShrink: 0 }} />
-                                    <span style={{ fontSize: "12.5px", color: "#374151" }}>{a.name}</span>
-                                </div>
-                                <span style={{ fontSize: "11px", color: "#9ca3af", flexShrink: 0 }}>{a.date}</span>
+                {/* Filters */}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "4px" }}>
+                    <div style={{ display: "flex", gap: "8px" }}>
+                        {[
+                            { label: "All (4)", active: true },
+                            { label: "OFI (2)", active: false },
+                            { label: "Minor N/C (1)", active: false },
+                            { label: "Major N/C (1)", active: false },
+                        ].map(tab => (
+                            <div key={tab.label} style={{
+                                padding: "6px 14px",
+                                borderRadius: "20px",
+                                fontSize: "12px",
+                                fontWeight: 500,
+                                color: tab.active ? "#fff" : "#4b5563",
+                                background: tab.active ? "#1f2937" : "#fff",
+                                border: tab.active ? "1px solid #1f2937" : "1px solid #e5e7eb",
+                                cursor: "pointer"
+                            }}>
+                                {tab.label}
                             </div>
                         ))}
-
-                        {/* Mini bar chart */}
-                        <div style={{ marginTop: "12px" }}>
-                            <div style={{ fontSize: "11px", color: "#9ca3af", marginBottom: "6px" }}>Weekly findings</div>
-                            <div style={{ display: "flex", alignItems: "flex-end", gap: "5px", height: "44px" }}>
-                                {bars.map((h, i) => (
-                                    <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: "3px" }}>
-                                        <div style={{ width: "100%", height: `${h}%`, background: barColors[i], borderRadius: "3px 3px 0 0", transition: "height 0.3s" }} />
-                                        <div style={{ fontSize: "8.5px", color: "#9ca3af" }}>{barDays[i]}</div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
                     </div>
+                    <div style={{ height: "32px", width: "200px", background: "#fff", border: "1px solid #e5e7eb", borderRadius: "8px", display: "flex", alignItems: "center", paddingLeft: "10px", gap: "6px" }}>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+                        <span style={{ fontSize: "12px", color: "#9ca3af" }}>Search findings, audits, clauses...</span>
+                    </div>
+                </div>
 
-                    {/* Right: Compliance donut */}
-                    <div style={{ background: "#f9fafb", borderRadius: "12px", padding: "15px", display: "flex", flexDirection: "column" }}>
-                        <div style={{ fontSize: "12.5px", fontWeight: 700, color: "#374151", marginBottom: "10px" }}>Compliance Rate</div>
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "14px", flex: 1 }}>
-                            {/* SVG Donut */}
-                            <div style={{ position: "relative", width: 84, height: 84, flexShrink: 0 }}>
-                                <svg width="84" height="84" viewBox="0 0 84 84">
-                                    <circle cx="42" cy="42" r="36" fill="none" stroke="#e5e7eb" strokeWidth="9" />
-                                    <circle cx="42" cy="42" r="36" fill="none" stroke="#058c42" strokeWidth="9"
-                                        strokeDasharray={`${pct * 2 * Math.PI * 36} ${2 * Math.PI * 36}`}
-                                        strokeLinecap="round"
-                                        transform="rotate(-90 42 42)" />
-                                </svg>
-                                <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "15px", fontWeight: 800, color: "#0a0d12" }}>89%</div>
-                            </div>
-                            {/* Legend */}
-                            <div style={{ fontSize: "11.5px", color: "#6b7280", display: "flex", flexDirection: "column", gap: "7px" }}>
-                                {[
-                                    { label: "Compliant", color: "#058c42" },
-                                    { label: "Minor gap", color: "#f59e0b" },
-                                    { label: "Non-conf.", color: "#ef4444" },
-                                ].map(l => (
-                                    <div key={l.label} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                                        <div style={{ width: 9, height: 9, borderRadius: "2px", background: l.color }} />
-                                        {l.label}
-                                    </div>
+                {/* Table */}
+                <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", overflow: "hidden", marginTop: "4px", background: "#fff" }}>
+                    <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
+                        <thead>
+                            <tr style={{ background: "#223544", color: "#fff" }}>
+                                {["#", "Audit Name", "Clause / Item", "Type", "Finding Details", "Description", "Action By", "View"].map((th, i) => (
+                                    <th key={th} style={{ padding: "10px 14px", fontSize: "11.5px", fontWeight: 500, borderBottom: "1px solid #e5e7eb", width: i === 0 ? "40px" : i === 7 ? "50px" : "auto" }}>{th}</th>
                                 ))}
-                            </div>
-                        </div>
-                        {/* Stats row */}
-                        <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px", paddingTop: "10px", borderTop: "1px solid #e5e7eb" }}>
-                            {[{ v: "234", l: "Checks" }, { v: "98%", l: "ISO 9001" }, { v: "85%", l: "ISO 14001" }].map(s => (
-                                <div key={s.l} style={{ textAlign: "center" }}>
-                                    <div style={{ fontSize: "13px", fontWeight: 700, color: "#0a0d12" }}>{s.v}</div>
-                                    <div style={{ fontSize: "10px", color: "#9ca3af" }}>{s.l}</div>
-                                </div>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {[
+                                { id: 1, name: "ISO 9001:2015 QMS", clause: "Clause 7.1.5", type: "Major N/C", typeColor: "#dc2626", typeBg: "#fee2e2", detail: "Calibration records missing", desc: "Equipment not calibrated properly" },
+                                { id: 2, name: "ISO 27001 ISMS", clause: "Clause 8.2", type: "OFI", typeColor: "#d97706", typeBg: "#fef3c7", detail: "Risk assessment update", desc: "Consider emerging threats" },
+                                { id: 3, name: "ISO 14001 EMS", clause: "Clause 6.1.2", type: "Minor N/C", typeColor: "#ea580c", typeBg: "#ffedd5", detail: "Spill kit incomplete", desc: "Missing absorbent pads" },
+                                { id: 4, name: "ISO 45001 OHSMS", clause: "Clause 10.2", type: "OFI", typeColor: "#d97706", typeBg: "#fef3c7", detail: "Incident reporting delay", desc: "Streamline reporting workflow" },
+                            ].map((row, i) => (
+                                <tr key={row.id} style={{ borderBottom: i === 3 ? "none" : "1px solid #e5e7eb" }}>
+                                    <td style={{ padding: "12px 14px", fontSize: "11px", color: "#6b7280" }}>{row.id}</td>
+                                    <td style={{ padding: "12px 14px", fontSize: "12px", fontWeight: 600, color: "#111827" }}>{row.name}</td>
+                                    <td style={{ padding: "12px 14px", fontSize: "12px", color: "#6b7280" }}>{row.clause}</td>
+                                    <td style={{ padding: "12px 14px" }}>
+                                        <div style={{ display: "inline-block", padding: "4px 8px", borderRadius: "12px", fontSize: "10px", fontWeight: 600, color: row.typeColor, background: row.typeBg, textAlign: "center", lineHeight: 1.2 }}>
+                                            {row.type}
+                                        </div>
+                                    </td>
+                                    <td style={{ padding: "12px 14px", fontSize: "12px", color: "#4b5563" }}>{row.detail}</td>
+                                    <td style={{ padding: "12px 14px", fontSize: "12px", color: "#4b5563" }}>{row.desc}</td>
+                                    <td style={{ padding: "12px 14px", fontSize: "12px", color: "#6b7280" }}>—</td>
+                                    <td style={{ padding: "12px 14px", color: "#9ca3af" }}>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </td>
+                                </tr>
                             ))}
-                        </div>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

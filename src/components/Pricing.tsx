@@ -1,69 +1,117 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
 type Currency = "USD" | "GBP";
+type BillingCycle = "monthly" | "contract";
+type ContractLength = 1 | 3 | 6;
 
 export default function Pricing() {
     const [currency, setCurrency] = useState<Currency>("USD");
+    const [billingCycle, setBillingCycle] = useState<BillingCycle>("monthly");
+    const [contractLength, setContractLength] = useState<ContractLength>(1);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
 
     const plans = [
         {
-            name: "Starter",
-            prices: { USD: 29, GBP: 22 },
+            name: "Free",
+            isoPlans: 1,
+            isFree: true,
+            monthlyPrices: { USD: 0, GBP: 0 },
+            contractPrices: {
+                1: { USD: 0, GBP: 0 },
+                3: { USD: 0, GBP: 0 },
+                6: { USD: 0, GBP: 0 }
+            },
             features: [
-                "Priority email support",
-                "Data export (CSV/PDF)",
-                "Advanced reporting",
-                "All Free Trial features",
-                "Custom audit templates"
+                "Gap Analysis",
+                "Self Assessment",
+                "Findings Dashboard",
+                "Data Analytics Summary",
+                "Report Download"
+            ]
+        },
+        {
+            name: "Starter",
+            isoPlans: 1,
+            monthlyPrices: { USD: 29, GBP: 22 },
+            contractPrices: {
+                1: { USD: 15.60, GBP: 12.60 },
+                3: { USD: 11.60, GBP: 8.60 },
+                6: { USD: 7.60, GBP: 5.60 }
+            },
+            features: [
+                "Priority Email Support",
+                "Data Export (CSV/PDF)",
+                "Advanced Reporting",
+                "All Free Trial Features",
+                "Custom Audit Templates"
             ]
         },
         {
             name: "Professional",
-            prices: { USD: 99, GBP: 75 },
+            isoPlans: 2,
+            monthlyPrices: { USD: 99, GBP: 75 },
+            contractPrices: {
+                1: { USD: 25.90, GBP: 20.90 },
+                3: { USD: 22.90, GBP: 17.90 },
+                6: { USD: 18.90, GBP: 14.90 }
+            },
             features: [
-                "Phone support",
-                "All Starter features",
-                "Team collaboration tools",
-                "Custom workflows",
-                "Multiple companies",
-                "White-label reports",
-                "API access"
+                "Phone Support",
+                "All Starter Features",
+                "Team Collaboration Tools",
+                "Custom Workflows",
+                "Multiple Companies",
+                "White-Label Reports",
+                "API Access"
             ],
             highlight: true
         },
         {
             name: "Enterprise",
-            prices: { USD: 299, GBP: 225 },
+            isoPlans: 3,
+            monthlyPrices: { USD: 299, GBP: 225 },
+            contractPrices: {
+                1: { USD: 30.10, GBP: 25.10 },
+                3: { USD: 25.10, GBP: 21.10 },
+                6: { USD: 21.10, GBP: 17.10 }
+            },
             features: [
-                "Advanced security features",
-                "Priority feature requests",
-                "Training sessions",
-                "SLA guarantee (99.9% uptime)",
-                "Custom integrations",
-                "Dedicated account manager",
-                "Unlimited sites",
-                "Unlimited audits",
-                "Unlimited users",
-                "Unlimited companies",
-                "All Professional features"
+                "Advanced Security Features",
+                "Priority Feature Requests",
+                "Training Sessions",
+                "SLA Guarantee (99.9% Uptime)",
+                "Custom Integrations",
+                "Dedicated Account Manager",
+                "Unlimited Sites",
+                "Unlimited Audits",
+                "Unlimited Users",
+                "Unlimited Companies",
+                "All Professional Features"
             ]
         }
     ];
 
     return (
         <section id="pricing" style={{
-            padding: "3.5rem 0",
+            padding: isMobile ? "3.5rem 0" : "5rem 0",
             backgroundColor: "#fff",
             fontFamily: '"Pp Neue Montreal", sans-serif',
             overflow: "hidden"
         }}>
-            <div className="container" style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 2rem" }}>
+            <div className="container" style={{ maxWidth: "1260px", margin: "0 auto", padding: isMobile ? "0 1.25rem" : "0 2rem" }}>
                 {/* Section Header */}
-                <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                <div style={{ textAlign: 'center', marginBottom: isMobile ? '2.5rem' : '3.5rem' }}>
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
@@ -74,7 +122,7 @@ export default function Pricing() {
                             gap: '0.4rem',
                             color: '#006644',
                             fontWeight: 500,
-                            fontSize: '0.82rem',
+                            fontSize: isMobile ? '0.75rem' : '0.82rem',
                             letterSpacing: '0.01em',
                             marginBottom: '0.75rem'
                         }}>
@@ -88,7 +136,7 @@ export default function Pricing() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
                         style={{
-                            fontSize: '2.8rem',
+                            fontSize: isMobile ? '2rem' : '2.8rem',
                             fontWeight: 500,
                             color: '#111827',
                             letterSpacing: '-0.02em',
@@ -104,7 +152,7 @@ export default function Pricing() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.1 }}
                         style={{
-                            fontSize: '1.05rem',
+                            fontSize: isMobile ? '0.95rem' : '1.05rem',
                             color: '#4B5563',
                             maxWidth: '700px',
                             margin: '0 auto',
@@ -116,66 +164,165 @@ export default function Pricing() {
                         Start with a 14-day free trial. No credit card required. Upgrade or downgrade anytime.
                     </motion.p>
 
-                    {/* Currency Switcher */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        style={{
-                            marginTop: '2rem',
-                            display: 'inline-flex',
-                            backgroundColor: '#F9FAF8',
-                            padding: '4px',
-                            borderRadius: '0.75rem',
-                            border: '1px solid #E5E7EB'
-                        }}
-                    >
-                        <button
-                            onClick={() => setCurrency("USD")}
+                    {/* Currency and Billing Switchers */}
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isMobile ? '1rem' : '1.5rem', marginTop: isMobile ? '2rem' : '2.5rem' }}>
+                        {/* Currency Toggle */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
                             style={{
-                                padding: '8px 20px',
-                                fontSize: '0.9rem',
-                                fontWeight: 500,
-                                borderRadius: '0.5rem',
-                                border: 'none',
-                                cursor: 'pointer',
-                                transition: 'all 0.2s ease',
-                                backgroundColor: currency === "USD" ? "#006644" : "transparent",
-                                color: currency === "USD" ? "#fff" : "#6B7280",
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '6px'
+                                display: 'inline-flex',
+                                backgroundColor: '#F9FAF8',
+                                padding: '4px',
+                                borderRadius: '0.75rem',
+                                border: '1px solid #E5E7EB'
                             }}
                         >
-                            $ USD
-                        </button>
-                        <button
-                            onClick={() => setCurrency("GBP")}
+                            <button
+                                onClick={() => setCurrency("USD")}
+                                style={{
+                                    padding: isMobile ? '6px 16px' : '8px 20px',
+                                    fontSize: '0.85rem',
+                                    fontWeight: 500,
+                                    borderRadius: '0.5rem',
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s ease',
+                                    backgroundColor: currency === "USD" ? "#006644" : "transparent",
+                                    color: currency === "USD" ? "#fff" : "#6B7280",
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '6px'
+                                }}
+                            >
+                                $ USD
+                            </button>
+                            <button
+                                onClick={() => setCurrency("GBP")}
+                                style={{
+                                    padding: isMobile ? '6px 16px' : '8px 20px',
+                                    fontSize: '0.85rem',
+                                    fontWeight: 500,
+                                    borderRadius: '0.5rem',
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s ease',
+                                    backgroundColor: currency === "GBP" ? "#006644" : "transparent",
+                                    color: currency === "GBP" ? "#fff" : "#6B7280",
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '6px'
+                                }}
+                            >
+                                £ GBP
+                            </button>
+                        </motion.div>
+
+                        {/* Billing Cycle Toggle */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
                             style={{
-                                padding: '8px 20px',
-                                fontSize: '0.9rem',
-                                fontWeight: 500,
-                                borderRadius: '0.5rem',
-                                border: 'none',
-                                cursor: 'pointer',
-                                transition: 'all 0.2s ease',
-                                backgroundColor: currency === "GBP" ? "#006644" : "transparent",
-                                color: currency === "GBP" ? "#fff" : "#6B7280",
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '6px'
+                                display: 'inline-flex',
+                                backgroundColor: '#F9FAF8',
+                                padding: '4px',
+                                borderRadius: '0.75rem',
+                                border: '1px solid #E5E7EB',
+                                flexDirection: isMobile ? 'column' : 'row',
+                                width: isMobile ? '100%' : 'auto',
+                                maxWidth: isMobile ? '300px' : 'none'
                             }}
                         >
-                            £ GBP
-                        </button>
-                    </motion.div>
+                            <button
+                                onClick={() => setBillingCycle("monthly")}
+                                style={{
+                                    padding: isMobile ? '8px 16px' : '10px 24px',
+                                    fontSize: isMobile ? '0.85rem' : '0.95rem',
+                                    fontWeight: 600,
+                                    borderRadius: '0.5rem',
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                                    backgroundColor: billingCycle === "monthly" ? "#006644" : "transparent",
+                                    color: billingCycle === "monthly" ? "#fff" : "#6B7280",
+                                }}
+                            >
+                                Monthly Billing
+                            </button>
+                            <button
+                                onClick={() => setBillingCycle("contract")}
+                                style={{
+                                    padding: isMobile ? '8px 16px' : '10px 24px',
+                                    fontSize: isMobile ? '0.85rem' : '0.95rem',
+                                    fontWeight: 600,
+                                    borderRadius: '0.5rem',
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                                    backgroundColor: billingCycle === "contract" ? "#006644" : "transparent",
+                                    color: billingCycle === "contract" ? "#fff" : "#6B7280",
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    gap: '8px'
+                                }}
+                            >
+                                Contract Billing
+                                <span style={{
+                                    fontSize: '0.65rem',
+                                    backgroundColor: billingCycle === "contract" ? 'rgba(255,255,255,0.2)' : 'rgba(0,102,68,0.1)',
+                                    padding: '2px 6px',
+                                    borderRadius: '12px',
+                                    color: billingCycle === "contract" ? '#fff' : '#006644'
+                                }}>
+                                    Save ~70%
+                                </span>
+                            </button>
+                        </motion.div>
+
+                        {/* Contract Length Selector (Conditional) */}
+                        {billingCycle === "contract" && (
+                            <motion.div
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                style={{
+                                    display: 'flex',
+                                    gap: '10px',
+                                    alignItems: 'center'
+                                }}
+                            >
+                                {[1, 3, 6].map((length) => (
+                                    <button
+                                        key={length}
+                                        onClick={() => setContractLength(length as ContractLength)}
+                                        style={{
+                                            padding: '4px 12px',
+                                            fontSize: '0.8rem',
+                                            fontWeight: 500,
+                                            borderRadius: '20px',
+                                            border: '1px solid',
+                                            borderColor: contractLength === length ? '#006644' : '#E5E7EB',
+                                            backgroundColor: contractLength === length ? 'rgba(0,102,68,0.05)' : '#fff',
+                                            color: contractLength === length ? '#006644' : '#6B7280',
+                                            cursor: 'pointer',
+                                            transition: 'all 0.2s ease'
+                                        }}
+                                    >
+                                        {length} Year{length > 1 ? 's' : ''}
+                                    </button>
+                                ))}
+                            </motion.div>
+                        )}
+                    </div>
                 </div>
 
                 {/* Pricing Cards Grid */}
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(3, 1fr)',
-                    gap: '2rem'
+                    gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)',
+                    gap: isMobile ? '1.5rem' : '1.5rem'
                 }}>
                     {plans.map((plan, index) => (
                         <motion.div
@@ -183,94 +330,115 @@ export default function Pricing() {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            transition={{
+                                duration: 0.8,
+                                delay: isMobile ? 0 : index * 0.2,
+                                ease: [0.16, 1, 0.3, 1]
+                            }}
                             style={{
-                                padding: '2.5rem',
+                                padding: isMobile ? '2rem 1.25rem' : '2.5rem 1.5rem',
                                 borderRadius: '1.5rem',
-                                border: '1px solid #E5E7EB',
+                                border: plan.highlight ? '2px solid #058c42' : '1px solid #E5E7EB',
                                 backgroundColor: '#fff',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
                                 position: 'relative',
-                                boxShadow: plan.highlight ? '0 20px 50px rgba(0, 102, 68, 0.05)' : 'none'
+                                boxShadow: plan.highlight ? '0 20px 50px rgba(0, 102, 68, 0.05)' : 'none',
+                                color: 'inherit'
                             }}
-                            whileHover={{
+                            whileHover={!isMobile ? {
                                 y: -8,
-                                borderColor: '#006644',
+                                borderColor: plan.highlight ? '#058c42' : '#006644',
                                 boxShadow: '0 30px 60px rgba(0, 102, 68, 0.08)'
-                            }}
+                            } : {}}
                         >
-                            <h3 style={{
-                                fontSize: '1.4rem',
-                                fontWeight: 500,
-                                marginBottom: '1.25rem',
-                                color: '#111827',
-                                letterSpacing: '-0.02em'
-                            }}>
-                                {plan.name}
-                            </h3>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
+                                <h3 style={{
+                                    fontSize: '1.25rem',
+                                    fontWeight: 500,
+                                    color: '#111827',
+                                    letterSpacing: '-0.02em',
+                                    margin: 0
+                                }}>
+                                    {plan.name}
+                                </h3>
+                                {!plan.isFree && (
+                                    <span style={{
+                                        fontSize: '0.65rem',
+                                        fontWeight: 600,
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.05em',
+                                        color: '#006644',
+                                        backgroundColor: 'rgba(0, 102, 68, 0.06)',
+                                        padding: '2px 8px',
+                                        borderRadius: '6px'
+                                    }}>
+                                        {plan.isoPlans} ISO PLAN
+                                    </span>
+                                )}
+                            </div>
 
                             <div style={{
-                                fontSize: '0.95rem',
+                                fontSize: '0.9rem',
                                 color: '#6B7280',
                                 marginBottom: '2rem',
                                 display: 'flex',
                                 alignItems: 'baseline',
                                 gap: '4px'
                             }}>
-                                <span style={{
-                                    fontSize: '2.4rem',
-                                    fontWeight: 500,
-                                    color: '#111827',
-                                    letterSpacing: '-0.03em'
-                                }}>
-                                    {currency === "USD" ? "$" : "£"}{plan.prices[currency]}
-                                </span>
-                                <span style={{ opacity: 0.7 }}>/ per month</span>
+                                <motion.span
+                                    key={`${billingCycle}-${contractLength}-${currency}`}
+                                    initial={{ opacity: 0, y: 5 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    style={{
+                                        fontSize: '2.2rem',
+                                        fontWeight: 500,
+                                        color: '#111827',
+                                        letterSpacing: '-0.03em'
+                                    }}
+                                >
+                                    {currency === "USD" ? "$" : "£"}
+                                    {plan.isFree ? "0" : (billingCycle === "monthly"
+                                        ? plan.monthlyPrices[currency].toFixed(2)
+                                        : plan.contractPrices[contractLength as ContractLength][currency].toFixed(2)
+                                    )}
+                                </motion.span>
+                                <span style={{ opacity: 0.7 }}>/ month</span>
                             </div>
 
                             <Link
-                                href="#"
+                                href="https://apps.iaudit.global"
+                                className={plan.highlight ? "btn-animate" : "btn-outline-animate"}
                                 style={{
                                     width: '100%',
-                                    padding: '0.85rem',
-                                    textAlign: 'center',
-                                    borderRadius: '0.6rem',
-                                    border: '1.2px solid #E5E7EB',
-                                    fontSize: '0.95rem',
-                                    fontWeight: 500,
-                                    color: '#111827',
+                                    padding: '0.8rem',
+                                    fontSize: '0.9rem',
+                                    fontWeight: 600,
                                     marginBottom: '2.5rem',
                                     textDecoration: 'none',
-                                    transition: 'all 0.3s ease'
-                                }}
-                                onMouseOver={(e) => {
-                                    e.currentTarget.style.backgroundColor = '#006644';
-                                    e.currentTarget.style.color = '#fff';
-                                    e.currentTarget.style.borderColor = '#006644';
-                                }}
-                                onMouseOut={(e) => {
-                                    e.currentTarget.style.backgroundColor = 'transparent';
-                                    e.currentTarget.style.color = '#111827';
-                                    e.currentTarget.style.borderColor = '#E5E7EB';
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    borderRadius: '6px'
                                 }}
                             >
-                                Get Started
+                                <span>{plan.isFree ? "Start for Free" : "Get Started"}</span>
                             </Link>
 
                             <ul style={{
                                 marginTop: '0',
                                 display: 'flex',
                                 flexDirection: 'column',
-                                gap: '1rem'
+                                gap: '0.85rem',
+                                padding: 0
                             }}>
                                 {plan.features.map((feature) => (
                                     <li key={feature} style={{
                                         display: 'flex',
-                                        alignItems: 'center',
+                                        alignItems: 'flex-start',
                                         gap: '10px',
-                                        fontSize: '0.9rem',
+                                        fontSize: '0.85rem',
                                         color: '#4B5563',
                                         fontWeight: 400
                                     }}>
@@ -282,13 +450,14 @@ export default function Pricing() {
                                             display: 'flex',
                                             alignItems: 'center',
                                             justifyContent: 'center',
-                                            flexShrink: 0
+                                            flexShrink: 0,
+                                            marginTop: '2px'
                                         }}>
                                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#006644" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
                                                 <polyline points="20 6 9 17 4 12"></polyline>
                                             </svg>
                                         </div>
-                                        <span>{feature}</span>
+                                        <span style={{ color: '#4B5563', lineHeight: 1.4 }}>{feature}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -304,7 +473,7 @@ export default function Pricing() {
                     style={{
                         textAlign: 'center',
                         marginTop: '3rem',
-                        fontSize: '0.85rem',
+                        fontSize: '0.8rem',
                         color: '#94A3B8',
                         fontWeight: 400
                     }}
