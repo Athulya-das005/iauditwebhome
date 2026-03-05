@@ -21,6 +21,7 @@ export default function Header() {
     const arrowRef = useRef<HTMLSpanElement>(null);
 
     const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+    const [expandedItem, setExpandedItem] = useState<string | null>(null);
 
     const navItems = [
         { label: "Home", href: "/" },
@@ -235,7 +236,7 @@ export default function Header() {
                             Get started free
                             <span ref={arrowRef} style={{ display: "inline-flex", alignItems: "center" }}>
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <line x1="7" y1="17" x2="17" x2="7" />
+                                    <line x1="7" y1="17" x2="17" y2="7" />
                                     <polyline points="7 7 17 7 17 17" />
                                 </svg>
                             </span>
@@ -364,83 +365,133 @@ export default function Header() {
                                 height: "100vh",
                                 backgroundColor: "#fff",
                                 zIndex: 1050,
-                                padding: "80px 2rem 2rem",
+                                padding: "80px 0 0", // Bottom buttons handled separately
                                 display: "flex",
                                 flexDirection: "column",
-                                gap: "1.5rem",
                                 boxShadow: "-10px 0 30px rgba(0,0,0,0.1)",
                                 overflowY: "auto"
                             }}
                         >
-                            {navItems.map((item, index) => (
-                                <motion.div
-                                    key={item.label}
-                                    initial={{ opacity: 0, x: 20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: index * 0.1 }}
-                                >
-                                    <div style={{ borderBottom: "1px solid #f1f5f9" }}>
-                                        <Link
-                                            href={item.href}
-                                            onClick={() => !item.megamenu && setIsMenuOpen(false)}
-                                            style={{
-                                                fontSize: "1.35rem",
-                                                fontWeight: 500,
-                                                color: "#111827",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                justifyContent: "space-between",
-                                                padding: "0.75rem 0",
-                                            }}
-                                        >
-                                            {item.label}
-                                        </Link>
+                            <div style={{ flex: 1, padding: "0 2rem" }}>
+                                {navItems.map((item, index) => (
+                                    <motion.div
+                                        key={item.label}
+                                        initial={{ opacity: 0, x: 20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: index * 0.05 }}
+                                    >
+                                        <div style={{ borderBottom: "1px solid #f1f5f9" }}>
+                                            <div
+                                                onClick={() => {
+                                                    if (item.megamenu) {
+                                                        setExpandedItem(expandedItem === item.label ? null : item.label);
+                                                    } else {
+                                                        setIsMenuOpen(false);
+                                                    }
+                                                }}
+                                                style={{
+                                                    fontSize: "1.1rem",
+                                                    fontWeight: 600,
+                                                    color: "#111827",
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                    justifyContent: "space-between",
+                                                    padding: "1.25rem 0",
+                                                    cursor: "pointer"
+                                                }}
+                                            >
+                                                {item.megamenu ? (
+                                                    <>
+                                                        {item.label}
+                                                        <svg
+                                                            width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                                                            style={{
+                                                                transition: "transform 0.3s",
+                                                                transform: expandedItem === item.label ? "rotate(180deg)" : "rotate(0deg)",
+                                                                color: "#9ca3af"
+                                                            }}
+                                                        >
+                                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                                        </svg>
+                                                    </>
+                                                ) : (
+                                                    <Link
+                                                        href={item.href}
+                                                        onClick={() => setIsMenuOpen(false)}
+                                                        style={{ color: "inherit", textDecoration: "none", width: "100%" }}
+                                                    >
+                                                        {item.label}
+                                                    </Link>
+                                                )}
+                                            </div>
 
-                                        {item.megamenu && (
-                                            <div style={{ padding: "0.5rem 0 1rem 1rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
-                                                {item.megamenu.map((section, sIdx) => (
-                                                    <div key={sIdx}>
-                                                        <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#6b7280", textTransform: "uppercase" }}>{section.title}</span>
-                                                        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem 1rem", marginTop: "0.5rem" }}>
-                                                            {section.items.map((link, lIdx) => (
-                                                                <Link
-                                                                    key={lIdx}
-                                                                    href={link.href}
-                                                                    onClick={() => setIsMenuOpen(false)}
-                                                                    style={{ fontSize: "0.95rem", color: "#4b5563" }}
-                                                                >
-                                                                    {link.label}
-                                                                </Link>
+                                            <AnimatePresence>
+                                                {item.megamenu && expandedItem === item.label && (
+                                                    <motion.div
+                                                        initial={{ height: 0, opacity: 0 }}
+                                                        animate={{ height: "auto", opacity: 1 }}
+                                                        exit={{ height: 0, opacity: 0 }}
+                                                        style={{ overflow: "hidden" }}
+                                                    >
+                                                        <div style={{ padding: "0 0 1.5rem 1rem", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+                                                            {item.megamenu.map((section, sIdx) => (
+                                                                <div key={sIdx}>
+                                                                    <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.05em" }}>{section.title}</span>
+                                                                    <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem", marginTop: "0.75rem" }}>
+                                                                        {section.items.map((link, lIdx) => (
+                                                                            <Link
+                                                                                key={lIdx}
+                                                                                href={link.href}
+                                                                                onClick={() => setIsMenuOpen(false)}
+                                                                                style={{ fontSize: "1rem", color: "#4b5563", fontWeight: 400 }}
+                                                                            >
+                                                                                {link.label}
+                                                                            </Link>
+                                                                        ))}
+                                                                    </div>
+                                                                </div>
                                                             ))}
                                                         </div>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </div>
-                                </motion.div>
-                            ))}
+                                                    </motion.div>
+                                                )}
+                                            </AnimatePresence>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: navItems.length * 0.1 }}
-                                style={{ marginTop: "2rem", paddingBottom: "2rem" }}
+                                transition={{ delay: 0.3 }}
+                                style={{
+                                    padding: "1.5rem 2rem",
+                                    backgroundColor: "#f9fafb",
+                                    borderTop: "1px solid #f1f5f9",
+                                    marginTop: "auto",
+                                    position: "sticky",
+                                    bottom: 0,
+                                    zIndex: 10
+                                }}
                             >
-                                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                                <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                                     <Link
                                         href="https://apps.iaudit.global/login"
                                         onClick={() => setIsMenuOpen(false)}
                                         className="btn-animate"
                                         style={{
                                             width: "100%",
-                                            padding: "1rem",
+                                            padding: "0.85rem",
                                             borderRadius: "8px",
-                                            fontSize: "1.1rem",
+                                            fontSize: "1rem",
                                             fontWeight: 500,
-                                            textAlign: "center"
+                                            textAlign: "center",
+                                            backgroundColor: "white",
+                                            color: "#111827 !important",
+                                            border: "1px solid #e5e7eb"
                                         }}
                                     >
-                                        <span>Login</span>
+                                        <span>Log in</span>
                                     </Link>
                                     <Link
                                         href="https://apps.iaudit.global"
@@ -448,14 +499,14 @@ export default function Header() {
                                         className="btn-animate"
                                         style={{
                                             width: "100%",
-                                            padding: "1rem",
+                                            padding: "0.85rem",
                                             borderRadius: "8px",
-                                            fontSize: "1.1rem",
+                                            fontSize: "1rem",
                                             fontWeight: 500,
                                             textAlign: "center"
                                         }}
                                     >
-                                        <span>Get started free</span>
+                                        <span>Sign up for free</span>
                                     </Link>
                                 </div>
                             </motion.div>
