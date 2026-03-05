@@ -35,7 +35,7 @@ export default function Contact() {
         }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const { firstName, lastName, phone, subject, email, message, agreed } = formData;
 
@@ -44,12 +44,32 @@ export default function Contact() {
             return;
         }
 
-        const mailtoLink = `mailto:info@iaudit.global?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-            `Name: ${firstName} ${lastName}\nPhone: ${phone}\nEmail: ${email}\n\nMessage:\n${message}`
-        )}`;
+        try {
+            const response = await fetch("https://formsubmit.co/ajax/info@iaudit.global", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                    name: `${firstName} ${lastName}`,
+                    email: email,
+                    phone: phone,
+                    subject: subject,
+                    message: message,
+                    _subject: `New iAudit Contact: ${subject}`
+                })
+            });
 
-        window.location.href = mailtoLink;
-        setIsSubmitted(true);
+            if (response.ok) {
+                setIsSubmitted(true);
+            } else {
+                alert("Something went wrong. Please try again or email us directly at info@iaudit.global");
+            }
+        } catch (error) {
+            console.error("Submission error:", error);
+            alert("Submission failed. Please check your internet connection and try again.");
+        }
     };
 
     const inputStyle: React.CSSProperties = {
@@ -244,11 +264,11 @@ export default function Contact() {
                                     maxWidth: "500px"
                                 }}
                             >
-                                <h3 style={{ 
-                                    fontSize: isMobile ? "0.9rem" : "1rem", 
-                                    fontWeight: 500, 
-                                    margin: 0, 
-                                    whiteSpace: isMobile ? "normal" : "nowrap" 
+                                <h3 style={{
+                                    fontSize: isMobile ? "0.9rem" : "1rem",
+                                    fontWeight: 500,
+                                    margin: 0,
+                                    whiteSpace: isMobile ? "normal" : "nowrap"
                                 }}>
                                     Thank you! Your submission has been received!
                                 </h3>
