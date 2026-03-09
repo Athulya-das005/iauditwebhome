@@ -266,9 +266,22 @@ export default function Hero() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                     viewport={{ once: true }}
-                    style={{ marginBottom: isMobile ? "2.5rem" : "4rem", fontSize: isMobile ? "0.85rem" : "inherit" }}
+                    style={{
+                        marginBottom: isMobile ? "2.5rem" : "4rem",
+                        fontSize: isMobile ? "0.85rem" : "inherit",
+                        padding: isMobile ? "0 1.5rem" : "0",
+                        textAlign: "center",
+                        lineHeight: 1.6,
+                    }}
                 >
-                    Trusted by global organisations. Preferred by lead auditors.
+                    {isMobile ? (
+                        <>
+                            Trusted by global organisations.<br />
+                            Preferred by lead auditors.
+                        </>
+                    ) : (
+                        "Trusted by global organisations. Preferred by lead auditors."
+                    )}
                 </motion.p>
 
                 <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 1rem" : "0" }}>
