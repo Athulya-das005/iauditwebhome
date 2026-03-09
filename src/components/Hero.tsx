@@ -207,39 +207,43 @@ export default function Hero() {
                 </motion.div>
             </div>
 
-            {/* ── Card area ── */}
-            <motion.div
-                initial={{ opacity: 0, y: 60 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.38 }}
-                style={{
-                    width: "100%",
-                    maxWidth: "1300px",
-                    margin: isMobile ? "48px auto 0" : "72px auto 0",
-                    padding: "0 1rem",
-                    position: "relative",
-                    zIndex: 2,
-                }}
-            >
-                <ScrollStack
-                    itemDistance={isMobile ? 40 : 80}
-                    itemStackDistance={isMobile ? 5 : 10}
-                    baseScale={isMobile ? 0.95 : 0.9}
-                    itemScale={isMobile ? 0.02 : 0.03}
-                    useWindowScroll={true}
+            {/* ── Card area — desktop only ── */}
+            {!isMobile ? (
+                <motion.div
+                    initial={{ opacity: 0, y: 60 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.38 }}
+                    style={{
+                        width: "100%",
+                        maxWidth: "1300px",
+                        margin: "72px auto 0",
+                        padding: "0 1rem",
+                        position: "relative",
+                        zIndex: 2,
+                    }}
                 >
-                    <ScrollStackItem>
-                        <div style={{ maxWidth: "760px", margin: "0 auto", borderRadius: isMobile ? "12px" : "20px", overflow: "hidden", boxShadow: "0 20px 60px -10px rgba(5, 140, 66, 0.3), 0 8px 24px -6px rgba(5, 140, 66, 0.15)" }}>
-                            <HeroDashboard1 />
-                        </div>
-                    </ScrollStackItem>
-                    <ScrollStackItem>
-                        <div style={{ maxWidth: "1200px", margin: "0 auto", borderRadius: isMobile ? "12px" : "20px", overflow: "hidden", boxShadow: "0 20px 60px -10px rgba(5, 140, 66, 0.3), 0 8px 24px -6px rgba(5, 140, 66, 0.15)" }}>
-                            <HeroDashboard2 />
-                        </div>
-                    </ScrollStackItem>
-                </ScrollStack>
-            </motion.div>
+                    <ScrollStack
+                        itemDistance={80}
+                        itemStackDistance={10}
+                        baseScale={0.9}
+                        itemScale={0.03}
+                        useWindowScroll={true}
+                    >
+                        <ScrollStackItem>
+                            <div style={{ maxWidth: "760px", margin: "0 auto", borderRadius: "20px", overflow: "hidden", boxShadow: "0 20px 60px -10px rgba(5, 140, 66, 0.3), 0 8px 24px -6px rgba(5, 140, 66, 0.15)" }}>
+                                <HeroDashboard1 />
+                            </div>
+                        </ScrollStackItem>
+                        <ScrollStackItem>
+                            <div style={{ maxWidth: "1200px", margin: "0 auto", borderRadius: "20px", overflow: "hidden", boxShadow: "0 20px 60px -10px rgba(5, 140, 66, 0.3), 0 8px 24px -6px rgba(5, 140, 66, 0.15)" }}>
+                                <HeroDashboard2 />
+                            </div>
+                        </ScrollStackItem>
+                    </ScrollStack>
+                </motion.div>
+            ) : (
+                <div style={{ height: "48px" }} />
+            )}
 
             {/* ── Trusted By / Logo Loop ── */}
             <motion.div

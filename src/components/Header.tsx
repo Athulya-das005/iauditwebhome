@@ -527,9 +527,10 @@ export default function Header() {
                                             fontSize: "1rem",
                                             fontWeight: 500,
                                             textAlign: "center",
+                                            justifyContent: "center",
                                             backgroundColor: "white",
                                             border: "1px solid #e5e7eb",
-                                            display: "block",
+                                            display: "flex",
                                             boxSizing: "border-box",
                                         }}
                                     >
@@ -546,7 +547,8 @@ export default function Header() {
                                             fontSize: "1rem",
                                             fontWeight: 500,
                                             textAlign: "center",
-                                            display: "block",
+                                            justifyContent: "center",
+                                            display: "flex",
                                             boxSizing: "border-box",
                                         }}
                                     >
