@@ -242,7 +242,7 @@ export default function Hero() {
                     </ScrollStack>
                 </motion.div>
             ) : (
-                <div style={{ height: "48px" }} />
+                <div style={{ height: "8px" }} />
             )}
 
             {/* ── Trusted By / Logo Loop ── */}
@@ -253,7 +253,7 @@ export default function Hero() {
                 viewport={{ once: true }}
                 style={{
                     width: "100%",
-                    marginTop: isMobile ? "6rem" : "14rem",
+                    marginTop: isMobile ? "1.5rem" : "14rem",
                     paddingBottom: isMobile ? "3rem" : "2rem",
                     position: "relative",
                     zIndex: 10,
