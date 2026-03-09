@@ -398,17 +398,29 @@ export default function Header() {
                                 top: 0,
                                 right: 0,
                                 width: "100%",
-                                height: "100vh",
+                                height: "100dvh",
                                 backgroundColor: "#fff",
                                 zIndex: 1050,
-                                padding: "80px 0 0", // Bottom buttons handled separately
                                 display: "flex",
                                 flexDirection: "column",
                                 boxShadow: "-10px 0 30px rgba(0,0,0,0.1)",
-                                overflowY: "auto"
                             }}
                         >
-                            <div style={{ flex: 1, padding: "0 2rem" }}>
+                            {/* Close button row */}
+                            <div style={{ height: "80px", display: "flex", alignItems: "center", justifyContent: "flex-end", padding: "0 1.5rem", flexShrink: 0 }}>
+                                <button
+                                    onClick={() => setIsMenuOpen(false)}
+                                    style={{ background: "none", border: "none", cursor: "pointer", padding: "0.5rem" }}
+                                    aria-label="Close menu"
+                                >
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            {/* Nav items — scrollable middle */}
+                            <div style={{ flex: 1, overflowY: "auto", padding: "0 2rem" }}>
                                 {navItems.map((item, index) => (
                                     <motion.div
                                         key={item.label}
@@ -496,20 +508,13 @@ export default function Header() {
                                 ))}
                             </div>
 
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3 }}
-                                style={{
-                                    padding: "1.5rem 2rem",
-                                    backgroundColor: "#f9fafb",
-                                    borderTop: "1px solid #f1f5f9",
-                                    marginTop: "auto",
-                                    position: "sticky",
-                                    bottom: 0,
-                                    zIndex: 10
-                                }}
-                            >
+                            {/* Bottom CTA buttons — always visible, never cut off */}
+                            <div style={{
+                                flexShrink: 0,
+                                padding: "1.25rem 2rem 2rem",
+                                backgroundColor: "#f9fafb",
+                                borderTop: "1px solid #f1f5f9",
+                            }}>
                                 <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                                     <Link
                                         href="https://apps.iaudit.global/login"
@@ -523,8 +528,9 @@ export default function Header() {
                                             fontWeight: 500,
                                             textAlign: "center",
                                             backgroundColor: "white",
-                                            color: "#111827 !important",
-                                            border: "1px solid #e5e7eb"
+                                            border: "1px solid #e5e7eb",
+                                            display: "block",
+                                            boxSizing: "border-box",
                                         }}
                                     >
                                         <span>Log in</span>
@@ -539,13 +545,15 @@ export default function Header() {
                                             borderRadius: "8px",
                                             fontSize: "1rem",
                                             fontWeight: 500,
-                                            textAlign: "center"
+                                            textAlign: "center",
+                                            display: "block",
+                                            boxSizing: "border-box",
                                         }}
                                     >
                                         <span>Sign up for free</span>
                                     </Link>
                                 </div>
-                            </motion.div>
+                            </div>
                         </motion.div>
                     )}
                 </AnimatePresence>
