@@ -30,7 +30,8 @@
 .industry-card {
     flex-shrink: 0;
     width: 280px;
-    height: 360px;
+    min-height: 380px;
+    height: 100%;
     border-radius: 24px;
     overflow: hidden;
     position: relative;
@@ -63,7 +64,8 @@
 @media (max-width: 768px) {
     .industry-card {
         width: 240px;
-        height: 320px;
+        min-height: 340px;
+        height: 100%;
         border-radius: 20px;
     }
 
