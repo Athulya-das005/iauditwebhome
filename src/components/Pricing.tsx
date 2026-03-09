@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import CorporateIllustration from './CorporateIllustration';
 
 type Currency = "USD" | "GBP";
 type BillingCycle = "monthly" | "contract";
@@ -10,7 +11,7 @@ type ContractLength = 1 | 3 | 6;
 
 export default function Pricing() {
     const [currency, setCurrency] = useState<Currency>("USD");
-    const [billingCycle, setBillingCycle] = useState<BillingCycle>("monthly");
+    const [billingCycle, setBillingCycle] = useState<BillingCycle>("contract");
     const [contractLength, setContractLength] = useState<ContractLength>(1);
     const [isMobile, setIsMobile] = useState(false);
 
@@ -41,7 +42,7 @@ export default function Pricing() {
             ]
         },
         {
-            name: "Starter",
+            name: "Unos",
             isoPlans: 1,
             monthlyPrices: { USD: 29, GBP: 22 },
             contractPrices: {
@@ -50,15 +51,17 @@ export default function Pricing() {
                 6: { USD: 7.60, GBP: 5.60 }
             },
             features: [
-                "Priority Email Support",
-                "Data Export (CSV/PDF)",
-                "Advanced Reporting",
-                "All Free Trial Features",
-                "Custom Audit Templates"
+                "NC Register",
+                "Unlimited audits (1 ISO)",
+                "Excel, PDF & Word Reports",
+                "Role based accesses",
+                "Schedule, track & manage audits",
+                "Audit mate AI",
+                "Audit Evidence Capture"
             ]
         },
         {
-            name: "Professional",
+            name: "Dos",
             isoPlans: 2,
             monthlyPrices: { USD: 99, GBP: 75 },
             contractPrices: {
@@ -67,18 +70,16 @@ export default function Pricing() {
                 6: { USD: 18.90, GBP: 14.90 }
             },
             features: [
-                "Phone Support",
-                "All Starter Features",
-                "Team Collaboration Tools",
-                "Custom Workflows",
-                "Multiple Companies",
-                "White-Label Reports",
-                "API Access"
+                "All features of Starter",
+                "Multi-site audits (2 ISO)",
+                "NC Dashboards",
+                "Priority Email Support",
+                "Multi-site Dashboards"
             ],
             highlight: true
         },
         {
-            name: "Enterprise",
+            name: "Tres",
             isoPlans: 3,
             monthlyPrices: { USD: 299, GBP: 225 },
             contractPrices: {
@@ -87,17 +88,11 @@ export default function Pricing() {
                 6: { USD: 21.10, GBP: 17.10 }
             },
             features: [
-                "Advanced Security Features",
-                "Priority Feature Requests",
-                "Training Sessions",
-                "SLA Guarantee (99.9% Uptime)",
-                "Custom Integrations",
-                "Dedicated Account Manager",
-                "Unlimited Sites",
-                "Unlimited Audits",
-                "Unlimited Users",
-                "Unlimited Companies",
-                "All Professional Features"
+                "AI features of Advanced",
+                "Up to 10 sites (3 ISO)",
+                "Audit Performance Analytics",
+                "Custom Checklists",
+                "Dedicated Account Manager"
             ]
         }
     ];
@@ -164,7 +159,7 @@ export default function Pricing() {
                         Start with a 14-day free trial. No credit card required. Upgrade or downgrade anytime.
                     </motion.p>
 
-                    {/* Currency and Billing Switchers */}
+                    {/* Currency and Billing Selector */}
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isMobile ? '1rem' : '1.5rem', marginTop: isMobile ? '2rem' : '2.5rem' }}>
                         {/* Currency Toggle */}
                         <motion.div
@@ -219,102 +214,60 @@ export default function Pricing() {
                             </button>
                         </motion.div>
 
-                        {/* Billing Cycle Toggle */}
+                        {/* Contract Selector Label */}
+                        <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '12px',
+                            backgroundColor: 'rgba(0,102,68,0.05)',
+                            padding: '8px 16px',
+                            borderRadius: '12px',
+                            border: '1px solid rgba(0,102,68,0.1)'
+                        }}>
+                            <span style={{
+                                fontSize: '0.95rem',
+                                fontWeight: 600,
+                                color: '#006644'
+                            }}>
+                                Contract Billing
+                            </span>
+                        </div>
+
+                        {/* Contract Length Selector */}
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
                             style={{
-                                display: 'inline-flex',
-                                backgroundColor: '#F9FAF8',
-                                padding: '4px',
-                                borderRadius: '0.75rem',
-                                border: '1px solid #E5E7EB',
-                                flexDirection: isMobile ? 'column' : 'row',
-                                width: isMobile ? '100%' : 'auto',
-                                maxWidth: isMobile ? '300px' : 'none'
+                                display: 'flex',
+                                gap: '10px',
+                                alignItems: 'center'
                             }}
                         >
-                            <button
-                                onClick={() => setBillingCycle("monthly")}
-                                style={{
-                                    padding: isMobile ? '8px 16px' : '10px 24px',
-                                    fontSize: isMobile ? '0.85rem' : '0.95rem',
-                                    fontWeight: 600,
-                                    borderRadius: '0.5rem',
-                                    border: 'none',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                                    backgroundColor: billingCycle === "monthly" ? "#006644" : "transparent",
-                                    color: billingCycle === "monthly" ? "#fff" : "#6B7280",
-                                }}
-                            >
-                                Monthly Billing
-                            </button>
-                            <button
-                                onClick={() => setBillingCycle("contract")}
-                                style={{
-                                    padding: isMobile ? '8px 16px' : '10px 24px',
-                                    fontSize: isMobile ? '0.85rem' : '0.95rem',
-                                    fontWeight: 600,
-                                    borderRadius: '0.5rem',
-                                    border: 'none',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                                    backgroundColor: billingCycle === "contract" ? "#006644" : "transparent",
-                                    color: billingCycle === "contract" ? "#fff" : "#6B7280",
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    gap: '8px'
-                                }}
-                            >
-                                Contract Billing
-                                <span style={{
-                                    fontSize: '0.65rem',
-                                    backgroundColor: billingCycle === "contract" ? 'rgba(255,255,255,0.2)' : 'rgba(0,102,68,0.1)',
-                                    padding: '2px 6px',
-                                    borderRadius: '12px',
-                                    color: billingCycle === "contract" ? '#fff' : '#006644'
-                                }}>
-                                    Save ~70%
-                                </span>
-                            </button>
+                            {[1, 3, 6].map((length) => (
+                                <button
+                                    key={length}
+                                    onClick={() => setContractLength(length as ContractLength)}
+                                    style={{
+                                        padding: isMobile ? '6px 14px' : '8px 22px',
+                                        fontSize: '0.9rem',
+                                        fontWeight: 600,
+                                        borderRadius: '20px',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                                        boxShadow: length === 6
+                                            ? (contractLength === 6 ? '0 10px 25px rgba(255, 215, 0, 0.5)' : '0 8px 15px rgba(255, 215, 0, 0.3)')
+                                            : (contractLength === length ? '0 10px 20px rgba(0, 102, 68, 0.15)' : 'none'),
+                                        transform: contractLength === length ? 'scale(1.05)' : (length === 6 ? 'scale(1.02)' : 'none'),
+                                        border: '2px solid',
+                                        backgroundColor: contractLength === length ? '#006644' : (length === 6 ? '#FFFAEA' : '#fff'),
+                                        color: contractLength === length ? '#fff' : (length === 6 ? '#B8860B' : '#6B7280'),
+                                        borderColor: contractLength === length ? '#006644' : (length === 6 ? '#FFD700' : '#E5E7EB'),
+                                    }}
+                                >
+                                    {length} Year{length > 1 ? 's' : ''}
+                                </button>
+                            ))}
                         </motion.div>
-
-                        {/* Contract Length Selector (Conditional) */}
-                        {billingCycle === "contract" && (
-                            <motion.div
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                style={{
-                                    display: 'flex',
-                                    gap: '10px',
-                                    alignItems: 'center'
-                                }}
-                            >
-                                {[1, 3, 6].map((length) => (
-                                    <button
-                                        key={length}
-                                        onClick={() => setContractLength(length as ContractLength)}
-                                        style={{
-                                            padding: '4px 12px',
-                                            fontSize: '0.8rem',
-                                            fontWeight: 500,
-                                            borderRadius: '20px',
-                                            border: '1px solid',
-                                            borderColor: contractLength === length ? '#006644' : '#E5E7EB',
-                                            backgroundColor: contractLength === length ? 'rgba(0,102,68,0.05)' : '#fff',
-                                            color: contractLength === length ? '#006644' : '#6B7280',
-                                            cursor: 'pointer',
-                                            transition: 'all 0.2s ease'
-                                        }}
-                                    >
-                                        {length} Year{length > 1 ? 's' : ''}
-                                    </button>
-                                ))}
-                            </motion.div>
-                        )}
                     </div>
                 </div>
 
@@ -363,20 +316,6 @@ export default function Pricing() {
                                 }}>
                                     {plan.name}
                                 </h3>
-                                {!plan.isFree && (
-                                    <span style={{
-                                        fontSize: '0.65rem',
-                                        fontWeight: 600,
-                                        textTransform: 'uppercase',
-                                        letterSpacing: '0.05em',
-                                        color: '#006644',
-                                        backgroundColor: 'rgba(0, 102, 68, 0.06)',
-                                        padding: '2px 8px',
-                                        borderRadius: '6px'
-                                    }}>
-                                        {plan.isoPlans} ISO PLAN
-                                    </span>
-                                )}
                             </div>
 
                             <div style={{
@@ -399,12 +338,9 @@ export default function Pricing() {
                                     }}
                                 >
                                     {currency === "USD" ? "$" : "£"}
-                                    {plan.isFree ? "0" : (billingCycle === "monthly"
-                                        ? plan.monthlyPrices[currency].toFixed(2)
-                                        : plan.contractPrices[contractLength as ContractLength][currency].toFixed(2)
-                                    )}
+                                    {plan.isFree ? "0" : plan.contractPrices[contractLength as ContractLength][currency].toFixed(2)}
                                 </motion.span>
-                                <span style={{ opacity: 0.7 }}>/ month</span>
+                                <span style={{ opacity: 0.7 }}>/mo per user</span>
                             </div>
 
                             <Link
@@ -420,7 +356,8 @@ export default function Pricing() {
                                     display: 'flex',
                                     justifyContent: 'center',
                                     alignItems: 'center',
-                                    borderRadius: '6px'
+                                    borderRadius: '6px',
+                                    transition: 'all 0.3s ease'
                                 }}
                             >
                                 <span>{plan.isFree ? "Start for Free" : "Get Started"}</span>
@@ -473,14 +410,97 @@ export default function Pricing() {
                     style={{
                         textAlign: 'center',
                         marginTop: '3rem',
-                        fontSize: '0.8rem',
-                        color: '#94A3B8',
+                        marginBottom: '3rem',
+                        fontSize: '0.85rem',
+                        color: '#6B7280',
                         fontWeight: 400
                     }}
                 >
                     All plans include audit templates, findings management, and compliance tracking
                 </motion.p>
+
+                {/* Corporate or Consultant Section */}
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    style={{
+                        padding: isMobile ? '2rem 1.25rem' : '2rem 3.5rem',
+                        backgroundColor: '#F3F4F6',
+                        borderRadius: '1.25rem',
+                        display: 'flex',
+                        flexDirection: isMobile ? 'column' : 'row',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: isMobile ? '2rem' : '3rem',
+                        boxShadow: '0 25px 60px rgba(0, 102, 68, 0.2)',
+                        border: '1px solid #E5E7EB',
+                        maxWidth: '1020px',
+                        margin: '0 auto'
+                    }}
+                    whileHover={{
+                        boxShadow: '0 35px 70px rgba(0, 102, 68, 0.28)',
+                    }}
+                >
+                    <div style={{ flex: 1, textAlign: isMobile ? 'center' : 'left' }}>
+                        <h2 style={{
+                            fontSize: isMobile ? '1.5rem' : '1.9rem',
+                            fontWeight: 500,
+                            color: '#111827',
+                            marginBottom: '1.5rem',
+                            letterSpacing: '-0.02em',
+                            whiteSpace: isMobile ? 'normal' : 'nowrap'
+                        }}>
+                            Are you a Corporate or Consultant?
+                        </h2>
+                        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: isMobile ? 'center' : 'flex-start' }}>
+                            <Link
+                                href="/contact"
+                                className="btn-animate"
+                                style={{
+                                    padding: '0.85rem 2.25rem',
+                                    borderRadius: '8px',
+                                    textDecoration: 'none',
+                                    fontWeight: 600,
+                                    fontSize: '0.95rem',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                <span>Contact sales</span>
+                            </Link>
+                            <Link
+                                href="/about"
+                                className="btn-outline-animate"
+                                style={{
+                                    padding: '0.85rem 2.25rem',
+                                    borderRadius: '8px',
+                                    textDecoration: 'none',
+                                    fontWeight: 600,
+                                    fontSize: '0.95rem',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                <span>Know more</span>
+                            </Link>
+                        </div>
+                    </div>
+                    <div style={{
+                        flex: isMobile ? 'none' : '0 1 350px',
+                        width: isMobile ? '100%' : 'auto',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        position: 'relative',
+                        minHeight: isMobile ? '200px' : '260px'
+                    }}>
+                        <CorporateIllustration isMobile={isMobile} />
+                    </div>
+                </motion.div>
             </div>
-        </section>
+        </section >
     );
 }

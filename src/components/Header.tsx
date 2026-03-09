@@ -147,6 +147,19 @@ export default function Header() {
             }}>
                 {/* Logo */}
                 <Link href="/" style={{ display: "flex", alignItems: "center", zIndex: 10 }}>
+                    {/* Active Logo (Horizontal with dark background) */}
+                    <Image
+                        src="/audit-logo-horizontal.jpg"
+                        alt="iAudit Global"
+                        width={isMobile ? 100 : 130}
+                        height={isMobile ? 50 : 65}
+                        style={{ height: "auto", objectFit: "contain" }}
+                        priority
+                    />
+
+                    {/* Logo Options (Commented out for future use)
+                    
+                    1. Original Horizontal (Transparent/White Background)
                     <Image
                         src="/iAudit Global-01.png"
                         alt="iAudit Global"
@@ -155,8 +168,18 @@ export default function Header() {
                         style={{ height: "auto", objectFit: "contain" }}
                         priority
                     />
-                </Link>
 
+                    2. Square Logo (White Background)
+                    <Image
+                        src="/iaudit-global-logo.jpg"
+                        alt="iAudit Global"
+                        width={isMobile ? 50 : 70}
+                        height={isMobile ? 50 : 70}
+                        style={{ height: "auto", objectFit: "contain" }}
+                        priority
+                    />
+                    */}
+                </Link>
                 {/* Desktop Navigation */}
                 <nav className="hidden-mobile" style={{
                     display: "flex",

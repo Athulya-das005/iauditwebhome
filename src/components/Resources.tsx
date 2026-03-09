@@ -9,27 +9,28 @@ const resources = [
         id: 1,
         title: "Internal Audit Best Practices For Small Businesses",
         date: "November 20, 2025",
-        image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800&h=500",
-        link: "#"
+        image: "/images/blog-small-business.png",
+        link: "/blog"
     },
     {
         id: 2,
         title: "Empowering A Culture Of Continuous Improvement Through Audit",
         date: "November 20, 2025",
-        image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800&h=500",
-        link: "#"
+        image: "/images/blog-continuous-improvement.png",
+        link: "/blog"
     },
     {
         id: 3,
         title: "How To Train And Motivate Internal Auditors Without Burning Them Out",
         date: "November 20, 2025",
-        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800&h=500",
-        link: "#"
+        image: "/images/blog-auditor-training.png",
+        link: "/blog"
     }
 ];
 
 export default function Resources() {
     const [isMobile, setIsMobile] = useState(false);
+    const [hoveredId, setHoveredId] = useState<number | null>(null);
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 1024);
@@ -91,13 +92,14 @@ export default function Resources() {
                     gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
                     gap: isMobile ? '1.5rem' : '2rem'
                 }}>
-                    {resources.map((item, idx) => (
+                    {resources.map((item) => (
                         <motion.div
                             key={item.id}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: idx * 0.1 }}
+                            onMouseEnter={() => setHoveredId(item.id)}
+                            onMouseLeave={() => setHoveredId(null)}
                             style={{
                                 backgroundColor: '#fff',
                                 borderRadius: '1.5rem',
@@ -105,24 +107,22 @@ export default function Resources() {
                                 overflow: 'hidden',
                                 display: 'flex',
                                 flexDirection: 'column',
-                                transition: 'all 0.3s ease',
-                                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.03)'
-                            }}
-                            whileHover={{
-                                y: -8,
-                                boxShadow: '0 20px 40px -15px rgba(0, 0, 0, 0.08)',
-                                borderColor: '#E5E7EB'
+                                transition: 'all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1)',
+                                boxShadow: hoveredId === item.id ? '0 25px 50px -12px rgba(0, 0, 0, 0.1)' : '0 4px 6px -1px rgba(0, 0, 0, 0.03)',
+                                transform: hoveredId === item.id ? 'translateY(-10px)' : 'translateY(0)',
+                                cursor: 'pointer'
                             }}
                         >
-                            <div style={{ height: '220px', overflow: 'hidden' }}>
-                                <img
+                            <div style={{ height: '220px', overflow: 'hidden', position: 'relative' }}>
+                                <motion.img
                                     src={item.image}
                                     alt={item.title}
+                                    animate={{ scale: hoveredId === item.id ? 1.08 : 1 }}
+                                    transition={{ duration: 0.8, ease: "easeOut" }}
                                     style={{
                                         width: '100%',
                                         height: '100%',
-                                        objectFit: 'cover',
-                                        transition: 'transform 0.5s ease'
+                                        objectFit: 'cover'
                                     }}
                                 />
                             </div>
@@ -139,7 +139,7 @@ export default function Resources() {
                                     </span>
                                 </div>
                                 <h3 style={{
-                                    fontSize: '1.35rem',
+                                    fontSize: '1.3rem',
                                     fontWeight: 500,
                                     color: '#111827',
                                     marginBottom: '2rem',
@@ -149,7 +149,15 @@ export default function Resources() {
                                 }}>
                                     {item.title}
                                 </h3>
-                                <div style={{ marginTop: 'auto', borderTop: '1px solid #F9FAF8', paddingTop: '1.5rem' }}>
+                                <div style={{ marginTop: 'auto' }}>
+                                    {/* Thicker Horizontal Line */}
+                                    <div style={{ 
+                                        width: '100%', 
+                                        height: '2px', 
+                                        backgroundColor: '#F3F4F6', 
+                                        marginBottom: '1.25rem' 
+                                    }} />
+                                    
                                     <Link
                                         href={item.link}
                                         style={{
@@ -160,16 +168,30 @@ export default function Resources() {
                                             fontSize: '0.95rem',
                                             fontWeight: 500,
                                             textDecoration: 'none',
-                                            transition: 'gap 0.2s ease'
+                                            position: 'relative'
                                         }}
-                                        onMouseOver={(e) => e.currentTarget.style.gap = '10px'}
-                                        onMouseOut={(e) => e.currentTarget.style.gap = '6px'}
                                     >
-                                        Learn More
-                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                        Learn more
+                                        <motion.svg 
+                                            animate={{ x: hoveredId === item.id ? 6 : 0 }}
+                                            width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                                        >
                                             <line x1="5" y1="12" x2="19" y2="12"></line>
                                             <polyline points="12 5 19 12 12 19"></polyline>
-                                        </svg>
+                                        </motion.svg>
+                                        
+                                        {/* Animated Underline */}
+                                        <div style={{
+                                            position: 'absolute',
+                                            bottom: -2,
+                                            left: 0,
+                                            height: '2px',
+                                            backgroundColor: '#006644',
+                                            width: '100%',
+                                            transform: hoveredId === item.id ? 'scaleX(1)' : 'scaleX(0)',
+                                            transformOrigin: 'left',
+                                            transition: 'transform 0.3s ease'
+                                        }} />
                                     </Link>
                                 </div>
                             </div>
