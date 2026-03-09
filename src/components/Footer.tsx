@@ -180,9 +180,13 @@ export default function Footer() {
                         <div style={{ display: "flex", flexDirection: "column", alignItems: isMobile ? "center" : "flex-start" }}>
                             <h4 style={{ fontSize: "1rem", fontWeight: 500, marginBottom: "1.5rem" }}>Resources</h4>
                             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.8rem" }}>
-                                {["Case Studies", "Blog & Insights", "FAQ"].map((item) => (
-                                    <li key={item}>
-                                        <Link href="#" style={{
+                                {[
+                                    { name: "Case Studies", path: "#" },
+                                    { name: "Blog & Insights", path: "/blog" },
+                                    { name: "FAQ", path: "#" },
+                                ].map((item) => (
+                                    <li key={item.name}>
+                                        <Link href={item.path} style={{
                                             fontSize: "0.95rem",
                                             color: "rgba(0,0,0,0.6)",
                                             textDecoration: "none",
@@ -192,7 +196,7 @@ export default function Footer() {
                                             onMouseOver={(e: React.MouseEvent<HTMLAnchorElement>) => e.currentTarget.style.color = "#006644"}
                                             onMouseOut={(e: React.MouseEvent<HTMLAnchorElement>) => e.currentTarget.style.color = "rgba(0,0,0,0.6)"}
                                         >
-                                            {item}
+                                            {item.name}
                                         </Link>
                                     </li>
                                 ))}

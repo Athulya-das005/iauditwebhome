@@ -39,21 +39,21 @@ const existingResources = [
         title: "Internal Audit Best Practices For Small Businesses",
         date: "November 20, 2025",
         image: "/images/blog-small-business.png",
-        link: "#"
+        link: "/blog/internal-audit-best-practices-small-businesses"
     },
     {
         id: 2,
         title: "Empowering A Culture Of Continuous Improvement Through Audit",
         date: "November 20, 2025",
         image: "/images/blog-continuous-improvement.png",
-        link: "#"
+        link: "/blog/empowering-culture-continuous-improvement"
     },
     {
         id: 3,
         title: "How To Train And Motivate Internal Auditors Without Burning Them Out",
         date: "November 20, 2025",
         image: "/images/blog-auditor-training.png",
-        link: "#"
+        link: "/blog/train-motivate-internal-auditors"
     }
 ];
 
@@ -82,10 +82,10 @@ const BlogCard = ({ item, isHorizontal = false }: { item: any, isHorizontal?: bo
             }}
         >
             {/* Image Container */}
-            <div style={{ 
-                width: isHorizontal ? '160px' : '100%', 
+            <div style={{
+                width: isHorizontal ? '160px' : '100%',
                 minWidth: isHorizontal ? '160px' : '100%',
-                height: isHorizontal ? 'auto' : '180px', 
+                height: isHorizontal ? 'auto' : '180px',
                 overflow: 'hidden',
                 position: 'relative'
             }}>
@@ -101,8 +101,8 @@ const BlogCard = ({ item, isHorizontal = false }: { item: any, isHorizontal?: bo
                         objectFit: 'cover'
                     }}
                     onError={(e) => {
-                         // Fallback placeholder if image is still not moving
-                         e.currentTarget.src = `https://via.placeholder.com/800x500/006644/ffffff?text=${encodeURIComponent(item.title)}`;
+                        // Fallback placeholder if image is still not moving
+                        e.currentTarget.src = `https://via.placeholder.com/800x500/006644/ffffff?text=${encodeURIComponent(item.title)}`;
                     }}
                 />
             </div>
@@ -133,13 +133,13 @@ const BlogCard = ({ item, isHorizontal = false }: { item: any, isHorizontal?: bo
                 {/* Bottom Link Area */}
                 <div style={{ marginTop: 'auto' }}>
                     {/* Horizontal Line */}
-                    <div style={{ 
-                        width: '100%', 
+                    <div style={{
+                        width: '100%',
                         height: '2px', // Further increased thickness
-                        backgroundColor: '#F3F4F6', 
-                        marginBottom: '1rem' 
+                        backgroundColor: '#F3F4F6',
+                        marginBottom: '1rem'
                     }} />
-                    
+
                     <Link href={item.link} style={{
                         display: 'inline-flex',
                         alignItems: 'center',
@@ -152,14 +152,14 @@ const BlogCard = ({ item, isHorizontal = false }: { item: any, isHorizontal?: bo
                         paddingBottom: '2px'
                     }}>
                         Learn more
-                        <motion.svg 
+                        <motion.svg
                             animate={{ x: isHovered ? 4 : 0 }}
                             width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
                         >
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                             <polyline points="12 5 19 12 12 19"></polyline>
                         </motion.svg>
-                        
+
                         {/* Animated Underline */}
                         <div style={{
                             position: 'absolute',
@@ -262,16 +262,16 @@ export default function BlogPage() {
                         }}
                     >
                         {/* Diagonal Ribbon for "Popular blog" */}
-                        <div style={{ 
-                            position: "absolute", 
-                            top: 0, 
-                            left: 0, 
+                        <div style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
                             zIndex: 10,
                             width: "85px",
                             height: "85px",
                             overflow: "hidden"
                         }}>
-                             <div style={{
+                            <div style={{
                                 backgroundColor: "#006644",
                                 color: "#fff",
                                 textAlign: "center",
@@ -282,9 +282,9 @@ export default function BlogPage() {
                                 fontWeight: 500,
                                 boxShadow: "0 5px 10px rgba(0,0,0,0.1)",
                                 pointerEvents: "none"
-                             }}>
+                            }}>
                                 Popular blog
-                             </div>
+                            </div>
                         </div>
 
                         <div style={{ height: isMobile ? '200px' : '280px', overflow: 'hidden', position: 'relative' }}>
@@ -332,14 +332,14 @@ export default function BlogPage() {
                                     position: 'relative'
                                 }}>
                                     Learn more
-                                    <motion.svg 
+                                    <motion.svg
                                         animate={{ x: isFeaturedHovered ? 6 : 0 }}
                                         width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
                                     >
                                         <line x1="5" y1="12" x2="19" y2="12"></line>
                                         <polyline points="12 5 19 12 12 19"></polyline>
                                     </motion.svg>
-                                    
+
                                     <div style={{
                                         position: 'absolute',
                                         bottom: -2,

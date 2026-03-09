@@ -17,6 +17,7 @@ export default function Header() {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
+
     const buttonRef = useRef<HTMLAnchorElement>(null);
     const arrowRef = useRef<HTMLSpanElement>(null);
 
@@ -127,7 +128,7 @@ export default function Header() {
                 position: "sticky",
                 top: 0,
                 zIndex: 1000,
-                backgroundColor: "rgba(255,255,255,0.92)",
+                backgroundColor: "rgba(255,255,255,0.95)",
                 backdropFilter: "blur(16px)",
                 WebkitBackdropFilter: "blur(16px)",
                 borderBottom: "1px solid rgba(0,0,0,0.06)",
@@ -148,6 +149,17 @@ export default function Header() {
                 {/* Logo */}
                 <Link href="/" style={{ display: "flex", alignItems: "center", zIndex: 10 }}>
                     {/* Active Logo (Horizontal with dark background) */}
+                    {/* New Logo */}
+                    <Image
+                        src="/iaudit-logo-new.png"
+                        alt="iAudit Global"
+                        width={isMobile ? 100 : 130}
+                        height={isMobile ? 100 : 130}
+                        style={{ height: "auto", objectFit: "contain" }}
+                        priority
+                    />
+
+                    {/* Old Logo (commented out)
                     <Image
                         src="/audit-logo-horizontal.jpg"
                         alt="iAudit Global"
@@ -156,6 +168,7 @@ export default function Header() {
                         style={{ height: "auto", objectFit: "contain" }}
                         priority
                     />
+                    */}
 
                     {/* Logo Options (Commented out for future use)
                     

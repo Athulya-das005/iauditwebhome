@@ -10,21 +10,21 @@ const resources = [
         title: "Internal Audit Best Practices For Small Businesses",
         date: "November 20, 2025",
         image: "/images/blog-small-business.png",
-        link: "/blog"
+        link: "/blog/internal-audit-best-practices-small-businesses"
     },
     {
         id: 2,
         title: "Empowering A Culture Of Continuous Improvement Through Audit",
         date: "November 20, 2025",
         image: "/images/blog-continuous-improvement.png",
-        link: "/blog"
+        link: "/blog/empowering-culture-continuous-improvement"
     },
     {
         id: 3,
         title: "How To Train And Motivate Internal Auditors Without Burning Them Out",
         date: "November 20, 2025",
         image: "/images/blog-auditor-training.png",
-        link: "/blog"
+        link: "/blog/train-motivate-internal-auditors"
     }
 ];
 
@@ -151,13 +151,13 @@ export default function Resources() {
                                 </h3>
                                 <div style={{ marginTop: 'auto' }}>
                                     {/* Thicker Horizontal Line */}
-                                    <div style={{ 
-                                        width: '100%', 
-                                        height: '2px', 
-                                        backgroundColor: '#F3F4F6', 
-                                        marginBottom: '1.25rem' 
+                                    <div style={{
+                                        width: '100%',
+                                        height: '2px',
+                                        backgroundColor: '#F3F4F6',
+                                        marginBottom: '1.25rem'
                                     }} />
-                                    
+
                                     <Link
                                         href={item.link}
                                         style={{
@@ -172,14 +172,14 @@ export default function Resources() {
                                         }}
                                     >
                                         Learn more
-                                        <motion.svg 
+                                        <motion.svg
                                             animate={{ x: hoveredId === item.id ? 6 : 0 }}
                                             width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
                                         >
                                             <line x1="5" y1="12" x2="19" y2="12"></line>
                                             <polyline points="12 5 19 12 12 19"></polyline>
                                         </motion.svg>
-                                        
+
                                         {/* Animated Underline */}
                                         <div style={{
                                             position: 'absolute',
