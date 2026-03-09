@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import "./Industries.css";
 
 // Sketch-style SVG illustrations for each industry
@@ -101,60 +103,149 @@ const illustrations: Record<string, (color: string) => React.ReactNode> = {
     ),
 };
 
-const industries = [
+export const industries = [
     {
         id: "01",
+        slug: "retail",
         title: "Retail",
         description: "Maintain quality and safety standards across stores, warehouses, and supply chains.",
         color: "#10b981",
+        bgImage: "/images/retail-bg.jpg",
     },
     {
         id: "02",
+        slug: "logistics",
         title: "Logistics",
         description: "Keep warehouses, transport, and distribution networks compliant with structured audits.",
         color: "#f59e0b",
+        bgImage: "/images/logistics-bg.jpg",
     },
     {
         id: "03",
-        title: "Construction",
-        description: "Manage ISO audits across sites, subcontractors, and project phases without the paperwork.",
-        color: "#84cc16",
+        slug: "transport",
+        title: "Transport",
+        description: "Ensure fleet safety and regulatory compliance across supply chains and distribution networks.",
+        color: "#64748b",
+        bgImage: "/images/transport-bg.jpg",
     },
     {
         id: "04",
-        title: "Manufacturing",
-        description: "Audit production processes, quality controls, and environmental compliance across plants.",
-        color: "#0d9488",
+        slug: "construction",
+        title: "Construction",
+        description: "Manage ISO audits across sites, subcontractors, and project phases without the paperwork.",
+        color: "#84cc16",
+        bgImage: "/images/construction-bg.jpg",
     },
     {
         id: "05",
+        slug: "manufacturing",
+        title: "Manufacturing",
+        description: "Audit production processes, quality controls, and environmental compliance across plants.",
+        color: "#0d9488",
+        bgImage: "/images/manufacturing-bg.jpg",
+    },
+    {
+        id: "06",
+        slug: "healthcare",
         title: "Healthcare",
         description: "Run quality and safety audits across clinical and operational areas.",
         color: "#0284c7",
     },
     {
-        id: "06",
+        id: "07",
+        slug: "food-beverage",
         title: "Food & Beverage",
         description: "Support food safety and quality management with audits that meet ISO requirements.",
         color: "#0891b2",
-    },
-    {
-        id: "07",
-        title: "Hospitality",
-        description: "Deliver consistent guest experiences by auditing service quality and safety practices.",
-        color: "#f97316",
+        bgImage: "/images/food-beverage-bg.jpg",
     },
     {
         id: "08",
-        title: "Facilities Management",
-        description: "Audit environmental controls, health and safety across multiple sites from one platform.",
-        color: "#7c3aed",
+        slug: "hospitality",
+        title: "Hospitality",
+        description: "Deliver consistent guest experiences by auditing service quality and safety practices.",
+        color: "#f97316",
+        bgImage: "/images/hospitality-bg.jpg",
     },
     {
         id: "09",
+        slug: "facilities-management",
+        title: "Facilities Management",
+        description: "Audit environmental controls, health and safety across multiple sites from one platform.",
+        color: "#7c3aed",
+        bgImage: "/images/facilities-bg.jpg",
+    },
+    {
+        id: "10",
+        slug: "health-safety",
         title: "Health & Safety",
         description: "Purpose-built for ISO 45001. Track hazards, verify controls, and close corrective actions.",
         color: "#ef4444",
+        bgImage: "/images/health-safety-bg.jpg",
+    },
+    {
+        id: "11",
+        slug: "mining",
+        title: "Mining",
+        description: "Ensure health, safety, and environmental compliance across remote mining operations and heavy equipment sites.",
+        color: "#eab308",
+        bgImage: "/images/mining-bg.jpg",
+    },
+    {
+        id: "12",
+        slug: "pharmaceutical",
+        title: "Pharmaceutical",
+        description: "Maintain strict compliance with GMP and FDA regulations while streamlining clinical and laboratory audits.",
+        color: "#3b82f6",
+        bgImage: "/images/pharmaceutical-bg.jpg",
+    },
+    {
+        id: "13",
+        slug: "aerospace",
+        title: "Aerospace",
+        description: "Ensure rigorous quality control, safety compliance, and AS9100 adherence across all manufacturing phases.",
+        color: "#0369a1",
+        bgImage: "/images/aerospace-bg.jpg",
+    },
+    {
+        id: "14",
+        slug: "metal-fabrication",
+        title: "Basic Metal & Fabrication",
+        description: "Maintain workplace safety and structural integrity standards in high-risk fabrication environments.",
+        color: "#57534e",
+        bgImage: "/images/metal-fabrication-bg.jpg",
+    },
+    {
+        id: "15",
+        slug: "wholesale-retail",
+        title: "Wholesale & Retail Trade",
+        description: "Audit expansive supply chains, warehouse operations, and retail outlets for efficiency and compliance.",
+        color: "#d97706",
+        bgImage: "/images/wholesale-retail-bg.jpg",
+    },
+    {
+        id: "16",
+        slug: "machinery",
+        title: "Machinery & Equipment",
+        description: "Ensure ISO compliance, safety, and rigorous quality tracking across heavy machinery manufacturing.",
+        color: "#334155",
+        bgImage: "/images/machinery-bg.jpg",
+    },
+    {
+        id: "17",
+        slug: "electrical-optical",
+        title: "Electrical & Optical Equipment",
+        description: "Maintain strict calibration, quality control, and safety standard adherence in high-tech component production.",
+        color: "#8b5cf6",
+        bgImage: "/images/electrical-bg.jpg",
+    },
+    {
+        id: "18",
+        slug: "engineering-service",
+        title: "Engineering Service",
+        description: "Audit complex project lifecycles, structural safety standards, and contracting compliance efficiently.",
+        color: "#0284c7",
+        bgImage: "/images/engineering-bg.jpg",
     },
 ];
 
@@ -224,7 +315,7 @@ export default function Industries() {
                 <div className="industries-marquee-outer">
                     <div className="industries-marquee-track">
                         {loopItems.map((item, idx) => (
-                            <IndustryCard key={`${item.id}-${idx}`} item={item} />
+                            <IndustryCard key={`${item.id}-${idx}`} item={item} isMobile={isMobile} />
                         ))}
                     </div>
                 </div>
@@ -234,105 +325,122 @@ export default function Industries() {
     );
 }
 
-function IndustryCard({ item }: { item: (typeof industries)[0] }) {
+function IndustryCard({ item, isMobile }: { item: (typeof industries)[0] & { bgImage?: string }, isMobile: boolean }) {
+    const hasBgImage = !!item.bgImage;
+
     return (
         <motion.div
             className="industry-card"
             whileHover="hover"
             style={{
-                background: `${item.color}18`,
-                border: `1.5px solid ${item.color}33`,
-                boxShadow: `0 10px 30px -10px ${item.color}15`,
+                background: hasBgImage ? `url(${item.bgImage}) center/cover no-repeat` : `${item.color}18`,
+                border: hasBgImage ? "none" : `1.5px solid ${item.color}33`,
             }}
         >
-            <div style={{
-                position: "relative",
-                zIndex: 1,
-                padding: "24px",
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-start",
-                gap: "1.2rem",
-                boxSizing: "border-box",
-            }}>
-                {/* Sketch illustration area — fixed size */}
-                <div style={{
-                    width: "100%",
-                    height: "100px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    background: `${item.color}25`,
-                    borderRadius: "14px",
-                    padding: "16px",
-                    boxSizing: "border-box",
-                    border: `1px solid ${item.color}30`,
-                }}>
-                    {illustrations[item.id](item.color)}
-                </div>
+            <Link href={`/industries/${item.slug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}>
+                {hasBgImage && (
+                    <div style={{
+                        position: "absolute",
+                        inset: 0,
+                        background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 100%)",
+                        zIndex: 0
+                    }} />
+                )}
 
-                {/* Number + title + description */}
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.8rem", flex: 1 }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                        <h3 style={{
-                            fontSize: "1.35rem",
-                            fontWeight: 500,
-                            color: "#111827",
-                            lineHeight: 1.2,
+                <div style={{
+                    position: "relative",
+                    zIndex: 1,
+                    padding: "24px",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: hasBgImage ? "flex-end" : "flex-start",
+                    gap: hasBgImage ? "0rem" : "1.2rem",
+                    boxSizing: "border-box",
+                }}>
+                    {/* Sketch illustration area — hide if hasBgImage */}
+                    {!hasBgImage && (
+                        <div style={{
+                            width: "100%",
+                            height: isMobile ? "120px" : "140px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            background: `${item.color}25`,
+                            borderRadius: "14px",
+                            padding: "16px",
+                            boxSizing: "border-box",
+                            border: `1px solid ${item.color}30`,
+                            overflow: "hidden",
+                        }}>
+                            {illustrations[item.id](item.color)}
+                        </div>
+                    )}
+
+                    {/* Number + title + description */}
+                    <div style={{ display: "flex", flexDirection: "column", gap: hasBgImage ? "0.5rem" : "0.8rem", flex: hasBgImage ? "none" : 1 }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                            <h3 style={{
+                                fontSize: "1.35rem",
+                                fontWeight: 500,
+                                color: hasBgImage ? "#ffffff" : "#111827",
+                                lineHeight: 1.2,
+                                margin: 0,
+                            }}>
+                                {item.title}
+                            </h3>
+                            {!hasBgImage && (
+                                <span style={{
+                                    fontSize: "1.2rem",
+                                    fontWeight: 600,
+                                    color: `${item.color}25`,
+                                    lineHeight: 1,
+                                    flexShrink: 0,
+                                    marginLeft: "8px",
+                                }}>
+                                    {item.id}
+                                </span>
+                            )}
+                        </div>
+
+                        <p style={{
+                            fontSize: "0.9rem",
+                            color: hasBgImage ? "rgba(255,255,255,0.85)" : "#4b5563",
+                            lineHeight: 1.5,
+                            fontWeight: 400,
                             margin: 0,
                         }}>
-                            {item.title}
-                        </h3>
-                        <span style={{
-                            fontSize: "1.2rem",
-                            fontWeight: 600,
-                            color: `${item.color}25`,
-                            lineHeight: 1,
-                            flexShrink: 0,
-                            marginLeft: "8px",
-                        }}>
-                            {item.id}
-                        </span>
+                            {item.description}
+                        </p>
                     </div>
 
-                    <p style={{
-                        fontSize: "0.9rem",
-                        color: "#4b5563",
-                        lineHeight: 1.5,
-                        fontWeight: 400,
-                        margin: 0,
+                    {/* Learn more link */}
+                    <div style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        color: hasBgImage ? "#ffffff" : "var(--primary)",
+                        fontSize: "0.95rem",
+                        fontWeight: 500,
+                        marginTop: hasBgImage ? "1.2rem" : "auto",
+                        paddingTop: "0.5rem"
                     }}>
-                        {item.description}
-                    </p>
+                        Learn More
+                        <motion.span
+                            variants={{
+                                hover: { x: 5 }
+                            }}
+                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                            style={{ display: "flex", alignItems: "center" }}
+                        >
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </motion.span>
+                    </div>
                 </div>
-
-                {/* Learn more link */}
-                <div style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    color: "var(--primary)",
-                    fontSize: "0.95rem",
-                    fontWeight: 500,
-                    marginTop: "auto",
-                    paddingTop: "0.5rem"
-                }}>
-                    Learn More
-                    <motion.span
-                        variants={{
-                            hover: { x: 5 }
-                        }}
-                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                        style={{ display: "flex", alignItems: "center" }}
-                    >
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </motion.span>
-                </div>
-            </div>
-        </motion.div>
+            </Link>
+        </motion.div >
     );
 }
