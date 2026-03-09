@@ -64,9 +64,10 @@ export default function Benefits() {
                         style={{
                             background: "#064e3b",
                             borderRadius: "24px",
-                            padding: isMobile ? "24px" : "32px",
+                            padding: isMobile ? "24px 16px" : "32px",
                             position: "relative",
-                            aspectRatio: isMobile ? "1.1/1" : "1.25/1",
+                            aspectRatio: isMobile ? "auto" : "1.25/1",
+                            minHeight: isMobile ? "420px" : "auto",
                             display: "flex",
                             flexDirection: "column",
                             overflow: "hidden",
@@ -106,7 +107,7 @@ export default function Benefits() {
                                     style={{
                                         background: "#fff",
                                         color: "#111827",
-                                        padding: "16px 20px",
+                                        padding: isMobile ? "12px 16px" : "16px 20px",
                                         borderRadius: "1.1rem 1.1rem 1.1rem 0",
                                         width: "fit-content",
                                         maxWidth: "90%",
@@ -130,7 +131,7 @@ export default function Benefits() {
                                     style={{
                                         background: "#ff7a5c",
                                         color: "#fff",
-                                        padding: "16px 24px",
+                                        padding: isMobile ? "12px 16px" : "16px 24px",
                                         borderRadius: "1.1rem 1.1rem 0 1.1rem",
                                         width: "fit-content",
                                         maxWidth: "90%",
@@ -152,7 +153,7 @@ export default function Benefits() {
                                     style={{
                                         background: "#fff",
                                         color: "#111827",
-                                        padding: "16px 20px",
+                                        padding: isMobile ? "12px 16px" : "16px 20px",
                                         borderRadius: "1.1rem 1.1rem 1.1rem 0",
                                         width: "fit-content",
                                         maxWidth: "90%",
