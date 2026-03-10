@@ -117,7 +117,7 @@ export default function Pricing() {
                             gap: '0.4rem',
                             color: '#006644',
                             fontWeight: 500,
-                            fontSize: isMobile ? '0.75rem' : '0.82rem',
+                            fontSize: isMobile ? '0.9rem' : '1rem',
                             letterSpacing: '0.01em',
                             marginBottom: '0.75rem'
                         }}>
@@ -131,7 +131,7 @@ export default function Pricing() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
                         style={{
-                            fontSize: isMobile ? '2rem' : '2.8rem',
+                            fontSize: isMobile ? '2.2rem' : '3.2rem',
                             fontWeight: 500,
                             color: '#111827',
                             letterSpacing: '-0.02em',

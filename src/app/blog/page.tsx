@@ -206,7 +206,7 @@ export default function BlogPage() {
                             alignItems: "center",
                             gap: "0.4rem",
                             color: '#006644',
-                            fontSize: '0.82rem',
+                            fontSize: isMobile ? '0.9rem' : '1rem',
                             fontWeight: 500,
                             letterSpacing: '0.01em',
                             marginBottom: '0.85rem'

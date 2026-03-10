@@ -49,7 +49,7 @@ export default function Security() {
                                 gap: '0.4rem',
                                 color: '#006644',
                                 fontWeight: 500,
-                                fontSize: isMobile ? '0.75rem' : '0.82rem',
+                                fontSize: isMobile ? '0.9rem' : '1rem',
                                 letterSpacing: '0.01em',
                                 marginBottom: '0.75rem'
                             }}>
@@ -63,7 +63,7 @@ export default function Security() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
                             style={{
-                                fontSize: isMobile ? '2.2rem' : '3.2rem',
+                                fontSize: isMobile ? '2.4rem' : '3.6rem',
                                 fontWeight: 500,
                                 color: "#111827",
                                 lineHeight: 1.1,

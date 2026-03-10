@@ -76,7 +76,7 @@ export default function Features() {
                             gap: '0.4rem',
                             color: '#006644',
                             fontWeight: 500,
-                            fontSize: isMobile ? '0.75rem' : '0.8rem',
+                            fontSize: isMobile ? '0.9rem' : '1rem',
                             letterSpacing: '0.01em',
                             marginBottom: '0.75rem'
                         }}>
@@ -85,7 +85,7 @@ export default function Features() {
                         <span style={{ fontSize: '1rem' }}>✦</span>
                     </motion.div>
                     <h2 className="h2" style={{
-                        fontSize: isMobile ? '1.85rem' : '2.8rem',
+                        fontSize: isMobile ? '2.0rem' : '3.2rem',
                         fontWeight: 500,
                         marginBottom: '1.5rem',
                         color: '#111827',

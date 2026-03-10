@@ -212,7 +212,7 @@ export default function Benefits() {
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.1 }}
                                 style={{
-                                    fontSize: isMobile ? "1.85rem" : '2.8rem',
+                                    fontSize: isMobile ? "2.0rem" : '3.2rem',
                                     fontWeight: 500,
                                     marginBottom: '1rem',
                                     lineHeight: isMobile ? 1.25 : 1.1,

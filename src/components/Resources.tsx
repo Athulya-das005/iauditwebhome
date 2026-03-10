@@ -57,7 +57,7 @@ export default function Resources() {
                             alignItems: "center",
                             gap: "0.4rem",
                             color: '#006644',
-                            fontSize: '0.82rem',
+                            fontSize: isMobile ? '0.9rem' : '1rem',
                             fontWeight: 500,
                             letterSpacing: '0.01em',
                             marginBottom: '0.75rem'
@@ -72,7 +72,7 @@ export default function Resources() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         style={{
-                            fontSize: isMobile ? '2.2rem' : '2.8rem',
+                            fontSize: isMobile ? '2.4rem' : '3.2rem',
                             fontWeight: 500,
                             color: '#111827',
                             letterSpacing: '-0.02em',

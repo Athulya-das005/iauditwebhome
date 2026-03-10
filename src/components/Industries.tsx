@@ -139,7 +139,7 @@ export default function Industries() {
                             gap: '0.4rem',
                             color: '#006644',
                             fontWeight: 500,
-                            fontSize: isMobile ? "0.75rem" : '0.8rem',
+                            fontSize: isMobile ? "0.9rem" : "1rem",
                             letterSpacing: '0.01em',
                             marginBottom: '0.75rem'
                         }}
@@ -155,7 +155,7 @@ export default function Industries() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
                         style={{
-                            fontSize: isMobile ? "2.2rem" : "3.0rem",
+                            fontSize: isMobile ? "2.4rem" : "3.4rem",
                             fontWeight: 500,
                             color: "#111827",
                             lineHeight: isMobile ? 1.2 : 1.1,

@@ -126,7 +126,7 @@ export default function Testimonials() {
                             alignItems: "center",
                             gap: "0.4rem",
                             color: '#006644',
-                            fontSize: isMobile ? '0.75rem' : '0.82rem',
+                            fontSize: isMobile ? '0.9rem' : '1rem',
                             fontWeight: 500,
                             letterSpacing: '0.01em',
                             marginBottom: '0.75rem'
@@ -141,7 +141,7 @@ export default function Testimonials() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         style={{
-                            fontSize: isMobile ? '1.85rem' : '2.8rem',
+                            fontSize: isMobile ? '2.0rem' : '3.2rem',
                             fontWeight: 500,
                             color: '#111827',
                             letterSpacing: '-0.02em',

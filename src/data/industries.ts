@@ -54,6 +54,7 @@ export const industries: Industry[] = [
         title: "Healthcare",
         description: "Run quality and safety audits across clinical and operational areas.",
         color: "#0284c7",
+        bgImage: "/images/healthcare-bg.png",
     },
     {
         id: "07",

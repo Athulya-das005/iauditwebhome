@@ -82,7 +82,7 @@ export default function Hero() {
                         display: "inline-flex",
                         alignItems: "center",
                         gap: "0.41rem",
-                        fontSize: isMobile ? "0.75rem" : "0.82rem",
+                        fontSize: isMobile ? "0.9rem" : "1rem",
                         fontWeight: 500,
                         color: "#1a7a5e",
                         marginBottom: "16px",
@@ -101,7 +101,7 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.55, delay: 0.08 }}
                     style={{
-                        fontSize: isMobile ? "2.2rem" : "clamp(2.1rem, 4.2vw, 3.2rem)",
+                        fontSize: isMobile ? "2.4rem" : "clamp(2.3rem, 4.5vw, 3.5rem)",
                         fontWeight: 500,
                         lineHeight: isMobile ? 1.2 : 1.1,
                         letterSpacing: "-0.03em",

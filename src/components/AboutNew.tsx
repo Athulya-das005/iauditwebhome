@@ -67,7 +67,7 @@ export default function AboutNew() {
                         display: "inline-flex",
                         alignItems: "center",
                         gap: "0.41rem",
-                        fontSize: "0.82rem",
+                        fontSize: isMobile ? "0.9rem" : "1rem",
                         fontWeight: 500,
                         color: "#006644",
                         letterSpacing: "0.01em",
@@ -486,7 +486,7 @@ export default function AboutNew() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4 }}
-                    style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "1rem", color: "#006644", fontWeight: 500, fontSize: "0.8rem" }}
+                    style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "1rem", color: "#006644", fontWeight: 500, fontSize: isMobile ? "0.9rem" : "1rem" }}
                 >
                     <span>✦</span>
                     <span>Built for better audits</span>
@@ -918,7 +918,7 @@ export default function AboutNew() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: 0.1 }}
-                        style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "1.2rem", color: "#006644", fontWeight: 500, fontSize: "0.8rem" }}
+                        style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "1.2rem", color: "#006644", fontWeight: 500, fontSize: isMobile ? "0.9rem" : "1rem" }}
                     >
                         <span>✦</span>
                         <span>Meet Audit Mate</span>
@@ -1033,7 +1033,7 @@ export default function AboutNew() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4 }}
-                        style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "0.4rem", marginBottom: "1.2rem", color: "#006644", fontWeight: 500, fontSize: "0.8rem" }}
+                        style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "0.4rem", marginBottom: "1.2rem", color: "#006644", fontWeight: 500, fontSize: isMobile ? "0.9rem" : "1rem" }}
                     >
                         <span>✦</span><span>Principles We Follow</span><span>✦</span>
                     </motion.div>
@@ -1407,7 +1407,7 @@ export default function AboutNew() {
                                 marginBottom: "1.2rem",
                                 color: "#006644",
                                 fontWeight: 500,
-                                fontSize: "0.8rem"
+                                fontSize: isMobile ? "0.9rem" : "1rem"
                             }}
                         >
                             <span>✦</span><span>Our Journey So Far</span><span>✦</span>

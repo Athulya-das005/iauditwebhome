@@ -281,7 +281,7 @@ export default function About() {
                                 gap: '0.4rem',
                                 color: '#006644',
                                 fontWeight: 500,
-                                fontSize: '0.8rem',
+                                fontSize: isMobile ? '0.9rem' : '1rem',
                                 letterSpacing: '0.01em',
                                 marginBottom: '0.75rem'
                             }}
@@ -297,7 +297,7 @@ export default function About() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
                             style={{
-                                fontSize: isMobile ? '2.2rem' : '2.8rem',
+                                fontSize: isMobile ? '2.4rem' : '3.2rem',
                                 lineHeight: 1.1,
                                 fontWeight: 500,
                                 maxWidth: '650px',
