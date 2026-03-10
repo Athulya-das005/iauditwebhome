@@ -24,7 +24,16 @@ export default function Header() {
     const [hoveredItem, setHoveredItem] = useState<string | null>(null);
     const [expandedItem, setExpandedItem] = useState<string | null>(null);
 
-    const navItems = [
+    interface NavItem {
+        label: string;
+        href: string;
+        megamenu?: {
+            title: string;
+            items: { label: string; href: string }[];
+        }[];
+    }
+
+    const navItems: NavItem[] = [
         { label: "Home", href: "/" },
         { label: "About", href: "/about" },
         /*

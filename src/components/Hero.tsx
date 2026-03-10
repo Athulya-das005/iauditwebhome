@@ -71,7 +71,7 @@ export default function Hero() {
         }}>
 
             {/* ── Hero Text Block ── */}
-            <div style={{ maxWidth: "1100px", width: "100%", margin: "0 auto", padding: isMobile ? "0 1.25rem" : "0 2rem", paddingTop: isMobile ? "24px" : "44px", paddingBottom: "0" }}>
+            <div style={{ maxWidth: "1100px", width: "100%", margin: "0 auto", paddingLeft: isMobile ? "1.25rem" : "2rem", paddingRight: isMobile ? "1.25rem" : "2rem", paddingTop: isMobile ? "24px" : "44px", paddingBottom: "0" }}>
 
                 {/* Tag */}
                 <motion.div
