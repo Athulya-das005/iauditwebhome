@@ -153,10 +153,9 @@ export default function Footer() {
                                 {[
                                     { name: "Home", path: "/" },
                                     { name: "About iAudit", path: "/about" },
-                                    { name: "Product", path: "#" },
+                                    { name: "Features", path: "/#features" },
                                     { name: "Pricing", path: "/#pricing" },
                                     { name: "Contact Us", path: "/contact" },
-                                    { name: "Team", path: "#" },
                                 ].map((item) => (
                                     <li key={item.name}>
                                         <Link href={item.path} style={{
@@ -181,9 +180,7 @@ export default function Footer() {
                             <h4 style={{ fontSize: "1rem", fontWeight: 500, marginBottom: "1.5rem" }}>Resources</h4>
                             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.8rem" }}>
                                 {[
-                                    { name: "Case Studies", path: "#" },
                                     { name: "Blog & Insights", path: "/blog" },
-                                    { name: "FAQ", path: "#" },
                                 ].map((item) => (
                                     <li key={item.name}>
                                         <Link href={item.path} style={{

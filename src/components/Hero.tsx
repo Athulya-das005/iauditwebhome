@@ -179,7 +179,7 @@ export default function Hero() {
 
                     {/* Outline */}
                     <Link
-                        href="#demo"
+                        href="/contact"
                         ref={outlineBtnRef}
                         className="btn-outline-animate"
                         style={{

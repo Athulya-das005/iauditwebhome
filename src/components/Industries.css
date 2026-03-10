@@ -27,11 +27,15 @@
 }
 
 /* Card matches reference: tall, narrow, image on top */
+/* Card matches reference: tall, narrow, image on top */
 .industry-card {
     flex-shrink: 0;
     width: 340px;
+    /* New width (Active) */
     height: 450px;
-    /* Fixed uniform height for all 9 cards */
+    /* New height (Active) */
+    /* width: 280px; Original width (Commented Out) */
+    /* height: 400px; Original height (Commented Out) */
     border-radius: 24px;
     overflow: hidden;
     position: relative;

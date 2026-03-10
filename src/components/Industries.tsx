@@ -103,7 +103,76 @@ const illustrations: Record<string, (color: string) => React.ReactNode> = {
     ),
 };
 
-export const industries = [
+/*
+export const industriesOriginal = [
+    {
+        id: "01",
+        slug: "retail",
+        title: "Retail",
+        description: "Maintain quality and safety standards across stores, warehouses, and supply chains.",
+        color: "#10b981",
+    },
+    {
+        id: "02",
+        slug: "logistics",
+        title: "Logistics",
+        description: "Keep warehouses, transport, and distribution networks compliant with structured audits.",
+        color: "#f59e0b",
+    },
+    {
+        id: "03",
+        slug: "construction",
+        title: "Construction",
+        description: "Manage ISO audits across sites, subcontractors, and project phases without the paperwork.",
+        color: "#84cc16",
+    },
+    {
+        id: "04",
+        slug: "manufacturing",
+        title: "Manufacturing",
+        description: "Audit production processes, quality controls, and environmental compliance across plants.",
+        color: "#0d9488",
+    },
+    {
+        id: "05",
+        slug: "healthcare",
+        title: "Healthcare",
+        description: "Run quality and safety audits across clinical and operational areas.",
+        color: "#0284c7",
+    },
+    {
+        id: "06",
+        slug: "food-beverage",
+        title: "Food & Beverage",
+        description: "Support food safety and quality management with audits that meet ISO requirements.",
+        color: "#0891b2",
+    },
+    {
+        id: "07",
+        slug: "hospitality",
+        title: "Hospitality",
+        description: "Deliver consistent guest experiences by auditing service quality and safety practices.",
+        color: "#f97316",
+    },
+    {
+        id: "08",
+        slug: "facilities-management",
+        title: "Facilities Management",
+        description: "Audit environmental controls, health and safety across multiple sites from one platform.",
+        color: "#7c3aed",
+    },
+    {
+        id: "09",
+        slug: "health-safety",
+        title: "Health & Safety",
+        description: "Purpose-built for ISO 45001. Track hazards, verify controls, and close corrective actions.",
+        color: "#ef4444",
+    },
+];
+*/
+
+// New 18-card structure with images (Active)
+export const industriesNew = [
     {
         id: "01",
         slug: "retail",
@@ -147,7 +216,7 @@ export const industries = [
     {
         id: "06",
         slug: "healthcare",
-        title: "Healthcare",
+        title: "Healthcare", key: "hc",
         description: "Run quality and safety audits across clinical and operational areas.",
         color: "#0284c7",
     },
@@ -249,6 +318,9 @@ export const industries = [
     },
 ];
 
+export const industries = industriesNew;
+
+
 const loopItems = [...industries, ...industries];
 
 export default function Industries() {
@@ -325,7 +397,112 @@ export default function Industries() {
     );
 }
 
-function IndustryCard({ item, isMobile }: { item: (typeof industries)[0] & { bgImage?: string }, isMobile: boolean }) {
+/* (Commented Out) OLD VERSION WITH ICONS
+function IndustryCardOld({ item, isMobile }: { item: any, isMobile: boolean }) {
+    return (
+        <motion.div
+            className="industry-card"
+            whileHover="hover"
+            style={{
+                background: `${item.color}18`,
+                border: `1.5px solid ${item.color}33`,
+            }}
+        >
+            <Link href={`/industries/${item.slug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}>
+                <div style={{
+                    position: "relative",
+                    zIndex: 1,
+                    padding: "24px",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-start",
+                    gap: "1.2rem",
+                    boxSizing: "border-box",
+                }}>
+                    <div style={{
+                        width: "100%",
+                        height: isMobile ? "120px" : "140px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        background: `${item.color}25`,
+                        borderRadius: "14px",
+                        padding: "16px",
+                        boxSizing: "border-box",
+                        border: `1px solid ${item.color}30`,
+                        overflow: "hidden",
+                    }}>
+                        {illustrations[item.id](item.color)}
+                    </div>
+
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.8rem", flex: 1 }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                            <h3 style={{
+                                fontSize: "1.35rem",
+                                fontWeight: 500,
+                                color: "#111827",
+                                lineHeight: 1.2,
+                                margin: 0,
+                            }}>
+                                {item.title}
+                            </h3>
+                            <span style={{
+                                fontSize: "1.2rem",
+                                fontWeight: 600,
+                                color: `${item.color}25`,
+                                lineHeight: 1,
+                                flexShrink: 0,
+                                marginLeft: "8px",
+                            }}>
+                                {item.id}
+                            </span>
+                        </div>
+
+                        <p style={{
+                            fontSize: "0.9rem",
+                            color: "#4b5563",
+                            lineHeight: 1.5,
+                            fontWeight: 400,
+                            margin: 0,
+                        }}>
+                            {item.description}
+                        </p>
+                    </div>
+
+                    <div style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        color: "var(--primary)",
+                        fontSize: "0.95rem",
+                        fontWeight: 500,
+                        marginTop: "auto",
+                        paddingTop: "0.5rem"
+                    }}>
+                        Learn More
+                        <motion.span
+                            variants={{
+                                hover: { x: 5 }
+                            }}
+                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                            style={{ display: "flex", alignItems: "center" }}
+                        >
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </motion.span>
+                    </div>
+                </div>
+            </Link>
+        </motion.div >
+    );
+}
+*/
+
+// ACTIVE VERSION WITH FULL BACKGROUND IMAGES
+function IndustryCard({ item, isMobile }: { item: any, isMobile: boolean }) {
     const hasBgImage = !!item.bgImage;
 
     return (
@@ -358,7 +535,6 @@ function IndustryCard({ item, isMobile }: { item: (typeof industries)[0] & { bgI
                     gap: hasBgImage ? "0rem" : "1.2rem",
                     boxSizing: "border-box",
                 }}>
-                    {/* Sketch illustration area — hide if hasBgImage */}
                     {!hasBgImage && (
                         <div style={{
                             width: "100%",
@@ -377,7 +553,6 @@ function IndustryCard({ item, isMobile }: { item: (typeof industries)[0] & { bgI
                         </div>
                     )}
 
-                    {/* Number + title + description */}
                     <div style={{ display: "flex", flexDirection: "column", gap: hasBgImage ? "0.5rem" : "0.8rem", flex: hasBgImage ? "none" : 1 }}>
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                             <h3 style={{
@@ -414,7 +589,6 @@ function IndustryCard({ item, isMobile }: { item: (typeof industries)[0] & { bgI
                         </p>
                     </div>
 
-                    {/* Learn more link */}
                     <div style={{
                         display: "flex",
                         alignItems: "center",
@@ -427,9 +601,7 @@ function IndustryCard({ item, isMobile }: { item: (typeof industries)[0] & { bgI
                     }}>
                         Learn More
                         <motion.span
-                            variants={{
-                                hover: { x: 5 }
-                            }}
+                            variants={{ hover: { x: 5 } }}
                             transition={{ type: "spring", stiffness: 400, damping: 10 }}
                             style={{ display: "flex", alignItems: "center" }}
                         >
@@ -444,3 +616,4 @@ function IndustryCard({ item, isMobile }: { item: (typeof industries)[0] & { bgI
         </motion.div >
     );
 }
+
