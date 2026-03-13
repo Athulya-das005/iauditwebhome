@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-export default function CTA() {
+export default function CTA({ backgroundColor = "#fff" }: { backgroundColor?: string }) {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -17,7 +17,7 @@ export default function CTA() {
     return (
         <section id="cta" style={{
             padding: isMobile ? "2rem 0 3rem" : "3.5rem 0 4rem",
-            backgroundColor: "#fff",
+            backgroundColor: backgroundColor,
             fontFamily: '"Pp Neue Montreal", sans-serif'
         }}>
             <div style={{ maxWidth: "1260px", margin: "0 auto", padding: isMobile ? "0 1.25rem" : "0 2rem" }}>

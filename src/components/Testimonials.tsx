@@ -3,14 +3,13 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const testimonials = [
+const defaultTestimonials = [
     {
         quote: "iAudit helped us standardize audit execution across 12 locations. Our reporting time dropped by 60%.",
         author: "Priya Menon",
         role: "Head of Internal Audit",
         company: "Acme Manufacturing",
         avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
-        color: "#058c42",
         batch: "Verified Audit Expert"
     },
     {
@@ -19,7 +18,6 @@ const testimonials = [
         role: "Compliance Manager",
         company: "FinTrust Bank",
         avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
-        color: "#0d9488",
         batch: "Verified Auditor"
     },
     {
@@ -28,12 +26,27 @@ const testimonials = [
         role: "QA Lead",
         company: "Global Pharma Co.",
         avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200",
-        color: "#1e1b4b",
         batch: "Certified Lead Auditor"
     }
 ];
 
-export default function Testimonials() {
+interface TestimonialItem {
+    quote: string;
+    author: string;
+    role: string;
+    company: string;
+    avatar: string;
+    batch: string;
+}
+
+export default function Testimonials({
+    backgroundColor = "#fff",
+    items
+}: {
+    backgroundColor?: string;
+    items?: TestimonialItem[];
+}) {
+    const activeTestimonials = items || defaultTestimonials;
     const [index, setIndex] = useState(0);
     const [direction, setDirection] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
@@ -47,13 +60,13 @@ export default function Testimonials() {
 
     const nextStep = useCallback(() => {
         setDirection(1);
-        setIndex((prev) => (prev + 1) % testimonials.length);
-    }, []);
+        setIndex((prev) => (prev + 1) % activeTestimonials.length);
+    }, [activeTestimonials.length]);
 
     const prevStep = useCallback(() => {
         setDirection(-1);
-        setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-    }, []);
+        setIndex((prev) => (prev - 1 + activeTestimonials.length) % activeTestimonials.length);
+    }, [activeTestimonials.length]);
 
     useEffect(() => {
         const timer = setInterval(nextStep, 8000);
@@ -83,7 +96,7 @@ export default function Testimonials() {
     return (
         <section id="testimonials" style={{
             padding: isMobile ? "3rem 0" : "3.5rem 0 4rem",
-            backgroundColor: "#fff",
+            backgroundColor: backgroundColor,
             fontFamily: '"Pp Neue Montreal", sans-serif',
             overflow: "hidden",
             position: "relative"
@@ -97,7 +110,7 @@ export default function Testimonials() {
                         left: 0,
                         width: "15%",
                         height: "100%",
-                        background: "linear-gradient(to right, #fff 20%, transparent 100%)",
+                        background: `linear-gradient(to right, ${backgroundColor} 20%, transparent 100%)`,
                         zIndex: 15,
                         pointerEvents: "none"
                     }} />
@@ -107,7 +120,7 @@ export default function Testimonials() {
                         right: 0,
                         width: "15%",
                         height: "100%",
-                        background: "linear-gradient(to left, #fff 20%, transparent 100%)",
+                        background: `linear-gradient(to left, ${backgroundColor} 20%, transparent 100%)`,
                         zIndex: 15,
                         pointerEvents: "none"
                     }} />
@@ -305,8 +318,8 @@ export default function Testimonials() {
                                     background: "#fff"
                                 }}>
                                     <img
-                                        src={testimonials[index].avatar}
-                                        alt={testimonials[index].author}
+                                        src={activeTestimonials[index].avatar}
+                                        alt={activeTestimonials[index].author}
                                         style={{ width: "100%", height: "100%", objectFit: "cover" }}
                                     />
                                 </div>
@@ -329,18 +342,18 @@ export default function Testimonials() {
                                     maxWidth: "640px",
                                     padding: isMobile ? "0 10px" : "0"
                                 }}>
-                                    "{testimonials[index].quote}"
+                                    "{activeTestimonials[index].quote}"
                                 </p>
 
                                 <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
                                     <h4 style={{ fontSize: isMobile ? "1rem" : "1.1rem", fontWeight: 500, color: "#111827", margin: 0 }}>
-                                        {testimonials[index].author}
+                                        {activeTestimonials[index].author}
                                     </h4>
                                     <p style={{ fontSize: "0.85rem", color: "#6B7280", margin: 0, fontWeight: 400 }}>
-                                        {testimonials[index].role} • {testimonials[index].company}
+                                        {activeTestimonials[index].role} • {activeTestimonials[index].company}
                                     </p>
                                     <p style={{ fontSize: "0.7rem", color: "#9CA3AF", margin: "4px 0 0 0", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.04em" }}>
-                                        {testimonials[index].batch}
+                                        {activeTestimonials[index].batch}
                                     </p>
                                 </div>
                             </motion.div>
