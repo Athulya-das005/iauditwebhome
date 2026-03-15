@@ -95,7 +95,7 @@ export default function Testimonials({
 
     return (
         <section id="testimonials" style={{
-            padding: isMobile ? "3rem 0" : "3.5rem 0 4rem",
+            padding: isMobile ? "3rem 0" : "5rem 0",
             backgroundColor: backgroundColor,
             fontFamily: '"Pp Neue Montreal", sans-serif',
             overflow: "hidden",

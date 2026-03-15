@@ -16,7 +16,7 @@ export default function CTA({ backgroundColor = "#fff" }: { backgroundColor?: st
 
     return (
         <section id="cta" style={{
-            padding: isMobile ? "2rem 0 3rem" : "3.5rem 0 4rem",
+            padding: isMobile ? "3rem 0" : "5rem 0",
             backgroundColor: backgroundColor,
             fontFamily: '"Pp Neue Montreal", sans-serif'
         }}>

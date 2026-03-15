@@ -26,11 +26,13 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
     const primaryBtnRef = useRef<HTMLAnchorElement>(null);
     const primaryArrowRef = useRef<HTMLSpanElement>(null);
     const secondaryBtnRef = useRef<HTMLAnchorElement>(null);
+    const secondaryArrowRef = useRef<HTMLSpanElement>(null);
 
     // CTA Section Refs
     const ctaPrimaryBtnRef = useRef<HTMLAnchorElement>(null);
     const ctaPrimaryArrowRef = useRef<HTMLSpanElement>(null);
     const ctaSecondaryBtnRef = useRef<HTMLAnchorElement>(null);
+    const ctaSecondaryArrowRef = useRef<HTMLSpanElement>(null);
 
     // Case Study Ref
     const caseStudyBtnRef = useRef<any>(null);
@@ -72,15 +74,15 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
         // Initial setup
         const primaryCleanup = [
             { btn: primaryBtnRef.current, arrow: primaryArrowRef.current },
+            { btn: secondaryBtnRef.current, arrow: secondaryArrowRef.current },
             { btn: ctaPrimaryBtnRef.current, arrow: ctaPrimaryArrowRef.current },
+            { btn: ctaSecondaryBtnRef.current, arrow: ctaSecondaryArrowRef.current },
             { btn: caseStudyBtnRef.current, arrow: caseStudyArrowRef.current }
         ].map(({ btn, arrow }) => ({ btn, ...setupPrimaryAnimations(btn, arrow) }));
 
         const secondaryCleanup = [
-            secondaryBtnRef.current, 
-            ctaSecondaryBtnRef.current,
-            ctaSecondaryBtnRef.current // CTA Secondary is also ref-linked
-        ].map(btn => ({ btn, ...setupSecondaryAnimations(btn) }));
+            // No secondary-only scale animations currently, all primary/secondary actions are now scale+arrow
+        ].map((btn: any) => ({ btn, ...setupSecondaryAnimations(btn) }));
 
         return () => {
             primaryCleanup.forEach(({ btn, enter, leave }) => {
@@ -98,7 +100,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                 }
             });
         };
-    }, [industry]);
+    }, [industry, isMobile]);
 
     const toggleFaq = (index: number) => {
         setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -134,11 +136,15 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                 }
                 @media (max-width: 768px) {
                     .flovity-hero-container {
-                        padding: 7rem 1.5rem 4rem;
+                        padding: 7rem 1.5rem 0rem;
                     }
                     .flovity-hero-left {
                         text-align: center;
                         align-items: center;
+                        width: 100%;
+                    }
+                    .hero-btn-container {
+                        justify-content: center !important;
                     }
                     .flovity-hero-title {
                         font-size: 2.5rem;
@@ -151,22 +157,28 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                     .flovity-hero-right {
                         transform: scale(0.65);
                         transform-origin: top center;
-                        min-height: 300px;
+                        min-height: 220px;
                         margin-top: 1rem;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
                     }
                 }
                 @media (max-width: 480px) {
                     .flovity-hero-right {
                         transform: scale(0.5);
-                        min-height: 240px;
+                        min-height: 180px;
                         margin-top: 1rem;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
                     }
                 }
             `}} />
             <div className="flovity-hero-container" style={{
                 width: '100%',
                 position: 'relative',
-                minHeight: 'calc(100vh - 80px)',
+                minHeight: isMobile ? 'auto' : 'calc(100vh - 80px)',
                 background: 'linear-gradient(135deg, #f0fdf7 0%, #ffffff 40%, #ffffff 100%)', // Very light green/cyan to white
                 display: 'flex',
                 alignItems: 'center',
@@ -197,8 +209,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
-                            style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
-                            className="flovity-hero-left"
+                            style={{ display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'inherit' }}
                         >
                             <Link href="/#industries" style={{
                                 color: 'var(--textSecondary)',
@@ -257,7 +268,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                 {industry.description}
                             </p>
 
-                            <div className="hero-btn-container" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'inherit', marginTop: '1rem' }}>
+                            <div className="hero-btn-container" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'flex-start', marginTop: '1rem', width: '100%' }}>
                                 <Link
                                     href="https://apps.iaudit.global"
                                     ref={primaryBtnRef}
@@ -294,10 +305,19 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                         fontSize: '1rem',
                                         fontWeight: 600,
                                         textDecoration: 'none',
-                                        border: '1px solid #d1d5db'
+                                        border: '1px solid #d1d5db',
+                                        willChange: 'transform'
                                     }}
                                 >
-                                    <span>Book a demo</span>
+                                    <span>
+                                        Book a demo
+                                        <span ref={secondaryArrowRef} style={{ display: 'inline-flex', alignItems: 'center' }}>
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                <line x1="7" y1="17" x2="17" y2="7" />
+                                                <polyline points="7 7 17 7 17 17" />
+                                            </svg>
+                                        </span>
+                                    </span>
                                 </Link>
                             </div>
                         </motion.div>
@@ -309,7 +329,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
-                            style={{ position: 'relative', width: '550px', height: '400px' }}
+                            style={{ position: 'relative', width: isMobile ? '340px' : '550px', height: isMobile ? '260px' : '400px' }}
                         >
                             {/* Background wireframe/mock window */}
                             <div style={{
@@ -317,8 +337,8 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                 top: '50%',
                                 left: '50%',
                                 transform: 'translate(-40%, -50%)',
-                                width: '550px',
-                                height: '380px',
+                                width: isMobile ? '340px' : '550px',
+                                height: isMobile ? '250px' : '380px',
                                 background: '#f8fafc',
                                 borderRadius: '20px',
                                 border: '1px solid #e2e8f0',
@@ -533,7 +553,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
             {industry.challengesCards && industry.challengesCards.length > 0 && (
                 <div style={{
                     width: '100%',
-                    padding: '2rem 2rem 3rem', // Reduced bottom padding to decrease space before next section
+                    padding: isMobile ? '0rem 1.25rem 3rem' : '0.75rem 2rem 3rem',
                     background: '#ffffff',
                     fontFamily: '"Pp Neue Montreal", sans-serif',
                     display: 'flex',
@@ -818,11 +838,11 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     style={{
                                         background: '#fafafa', // Light Flovity grey
                                         borderRadius: '32px',
-                                        padding: '32px',
+                                        padding: isMobile ? '24px' : '32px',
                                         display: 'flex',
                                         flexDirection: 'column',
                                         gap: '24px',
-                                        minHeight: '380px',
+                                        minHeight: isMobile ? 'auto' : '380px',
                                         border: '1px solid #f0f0f0',
                                         boxShadow: '0 10px 40px rgba(0, 77, 64, 0.08)',
                                         // Attempting to force span 2 columns on desktop for only these two using grid-column logic
@@ -883,7 +903,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                                 /* Card 1 Visual: High-Fidelity Performance Recreations */
                                                 <>
                                                     {/* Top Pills Row */}
-                                                    <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '8px', justifyContent: 'center', marginBottom: '4px' }}>
+                                                    <div style={{ display: 'flex', flexWrap: isMobile ? 'wrap' : 'nowrap', gap: '8px', justifyContent: 'center', marginBottom: '12px' }}>
                                                         {[
                                                             { text: '98% compliance score', icon: 'M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM12 18V12M12 12L15 9M12 12L9 9', color: '#6366f1' },
                                                             { text: '35% reduction in NCRs', icon: 'M13 2L3 14H12V22L22 10H13V2', color: '#10b981' },
@@ -897,13 +917,13 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                                     </div>
 
                                                     {/* Dual Widget Layout */}
-                                                    <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-end', height: '200px' }}>
+                                                    <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '12px', alignItems: isMobile ? 'stretch' : 'flex-end', height: isMobile ? 'auto' : '200px' }}>
                                                         {/* Left Widget: Graph Card (Property performance) */}
                                                         <motion.div 
                                                             initial={{ y: 20, opacity: 0 }}
                                                             whileInView={{ y: 0, opacity: 1 }}
                                                             transition={{ duration: 0.8 }}
-                                                            style={{ flex: 1.2, height: '100%', background: 'white', borderRadius: '20px', padding: '16px 20px', position: 'relative', border: '1px solid #f0f0f0', boxShadow: '0 8px 30px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column' }}
+                                                            style={{ flex: isMobile ? 'none' : 1.2, height: isMobile ? '180px' : '100%', background: 'white', borderRadius: '20px', padding: '16px 20px', position: 'relative', border: '1px solid #f0f0f0', boxShadow: '0 8px 30px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column' }}
                                                         >
                                                             <div style={{ textAlign: 'center', marginBottom: '12px' }}>
                                                                 <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#111827' }}>Location Performance</span>
@@ -947,7 +967,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                                             initial={{ x: 30, opacity: 0 }}
                                                             whileInView={{ x: 0, opacity: 1 }}
                                                             transition={{ duration: 0.8, delay: 0.2 }}
-                                                            style={{ flex: 1, height: '100%', background: 'white', borderRadius: '20px', padding: '16px', border: '1px solid #f0f0f0', boxShadow: '0 8px 30px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}
+                                                            style={{ flex: isMobile ? 'none' : 1, height: isMobile ? '160px' : '100%', background: 'white', borderRadius: '20px', padding: '16px', border: '1px solid #f0f0f0', boxShadow: '0 8px 30px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}
                                                         >
                                                             <div style={{ border: '1px solid #e2e8f0', borderRadius: '100px', padding: '6px 10px 6px 12px', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '16px' }}>
                                                                 <span style={{ fontSize: '0.6rem', color: '#4b5563', flex: 1 }}>Sync hospitality checklists</span>
@@ -974,7 +994,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                                 /* Card 2 Visual: Food Safety & Allergen Support */
                                                 <>
                                                     {/* Top Pills Row */}
-                                                    <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '8px', justifyContent: 'center', marginBottom: '4px' }}>
+                                                    <div style={{ display: 'flex', flexWrap: isMobile ? 'wrap' : 'nowrap', gap: '8px', justifyContent: 'center', marginBottom: '12px' }}>
                                                         {[
                                                             { text: '99% compliance', icon: 'M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM12 18V12M12 12L15 9M12 12L9 9', color: '#10b981' },
                                                             { text: 'Live monitoring', icon: 'M13 2L3 14H12V22L22 10H13V2', color: '#6366f1' },
@@ -988,13 +1008,13 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                                     </div>
 
                                                     {/* Dual Widget Layout */}
-                                                    <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-end', height: '200px' }}>
+                                                    <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '12px', alignItems: isMobile ? 'stretch' : 'flex-end', height: isMobile ? 'auto' : '200px' }}>
                                                         {/* Left Widget: Temperature Log Feed */}
                                                         <motion.div 
                                                             initial={{ y: 20, opacity: 0 }}
                                                             whileInView={{ y: 0, opacity: 1 }}
                                                             transition={{ duration: 0.8 }}
-                                                            style={{ flex: 1.1, height: '100%', background: 'white', borderRadius: '20px', padding: '16px', border: '1px solid #f0f0f0', boxShadow: '0 8px 30px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column', gap: '8px' }}
+                                                            style={{ flex: isMobile ? 'none' : 1.1, height: isMobile ? 'auto' : '100%', background: 'white', borderRadius: '20px', padding: '16px', border: '1px solid #f0f0f0', boxShadow: '0 8px 30px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column', gap: '8px' }}
                                                         >
                                                             <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#111827', marginBottom: '4px' }}>Temp Monitoring</div>
                                                             {[
@@ -1016,7 +1036,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                                             initial={{ x: 20, opacity: 0 }}
                                                             whileInView={{ x: 0, opacity: 1 }}
                                                             transition={{ duration: 0.8, delay: 0.2 }}
-                                                            style={{ flex: 1, height: '100%', background: 'white', borderRadius: '20px', padding: '16px', border: '1px solid #f0f0f0', boxShadow: '0 8px 30px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column', gap: '10px' }}
+                                                            style={{ flex: isMobile ? 'none' : 1, height: isMobile ? 'auto' : '100%', background: 'white', borderRadius: '20px', padding: '16px', border: '1px solid #f0f0f0', boxShadow: '0 8px 30px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column', gap: '10px' }}
                                                         >
                                                             <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(16, 185, 129, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '4px' }}>
                                                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -1328,7 +1348,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                         <div style={{
                             width: '100%',
                             display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+                            gridTemplateColumns: `repeat(auto-fit, minmax(${isMobile ? '280px' : '350px'}, 1fr))`,
                             gap: '2rem',
                             position: 'relative',
                             maxWidth: '960px',
@@ -1344,7 +1364,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                 style={{
                                     background: '#004d40', // Deep hospitality teal/green from reference
                                     borderRadius: '32px',
-                                    padding: '2.5rem',
+                                    padding: isMobile ? '1.5rem' : '2.5rem',
                                     display: 'flex',
                                     flexDirection: 'column',
                                     minHeight: '560px',
@@ -1434,7 +1454,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                 style={{
                                     background: '#fafafa',
                                     borderRadius: '32px',
-                                    padding: '2.5rem 1.5rem',
+                                    padding: isMobile ? '1.5rem 1rem' : '2.5rem 1.5rem',
                                     display: 'flex',
                                     flexDirection: 'column',
                                     minHeight: '520px',
@@ -1443,7 +1463,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     boxShadow: '0 20px 60px rgba(0, 30, 25, 0.4)' // Very dark green shadow
                                 }}
                             >
-                                <div style={{ position: 'relative', width: '320px', display: 'flex', flexDirection: 'column', marginTop: '1rem', zIndex: 1 }}>
+                                <div style={{ position: 'relative', width: isMobile ? '100%' : '320px', maxWidth: '320px', display: 'flex', flexDirection: 'column', marginTop: '1rem', zIndex: 1 }}>
                                     
                                     {/* Inner White Card Background */}
                                     <div style={{
@@ -1462,7 +1482,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     <div style={{
                                         background: '#004d40',
                                         borderRadius: '16px',
-                                        padding: '24px',
+                                        padding: isMobile ? '16px' : '24px',
                                         color: '#ffffff',
                                         display: 'flex',
                                         justifyContent: 'space-between',
@@ -1489,8 +1509,8 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                             boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.02)',
                                             position: 'relative',
                                             top: '-16px',
-                                            left: '30px',
-                                            width: '100%',
+                                            left: isMobile ? '10px' : '30px',
+                                            width: isMobile ? 'calc(100% - 20px)' : '100%',
                                             zIndex: 2
                                         }}
                                     >
@@ -1570,7 +1590,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
             {industry.standardsHeading && industry.standardsItems && (
                 <div style={{
                     width: '100%',
-                    padding: '2rem 2rem 8rem',
+                    padding: isMobile ? '3rem 1.25rem' : '4rem 2rem',
                     background: '#ffffff',
                     fontFamily: '"Pp Neue Montreal", sans-serif',
                     display: 'flex',
@@ -1593,7 +1613,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             maxWidth: '1200px',
                             width: '100%',
                             display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))',
+                            gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(450px, 1fr))',
                             gap: '4rem',
                             alignItems: 'center'
                         }}
@@ -1633,7 +1653,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     fontWeight: 500,
                                     color: '#111827',
                                     letterSpacing: '-0.02em',
-                                    marginBottom: '3rem',
+                                    marginBottom: isMobile ? '2rem' : '3rem',
                                     lineHeight: 1.15,
                                     fontFamily: '"Pp Neue Montreal", sans-serif'
                                 }}
@@ -1701,11 +1721,11 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             style={{
                                 background: '#fafafa',
                                 borderRadius: '32px',
-                                padding: '3rem 2rem 0 2rem', // No bottom padding so phone touches bottom
+                                padding: isMobile ? '2rem 1rem 0 1rem' : '3rem 2rem 0 2rem', // No bottom padding so phone touches bottom
                                 display: 'flex',
                                 justifyContent: 'center',
                                 alignItems: 'flex-end', // Align phone to bottom
-                                minHeight: '600px',
+                                minHeight: isMobile ? '450px' : '600px',
                                 position: 'relative',
                                 overflow: 'hidden'
                             }}
@@ -1726,7 +1746,8 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     gap: '12px',
                                     boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.02)',
                                     zIndex: 10,
-                                    width: 'max-content'
+                                    width: isMobile ? 'calc(100% - 20px)' : 'max-content',
+                                    maxWidth: '280px'
                                 }}
                             >
                                 <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#22c55e', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -1739,8 +1760,8 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
 
                             {/* Phone Mockup Frame */}
                             <div style={{
-                                width: '360px',
-                                height: '620px', // Increased from 580px to accommodate bottom padding
+                                width: isMobile ? '280px' : '360px',
+                                height: isMobile ? '480px' : '620px', 
                                 background: '#111827',
                                 borderRadius: '54px',
                                 padding: '18px', // Balanced padding all around
@@ -1762,8 +1783,8 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     top: '30px', 
                                     left: '50%', 
                                     transform: 'translateX(-50%)', 
-                                    width: '110px', 
-                                    height: '32px', 
+                                    width: isMobile ? '80px' : '110px', 
+                                    height: isMobile ? '24px' : '32px', 
                                     background: '#000', 
                                     borderRadius: '20px', 
                                     zIndex: 10,
@@ -1887,7 +1908,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
             {industry.checklistsHeading && industry.checklistsItems && (
                 <div style={{
                     width: '100%',
-                    padding: '6rem 2rem',
+                    padding: '4rem 2rem 6rem',
                     background: '#f8fafc', // Light gray background
                     fontFamily: '"Pp Neue Montreal", sans-serif',
                     display: 'flex',
@@ -1974,7 +1995,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             }}
                             style={{
                                 display: 'grid',
-                                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                                gridTemplateColumns: `repeat(auto-fit, minmax(${isMobile ? '280px' : '300px'}, 1fr))`,
                                 gap: '2rem',
                                 width: '100%',
                                 maxWidth: '1100px'
@@ -2043,7 +2064,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
             {industry.ctaHeading && (
                 <div style={{
                     width: '100%',
-                    padding: '5rem 2rem', // Reduced padding to decrease overall height
+                    padding: isMobile ? '4rem 1.5rem' : '5rem 2rem', // Reduced padding to decrease overall height
                     background: '#003E3A', // Match "Ready to upgrade" card color
                     fontFamily: '"Pp Neue Montreal", sans-serif',
                     position: 'relative',
@@ -2088,10 +2109,9 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             padding: '12px', // Scaled down
                             boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)',
                             zIndex: 1,
-                            transformOrigin: 'center center'
-                            // Note: CSS transform handles rotate natively, Framer Motion animates it seamlessly
+                            transformOrigin: 'center center',
+                            display: isMobile ? 'none' : 'block'
                         }}
-                        className="hidden md:block" // Hide on small screens to prevent overlap
                     >
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
                             <div style={{ fontSize: '0.65rem', fontWeight: 600, color: '#334155' }}>AI agent performance</div>
@@ -2138,9 +2158,9 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             padding: '16px', // Scaled down
                             boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)',
                             zIndex: 1,
-                            transformOrigin: 'center center'
+                            transformOrigin: 'center center',
+                            display: isMobile ? 'none' : 'block'
                         }}
-                        className="hidden md:block" // Hide on small screens
                     >
                         <div style={{ fontSize: '0.7rem', fontWeight: 600, color: '#334155', marginBottom: '12px' }}>Data point (2.2k)</div>
                         
@@ -2263,14 +2283,12 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                 className="btn-animate"
                                 style={{
                                     gap: '8px',
-                                    padding: '14px 28px',
-                                    background: '#111827', // Dark Grey as requested
-                                    color: '#ffffff',
+                                    padding: '12px 28px',
                                     borderRadius: '8px',
-                                    fontSize: '1.05rem',
-                                    fontWeight: 500,
+                                    fontSize: '1rem',
+                                    fontWeight: 600,
                                     textDecoration: 'none',
-                                    boxShadow: '0 4px 14px rgba(0,0,0,0.1)',
+                                    backgroundColor: '#111827', // Base color for btn-animate
                                     willChange: 'transform'
                                 }}
                             >
@@ -2294,20 +2312,18 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     display: 'inline-flex',
                                     alignItems: 'center',
                                     gap: '8px',
-                                    padding: '14px 28px',
-                                    background: '#ffffff',
-                                    color: '#111827',
+                                    padding: '12px 28px',
                                     borderRadius: '8px',
-                                    fontSize: '1.05rem',
-                                    fontWeight: 500,
+                                    fontSize: '1rem',
+                                    fontWeight: 600,
                                     textDecoration: 'none',
-                                    boxShadow: '0 4px 14px rgba(0,0,0,0.1)',
-                                    border: '1px solid #d1d5db'
+                                    border: '1px solid #d1d5db',
+                                    willChange: 'transform'
                                 }}
                             >
                                 <span>
                                     {industry.ctaSecondaryButton || 'Watch demo'}
-                                    <span style={{ display: 'inline-flex', alignItems: 'center' }}>
+                                    <span ref={ctaSecondaryArrowRef} style={{ display: 'inline-flex', alignItems: 'center' }}>
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                             <line x1="7" y1="17" x2="17" y2="7" />
                                             <polyline points="7 7 17 7 17 17" />
@@ -2326,7 +2342,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
             {industry.caseStudyHeading && (
                 <div style={{
                     width: '100%',
-                    padding: '8rem 2rem',
+                    padding: isMobile ? '4.5rem 1.25rem 3.5rem' : '7.5rem 2rem 5.5rem',
                     background: '#ffffff',
                     fontFamily: '"Pp Neue Montreal", sans-serif',
                     overflow: 'hidden'
@@ -2386,7 +2402,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                         color: 'var(--primary)',
                                         fontSize: '1.15rem',
                                         fontWeight: 500,
-                                        marginBottom: '1.5rem'
+                                        marginBottom: isMobile ? '1rem' : '1.5rem'
                                     }}
                                 >
                                     <span style={{ fontSize: '1.15rem' }}>✦</span>
@@ -2405,7 +2421,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     fontWeight: 500,
                                     color: '#111827',
                                     lineHeight: 1.1,
-                                    marginBottom: '1.5rem',
+                                    marginBottom: isMobile ? '1rem' : '1.5rem',
                                     letterSpacing: '-0.02em'
                                 }}
                             >
@@ -2421,7 +2437,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     fontSize: '1.15rem',
                                     color: '#4b5563',
                                     lineHeight: 1.6,
-                                    marginBottom: '2.5rem'
+                                    marginBottom: isMobile ? '2rem' : '2.5rem'
                                 }}
                             >
                                 {industry.caseStudyDescription}
@@ -2434,7 +2450,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                 }}
                                 style={{
                                     display: 'flex',
-                                    justifyContent: 'inherit',
+                                    justifyContent: isMobile ? 'center' : 'inherit',
                                     width: '100%'
                                 }}
                             >
@@ -2516,7 +2532,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
             {industry.faqItems && industry.faqItems.length > 0 && (
                 <div style={{
                     width: '100%',
-                    padding: '8rem 2rem',
+                    padding: isMobile ? '3rem 1.25rem' : '5rem 2rem',
                     background: '#ffffff',
                     fontFamily: '"Pp Neue Montreal", sans-serif'
                 }}>
