@@ -7,6 +7,7 @@ import Script from "next/script";
  * 
  * Centralizes all website analytics and tracking scripts:
  * - Google Analytics (gtag.js)
+ * - Google Tag Manager (GTM)
  * - Microsoft Clarity
  * - Facebook Pixel
  * - LinkedIn Insight Tag
@@ -20,6 +21,7 @@ export default function Analytics() {
     const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID;
     const fbPixelId = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
     const linkedinPartnerId = process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID;
+    const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
 
     return (
         <>
@@ -86,11 +88,15 @@ export default function Analytics() {
             {/* ========== LinkedIn Insight Tag ========== */}
             {linkedinPartnerId && (
                 <>
-                    <Script id="linkedin-insight" strategy="afterInteractive">
+                    <Script id="linkedin-partner-init" strategy="afterInteractive">
                         {`
                             _linkedin_partner_id = "${linkedinPartnerId}";
                             window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
                             window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+                        `}
+                    </Script>
+                    <Script id="linkedin-insight-loader" strategy="afterInteractive">
+                        {`
                             (function(l) {
                                 if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
                                 window.lintrk.q=[]}
@@ -112,6 +118,19 @@ export default function Analytics() {
                         />
                     </noscript>
                 </>
+            )}
+
+            {/* ========== Google Tag Manager (GTM) ========== */}
+            {gtmId && (
+                <Script id="google-tag-manager" strategy="afterInteractive">
+                    {`
+                        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                        })(window,document,'script','dataLayer','${gtmId}');
+                    `}
+                </Script>
             )}
         </>
     );
