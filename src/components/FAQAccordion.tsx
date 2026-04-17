@@ -36,7 +36,7 @@ export default function FAQAccordion({
     return (
         <section style={{
             width: '100%',
-            padding: isMobile ? '3rem 1.25rem' : '5rem 2rem',
+            padding: isMobile ? '2rem 1.25rem' : '3.5rem 2rem',
             background: '#ffffff',
             fontFamily: '"Pp Neue Montreal", sans-serif'
         }}>

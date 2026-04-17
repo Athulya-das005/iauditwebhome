@@ -95,7 +95,7 @@ export default function Testimonials({
 
     return (
         <section id="testimonials" style={{
-            padding: isMobile ? "3rem 0" : "5rem 0",
+            padding: isMobile ? "2rem 0" : "3.5rem 0",
             backgroundColor: backgroundColor,
             fontFamily: '"Pp Neue Montreal", sans-serif',
             overflow: "hidden",
@@ -169,7 +169,7 @@ export default function Testimonials({
                     </motion.h2>
                 </div>
 
-                <div style={{ position: "relative", minHeight: isMobile ? "440px" : "520px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div style={{ position: "relative", minHeight: isMobile ? "380px" : "460px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     {/* Background Avatars - Reduced and repositioned on mobile */}
                     <div style={{ position: "absolute", width: "100%", height: "100%", pointerEvents: "none" }}>
                         <motion.img

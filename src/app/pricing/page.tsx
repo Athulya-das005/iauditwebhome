@@ -111,8 +111,8 @@ export default function PricingPage() {
                 viewport={{ once: true }}
                 style={{
                     width: "100%",
-                    marginTop: isMobile ? "2rem" : "4rem",
-                    paddingBottom: isMobile ? "3rem" : "4rem",
+                    marginTop: isMobile ? "1.5rem" : "3.5rem",
+                    paddingBottom: isMobile ? "2rem" : "3.5rem",
                     position: "relative",
                     zIndex: 10,
                     backgroundColor: "#fff",
