@@ -9,7 +9,7 @@ type Currency = "USD" | "GBP";
 type BillingCycle = "monthly" | "contract";
 type ContractLength = 1 | 3 | 6;
 
-export default function Pricing() {
+export default function Pricing({ isPageHero = false }: { isPageHero?: boolean }) {
     const [currency, setCurrency] = useState<Currency>("USD");
     const [billingCycle, setBillingCycle] = useState<BillingCycle>("contract");
     const [contractLength, setContractLength] = useState<ContractLength>(1);
@@ -125,22 +125,43 @@ export default function Pricing() {
                         Pricing
                         <span style={{ fontSize: '1rem' }}>✦</span>
                     </motion.div>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                        style={{
-                            fontSize: isMobile ? '2.2rem' : '3.2rem',
-                            fontWeight: 500,
-                            color: '#111827',
-                            letterSpacing: '-0.02em',
-                            marginBottom: '1rem',
-                            lineHeight: 1.1
-                        }}
-                    >
-                        Choose Your Perfect Plan
-                    </motion.h2>
+                    {isPageHero ? (
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5 }}
+                            style={{
+                                fontSize: isMobile ? '2.2rem' : '3.2rem',
+                                fontWeight: 500,
+                                color: '#111827',
+                                letterSpacing: '-0.02em',
+                                marginBottom: '1rem',
+                                lineHeight: 1.1,
+                                maxWidth: '900px',
+                                margin: '0 auto 1rem'
+                            }}
+                        >
+                            Flexible plans for every audit programme
+                        </motion.h1>
+                    ) : (
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5 }}
+                            style={{
+                                fontSize: isMobile ? '2.2rem' : '3.2rem',
+                                fontWeight: 500,
+                                color: '#111827',
+                                letterSpacing: '-0.02em',
+                                marginBottom: '1rem',
+                                lineHeight: 1.1
+                            }}
+                        >
+                            Choose Your Perfect Plan
+                        </motion.h2>
+                    )}
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}

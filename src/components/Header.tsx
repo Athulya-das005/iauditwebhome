@@ -96,7 +96,7 @@ export default function Header() {
         },
         */
         { label: "Features", href: "/#features" },
-        { label: "Pricing", href: "/#pricing" },
+        { label: "Pricing", href: "/pricing" },
         { label: "Contact", href: "/contact" },
     ];
 

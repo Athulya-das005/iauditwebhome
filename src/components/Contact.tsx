@@ -195,7 +195,7 @@ export default function Contact() {
                                 </div>
                                 <div>
                                     <h4 style={{ fontSize: "1rem", fontWeight: 600, color: "#111827", marginBottom: "0.5rem" }}>Let Your Work Speak For Itself</h4>
-                                    <p style={{ color: "#4B5563", fontSize: "0.95rem" }}>+44 1233 456 789</p>
+                                    <p style={{ color: "#4B5563", fontSize: "0.95rem" }}>+44 7944 829129</p>
                                 </div>
                             </motion.div>
                         </div>
