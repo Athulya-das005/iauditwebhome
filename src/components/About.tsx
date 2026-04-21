@@ -321,7 +321,7 @@ export default function About() {
                         >
                             iAudit Global was created by certified ISO auditors and consultants who understand the real challenges of running effective audit programmes. Every feature is built around ISO 19011 principles and the PDCA cycle, giving you a structured, evidence-based approach to continual improvement.
                             <br /><br />
-                            This is not a generic compliance tool. It is purpose-built for management system audits.
+                            This is not a generic compliance tool. it is purpose-built ISO audit software designed for management systems.
                         </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}

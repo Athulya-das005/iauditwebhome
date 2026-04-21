@@ -87,7 +87,7 @@ export default function Features() {
                     <h2 className="h2" style={{
                         fontSize: isMobile ? '2.0rem' : '3.2rem',
                         fontWeight: 500,
-                        marginBottom: '1.5rem',
+                        marginBottom: '1rem',
                         color: '#111827',
                         lineHeight: isMobile ? 1.25 : 1.1,
                         letterSpacing: '-0.02em',
@@ -96,6 +96,22 @@ export default function Features() {
                         One Platform For Every Stage Of <br className="hidden-mobile" />
                         Your <span style={{ color: 'var(--primary)' }}>Audit Programme</span>
                     </h2>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        style={{
+                            fontSize: isMobile ? '1.1rem' : '1.2rem',
+                            color: '#6b7280',
+                            maxWidth: '700px',
+                            lineHeight: 1.5,
+                            fontWeight: 400,
+                            margin: '0 auto'
+                        }}
+                    >
+                        iAudit ISO audit software follows the Plan-Do-Check-Act cycle, turning periodic audits into a structured improvement process that connects findings to corrective actions and real outcomes.
+                    </motion.p>
                 </div>
 
                 <div style={{

@@ -20,7 +20,9 @@ export interface Industry {
     auditMateSparkle?: string;
     auditMateHeading?: string;
     auditMateDescription?: string;
+    standardsSparkleText?: string;
     standardsHeading?: string;
+    standardsDescription?: string;
     standardsItems?: {
         title: string;
         description: string;
@@ -81,11 +83,141 @@ export const industries: Industry[] = [
     },
     {
         id: "04",
-        slug: "construction",
+        slug: "construction-iso-audit-software",
         title: "Construction",
-        description: "Manage ISO audits across sites, subcontractors, and project phases without the paperwork.",
+        description: "Move beyond spreadsheets with construction audit software for ISO 9001, 14001, 45001 and 27001 across every active project.",
         color: "#84cc16",
         bgImage: "/images/construction-bg.jpg",
+        heroSparkleText: "Construction ISO audit software",
+        heroHeading: "Construction Audit Software for ISO Compliance",
+        challengesSparkleText: "Construction audit challenges",
+        challengesHeading: "Why generic audit tools fail on construction sites",
+        challengesCards: [
+            {
+                title: "Temporary and mobile sites",
+                description: "Projects are temporary and constantly changing. Your construction audit software must track compliance across dynamic, high-risk environments, not just head offices."
+            },
+            {
+                title: "Complex supply chains",
+                description: "Managing subcontractor quality and competence is difficult. Audits must ensure standards flow down to every tier of the supply chain on site."
+            },
+            {
+                title: "Overlapping site risks",
+                description: "Quality, safety and environmental risks overlap daily. Sites need integrated audits covering Inspection and Test Plans (ITPs), CEMPs and safety regulations."
+            }
+        ],
+        supportSparkleText: "ISO software for construction",
+        supportHeading: "Built to audit sites, not just head office paperwork",
+        supportItems: [
+            {
+                title: "Multi-site project visibility",
+                description: "",
+                bullets: [
+                    "View findings and actions across all live projects centrally",
+                    "Compare sites to spot patterns and recurring risks early"
+                ]
+            },
+            {
+                title: "Inspection and Test Plans (ITP)",
+                description: "",
+                bullets: [
+                    "Capture hidden works and hold point evidence on site",
+                    "Track NCRs and defects through to verified closure"
+                ]
+            },
+            {
+                title: "Environmental and CEMP controls",
+                description: "",
+                bullets: [
+                    "Capture drain, bund and waste control evidence instantly",
+                    "Link incidents to root causes and preventive actions"
+                ]
+            },
+            {
+                title: "Subcontractor and workforce competence",
+                description: "",
+                bullets: [
+                    "Flag expired qualifications before workers reach site",
+                    "Check subcontractor quality and safety during routine audits"
+                ]
+            },
+            {
+                title: "PDCA for project improvement",
+                description: "",
+                bullets: [
+                    "Plan audits around project risk, value and phase",
+                    "Verify corrective actions to stop repeat defects recurring"
+                ]
+            }
+        ],
+        auditMateSparkle: "Audit Mate for construction",
+        auditMateHeading: "Your AI assistant for construction audit planning",
+        auditMateDescription: "Use Audit Mate to generate ISO checklists for site inspections, ITPs, subcontractors and environmental controls.",
+        standardsSparkleText: "ISO standards for construction",
+        standardsHeading: "ISO standards we support for construction projects",
+        standardsItems: [
+            {
+                title: "Quality and environmental management",
+                description: "ISO 9001 controls ITPs and defect reduction while ISO 14001 manages site waste and pollution prevention."
+            },
+            {
+                title: "Safety and information security",
+                description: "ISO 45001 manages site safety and hazard tracking while ISO 27001 protects project data and models."
+            }
+        ],
+        testimonials: [],
+        checklistsTag: "Free construction audit checklists",
+        checklistsHeading: "Start your next construction audit with a ready‑made checklist",
+        checklistsDescription: "Download free ISO audit checklists for construction teams, covering project quality, site conditions, subcontractors, environment, NCRs and handover.",
+        checklistsItems: [
+            "Project Quality Plan and ITP Audit Checklist",
+            "Site Housekeeping and Safety‑Critical Quality Checklist",
+            "Subcontractor and Supply Chain Quality Audit Checklist",
+            "Environmental Controls and Legal Compliance Audit Checklist",
+            "NCR, Corrective Action and Lessons Learned Checklist",
+            "Pre‑Handover Documentation and As‑Built Records Checklist"
+        ],
+        ctaHeading: "Upgrade how you manage ISO audits in construction",
+        ctaDescription: "Book a personalised demo or start a free trial to see how our construction audit software simplifies ISO compliance.",
+        ctaPrimaryButton: "Get started free",
+        ctaSecondaryButton: "Book a demo",
+        caseStudySparkle: "Construction case study",
+        caseStudyHeading: "See how civil engineers run better site audits",
+        caseStudyDescription: "Read how a regional contractor replaced scattered spreadsheets with our construction audit software to standardise ITPs, improve CEMP evidence, and pass external surveillance audits without the panic.",
+        caseStudyButton: "Read more",
+        caseStudyImage: "/images/construction-bg.jpg",
+        faqSparkleText: "Common questions",
+        faqHeading: "Frequently Asked Questions",
+        faqItems: [
+            {
+                question: "How do you audit an Inspection and Test Plan (ITP) effectively?",
+                answer: "To audit an ITP effectively, you must move beyond checking that the document exists. A strong internal audit verifies that the ITP is actively used on site, that hold points have been signed off by the correct authority before works are covered, and that physical Inspection and Test Records (ITRs) match the plan. iAudit Global allows you to attach photos and signatures directly to these checks as irrefutable evidence."
+            },
+            {
+                question: "What is the biggest challenge when auditing ISO 14001 on a construction site?",
+                answer: "The biggest challenge is ensuring that the Construction Environmental Management Plan (CEMP) reflects the physical reality of the site. Often, CEMPs are generic documents left in the site office. Auditors frequently find failures in waste segregation, missing drain guards, or inadequate fuel bunding. Our construction audit software prompts auditors to physically verify these controls with mobile checklists."
+            },
+            {
+                question: "Can iAudit help us manage subcontractor compliance?",
+                answer: "Yes. In construction, up to 80% of work is delivered by external providers, making supply chain control critical for ISO 9001 and ISO 45001. You can use iAudit to run specific subcontractor audits, verify worker competence (like CSCS cards), and track non-conformances (NCRs) by trade to identify systemic issues across your projects."
+            },
+            {
+                question: "How does iAudit handle audits across multiple temporary worksites?",
+                answer: "iAudit is built for multi-site and mobile operations. You can schedule audits across all active projects from one central dashboard. Instead of site managers emailing spreadsheets back to head office, all findings, evidence, and corrective actions sync to one secure workspace, giving directors real-time visibility of project compliance."
+            },
+            {
+                question: "Is it possible to conduct integrated audits (QHSE) using this software?",
+                answer: "Absolutely. Many principal contractors run Integrated Management Systems (IMS). With iAudit, you can build custom checklists that cover quality (ISO 9001), environment (ISO 14001), and safety (ISO 45001) in a single site walkthrough, saving time and preventing audit fatigue for your site managers."
+            },
+            {
+                question: "What happens if a site has no internet connection during an audit?",
+                answer: "Construction sites often have poor connectivity, especially during groundworks or in basements. iAudit supports offline auditing. You can complete your checklists, capture photographic evidence, and log findings without an internet connection. The app automatically syncs the data to the cloud as soon as your device reconnects."
+            },
+            {
+                question: "How do we track construction defects and non-conformances (NCRs)?",
+                answer: "Generic tools often treat NCRs as a simple checklist item. iAudit treats them as a process. You log the defect, assign an owner and deadline, and require root cause analysis. Crucially, the finding remains \"open\" until effectiveness is verified, ensuring that a recurring defect on one site is fixed permanently across the business."
+            }
+        ]
     },
     {
         id: "05",
@@ -97,11 +229,139 @@ export const industries: Industry[] = [
     },
     {
         id: "06",
-        slug: "healthcare",
+        slug: "healthcare-compliance-software",
         title: "Healthcare",
-        description: "Run quality and safety audits across clinical and operational areas.",
+        description: "Manage ISO 9001, 14001, 45001 and 27001 audits with healthcare compliance software built for clinical, operational and governance teams.",
         color: "#0284c7",
         bgImage: "/images/healthcare-bg.png",
+        heroSparkleText: "Healthcare Compliance Software",
+        heroHeading: "Healthcare Compliance Software for ISO Audits",
+        challengesSparkleText: "Healthcare compliance challenges",
+        challengesHeading: "Why generic tools miss healthcare safety risks",
+        challengesCards: [
+            {
+                title: "Clinical safety risks",
+                description: "Audits must catch issues like medication errors, infection risks, consent gaps and unsafe handovers before patient harm occurs."
+            },
+            {
+                title: "Constant regulatory pressure",
+                description: "Healthcare teams must balance ISO audits with CQC, MHRA, HSE and internal governance requirements across services and sites."
+            },
+            {
+                title: "Fragmented systems and data",
+                description: "Evidence often sits across logs, spreadsheets and departments, making trends, follow-up and audit visibility far harder."
+            }
+        ],
+        supportSparkleText: "iAudit for healthcare",
+        supportHeading: "How iAudit supports healthcare compliance audits",
+        supportItems: [
+            {
+                title: "Clinical and patient safety audits",
+                description: "",
+                bullets: [
+                    "Capture evidence for medication checks, handovers, infection control and consent processes",
+                    "Track findings and actions across wards, departments and clinical services"
+                ]
+            },
+            {
+                title: "Workforce competence and training",
+                description: "",
+                bullets: [
+                    "Flag expired registrations, mandatory training gaps and missing inductions",
+                    "Check agency and temporary staff before they work unsupervised"
+                ]
+            },
+            {
+                title: "Environmental and estates controls",
+                description: "",
+                bullets: [
+                    "Audit waste segregation, spill response and site-specific environmental risks",
+                    "Capture evidence for estates, storage areas and HTM-related checks"
+                ]
+            },
+            {
+                title: "Findings, actions and governance",
+                description: "",
+                bullets: [
+                    "Assign owners and deadlines to every finding in one place",
+                    "Track trends and overdue actions for governance and management review"
+                ]
+            },
+            {
+                title: "Integrated ISO audits across healthcare",
+                description: "",
+                bullets: [
+                    "Run ISO 9001, 14001, 45001 and 27001 audits in one system",
+                    "Reduce duplicate effort across clinical, operational and support teams"
+                ]
+            }
+        ],
+        auditMateSparkle: "Healthcare audit assistant",
+        auditMateHeading: "Your AI assistant for healthcare audit planning",
+        auditMateDescription: "Generate healthcare-specific ISO checklists for patient safety, training, incidents and environmental controls instantly.",
+        standardsSparkleText: "ISO standards for healthcare",
+        standardsHeading: "ISO standards supported for healthcare providers",
+        standardsDescription: "Use our healthcare compliance software to manage clinical quality, environmental impact and worker safety standards effectively.",
+        standardsItems: [
+            {
+                title: "Patient safety and quality",
+                description: "ISO 9001 manages clinical protocols, medication safety, handover processes and supplier traceability across hospital departments."
+            },
+            {
+                title: "Environment and worker safety",
+                description: "ISO 14001 controls clinical waste and emissions, while ISO 45001 tracks sharps safety and wellbeing."
+            }
+        ],
+        testimonials: [],
+        checklistsTag: "Free healthcare audit checklists",
+        checklistsHeading: "Professional ISO audit checklists designed specifically for healthcare providers",
+        checklistsDescription: "Download our ISO 9001, 14001 and 45001 checklists to streamline clinical, environmental and worker safety audits within your healthcare compliance software.",
+        checklistsItems: [
+            "ISO 9001:2015 Quality Management Systems – Healthcare Audit Checklist",
+            "ISO 14001:2015 Environmental Management Systems – Healthcare Audit Checklist",
+            "ISO 45001:2018 Occupational Health and Safety – Healthcare Audit Checklist"
+        ],
+        ctaHeading: "Achieve 100% clinical compliance confidence today",
+        ctaDescription: "Start free or book a demo to simplify healthcare audits, actions, evidence and compliance in one place.",
+        ctaPrimaryButton: "Get started free",
+        ctaSecondaryButton: "Book a demo",
+        caseStudySparkle: "Healthcare case study",
+        caseStudyHeading: "See how healthcare teams run better audits",
+        caseStudyDescription: "Learn how this healthcare provider used our healthcare compliance software to standardise ward level audits, reducing medication errors by 25% while achieving consistent ISO 9001 and ISO 45001 certification readiness.",
+        caseStudyButton: "Read more",
+        caseStudyImage: "/images/healthcare-bg.png",
+        faqSparkleText: "Common questions",
+        faqHeading: "Frequently Asked Questions",
+        faqItems: [
+            {
+                question: "What is healthcare compliance software?",
+                answer: "Healthcare compliance software helps hospitals, clinics and care providers manage audits, evidence, actions and reporting in one place. It supports teams responsible for quality, environmental and safety compliance by replacing spreadsheets and paper checklists with a structured digital audit system."
+            },
+            {
+                question: "How does healthcare compliance software help with ISO audits?",
+                answer: "Healthcare compliance software supports ISO audits by giving teams standardised checklists, centralised evidence, corrective action tracking and real-time visibility of findings. This makes it easier to manage ISO 9001, ISO 14001 and ISO 45001 across clinical, operational and estates functions."
+            },
+            {
+                question: "What are the biggest compliance challenges in healthcare audits?",
+                answer: "The biggest challenges usually include patient safety risks, training and competence gaps, environmental controls, and fragmented records spread across departments. Healthcare teams also have to manage overlapping requirements from regulators, governance teams and ISO standards at the same time."
+            },
+            {
+                question: "Can healthcare compliance software improve patient safety audits?",
+                answer: "Yes. Healthcare compliance software can improve patient safety audits by making it easier to check medication processes, handovers, infection control, consent, incident follow-up and other high-risk activities. It helps organisations capture evidence properly and track actions until they are actually resolved."
+            },
+            {
+                question: "Which ISO standards are most relevant for healthcare organisations?",
+                answer: "For most healthcare organisations, the most relevant standards are ISO 9001 for quality management, ISO 14001 for environmental management and ISO 45001 for occupational health and safety. These standards support patient care quality, estates and waste controls, and staff safety across healthcare settings."
+            },
+            {
+                question: "How does iAudit support healthcare compliance?",
+                answer: "iAudit is healthcare compliance software built to support ISO 9001, ISO 14001 and ISO 45001 audits in hospitals, clinics and support services. It helps teams plan audits, capture evidence, track nonconformities, manage corrective actions and monitor compliance from one central platform."
+            },
+            {
+                question: "Can iAudit help healthcare teams manage audits across multiple sites?",
+                answer: "Yes. iAudit helps healthcare groups manage audits across hospitals, clinics and support locations using one system. Teams can use standardised checklists, dashboards and role-based access to compare findings, track actions and keep audit evidence visible across all sites."
+            }
+        ]
     },
     {
         id: "07",

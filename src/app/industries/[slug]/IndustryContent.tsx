@@ -777,7 +777,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             marginBottom: '4rem'
                         }}>
                             {/* Left Side: Tag & Heading */}
-                            <div style={{ flex: '1 1 500px', maxWidth: '600px' }}>
+                            <div style={{ flex: '1 1 min(100%, 500px)', maxWidth: '600px' }}>
                                 {industry.supportSparkleText && (
                                     <motion.div 
                                         variants={{
@@ -823,7 +823,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                         {/* 5-Card Bento Grid (Flovity style) */}
                         <div style={{
                             display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
                             gap: '2rem',
                             width: '100%'
                         }}>
@@ -1097,7 +1097,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                         {/* Row 2 / Last 3 Cards (narrower) */}
                         <div style={{
                             display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
                             gap: '2rem',
                             width: '100%',
                             marginTop: '2rem'
@@ -1638,7 +1638,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                 }}
                             >
                                 <span style={{ fontSize: '1rem' }}>✦</span>
-                                Standards and Compliance
+                                {industry.standardsSparkleText || "Standards and Compliance"}
                                 <span style={{ fontSize: '1rem' }}>✦</span>
                             </motion.div>
 
@@ -1660,6 +1660,25 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             >
                                 {industry.standardsHeading}
                             </motion.h2>
+
+                            {industry.standardsDescription && (
+                                <motion.p
+                                    variants={{
+                                        hidden: { opacity: 0, y: 20 },
+                                        visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.2 } }
+                                    }}
+                                    style={{
+                                        fontSize: '1.05rem',
+                                        color: '#4b5563',
+                                        lineHeight: 1.6,
+                                        marginBottom: '2.5rem',
+                                        maxWidth: '90%',
+                                        fontFamily: '"Pp Neue Montreal", sans-serif'
+                                    }}
+                                >
+                                    {industry.standardsDescription}
+                                </motion.p>
+                            )}
 
                             {/* Checklist Items */}
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
@@ -2521,12 +2540,12 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                 </div>
             )}
 
-            <Testimonials 
-                backgroundColor="#F0FDF4" 
-                items={industry.testimonials} 
-            />
-
-
+            {industry.testimonials && industry.testimonials.length > 0 && (
+                <Testimonials 
+                    backgroundColor="#F0FDF4" 
+                    items={industry.testimonials} 
+                />
+            )}
 
             {/* FAQ Section - Flovity Style Accordion */}
             {industry.faqItems && industry.faqItems.length > 0 && (

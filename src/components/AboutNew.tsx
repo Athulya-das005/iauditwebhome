@@ -5,29 +5,28 @@ import { motion } from "framer-motion";
 import CTA from "./CTA";
 import Footer from "./Footer";
 
-/* ─── shared box shadow ─────────────────────────────────────────── */
-const SHADOW = "0 4px 12px rgba(0, 102, 68, 0.08), 0 16px 48px rgba(0, 102, 68, 0.16)";
+/* ─── shared box shadow & border to mimic Flovity ───────────────────── */
+const SHADOW = "0 8px 30px rgba(0, 0, 0, 0.04)";
+const BORDER = "1px solid #f3f4f6";
 
-/* ─── Oscillating bi-color bar data (Card 1) ───────────────────── */
-const BARS1: { v: number; c: string }[] = [
-    { v: -0.28, c: "#ED6A5A" },
-    { v: 0.55, c: "#ED6A5A" },
-    { v: 0.80, c: "#ED6A5A" },
-    { v: 1.00, c: "#ED6A5A" },
-    { v: 0.65, c: "#ED6A5A" },
-    { v: -0.40, c: "#ED6A5A" },
-    { v: -0.80, c: "#14664A" },
-    { v: -1.00, c: "#14664A" },
-    { v: -0.60, c: "#14664A" },
-    { v: 0.30, c: "#14664A" },
-    { v: 0.90, c: "#14664A" },
-    { v: 0.70, c: "#14664A" },
-    { v: 0.50, c: "#14664A" },
+/* ─── Bar chart 1 data (positive/negative) ────────────────────────── */
+const BARS1 = [
+    { h: 30, c: "#fb923c" },
+    { h: 45, c: "#fb923c" },
+    { h: 60, c: "#fb923c" },
+    { h: 40, c: "#fb923c" },
+    { h: 30, c: "url(#gradient-orange)" }, 
+    { h: -30, c: "url(#gradient-teal)" },
+    { h: -45, c: "#0f766e" },
+    { h: -70, c: "#0f766e" },
+    { h: 25, c: "#0f766e" },
+    { h: 45, c: "#0f766e" },
+    { h: 40, c: "#0f766e" },
+    { h: 20, c: "#0f766e" },
 ];
 
-/* ─── Growing teal bar data Mon-Sun (Card 2) ───────────────────── */
-const BARS2 = [0.18, 0.26, 0.34, 0.48, 1.0, 0.72, 0.84];
-const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+/* ─── Bar chart 2 data (step up) ──────────────────────────────────── */
+const BARS2 = [20, 15, 30, 45, 80, 70];
 
 export default function AboutNew() {
     const [isMobile, setIsMobile] = useState(false);
@@ -43,16 +42,26 @@ export default function AboutNew() {
         <section
             id="about-new"
             style={{
-                background: `
-                    radial-gradient(ellipse 50% 60% at 0% 0%, rgba(0,166,81,0.08) 0%, transparent 100%),
-                    radial-gradient(ellipse 50% 60% at 100% 0%, rgba(0,166,81,0.08) 0%, transparent 100%),
-                    #fff
-                `,
+                background: "#ffffff",
                 overflow: "hidden",
                 fontFamily: '"Pp Neue Montreal", sans-serif',
                 padding: isMobile ? "5rem 0 1rem" : "7rem 0 2rem",
             }}
         >
+            {/* SVG Gradients for Card 1 */}
+            <svg style={{ width: 0, height: 0, position: "absolute" }}>
+                <defs>
+                    <linearGradient id="gradient-orange" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="#fb923c" />
+                        <stop offset="100%" stopColor="#fb923c" stopOpacity="0.2" />
+                    </linearGradient>
+                    <linearGradient id="gradient-teal" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="#0f766e" stopOpacity="0.2" />
+                        <stop offset="100%" stopColor="#0f766e" />
+                    </linearGradient>
+                </defs>
+            </svg>
+
             <div style={{ maxWidth: "1240px", margin: "0 auto", padding: isMobile ? "0 1.25rem" : "0 2rem" }}>
 
                 {/* ══ Tag ══ */}
@@ -63,17 +72,21 @@ export default function AboutNew() {
                     transition={{ duration: 0.45 }}
                     style={{ display: "flex", justifyContent: "center", marginBottom: "1.1rem" }}
                 >
-                    <span style={{
+                    <div style={{
                         display: "inline-flex",
                         alignItems: "center",
-                        gap: "0.41rem",
-                        fontSize: isMobile ? "0.9rem" : "1rem",
+                        gap: "0.5rem",
+                        padding: "0.4rem 1.2rem",
+                        borderRadius: "2rem",
+                        backgroundColor: "#f0fdf4",
+                        border: "1px solid #dcfce7",
+                        fontSize: "0.9rem",
                         fontWeight: 500,
-                        color: "#006644",
+                        color: "#059669",
                         letterSpacing: "0.01em",
                     }}>
-                        <span>✦</span><span>Who We Are</span><span>✦</span>
-                    </span>
+                        <span>✦</span><span>Who we are</span><span>✦</span>
+                    </div>
                 </motion.div>
 
                 {/* ══ H1 ══ */}
@@ -88,12 +101,12 @@ export default function AboutNew() {
                         fontWeight: 500,
                         lineHeight: 1.1,
                         letterSpacing: "-0.03em",
-                        color: "#0d1117",
-                        maxWidth: "760px",
-                        margin: isMobile ? "0 auto 1rem" : "0 auto 1.2rem",
+                        color: "#111827",
+                        maxWidth: "800px",
+                        margin: isMobile ? "0 auto 1.5rem" : "0 auto 1.5rem",
                     }}
                 >
-                    {isMobile ? "Audit Software That Thinks Like An Auditor" : <>Audit Software That Thinks<br />Like An Auditor</>}
+                    Audit software that thinks like an auditor
                 </motion.h1>
 
                 {/* ══ Description ══ */}
@@ -104,366 +117,350 @@ export default function AboutNew() {
                     transition={{ duration: 0.5, delay: 0.14 }}
                     style={{
                         textAlign: "center",
-                        fontSize: "1rem",
-                        lineHeight: 1.7,
+                        fontSize: "1.05rem",
+                        lineHeight: 1.6,
                         color: "#6b7280",
-                        maxWidth: "560px",
-                        margin: isMobile ? "0 auto 2.5rem" : "0 auto 4rem",
+                        maxWidth: "600px",
+                        margin: isMobile ? "0 auto 3rem" : "0 auto 4rem",
                     }}
                 >
-                    We spent years conducting ISO audits before building the platform we wished existed.
-                    Grounded in PDCA. Aligned with ISO&nbsp;19011. Your data stays yours.
+                    We spent years conducting ISO audits before building the platform we wished existed. Grounded in PDCA. Aligned with ISO 19011. Your data stays yours.
                 </motion.p>
 
                 {/* ══ BENTO GRID ══ */}
                 <div style={{
                     display: "grid",
-                    gridTemplateColumns: isMobile ? "1fr" : "1fr 1.3fr 1fr",
-                    gap: "1.1rem",
+                    gridTemplateColumns: isMobile ? "1fr" : "1fr 1.05fr 1fr",
+                    gap: "1.2rem",
                     alignItems: "stretch",
                 }}>
 
                     {/* ── LEFT COLUMN ── */}
-                    <div style={{ display: "flex", flexDirection: "column", gap: "1.1rem" }}>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}>
 
-                        {/* CARD 1 · Oscillating bar chart */}
+                        {/* CARD 1 · Chart positive/negative */}
                         <motion.div
-                            initial={{ opacity: 0, x: -60 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, ease: "easeOut" }}
                             style={{
                                 background: "#fff",
-                                borderRadius: "22px",
-                                padding: "1.6rem",
+                                borderRadius: "20px",
+                                padding: "1.8rem",
+                                border: BORDER,
                                 boxShadow: SHADOW,
                                 flex: 1,
                                 display: "flex",
                                 flexDirection: "column",
                                 gap: "1rem",
-                                minHeight: isMobile ? "220px" : "260px",
+                                minHeight: isMobile ? "240px" : "280px",
                             }}
                         >
-                            <p style={{ fontSize: "1rem", fontWeight: 600, color: "#0d1117", margin: 0, lineHeight: 1.35 }}>
+                            <p style={{ fontSize: "1.05rem", fontWeight: 500, color: "#111827", margin: 0, lineHeight: 1.35 }}>
                                 92% Average compliance score
                             </p>
 
-                            {/* oscillating chart */}
                             <div style={{
                                 flex: 1,
                                 position: "relative",
-                                borderRadius: "12px",
-                                overflow: "hidden",
-                                backgroundImage: [
-                                    "linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px)",
-                                    "linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px)",
-                                ].join(","),
-                                backgroundSize: "22px 22px",
-                                backgroundColor: "#fff",
+                                marginTop: "1rem"
                             }}>
-                                <div style={{
-                                    position: "absolute", top: "50%", left: 0, right: 0,
-                                    height: "1px", background: "rgba(0,0,0,0.09)",
-                                    transform: "translateY(-50%)",
-                                }} />
+                                {/* Grid lines */}
+                                {[0, 25, 50, 75, 100].map(pct => (
+                                    <div key={pct} style={{ position: "absolute", top: `${pct}%`, left: 0, width: "100%", height: "1px", background: "#f3f4f6" }} />
+                                ))}
+                                {/* Center line */}
+                                <div style={{ position: "absolute", top: "50%", left: 0, width: "100%", height: "1px", background: "#d1d5db", zIndex: 1 }} />
+                                
                                 <div style={{
                                     position: "absolute", inset: 0,
                                     display: "flex", alignItems: "center",
-                                    padding: "0.5rem 0.7rem", gap: "4px",
+                                    padding: "0 0.5rem", gap: "4%"
                                 }}>
                                     {BARS1.map((bar, i) => {
-                                        const up = bar.v > 0;
-                                        const h = Math.abs(bar.v) * (isMobile ? 40 : 56);
+                                        const isUp = bar.h >= 0;
                                         return (
-                                            <div key={i} style={{ flex: 1, height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-                                                <div style={{ flex: 1, display: "flex", alignItems: "flex-end", width: "100%" }}>
-                                                    {up && (
-                                                        <motion.div
-                                                            initial={{ scaleY: 0 }}
-                                                            whileInView={{ scaleY: 1 }}
-                                                            viewport={{ once: true }}
-                                                            transition={{ duration: 0.55, delay: 0.1 + i * 0.045, ease: "easeOut" }}
-                                                            style={{ width: "100%", height: `${h}px`, borderRadius: "4px 4px 2px 2px", background: bar.c, transformOrigin: "bottom" }}
-                                                        />
-                                                    )}
-                                                </div>
-                                                <div style={{ flex: 1, display: "flex", alignItems: "flex-start", width: "100%" }}>
-                                                    {!up && (
-                                                        <motion.div
-                                                            initial={{ scaleY: 0 }}
-                                                            whileInView={{ scaleY: 1 }}
-                                                            viewport={{ once: true }}
-                                                            transition={{ duration: 0.55, delay: 0.1 + i * 0.045, ease: "easeOut" }}
-                                                            style={{ width: "100%", height: `${h}px`, borderRadius: "2px 2px 4px 4px", background: bar.c, transformOrigin: "top" }}
-                                                        />
-                                                    )}
-                                                </div>
+                                            <div key={i} style={{ flex: 1, height: "100%", position: "relative", zIndex: 2 }}>
+                                                <motion.div
+                                                    initial={{ height: 0 }}
+                                                    whileInView={{ height: `${Math.abs(bar.h)}%` }}
+                                                    viewport={{ once: true }}
+                                                    transition={{ duration: 0.6, delay: 0.2 + i * 0.05, ease: "easeOut" }}
+                                                    style={{
+                                                        position: "absolute",
+                                                        width: "100%",
+                                                        background: bar.c,
+                                                        bottom: isUp ? "50%" : "auto",
+                                                        top: isUp ? "auto" : "50%",
+                                                        borderRadius: isUp ? "2px 2px 0 0" : "0 0 2px 2px",
+                                                    }}
+                                                />
                                             </div>
                                         );
                                     })}
                                 </div>
                             </div>
-
-
                         </motion.div>
 
                         {/* CARD 4 · Chat bubbles with avatars */}
                         <motion.div
-                            initial={{ opacity: 0, x: -60 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.12, ease: "easeOut" }}
+                            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
                             style={{
                                 background: "#fff",
-                                borderRadius: "22px",
-                                padding: "1.4rem 1.6rem",
+                                borderRadius: "20px",
+                                padding: "1.8rem",
+                                border: BORDER,
                                 boxShadow: SHADOW,
                                 display: "flex",
                                 flexDirection: "column",
                                 justifyContent: "center",
-                                gap: "0.75rem",
-                                minHeight: isMobile ? "150px" : "170px",
+                                gap: "1.2rem",
+                                minHeight: isMobile ? "160px" : "180px",
                             }}
                         >
-                            {/* Bubble 1 */}
-                            <motion.div
-                                initial={{ opacity: 0, x: -28 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.45, duration: 0.45, ease: "easeOut" }}
-                                style={{
-                                    alignSelf: "flex-start",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: "0px",
-                                    width: "78%",
-                                    height: "48px",
-                                    borderRadius: "28px 28px 28px 6px",
-                                    background: "#F4A27E",
-                                    paddingRight: "14px",
-                                    overflow: "hidden",
-                                }}
-                            >
-                                <div style={{
-                                    width: "48px", height: "48px", borderRadius: "50%", flexShrink: 0,
-                                    background: "#c5784a", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
-                                }}>
-                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-                                        <circle cx="12" cy="8" r="4" fill="rgba(255,255,255,0.75)" />
-                                        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="rgba(255,255,255,0.75)" />
-                                    </svg>
-                                </div>
-                                <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "5px", paddingLeft: "10px" }}>
-                                    <div style={{ height: "5px", borderRadius: "3px", background: "rgba(255,255,255,0.6)", width: "85%" }} />
-                                    <div style={{ height: "5px", borderRadius: "3px", background: "rgba(255,255,255,0.4)", width: "65%" }} />
-                                </div>
-                            </motion.div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                                {/* Orange Bubble */}
+                                <motion.div
+                                    initial={{ opacity: 0, x: -20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: 0.3 }}
+                                    style={{
+                                        alignSelf: "flex-start",
+                                        background: "#ffcdb2",
+                                        padding: "10px 14px",
+                                        borderRadius: "20px 20px 20px 4px",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "10px",
+                                        width: "80%"
+                                    }}
+                                >
+                                    <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "#4b5563", flexShrink: 0, overflow: "hidden", border: "2px solid #fff" }}>
+                                        {/* Avatar placeholder */}
+                                        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#9ca3af" /><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#9ca3af" /></svg>
+                                    </div>
+                                    <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "6px" }}>
+                                        <div style={{ height: "4px", width: "90%", background: "rgba(255,255,255,0.7)", borderRadius: "2px" }} />
+                                        <div style={{ height: "4px", width: "50%", background: "rgba(255,255,255,0.5)", borderRadius: "2px" }} />
+                                    </div>
+                                </motion.div>
 
-                            {/* Bubble 2 */}
-                            <motion.div
-                                initial={{ opacity: 0, x: 28 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.65, duration: 0.45, ease: "easeOut" }}
-                                style={{
-                                    alignSelf: "flex-end",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: "0px",
-                                    width: "68%",
-                                    height: "48px",
-                                    borderRadius: "28px 28px 6px 28px",
-                                    background: "#7EC8C4",
-                                    paddingRight: "14px",
-                                    overflow: "hidden",
-                                }}
-                            >
-                                <div style={{
-                                    width: "48px", height: "48px", borderRadius: "50%", flexShrink: 0,
-                                    background: "#4a9e9a", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
-                                }}>
-                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-                                        <circle cx="12" cy="8" r="4" fill="rgba(255,255,255,0.75)" />
-                                        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="rgba(255,255,255,0.75)" />
-                                    </svg>
-                                </div>
-                                <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "5px", paddingLeft: "10px" }}>
-                                    <div style={{ height: "5px", borderRadius: "3px", background: "rgba(50,80,80,0.35)", width: "90%" }} />
-                                    <div style={{ height: "5px", borderRadius: "3px", background: "rgba(50,80,80,0.25)", width: "70%" }} />
-                                </div>
-                            </motion.div>
+                                {/* Teal Bubble */}
+                                <motion.div
+                                    initial={{ opacity: 0, x: 20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: 0.5 }}
+                                    style={{
+                                        alignSelf: "flex-end",
+                                        background: "#b5d8db",
+                                        padding: "10px 14px",
+                                        borderRadius: "20px 20px 4px 20px",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "10px",
+                                        width: "70%"
+                                    }}
+                                >
+                                    <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "#4b5563", flexShrink: 0, overflow: "hidden", border: "2px solid #fff" }}>
+                                        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#9ca3af" /><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#9ca3af" /></svg>
+                                    </div>
+                                    <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "6px" }}>
+                                        <div style={{ height: "4px", width: "100%", background: "rgba(0,0,0,0.1)", borderRadius: "2px" }} />
+                                        <div style={{ height: "4px", width: "70%", background: "rgba(0,0,0,0.05)", borderRadius: "2px" }} />
+                                    </div>
+                                </motion.div>
+                            </div>
 
-                            <p style={{ fontSize: "0.9rem", fontWeight: 600, color: "#0d1117", margin: 0 }}>
+                            <p style={{ fontSize: "1.05rem", fontWeight: 500, color: "#111827", margin: 0 }}>
                                 Centralised audit evidence
                             </p>
                         </motion.div>
                     </div>
 
-                    {/* ── CENTER COLUMN · Tall teal growing bars ── */}
+                    {/* ── CENTER COLUMN · Flowing bar chart ── */}
                     <motion.div
-                        initial={{ opacity: 0, y: 60 }}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.65, delay: 0.08, ease: "easeOut" }}
+                        transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
                         style={{
                             background: "#fff",
-                            borderRadius: "22px",
-                            padding: isMobile ? "1.25rem" : "1.6rem",
+                            borderRadius: "20px",
+                            padding: isMobile ? "1.8rem" : "2rem",
+                            border: BORDER,
                             boxShadow: SHADOW,
                             display: "flex",
                             flexDirection: "column",
-                            marginBottom: isMobile ? "1.1rem" : 0,
+                            marginBottom: isMobile ? "1.2rem" : 0,
                         }}
                     >
-                        <p style={{ fontSize: "1rem", fontWeight: 600, color: "#0d1117", margin: "0 0 1.5rem", lineHeight: 1.35 }}>
+                        <p style={{ fontSize: "1.1rem", fontWeight: 500, color: "#111827", margin: "0 0 2rem", lineHeight: 1.35, maxWidth: "200px" }}>
                             PDCA in every audit
                         </p>
 
-                        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
-                            <div style={{ display: "flex", alignItems: "flex-end", gap: isMobile ? "6px" : "9px", minHeight: isMobile ? "220px" : "290px" }}>
+                        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-end", position: "relative" }}>
+                            {/* Horizontal dashed grid lines */}
+                            <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: "20px", display: "flex", flexDirection: "column", justifyContent: "space-between", zIndex: 0 }}>
+                                {[1,2,3,4,5].map(i => <div key={i} style={{ borderBottom: "1px dashed #f3f4f6", width: "100%" }} />)}
+                            </div>
+                            
+                            <div style={{ display: "flex", alignItems: "flex-end", gap: isMobile ? "8px" : "12px", minHeight: isMobile ? "220px" : "300px", zIndex: 1, padding: "0 10px" }}>
                                 {BARS2.map((h, i) => (
                                     <motion.div
                                         key={i}
                                         initial={{ scaleY: 0 }}
                                         whileInView={{ scaleY: 1 }}
                                         viewport={{ once: true }}
-                                        transition={{ duration: 0.65, delay: 0.25 + i * 0.07, ease: "easeOut" }}
+                                        transition={{ duration: 0.7, delay: 0.2 + i * 0.1, ease: "backOut" }}
                                         style={{
                                             flex: 1,
-                                            height: `${h * (isMobile ? 200 : 270)}px`,
-                                            borderRadius: "6px 6px 3px 3px",
+                                            height: `${h}%`,
+                                            borderRadius: "6px 6px 4px 4px",
                                             transformOrigin: "bottom",
-                                            background: i === 4
-                                                ? "rgba(20,102,74,0.88)"
-                                                : `rgba(88,196,192,${0.28 + h * 0.62})`,
+                                            background: i === 4 ? "#0f766e" : "#b5d8db",
                                         }}
                                     />
                                 ))}
                             </div>
-                            <div style={{ display: "flex", paddingTop: "0.5rem" }}>
-                                {DAYS.map((d) => (
-                                    <span key={d} style={{ flex: 1, textAlign: "center", fontSize: "0.68rem", color: "#9ca3af" }}>{d}</span>
+                            {/* Days labels */}
+                            <div style={{ display: "flex", paddingTop: "0.8rem", paddingLeft: "10px", paddingRight: "10px", zIndex: 1 }}>
+                                {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
+                                    <span key={d} style={{ flex: 1, textAlign: "center", fontSize: "0.65rem", color: "#9ca3af", letterSpacing: "0.02em" }}>{d}</span>
                                 ))}
                             </div>
                         </div>
 
-
                     </motion.div>
 
                     {/* ── RIGHT COLUMN ── */}
-                    <div style={{ display: "flex", flexDirection: "column", gap: "1.1rem" }}>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}>
 
-                        {/* CARD 3 · Audit deploy */}
+                        {/* CARD 3 · Quick Deploy */}
                         <motion.div
-                            initial={{ opacity: 0, x: 60 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, ease: "easeOut" }}
+                            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                             style={{
                                 background: "#fff",
-                                borderRadius: "22px",
-                                padding: "1.6rem",
+                                borderRadius: "20px",
+                                padding: "1.8rem",
+                                border: BORDER,
                                 boxShadow: SHADOW,
                                 flex: 1,
                                 display: "flex",
                                 flexDirection: "column",
-                                gap: "1.1rem",
+                                gap: "1.2rem",
                             }}
                         >
-                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                <span style={{ fontWeight: 600, fontSize: "0.9rem", color: "#0d1117" }}>0 vendor access to audit data</span>
-                                <span style={{ fontSize: "0.72rem", color: "#9ca3af" }}>View all</span>
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
+                                <span style={{ fontWeight: 500, fontSize: "1.05rem", color: "#111827" }}>0 vendor access to audit data</span>
+                                <span style={{ fontSize: "0.75rem", color: "#6b7280" }}>View all</span>
                             </div>
 
-                            <div style={{ display: "flex", gap: "8px", alignItems: "flex-end", justifyContent: "flex-start" }}>
-                                {([
-                                    { bg: "#FDBA74", name: "Victoria" },
-                                    { bg: "#93C5FD", name: "David J." },
-                                    { bg: "#FDE68A", name: "Mike" },
-                                    { bg: "#D8B4FE", name: "Steven" },
-                                ] as { bg: string; name: string }[]).map((u, i) => (
+                            <div style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
+                                {/* Avatars */}
+                                {[
+                                    { bg: "#fb923c", name: "Victoria" },
+                                    { bg: "#93c5fd", name: "David J." },
+                                    { bg: "#fcd34d", name: "Mike" },
+                                    { bg: "#c084fc", name: "Steven" },
+                                ].map((u, i) => (
                                     <motion.div
                                         key={i}
                                         initial={{ scale: 0, opacity: 0 }}
                                         whileInView={{ scale: 1, opacity: 1 }}
                                         viewport={{ once: true }}
-                                        transition={{ delay: 0.3 + i * 0.09, type: "spring", stiffness: 220, damping: 14 }}
-                                        style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "5px" }}
+                                        transition={{ delay: 0.3 + i * 0.1, type: "spring", stiffness: 200, damping: 15 }}
+                                        style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}
                                     >
                                         <div style={{
-                                            width: "50px", height: "58px", borderRadius: "28px",
+                                            width: "44px", height: "54px", borderRadius: "22px",
                                             background: u.bg, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
                                         }}>
-                                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                                                <circle cx="12" cy="8" r="4" fill="rgba(80,60,40,0.45)" />
-                                                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="rgba(80,60,40,0.35)" />
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <circle cx="12" cy="8" r="4" fill="rgba(0,0,0,0.3)" />
+                                                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="rgba(0,0,0,0.2)" />
                                             </svg>
                                         </div>
-                                        <span style={{ fontSize: "0.62rem", color: "#6b7280", fontWeight: 500, whiteSpace: "nowrap" }}>{u.name}</span>
+                                        <span style={{ fontSize: "0.6rem", color: "#4b5563", fontWeight: 500 }}>{u.name}</span>
                                     </motion.div>
                                 ))}
 
-                                <div style={{
-                                    width: "50px", height: "58px", borderRadius: "28px",
-                                    border: "2px dashed #d1d5db", display: "flex", alignItems: "center", justifyContent: "center",
-                                    fontSize: "1.2rem", color: "#9ca3af", flexShrink: 0,
-                                }}>+</div>
+                                {/* Add Button */}
+                                <motion.div
+                                    initial={{ scale: 0, opacity: 0 }}
+                                    whileInView={{ scale: 1, opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.7 }}
+                                    style={{
+                                        width: "44px", height: "54px", borderRadius: "22px",
+                                        border: "1.5px dashed #d1d5db", display: "flex", alignItems: "center", justifyContent: "center",
+                                        fontSize: "1.2rem", color: "#9ca3af",
+                                    }}
+                                >+</motion.div>
                             </div>
 
-                            <div style={{ display: "flex", alignItems: "center", gap: "0.55rem", padding: "0.55rem 0.85rem", background: "#f9fafb", borderRadius: "10px" }}>
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.9 }}
+                                style={{ display: "flex", alignItems: "center", gap: "0.6rem", padding: "0.6rem 1rem", border: "1px solid #f3f4f6", borderRadius: "100px", marginTop: "auto" }}
+                            >
                                 <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
-                                    <path d="M0 7 L4 2 L9 11 L13 5 L18 7" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                                    <path d="M0 7 L4 2 L9 11 L13 5 L18 7" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
                                 </svg>
-                                <span style={{ fontWeight: 700, fontSize: "1rem", color: "#0d1117" }}>$2,760</span>
-                                <span style={{ marginLeft: "auto", color: "#9ca3af", fontSize: "0.85rem" }}>▶</span>
-                            </div>
+                                <span style={{ fontWeight: 600, fontSize: "0.95rem", color: "#111827" }}>$2,760</span>
+                                <span style={{ color: "#9ca3af", fontSize: "0.8rem", marginLeft: "4px" }}>Predicted value gain</span>
+                                <span style={{ marginLeft: "auto", color: "#9ca3af", fontSize: "0.8rem" }}>↗</span>
+                            </motion.div>
                         </motion.div>
 
-                        {/* CARD 5 · Circular mic icon */}
+                        {/* CARD 5 · Mic */}
                         <motion.div
-                            initial={{ opacity: 0, x: 60 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.12, ease: "easeOut" }}
+                            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
                             style={{
                                 background: "#fff",
-                                borderRadius: "22px",
-                                padding: "1.6rem",
+                                borderRadius: "20px",
+                                padding: "1.8rem",
+                                border: BORDER,
                                 boxShadow: SHADOW,
                                 display: "flex",
                                 flexDirection: "column",
                                 alignItems: "center",
                                 justifyContent: "center",
-                                gap: "1.1rem",
+                                gap: "1.5rem",
                                 textAlign: "center",
-                                minHeight: isMobile ? "150px" : "170px",
+                                minHeight: isMobile ? "160px" : "180px",
                             }}
                         >
-                            <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                                <motion.div
-                                    animate={{ scale: [1, 1.28, 1], opacity: [0.35, 0, 0.35] }}
-                                    transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-                                    style={{ position: "absolute", width: "72px", height: "72px", borderRadius: "50%", background: "rgba(249,115,22,0.18)" }}
-                                />
-                                <motion.div
-                                    animate={{ scale: [1, 1.06, 1] }}
-                                    transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-                                    style={{
-                                        width: "58px", height: "58px", borderRadius: "50%", background: "#f97316",
-                                        display: "flex", alignItems: "center", justifyContent: "center",
-                                        boxShadow: "0 6px 22px rgba(249,115,22,0.30)", position: "relative", zIndex: 1,
-                                    }}
-                                >
-                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-                                        <rect x="9" y="2" width="6" height="11" rx="3" fill="white" />
-                                        <path d="M5 11a7 7 0 0 0 14 0" stroke="white" strokeWidth="2" strokeLinecap="round" fill="none" />
-                                        <line x1="12" y1="18" x2="12" y2="22" stroke="white" strokeWidth="2" strokeLinecap="round" />
-                                        <line x1="9" y1="22" x2="15" y2="22" stroke="white" strokeWidth="2" strokeLinecap="round" />
-                                    </svg>
-                                </motion.div>
-                            </div>
+                            <motion.div
+                                animate={{ scale: [1, 1.15, 1] }}
+                                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                                style={{
+                                    width: "54px", height: "54px", borderRadius: "50%", background: "#fb923c",
+                                    display: "flex", alignItems: "center", justifyContent: "center",
+                                    boxShadow: "0 4px 14px rgba(251, 146, 60, 0.3)",
+                                }}
+                            >
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                                    <rect x="9" y="2" width="6" height="11" rx="3" fill="white" />
+                                    <path d="M5 11a7 7 0 0 0 14 0" stroke="white" strokeWidth="2" strokeLinecap="round" fill="none" />
+                                    <line x1="12" y1="18" x2="12" y2="22" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                                </svg>
+                            </motion.div>
 
-                            <p style={{ fontSize: "0.95rem", fontWeight: 600, color: "#0d1117", margin: 0, lineHeight: 1.5, maxWidth: "165px" }}>
+                            <p style={{ fontSize: "1.05rem", fontWeight: 500, color: "#111827", margin: 0, lineHeight: 1.4, maxWidth: "210px" }}>
                                 5x Faster execution cycles
                             </p>
                         </motion.div>
