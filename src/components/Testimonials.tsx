@@ -41,10 +41,12 @@ interface TestimonialItem {
 
 export default function Testimonials({
     backgroundColor = "#fff",
-    items
+    items,
+    title = "Trusted By ISO Audit Professionals"
 }: {
     backgroundColor?: string;
     items?: TestimonialItem[];
+    title?: string;
 }) {
     const activeTestimonials = items || defaultTestimonials;
     const [index, setIndex] = useState(0);
@@ -165,7 +167,7 @@ export default function Testimonials({
                             lineHeight: 1.2
                         }}
                     >
-                        Trusted By ISO Audit Professionals
+                        {title}
                     </motion.h2>
                 </div>
 

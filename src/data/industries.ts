@@ -46,6 +46,7 @@ export interface Industry {
         question: string;
         answer: string;
     }[];
+    testimonialsHeading?: string;
     testimonials?: {
         quote: string;
         author: string;
@@ -221,11 +222,168 @@ export const industries: Industry[] = [
     },
     {
         id: "05",
-        slug: "manufacturing",
+        slug: "manufacturing-iso-audit-software",
         title: "Manufacturing",
-        description: "Audit production processes, quality controls, and environmental compliance across plants.",
+        description: "Manage high‑volume production, supply chain risks and environmental compliance across sites with one structured ISO audit management platform.",
         color: "#0d9488",
         bgImage: "/images/manufacturing-bg.jpg",
+        heroSparkleText: "Manufacturing ISO audit software by iAudit",
+        heroHeading: "Manufacturing Audit Software for ISO Compliance",
+        challengesSparkleText: "Manufacturing compliance challenges",
+        challengesHeading: "Why manufacturing audits break down on the shopfloor",
+        challengesCards: [
+            {
+                title: "Process variability risk",
+                description: "High‑volume production and multi‑shift setups make it difficult to track defects and tool wear consistently across sites."
+            },
+            {
+                title: "Complex supply chains",
+                description: "Audits must ensure that quality and safety standards flow down to every supplier to maintain full batch traceability."
+            },
+            {
+                title: "Hazardous operational risks",
+                description: "Protecting workers from machinery and chemical hazards requires rigorous, evidenced checks that go beyond basic head office paperwork."
+            }
+        ],
+        supportSparkleText: "iAudit for manufacturing",
+        supportHeading: "Make manufacturing ISO audits consistent everywhere",
+        supportItems: [
+            {
+                title: "Floor‑level process and batch control",
+                description: "",
+                bullets: [
+                    "Capture real‑time evidence of gauge calibrations and material batch codes directly at the production line.",
+                    "Trace process deviations back to specific machines or batches to ensure full ISO 9001 compliance."
+                ]
+            },
+            {
+                title: "Multi‑shift and multi‑site dashboards",
+                description: "",
+                bullets: [
+                    "Compare audit scores across different production lines and factory locations from one central view.",
+                    "Identify which shifts or sites are leading in compliance and which need targeted support or training."
+                ]
+            },
+            {
+                title: "Environmental permit and emissions tracking",
+                description: "",
+                bullets: [
+                    "Use structured checklists to audit waste segregation, spill controls and emissions against ISO 14001 requirements.",
+                    "Maintain accurate legal registers for REACH and environmental permits with all evidence stored centrally."
+                ]
+            },
+            {
+                title: "Machinery safety and hazard identification",
+                description: "",
+                bullets: [
+                    "Manage ISO 45001 compliance by tracking machinery guarding, ergonomic risks and PPE usage across the plant.",
+                    "Verify safety inductions for seasonal or agency workers before they begin safety‑critical tasks on the floor."
+                ]
+            },
+            {
+                title: "Supply chain and subcontractor quality",
+                description: "",
+                bullets: [
+                    "Audit external providers against your quality and safety standards to maintain integrity across the supply chain.",
+                    "Track subcontractor non‑conformances and performance trends to ensure consistent material and service quality."
+                ]
+            }
+        ],
+        auditMateSparkle: "AI for manufacturing audits",
+        auditMateHeading: "Your AI co‑pilot for production audit planning",
+        auditMateDescription: "Use Audit Mate to draft specific checklists for FMEAs, tool wear and batch traceability records.",
+        standardsSparkleText: "Standards for manufacturing",
+        standardsHeading: "ISO standards supported for your factory floor",
+        standardsDescription: "Our manufacturing audit software provides deep support for the standards that matter most to production and operational teams.",
+        standardsItems: [
+            {
+                title: "Quality and environmental management",
+                description: "ISO 9001 manages process control and defects. ISO 14001 handles waste, emissions and legal permit compliance across your sites."
+            },
+            {
+                title: "Occupational health and safety",
+                description: "ISO 45001 supports machinery safety, hazard identification and staff wellbeing to ensure a safe, productive working environment."
+            }
+        ],
+        testimonials: [
+            {
+                quote: "We used to spend half a shift chasing calibration certificates and batch records. Now the evidence sits with the finding, and follow-up is clear. Our internal audits feel tighter, and surveillance audits are far less stressful.",
+                author: "Priya Menon",
+                role: "Head of Internal Audit",
+                company: "Acme Manufacturing",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Verified Audit Expert"
+            },
+            {
+                quote: "Our biggest issue was repeat NCRs across different lines. iAudit made it obvious where the same causes were showing up. Actions have owners, deadlines and evidence, so we are actually seeing defects reduce over time.",
+                author: "Daniel Gomez",
+                role: "Compliance Manager",
+                company: "FinTrust Bank",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Verified Auditor"
+            },
+            {
+                quote: "Multi-site reporting was a mess in spreadsheets. With one dashboard, we can compare sites, shifts and processes properly. It has improved consistency, and managers can see what is overdue without asking for yet another update.",
+                author: "Amira El-Sayed",
+                role: "QA Lead",
+                company: "Global Pharma Co.",
+                avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Certified Lead Auditor"
+            }
+        ],
+        testimonialsHeading: "Trusted by manufacturing audit teams",
+        checklistsTag: "Free manufacturing audit checklists",
+        checklistsHeading: "Start your next audit with manufacturing checklists",
+        checklistsDescription: "Download ISO 9001, 14001 and 45001 manufacturing checklists for traceability, calibration, safety controls, waste, and corrective actions.",
+        checklistsItems: [
+            "Calibration and Measuring Equipment Control Checklist (ISO 9001)",
+            "Batch Traceability and Identification Checklist (ISO 9001)",
+            "Supplier Approval and Incoming Quality Checklist (ISO 9001)",
+            "Waste, Emissions and Spill Controls Checklist (ISO 14001)",
+            "Machine Guarding and LOTO Readiness Checklist (ISO 45001)",
+            "Incident, NCR and Corrective Action Effectiveness Checklist (ISO 9001 and 45001)"
+        ],
+        ctaHeading: "Upgrade how you manage manufacturing audits",
+        ctaDescription: "Start free or book a demo to run faster audits with clearer evidence and follow-up.",
+        ctaPrimaryButton: "Get started free",
+        ctaSecondaryButton: "Book a demo",
+        caseStudySparkle: "Manufacturing case study",
+        caseStudyHeading: "How a component specialist cut audit admin by 60%",
+        caseStudyDescription: "A high‑volume manufacturer was struggling with scattered evidence and inconsistent NCR follow‑up across three production sites. By implementing our manufacturing audit software, they centralised their findings, automated their report generation and reduced the time spent on audit admin by 60%.",
+        caseStudyButton: "Read Case Study",
+        caseStudyImage: "/images/manufacturing-bg.jpg",
+        faqSparkleText: "Manufacturing audit help",
+        faqHeading: "Frequently Asked Questions",
+        faqItems: [
+            {
+                question: "What is manufacturing audit software?",
+                answer: "Manufacturing audit software helps teams plan, run and report internal audits across production, quality, environment and safety. It centralises findings, evidence and corrective actions so audits stay consistent and results are easier to track across lines, shifts and sites."
+            },
+            {
+                question: "What are the most common ISO 9001 nonconformities in manufacturing?",
+                answer: "Common findings include missing calibration evidence, weak batch traceability, unapproved supplier use, incomplete inspection records, uncontrolled process changes, and corrective actions closed without proof of effectiveness. These often lead to repeat defects and recurring NCRs."
+            },
+            {
+                question: "How do you audit calibration and measurement control in manufacturing?",
+                answer: "A good audit checks more than the calibration certificate. It verifies that gauges are in-date, identified, used in the correct locations, protected from damage, and removed from use when expired. It should also confirm actions taken when an out-of-tolerance result occurs."
+            },
+            {
+                question: "How do you audit traceability in batch or serial production?",
+                answer: "You audit traceability by sampling a finished product or batch and tracing it back to raw materials, key process steps, inspections and approvals. In manufacturing, auditors look for clear identification, correct labelling, controlled records and the ability to complete a trace quickly and confidently."
+            },
+            {
+                question: "Can iAudit help manage audits across multiple sites and shifts?",
+                answer: "Yes. iAudit provides multi-site dashboards and role-based access so auditors, managers and auditees can work in one system. You can compare sites, lines and shifts, track repeat NCRs, and keep evidence linked to findings for better oversight."
+            },
+            {
+                question: "How does iAudit support ISO 14001 and ISO 45001 audits in manufacturing?",
+                answer: "iAudit helps teams audit environmental and safety controls with structured checklists and central evidence capture. That includes waste segregation, spill readiness, storage areas, guarding, PPE, manual handling and chemical controls, with actions tracked through to verified closure."
+            },
+            {
+                question: "Can we try iAudit before committing to a plan?",
+                answer: "Yes. You can start a 14-day free trial with no credit card required. During the trial, you can run audits, use templates, capture evidence, track findings and actions, and generate reports to see how it fits your manufacturing audit programme."
+            }
+        ]
     },
     {
         id: "06",
@@ -551,11 +709,168 @@ export const industries: Industry[] = [
     },
     {
         id: "11",
-        slug: "mining",
+        slug: "mining-compliance-software",
         title: "Mining",
-        description: "Ensure health, safety, and environmental compliance across remote mining operations and heavy equipment sites.",
+        description: "Manage remote mining operations, tailings storage facility integrity and workforce safety with one structured mining compliance software platform built for control.",
         color: "#eab308",
         bgImage: "/images/mining-bg.jpg",
+        heroSparkleText: "Mining compliance software by iAudit",
+        heroHeading: "Mining Compliance Software for ISO Standards",
+        challengesSparkleText: "Mining compliance challenges",
+        challengesHeading: "Why mining compliance is harder to manage",
+        challengesCards: [
+            {
+                title: "Ore variability risk",
+                description: "Fluctuating grades and assay gaps lead to dilution and shipment penalties. Audits must ensure QA and QC protocols are followed from pit to port."
+            },
+            {
+                title: "Critical environmental liability",
+                description: "Managing Tailings Storage Facility (TSF) integrity and acid mine drainage requires constant, evidenced monitoring to prevent catastrophic failures."
+            },
+            {
+                title: "High stakes safety risks",
+                description: "Falls of ground and explosives management demand rigorous on site verification. Remote sites often suffer from poor visibility and inconsistent inspections."
+            }
+        ],
+        supportSparkleText: "iAudit for mining",
+        supportHeading: "A structured approach to ISO audits in the mining sector",
+        supportItems: [
+            {
+                title: "Grade control and assay traceability",
+                description: "",
+                bullets: [
+                    "Capture digital evidence of weightometer calibrations and blast hole assays directly at the source to ensure ISO 9001 quality compliance.",
+                    "Verify metallurgical accounting and sampling accuracy to meet off take specifications and avoid costly shipment penalties."
+                ]
+            },
+            {
+                title: "TSF and environmental oversight",
+                description: "",
+                bullets: [
+                    "Audit Tailings Storage Facility integrity against GISTM requirements with structured checklists and piezometer data attachments.",
+                    "Track acid mine drainage and water licence compliance across multiple remote sites from one central mining compliance software dashboard."
+                ]
+            },
+            {
+                title: "Ground control and blasting safety",
+                description: "",
+                bullets: [
+                    "Manage ISO 45001 compliance by tracking ground control management plans and proximity detection system audits.",
+                    "Verify shotfirer competencies and pre entry inspection records to ensure critical safety controls are active on every shift."
+                ]
+            },
+            {
+                title: "Multi site and contractor visibility",
+                description: "",
+                bullets: [
+                    "Standardise audit programmes across dispersed locations to ensure consistent quality and safety standards regardless of the region.",
+                    "Monitor contractor compliance and safety inductions in real time to reduce the risk of third party incidents on site."
+                ]
+            },
+            {
+                title: "Offline audits for remote locations",
+                description: "",
+                bullets: [
+                    "Conduct full ISO audits in pits or underground areas without a Wi-Fi connection using our mobile offline mode.",
+                    "Sync findings, photos and signatures to the cloud automatically once the device returns to a connected area."
+                ]
+            }
+        ],
+        auditMateSparkle: "Audit Mate for mining compliance",
+        auditMateHeading: "AI assistant for your mining audit planning",
+        auditMateDescription: "Generate mining checklists for ground control, TSF monitoring, dust risks, contractors and calibration instantly.",
+        standardsSparkleText: "ISO standards for mining",
+        standardsHeading: "ISO standards supported for mining operations",
+        standardsDescription: "Use mining compliance software to manage quality, environmental and safety audits with clearer evidence and control.",
+        standardsItems: [
+            {
+                title: "Quality and operational control",
+                description: "ISO 9001 supports sampling accuracy, calibration, traceability and contractor quality across mining and processing."
+            },
+            {
+                title: "Environment and worker safety",
+                description: "ISO 14001 covers water, TSF and emissions. ISO 45001 supports critical risk and worker protection."
+            }
+        ],
+        testimonialsHeading: "Trusted by mining and heavy industry teams",
+        testimonials: [
+            {
+                quote: "Our biggest issue was evidence scattered across shifts and contractors. With iAudit, findings, photos and actions sit together. We have fewer repeat issues and far less time wasted rebuilding audit packs before surveillance.",
+                author: "Sarah Jenkins",
+                role: "Group Operations Director",
+                company: "Luxury Stay Hotels",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Verified Hospitality Expert"
+            },
+            {
+                quote: "Environmental checks were inconsistent across sites, especially around water and tailings controls. Now we run the same structured audits everywhere and track actions properly. It is easier to see where risk is building and act early.",
+                author: "Mark Thompson",
+                role: "Food Safety Lead",
+                company: "Urban Table Group",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "ISO 9001 Specialist"
+            },
+            {
+                quote: "We used to close actions because the spreadsheet needed to look tidy. Now we verify effectiveness before closure. That has changed the conversation from compliance reporting to control, which is what management actually needs.",
+                author: "Elena Rossi",
+                role: "Events Compliance Manager",
+                company: "Grand Venue Co.",
+                avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Certified Lead Auditor"
+            }
+        ],
+        checklistsTag: "Free mining audit checklists",
+        checklistsHeading: "Start your next audit with mining checklists",
+        checklistsDescription: "Download ISO 9001, 14001 and 45001 mining checklists for field controls, contractors, environment, incidents and corrective actions.",
+        checklistsItems: [
+            "Ground Control and Pre-Entry Inspection Checklist (ISO 45001)",
+            "Explosives and Shotfirer Compliance Checklist (ISO 45001)",
+            "Sampling, Assay QA/QC and Calibration Register Checklist (ISO 9001)",
+            "TSF Monitoring, TARPs and Seepage Controls Checklist (ISO 14001)",
+            "Water, Dust and Spill Response Compliance Checklist (ISO 14001)",
+            "Incident, NCR and Corrective Action Effectiveness Checklist (ISO 9001 and 45001)"
+        ],
+        ctaHeading: "Take control of your mining ISO audits",
+        ctaDescription: "Start free or book a demo to run faster audits with stronger evidence and follow-up.",
+        ctaPrimaryButton: "Get started free",
+        ctaSecondaryButton: "Book a demo",
+        caseStudySparkle: "Mining case study",
+        caseStudyHeading: "How a mine improved audit follow-up",
+        caseStudyDescription: "Read how a multi-site mining operator replaced spreadsheets with mining compliance software, improved TSF and safety evidence, reduced repeat findings, and gave leadership clear visibility across remote sites.",
+        caseStudyButton: "Read more",
+        caseStudyImage: "/images/mining-bg.jpg",
+        faqSparkleText: "Mining compliance FAQs",
+        faqHeading: "Frequently Asked Questions",
+        faqItems: [
+            {
+                question: "What is mining compliance software?",
+                answer: "Mining compliance software helps mine operators manage audits, evidence and corrective actions across quality, environmental and safety requirements. It replaces fragmented spreadsheets and site folders with a structured audit trail that supports ISO 9001, ISO 14001 and ISO 45001."
+            },
+            {
+                question: "How does mining compliance software support ISO 45001 critical risks?",
+                answer: "It helps teams audit high-risk controls consistently, including ground control checks, mobile plant risks, PPE use, contractor inductions and incident follow-up. The key benefit is traceable evidence and visible actions, not just a completed checklist."
+            },
+            {
+                question: "What are common ISO 14001 audit findings in mining?",
+                answer: "Common findings include generic aspects registers that ignore site-specific chemistry, missing evidence for dust and spill controls, weak water compliance documentation, and gaps in tailings monitoring records or follow-up actions."
+            },
+            {
+                question: "How does iAudit help with TSF and environmental audits?",
+                answer: "iAudit supports structured checklists and central evidence capture for TSF monitoring, TARPs, water controls, dust management and spill readiness. Findings link to actions with owners and deadlines so environmental risks do not sit unresolved."
+            },
+            {
+                question: "Can iAudit help manage contractor compliance on remote sites?",
+                answer: "Yes. You can audit contractor onboarding, competence and compliance against your site rules and ISO requirements. iAudit also helps you track repeat contractor issues across sites so performance improves over time."
+            },
+            {
+                question: "What does Audit Mate do for mining teams?",
+                answer: "Audit Mate helps create clause-aligned templates and prompts for mining controls such as ground control plans, TSF checks, dust controls, sampling and calibration records. It reduces planning time and keeps audits consistent across sites."
+            },
+            {
+                question: "Can we try iAudit before committing?",
+                answer: "Yes. You can start a 14-day free trial with no credit card required. You can run audits, capture evidence, track findings and actions, and see whether mining compliance software fits your operations."
+            }
+        ]
     },
     {
         id: "12",

@@ -740,7 +740,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
             {industry.supportHeading && industry.supportItems && (
                 <div style={{
                     width: '100%',
-                    padding: '3rem 2rem 4rem',
+                    padding: '3rem 2rem 1rem',
                     background: '#ffffff',
                     fontFamily: '"Pp Neue Montreal", sans-serif',
                     display: 'flex',
@@ -1245,7 +1245,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
             {industry.auditMateHeading && (
                 <div style={{
                     width: '100%',
-                    padding: '3rem 2rem 2rem',
+                    padding: '1rem 2rem 2rem',
                     background: '#ffffff',
                     fontFamily: '"Pp Neue Montreal", sans-serif',
                     display: 'flex',
@@ -2519,10 +2519,10 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             <div style={{
                                 borderRadius: '32px',
                                 overflow: 'hidden',
-                                boxShadow: '0 40px 100px -10px rgba(5, 140, 66, 0.4)', // More visible dark green shadow
+                                boxShadow: '0 30px 70px -10px rgba(0, 0, 0, 0.15)', // More subtle, professional shadow
                                 lineHeight: 0,
                                 width: '100%',
-                                maxWidth: '480px' // Constrain the image size
+                                border: '1px solid #f1f5f9'
                             }}>
                                 <img
                                     src={industry.caseStudyImage}
@@ -2544,6 +2544,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                 <Testimonials 
                     backgroundColor="#F0FDF4" 
                     items={industry.testimonials} 
+                    title={industry.testimonialsHeading}
                 />
             )}
 
