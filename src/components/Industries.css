@@ -1,29 +1,20 @@
 /* Industries Component Styles */
 
 .industries-marquee-outer {
-    overflow: hidden;
+    overflow-x: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
     padding: 8px 0 16px;
+}
+
+.industries-marquee-outer::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
 }
 
 .industries-marquee-track {
     display: flex;
     gap: 20px;
     width: max-content;
-    animation: industries-scroll 45s linear infinite;
-}
-
-.industries-marquee-track:hover {
-    animation-play-state: paused;
-}
-
-@keyframes industries-scroll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
 }
 
 /* Card matches reference: tall, narrow, image on top */

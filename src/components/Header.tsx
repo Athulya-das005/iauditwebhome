@@ -47,7 +47,7 @@ export default function Header() {
                         { label: "Manufacturing", href: "/industries/manufacturing" },
                         { label: "Health & Safety", href: "/industries/health-safety" },
                         { label: "Construction", href: "/industries/construction" },
-                        { label: "Retail", href: "/industries/retail" },
+                        { label: "Retail", href: "/industries/retail-iso-audit-software" },
                         { label: "Hospitality", href: "/industries/hospitality" },
                     ]
                 },
@@ -97,6 +97,7 @@ export default function Header() {
         */
         { label: "Features", href: "/#features" },
         { label: "Pricing", href: "/pricing" },
+        { label: "ISO 14001:2026", href: "/ISO14001-2026" },
         { label: "Contact", href: "/contact" },
     ];
 
@@ -189,9 +190,9 @@ export default function Header() {
                             <Link
                                 href={item.href}
                                 style={{
-                                    fontWeight: 500,
+                                    fontWeight: item.label === "ISO 14001:2026" ? 600 : 500,
                                     fontSize: "0.92rem",
-                                    color: hoveredItem === item.label ? "#058c42" : "#111827",
+                                    color: hoveredItem === item.label ? "#058c42" : (item.label === "ISO 14001:2026" ? "#03624c" : "#111827"),
                                     letterSpacing: "0.01em",
                                     transition: "all 0.25s ease-in-out",
                                     fontFamily: '"Pp Neue Montreal", sans-serif',

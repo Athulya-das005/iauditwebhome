@@ -60,11 +60,168 @@ export interface Industry {
 export const industries: Industry[] = [
     {
         id: "01",
-        slug: "retail",
+        slug: "retail-iso-audit-software",
         title: "Retail",
-        description: "Maintain quality and safety standards across stores, warehouses, and supply chains.",
+        description: "Manage ISO 9001, 14001 and 45001 audits across stores, warehouses and supply chains with one structured Retail ISO audit software platform built for scale.",
         color: "#10b981",
         bgImage: "/images/retail-bg.jpg",
+        heroSparkleText: "Retail ISO audit software by iAudit",
+        heroHeading: "Retail ISO audit software for multi‑site consistency",
+        challengesSparkleText: "Retail compliance challenges",
+        challengesHeading: "Why retail compliance is harder to manage across sites",
+        challengesCards: [
+            {
+                title: "Inconsistent customer experience",
+                description: "Maintaining quality across hundreds of stores and franchises is difficult. Audits must ensure the same standards are met in every location."
+            },
+            {
+                title: "Complex environmental footprints",
+                description: "Tracking Scope 3 emissions and food waste across global supply chains requires precise data that goes beyond basic office records."
+            },
+            {
+                title: "High‑density safety risks",
+                description: "Public environments demand rigorous checks on manual handling, slips and workplace violence to protect both staff and customers daily."
+            }
+        ],
+        supportSparkleText: "iAudit for retail",
+        supportHeading: "Strengthening retail operations through smarter ISO auditing",
+        supportItems: [
+            {
+                title: "Multi-site store and DC audits",
+                description: "",
+                bullets: [
+                    "Run one audit programme across stores, DCs and head office",
+                    "Compare results by site, region or process to spot patterns early"
+                ]
+            },
+            {
+                title: "Complaints, returns and service recovery",
+                description: "",
+                bullets: [
+                    "Log high-volume complaints as nonconformities with clear evidence",
+                    "Trend issues by store, category or channel to drive real corrective action"
+                ]
+            },
+            {
+                title: "Supplier and own-brand quality control",
+                description: "",
+                bullets: [
+                    "Audit suppliers and product checks against defined criteria and approvals",
+                    "Track supplier nonconformities and repeat issues with owners and deadlines"
+                ]
+            },
+            {
+                title: "ISO 14001 controls across the retail estate",
+                description: "",
+                bullets: [
+                    "Audit waste, packaging, food waste, energy use and F-gas checks consistently",
+                    "Keep evidence and follow-up actions linked for management review and reporting"
+                ]
+            },
+            {
+                title: "ISO 45001 retail safety checks that reflect reality",
+                description: "",
+                bullets: [
+                    "Cover manual handling, slips, violence, lone working and work at height",
+                    "Track corrective actions to verified closure, not just a tidy spreadsheet status"
+                ]
+            }
+        ],
+        auditMateSparkle: "AI for retail compliance",
+        auditMateHeading: "AI assistant for your retail audit planning",
+        auditMateDescription: "Use Audit Mate to generate checklists for manual handling, Scope 3 emissions and store standards.",
+        standardsSparkleText: "Standards for retail",
+        standardsHeading: "ISO standards supported for retail operations",
+        standardsDescription: "Our Retail ISO audit software provides deep support for the standards that matter most to customer‑facing and logistics teams.",
+        standardsItems: [
+            {
+                title: "Quality and environmental management",
+                description: "ISO 9001 manages customer experience and supplier quality. ISO 14001 handles waste, energy and supply chain sustainability across your stores."
+            },
+            {
+                title: "Occupational health and safety",
+                description: "ISO 45001 supports staff safety, manual handling and workplace violence prevention to ensure a safe environment for teams and customers."
+            }
+        ],
+        testimonialsHeading: "Trusted by retail audit teams",
+        testimonials: [
+            {
+                quote: "We finally have consistent audits across stores. The same checklist, the same evidence, and clear actions. Head office can see what is overdue without chasing.",
+                author: "Sarah Jenkins",
+                role: "Group Operations Director",
+                company: "Global Retail Brands",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Verified Retail Expert"
+            },
+            {
+                quote: "Complaints used to be handled one by one. Now we can see trends by site and category, and the actions actually get followed through.",
+                author: "Mark Thompson",
+                role: "Customer Quality Lead",
+                company: "Retail Solutions Group",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "ISO 9001 Specialist"
+            },
+            {
+                quote: "Environmental checks were patchy across the estate. With one system, waste and refrigeration controls are audited consistently and evidence is easy to find.",
+                author: "Elena Rossi",
+                role: "Estates Compliance Manager",
+                company: "High Street Retailers",
+                avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Certified Lead Auditor"
+            }
+        ],
+        checklistsTag: "Free retail audit checklists",
+        checklistsHeading: "Download ready-made retail ISO audit checklists",
+        checklistsDescription: "Download ISO 9001, 14001 and 45001 checklists for stores and DCs, covering quality, environment, safety and follow-up.",
+        checklistsItems: [
+            "Store Standards and Customer Experience Audit Checklist (ISO 9001)",
+            "Complaints, Returns and Service Recovery Checklist (ISO 9001)",
+            "Supplier and Own-Brand Quality Audit Checklist (ISO 9001)",
+            "Waste, Packaging and Food Waste Controls Checklist (ISO 14001)",
+            "Refrigeration, F-gas and Leak Check Compliance Checklist (ISO 14001)",
+            "Slips, Manual Handling, Violence and Lone Working Checklist (ISO 45001)"
+        ],
+        ctaHeading: "Move your retail ISO audits beyond the spreadsheet",
+        ctaDescription: "Start free or book a demo to standardise audits, evidence and actions across every location.",
+        ctaPrimaryButton: "Get started free",
+        ctaSecondaryButton: "Book a demo",
+        caseStudySparkle: "Retail case study",
+        caseStudyHeading: "Driving store consistency through smarter auditing",
+        caseStudyDescription: "Read how a multi-site retailer replaced spreadsheets with Retail iso Audit Software, improved store standards visibility, reduced repeat complaints, and sped up corrective action closure across regions.",
+        caseStudyButton: "Read more",
+        caseStudyImage: "/images/retail-bg.jpg",
+        faqSparkleText: "Retail audit FAQs",
+        faqHeading: "Frequently Asked Questions",
+        faqItems: [
+            {
+                question: "What is Retail iso Audit Software?",
+                answer: "Retail iso Audit Software helps retailers manage ISO 9001, ISO 14001 and ISO 45001 audits across stores, distribution centres and head office. It centralises findings, evidence and corrective actions so performance is visible across the whole estate."
+            },
+            {
+                question: "Can iAudit handle audits across stores and distribution centres?",
+                answer: "Yes. You can run one audit programme across stores and DCs, use standardised templates, and compare results by site, region or process."
+            },
+            {
+                question: "How does iAudit help with customer complaints and returns?",
+                answer: "You can log complaints and service failures as nonconformities, link them to actions, and analyse trends by store, category or channel to prevent repeat issues."
+            },
+            {
+                question: "Does iAudit support supplier audits for retail and own-brand products?",
+                answer: "Yes. You can audit supplier controls, track approvals and performance, and monitor repeat supplier nonconformities over time."
+            },
+            {
+                question: "How does iAudit support ISO 14001 in retail?",
+                answer: "It supports environmental audits covering waste, packaging, food waste, energy use and refrigeration controls, with evidence capture and action tracking in one place."
+            },
+            {
+                question: "How does iAudit support ISO 45001 in retail?",
+                answer: "It supports safety audits for slips, manual handling, lone working, violence and warehouse hazards, with clear follow-up and effectiveness checks."
+            },
+            {
+                question: "Can we try iAudit before committing?",
+                answer: "Yes. You can start a 14-day free trial with no credit card required and run audits using templates, dashboards and report exports."
+            }
+        ]
     },
     {
         id: "02",
@@ -523,11 +680,168 @@ export const industries: Industry[] = [
     },
     {
         id: "07",
-        slug: "food-beverage",
+        slug: "food-and-beverage-iso-audit-software",
         title: "Food & Beverage",
-        description: "Support food safety and quality management with audits that meet ISO requirements.",
+        description: "Manage ISO 9001, 14001 and 45001 audits across plants and distribution centres with one structured food and beverage iso audit software platform built for scale.",
         color: "#0891b2",
         bgImage: "/images/food-beverage-bg.jpg",
+        heroSparkleText: "Food and beverage iso audit software by iAudit",
+        heroHeading: "Food and Beverage ISO Audit Software for Brand Protection",
+        challengesSparkleText: "Food and beverage audit challenges",
+        challengesHeading: "Why food and beverage audits are hard to keep consistent",
+        challengesCards: [
+            {
+                title: "Critical traceability gaps",
+                description: "From \"farm to fork,\" proving batch integrity is difficult with manual logs. Audits must ensure every ingredient is evidenced and traceable instantly."
+            },
+            {
+                title: "Complex regulatory burden",
+                description: "Balancing Natasha’s Law, HACCP and ISO requirements creates a heavy paperwork load that often leads to missing evidence and audit findings."
+            },
+            {
+                title: "Inconsistent hygiene standards",
+                description: "Standards often drift between shifts or sites. You need a system that benchmarks hygiene and quality scores across every location in real time."
+            }
+        ],
+        supportSparkleText: "iAudit for food and beverage",
+        supportHeading: "How our food and beverage iso audit software unifies compliance",
+        supportItems: [
+            {
+                title: "Batch control and traceability",
+                description: "",
+                bullets: [
+                    "Capture digital evidence of batch codes, material origins and production logs directly on the floor.",
+                    "Perform \"trace-back\" audits in minutes by accessing a centralised history of every check and sign-off."
+                ]
+            },
+            {
+                title: "HACCP and ISO integration",
+                description: "",
+                bullets: [
+                    "Run audits that cover HACCP controls, cleaning schedules and allergen management alongside ISO 9001 requirements.",
+                    "Attach photos of labels, sanitation standards and temperature records directly to your audit findings."
+                ]
+            },
+            {
+                title: "Multi‑site and distribution oversight",
+                description: "",
+                bullets: [
+                    "Compare audit scores across different production plants and warehouses from one central dashboard.",
+                    "Identify which sites are leading in compliance and which need targeted support before an external audit occurs."
+                ]
+            },
+            {
+                title: "Cold chain and storage evidence",
+                description: "",
+                bullets: [
+                    "Audit temperature monitoring logs and calibration records for refrigeration and transport systems.",
+                    "Verify that environmental and storage conditions meet strict ISO 14001 and food safety protocols."
+                ]
+            },
+            {
+                title: "Staff hygiene and competence tracking",
+                description: "",
+                bullets: [
+                    "Track food hygiene certificates, allergen awareness training and safety inductions for all permanent and agency staff.",
+                    "Automatically flag upcoming training expiries to ensure no one works without valid, up to date qualifications."
+                ]
+            }
+        ],
+        auditMateSparkle: "AI for food and beverage compliance",
+        auditMateHeading: "Plan food and beverage audits faster with Audit Mate",
+        auditMateDescription: "Use Audit Mate to generate checklists for HACCP integration, allergen controls and cold chain evidence in seconds.",
+        standardsSparkleText: "ISO standards for food and beverage",
+        standardsHeading: "ISO standards supported for your food and beverage operations",
+        standardsDescription: "Our food and beverage iso audit software provides deep support for the standards that drive quality, safety and sustainability.",
+        standardsItems: [
+            {
+                title: "Quality and environmental management",
+                description: "ISO 9001 manages batch control and supplier quality. ISO 14001 handles waste, energy use and environmental permit compliance."
+            },
+            {
+                title: "Occupational health and safety",
+                description: "ISO 45001 manages manual handling, kitchen safety and staff wellbeing to ensure a safe, compliant environment for every team member."
+            }
+        ],
+        testimonialsHeading: "Trusted by food and beverage audit teams",
+        testimonials: [
+            {
+                quote: "We used to scramble for batch records and complaint evidence before every audit. Now everything sits in one place, and our mock recall checks are far more reliable.",
+                author: "Sarah Thompson",
+                role: "Quality Manager",
+                company: "FreshFoods Ltd",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Verified F&B Pro"
+            },
+            {
+                quote: "The biggest change for us was consistency. We now run the same audit structure across all sites, which has made follow-up and trend analysis much clearer.",
+                author: "David Miller",
+                role: "Operations Director",
+                company: "Global Spirits",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "ISO 9001 Expert"
+            },
+            {
+                quote: "Corrective actions used to disappear into email chains. With iAudit, owners, deadlines and evidence are visible, so we are actually reducing repeat issues.",
+                author: "Elena Rodriguez",
+                role: "Compliance Lead",
+                company: "Premium Dairy",
+                avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Certified Auditor"
+            }
+        ],
+        checklistsTag: "Free food and beverage audit checklists",
+        checklistsHeading: "Start your next audit with food and beverage checklists",
+        checklistsDescription: "Download ISO 9001, 14001 and 45001 checklists for traceability, hygiene, supplier control, waste, safety and follow-up.",
+        checklistsItems: [
+            "Batch Traceability and Recall Readiness Checklist (ISO 9001)",
+            "Supplier Approval and Incoming Material Audit Checklist (ISO 9001)",
+            "Hygiene, Cleaning and Process Control Checklist (ISO 9001)",
+            "Waste, Water and Packaging Controls Checklist (ISO 14001)",
+            "Slips, Manual Handling and Chemical Safety Checklist (ISO 45001)",
+            "NCR, Complaint and Corrective Action Effectiveness Checklist (ISO 9001 and 45001)"
+        ],
+        ctaHeading: "Upgrade how you manage food and beverage audits",
+        ctaDescription: "Start free or book a demo to standardise audits, evidence and actions across every site.",
+        ctaPrimaryButton: "Get started free",
+        ctaSecondaryButton: "Book a demo",
+        caseStudySparkle: "Food and beverage case study",
+        caseStudyHeading: "How a food business improved audit consistency",
+        caseStudyDescription: "Read how a multi-site food producer replaced spreadsheets with food and beverage iso audit software, improved traceability evidence, reduced repeat NCRs and gained clearer oversight across factories and warehouses.",
+        caseStudyButton: "Read more",
+        caseStudyImage: "/images/food-beverage-case-study.png",
+        faqSparkleText: "Food and beverage audit FAQs",
+        faqHeading: "Frequently Asked Questions",
+        faqItems: [
+            {
+                question: "What is food and beverage iso audit software?",
+                answer: "It is a digital platform designed to manage ISO 9001, 14001 and 45001 audits across food production and distribution sites. It replaces manual logs with structured checklists and real time dashboards for better oversight."
+            },
+            {
+                question: "How does iAudit help with batch traceability?",
+                answer: "Our platform allows auditors to capture digital evidence of batch codes and production records at the point of inspection. This ensures a clear, traceable link from ingredients to the finished product, as required by ISO 9001."
+            },
+            {
+                question: "Can the software support HACCP and food safety checks?",
+                answer: "Yes. While HACCP is your core food safety system, iAudit lets you audit those controls alongside your ISO requirements. You can attach photos of sanitation standards and temperature records directly to your findings."
+            },
+            {
+                question: "How does iAudit handle staff hygiene training?",
+                answer: "You can monitor training records and mandatory certifications for all staff. The system flags upcoming expiries, ensuring your team always holds the required food safety and hygiene qualifications for their roles."
+            },
+            {
+                question: "Does it support environmental waste monitoring for ISO 14001?",
+                answer: "Absolutely. iAudit includes checklists for food waste, energy efficiency and packaging recycling, helping you gather the evidence needed for ISO 14001 and broader sustainability reporting."
+            },
+            {
+                question: "Can auditors work offline in cold storage or remote plants?",
+                answer: "Yes. iAudit is built for real world conditions. You can complete inspections offline on a mobile device, and the data syncs to the central dashboard as soon as you are back in range of a connection."
+            },
+            {
+                question: "Is our food and beverage audit data secure?",
+                answer: "We operate a strict zero access policy. Your findings, production data and evidence belong entirely to you and are never accessed or mined by our team. Your data stays private and secure."
+            }
+        ]
     },
     {
         id: "08",
@@ -693,11 +1007,168 @@ export const industries: Industry[] = [
     },
     {
         id: "09",
-        slug: "facilities-management",
+        slug: "facilities-management-iso-audit-software",
         title: "Facilities Management",
-        description: "Audit environmental controls, health and safety across multiple sites from one platform.",
+        description: "Manage building services, statutory maintenance and ISO standards across your entire estate with one structured facilities management iso audit software platform.",
         color: "#7c3aed",
         bgImage: "/images/facilities-bg.jpg",
+        heroSparkleText: "Facilities management iso audit software by iAudit",
+        heroHeading: "Facilities Management ISO Audit Software for Building Compliance",
+        challengesSparkleText: "Facilities management audit challenges",
+        challengesHeading: "Why Facilities Management audits become harder as portfolios grow",
+        challengesCards: [
+            {
+                title: "Multi site asset scaling",
+                description: "Managing consistent standards across thousands of buildings often leads to ghost assets and incomplete maintenance logs across your portfolio."
+            },
+            {
+                title: "Subcontractor liability risks",
+                description: "Relying on third party engineers makes it difficult to verify qualifications like Gas Safe or NICEIC without a clear digital trail."
+            },
+            {
+                title: "Fragmented statutory records",
+                description: "Disconnected systems hide overdue maintenance, leaving organisations exposed to legal, safety and quality failures that impact contract retention."
+            }
+        ],
+        supportSparkleText: "iAudit for facilities management",
+        supportHeading: "How our facilities management iso audit software unifies compliance",
+        supportItems: [
+            {
+                title: "Statutory PPM and lifecycle audits",
+                description: "",
+                bullets: [
+                    "Capture evidence for fire, gas and lift inspections instantly.",
+                    "Verify that SFG20 maintenance schedules are followed on site."
+                ]
+            },
+            {
+                title: "Multi site portfolio visibility",
+                description: "",
+                bullets: [
+                    "View compliance scores across every building in one dashboard.",
+                    "Identify which sites or regions carry the highest risk."
+                ]
+            },
+            {
+                title: "Subcontractor and engineer competence",
+                description: "",
+                bullets: [
+                    "Flag expired professional certifications and registrations automatically.",
+                    "Audit subcontractor method statements and RAMS before work begins."
+                ]
+            },
+            {
+                title: "High risk hazard identification",
+                description: "",
+                bullets: [
+                    "Track asbestos awareness, Legionella flushing and work at height.",
+                    "Log near misses during maintenance tasks to improve safety culture."
+                ]
+            },
+            {
+                title: "Energy, waste and F gas tracking",
+                description: "",
+                bullets: [
+                    "Audit refrigerant leak checks and energy use for ISO 14001.",
+                    "Centralise waste transfer notes and cleaning chemical safety data."
+                ]
+            }
+        ],
+        auditMateSparkle: "AI for facilities management compliance",
+        auditMateHeading: "Plan smarter Facilities Management audits with Audit Mate",
+        auditMateDescription: "Use Audit Mate to generate checklists for statutory PPM, asbestos awareness and water hygiene controls in seconds.",
+        standardsSparkleText: "ISO standards for building management",
+        standardsHeading: "The ISO standards behind stronger FM performance",
+        standardsDescription: "Use our facilities management iso audit software to manage quality, environmental impact and worker safety standards across portfolios.",
+        standardsItems: [
+            {
+                title: "Service quality and environment",
+                description: "ISO 9001 handles PPM completion and SLAs. ISO 14001 manages energy, waste and F gas compliance."
+            },
+            {
+                title: "Safety and building security",
+                description: "ISO 45001 tracks high risk maintenance hazards. ISO 27001 protects CAFM data and sensitive client building records."
+            }
+        ],
+        testimonialsHeading: "Helping FM teams move beyond spreadsheets",
+        testimonials: [
+            {
+                quote: "We used to spend days chasing statutory certificates from different contractors. Now everything sits with the finding, and follow-up is much clearer.",
+                author: "Liam Parker",
+                role: "Estates Director",
+                company: "Metro Campus FM",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Verified FM Specialist"
+            },
+            {
+                quote: "Our biggest issue was inconsistency between sites. iAudit gave us one structure for audits, so the data finally became comparable across the estate.",
+                author: "Sarah Chen",
+                role: "Operations Manager",
+                company: "Regional Building Services",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "ISO Expert"
+            },
+            {
+                quote: "Permit to work and subcontractor checks were getting lost between CAFM notes and email chains. With iAudit, actions stay visible until they are properly closed.",
+                author: "James Wilson",
+                role: "Compliance Lead",
+                company: "Estate Solutions",
+                avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Certified Auditor"
+            }
+        ],
+        checklistsTag: "Free facilities management audit checklists",
+        checklistsHeading: "Free facilities management ISO audit checklists",
+        checklistsDescription: "Download ISO 9001, 14001 and 45001 checklists for statutory compliance, subcontractors, PTW, water, F-gas and corrective actions.",
+        checklistsItems: [
+            "Statutory PPM and Asset Compliance Checklist (ISO 9001)",
+            "Subcontractor Competence and Certification Checklist (ISO 9001 / 45001)",
+            "CAFM Accuracy and Site Evidence Verification Checklist (ISO 9001)",
+            "F-Gas, Water and Waste Controls Checklist (ISO 14001)",
+            "Permit to Work and High-Risk Activities Checklist (ISO 45001)",
+            "NCR, Corrective Action and Effectiveness Checklist (ISO 9001 / 45001)"
+        ],
+        ctaHeading: "Run smarter facilities management ISO audits",
+        ctaDescription: "Start free or book a demo to standardise audits, evidence and actions across your estate.",
+        ctaPrimaryButton: "Get started free",
+        ctaSecondaryButton: "Book a demo",
+        caseStudySparkle: "Facilities management case study",
+        caseStudyHeading: "Strengthening compliance across complex building portfolios",
+        caseStudyDescription: "This regional FM provider replaced manual trackers with a unified system to centralise statutory evidence. They now manage multi‑site compliance across healthcare and education with real‑time visibility and zero gaps.",
+        caseStudyButton: "Read more",
+        caseStudyImage: "/images/facilities-management-case-study.png",
+        faqSparkleText: "Facilities management audit help",
+        faqHeading: "Frequently Asked Questions",
+        faqItems: [
+            {
+                question: "What is facilities management iso audit software?",
+                answer: "It is a digital platform designed to manage ISO 9001, 14001 and 45001 audits across building portfolios. It replaces manual spreadsheets with structured checklists for building services and safety."
+            },
+            {
+                question: "How does the software support statutory PPM?",
+                answer: "Our facilities management iso audit software provides checklists for fire, gas and electrical safety, allowing you to attach certificates and photos as evidence that statutory checks were completed."
+            },
+            {
+                question: "Can iAudit track subcontractor engineer competence?",
+                answer: "Yes. You can audit subcontractor inductions, verify their professional registrations like Gas Safe or NICEIC, and track their performance across different sites from one dashboard."
+            },
+            {
+                question: "Does the system support energy and F gas monitoring?",
+                answer: "Absolutely. iAudit includes specific checklists for energy monitoring, F gas leak checks and waste segregation, helping you gather the evidence needed for ISO 14001 and Net Zero reporting."
+            },
+            {
+                question: "Can building managers perform audits on mobile devices?",
+                answer: "Yes. iAudit is mobile first and works offline. Managers can complete audits in plant rooms or basements and the data syncs automatically as soon as they are back in range."
+            },
+            {
+                question: "How does Audit Mate help with building inspections?",
+                answer: "Audit Mate AI can instantly draft checklists for specific building risks like asbestos, fire safety or water hygiene, providing clause guidance to ensure your audits are technically robust."
+            },
+            {
+                question: "Is our client and building documentation secure?",
+                answer: "We operate a zero access policy. Your findings, statutory records and site data belong entirely to you and are never viewed or mined by our team. Your data stays private and secure."
+            }
+        ]
     },
     {
         id: "10",
@@ -874,11 +1345,168 @@ export const industries: Industry[] = [
     },
     {
         id: "12",
-        slug: "pharmaceutical",
+        slug: "pharmaceutical-compliance-audit-software",
         title: "Pharmaceutical",
-        description: "Maintain strict compliance with GMP and FDA regulations while streamlining clinical and laboratory audits.",
+        description: "Replace manual spreadsheets with an auditor-built platform for ISO 9001, 14001 and 45001. Manage data integrity, sterile production and HPAPI containment in one secure workspace.",
         color: "#3b82f6",
         bgImage: "/images/pharmaceutical-bg.jpg",
+        heroSparkleText: "Pharmaceutical compliance audit software by iAudit",
+        heroHeading: "Pharmaceutical Compliance Audit Software for ISO Standards",
+        challengesSparkleText: "Pharmaceutical compliance challenges",
+        challengesHeading: "Why pharmaceutical audits carry more risk",
+        challengesCards: [
+            {
+                title: "Data integrity failures",
+                description: "Audit trails, raw data and batch records must hold up under scrutiny. Weak control quickly turns into major findings and repeat deviations."
+            },
+            {
+                title: "Containment and exposure controls",
+                description: "HPAPI handling, gowning, solvents and biological risks demand more than paperwork. Audits must confirm controls are working in practice."
+            },
+            {
+                title: "CAPA and environmental pressure",
+                description: "Closed actions without proof, effluent gaps and solvent controls create repeat findings that damage audit readiness and trust."
+            }
+        ],
+        supportSparkleText: "iAudit for pharmaceutical",
+        supportHeading: "Bring more control to pharmaceutical ISO audits",
+        supportItems: [
+            {
+                title: "Batch records and data integrity",
+                description: "",
+                bullets: [
+                    "Capture evidence against batch records, logs and key review points",
+                    "Keep a clear audit trail for findings, evidence and decisions"
+                ]
+            },
+            {
+                title: "CAPA and effectiveness tracking",
+                description: "",
+                bullets: [
+                    "Link every nonconformity to owners, due dates and follow-up",
+                    "Verify effectiveness before closure so repeat issues are easier to stop"
+                ]
+            },
+            {
+                title: "Multi-site and CDMO oversight",
+                description: "",
+                bullets: [
+                    "Standardise audits across sites, labs and outsourced operations",
+                    "Compare findings across locations to spot recurring compliance gaps early"
+                ]
+            },
+            {
+                title: "Environmental and utilities controls",
+                description: "",
+                bullets: [
+                    "Audit effluent, solvent, F-gas and waste controls consistently",
+                    "Keep environmental evidence linked to actions and management review"
+                ]
+            },
+            {
+                title: "Occupational health and high-hazard work",
+                description: "",
+                bullets: [
+                    "Track exposure controls, PPE, contractor checks and health surveillance",
+                    "Keep containment and safety findings visible until they are properly resolved"
+                ]
+            }
+        ],
+        auditMateSparkle: "Audit Mate for pharmaceutical audits",
+        auditMateHeading: "Plan pharmaceutical audits faster with Audit Mate",
+        auditMateDescription: "Generate pharma checklists for batch records, CAPA, contamination controls and environmental evidence instantly.",
+        standardsSparkleText: "ISO standards for pharma",
+        standardsHeading: "ISO standards supported for production and labs",
+        standardsDescription: "Use our pharmaceutical compliance audit software to manage clinical quality, environmental impact and worker safety standards effectively.",
+        standardsItems: [
+            {
+                title: "Quality and environment",
+                description: "ISO 9001 handles process validation and batch release. ISO 14001 manages solvent emissions and environmental impact."
+            },
+            {
+                title: "Occupational health and safety",
+                description: "ISO 45001 tracks machinery safety, HPAPI containment and worker participation."
+            }
+        ],
+        testimonialsHeading: "Trusted by pharmaceutical audit teams",
+        testimonials: [
+            {
+                quote: "We were constantly pulling batch evidence from different systems before audits. Now the records sit with the finding, and follow-up is much clearer.",
+                author: "David Rossi",
+                role: "Quality Director",
+                company: "Global Pharma Labs",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "ISO 9001 Expert"
+            },
+            {
+                quote: "The biggest improvement has been CAPA visibility. Actions no longer disappear once the report is issued, and repeat issues are far easier to spot.",
+                author: "Claire Benson",
+                role: "Compliance Lead",
+                company: "BioTech Solutions",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Certified Auditor"
+            },
+            {
+                quote: "We needed better consistency across manufacturing and QC. iAudit helped us standardise audit structure and reduce the amount of time spent rebuilding reports.",
+                author: "Robert Hughes",
+                role: "Operations Manager",
+                company: "Pharma Manufacturing Corp",
+                avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "GMP Specialist"
+            }
+        ],
+        checklistsTag: "Free pharmaceutical audit checklists",
+        checklistsHeading: "Download ISO aligned checklists for pharmaceutical operations",
+        checklistsDescription: "Download ISO 9001, 14001 and 45001 checklists for batch records, CAPA, waste, exposure controls and follow-up.",
+        checklistsItems: [
+            "Data Integrity and Batch Record Audit Checklist (ISO 9001)",
+            "CAPA and Change Control Effectiveness Checklist (ISO 9001)",
+            "Supplier Qualification and GMP Evidence Checklist (ISO 9001)",
+            "Effluent, Solvent and F-Gas Compliance Checklist (ISO 14001)",
+            "HPAPI, Containment and Exposure Control Checklist (ISO 45001)",
+            "NCR, Incident and Effectiveness Verification Checklist (ISO 9001 and 45001)"
+        ],
+        ctaHeading: "Run smarter pharmaceutical ISO audits from one system",
+        ctaDescription: "Start free or book a demo to standardise audits, evidence and CAPA across every site.",
+        ctaPrimaryButton: "Get started free",
+        ctaSecondaryButton: "Book a demo",
+        caseStudySparkle: "Pharmaceutical case study",
+        caseStudyHeading: "How a pharmaceutical team improved CAPA visibility",
+        caseStudyDescription: "Read how a multi-site pharmaceutical manufacturer replaced spreadsheets with pharmaceutical compliance audit software, improved data integrity evidence, reduced repeat CAPAs and gained clearer audit visibility across operations.",
+        caseStudyButton: "Read more",
+        caseStudyImage: "/images/pharmaceutical-case-study.png",
+        faqSparkleText: "Pharmaceutical audit help",
+        faqHeading: "Frequently Asked Questions",
+        faqItems: [
+            {
+                question: "What is pharmaceutical compliance audit software?",
+                answer: "Pharmaceutical compliance audit software helps regulated teams manage ISO 9001, 14001 and 45001 audits across manufacturing, labs and distribution. It centralises findings, evidence and follow-up in one structured system."
+            },
+            {
+                question: "How does iAudit support data integrity during audits?",
+                answer: "iAudit helps keep audit findings, supporting evidence and action history linked in one place. This makes it easier to review batch-related evidence and maintain a clearer, more traceable audit trail."
+            },
+            {
+                question: "Can iAudit help with CAPA and effectiveness checks?",
+                answer: "Yes. iAudit links findings to corrective actions, owners and deadlines, then helps teams verify effectiveness before actions are closed."
+            },
+            {
+                question: "Does iAudit support environmental audits in pharmaceutical settings?",
+                answer: "Yes. It supports ISO 14001 audits covering effluent, solvent handling, F-gas, waste controls and related environmental evidence."
+            },
+            {
+                question: "How does iAudit help with occupational health and safety in pharma?",
+                answer: "It helps teams track high-risk controls related to exposure, PPE, containment, contractor safety and other ISO 45001 requirements in one system."
+            },
+            {
+                question: "Can Audit Mate help pharmaceutical teams plan audits faster?",
+                answer: "Yes. Audit Mate helps generate clause-aligned checklists and prompts for batch records, CAPA, contamination controls and environmental evidence."
+            },
+            {
+                question: "Can we try iAudit before committing?",
+                answer: "Yes. You can start a 14-day free trial with no credit card required and explore templates, dashboards, evidence capture and reporting."
+            }
+        ]
     },
     {
         id: "13",
@@ -890,11 +1518,168 @@ export const industries: Industry[] = [
     },
     {
         id: "14",
-        slug: "metal-fabrication",
+        slug: "basic-metals-and-fabrication-iso-audit-software",
         title: "Basic Metal & Fabrication",
-        description: "Maintain workplace safety and structural integrity standards in high-risk fabrication environments.",
+        description: "Centralise material traceability, manage welder continuity and track high‑risk safety controls across your plant with one structured basic metals and fabrication iso audit software platform.",
         color: "#57534e",
         bgImage: "/images/metal-fabrication-bg.jpg",
+        heroSparkleText: "Basic metals and fabrication iso audit software by iAudit",
+        heroHeading: "Basic Metals and Fabrication ISO Audit Software",
+        challengesSparkleText: "Fabrication compliance challenges",
+        challengesHeading: "Why fabrication audits need a specific approach",
+        challengesCards: [
+            {
+                title: "Broken material traceability",
+                description: "Heat and cast numbers often get lost during cutting or welding stages. Audits must ensure material integrity is evidenced from receipt to final finish."
+            },
+            {
+                title: "Lapsed specialist qualifications",
+                description: "Tracking welder continuity per ISO 9606 and RWC qualifications is a constant struggle. Expired certificates create major risks during EN 1090 or AS9100 audits."
+            },
+            {
+                title: "High‑risk operational hazards",
+                description: "Molten metal, welding fumes and heavy lifting require physical verification of LEV systems, LOTO protocols and LOLER registers on the floor."
+            }
+        ],
+        supportSparkleText: "iAudit for fabrication",
+        supportHeading: "A tailored basic metals and fabrication iso audit software for ISO standards",
+        supportItems: [
+            {
+                title: "Material traceability and heat numbers",
+                description: "",
+                bullets: [
+                    "Capture heat and cast numbers directly on the shop floor.",
+                    "Maintain a digital audit trail through every fabrication stage."
+                ]
+            },
+            {
+                title: "Welder and RWC qualification tracking",
+                description: "",
+                bullets: [
+                    "Monitor welder continuity and ISO 9606 expiries in one system.",
+                    "Flag missing Responsible Welding Coordinator (RWC) qualifications automatically."
+                ]
+            },
+            {
+                title: "NDT and weld integrity evidence",
+                description: "",
+                bullets: [
+                    "Attach NDT reports and WPS/WPQR documents directly to findings.",
+                    "Track weld repair rates and NDT non‑conformities by operator."
+                ]
+            },
+            {
+                title: "Emissions, effluents and REACH compliance",
+                description: "",
+                bullets: [
+                    "Audit pH levels and heavy metal effluents for ISO 14001.",
+                    "Track REACH CrVI authorisations and sunset dates across plating lines."
+                ]
+            },
+            {
+                title: "LEV systems and health surveillance",
+                description: "",
+                bullets: [
+                    "Audit LEV capture velocity velocity and welding fume controls.",
+                    "Track audiometry and health surveillance records for safety compliance."
+                ]
+            }
+        ],
+        auditMateSparkle: "Audit Mate for fabrication audits",
+        auditMateHeading: "Meet your AI co‑pilot for fabrication audits",
+        auditMateDescription: "Use Audit Mate to generate checklists for EN 1090, welder continuity and LEV checks.",
+        standardsSparkleText: "ISO standards for fabrication",
+        standardsHeading: "ISO standards supported for fabrication operations",
+        standardsDescription: "Use basic metals and fabrication iso audit software to manage quality, environment and safety requirements with stronger evidence and follow-up.",
+        standardsItems: [
+            {
+                title: "Quality and environmental management",
+                description: "ISO 9001 supports traceability, calibration and weld quality. ISO 14001 covers chemicals, effluents, waste and permit compliance."
+            },
+            {
+                title: "Occupational health and safety",
+                description: "ISO 45001 supports safer workshops through welding fume controls, guarding, crane checks and worker protection."
+            }
+        ],
+        testimonialsHeading: "Why metal and fabrication leads choose iAudit",
+        testimonials: [
+            {
+                quote: "Proving material traceability from the original cast number through to the final weld was always a struggle. iAudit allows us to attach that evidence directly to the audit, making our EN 1090 audits much smoother.",
+                author: "Sarah Jenkins",
+                role: "Operations Director",
+                company: "Steel Fabrication Group",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Verified Industry Expert"
+            },
+            {
+                quote: "We needed a way to track welder continuity and LEV checks across different bays and shifts. This basic metals and fabrication iso audit software gives us the visibility to ensure no one is working with expired certs.",
+                author: "Mark Thompson",
+                role: "Compliance Manager",
+                company: "Heavy Metals Ltd",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "ISO 9001 Specialist"
+            },
+            {
+                quote: "External audits are far less stressful now that our NDT records and NCR logs are centralised. We can spot high weld repair rates early and act before they become a customer complaint.",
+                author: "Elena Rossi",
+                role: "QA Lead",
+                company: "Precision Engineering",
+                avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Certified Lead Auditor"
+            }
+        ],
+        checklistsTag: "Free fabrication audit checklists",
+        checklistsHeading: "Build better fabrication audits with these templates",
+        checklistsDescription: "Download ISO 9001, 14001 and 45001 checklists for traceability, welding, calibration, chemicals, workshop safety and corrective actions.",
+        checklistsItems: [
+            "Heat Number Traceability and Material ID Checklist (ISO 9001)",
+            "Welding Qualification and WPQR Verification Checklist (ISO 9001)",
+            "Calibration and Inspection Equipment Control Checklist (ISO 9001)",
+            "REACH, CrVI and Chemical Storage Checklist (ISO 14001)",
+            "LEV, PPE and Welding Fume Control Checklist (ISO 45001)",
+            "LOLER, LOTO and Workshop Safety Checklist (ISO 45001)"
+        ],
+        ctaHeading: "Upgrade how you manage fabrication audits",
+        ctaDescription: "Start free or book a demo to improve traceability, reduce audit admin and keep actions moving.",
+        ctaPrimaryButton: "Get started free",
+        ctaSecondaryButton: "Book a demo",
+        caseStudySparkle: "Fabrication case study",
+        caseStudyHeading: "How a steel fabricator improved audit visibility",
+        caseStudyDescription: "Read how a multi-site fabrication business replaced spreadsheets with basic metals and fabrication iso audit software, improved weld traceability, reduced repeat NCRs and made external audits easier to manage.",
+        caseStudyButton: "Read more",
+        caseStudyImage: "/images/metal-fabrication-bg.jpg",
+        faqSparkleText: "Fabrication audit FAQs",
+        faqHeading: "Frequently Asked Questions",
+        faqItems: [
+            {
+                question: "What is basic metals and fabrication iso audit software?",
+                answer: "It is software designed to help fabrication, foundry and metalworking businesses manage ISO 9001, 14001 and 45001 audits in one system. It centralises findings, evidence and corrective actions so compliance is easier to monitor across workshops and sites."
+            },
+            {
+                question: "How does it help with heat number traceability?",
+                answer: "It allows teams to capture evidence linked to material identification, weld records and inspection stages in one place, reducing the risk of broken traceability between operations."
+            },
+            {
+                question: "Can iAudit support EN 1090 and welding-related audits?",
+                answer: "Yes. iAudit helps teams manage audits around weld traceability, welder qualifications, WPQR checks and related quality evidence. Audit Mate can also help generate fabrication-specific checklists quickly."
+            },
+            {
+                question: "How does iAudit help with ISO 14001 in fabrication environments?",
+                answer: "It supports audits for chemical storage, REACH controls, CrVI handling, effluents, hazardous waste and spill readiness, with evidence and actions tracked centrally."
+            },
+            {
+                question: "Can the system track workshop safety controls?",
+                answer: "Yes. iAudit supports audits covering welding fumes, LEV, guarding, LOLER, LOTO, PPE and other ISO 45001 controls across fabrication workshops and yards."
+            },
+            {
+                question: "How does iAudit reduce repeat NCRs?",
+                answer: "It links findings to owners, deadlines and effectiveness checks so corrective actions are tracked properly. This helps stop recurring issues from being reopened every audit cycle."
+            },
+            {
+                question: "Can we try iAudit before committing to a plan?",
+                answer: "Yes. You can start a 14-day free trial with no credit card required. This lets you test templates, capture evidence, track findings and see if the platform fits your fabrication operations."
+            }
+        ]
     },
     {
         id: "15",

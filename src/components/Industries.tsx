@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import "./Industries.css";
@@ -111,6 +111,21 @@ const loopItems = [...industries, ...industries];
 
 export default function Industries() {
     const [isMobile, setIsMobile] = useState(false);
+    const [isPaused, setIsPaused] = useState(false);
+    const scrollRef = useRef<HTMLDivElement>(null);
+
+    const scroll = (direction: "left" | "right") => {
+        setIsPaused(true); // Pause auto-scroll on interaction
+        if (scrollRef.current) {
+            const scrollAmount = isMobile ? 320 : 380;
+            scrollRef.current.scrollBy({
+                left: direction === "left" ? -scrollAmount : scrollAmount,
+                behavior: "smooth",
+            });
+        }
+        // Resume after some time? Or just leave it paused. Let's resume after 5s.
+        setTimeout(() => setIsPaused(false), 5000);
+    };
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -118,6 +133,24 @@ export default function Industries() {
         window.addEventListener("resize", checkMobile);
         return () => window.removeEventListener("resize", checkMobile);
     }, []);
+
+    useEffect(() => {
+        const track = scrollRef.current;
+        if (!track || isPaused) return;
+
+        let animationFrameId: number;
+        const scrollStep = () => {
+            if (track.scrollLeft >= track.scrollWidth / 2) {
+                track.scrollLeft = 0;
+            } else {
+                track.scrollLeft += 0.8; 
+            }
+            animationFrameId = requestAnimationFrame(scrollStep);
+        };
+
+        animationFrameId = requestAnimationFrame(scrollStep);
+        return () => cancelAnimationFrame(animationFrameId);
+    }, [isPaused, isMobile]);
 
     return (
         <section id="industries" style={{
@@ -170,11 +203,76 @@ export default function Industries() {
                     </motion.h2>
                 </div>
 
-                <div className="industries-marquee-outer">
-                    <div className="industries-marquee-track">
-                        {loopItems.map((item, idx) => (
-                            <IndustryCard key={`${item.id}-${idx}`} item={item} isMobile={isMobile} />
-                        ))}
+                <div 
+                    style={{ position: "relative", width: "100%" }}
+                    onMouseEnter={() => setIsPaused(true)}
+                    onMouseLeave={() => setIsPaused(false)}
+                >
+                    {/* Left Navigation Button */}
+                    <motion.button
+                        whileHover={{ scale: 1.1, backgroundColor: "#ffffff" }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => scroll("left")}
+                        style={{
+                            position: "absolute",
+                            left: isMobile ? "10px" : "-20px",
+                            top: "50%",
+                            transform: "translateY(-50%)",
+                            zIndex: 35,
+                            background: "#ffffff",
+                            border: "1px solid #E5E7EB",
+                            width: isMobile ? "44px" : "52px",
+                            height: isMobile ? "44px" : "52px",
+                            borderRadius: "50%",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            cursor: "pointer",
+                            boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
+                            transition: "all 0.3s ease"
+                        }}
+                    >
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </motion.button>
+
+                    {/* Right Navigation Button */}
+                    <motion.button
+                        whileHover={{ scale: 1.1, backgroundColor: "#ffffff" }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => scroll("right")}
+                        style={{
+                            position: "absolute",
+                            right: isMobile ? "10px" : "-20px",
+                            top: "50%",
+                            transform: "translateY(-50%)",
+                            zIndex: 35,
+                            background: "#ffffff",
+                            border: "1px solid #E5E7EB",
+                            width: isMobile ? "44px" : "52px",
+                            height: isMobile ? "44px" : "52px",
+                            borderRadius: "50%",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            cursor: "pointer",
+                            boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
+                            transition: "all 0.3s ease"
+                        }}
+                    >
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </motion.button>
+
+
+                    <div className="industries-marquee-outer" ref={scrollRef}>
+                        <div className="industries-marquee-track">
+                            {loopItems.map((item, idx) => (
+                                <IndustryCard key={`${item.id}-${idx}`} item={item} isMobile={isMobile} />
+                            ))}
+                        </div>
                     </div>
                 </div>
 
