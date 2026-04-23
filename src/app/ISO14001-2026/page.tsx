@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Header from "@/components/Header";
+
 import Footer from "@/components/Footer";
 
 export default function ISO14001() {
@@ -23,7 +23,7 @@ export default function ISO14001() {
 
     return (
         <>
-            <Header />
+
             <section style={{
                 background: `
                     radial-gradient(ellipse 50% 60% at 0% 0%, rgba(0,166,81,0.15) 0%, transparent 100%),
