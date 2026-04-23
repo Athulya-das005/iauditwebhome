@@ -310,7 +310,7 @@ export default function ISO14001() {
                 </div>
             </section>
 
-            <section style={{ backgroundColor: "#0d1117", padding: isMobile ? "4rem 1.25rem" : "5rem 1.25rem", color: "white" }}>
+            <section style={{ backgroundColor: "#004d40", padding: isMobile ? "4rem 1.25rem" : "5rem 1.25rem", color: "white" }}>
                 <div style={{ maxWidth: "900px", margin: "0 auto", textAlign: "center" }}>
                     <h2 style={{
                         fontSize: isMobile ? "1.8rem" : "2.5rem",
