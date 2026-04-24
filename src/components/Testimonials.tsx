@@ -42,11 +42,13 @@ interface TestimonialItem {
 export default function Testimonials({
     backgroundColor = "#fff",
     items,
-    title = "Trusted By ISO Audit Professionals"
+    title = "Trusted By ISO Audit Professionals",
+    sparkleText = "Testimonials"
 }: {
     backgroundColor?: string;
     items?: TestimonialItem[];
     title?: string;
+    sparkleText?: string;
 }) {
     const activeTestimonials = items || defaultTestimonials;
     const [index, setIndex] = useState(0);
@@ -148,7 +150,7 @@ export default function Testimonials({
                         }}
                     >
                         <span style={{ fontSize: '1rem' }}>✦</span>
-                        Testimonials
+                        {sparkleText}
                         <span style={{ fontSize: '1rem' }}>✦</span>
                     </motion.div>
                     <motion.h2

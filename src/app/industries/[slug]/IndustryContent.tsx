@@ -136,7 +136,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                 }
                 @media (max-width: 768px) {
                     .flovity-hero-container {
-                        padding: 7rem 1.5rem 0rem;
+                        padding: 7rem 1.5rem 2rem; /* Added bottom padding, kept top for header offset */
                     }
                     .flovity-hero-left {
                         text-align: center;
@@ -147,8 +147,8 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                         justify-content: center !important;
                     }
                     .flovity-hero-title {
-                        font-size: 2.5rem;
-                        line-height: 1.2;
+                        font-size: 2.25rem; /* Slightly smaller for mobile */
+                        line-height: 1.1;
                     }
                     .flovity-hero-desc {
                         font-size: 1rem;
@@ -157,7 +157,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                     .flovity-hero-right {
                         transform: scale(0.65);
                         transform-origin: top center;
-                        min-height: 220px;
+                        min-height: 250px; /* Increased slightly */
                         margin-top: 1rem;
                         width: 100%;
                         display: flex;
@@ -360,7 +360,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     </div>
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                                         <div style={{ width: '180px', height: '14px', background: '#e2e8f0', borderRadius: '4px' }} />
-                                        <div style={{ fontSize: '1.25rem', fontWeight: 600, color: '#111827', marginBottom: '8px' }}>Grand Hotel Audit</div>
+                                        <div style={{ fontSize: '1.25rem', fontWeight: 600, color: '#111827', marginBottom: '8px' }}>{industry.heroVisuals?.mainTitle || "Grand Hotel Audit"}</div>
                                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', width: '80%' }}>
                                             <div style={{ height: '60px', background: 'white', border: '1px solid #f1f5f9', borderRadius: '10px' }} />
                                             <div style={{ height: '60px', background: 'white', border: '1px solid #f1f5f9', borderRadius: '10px' }} />
@@ -409,11 +409,11 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     </div>
                                 </div>
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                                    {[
+                                    {(industry.heroVisuals?.sites || [
                                         { num: 'H1', title: 'Grand Hotel & Spa', status: 'Audit Live', color: '#058c42', bg: '#dcfce7' },
                                         { num: 'R1', title: 'Urban Table Bistro', status: 'Completed', color: '#64748b', bg: '#f1f5f9' },
                                         { num: 'V1', title: 'Riverside Venue', status: 'In Review', color: '#058c42', bg: '#dcfce7' }
-                                    ].map((site, i) => (
+                                    ]).map((site, i) => (
                                         <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                                                 <div style={{ width: '22px', height: '22px', borderRadius: '50%', border: `1px solid #058c42`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', color: '#058c42', fontWeight: 600 }}>{site.num}</div>
@@ -450,9 +450,9 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                 <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#dcfce7', color: '#058c42', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                                 </div>
-                                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#111827' }}>Room 402 Inspected</div>
+                                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#111827' }}>{industry.heroVisuals?.inspectionTitle || "Room 402 Inspected"}</div>
                                 <div style={{ fontSize: '0.8rem', color: '#64748b', textAlign: 'center', maxWidth: '160px', lineHeight: 1.4 }}>
-                                    Housekeeping checklist complete. 100% compliance met.
+                                    {industry.heroVisuals?.inspectionDesc || "Housekeeping checklist complete. 100% compliance met."}
                                 </div>
                             </motion.div>                            {/* Floating UI Card 3: Departmental Performance (Bottom Right) */}
                             <motion.div
@@ -498,7 +498,9 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     ))}
                                 </div>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '12px', color: '#94a3b8', fontSize: '0.65rem', fontWeight: 500 }}>
-                                    <span>F&B</span><span>HK</span><span>FO</span><span>MT</span><span>HR</span><span>SEC</span><span>IT</span><span>KIT</span>
+                                    {(industry.heroVisuals?.departments || ['F&B', 'HK', 'FO', 'MT', 'HR', 'SEC', 'IT', 'KIT']).map((dept, i) => (
+                                        <span key={i}>{dept}</span>
+                                    ))}
                                 </div>
                             </motion.div>
 
@@ -528,8 +530,8 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                                 </div>
                                 <div style={{ flex: 1 }}>
-                                    <div style={{ fontSize: '0.7rem', color: '#64748b', fontWeight: 600, textTransform: 'uppercase' }}>Kitchen Audit</div>
-                                    <div style={{ fontSize: '0.85rem', color: '#0f172a', fontWeight: 600, marginBottom: '6px' }}>Food Safety Score</div>
+                                    <div style={{ fontSize: '0.7rem', color: '#64748b', fontWeight: 600, textTransform: 'uppercase' }}>{industry.heroVisuals?.progressTitle || "Kitchen Audit"}</div>
+                                    <div style={{ fontSize: '0.85rem', color: '#0f172a', fontWeight: 600, marginBottom: '6px' }}>Compliance Score</div>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                                         <div style={{ flex: 1, height: '6px', background: '#e2e8f0', borderRadius: '3px', position: 'relative', overflow: 'hidden' }}>
                                             <motion.div 
@@ -551,15 +553,19 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
 
             {/* Challenges Section (Flovity Reference Style) */}
             {industry.challengesCards && industry.challengesCards.length > 0 && (
-                <div style={{
-                    width: '100%',
-                    padding: isMobile ? '0rem 1.25rem 3rem' : '0.75rem 2rem 3rem',
-                    background: '#ffffff',
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center'
-                }}>
+                <div 
+                    id="challenges-section"
+                    style={{
+                        width: '100%',
+                        padding: isMobile ? '3rem 1.25rem' : '0.75rem 2rem 3rem',
+                        background: '#ffffff',
+                        fontFamily: '"Pp Neue Montreal", sans-serif',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        scrollMarginTop: '100px'
+                    }}
+                >
                     <motion.div 
                         initial="hidden"
                         whileInView="visible"
@@ -582,7 +588,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                         <div style={{
                             width: '100%',
                             textAlign: 'center',
-                            marginBottom: '4rem'
+                            marginBottom: isMobile ? '2.5rem' : '4.0rem'
                         }}>
                         {industry.challengesSparkleText && (
                             <motion.div 
@@ -644,7 +650,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                         width: '100%',
                         display: 'grid',
                         gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                        gap: '2rem'
+                        gap: isMobile ? '1.5rem' : '2rem' /* Reduced for mobile */
                     }}>
                         {industry.challengesCards?.map((card: any, idx: number) => (
                             <motion.div
@@ -738,16 +744,19 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
 
             {/* "How iAudit supports ISO audits" Section (Flovity "home-three" AI Agents clone) */}
             {industry.supportHeading && industry.supportItems && (
-                <div style={{
-                    width: '100%',
-                    padding: '3rem 2rem 1rem',
-                    background: '#ffffff',
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    overflow: 'hidden'
-                }}>
+                <div 
+                    id="support-section"
+                    style={{
+                        width: '100%',
+                        padding: isMobile ? '3rem 1.25rem' : '4rem 2rem 1rem',
+                        background: '#ffffff',
+                        fontFamily: '"Pp Neue Montreal", sans-serif',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        overflow: 'hidden',
+                        scrollMarginTop: '100px'
+                    }}>
                     <motion.div 
                         initial="hidden"
                         whileInView="visible"
@@ -773,8 +782,8 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             justifyContent: 'space-between',
                             alignItems: 'flex-start',
                             flexWrap: 'wrap',
-                            gap: '2rem',
-                            marginBottom: '4rem'
+                            gap: isMobile ? '1.25rem' : '2rem', /* Reduced for mobile */
+                            marginBottom: isMobile ? '2.5rem' : '4.0rem' /* Reduced for mobile */
                         }}>
                             {/* Left Side: Tag & Heading */}
                             <div style={{ flex: '1 1 min(100%, 500px)', maxWidth: '600px' }}>
@@ -1243,16 +1252,19 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
 
             {/* Audit Mate Section (Flovity "Automation tools" clone) */}
             {industry.auditMateHeading && (
-                <div style={{
-                    width: '100%',
-                    padding: '1rem 2rem 2rem',
-                    background: '#ffffff',
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    overflow: 'hidden'
-                }}>
+                <div 
+                    id="auditmate-section"
+                    style={{
+                        width: '100%',
+                        padding: isMobile ? '3rem 1.25rem' : '4rem 2rem 2rem',
+                        background: '#ffffff',
+                        fontFamily: '"Pp Neue Montreal", sans-serif',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        overflow: 'hidden',
+                        scrollMarginTop: '100px'
+                    }}>
                     <motion.div 
                         initial="hidden"
                         whileInView="visible"
@@ -1519,8 +1531,8 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18"></path><path d="M7 12h10"></path><path d="M10 18h4"></path></svg>
                                             </div>
                                             <div>
-                                                <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#111827' }}>Food Safety Audit</div>
-                                                <div style={{ fontSize: '0.75rem', color: '#004d40', fontWeight: 500 }}>Clause 8.5 Mapped</div>
+                                                <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#111827' }}>{industry.auditMateVisuals?.card1Title || "Food Safety Audit"}</div>
+                                                <div style={{ fontSize: '0.75rem', color: '#004d40', fontWeight: 500 }}>{industry.auditMateVisuals?.card1Subtitle || "Clause 8.5 Mapped"}</div>
                                             </div>
                                         </div>
                                         <div style={{ background: '#e0f2f1', color: '#004d40', fontSize: '0.7rem', fontWeight: 600, padding: '4px 10px', borderRadius: '12px' }}>Ready</div>
@@ -1535,8 +1547,8 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                                                 </div>
                                                 <div>
-                                                    <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#111827' }}>Room 402 Inspection</div>
-                                                    <div style={{ fontSize: '0.75rem', color: '#64748b' }}>ISO 9001 Section 7</div>
+                                                    <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#111827' }}>{industry.auditMateVisuals?.item1Title || "Room 402 Inspection"}</div>
+                                                    <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{industry.auditMateVisuals?.item1Subtitle || "ISO 9001 Section 7"}</div>
                                                 </div>
                                             </div>
                                             <div style={{ fontWeight: 600, fontSize: '0.95rem', color: '#004d40' }}>100%</div>
@@ -1549,8 +1561,8 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                                                 </div>
                                                 <div>
-                                                    <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#111827' }}>Guest Complaints Log</div>
-                                                    <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Clause 10.2 NCR</div>
+                                                    <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#111827' }}>{industry.auditMateVisuals?.item2Title || "Guest Complaints Log"}</div>
+                                                    <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{industry.auditMateVisuals?.item2Subtitle || "Clause 10.2 NCR"}</div>
                                                 </div>
                                             </div>
                                             <div style={{ fontWeight: 600, fontSize: '0.95rem', color: '#004d40' }}>Ready</div>
@@ -1588,16 +1600,19 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
 
             {/* Standards We Support Section (Flovity "AI-driven tools" clone) */}
             {industry.standardsHeading && industry.standardsItems && (
-                <div style={{
-                    width: '100%',
-                    padding: isMobile ? '3rem 1.25rem' : '4rem 2rem',
-                    background: '#ffffff',
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    overflow: 'hidden'
-                }}>
+                <div 
+                    id="standards-section"
+                    style={{
+                        width: '100%',
+                        padding: isMobile ? '3rem 1.25rem' : '4rem 2rem',
+                        background: '#ffffff',
+                        fontFamily: '"Pp Neue Montreal", sans-serif',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        overflow: 'hidden',
+                        scrollMarginTop: '100px'
+                    }}>
                     <motion.div 
                         initial="hidden"
                         whileInView="visible"
@@ -1614,7 +1629,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             width: '100%',
                             display: 'grid',
                             gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(450px, 1fr))',
-                            gap: '4rem',
+                            gap: isMobile ? '3rem' : '4rem',
                             alignItems: 'center'
                         }}
                     >
@@ -1925,15 +1940,18 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
 
             {/* Ready-made Checklists Section (GoAudits style) */}
             {industry.checklistsHeading && industry.checklistsItems && (
-                <div style={{
-                    width: '100%',
-                    padding: '4rem 2rem 6rem',
-                    background: '#f8fafc', // Light gray background
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center'
-                }}>
+                <div 
+                    id="checklists-section"
+                    style={{
+                        width: '100%',
+                        padding: isMobile ? '4rem 1.25rem' : '4rem 2rem 6rem',
+                        background: '#f8fafc', // Light gray background
+                        fontFamily: '"Pp Neue Montreal", sans-serif',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        scrollMarginTop: '100px'
+                    }}>
                     <div style={{
                         maxWidth: '1200px',
                         width: '100%',
@@ -2081,18 +2099,21 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
 
             {/* CTA Section (Flovity-style with floating angled cards) */}
             {industry.ctaHeading && (
-                <div style={{
-                    width: '100%',
-                    padding: isMobile ? '4rem 1.5rem' : '5rem 2rem', // Reduced padding to decrease overall height
-                    background: '#003E3A', // Match "Ready to upgrade" card color
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}>
+                <div 
+                    id="cta-section"
+                    style={{
+                        width: '100%',
+                        padding: isMobile ? '5rem 1.5rem' : '6rem 2rem', 
+                        background: '#003E3A', // Match "Ready to upgrade" card color
+                        fontFamily: '"Pp Neue Montreal", sans-serif',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        scrollMarginTop: '100px'
+                    }}>
                     {/* Background faint dotted world map pattern (simulated with radial dots) */}
                     <div style={{
                         position: 'absolute',
@@ -2359,13 +2380,16 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
 
             {/* Case Study Section - SafetyCulture Style */}
             {industry.caseStudyHeading && (
-                <div style={{
-                    width: '100%',
-                    padding: isMobile ? '4.5rem 1.25rem 3.5rem' : '7.5rem 2rem 5.5rem',
-                    background: '#ffffff',
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
-                    overflow: 'hidden'
-                }}>
+                <div 
+                    id="casestudy-section"
+                    style={{
+                        width: '100%',
+                        padding: isMobile ? '4.5rem 1.25rem 3.5rem' : '7.5rem 2rem 5.5rem',
+                        background: '#ffffff',
+                        fontFamily: '"Pp Neue Montreal", sans-serif',
+                        overflow: 'hidden',
+                        scrollMarginTop: '100px'
+                    }}>
                     <div style={{
                         maxWidth: '1200px',
                         margin: '0 auto',
@@ -2545,17 +2569,21 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                     backgroundColor="#F0FDF4" 
                     items={industry.testimonials} 
                     title={industry.testimonialsHeading}
+                    sparkleText={industry.testimonialsSparkleText}
                 />
             )}
 
             {/* FAQ Section - Flovity Style Accordion */}
             {industry.faqItems && industry.faqItems.length > 0 && (
-                <div style={{
-                    width: '100%',
-                    padding: isMobile ? '3rem 1.25rem' : '5rem 2rem',
-                    background: '#ffffff',
-                    fontFamily: '"Pp Neue Montreal", sans-serif'
-                }}>
+                <div 
+                    id="faq-section"
+                    style={{
+                        width: '100%',
+                        padding: isMobile ? '4rem 1.25rem' : '6rem 2rem',
+                        background: '#ffffff',
+                        fontFamily: '"Pp Neue Montreal", sans-serif',
+                        scrollMarginTop: '100px'
+                    }}>
                     <motion.div
                         initial="hidden"
                         whileInView="visible"

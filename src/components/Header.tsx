@@ -48,7 +48,7 @@ export default function Header() {
                         { label: "Health & Safety", href: "/industries/health-safety" },
                         { label: "Construction", href: "/industries/construction" },
                         { label: "Retail", href: "/industries/retail-iso-audit-software" },
-                        { label: "Hospitality", href: "/industries/hospitality" },
+                        { label: "Hospitality", href: "/industries/hospitality-iso-audit-software" },
                     ]
                 },
                 {

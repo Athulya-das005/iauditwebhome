@@ -41,6 +41,7 @@ export interface Industry {
     caseStudyButton?: string;
     caseStudyImage?: string;
     faqSparkleText?: string;
+    testimonialsSparkleText?: string;
     faqHeading?: string;
     faqItems?: {
         question: string;
@@ -55,6 +56,24 @@ export interface Industry {
         avatar: string;
         batch: string;
     }[];
+    heroVisuals?: {
+        mainTitle?: string;
+        sites?: { num: string; title: string; status: string; color: string; bg: string }[];
+        inspectionTitle?: string;
+        inspectionDesc?: string;
+        departments?: string[];
+        progressTitle?: string;
+    };
+    auditMateVisuals?: {
+        card1Title?: string;
+        card1Subtitle?: string;
+        item1Title?: string;
+        item1Subtitle?: string;
+        item2Title?: string;
+        item2Subtitle?: string;
+        item3Title?: string;
+        item3Subtitle?: string;
+    };
 }
 
 export const industries: Industry[] = [
@@ -845,7 +864,7 @@ export const industries: Industry[] = [
     },
     {
         id: "08",
-        slug: "hospitality",
+        slug: "hospitality-iso-audit-software",
         title: "Hospitality",
         description: "Manage ISO 9001, 14001 and 45001 audits across sites with standardised checklists, real time visibility and central control.",
         color: "#f97316",
@@ -1172,11 +1191,164 @@ export const industries: Industry[] = [
     },
     {
         id: "10",
-        slug: "health-safety",
+        slug: "health-and-safety-iso-audit-software",
         title: "Health & Safety",
-        description: "Purpose-built for ISO 45001. Track hazards, verify controls, and close corrective actions.",
+        description: "Replace paper checklists and scattered spreadsheets with a dedicated ISO 45001 workspace. Capture live hazards, track corrective actions, and protect your workforce in real time.",
         color: "#ef4444",
         bgImage: "/images/health-safety-bg.jpg",
+        heroSparkleText: "Health & Safety iso audit software by iAudit",
+        heroHeading: "Health & Safety ISO Audit Software Built for Better Site Control",
+        challengesSparkleText: "Health & Safety compliance challenges",
+        challengesHeading: "What Health & Safety Teams Miss",
+        challengesCards: [
+            {
+                title: "Delayed hazard reporting",
+                description: "Paper checklists and retyped notes leave live site hazards exposed for days before action happens."
+            },
+            {
+                title: "Scattered safety records",
+                description: "Photos on phones and actions in spreadsheets make it impossible to prove ISO 45001 compliance."
+            },
+            {
+                title: "Unverified corrective actions",
+                description: "Closing a safety task in an email does not prove the physical hazard was removed."
+            }
+        ],
+        supportSparkleText: "iAudit for Health & Safety",
+        supportHeading: "Take Control of Your Health & Safety Audit Programme",
+        supportItems: [
+            {
+                title: "Structured ISO 45001 Audit Planning",
+                description: "",
+                bullets: [
+                    "Plan ISO 45001 audits consistently across sites, teams and contractors with clear scope and ownership.",
+                    "Use standard templates to keep health and safety audits aligned across every location."
+                ]
+            },
+            {
+                title: "Real-Time Site Evidence Capture",
+                description: "",
+                bullets: [
+                    "Record findings, photos and notes directly during site walks instead of using paper forms.",
+                    "Keep evidence linked to each audit so follow-up stays clear, complete and traceable."
+                ]
+            },
+            {
+                title: "Stronger Corrective Action Follow-Up",
+                description: "",
+                bullets: [
+                    "Assign owners, set deadlines and verify effectiveness before safety issues are marked as closed.",
+                    "Reduce repeated hazards by tracking actions properly across audit cycles and operational teams."
+                ]
+            },
+            {
+                title: "Better Contractor and Site Oversight",
+                description: "",
+                bullets: [
+                    "Audit contractor performance more consistently across projects, locations and high-risk operational activities.",
+                    "Make repeated contractor-related findings visible instead of treating each issue as isolated."
+                ]
+            },
+            {
+                title: "Faster Reporting and Clearer Visibility",
+                description: "",
+                bullets: [
+                    "Generate structured audit reports quickly without rebuilding findings manually after each safety audit.",
+                    "Give managers clearer visibility into open issues, site performance and overdue corrective actions."
+                ]
+            }
+        ],
+        auditMateSparkle: "Audit Mate for Health & Safety",
+        auditMateHeading: "Audit Mate for Faster Safety Audit Preparation",
+        auditMateDescription: "Create sharper safety checklists, targeted questions and evidence prompts before every site audit.",
+        standardsSparkleText: "Standards and Compliance",
+        standardsHeading: "Integrated QHSE Audit Support",
+        standardsItems: [
+            {
+                title: "Core ISO 45001 Audit Management",
+                description: "Plan and manage health and safety audits with better structure, evidence capture and action tracking."
+            },
+            {
+                title: "Quality & Environmental Controls",
+                description: "Support connected ISO 14001 and ISO 9001 audits where safety, environment and operations overlap."
+            }
+        ],
+        testimonialsHeading: "What Changes After Switching to iAudit",
+        testimonials: [
+            {
+                quote: "iAudit gave us a far clearer way to manage ISO 45001 audits across multiple sites. We now capture evidence faster, follow up actions properly, and spend much less time pulling reports together manually.",
+                author: "Sarah Jenkins",
+                role: "Director of HSE",
+                company: "Global Construction Group",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Verified HSE Pro"
+            },
+            {
+                quote: "Our biggest issue was repeated safety findings that looked closed on paper. iAudit helped us tighten ownership, track effectiveness properly, and give managers better visibility into what was actually changing on site.",
+                author: "Mark Thompson",
+                role: "Compliance Manager",
+                company: "Infrastructure Ltd",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "ISO 45001 Expert"
+            },
+            {
+                quote: "Before iAudit, contractor audit records were scattered across spreadsheets and email chains. Now our teams work from one platform, which has made site oversight more consistent and reporting much easier.",
+                author: "Elena Rossi",
+                role: "Quality & Safety Lead",
+                company: "Urban Estates",
+                avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Certified Lead Auditor"
+            }
+        ],
+        checklistsTag: "Free Health & Safety audit checklists",
+        checklistsHeading: "A Free ISO Audit Template for Health & Safety",
+        checklistsDescription: "Stop starting from scratch. Use our free, clause-aligned template to structure your next ISO 45001 safety walk with confidence.",
+        checklistsItems: [
+            "ISO 45001 Health & Safety Internal Audit Checklist",
+            "ISO 14001 Environmental Controls Internal Audit Checklist",
+            "ISO 9001 Operational Quality Internal Audit Checklist"
+        ],
+        ctaHeading: "Ready to take control of your safety audits?",
+        ctaDescription: "Replace paper, spreadsheets and slow follow-up with one platform built to plan, track and improve ISO safety audits across every site.",
+        ctaPrimaryButton: "Get started free",
+        ctaSecondaryButton: "Book a demo",
+        caseStudySparkle: "Health & Safety case study",
+        caseStudyHeading: "How Real Teams Cut Safety Incidents",
+        caseStudyDescription: "Discover how a multi-site construction firm used iAudit Global to replace delayed paper reports, centralise hazard tracking, and ensure corrective actions were actually completed.",
+        caseStudyButton: "Read more",
+        caseStudyImage: "/images/hospitality-case-study.png",
+        faqSparkleText: "Common questions",
+        faqHeading: "Frequently Asked Questions",
+        faqItems: [
+            {
+                question: "How does the software prevent tick-box safety inspections?",
+                answer: "Generic checklist apps encourage users to simply click \"yes\" down a list without looking at real risks. iAudit is built around the ISO 45001 standard. It prompts your team to capture actual evidence, upload photos of live hazards, and link findings directly to root causes, ensuring your safety walks actually improve site control."
+            },
+            {
+                question: "Can we use the platform to document worker participation?",
+                answer: "Yes. ISO 45001 Clause 5.4 requires clear evidence that your workforce is actively involved in safety management. You can use iAudit to log shop floor interviews, record safety committee feedback, and prove to external auditors that safety is a shared culture rather than just a management policy."
+            },
+            {
+                question: "Do our safety officers need a laptop to log hazards on site?",
+                answer: "Not at all. iAudit Global is fully mobile responsive. Your safety team can walk a construction site or factory floor with a phone or tablet, snap photos of risks, and assign corrective actions immediately without waiting to return to the office."
+            },
+            {
+                question: "How does the system handle open safety nonconformities?",
+                answer: "Finding a hazard is only half the job. Our system forces a strict closed-loop process. When an issue is raised, it must be assigned to an owner with a clear deadline. Crucially, the task cannot be fully closed until evidence is uploaded to prove the physical hazard has been removed."
+            },
+            {
+                question: "We run integrated QHSE audits. Does the software handle ISO 14001 and 9001 too?",
+                answer: "Yes. Most health and safety teams also manage quality and environmental compliance. iAudit allows you to combine ISO 45001, ISO 14001, and ISO 9001 requirements into a single audit programme. This saves time and removes the need to juggle three disconnected systems."
+            },
+            {
+                question: "How does the AI assistant help with hazard identification?",
+                answer: "Audit Mate acts as a technical co-pilot for your safety team. If you are auditing a new manufacturing process or a high-risk area, you can ask it to draft a custom hazard checklist or suggest specific safety culture interview questions before you step onto the site."
+            },
+            {
+                question: "Will this help us during our external ISO 45001 certification audit?",
+                answer: "Absolutely. External auditors want to see a continuous audit trail from the moment a hazard is found to the moment it is verified as fixed. iAudit provides that complete history in one secure workspace, removing the panic of searching through old emails and spreadsheets before an external review."
+            }
+        ]
     },
     {
         id: "11",
@@ -1510,11 +1682,164 @@ export const industries: Industry[] = [
     },
     {
         id: "13",
-        slug: "aerospace",
+        slug: "aerospace-iso-audit-software",
         title: "Aerospace",
-        description: "Ensure rigorous quality control, safety compliance, and AS9100 adherence across all manufacturing phases.",
+        description: "Plan, run and track ISO audits across aerospace operations with one structured platform for evidence, findings, corrective actions and reporting.",
         color: "#0369a1",
         bgImage: "/images/aerospace-bg.jpg",
+        heroSparkleText: "Aerospace iso audit software by iAudit",
+        heroHeading: "Aerospace ISO Audit Software Built for Smarter Internal Audits",
+        challengesSparkleText: "Aerospace compliance challenges",
+        challengesHeading: "Common Aerospace Audit Gaps",
+        challengesCards: [
+            {
+                title: "Scattered audit records",
+                description: "Spreadsheets and emails hide systemic risks, making it impossible to see trends across multiple sites."
+            },
+            {
+                title: "Weak supply chain visibility",
+                description: "Relying on paper questionnaires leaves you blind to how subcontractors actually perform on live projects."
+            },
+            {
+                title: "Unverified corrective actions",
+                description: "Closing a task on paper never proves the underlying engineering or process fault is fixed."
+            }
+        ],
+        supportSparkleText: "iAudit for Aerospace",
+        supportHeading: "A Single Platform for Aerospace ISO Compliance",
+        supportItems: [
+            {
+                title: "Quality and supply chain control",
+                description: "",
+                bullets: [
+                    "Track subcontractor performance across live projects instead of relying on static approval lists.",
+                    "Identify systemic quality risks and prevent zero defect failures before parts leave the factory."
+                ]
+            },
+            {
+                title: "Centralised safety management",
+                description: "",
+                bullets: [
+                    "Conduct live safety walks on the shop floor to verify staff follow critical procedures.",
+                    "Ensure protective equipment and machinery guarding rules are actually enforced in active hangars."
+                ]
+            },
+            {
+                title: "Rigorous environmental oversight",
+                description: "",
+                bullets: [
+                    "Monitor chemical handling, waste segregation, and spill controls to maintain strict environmental compliance.",
+                    "Gather clear evidence of lifecycle management across your manufacturing and supplier networks."
+                ]
+            },
+            {
+                title: "Closed loop corrective actions",
+                description: "",
+                bullets: [
+                    "Stop closing tasks blindly. Assign owners, demand evidence, and verify effectiveness before sign off.",
+                    "Turn isolated findings into real process improvements that prevent the exact same errors returning."
+                ]
+            },
+            {
+                title: "Absolute data sovereignty",
+                description: "",
+                bullets: [
+                    "We operate a strict zero access policy. Your highly sensitive aerospace data stays yours.",
+                    "Host your audit history securely without worrying about vendor access or compliance compromises."
+                ]
+            }
+        ],
+        auditMateSparkle: "Audit Mate for Aerospace",
+        auditMateHeading: "An Intelligent Assistant for Aerospace Auditors",
+        auditMateDescription: "Draft technical checklists, clarify ISO clauses, and build targeted interview questions instantly. Your data stays entirely secure.",
+        standardsSparkleText: "Standards and Compliance",
+        standardsHeading: "Purpose-Built for Aerospace ISO Audits",
+        standardsItems: [
+            {
+                title: "Quality Audit Support for Aerospace",
+                description: "Run rigorous quality and supply chain audits that align perfectly with aerospace zero defect requirements."
+            },
+            {
+                title: "Environmental and Safety Audit Support",
+                description: "Verify environmental controls and shop floor safety practices across hangars, factories, and live projects."
+            }
+        ],
+        testimonialsHeading: "What Teams Say About iAudit",
+        testimonials: [
+            {
+                quote: "Before iAudit, managing our AS9100 internal audits across three manufacturing sites was a spreadsheet nightmare. Now, our reporting time is cut in half, and we actually have visibility over our corrective actions.",
+                author: "Sarah Jenkins",
+                role: "Quality Manager",
+                company: "Aerospace Manufacturing",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Verified Aerospace Expert"
+            },
+            {
+                quote: "Tracking subcontractor performance used to mean chasing paper questionnaires. With iAudit, we finally have live data on how our Tier 2 suppliers are actually performing against our quality requirements on the shop floor.",
+                author: "Mark Thompson",
+                role: "Supplier Quality Lead",
+                company: "Aviation Engineering",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "AS9100 Specialist"
+            },
+            {
+                quote: "Security is everything in defence aviation. iAudit's zero access policy gave us the confidence to move our ISO compliance to the cloud. Finding a nonconformity is easy, iAudit ensures it actually gets fixed.",
+                author: "Elena Rossi",
+                role: "Compliance Director",
+                company: "Defence Aerospace",
+                avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Certified Lead Auditor"
+            }
+        ],
+        checklistsTag: "Free aerospace audit checklists",
+        checklistsHeading: "Download Your Free Aerospace Audit Checklist",
+        checklistsDescription: "Get a practical template designed for aerospace operations. Cover critical risks, supply chain controls, and operational safety with confidence.",
+        checklistsItems: [
+            "Aerospace ISO 9001 Internal Audit Checklist",
+            "Aerospace ISO 14001 Internal Audit Checklist",
+            "Aerospace ISO 45001 Internal Audit Checklist"
+        ],
+        ctaHeading: "Ready to run smarter aerospace audits?",
+        ctaDescription: "Stop managing complex ISO compliance in spreadsheets. Move your ISO audit programmes into a secure, purpose-built workspace today.",
+        ctaPrimaryButton: "Get started free",
+        ctaSecondaryButton: "Book a demo",
+        caseStudySparkle: "Aerospace case study",
+        caseStudyHeading: "How Aerospace Teams Control Supply Chain Risk",
+        caseStudyDescription: "See how a Tier 1 supplier replaced scattered spreadsheets with iAudit Global, cutting nonconformities and gaining real-time visibility across their external providers.",
+        caseStudyButton: "Read more",
+        caseStudyImage: "/images/aerospace-bg.jpg",
+        faqSparkleText: "Common questions",
+        faqHeading: "Frequently Asked Questions",
+        faqItems: [
+            {
+                question: "Does iAudit Global support AS9100 internal audits?",
+                answer: "Yes. Because AS9100 is built directly on the ISO 9001 framework, our platform handles aerospace quality audits seamlessly. You can build custom AS9100 checklists, track aerospace specific requirements, and manage your entire zero defect quality programme in one place."
+            },
+            {
+                question: "How secure is our aerospace audit data on the platform?",
+                answer: "Data security is a massive priority for aviation and defence companies. We operate a strict zero vendor access policy. We host the platform, but our team cannot view, mine, or access your sensitive audit findings, intellectual property, or corrective actions. Your data belongs entirely to you."
+            },
+            {
+                question: "Can we use the software to manage aerospace supplier audits?",
+                answer: "Yes. Managing complex, tiered supply chains is critical in this sector. You can use iAudit to run external provider audits, track subcontractor performance on live projects, and ensure your supply chain meets strict quality requirements under Clause 8.4."
+            },
+            {
+                question: "How does Audit Mate help with complex aviation audits?",
+                answer: "Audit Mate acts as an intelligent co-pilot for your audit team. It helps you instantly draft technical checklists, generate specific interview questions for shop floor engineers, and clarify complex ISO clauses without having to search through heavy PDF standards."
+            },
+            {
+                question: "How does the system handle corrective actions (CAPA)?",
+                answer: "We built iAudit around the Plan Do Check Act cycle. When you raise a nonconformity during a manufacturing or hangar audit, the system forces a closed loop process. You assign an owner, demand evidence of the fix, and verify effectiveness before the issue is ever marked as closed."
+            },
+            {
+                question: "Can our quality inspectors use iAudit on the shop floor?",
+                answer: "Absolutely. iAudit is cloud native and fully mobile responsive. Your engineers and quality managers can capture evidence, upload photos, and log findings directly from a tablet or mobile device while walking the manufacturing floor or inspecting a hangar."
+            },
+            {
+                question: "Does the platform also cover environmental and safety standards?",
+                answer: "Yes. Alongside quality, iAudit Global is purpose built for ISO 14001 environmental and ISO 45001 health and safety management systems. This allows aerospace companies to manage their entire QHSE audit programme from a single secure workspace."
+            }
+        ]
     },
     {
         id: "14",
@@ -1691,26 +2016,530 @@ export const industries: Industry[] = [
     },
     {
         id: "16",
-        slug: "machinery",
+        slug: "machinery-and-equipment-iso-audit-software",
         title: "Machinery & Equipment",
-        description: "Ensure ISO compliance, safety, and rigorous quality tracking across heavy machinery manufacturing.",
+        description: "Plan, run and track ISO audits across machinery and equipment operations with better control.",
         color: "#334155",
         bgImage: "/images/machinery-bg.jpg",
+        heroSparkleText: "Machinery & Equipment audit software by iAudit",
+        heroHeading: "Machinery and Equipment ISO Audit Software for Stronger Internal Audits",
+        challengesSparkleText: "Machinery and Equipment audit challenges",
+        challengesHeading: "Where Audit Processes Break Down in Machinery and Equipment",
+        challengesCards: [
+            {
+                title: "Evidence Lost Across Systems",
+                description: "Inspection logs, maintenance records, and calibration certificates sit in silos, slowing audits and decisions."
+            },
+            {
+                title: "Safety Checks Become Tick Box Exercises",
+                description: "Machine guarding, isolation, and lifting inspections are inconsistent, creating repeat findings and real risk."
+            },
+            {
+                title: "Corrective Actions Drift Without Ownership",
+                description: "Actions get buried in emails and spreadsheets, missing deadlines and failing effectiveness verification checks."
+            }
+        ],
+        supportSparkleText: "iAudit for Machinery and Equipment",
+        supportHeading: "How iAudit Supports Machinery and Equipment ISO Compliance",
+        supportItems: [
+            {
+                title: "Plan Audits with Better Structure",
+                description: "",
+                bullets: [
+                    "Build audit programmes around ISO 9001, 14001 and 45001 across sites, processes and teams.",
+                    "Schedule audits by risk, department or location without relying on disconnected spreadsheets or email."
+                ]
+            },
+            {
+                title: "Standardise Audit Execution",
+                description: "",
+                bullets: [
+                    "Use consistent checklists to review production, maintenance, safety and environmental controls across operations.",
+                    "Help auditors capture evidence clearly and assess requirements with greater consistency and confidence."
+                ]
+            },
+            {
+                title: "Keep Findings and Actions Moving",
+                description: "",
+                bullets: [
+                    "Record nonconformities, assign owners and track deadlines in one system from issue to closure.",
+                    "Reduce missed follow-up by keeping action status visible across teams, sites and management reviews."
+                ]
+            },
+            {
+                title: "Improve Evidence and Traceability",
+                description: "",
+                bullets: [
+                    "Store audit notes, photos and supporting records together for easier review and stronger traceability.",
+                    "Keep evidence linked to findings, actions and audit history for clearer accountability over time."
+                ]
+            },
+            {
+                title: "Strengthen Oversight Across Operations",
+                description: "",
+                bullets: [
+                    "Give managers visibility into audit progress, recurring issues and overdue actions across machinery operations.",
+                    "Support better decisions with reporting across ISO 9001, 14001 and 45001 audit activity."
+                ]
+            }
+        ],
+        auditMateSparkle: "Audit Mate for machinery and equipment",
+        auditMateHeading: "Get More Done With Audit Mate AI",
+        auditMateDescription: "Draft better checklists, summarise evidence, and write clearer findings for machinery and equipment audits.",
+        standardsSparkleText: "Standards and Compliance",
+        standardsHeading: "Standards We Support for Machinery and Equipment",
+        standardsItems: [
+            {
+                title: "Product Quality and Process Control",
+                description: "Manage audits around process control, inspection, traceability, nonconformities and continual improvement across operations."
+            },
+            {
+                title: "Environmental and Workplace Risk Control",
+                description: "Support audits covering workplace risks, environmental impacts, legal duties and operational controls across sites."
+            }
+        ],
+        testimonialsHeading: "What Machinery and Equipment Teams Say",
+        testimonials: [
+            {
+                quote: "Before iAudit, our ISO 9001 audits were spread across spreadsheets and shared drives. Now evidence, findings, and actions sit in one place. Reporting is quicker, and we do not lose time chasing records.",
+                author: "Sarah Jenkins",
+                role: "QA Manager",
+                company: "Machinery Manufacturer",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Verified Industry Expert"
+            },
+            {
+                quote: "We audit guarding, isolation, and lifting equipment every month. iAudit makes it easy to record what we saw on the shop floor and assign actions immediately. Follow ups are clear, and closure is properly evidenced.",
+                author: "Mark Thompson",
+                role: "HSE Lead",
+                company: "Equipment Assembly Site",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "ISO 45001 Expert"
+            },
+            {
+                quote: "Running audits across multiple workshops used to mean different templates and inconsistent results. With iAudit, our programme is standardised and management can see progress in real time. It has improved accountability across teams.",
+                author: "Elena Rossi",
+                role: "Operations Manager",
+                company: "Industrial Equipment Group",
+                avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Certified Lead Auditor"
+            }
+        ],
+        checklistsTag: "Free Machinery and Equipment audit checklists",
+        checklistsHeading: "Free ISO Audit Checklists for Machinery and Equipment",
+        checklistsDescription: "Download practical checklists to review quality, environmental, and health and safety audit points across machinery and equipment operations.",
+        checklistsItems: [
+            "ISO 9001 Internal Audit Checklist for Machinery and Equipment",
+            "ISO 14001 Internal Audit Checklist for Machinery and Equipment",
+            "ISO 45001 Internal Audit Checklist for Machinery and Equipment"
+        ],
+        ctaHeading: "Start Auditing Smarter in Machinery and Equipment",
+        ctaDescription: "Move faster with one platform for planning, tracking and closing ISO audits across machinery and equipment operations.",
+        ctaPrimaryButton: "Get started free",
+        ctaSecondaryButton: "Book a demo",
+        caseStudySparkle: "Machinery and Equipment case study",
+        caseStudyHeading: "See How Teams Improve Audit Performance with iAudit",
+        caseStudyDescription: "Explore how organisations use iAudit to streamline audit programmes, improve follow-up, increase visibility, and manage ISO audits more consistently across complex machinery and equipment operations.",
+        caseStudyButton: "Read more",
+        caseStudyImage: "/images/machinery-bg.jpg",
+        faqSparkleText: "Common questions",
+        faqHeading: "Frequently Asked Questions",
+        faqItems: [
+            {
+                question: "What is machinery and equipment ISO audit software?",
+                answer: "Machinery and equipment ISO audit software helps businesses plan, conduct and track internal audits for ISO 9001, ISO 14001 and ISO 45001. It keeps audit schedules, findings, evidence and corrective actions organised in one platform."
+            },
+            {
+                question: "How does iAudit help machinery and equipment companies manage ISO audits?",
+                answer: "iAudit helps teams plan audit programmes, run internal audits, capture findings, assign corrective actions and monitor progress across sites. It supports machinery and equipment businesses working to improve audit consistency and control."
+            },
+            {
+                question: "Which ISO standards does iAudit support for machinery and equipment?",
+                answer: "iAudit primarily supports internal audits for ISO 9001, ISO 14001 and ISO 45001. This helps machinery and equipment organisations manage quality, environmental, and health and safety audit activity more effectively."
+            },
+            {
+                question: "How does Audit Mate help machinery and equipment audit teams?",
+                answer: "Audit Mate helps teams work faster by supporting audit preparation, clearer documentation and more consistent reporting. It can help auditors organise information, improve wording and keep audit activity aligned across different teams and sites."
+            },
+            {
+                question: "Can iAudit support multi-site machinery and equipment audit programmes?",
+                answer: "Yes. iAudit supports audit planning, execution and follow-up across multiple sites, departments and teams. This is useful for machinery and equipment businesses that need central visibility and consistent audit processes across operations."
+            },
+            {
+                question: "How does iAudit improve corrective action tracking in machinery and equipment operations?",
+                answer: "iAudit keeps findings, owners, deadlines and status updates in one place. This helps teams follow corrective actions through to closure, reduce missed follow-up and gain better visibility into recurring issues."
+            },
+            {
+                question: "Is there a free trial for machinery and equipment teams using iAudit?",
+                answer: "Yes. The 14-day free trial includes Gap Analysis, Self Assessment, Findings Dashboard, Data Analytics Summary, and Report Download features."
+            }
+        ],
+        heroVisuals: {
+            mainTitle: "Machinery Production Audit",
+            sites: [
+                { num: "P1", title: "Main Assembly Line", status: "Audit Live", color: "#058c42", bg: "#dcfce7" },
+                { num: "M1", title: "Maintenance Workshop", status: "Completed", color: "#64748b", bg: "#f1f5f9" },
+                { num: "Q1", title: "QC Testing Bay", status: "In Review", color: "#058c42", bg: "#dcfce7" }
+            ],
+            inspectionTitle: "Machine #802 Verified",
+            inspectionDesc: "Guarding and isolation checks 100% compliant. Next service scheduled.",
+            departments: ["PRD", "MNT", "QC", "HSE", "LOG", "ENV", "SFT", "ENG"],
+            progressTitle: "Production Quality"
+        },
+        auditMateVisuals: {
+            card1Title: "Safety Guarding Audit",
+            card1Subtitle: "ISO 45001 Mapped",
+            item1Title: "LOTO Verification",
+            item1Subtitle: "Clause 8.1",
+            item2Title: "Maintenance Logs",
+            item2Subtitle: "Clause 7.1 NCR",
+            item3Title: "Calibration Success",
+            item3Subtitle: "System Verified"
+        }
     },
     {
         id: "17",
-        slug: "electrical-optical",
+        slug: "electrical-and-optical-equipment-iso-audit-software",
         title: "Electrical & Optical Equipment",
-        description: "Maintain strict calibration, quality control, and safety standard adherence in high-tech component production.",
+        description: "Standardise quality control, ensure electrical safety, and simplify ISO compliance across your entire manufacturing floor.",
         color: "#8b5cf6",
         bgImage: "/images/electrical-bg.jpg",
+        heroSparkleText: "Electrical & Optical Equipment audit software by iAudit",
+        heroHeading: "Electrical and Optical Equipment ISO Audit Software for Smarter Internal Audits",
+        challengesSparkleText: "Electrical and Optical Equipment audit challenges",
+        challengesHeading: "Where Audit Complexity Builds Up in Electrical and Optical Equipment",
+        challengesCards: [
+            {
+                title: "Maintaining Strict Component Precision",
+                description: "Tracking calibration and quality control for sensitive optical and electronic parts across multiple manufacturing sites."
+            },
+            {
+                title: "Managing High Voltage Hazards",
+                description: "Paper safety audits fail to capture immediate workplace risks during complex electrical equipment assembly processes."
+            },
+            {
+                title: "Tracking Electronic Waste Compliance",
+                description: "Monitoring hazardous materials and electronic waste disposal using outdated spreadsheets leads to costly compliance gaps."
+            }
+        ],
+        supportSparkleText: "iAudit for Electrical and Optical Equipment",
+        supportHeading: "Streamlining ISO Compliance for Electrical and Optical Equipment",
+        supportItems: [
+            {
+                title: "Safeguard Manufacturing Quality",
+                description: "",
+                bullets: [
+                    "Standardise quality control audits across all optical lens and electronic component assembly lines efficiently.",
+                    "Track calibration records and resolve product nonconformities instantly to maintain strict industry precision standards."
+                ]
+            },
+            {
+                title: "Strengthen Electrical Floor Safety",
+                description: "",
+                bullets: [
+                    "Identify high voltage assembly risks immediately with mobile checklists accessible right on the factory floor.",
+                    "Automate corrective actions for workplace hazards to protect your equipment testing and assembly teams."
+                ]
+            },
+            {
+                title: "Simplify Environmental Compliance",
+                description: "",
+                bullets: [
+                    "Monitor electronic waste disposal and hazardous material handling processes through a central digital platform.",
+                    "Generate instant reports to prove your manufacturing operations meet strict environmental sustainability requirements effortlessly."
+                ]
+            },
+            {
+                title: "Drive Continual Improvement",
+                description: "",
+                bullets: [
+                    "Embed the Plan Do Check Act methodology directly into your daily equipment manufacturing audit cycles.",
+                    "Transform isolated safety and quality findings into structured improvement plans with clear task ownership."
+                ]
+            },
+            {
+                title: "Unify Global Oversight",
+                description: "",
+                bullets: [
+                    "Compare compliance scores and safety metrics across all your global electronics manufacturing facilities instantly.",
+                    "Eliminate messy spreadsheets by giving managers a single clear view of all audit programmes."
+                ]
+            }
+        ],
+        auditMateSparkle: "Audit Mate for Electrical and Optical Equipment",
+        auditMateHeading: "Accelerate Compliance with Audit Mate AI",
+        auditMateDescription: "Get practical audit support that helps teams work faster, stay consistent and follow through confidently.",
+        standardsSparkleText: "Standards and Compliance",
+        standardsHeading: "Essential ISO Standards for Electrical and Optical Equipment",
+        standardsItems: [
+            {
+                title: "Precision Quality Control",
+                description: "Ensure flawless electronic component manufacturing and strict optical precision using streamlined quality control audit workflows."
+            },
+            {
+                title: "Workplace Safety and Environmental Care",
+                description: "Protect your factory workforce from electrical hazards while managing electronic waste and sustainability compliance effortlessly."
+            }
+        ],
+        testimonialsSparkleText: "Electrical and Optical Equipment testimonials",
+        testimonialsHeading: "Trusted by Precision Equipment Manufacturers",
+        testimonials: [
+            {
+                quote: "Before iAudit, we were managing audits across spreadsheets, emails and shared folders. Now everything is in one place, and it is much easier to keep findings, evidence and follow-up actions moving.",
+                author: "Sarah Jenkins",
+                role: "Quality Manager",
+                company: "Optical Solutions Co.",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Verified Industry Expert"
+            },
+            {
+                quote: "iAudit helped us bring more structure to our ISO 9001 and 45001 audits. The team spends less time chasing updates, and managers get a much clearer view of progress.",
+                author: "Mark Thompson",
+                role: "Operations Lead",
+                company: "Electronics Group",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "ISO Specialist"
+            },
+            {
+                quote: "We needed a simpler way to run audits across different sites and departments. iAudit gave us consistency, better visibility, and reports that are much easier to review and share.",
+                author: "Elena Rossi",
+                role: "Compliance Manager",
+                company: "Precision Components PLC",
+                avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Certified Lead Auditor"
+            }
+        ],
+        checklistsTag: "Free Electrical and Optical Equipment audit checklists",
+        checklistsHeading: "Free ISO Audit Checklist for Electrical and Optical Equipment",
+        checklistsDescription: "Download a practical checklist to review quality, environmental, and health and safety audit points across electrical and optical equipment operations.",
+        checklistsItems: [
+            "ISO 9001 Internal Audit Checklist for Electrical and Optical Equipment",
+            "ISO 14001 Internal Audit Checklist for Electrical and Optical Equipment",
+            "ISO 45001 Internal Audit Checklist for Electrical and Optical Equipment"
+        ],
+        ctaHeading: "Take Control of ISO Audits in Electrical and Optical Equipment",
+        ctaDescription: "Replace spreadsheets with one platform for ISO audits, clearer follow-up, faster action, and better control.",
+        ctaPrimaryButton: "Get started free",
+        ctaSecondaryButton: "Book a demo",
+        caseStudySparkle: "Electrical and Optical Equipment case study",
+        caseStudyHeading: "See How Audit Teams Improve Performance with iAudit",
+        caseStudyDescription: "Explore how organisations in complex operational environments use iAudit to improve audit consistency, speed up follow-up, strengthen visibility, and manage ISO audits more effectively.",
+        caseStudyButton: "Read more",
+        caseStudyImage: "/images/electrical-bg.jpg",
+        faqSparkleText: "Common questions",
+        faqHeading: "Frequently Asked Questions",
+        faqItems: [
+            {
+                question: "What is electrical and optical equipment ISO audit software?",
+                answer: "Electrical and optical equipment ISO audit software helps businesses plan, conduct, track and report internal audits for ISO 9001, ISO 14001 and ISO 45001. It brings audit schedules, findings, evidence and corrective actions into one system."
+            },
+            {
+                question: "How does iAudit help electrical and optical equipment manufacturers manage ISO audits?",
+                answer: "iAudit helps teams manage audit programmes, run internal audits, record findings, track corrective actions and monitor progress across sites. It is designed to support ISO 9001, ISO 14001 and ISO 45001 audit activity more efficiently."
+            },
+            {
+                question: "Which ISO standards are most relevant for electrical and optical equipment businesses?",
+                answer: "The most common standards are ISO 9001 for quality management, ISO 14001 for environmental management and ISO 45001 for occupational health and safety. These standards help organisations manage quality, risk, compliance and continual improvement."
+            },
+            {
+                question: "Why do electrical and optical equipment companies need internal audit software?",
+                answer: "Internal audit software helps replace spreadsheets, emails and disconnected records with one structured system. This improves consistency, evidence tracking, action follow-up, reporting and oversight across production, quality, environmental and safety audits."
+            },
+            {
+                question: "Can iAudit support multi-site electrical and optical equipment audit programmes?",
+                answer: "Yes. iAudit can support audit planning and follow-up across multiple sites, teams and functions. This is useful for organisations that need consistent audit execution, central visibility and better control over findings and corrective actions."
+            },
+            {
+                question: "How does audit software improve corrective action tracking in electrical and optical equipment operations?",
+                answer: "Audit software keeps findings, owners, deadlines and status updates in one place. This helps teams follow corrective actions through to closure, reduce missed actions and identify recurring issues across quality, environmental and safety processes."
+            },
+            {
+                question: "Is iAudit suitable for ISO 9001, ISO 14001 and ISO 45001 audits in electrical and optical equipment?",
+                answer: "Yes. iAudit is built to support internal audits for ISO 9001, ISO 14001 and ISO 45001. It helps organisations manage audit planning, execution, reporting and follow-up within a single audit management platform."
+            }
+        ],
+        heroVisuals: {
+            mainTitle: "Electronic Component Audit",
+            sites: [
+                { num: "S1", title: "Shenzhen Assembly", status: "Audit Live", color: "#058c42", bg: "#dcfce7" },
+                { num: "L1", title: "Leipzig Optics Lab", status: "Completed", color: "#64748b", bg: "#f1f5f9" },
+                { num: "A1", title: "Austin Semi-Con", status: "In Review", color: "#058c42", bg: "#dcfce7" }
+            ],
+            inspectionTitle: "Unit #802 QC Passed",
+            inspectionDesc: "Optical precision check 100% compliant. No aberrations detected.",
+            departments: ["QC", "R&D", "OPS", "ENG", "LOG", "ENV", "SFT", "MNT"],
+            progressTitle: "Assembly QC"
+        },
+        auditMateVisuals: {
+            card1Title: "Optical Quality Audit",
+            card1Subtitle: "Clause 8.1 Mapped",
+            item1Title: "Lens Assembly Inspection",
+            item1Subtitle: "ISO 9001 Section 8",
+            item2Title: "Voltage Test Logs",
+            item2Subtitle: "Clause 10.1 NCR",
+            item3Title: "Calibration Success",
+            item3Subtitle: "System Verified"
+        }
     },
     {
         id: "18",
-        slug: "engineering-service",
+        slug: "engineering-iso-audit-software",
         title: "Engineering Service",
-        description: "Audit complex project lifecycles, structural safety standards, and contracting compliance efficiently.",
+        description: "Plan, manage and report ISO audits across engineering teams, projects and subcontractors with one platform for evidence, findings and follow-up.",
         color: "#0284c7",
         bgImage: "/images/engineering-bg.jpg",
+        heroSparkleText: "Engineering ISO audit software by iAudit",
+        heroHeading: "Engineering ISO Audit Software for Technical Control",
+        challengesSparkleText: "Engineering audit challenges",
+        challengesHeading: "Where Engineering Audits Lose Control",
+        challengesCards: [
+            {
+                title: "Inconsistent project audits",
+                description: "Different teams audit in different ways, making results hard to compare across projects and locations."
+            },
+            {
+                title: "Disconnected evidence trails",
+                description: "Audit notes, records and actions often sit across emails, folders and project-specific files."
+            },
+            {
+                title: "Repeated issues with weak follow-up",
+                description: "The same process failures return because actions are closed before effectiveness is properly checked."
+            }
+        ],
+        supportSparkleText: "iAudit for Engineering",
+        supportHeading: "A Better Way to Manage Engineering ISO Audits",
+        supportItems: [
+            {
+                title: "Consistent audits across projects",
+                description: "",
+                bullets: [
+                    "Use standard audit templates to bring structure and consistency across engineering teams and delivery models.",
+                    "Compare findings across projects more easily instead of treating each audit as a separate exercise."
+                ]
+            },
+            {
+                title: "Stronger subcontractor and supplier control",
+                description: "",
+                bullets: [
+                    "Track subcontractor-related findings across projects instead of relying only on approval and onboarding records.",
+                    "Make recurring issues visible earlier so supplier risks do not stay hidden in separate reports."
+                ]
+            },
+            {
+                title: "Clearer evidence and audit trails",
+                description: "",
+                bullets: [
+                    "Keep findings, notes and supporting evidence together in one place for easier review and follow-up.",
+                    "Reduce the risk of losing critical records in emails, shared drives or site-based documents."
+                ]
+            },
+            {
+                title: "Better corrective action discipline",
+                description: "",
+                bullets: [
+                    "Assign actions clearly, track deadlines and verify effectiveness before issues are treated as resolved.",
+                    "Use audit follow-up to drive real improvement instead of simply tidying up paperwork."
+                ]
+            },
+            {
+                title: "Faster reporting and management visibility",
+                description: "",
+                bullets: [
+                    "Generate structured reports quickly without rebuilding findings manually after every engineering audit.",
+                    "Give managers clearer oversight of audit progress, recurring issues and outstanding corrective actions."
+                ]
+            }
+        ],
+        auditMateSparkle: "Audit Mate for Engineering",
+        auditMateHeading: "An Intelligent Assistant for Technical Teams",
+        auditMateDescription: "Draft technical checklists, build site-specific interview questions and clarify complex ISO clauses instantly. Your data stays entirely secure.",
+        standardsSparkleText: "Standards and Compliance",
+        standardsHeading: "Purpose-Built for Engineering ISO Audits",
+        standardsItems: [
+            {
+                title: "ISO 9001 Quality & Design Audits",
+                description: "Manage technical quality across design, development and project delivery with structured, clause-aligned audit oversight."
+            },
+            {
+                title: "ISO 14001 and ISO 45001 Audits",
+                description: "Support environmental and site safety audits across complex engineering projects with consistent tracking."
+            }
+        ],
+        testimonialsHeading: "What Engineering Leaders Say",
+        testimonials: [
+            {
+                quote: "iAudit transformed how we handle design audits. We no longer chase emails for evidence; everything is linked directly to the ISO 9001 requirements in one place.",
+                author: "Sarah Jenkins",
+                role: "Technical Quality Lead",
+                company: "Engineering Consultancy",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Verified Industry Expert"
+            },
+            {
+                quote: "Managing site safety across five projects was a logistical nightmare with paper forms. iAudit gives us a live view of every hazard and corrective action instantly.",
+                author: "Mark Thompson",
+                role: "H&S Manager",
+                company: "Civil Engineering Firm",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "ISO 45001 Expert"
+            },
+            {
+                quote: "Security is vital for our technical projects. The zero-access policy made iAudit the only cloud solution we trusted for our highly sensitive internal audit data.",
+                author: "Elena Rossi",
+                role: "Operations Director",
+                company: "Precision Engineering",
+                avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Certified Lead Auditor"
+            }
+        ],
+        checklistsTag: "Free engineering audit checklists",
+        checklistsHeading: "Standardise Your Engineering Audits",
+        checklistsDescription: "Download our free, clause-aligned checklists to bring structure and technical consistency to your next project review.",
+        checklistsItems: [
+            "Engineering ISO 9001 Quality Audit Checklist",
+            "Engineering ISO 14001 Environmental Audit Checklist",
+            "Engineering ISO 45001 Safety Audit Checklist"
+        ],
+        ctaHeading: "Ready for Smarter Engineering Audits?",
+        ctaDescription: "Stop managing technical risks in disconnected spreadsheets. Move your engineering ISO audit programme into a secure workspace and gain total project visibility today.",
+        ctaPrimaryButton: "Get started free",
+        ctaSecondaryButton: "Book a demo",
+        caseStudySparkle: "Engineering case study",
+        caseStudyHeading: "How Technical Teams Gain Visibility",
+        caseStudyDescription: "Learn how an engineering consultancy replaced manual reporting with iAudit Global, centralising their design reviews and site inspections while cutting reporting time significantly.",
+        caseStudyButton: "Read more",
+        caseStudyImage: "/images/engineering-bg.jpg",
+        faqSparkleText: "Common questions",
+        faqHeading: "Frequently Asked Questions",
+        faqItems: [
+            {
+                question: "Can we use iAudit to manage technical design reviews?",
+                answer: "Yes. You can use the platform to audit Clause 8.3 (Design and Development) specifically. It allows your team to link evidence of design reviews, technical verifications, and validations directly to your audit findings, ensuring your design history is always audit-ready."
+            },
+            {
+                question: "Do our field engineers need a laptop to log site audits?",
+                answer: "Not at all. iAudit Global is fully mobile responsive. Your engineers can log site findings, snap photos of conditions, and assign corrective actions from their phones or tablets while they are out in the field. This removes the reporting gap between the site and the office."
+            },
+            {
+                question: "How secure is our engineering intellectual property on the platform?",
+                answer: "We operate a strict zero-access policy. While we host the platform, we cannot view, mine, or access your technical audit data, design findings, or strategic risks. Your intellectual property stays entirely under your control at all times."
+            },
+            {
+                question: "Can the software handle subcontractor and specialist audits?",
+                answer: "Yes. Clause 8.4 requires clear control of external providers. iAudit allows you to run specific audits on your specialist subcontractors and track their performance data across different projects. This moves you beyond basic approval lists and into real technical oversight."
+            },
+            {
+                question: "Does it support ISO 45001 safety walks on active projects?",
+                answer: "Absolutely. It is designed for live site safety management. You can document hazards, track worker participation, and ensure corrective actions are verified as fixed before a technical project moves to the next stage of delivery."
+            },
+            {
+                question: "Can we generate professional audit reports for our clients?",
+                answer: "Yes. iAudit generates professional, custom-branded PDF reports instantly. This removes the administrative burden of manual formatting and ensures your clients see clear, structured evidence of your quality and safety controls."
+            },
+            {
+                question: "How does Audit Mate handle complex engineering clauses?",
+                answer: "Audit Mate acts as a technical co-pilot for your audit team. It helps you draft technical checklists for complex processes and provides instant guidance on how specific ISO clauses apply to professional engineering and design services."
+            }
+        ]
     },
 ];
