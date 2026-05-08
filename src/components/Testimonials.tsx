@@ -134,39 +134,42 @@ export default function Testimonials({
             <div style={{ maxWidth: "1260px", margin: "0 auto", padding: isMobile ? "0 1.25rem" : "0 2rem", position: "relative" }}>
                 {/* Section Header */}
                 <div style={{ textAlign: 'center', marginBottom: isMobile ? '2.5rem' : '3.5rem' }}>
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: "0.4rem",
-                            color: '#006644',
-                            fontSize: isMobile ? '0.9rem' : '1rem',
-                            fontWeight: 500,
-                            letterSpacing: '0.01em',
-                            marginBottom: '0.75rem'
-                        }}
-                    >
-                        <span style={{ fontSize: '1rem' }}>✦</span>
-                        {sparkleText}
-                        <span style={{ fontSize: '1rem' }}>✦</span>
-                    </motion.div>
+                    {sparkleText && (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: "0.4rem",
+                                color: '#006644',
+                                fontSize: isMobile ? '0.9rem' : '1rem',
+                                fontWeight: 500,
+                                letterSpacing: '0.01em',
+                                marginBottom: '0.75rem'
+                            }}
+                        >
+                            <span style={{ fontSize: '1rem' }}>✦</span>
+                            {sparkleText}
+                            <span style={{ fontSize: '1rem' }}>✦</span>
+                        </motion.div>
+                    )}
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         style={{
-                            fontSize: isMobile ? '2.0rem' : '3.2rem',
+                            fontSize: isMobile ? '1.9rem' : 'clamp(1.8rem, 2.8vw, 2.8rem)',
                             fontWeight: 500,
                             color: '#111827',
                             letterSpacing: '-0.02em',
                             margin: 0,
-                            maxWidth: "800px",
+                            maxWidth: "900px",
                             marginLeft: "auto",
                             marginRight: "auto",
-                            lineHeight: 1.2
+                            lineHeight: 1.2,
+                            whiteSpace: isMobile ? "normal" : "nowrap",
                         }}
                     >
                         {title}

@@ -98,6 +98,19 @@ export default function Header() {
         { label: "Features", href: "/#features" },
         { label: "Pricing", href: "/pricing" },
         { label: "ISO 14001:2026", href: "/ISO14001-2026" },
+        { 
+            label: "Comparison", 
+            href: "/iaudit-global-vs-safetyculture",
+            megamenu: [
+                {
+                    title: "Platform Comparisons",
+                    items: [
+                        { label: "vs SafetyCulture", href: "/iaudit-global-vs-safetyculture" },
+                        { label: "vs GoAudits", href: "/iaudit-global-vs-goaudits" },
+                    ]
+                }
+            ]
+        },
         { label: "Contact", href: "/contact" },
     ];
 

@@ -88,8 +88,8 @@
     -webkit-user-drag: none;
     pointer-events: none;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    filter: brightness(0) opacity(1);
-    /* Solid black look */
+    filter: none;
+    opacity: 1;
 }
 
 .logoloop--scale-hover .logoloop__item {

@@ -8,7 +8,6 @@ import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
 import FAQAccordion from "@/components/FAQAccordion";
 import LogoLoop from "@/components/LogoLoop/LogoLoop";
-import { SiSiemens, SiSchneiderelectric, SiSap, SiBmw, SiMercedes, SiVolkswagen } from "react-icons/si";
 
 const pricingTestimonials = [
     {
@@ -91,12 +90,11 @@ export default function PricingPage() {
     }, []);
 
     const partnerLogos = [
-        { node: <SiSiemens />, title: "Siemens" },
-        { node: <SiSchneiderelectric />, title: "Schneider Electric" },
-        { node: <SiSap />, title: "SAP" },
-        { node: <SiBmw />, title: "BMW" },
-        { node: <SiMercedes />, title: "Mercedes" },
-        { node: <SiVolkswagen />, title: "Volkswagen" },
+        { src: "/images/clients/stannah.png", alt: "Stannah", title: "Stannah" },
+        { src: "/images/clients/fujitec.png", alt: "Fujitec", title: "Fujitec" },
+        { src: "/images/clients/construct-lifts.png", alt: "Construct Lifts", title: "Construct Lifts" },
+        { src: "/images/clients/peerless.png", alt: "Peerless Lift Services", title: "Peerless Lift Services" },
+        { src: "/images/clients/adstone.png", alt: "Adstone Construction Limited", title: "Adstone Construction Limited" },
     ];
 
     return (
@@ -149,8 +147,8 @@ export default function PricingPage() {
                         logos={partnerLogos}
                         speed={isMobile ? 30 : 50}
                         direction="left"
-                        logoHeight={isMobile ? 30 : 45}
-                        gap={isMobile ? 60 : 100}
+                        logoHeight={isMobile ? 45 : 70}
+                        gap={isMobile ? 80 : 140}
                         scaleOnHover
                         ariaLabel="Our trusted partners"
                     />

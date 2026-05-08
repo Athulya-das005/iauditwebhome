@@ -244,22 +244,169 @@ export const industries: Industry[] = [
     },
     {
         id: "02",
-        slug: "logistics",
-        title: "Logistics",
-        description: "Keep warehouses, transport, and distribution networks compliant with structured audits.",
+        slug: "transport-and-logistics-iso-audit-software",
+        title: "Transport and Logistics",
+        description: "Manage ISO 9001, 14001 and 45001 audits across fleets, warehouses and distribution networks with one structured Transport and Logistics ISO audit software platform.",
         color: "#f59e0b",
         bgImage: "/images/logistics-bg.jpg",
+        heroSparkleText: "Transport and logistics ISO audit software",
+        heroHeading: "Transport and Logistics Audit Software for ISO Compliance",
+        challengesSparkleText: "Transport and logistics compliance challenges",
+        challengesHeading: "Why Transport and Logistics Audits Need A Different Approach",
+        challengesCards: [
+            {
+                title: "Supply chain transparency",
+                description: "Managing quality across global networks is difficult. Your transport and logistics audit software must track compliance at every transit point."
+            },
+            {
+                title: "Fleet safety and compliance",
+                description: "Driver safety and vehicle maintenance records are critical. Audits must ensure standards are met across every vehicle and route."
+            },
+            {
+                title: "Warehouse and DC consistency",
+                description: "Multi-site operations require audits that benchmark standards across every warehouse and distribution centre."
+            }
+        ],
+        supportSparkleText: "iAudit for transport and logistics",
+        supportHeading: "How iAudit Supports ISO Audits In Transport and Logistics",
+        supportItems: [
+            {
+                title: "Standardised checklists across all locations",
+                description: "",
+                bullets: [
+                    "Central visibility of findings and corrective actions across all warehouses and depots",
+                    "Compare site performance side by side to identify weak areas"
+                ]
+            },
+            {
+                title: "Fleet safety and maintenance audit support",
+                description: "",
+                bullets: [
+                    "Attach photos of vehicle conditions, maintenance logs and safety checks",
+                    "Track vehicle safety corrective actions through closure with clear accountability"
+                ]
+            },
+            {
+                title: "Supply chain and NCR tracking",
+                description: "",
+                bullets: [
+                    "Analyse non-conformance trends by route, site or carrier easily",
+                    "Feed transit data into management review for continuous service improvement"
+                ]
+            },
+            {
+                title: "Driver and warehouse staff competence",
+                description: "",
+                bullets: [
+                    "Automatically flag expired certifications so staff never work without qualifications",
+                    "Ensure agency drivers and warehouse staff approved before performing safety-critical duties"
+                ]
+            },
+            {
+                title: "PDCA for logistics improvement",
+                description: "",
+                bullets: [
+                    "Plan audit programmes by site and process ensuring full coverage",
+                    "Execute audits using structured clause aligned checklists across every site"
+                ]
+            }
+        ],
+        auditMateSparkle: "Audit Mate for transport and logistics",
+        auditMateHeading: "Your AI Assistant For Transport and Logistics Audit Planning",
+        auditMateDescription: "Let Audit Mate instantly generate clause-mapped checklists for vehicle safety, warehouse inspections, and driver compliance.",
+        standardsHeading: "Standards We Support For Transport and Logistics",
+        standardsItems: [
+            {
+                title: "Quality and environmental management",
+                description: "ISO 9001 supports service quality and supply chain integrity, while ISO 14001 manages fleet emissions and waste."
+            },
+            {
+                title: "Safety and information security",
+                description: "ISO 45001 supports driver and warehouse safety. ISO 27001 protects supply chain data and customer privacy."
+            }
+        ],
+        testimonials: [
+            {
+                quote: "iAudit gave us a single view of audit findings across ten distribution centres. Fleet maintenance and warehouse safety issues are now tracked in one place, and our external ISO 9001 audits have become far more predictable.",
+                author: "Michael Chen",
+                role: "Operations Director",
+                company: "Global Logistics Solutions",
+                avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Verified Logistics Expert"
+            },
+            {
+                quote: "Before iAudit, each depot in our group ran its own checks in different formats. With this transport and logistics audit software, we finally have consistent vehicle and warehouse audits across all sites.",
+                author: "David Roberts",
+                role: "Fleet Safety Lead",
+                company: "FastTrack Distribution",
+                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "ISO 9001 Specialist"
+            },
+            {
+                quote: "As a cold chain operator, we needed a way to audit every transit from pickup to delivery. iAudit’s clause‑mapped templates and photo evidence have made our ISO audits and client reviews much easier.",
+                author: "Sofia Martinez",
+                role: "Compliance Manager",
+                company: "Port Side Logistics",
+                avatar: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Certified Lead Auditor"
+            }
+        ],
+        checklistsTag: "Free transport and logistics audit checklists",
+        checklistsHeading: "Start Your Next Transport and Logistics Audit With A Ready‑Made Checklist",
+        checklistsDescription: "Download free ISO audit checklists built for transport and logistics teams, covering quality, fleet safety, warehouse operations, and supplier management.",
+        checklistsItems: [
+            "Vehicle Safety and Maintenance Inspection Checklist",
+            "Warehouse Housekeeping and Safety Audit Checklist",
+            "Driver Compliance and Training Audit Checklist",
+            "Supplier Quality and Carrier Audit Checklist",
+            "Supply Chain Non-Conformance Audit Checklist",
+            "Cold Chain and Temperature Control Audit Checklist"
+        ],
+        ctaHeading: "Your ISO Transport and Logistics Audit Transformation Starts Here",
+        ctaDescription: "Book a personalised demo or try iAudit free to see how our transport and logistics audit software simplifies ISO audits across your operations, ensuring consistency and visibility.",
+        ctaPrimaryButton: "Sign up free",
+        ctaSecondaryButton: "Watch demo",
+        caseStudySparkle: "Transport and logistics case study",
+        caseStudyHeading: "See How Logistics Teams Run Better Audits",
+        caseStudyDescription: "Read how distribution groups and fleet operators moved away from scattered spreadsheets to achieve multi-site ISO compliance with our transport and logistics audit software.",
+        caseStudyButton: "Read more",
+        caseStudyImage: "/images/logistics-bg.jpg",
+        faqSparkleText: "Common questions",
+        faqHeading: "Frequently Asked Questions",
+        faqItems: [
+            {
+                question: "What is an ISO 9001 logistics audit?",
+                answer: "An ISO 9001 logistics audit checks how well a transport or distribution business controls its key processes, such as fleet maintenance, warehouse management, driver training and non-conformance tracking. Auditors look for evidence that service quality and safety are managed in a repeatable way."
+            },
+            {
+                question: "How often should logistics businesses run internal ISO audits?",
+                answer: "Most logistics organisations run a full internal audit cycle at least once a year, with more frequent focused audits on higher‑risk areas such as vehicle safety, warehouse hazards and driver compliance."
+            },
+            {
+                question: "What is iAudit Global for transport and logistics?",
+                answer: "iAudit Global is transport and logistics audit software built for fleet operators, warehouses and distribution networks. It supports ISO 9001, 14001, 45001 and 27001 internal audits with standardised checklists and centralised findings."
+            },
+            {
+                question: "How does iAudit help multi‑site distribution groups?",
+                answer: "You can run one audit programme across every depot and warehouse, push the same checklist to each site and use dashboards to compare scores, findings and actions across your portfolio."
+            },
+            {
+                question: "Can iAudit support vehicle maintenance and safety checks?",
+                answer: "Yes. iAudit lets you audit vehicle maintenance records and physical conditions. You can attach photos of tyres, brakes and logs, and track corrective actions through to closure."
+            },
+            {
+                question: "Does the software work for drivers and warehouse teams on the floor?",
+                answer: "Our transport and logistics audit software is mobile-first. Auditors can complete checks on mobile devices, capture photos as evidence and work offline in areas with poor connectivity."
+            },
+            {
+                question: "How is our audit data kept secure and who owns it?",
+                answer: "Your audit data always belongs to your organisation. iAudit Global uses encryption and role‑based access, and we operate a strict zero‑access policy, meaning we do not view or mine your findings."
+            }
+        ]
     },
+
     {
         id: "03",
-        slug: "transport",
-        title: "Transport",
-        description: "Ensure fleet safety and regulatory compliance across supply chains and distribution networks.",
-        color: "#64748b",
-        bgImage: "/images/transport-bg.jpg",
-    },
-    {
-        id: "04",
         slug: "construction-iso-audit-software",
         title: "Construction",
         description: "Move beyond spreadsheets with construction audit software for ISO 9001, 14001, 45001 and 27001 across every active project.",
@@ -397,7 +544,7 @@ export const industries: Industry[] = [
         ]
     },
     {
-        id: "05",
+        id: "04",
         slug: "manufacturing-iso-audit-software",
         title: "Manufacturing",
         description: "Manage high‑volume production, supply chain risks and environmental compliance across sites with one structured ISO audit management platform.",
@@ -562,7 +709,7 @@ export const industries: Industry[] = [
         ]
     },
     {
-        id: "06",
+        id: "05",
         slug: "healthcare-compliance-software",
         title: "Healthcare",
         description: "Manage ISO 9001, 14001, 45001 and 27001 audits with healthcare compliance software built for clinical, operational and governance teams.",
@@ -698,7 +845,7 @@ export const industries: Industry[] = [
         ]
     },
     {
-        id: "07",
+        id: "06",
         slug: "food-and-beverage-iso-audit-software",
         title: "Food & Beverage",
         description: "Manage ISO 9001, 14001 and 45001 audits across plants and distribution centres with one structured food and beverage iso audit software platform built for scale.",
@@ -863,7 +1010,7 @@ export const industries: Industry[] = [
         ]
     },
     {
-        id: "08",
+        id: "07",
         slug: "hospitality-iso-audit-software",
         title: "Hospitality",
         description: "Manage ISO 9001, 14001 and 45001 audits across sites with standardised checklists, real time visibility and central control.",
@@ -1025,7 +1172,7 @@ export const industries: Industry[] = [
         ]
     },
     {
-        id: "09",
+        id: "08",
         slug: "facilities-management-iso-audit-software",
         title: "Facilities Management",
         description: "Manage building services, statutory maintenance and ISO standards across your entire estate with one structured facilities management iso audit software platform.",
@@ -1190,7 +1337,7 @@ export const industries: Industry[] = [
         ]
     },
     {
-        id: "10",
+        id: "09",
         slug: "health-and-safety-iso-audit-software",
         title: "Health & Safety",
         description: "Replace paper checklists and scattered spreadsheets with a dedicated ISO 45001 workspace. Capture live hazards, track corrective actions, and protect your workforce in real time.",
@@ -1351,7 +1498,7 @@ export const industries: Industry[] = [
         ]
     },
     {
-        id: "11",
+        id: "10",
         slug: "mining-compliance-software",
         title: "Mining",
         description: "Manage remote mining operations, tailings storage facility integrity and workforce safety with one structured mining compliance software platform built for control.",
@@ -1516,7 +1663,7 @@ export const industries: Industry[] = [
         ]
     },
     {
-        id: "12",
+        id: "11",
         slug: "pharmaceutical-compliance-audit-software",
         title: "Pharmaceutical",
         description: "Replace manual spreadsheets with an auditor-built platform for ISO 9001, 14001 and 45001. Manage data integrity, sterile production and HPAPI containment in one secure workspace.",
@@ -1681,7 +1828,7 @@ export const industries: Industry[] = [
         ]
     },
     {
-        id: "13",
+        id: "12",
         slug: "aerospace-iso-audit-software",
         title: "Aerospace",
         description: "Plan, run and track ISO audits across aerospace operations with one structured platform for evidence, findings, corrective actions and reporting.",
@@ -1842,7 +1989,7 @@ export const industries: Industry[] = [
         ]
     },
     {
-        id: "14",
+        id: "13",
         slug: "basic-metals-and-fabrication-iso-audit-software",
         title: "Basic Metal & Fabrication",
         description: "Centralise material traceability, manage welder continuity and track high‑risk safety controls across your plant with one structured basic metals and fabrication iso audit software platform.",
@@ -2006,16 +2153,9 @@ export const industries: Industry[] = [
             }
         ]
     },
+
     {
-        id: "15",
-        slug: "wholesale-retail",
-        title: "Wholesale & Retail Trade",
-        description: "Audit expansive supply chains, warehouse operations, and retail outlets for efficiency and compliance.",
-        color: "#d97706",
-        bgImage: "/images/wholesale-retail-bg.jpg",
-    },
-    {
-        id: "16",
+        id: "14",
         slug: "machinery-and-equipment-iso-audit-software",
         title: "Machinery & Equipment",
         description: "Plan, run and track ISO audits across machinery and equipment operations with better control.",
@@ -2198,7 +2338,7 @@ export const industries: Industry[] = [
         }
     },
     {
-        id: "17",
+        id: "15",
         slug: "electrical-and-optical-equipment-iso-audit-software",
         title: "Electrical & Optical Equipment",
         description: "Standardise quality control, ensure electrical safety, and simplify ISO compliance across your entire manufacturing floor.",
@@ -2382,7 +2522,7 @@ export const industries: Industry[] = [
         }
     },
     {
-        id: "18",
+        id: "16",
         slug: "engineering-iso-audit-software",
         title: "Engineering Service",
         description: "Plan, manage and report ISO audits across engineering teams, projects and subcontractors with one platform for evidence, findings and follow-up.",

@@ -8,7 +8,7 @@ import ScrollStack, { ScrollStackItem } from "./ScrollStack/ScrollStack";
 import LogoLoop from "./LogoLoop/LogoLoop";
 import HeroDashboard1 from "./HeroDashboard1";
 import HeroDashboard2 from "./HeroDashboard2";
-import { SiSiemens, SiSchneiderelectric, SiSap, SiBmw, SiMercedes, SiVolkswagen } from "react-icons/si";
+
 
 
 export default function Hero() {
@@ -19,12 +19,11 @@ export default function Hero() {
     const [isMobile, setIsMobile] = useState(false);
 
     const partnerLogos = [
-        { node: <SiSiemens />, title: "Siemens" },
-        { node: <SiSchneiderelectric />, title: "Schneider Electric" },
-        { node: <SiSap />, title: "SAP" },
-        { node: <SiBmw />, title: "BMW" },
-        { node: <SiMercedes />, title: "Mercedes" },
-        { node: <SiVolkswagen />, title: "Volkswagen" },
+        { src: "/images/clients/stannah.png", alt: "Stannah", title: "Stannah" },
+        { src: "/images/clients/fujitec.png", alt: "Fujitec", title: "Fujitec" },
+        { src: "/images/clients/construct-lifts.png", alt: "Construct Lifts", title: "Construct Lifts" },
+        { src: "/images/clients/peerless.png", alt: "Peerless Lift Services", title: "Peerless Lift Services" },
+        { src: "/images/clients/adstone.png", alt: "Adstone Construction Limited", title: "Adstone Construction Limited" },
     ];
 
     useEffect(() => {
@@ -289,8 +288,8 @@ export default function Hero() {
                         logos={partnerLogos}
                         speed={isMobile ? 30 : 50}
                         direction="left"
-                        logoHeight={isMobile ? 30 : 45}
-                        gap={isMobile ? 60 : 100}
+                        logoHeight={isMobile ? 45 : 70}
+                        gap={isMobile ? 80 : 140}
                         scaleOnHover
                         ariaLabel="Our trusted partners"
                     />
