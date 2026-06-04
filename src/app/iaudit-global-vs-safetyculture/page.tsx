@@ -10,8 +10,7 @@ import FAQAccordion from "@/components/FAQAccordion";
 import CTA from "@/components/CTA";
 import LogoLoop from "@/components/LogoLoop/LogoLoop";
 import SectionTag from "@/components/SectionTag";
-
-const PP_NEUE_MONTREAL = '"Pp Neue Montreal", sans-serif';
+import { PP_NEUE_MONTREAL, comparisonType } from "@/constants/typography";
 
 const industryHighlights = [
     { title: "Manufacturing", slug: "manufacturing-iso-audit-software", image: "/images/manufacturing-bg.jpg" },
@@ -131,11 +130,7 @@ export default function ComparisonPage() {
                     <motion.h1
                         variants={fadeUp}
                         style={{
-                            fontSize: isMobile ? "2rem" : "3.2rem",
-                            fontWeight: 500,
-                            lineHeight: 1.1,
-                            letterSpacing: "-0.02em",
-                            color: "#0d1117",
+                            ...comparisonType.heroH1(isMobile),
                             marginBottom: "1.5rem",
                         }}
                     >
@@ -145,11 +140,9 @@ export default function ComparisonPage() {
                     <motion.p
                         variants={fadeUp}
                         style={{
-                            fontSize: "1.15rem",
-                            color: "#4b5563",
+                            ...comparisonType.heroLead(isMobile),
                             maxWidth: "700px",
                             margin: "0 auto 2.5rem",
-                            lineHeight: 1.6,
                         }}
                     >
                         iAudit Global is a SafetyCulture alternative designed specifically for ISO 9001, 14001 and 45001 audit programmes, with integrated PDCA workflows and full audit data ownership.
@@ -159,14 +152,14 @@ export default function ComparisonPage() {
                         <Link
                             href="https://apps.iaudit.global"
                             className="btn-animate"
-                            style={{ padding: "14px 28px", borderRadius: "8px", fontWeight: 600, fontSize: "1rem" }}
+                            style={{ padding: "14px 28px", borderRadius: "8px", ...comparisonType.ctaButton() }}
                         >
                             <span>Start 14-day free gap analysis →</span>
                         </Link>
                         <Link
                             href="/contact"
                             className="btn-outline-animate"
-                            style={{ padding: "14px 28px", borderRadius: "8px", fontWeight: 600, fontSize: "1rem" }}
+                            style={{ padding: "14px 28px", borderRadius: "8px", ...comparisonType.ctaButton() }}
                         >
                             <span>Book a demo</span>
                         </Link>
@@ -188,11 +181,8 @@ export default function ComparisonPage() {
                     viewport={{ once: true }}
                     style={{
                         textAlign: "center",
-                        fontSize: isMobile ? "0.85rem" : "0.95rem",
-                        fontWeight: 500,
-                        color: "#6b7280",
+                        ...comparisonType.caption(isMobile),
                         marginBottom: isMobile ? "2rem" : "2.5rem",
-                        letterSpacing: "0.01em",
                     }}
                 >
                     Trusted by global organisations. Preferred by lead auditors.
@@ -235,14 +225,9 @@ export default function ComparisonPage() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.08 }}
                         style={{
-                            fontSize: isMobile ? "1.85rem" : "2.5rem",
-                            fontWeight: 500,
-                            fontFamily: PP_NEUE_MONTREAL,
-                            color: "#0d1117",
+                            ...comparisonType.sectionH2(isMobile),
                             textAlign: "center",
                             marginBottom: isMobile ? "2.5rem" : "3.5rem",
-                            letterSpacing: "-0.02em",
-                            lineHeight: 1.15,
                         }}
                     >
                         A Closer Look at SafetyCulture
@@ -289,23 +274,14 @@ export default function ComparisonPage() {
                                     borderRadius: "16px 0 0 16px",
                                 }} />
                                 <h3 style={{
-                                    fontSize: isMobile ? "1.15rem" : "1.3rem",
-                                    fontWeight: 500,
-                                    fontFamily: PP_NEUE_MONTREAL,
-                                    color: "#0d1117",
+                                    ...comparisonType.cardH2(isMobile),
                                     marginBottom: "1rem",
-                                    letterSpacing: "-0.01em",
-                                    lineHeight: 1.25,
                                     paddingLeft: "0.5rem",
                                 }}>
                                     {block.title}
                                 </h3>
                                 <p style={{
-                                    fontSize: "1rem",
-                                    fontWeight: 400,
-                                    fontFamily: PP_NEUE_MONTREAL,
-                                    color: "#4b5563",
-                                    lineHeight: 1.7,
+                                    ...comparisonType.body(),
                                     margin: 0,
                                     paddingLeft: "0.5rem",
                                 }}>
@@ -346,13 +322,8 @@ export default function ComparisonPage() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.08 }}
                         style={{
-                            fontSize: isMobile ? "1.75rem" : "2.35rem",
-                            fontWeight: 500,
-                            fontFamily: PP_NEUE_MONTREAL,
-                            color: "#0d1117",
+                            ...comparisonType.sectionH2(isMobile),
                             marginBottom: isMobile ? "2rem" : "2.5rem",
-                            letterSpacing: "-0.02em",
-                            lineHeight: 1.2,
                         }}
                     >
                         The SafetyCulture Alternative for Structured ISO Audit Programmes
@@ -383,11 +354,7 @@ export default function ComparisonPage() {
                             background: "linear-gradient(90deg, #058c42 0%, #004d40 100%)",
                         }} />
                         <p style={{
-                            fontSize: isMobile ? "1.05rem" : "1.15rem",
-                            fontWeight: 400,
-                            fontFamily: PP_NEUE_MONTREAL,
-                            color: "#374151",
-                            lineHeight: 1.75,
+                            ...comparisonType.bodyLarge(isMobile),
                             margin: 0,
                         }}>
                             iAudit Global is a SafetyCulture alternative designed specifically for ISO 9001, 14001 and 45001 audit programmes. Unlike generic inspection apps, it manages the full audit lifecycle, integrates PDCA workflows and ensures corrective actions are verified, not simply closed.
@@ -428,13 +395,9 @@ export default function ComparisonPage() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.08 }}
                         style={{
-                            fontSize: isMobile ? "1.75rem" : "2.4rem",
-                            fontWeight: 500,
-                            color: "#0d1117",
+                            ...comparisonType.sectionH2(isMobile),
                             textAlign: "center",
                             marginBottom: "1rem",
-                            letterSpacing: "-0.02em",
-                            lineHeight: 1.15,
                         }}
                     >
                         See which platform is built for ISO audits
@@ -447,12 +410,11 @@ export default function ComparisonPage() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.14 }}
                         style={{
-                            fontSize: "1.05rem",
+                            ...comparisonType.bodyLarge(isMobile),
                             color: "#6b7280",
                             textAlign: "center",
                             maxWidth: "720px",
                             margin: "0 auto 3.5rem",
-                            lineHeight: 1.65,
                         }}
                     >
                         Both platforms support operational checks, but only one is purpose-built for ISO audit programmes, PDCA workflows and audit data ownership.
@@ -600,9 +562,8 @@ export default function ComparisonPage() {
                                     fontWeight: 700,
                                 }}>✕</span>
                                 <p style={{
-                                    fontSize: isMobile ? "0.88rem" : "0.95rem",
+                                    ...comparisonType.tableCell(isMobile),
                                     color: "#6b7280",
-                                    lineHeight: 1.6,
                                     margin: 0,
                                 }}>
                                     <strong style={{ color: "#991b1b", fontWeight: 600 }}>
@@ -656,9 +617,8 @@ export default function ComparisonPage() {
                                     </svg>
                                 </span>
                                 <p style={{
-                                    fontSize: isMobile ? "0.88rem" : "0.95rem",
+                                    ...comparisonType.tableCell(isMobile),
                                     color: "#374151",
-                                    lineHeight: 1.6,
                                     margin: 0,
                                 }}>
                                     <strong style={{ color: "#14532d", fontWeight: 600 }}>
@@ -730,13 +690,8 @@ export default function ComparisonPage() {
                                 {block.tag}
                             </SectionTag>
                             <h2 style={{
-                                fontSize: isMobile ? "1.35rem" : "1.55rem",
-                                fontWeight: 500,
-                                fontFamily: PP_NEUE_MONTREAL,
-                                color: "#0d1117",
+                                ...comparisonType.cardH2(isMobile),
                                 marginBottom: "1rem",
-                                letterSpacing: "-0.02em",
-                                lineHeight: 1.25,
                             }}>
                                 {block.title}
                             </h2>
@@ -809,12 +764,11 @@ export default function ComparisonPage() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.14 }}
                         style={{
-                            fontSize: "1.05rem",
+                            ...comparisonType.stepBody(),
                             color: "rgba(255,255,255,0.65)",
                             textAlign: "center",
                             maxWidth: "620px",
                             margin: "0 auto 3.5rem",
-                            lineHeight: 1.65,
                         }}
                     >
                         Start running structured, PDCA‑driven audits across every site in minutes, not months.
@@ -902,19 +856,16 @@ export default function ComparisonPage() {
                                 </div>
 
                                 <h3 style={{
-                                    fontSize: "1.2rem",
-                                    fontWeight: 600,
+                                    ...comparisonType.stepH3(),
                                     color: "#fff",
                                     marginBottom: "0.85rem",
-                                    lineHeight: 1.25,
                                 }}>
                                     {item.title}
                                 </h3>
 
                                 <p style={{
-                                    fontSize: "0.95rem",
+                                    ...comparisonType.stepBody(),
                                     color: "rgba(255,255,255,0.65)",
-                                    lineHeight: 1.65,
                                     margin: 0,
                                 }}>
                                     {item.desc}
@@ -964,14 +915,9 @@ export default function ComparisonPage() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.08 }}
                         style={{
-                            fontSize: isMobile ? "1.85rem" : "2.4rem",
-                            fontWeight: 500,
-                            fontFamily: PP_NEUE_MONTREAL,
-                            color: "#0d1117",
+                            ...comparisonType.sectionH2(isMobile),
                             textAlign: "center",
                             marginBottom: isMobile ? "2.5rem" : "3.25rem",
-                            letterSpacing: "-0.02em",
-                            lineHeight: 1.15,
                         }}
                     >
                         Structured ISO Audits Across Industries

@@ -1,8 +1,7 @@
 "use client";
 
 import type { CSSProperties, ReactNode } from "react";
-
-const PP_NEUE_MONTREAL = '"Pp Neue Montreal", sans-serif';
+import { PP_NEUE_MONTREAL } from "@/constants/typography";
 
 export default function SectionTag({
     children,

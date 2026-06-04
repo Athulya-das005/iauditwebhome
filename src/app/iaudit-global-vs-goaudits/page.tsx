@@ -10,8 +10,7 @@ import FAQAccordion from "@/components/FAQAccordion";
 import CTA from "@/components/CTA";
 import LogoLoop from "@/components/LogoLoop/LogoLoop";
 import SectionTag from "@/components/SectionTag";
-
-const PP_NEUE_MONTREAL = '"Pp Neue Montreal", sans-serif';
+import { PP_NEUE_MONTREAL, comparisonType } from "@/constants/typography";
 
 const industryHighlights = [
     { title: "Manufacturing", slug: "manufacturing-iso-audit-software", image: "/images/manufacturing-bg.jpg" },
@@ -106,7 +105,7 @@ export default function ComparisonPage() {
     };
 
     return (
-        <>
+        <div style={{ fontFamily: PP_NEUE_MONTREAL }}>
             {/* Hero */}
             <section
                 style={{
@@ -117,7 +116,7 @@ export default function ComparisonPage() {
                     `,
                     padding: isMobile ? "60px 1.25rem 40px" : "100px 2rem 80px",
                     textAlign: "center",
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                    fontFamily: PP_NEUE_MONTREAL,
                 }}
             >
                 <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.12 } } }} style={{ maxWidth: "900px", margin: "0 auto" }}>
@@ -131,11 +130,7 @@ export default function ComparisonPage() {
                     <motion.h1
                         variants={fadeUp}
                         style={{
-                            fontSize: isMobile ? "2rem" : "3.2rem",
-                            fontWeight: 500,
-                            lineHeight: 1.1,
-                            letterSpacing: "-0.02em",
-                            color: "#0d1117",
+                            ...comparisonType.heroH1(isMobile),
                             marginBottom: "1.5rem",
                         }}
                     >
@@ -145,11 +140,9 @@ export default function ComparisonPage() {
                     <motion.p
                         variants={fadeUp}
                         style={{
-                            fontSize: "1.15rem",
-                            color: "#4b5563",
+                            ...comparisonType.heroLead(isMobile),
                             maxWidth: "700px",
                             margin: "0 auto 2.5rem",
-                            lineHeight: 1.6,
                         }}
                     >
                         iAudit Global is a GoAudit alternative designed for ISO 9001, 14001 and 45001 audits, embedding PDCA workflows, corrective action verification and full audit data ownership.
@@ -159,14 +152,14 @@ export default function ComparisonPage() {
                         <Link
                             href="https://apps.iaudit.global"
                             className="btn-animate"
-                            style={{ padding: "14px 28px", borderRadius: "8px", fontWeight: 600, fontSize: "1rem" }}
+                            style={{ padding: "14px 28px", borderRadius: "8px", ...comparisonType.ctaButton() }}
                         >
                             <span>Start free gap analysis →</span>
                         </Link>
                         <Link
                             href="/contact"
                             className="btn-outline-animate"
-                            style={{ padding: "14px 28px", borderRadius: "8px", fontWeight: 600, fontSize: "1rem" }}
+                            style={{ padding: "14px 28px", borderRadius: "8px", ...comparisonType.ctaButton() }}
                         >
                             <span>Book a demo</span>
                         </Link>
@@ -179,7 +172,7 @@ export default function ComparisonPage() {
                 width: "100%",
                 padding: isMobile ? "2rem 1rem 2.5rem" : "2.5rem 0 3rem",
                 background: "#fff",
-                fontFamily: '"Pp Neue Montreal", sans-serif',
+                fontFamily: PP_NEUE_MONTREAL,
             }}>
                 <motion.p
                     initial={{ opacity: 0, y: 10 }}
@@ -188,11 +181,8 @@ export default function ComparisonPage() {
                     viewport={{ once: true }}
                     style={{
                         textAlign: "center",
-                        fontSize: isMobile ? "0.85rem" : "0.95rem",
-                        fontWeight: 500,
-                        color: "#6b7280",
+                        ...comparisonType.caption(isMobile),
                         marginBottom: isMobile ? "2rem" : "2.5rem",
-                        letterSpacing: "0.01em",
                     }}
                 >
                     Trusted by global organisations. Preferred by lead auditors.
@@ -215,7 +205,7 @@ export default function ComparisonPage() {
                 style={{
                     padding: isMobile ? "3.5rem 1.25rem 4rem" : "5.5rem 2rem 6rem",
                     backgroundColor: "#fff",
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                    fontFamily: PP_NEUE_MONTREAL,
                     borderTop: "1px solid #f0f0f0",
                 }}
             >
@@ -235,14 +225,9 @@ export default function ComparisonPage() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.08 }}
                         style={{
-                            fontSize: isMobile ? "1.85rem" : "2.5rem",
-                            fontWeight: 500,
-                            fontFamily: '"Pp Neue Montreal", sans-serif',
-                            color: "#0d1117",
+                            ...comparisonType.sectionH2(isMobile),
                             textAlign: "center",
                             marginBottom: isMobile ? "2.5rem" : "3.5rem",
-                            letterSpacing: "-0.02em",
-                            lineHeight: 1.15,
                         }}
                     >
                         GoAudits Overview:
@@ -276,7 +261,7 @@ export default function ComparisonPage() {
                                     padding: isMobile ? "1.75rem 1.5rem" : "2.25rem 2rem",
                                     position: "relative",
                                     overflow: "hidden",
-                                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                                    fontFamily: PP_NEUE_MONTREAL,
                                 }}
                             >
                                 <div style={{
@@ -289,23 +274,14 @@ export default function ComparisonPage() {
                                     borderRadius: "16px 0 0 16px",
                                 }} />
                                 <h3 style={{
-                                    fontSize: isMobile ? "1.15rem" : "1.3rem",
-                                    fontWeight: 500,
-                                    fontFamily: '"Pp Neue Montreal", sans-serif',
-                                    color: "#0d1117",
+                                    ...comparisonType.cardH2(isMobile),
                                     marginBottom: "1rem",
-                                    letterSpacing: "-0.01em",
-                                    lineHeight: 1.25,
                                     paddingLeft: "0.5rem",
                                 }}>
                                     {block.title}
                                 </h3>
                                 <p style={{
-                                    fontSize: "1rem",
-                                    fontWeight: 400,
-                                    fontFamily: '"Pp Neue Montreal", sans-serif',
-                                    color: "#4b5563",
-                                    lineHeight: 1.7,
+                                    ...comparisonType.body(),
                                     margin: 0,
                                     paddingLeft: "0.5rem",
                                 }}>
@@ -326,7 +302,7 @@ export default function ComparisonPage() {
                         radial-gradient(ellipse 60% 50% at 85% 50%, rgba(0,77,64,0.06) 0%, transparent 65%),
                         #f0fdf4
                     `,
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                    fontFamily: PP_NEUE_MONTREAL,
                     borderTop: "1px solid #e8f5e9",
                 }}
             >
@@ -346,13 +322,8 @@ export default function ComparisonPage() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.08 }}
                         style={{
-                            fontSize: isMobile ? "1.75rem" : "2.35rem",
-                            fontWeight: 500,
-                            fontFamily: '"Pp Neue Montreal", sans-serif',
-                            color: "#0d1117",
+                            ...comparisonType.sectionH2(isMobile),
                             marginBottom: isMobile ? "2rem" : "2.5rem",
-                            letterSpacing: "-0.02em",
-                            lineHeight: 1.2,
                         }}
                     >
                         The GoAudit Alternative Designed for Structured ISO Control
@@ -395,11 +366,7 @@ export default function ComparisonPage() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.28, duration: 0.5 }}
                             style={{
-                                fontSize: isMobile ? "1.05rem" : "1.15rem",
-                                fontWeight: 400,
-                                fontFamily: '"Pp Neue Montreal", sans-serif',
-                                color: "#374151",
-                                lineHeight: 1.75,
+                            ...comparisonType.bodyLarge(isMobile),
                                 margin: "0 0 2rem",
                             }}
                         >
@@ -454,7 +421,7 @@ export default function ComparisonPage() {
                                         alignItems: "center",
                                         gap: "0.65rem",
                                         padding: isMobile ? "0.65rem 0" : "0.5rem 0",
-                                        fontFamily: '"Pp Neue Montreal", sans-serif',
+                                        fontFamily: PP_NEUE_MONTREAL,
                                     }}
                                 >
                                     <motion.span
@@ -496,7 +463,7 @@ export default function ComparisonPage() {
                 style={{
                     padding: isMobile ? "3rem 1rem 4rem" : "5rem 2rem 6rem",
                     backgroundColor: "#f8fafc",
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                    fontFamily: PP_NEUE_MONTREAL,
                     borderTop: "1px solid #f0f0f0",
                 }}
             >
@@ -523,13 +490,9 @@ export default function ComparisonPage() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.08 }}
                         style={{
-                            fontSize: isMobile ? "1.75rem" : "2.4rem",
-                            fontWeight: 500,
-                            color: "#0d1117",
+                            ...comparisonType.sectionH2(isMobile),
                             textAlign: "center",
                             marginBottom: "1rem",
-                            letterSpacing: "-0.02em",
-                            lineHeight: 1.15,
                         }}
                     >
                         The difference between simple inspections and real ISO control
@@ -542,12 +505,11 @@ export default function ComparisonPage() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.14 }}
                         style={{
-                            fontSize: "1.05rem",
+                            ...comparisonType.bodyLarge(isMobile),
                             color: "#6b7280",
                             textAlign: "center",
                             maxWidth: "720px",
                             margin: "0 auto 3.5rem",
-                            lineHeight: 1.65,
                         }}
                     >
                         Compare how iAudit Global provides the structure, AI‑powered guidance and data sovereignty that generalist inspection tools cannot match.
@@ -695,9 +657,8 @@ export default function ComparisonPage() {
                                     fontWeight: 700,
                                 }}>✕</span>
                                 <p style={{
-                                    fontSize: isMobile ? "0.88rem" : "0.95rem",
+                                    ...comparisonType.tableCell(isMobile),
                                     color: "#6b7280",
-                                    lineHeight: 1.6,
                                     margin: 0,
                                 }}>
                                     <strong style={{ color: "#991b1b", fontWeight: 600 }}>
@@ -751,9 +712,8 @@ export default function ComparisonPage() {
                                     </svg>
                                 </span>
                                 <p style={{
-                                    fontSize: isMobile ? "0.88rem" : "0.95rem",
+                                    ...comparisonType.tableCell(isMobile),
                                     color: "#374151",
-                                    lineHeight: 1.6,
                                     margin: 0,
                                 }}>
                                     <strong style={{ color: "#14532d", fontWeight: 600 }}>
@@ -773,7 +733,7 @@ export default function ComparisonPage() {
                 style={{
                     padding: isMobile ? "3.5rem 1.25rem 4.5rem" : "5rem 2rem 6rem",
                     backgroundColor: "#fff",
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                    fontFamily: PP_NEUE_MONTREAL,
                     borderTop: "1px solid #f0f0f0",
                 }}
             >
@@ -810,7 +770,7 @@ export default function ComparisonPage() {
                                 padding: isMobile ? "2rem 1.5rem" : "2.5rem 2.25rem",
                                 position: "relative",
                                 overflow: "hidden",
-                                fontFamily: '"Pp Neue Montreal", sans-serif',
+                                fontFamily: PP_NEUE_MONTREAL,
                             }}
                         >
                             <div style={{
@@ -825,20 +785,15 @@ export default function ComparisonPage() {
                                 {block.tag}
                             </SectionTag>
                             <h2 style={{
-                                fontSize: isMobile ? "1.35rem" : "1.55rem",
-                                fontWeight: 500,
-                                fontFamily: '"Pp Neue Montreal", sans-serif',
-                                color: "#0d1117",
+                                ...comparisonType.cardH2(isMobile),
                                 marginBottom: "1rem",
-                                letterSpacing: "-0.02em",
-                                lineHeight: 1.25,
                             }}>
                                 {block.title}
                             </h2>
                             <p style={{
                                 fontSize: "1rem",
                                 fontWeight: 400,
-                                fontFamily: '"Pp Neue Montreal", sans-serif',
+                                fontFamily: PP_NEUE_MONTREAL,
                                 color: "#4b5563",
                                 lineHeight: 1.7,
                                 margin: 0,
@@ -862,7 +817,7 @@ export default function ComparisonPage() {
                 style={{
                     backgroundColor: "#004d40",
                     padding: isMobile ? "4rem 1.25rem" : "5rem 2rem",
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                    fontFamily: PP_NEUE_MONTREAL,
                     color: "#fff",
                 }}
             >
@@ -904,12 +859,11 @@ export default function ComparisonPage() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.14 }}
                         style={{
-                            fontSize: "1.05rem",
+                            ...comparisonType.stepBody(),
                             color: "rgba(255,255,255,0.65)",
                             textAlign: "center",
                             maxWidth: "620px",
                             margin: "0 auto 3.5rem",
-                            lineHeight: 1.65,
                         }}
                     >
                         Move your audit programme from basic forms to a specialist ISO management system today.
@@ -997,19 +951,16 @@ export default function ComparisonPage() {
                                 </div>
 
                                 <h3 style={{
-                                    fontSize: "1.2rem",
-                                    fontWeight: 600,
+                                    ...comparisonType.stepH3(),
                                     color: "#fff",
                                     marginBottom: "0.85rem",
-                                    lineHeight: 1.25,
                                 }}>
                                     {item.title}
                                 </h3>
 
                                 <p style={{
-                                    fontSize: "0.95rem",
+                                    ...comparisonType.stepBody(),
                                     color: "rgba(255,255,255,0.65)",
-                                    lineHeight: 1.65,
                                     margin: 0,
                                 }}>
                                     {item.desc}
@@ -1059,14 +1010,9 @@ export default function ComparisonPage() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.08 }}
                         style={{
-                            fontSize: isMobile ? "1.85rem" : "2.4rem",
-                            fontWeight: 500,
-                            fontFamily: PP_NEUE_MONTREAL,
-                            color: "#0d1117",
+                            ...comparisonType.sectionH2(isMobile),
                             textAlign: "center",
                             marginBottom: isMobile ? "2.5rem" : "3.25rem",
-                            letterSpacing: "-0.02em",
-                            lineHeight: 1.15,
                         }}
                     >
                         Structured ISO Audits Across Industries
@@ -1206,6 +1152,6 @@ export default function ComparisonPage() {
             />
 
             <Footer />
-        </>
+        </div>
     );
 }

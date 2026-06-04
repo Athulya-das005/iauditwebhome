@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { PP_NEUE_MONTREAL } from "@/constants/typography";
 
 interface CTAProps {
     backgroundColor?: string;
@@ -36,7 +37,7 @@ export default function CTA({
         <section id="cta" style={{
             padding: isMobile ? "3rem 0" : "5rem 0",
             backgroundColor: backgroundColor,
-            fontFamily: '"Pp Neue Montreal", sans-serif'
+            fontFamily: PP_NEUE_MONTREAL
         }}>
             <div style={{ maxWidth: "1260px", margin: "0 auto", padding: isMobile ? "0 1.25rem" : "0 2rem" }}>
                 <motion.div
