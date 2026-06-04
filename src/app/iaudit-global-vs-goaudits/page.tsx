@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
 import Footer from "@/components/Footer";
@@ -8,6 +9,18 @@ import Testimonials from "@/components/Testimonials";
 import FAQAccordion from "@/components/FAQAccordion";
 import CTA from "@/components/CTA";
 import LogoLoop from "@/components/LogoLoop/LogoLoop";
+import SectionTag from "@/components/SectionTag";
+
+const PP_NEUE_MONTREAL = '"Pp Neue Montreal", sans-serif';
+
+const industryHighlights = [
+    { title: "Manufacturing", slug: "manufacturing-iso-audit-software", image: "/images/manufacturing-bg.jpg" },
+    { title: "Construction", slug: "construction-iso-audit-software", image: "/images/construction-bg.jpg" },
+    { title: "Healthcare", slug: "healthcare-compliance-software", image: "/images/healthcare-bg.png" },
+    { title: "Logistics & Transport", slug: "transport-and-logistics-iso-audit-software", image: "/images/logistics-bg.jpg" },
+    { title: "Basic Metal & Fabrication", slug: "basic-metals-and-fabrication-iso-audit-software", image: "/images/metal-fabrication-bg.jpg" },
+    { title: "Engineering Services", slug: "engineering-iso-audit-software", image: "/images/engineering-bg.jpg" },
+];
 
 const comparisonData = [
     { feature: "Built by certified ISO auditors", iaudit: true, competitor: false },
@@ -110,20 +123,9 @@ export default function ComparisonPage() {
                 <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.12 } } }} style={{ maxWidth: "900px", margin: "0 auto" }}>
                     <motion.div
                         variants={fadeUp}
-                        style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: "0.5rem",
-                            fontSize: "0.9rem",
-                            fontWeight: 600,
-                            color: "#058c42",
-                            backgroundColor: "rgba(5,140,66,0.08)",
-                            padding: "0.4rem 1.2rem",
-                            borderRadius: "20px",
-                            marginBottom: "1.5rem",
-                        }}
+                        style={{ display: "flex", justifyContent: "center", marginBottom: "1.5rem" }}
                     >
-                        iAudit Global vs GoAudits
+                        <SectionTag isMobile={isMobile}>GoAudits Alternative</SectionTag>
                     </motion.div>
 
                     <motion.h1
@@ -137,7 +139,7 @@ export default function ComparisonPage() {
                             marginBottom: "1.5rem",
                         }}
                     >
-                        Move beyond site checklists to <span style={{ color: "#058c42" }}>structured ISO audit control</span>
+                        The GoAudit Alternative Built for Structured ISO Audit Programmes
                     </motion.h1>
 
                     <motion.p
@@ -150,7 +152,7 @@ export default function ComparisonPage() {
                             lineHeight: 1.6,
                         }}
                     >
-                        GoAudits is built for simple site inspections. iAudit Global is built by auditors for professional ISO programmes where PDCA, finding tracking and data ownership come as standard.
+                        iAudit Global is a GoAudit alternative designed for ISO 9001, 14001 and 45001 audits, embedding PDCA workflows, corrective action verification and full audit data ownership.
                     </motion.p>
 
                     <motion.div variants={fadeUp} style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
@@ -208,6 +210,287 @@ export default function ComparisonPage() {
                 </div>
             </section>
 
+            {/* GoAudits Overview */}
+            <section
+                style={{
+                    padding: isMobile ? "3.5rem 1.25rem 4rem" : "5.5rem 2rem 6rem",
+                    backgroundColor: "#fff",
+                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                    borderTop: "1px solid #f0f0f0",
+                }}
+            >
+                <div style={{ maxWidth: "960px", margin: "0 auto" }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        style={{ display: "flex", justifyContent: "center", marginBottom: "1.25rem" }}
+                    >
+                        <SectionTag isMobile={isMobile}>GoAudits Overview</SectionTag>
+                    </motion.div>
+
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.08 }}
+                        style={{
+                            fontSize: isMobile ? "1.85rem" : "2.5rem",
+                            fontWeight: 500,
+                            fontFamily: '"Pp Neue Montreal", sans-serif',
+                            color: "#0d1117",
+                            textAlign: "center",
+                            marginBottom: isMobile ? "2.5rem" : "3.5rem",
+                            letterSpacing: "-0.02em",
+                            lineHeight: 1.15,
+                        }}
+                    >
+                        GoAudits Overview:
+                    </motion.h2>
+
+                    <div style={{
+                        display: "grid",
+                        gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+                        gap: isMobile ? "1.25rem" : "1.5rem",
+                    }}>
+                        {[
+                            {
+                                title: "What is GoAudits?",
+                                body: "GoAudits is a digital inspection platform designed to replace manual paperwork with mobile checklists. It helps frontline teams conduct site checks, capture photos and generate automated reports for operational visibility.",
+                            },
+                            {
+                                title: "Who Typically Uses GoAudits?",
+                                body: "The software is frequently adopted by teams in retail, hospitality and facility management. It is designed for operational staff who need to perform high‑volume site inspections and daily safety checks.",
+                            },
+                        ].map((block, i) => (
+                            <motion.article
+                                key={block.title}
+                                initial={{ opacity: 0, y: 24 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.12 + i * 0.1, duration: 0.5 }}
+                                style={{
+                                    backgroundColor: "#f8fafc",
+                                    border: "1px solid #e8edf2",
+                                    borderRadius: "16px",
+                                    padding: isMobile ? "1.75rem 1.5rem" : "2.25rem 2rem",
+                                    position: "relative",
+                                    overflow: "hidden",
+                                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                                }}
+                            >
+                                <div style={{
+                                    position: "absolute",
+                                    top: 0,
+                                    left: 0,
+                                    width: "4px",
+                                    height: "100%",
+                                    background: "linear-gradient(180deg, #058c42 0%, rgba(5,140,66,0.35) 100%)",
+                                    borderRadius: "16px 0 0 16px",
+                                }} />
+                                <h3 style={{
+                                    fontSize: isMobile ? "1.15rem" : "1.3rem",
+                                    fontWeight: 500,
+                                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                                    color: "#0d1117",
+                                    marginBottom: "1rem",
+                                    letterSpacing: "-0.01em",
+                                    lineHeight: 1.25,
+                                    paddingLeft: "0.5rem",
+                                }}>
+                                    {block.title}
+                                </h3>
+                                <p style={{
+                                    fontSize: "1rem",
+                                    fontWeight: 400,
+                                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                                    color: "#4b5563",
+                                    lineHeight: 1.7,
+                                    margin: 0,
+                                    paddingLeft: "0.5rem",
+                                }}>
+                                    {block.body}
+                                </p>
+                            </motion.article>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* GoAudit Alternative — Structured ISO Control */}
+            <section
+                style={{
+                    padding: isMobile ? "3.5rem 1.25rem 4rem" : "5rem 2rem 5.5rem",
+                    background: `
+                        radial-gradient(ellipse 70% 60% at 15% 50%, rgba(5,140,66,0.08) 0%, transparent 65%),
+                        radial-gradient(ellipse 60% 50% at 85% 50%, rgba(0,77,64,0.06) 0%, transparent 65%),
+                        #f0fdf4
+                    `,
+                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                    borderTop: "1px solid #e8f5e9",
+                }}
+            >
+                <div style={{ maxWidth: "880px", margin: "0 auto", textAlign: "center" }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        style={{ display: "flex", justifyContent: "center", marginBottom: "1.25rem" }}
+                    >
+                        <SectionTag isMobile={isMobile}>GoAudit Alternative</SectionTag>
+                    </motion.div>
+
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.08 }}
+                        style={{
+                            fontSize: isMobile ? "1.75rem" : "2.35rem",
+                            fontWeight: 500,
+                            fontFamily: '"Pp Neue Montreal", sans-serif',
+                            color: "#0d1117",
+                            marginBottom: isMobile ? "2rem" : "2.5rem",
+                            letterSpacing: "-0.02em",
+                            lineHeight: 1.2,
+                        }}
+                    >
+                        The GoAudit Alternative Designed for Structured ISO Control
+                    </motion.h2>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.14, duration: 0.55 }}
+                        style={{
+                            backgroundColor: "#fff",
+                            border: "1px solid #d1fae5",
+                            borderRadius: "20px",
+                            padding: isMobile ? "2rem 1.5rem" : "2.75rem 3rem",
+                            boxShadow: "0 12px 40px rgba(5,140,66,0.06)",
+                            textAlign: "left",
+                            position: "relative",
+                            overflow: "hidden",
+                        }}
+                    >
+                        <motion.div
+                            initial={{ scaleX: 0 }}
+                            whileInView={{ scaleX: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                            style={{
+                                position: "absolute",
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                height: "4px",
+                                background: "linear-gradient(90deg, #058c42 0%, #004d40 100%)",
+                                transformOrigin: "left",
+                            }}
+                        />
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.28, duration: 0.5 }}
+                            style={{
+                                fontSize: isMobile ? "1.05rem" : "1.15rem",
+                                fontWeight: 400,
+                                fontFamily: '"Pp Neue Montreal", sans-serif',
+                                color: "#374151",
+                                lineHeight: 1.75,
+                                margin: "0 0 2rem",
+                            }}
+                        >
+                            iAudit Global is a specialist GoAudits alternative built by certified auditors for professional ISO programmes. Unlike general inspection apps, it integrates the full PDCA cycle, provides clause-level guidance, and ensures your sensitive audit data remains entirely under your own control.
+                        </motion.p>
+                        <div style={{
+                            display: "grid",
+                            gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
+                            gap: isMobile ? "0.75rem" : "1rem",
+                            paddingTop: "0.25rem",
+                            borderTop: "1px solid #ecfdf5",
+                        }}>
+                            {[
+                                {
+                                    label: "Full PDCA cycle",
+                                    icon: (
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                        </svg>
+                                    ),
+                                },
+                                {
+                                    label: "Clause-level guidance",
+                                    icon: (
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                                            <polyline points="14 2 14 8 20 8" />
+                                            <line x1="16" y1="13" x2="8" y2="13" />
+                                            <line x1="16" y1="17" x2="8" y2="17" />
+                                        </svg>
+                                    ),
+                                },
+                                {
+                                    label: "Your data, your control",
+                                    icon: (
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                            <path d="M7 11V7a5 5 0 0110 0v4" />
+                                        </svg>
+                                    ),
+                                },
+                            ].map((item, i) => (
+                                <motion.div
+                                    key={item.label}
+                                    initial={{ opacity: 0, x: -12 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.35 + i * 0.1, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                                    whileHover={{ y: -2, transition: { duration: 0.2 } }}
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "0.65rem",
+                                        padding: isMobile ? "0.65rem 0" : "0.5rem 0",
+                                        fontFamily: '"Pp Neue Montreal", sans-serif',
+                                    }}
+                                >
+                                    <motion.span
+                                        initial={{ scale: 0 }}
+                                        whileInView={{ scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.4 + i * 0.1, type: "spring", stiffness: 260, damping: 18 }}
+                                        style={{
+                                            flexShrink: 0,
+                                            display: "inline-flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            width: "36px",
+                                            height: "36px",
+                                            borderRadius: "10px",
+                                            backgroundColor: "rgba(5,140,66,0.08)",
+                                            color: "#058c42",
+                                        }}
+                                    >
+                                        {item.icon}
+                                    </motion.span>
+                                    <span style={{
+                                        fontSize: "0.9rem",
+                                        fontWeight: 500,
+                                        color: "#14532d",
+                                        lineHeight: 1.3,
+                                    }}>
+                                        {item.label}
+                                    </span>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+
             {/* Compare the Fit — Two-Column Section */}
             <section
                 style={{
@@ -230,21 +513,7 @@ export default function ComparisonPage() {
                             marginBottom: "1.25rem",
                         }}
                     >
-                        <span style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: "0.5rem",
-                            fontSize: "0.85rem",
-                            fontWeight: 600,
-                            color: "#058c42",
-                            backgroundColor: "rgba(5,140,66,0.08)",
-                            padding: "0.35rem 1rem",
-                            borderRadius: "20px",
-                            letterSpacing: "0.02em",
-                            textTransform: "uppercase",
-                        }}>
-                            Compare the fit
-                        </span>
+                        <SectionTag isMobile={isMobile}>Compare the fit</SectionTag>
                     </motion.div>
 
                     {/* H2 */}
@@ -499,6 +768,88 @@ export default function ComparisonPage() {
                 </div>
             </section>
 
+            {/* Auditor-Led Design & PDCA Architecture */}
+            <section
+                style={{
+                    padding: isMobile ? "3.5rem 1.25rem 4.5rem" : "5rem 2rem 6rem",
+                    backgroundColor: "#fff",
+                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                    borderTop: "1px solid #f0f0f0",
+                }}
+            >
+                <div style={{
+                    maxWidth: "1100px",
+                    margin: "0 auto",
+                    display: "grid",
+                    gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+                    gap: isMobile ? "1.5rem" : "2rem",
+                }}>
+                    {[
+                        {
+                            tag: "Auditor-Led Design",
+                            title: "Built by Auditors Who Understand ISO Complexity",
+                            body: "Unlike generalist tools designed by developers for basic checklists, iAudit Global was created by certified ISO auditors. Every feature, from clause-mapped checklists to the PDCA architecture, is built specifically to satisfy the rigour of professional auditing standards. This makes us the ideal GoAudits alternative for organisations that need more than just a digital form.",
+                        },
+                        {
+                            tag: "PDCA Architecture",
+                            title: "The PDCA‑Driven GoAudit Alternative for ISO Teams",
+                            body: "Most apps capture data but fail to drive improvement. iAudit Global embeds the Plan-Do-Check-Act cycle into your audits, ensuring findings are linked to verified corrective actions. We don't just help you document a problem; we help you ensure it has been resolved through systematic effectiveness checks.",
+                        },
+                    ].map((block, i) => (
+                        <motion.article
+                            key={block.tag}
+                            initial={{ opacity: 0, y: 28 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-40px" }}
+                            transition={{ duration: 0.55, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                            whileHover={isMobile ? undefined : { y: -4, transition: { duration: 0.25 } }}
+                            style={{
+                                backgroundColor: "#fafdfc",
+                                border: "1px solid #e8edf2",
+                                borderRadius: "20px",
+                                padding: isMobile ? "2rem 1.5rem" : "2.5rem 2.25rem",
+                                position: "relative",
+                                overflow: "hidden",
+                                fontFamily: '"Pp Neue Montreal", sans-serif',
+                            }}
+                        >
+                            <div style={{
+                                position: "absolute",
+                                top: 0,
+                                left: 0,
+                                width: "100%",
+                                height: "3px",
+                                background: "linear-gradient(90deg, #058c42 0%, rgba(5,140,66,0.25) 100%)",
+                            }} />
+                            <SectionTag isMobile={isMobile} style={{ marginBottom: "1.25rem" }}>
+                                {block.tag}
+                            </SectionTag>
+                            <h2 style={{
+                                fontSize: isMobile ? "1.35rem" : "1.55rem",
+                                fontWeight: 500,
+                                fontFamily: '"Pp Neue Montreal", sans-serif',
+                                color: "#0d1117",
+                                marginBottom: "1rem",
+                                letterSpacing: "-0.02em",
+                                lineHeight: 1.25,
+                            }}>
+                                {block.title}
+                            </h2>
+                            <p style={{
+                                fontSize: "1rem",
+                                fontWeight: 400,
+                                fontFamily: '"Pp Neue Montreal", sans-serif',
+                                color: "#4b5563",
+                                lineHeight: 1.7,
+                                margin: 0,
+                            }}>
+                                {block.body}
+                            </p>
+                        </motion.article>
+                    ))}
+                </div>
+            </section>
+
             {/* Testimonials */}
             <Testimonials
                 items={comparisonTestimonials}
@@ -524,20 +875,7 @@ export default function ComparisonPage() {
                         viewport={{ once: true }}
                         style={{ display: "flex", justifyContent: "center", marginBottom: "1.25rem" }}
                     >
-                        <span style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            fontSize: "0.8rem",
-                            fontWeight: 700,
-                            color: "#6ee7b7",
-                            backgroundColor: "rgba(110,231,183,0.12)",
-                            padding: "0.35rem 1rem",
-                            borderRadius: "20px",
-                            letterSpacing: "0.08em",
-                            textTransform: "uppercase",
-                        }}>
-                            Get started
-                        </span>
+                        <SectionTag isMobile={isMobile} variant="onDark">Get started</SectionTag>
                     </motion.div>
 
                     {/* H2 */}
@@ -592,8 +930,8 @@ export default function ComparisonPage() {
                             },
                             {
                                 step: "02",
-                                title: "Plan and execute",
-                                desc: "Use Audit Mate to build clause‑mapped checklists and capture digital evidence on any device.",
+                                title: "Migrate templates and data",
+                                desc: "Effortlessly move existing audit checklists and historical findings using our template migration and data import.",
                             },
                             {
                                 step: "03",
@@ -696,93 +1034,144 @@ export default function ComparisonPage() {
                 </div>
             </section>
 
-            {/* Ready to Upgrade Section */}
+            {/* Industries */}
             <section
                 style={{
-                    padding: isMobile ? "5rem 1.25rem" : "7rem 2rem",
+                    padding: isMobile ? "3.5rem 1.25rem 4.5rem" : "5.5rem 2rem 6rem",
                     backgroundColor: "#f8fafc",
-                    textAlign: "center",
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                    fontFamily: PP_NEUE_MONTREAL,
                     borderTop: "1px solid #f0f0f0",
                 }}
             >
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    style={{ maxWidth: "760px", margin: "0 auto" }}
-                >
-                    {/* Tag */}
-                    <div style={{ marginBottom: "1.25rem" }}>
-                        <span style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            fontSize: "0.8rem",
-                            fontWeight: 700,
-                            color: "#058c42",
-                            backgroundColor: "rgba(5,140,66,0.08)",
-                            padding: "0.35rem 1rem",
-                            borderRadius: "20px",
-                            letterSpacing: "0.08em",
-                            textTransform: "uppercase",
-                        }}>
-                            Ready to upgrade
-                        </span>
-                    </div>
+                <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        style={{ display: "flex", justifyContent: "center", marginBottom: "1.25rem" }}
+                    >
+                        <SectionTag isMobile={isMobile}>Industries</SectionTag>
+                    </motion.div>
 
-                    {/* H2 */}
-                    <h2
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.08 }}
                         style={{
-                            fontSize: isMobile ? "2rem" : "3rem",
+                            fontSize: isMobile ? "1.85rem" : "2.4rem",
                             fontWeight: 500,
+                            fontFamily: PP_NEUE_MONTREAL,
                             color: "#0d1117",
-                            marginBottom: "1.25rem",
+                            textAlign: "center",
+                            marginBottom: isMobile ? "2.5rem" : "3.25rem",
                             letterSpacing: "-0.02em",
-                            lineHeight: 1.1,
+                            lineHeight: 1.15,
                         }}
                     >
-                        Upgrade to software <span style={{ color: "#058c42" }}>built for ISO programmes</span>
-                    </h2>
+                        Structured ISO Audits Across Industries
+                    </motion.h2>
 
-                    {/* Description */}
-                    <p
-                        style={{
-                            fontSize: "1.1rem",
-                            color: "#6b7280",
-                            lineHeight: 1.65,
-                            maxWidth: "580px",
-                            margin: "0 auto 2.75rem",
-                        }}
-                    >
-                        Move beyond simple inspections. Visit the app to start your 14 day free self‑assessment and identify system gaps across your organisation.
-                    </p>
-
-                    {/* CTA Button */}
-                    <Link
-                        href="https://apps.iaudit.global"
-                        className="btn-animate"
-                        style={{
-                            padding: "16px 40px",
-                            borderRadius: "8px",
-                            fontWeight: 600,
-                            fontSize: "1.05rem",
-                            display: "inline-flex",
-                        }}
-                    >
-                        <span>Start your free trial →</span>
-                    </Link>
-
-                    {/* Trust note */}
-                    <p style={{
-                        marginTop: "1.25rem",
-                        fontSize: "0.85rem",
-                        color: "#9ca3af",
-                        fontWeight: 500,
+                    <div style={{
+                        display: "grid",
+                        gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
+                        gap: isMobile ? "1rem" : "1.25rem",
                     }}>
-                        No credit card required · 14-day free trial · Cancel anytime
-                    </p>
-                </motion.div>
+                        {industryHighlights.map((industry, i) => (
+                            <motion.div
+                                key={industry.slug}
+                                initial={{ opacity: 0, y: 24 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-30px" }}
+                                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                            >
+                                <Link
+                                    href={`/industries/${industry.slug}`}
+                                    style={{
+                                        display: "block",
+                                        position: "relative",
+                                        height: isMobile ? "200px" : "220px",
+                                        borderRadius: "16px",
+                                        overflow: "hidden",
+                                        textDecoration: "none",
+                                        fontFamily: PP_NEUE_MONTREAL,
+                                        boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+                                    }}
+                                >
+                                    <motion.div
+                                        style={{ position: "absolute", inset: 0 }}
+                                        whileHover={{ scale: 1.05 }}
+                                        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                                    >
+                                        <Image
+                                            src={industry.image}
+                                            alt={industry.title}
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 33vw"
+                                            style={{ objectFit: "cover" }}
+                                        />
+                                    </motion.div>
+                                    <div style={{
+                                        position: "absolute",
+                                        inset: 0,
+                                        background: "linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.08) 100%)",
+                                        zIndex: 1,
+                                    }} />
+                                    <div style={{
+                                        position: "absolute",
+                                        bottom: 0,
+                                        left: 0,
+                                        right: 0,
+                                        padding: isMobile ? "1.25rem 1.25rem" : "1.5rem 1.5rem",
+                                        zIndex: 2,
+                                        display: "flex",
+                                        alignItems: "flex-end",
+                                        justifyContent: "space-between",
+                                        gap: "0.75rem",
+                                    }}>
+                                        <h3 style={{
+                                            fontSize: isMobile ? "1.05rem" : "1.15rem",
+                                            fontWeight: 500,
+                                            fontFamily: PP_NEUE_MONTREAL,
+                                            color: "#fff",
+                                            margin: 0,
+                                            lineHeight: 1.25,
+                                            letterSpacing: "-0.01em",
+                                        }}>
+                                            {industry.title}
+                                        </h3>
+                                        <span style={{
+                                            flexShrink: 0,
+                                            display: "inline-flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            width: "32px",
+                                            height: "32px",
+                                            borderRadius: "50%",
+                                            backgroundColor: "rgba(255,255,255,0.15)",
+                                            color: "#fff",
+                                            backdropFilter: "blur(4px)",
+                                        }}>
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                <line x1="5" y1="12" x2="19" y2="12" />
+                                                <polyline points="12 5 19 12 12 19" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </Link>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
             </section>
+
+            <CTA
+                backgroundColor="#f8fafc"
+                tag="Ready to upgrade"
+                title="Upgrade to software built for ISO programmes"
+                description="Move beyond simple inspections. Visit the app to start your 14 day free self‑assessment and identify system gaps across your organisation."
+                buttonText="Start your free trial"
+            />
 
             {/* FAQ Section */}
             <FAQAccordion

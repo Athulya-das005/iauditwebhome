@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
 import Footer from "@/components/Footer";
@@ -8,6 +9,18 @@ import Testimonials from "@/components/Testimonials";
 import FAQAccordion from "@/components/FAQAccordion";
 import CTA from "@/components/CTA";
 import LogoLoop from "@/components/LogoLoop/LogoLoop";
+import SectionTag from "@/components/SectionTag";
+
+const PP_NEUE_MONTREAL = '"Pp Neue Montreal", sans-serif';
+
+const industryHighlights = [
+    { title: "Manufacturing", slug: "manufacturing-iso-audit-software", image: "/images/manufacturing-bg.jpg" },
+    { title: "Construction", slug: "construction-iso-audit-software", image: "/images/construction-bg.jpg" },
+    { title: "Healthcare", slug: "healthcare-compliance-software", image: "/images/healthcare-bg.png" },
+    { title: "Logistics & Transport", slug: "transport-and-logistics-iso-audit-software", image: "/images/logistics-bg.jpg" },
+    { title: "Basic Metal & Fabrication", slug: "basic-metals-and-fabrication-iso-audit-software", image: "/images/metal-fabrication-bg.jpg" },
+    { title: "Engineering Services", slug: "engineering-iso-audit-software", image: "/images/engineering-bg.jpg" },
+];
 
 const comparisonData = [
     { feature: "Built by certified ISO auditors", iaudit: true, competitor: false },
@@ -93,7 +106,7 @@ export default function ComparisonPage() {
     };
 
     return (
-        <>
+        <div style={{ fontFamily: PP_NEUE_MONTREAL }}>
             {/* Hero */}
             <section
                 style={{
@@ -104,26 +117,15 @@ export default function ComparisonPage() {
                     `,
                     padding: isMobile ? "60px 1.25rem 40px" : "100px 2rem 80px",
                     textAlign: "center",
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                    fontFamily: PP_NEUE_MONTREAL,
                 }}
             >
                 <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.12 } } }} style={{ maxWidth: "900px", margin: "0 auto" }}>
                     <motion.div
                         variants={fadeUp}
-                        style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: "0.5rem",
-                            fontSize: "0.9rem",
-                            fontWeight: 600,
-                            color: "#058c42",
-                            backgroundColor: "rgba(5,140,66,0.08)",
-                            padding: "0.4rem 1.2rem",
-                            borderRadius: "20px",
-                            marginBottom: "1.5rem",
-                        }}
+                        style={{ display: "flex", justifyContent: "center", marginBottom: "1.5rem" }}
                     >
-                        iAudit Global vs SafetyCulture
+                        <SectionTag isMobile={isMobile}>SafetyCulture Alternative</SectionTag>
                     </motion.div>
 
                     <motion.h1
@@ -137,7 +139,7 @@ export default function ComparisonPage() {
                             marginBottom: "1.5rem",
                         }}
                     >
-                        ISO audits need a system, not just an <span style={{ color: "#058c42" }}>inspection app</span>
+                        The SafetyCulture Alternative Built for Professional ISO Audits
                     </motion.h1>
 
                     <motion.p
@@ -150,7 +152,7 @@ export default function ComparisonPage() {
                             lineHeight: 1.6,
                         }}
                     >
-                        SafetyCulture is built for general workplace checks. iAudit Global is built by certified auditors specifically for ISO 9001, 14001 and 45001 programmes.
+                        iAudit Global is a SafetyCulture alternative designed specifically for ISO 9001, 14001 and 45001 audit programmes, with integrated PDCA workflows and full audit data ownership.
                     </motion.p>
 
                     <motion.div variants={fadeUp} style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
@@ -177,7 +179,7 @@ export default function ComparisonPage() {
                 width: "100%",
                 padding: isMobile ? "2rem 1rem 2.5rem" : "2.5rem 0 3rem",
                 background: "#fff",
-                fontFamily: '"Pp Neue Montreal", sans-serif',
+                fontFamily: PP_NEUE_MONTREAL,
             }}>
                 <motion.p
                     initial={{ opacity: 0, y: 10 }}
@@ -208,12 +210,198 @@ export default function ComparisonPage() {
                 </div>
             </section>
 
+            {/* SafetyCulture Overview */}
+            <section
+                style={{
+                    padding: isMobile ? "3.5rem 1.25rem 4rem" : "5.5rem 2rem 6rem",
+                    backgroundColor: "#fff",
+                    fontFamily: PP_NEUE_MONTREAL,
+                    borderTop: "1px solid #f0f0f0",
+                }}
+            >
+                <div style={{ maxWidth: "960px", margin: "0 auto", fontFamily: PP_NEUE_MONTREAL }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        style={{ display: "flex", justifyContent: "center", marginBottom: "1.25rem" }}
+                    >
+                        <SectionTag isMobile={isMobile}>SafetyCulture Overview</SectionTag>
+                    </motion.div>
+
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.08 }}
+                        style={{
+                            fontSize: isMobile ? "1.85rem" : "2.5rem",
+                            fontWeight: 500,
+                            fontFamily: PP_NEUE_MONTREAL,
+                            color: "#0d1117",
+                            textAlign: "center",
+                            marginBottom: isMobile ? "2.5rem" : "3.5rem",
+                            letterSpacing: "-0.02em",
+                            lineHeight: 1.15,
+                        }}
+                    >
+                        A Closer Look at SafetyCulture
+                    </motion.h2>
+
+                    <div style={{
+                        display: "grid",
+                        gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+                        gap: isMobile ? "1.25rem" : "1.5rem",
+                    }}>
+                        {[
+                            {
+                                title: "What Is SafetyCulture?",
+                                body: "SafetyCulture is a mobile‑first inspection and operations platform designed to help teams conduct workplace checks, record observations and manage tasks. It is widely used for safety inspections, quality checks and operational compliance activities across frontline environments.",
+                            },
+                            {
+                                title: "Who Typically Uses SafetyCulture?",
+                                body: "SafetyCulture is commonly adopted by organisations in manufacturing, retail, hospitality, logistics and transport. It supports frontline teams who need structured digital checklists, issue reporting tools and basic compliance tracking across distributed operational sites.",
+                            },
+                        ].map((block, i) => (
+                            <motion.article
+                                key={block.title}
+                                initial={{ opacity: 0, y: 24 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.12 + i * 0.1, duration: 0.5 }}
+                                style={{
+                                    backgroundColor: "#f8fafc",
+                                    border: "1px solid #e8edf2",
+                                    borderRadius: "16px",
+                                    padding: isMobile ? "1.75rem 1.5rem" : "2.25rem 2rem",
+                                    position: "relative",
+                                    overflow: "hidden",
+                                    fontFamily: PP_NEUE_MONTREAL,
+                                }}
+                            >
+                                <div style={{
+                                    position: "absolute",
+                                    top: 0,
+                                    left: 0,
+                                    width: "4px",
+                                    height: "100%",
+                                    background: "linear-gradient(180deg, #058c42 0%, rgba(5,140,66,0.35) 100%)",
+                                    borderRadius: "16px 0 0 16px",
+                                }} />
+                                <h3 style={{
+                                    fontSize: isMobile ? "1.15rem" : "1.3rem",
+                                    fontWeight: 500,
+                                    fontFamily: PP_NEUE_MONTREAL,
+                                    color: "#0d1117",
+                                    marginBottom: "1rem",
+                                    letterSpacing: "-0.01em",
+                                    lineHeight: 1.25,
+                                    paddingLeft: "0.5rem",
+                                }}>
+                                    {block.title}
+                                </h3>
+                                <p style={{
+                                    fontSize: "1rem",
+                                    fontWeight: 400,
+                                    fontFamily: PP_NEUE_MONTREAL,
+                                    color: "#4b5563",
+                                    lineHeight: 1.7,
+                                    margin: 0,
+                                    paddingLeft: "0.5rem",
+                                }}>
+                                    {block.body}
+                                </p>
+                            </motion.article>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Built for ISO Audits */}
+            <section
+                style={{
+                    padding: isMobile ? "3.5rem 1.25rem 4rem" : "5rem 2rem 5.5rem",
+                    background: `
+                        radial-gradient(ellipse 70% 60% at 15% 50%, rgba(5,140,66,0.08) 0%, transparent 65%),
+                        radial-gradient(ellipse 60% 50% at 85% 50%, rgba(0,77,64,0.06) 0%, transparent 65%),
+                        #f0fdf4
+                    `,
+                    fontFamily: PP_NEUE_MONTREAL,
+                    borderTop: "1px solid #e8f5e9",
+                }}
+            >
+                <div style={{ maxWidth: "880px", margin: "0 auto", textAlign: "center" }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        style={{ display: "flex", justifyContent: "center", marginBottom: "1.25rem" }}
+                    >
+                        <SectionTag isMobile={isMobile}>Built for ISO Audits</SectionTag>
+                    </motion.div>
+
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.08 }}
+                        style={{
+                            fontSize: isMobile ? "1.75rem" : "2.35rem",
+                            fontWeight: 500,
+                            fontFamily: PP_NEUE_MONTREAL,
+                            color: "#0d1117",
+                            marginBottom: isMobile ? "2rem" : "2.5rem",
+                            letterSpacing: "-0.02em",
+                            lineHeight: 1.2,
+                        }}
+                    >
+                        The SafetyCulture Alternative for Structured ISO Audit Programmes
+                    </motion.h2>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.14, duration: 0.55 }}
+                        style={{
+                            backgroundColor: "#fff",
+                            border: "1px solid #d1fae5",
+                            borderRadius: "20px",
+                            padding: isMobile ? "2rem 1.5rem" : "2.75rem 3rem",
+                            boxShadow: "0 12px 40px rgba(5,140,66,0.06)",
+                            textAlign: "left",
+                            position: "relative",
+                            overflow: "hidden",
+                        }}
+                    >
+                        <div style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            height: "4px",
+                            background: "linear-gradient(90deg, #058c42 0%, #004d40 100%)",
+                        }} />
+                        <p style={{
+                            fontSize: isMobile ? "1.05rem" : "1.15rem",
+                            fontWeight: 400,
+                            fontFamily: PP_NEUE_MONTREAL,
+                            color: "#374151",
+                            lineHeight: 1.75,
+                            margin: 0,
+                        }}>
+                            iAudit Global is a SafetyCulture alternative designed specifically for ISO 9001, 14001 and 45001 audit programmes. Unlike generic inspection apps, it manages the full audit lifecycle, integrates PDCA workflows and ensures corrective actions are verified, not simply closed.
+                        </p>
+                    </motion.div>
+                </div>
+            </section>
+
             {/* Compare the Fit — Two-Column Section */}
             <section
                 style={{
                     padding: isMobile ? "3rem 1rem 4rem" : "5rem 2rem 6rem",
                     backgroundColor: "#f8fafc",
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                    fontFamily: PP_NEUE_MONTREAL,
                     borderTop: "1px solid #f0f0f0",
                 }}
             >
@@ -230,21 +418,7 @@ export default function ComparisonPage() {
                             marginBottom: "1.25rem",
                         }}
                     >
-                        <span style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: "0.5rem",
-                            fontSize: "0.85rem",
-                            fontWeight: 600,
-                            color: "#058c42",
-                            backgroundColor: "rgba(5,140,66,0.08)",
-                            padding: "0.35rem 1rem",
-                            borderRadius: "20px",
-                            letterSpacing: "0.02em",
-                            textTransform: "uppercase",
-                        }}>
-                            Compare the fit
-                        </span>
+                        <SectionTag isMobile={isMobile}>Compare the fit</SectionTag>
                     </motion.div>
 
                     {/* H2 */}
@@ -499,6 +673,88 @@ export default function ComparisonPage() {
                 </div>
             </section>
 
+            {/* Data Sovereignty & PDCA Lifecycle */}
+            <section
+                style={{
+                    padding: isMobile ? "3.5rem 1.25rem 4.5rem" : "5rem 2rem 6rem",
+                    backgroundColor: "#fff",
+                    fontFamily: PP_NEUE_MONTREAL,
+                    borderTop: "1px solid #f0f0f0",
+                }}
+            >
+                <div style={{
+                    maxWidth: "1100px",
+                    margin: "0 auto",
+                    display: "grid",
+                    gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+                    gap: isMobile ? "1.5rem" : "2rem",
+                }}>
+                    {[
+                        {
+                            tag: "Data Sovereignty",
+                            title: "A SafetyCulture Alternative with a Zero‑Access Policy",
+                            body: "iAudit Global operates a strict Zero Access policy. As a SafetyCulture alternative built for ISO audits, we never access, mine or review your findings, ensuring full data ownership for regulated industries.",
+                        },
+                        {
+                            tag: "PDCA Lifecycle",
+                            title: "ISO Audit Management Software Built on Plan Do Check Act",
+                            body: "iAudit Global embeds the entire Plan, Do, Check, Act cycle into your workflow. Unlike generic apps, we connect every finding to verified corrective actions, ensuring your audits drive actual improvement.",
+                        },
+                    ].map((block, i) => (
+                        <motion.article
+                            key={block.tag}
+                            initial={{ opacity: 0, y: 28 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-40px" }}
+                            transition={{ duration: 0.55, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                            whileHover={isMobile ? undefined : { y: -4, transition: { duration: 0.25 } }}
+                            style={{
+                                backgroundColor: "#fafdfc",
+                                border: "1px solid #e8edf2",
+                                borderRadius: "20px",
+                                padding: isMobile ? "2rem 1.5rem" : "2.5rem 2.25rem",
+                                position: "relative",
+                                overflow: "hidden",
+                                fontFamily: PP_NEUE_MONTREAL,
+                            }}
+                        >
+                            <div style={{
+                                position: "absolute",
+                                top: 0,
+                                left: 0,
+                                width: "100%",
+                                height: "3px",
+                                background: "linear-gradient(90deg, #058c42 0%, rgba(5,140,66,0.25) 100%)",
+                            }} />
+                            <SectionTag isMobile={isMobile} style={{ marginBottom: "1.25rem" }}>
+                                {block.tag}
+                            </SectionTag>
+                            <h2 style={{
+                                fontSize: isMobile ? "1.35rem" : "1.55rem",
+                                fontWeight: 500,
+                                fontFamily: PP_NEUE_MONTREAL,
+                                color: "#0d1117",
+                                marginBottom: "1rem",
+                                letterSpacing: "-0.02em",
+                                lineHeight: 1.25,
+                            }}>
+                                {block.title}
+                            </h2>
+                            <p style={{
+                                fontSize: "1rem",
+                                fontWeight: 400,
+                                fontFamily: PP_NEUE_MONTREAL,
+                                color: "#4b5563",
+                                lineHeight: 1.7,
+                                margin: 0,
+                            }}>
+                                {block.body}
+                            </p>
+                        </motion.article>
+                    ))}
+                </div>
+            </section>
+
             {/* Testimonials */}
             <Testimonials
                 items={comparisonTestimonials}
@@ -511,7 +767,7 @@ export default function ComparisonPage() {
                 style={{
                     backgroundColor: "#004d40",
                     padding: isMobile ? "4rem 1.25rem" : "5rem 2rem",
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                    fontFamily: PP_NEUE_MONTREAL,
                     color: "#fff",
                 }}
             >
@@ -524,20 +780,7 @@ export default function ComparisonPage() {
                         viewport={{ once: true }}
                         style={{ display: "flex", justifyContent: "center", marginBottom: "1.25rem" }}
                     >
-                        <span style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            fontSize: "0.8rem",
-                            fontWeight: 700,
-                            color: "#6ee7b7",
-                            backgroundColor: "rgba(110,231,183,0.12)",
-                            padding: "0.35rem 1rem",
-                            borderRadius: "20px",
-                            letterSpacing: "0.08em",
-                            textTransform: "uppercase",
-                        }}>
-                            Get started
-                        </span>
+                        <SectionTag isMobile={isMobile} variant="onDark">Get started</SectionTag>
                     </motion.div>
 
                     {/* H2 */}
@@ -592,8 +835,8 @@ export default function ComparisonPage() {
                             },
                             {
                                 step: "02",
-                                title: "Plan and execute",
-                                desc: "Use Audit Mate to build checklists and capture digital evidence on-site or remotely.",
+                                title: "Migrate templates and data",
+                                desc: "Effortlessly move your existing audit checklists and historical findings from your current inspection app.",
                             },
                             {
                                 step: "03",
@@ -696,94 +939,145 @@ export default function ComparisonPage() {
                 </div>
             </section>
 
-            {/* Ready to Upgrade Section */}
+            {/* Industries */}
             <section
                 style={{
-                    padding: isMobile ? "5rem 1.25rem" : "7rem 2rem",
+                    padding: isMobile ? "3.5rem 1.25rem 4.5rem" : "5.5rem 2rem 6rem",
                     backgroundColor: "#f8fafc",
-                    textAlign: "center",
-                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                    fontFamily: PP_NEUE_MONTREAL,
                     borderTop: "1px solid #f0f0f0",
                 }}
             >
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    style={{ maxWidth: "760px", margin: "0 auto" }}
-                >
-                    {/* Tag */}
-                    <div style={{ marginBottom: "1.25rem" }}>
-                        <span style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            fontSize: "0.8rem",
-                            fontWeight: 700,
-                            color: "#058c42",
-                            backgroundColor: "rgba(5,140,66,0.08)",
-                            padding: "0.35rem 1rem",
-                            borderRadius: "20px",
-                            letterSpacing: "0.08em",
-                            textTransform: "uppercase",
-                        }}>
-                            Ready to upgrade
-                        </span>
-                    </div>
+                <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        style={{ display: "flex", justifyContent: "center", marginBottom: "1.25rem" }}
+                    >
+                        <SectionTag isMobile={isMobile}>Industries</SectionTag>
+                    </motion.div>
 
-                    {/* H2 */}
-                    <h2
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.08 }}
                         style={{
-                            fontSize: isMobile ? "2rem" : "3rem",
+                            fontSize: isMobile ? "1.85rem" : "2.4rem",
                             fontWeight: 500,
+                            fontFamily: PP_NEUE_MONTREAL,
                             color: "#0d1117",
-                            marginBottom: "1.25rem",
+                            textAlign: "center",
+                            marginBottom: isMobile ? "2.5rem" : "3.25rem",
                             letterSpacing: "-0.02em",
-                            lineHeight: 1.1,
+                            lineHeight: 1.15,
                         }}
                     >
-                        Switch to the audit platform{" "}
-                        <span style={{ color: "#058c42" }}>built by ISO auditors</span>
-                    </h2>
+                        Structured ISO Audits Across Industries
+                    </motion.h2>
 
-                    {/* Description */}
-                    <p
-                        style={{
-                            fontSize: "1.1rem",
-                            color: "#6b7280",
-                            lineHeight: 1.65,
-                            maxWidth: "580px",
-                            margin: "0 auto 2.75rem",
-                        }}
-                    >
-                        Start free today and run gap analysis, audits, actions and reports in one structured platform.
-                    </p>
-
-                    {/* CTA Button */}
-                    <Link
-                        href="https://apps.iaudit.global"
-                        className="btn-animate"
-                        style={{
-                            padding: "16px 40px",
-                            borderRadius: "8px",
-                            fontWeight: 600,
-                            fontSize: "1.05rem",
-                            display: "inline-flex",
-                        }}
-                    >
-                        <span>Start Free Trial →</span>
-                    </Link>
-
-                    {/* Trust note */}
-                    <p style={{
-                        marginTop: "1.25rem",
-                        fontSize: "0.85rem",
-                        color: "#9ca3af",
-                        fontWeight: 500,
+                    <div style={{
+                        display: "grid",
+                        gridTemplateColumns: isMobile
+                            ? "1fr"
+                            : "repeat(3, 1fr)",
+                        gap: isMobile ? "1rem" : "1.25rem",
                     }}>
-                        No credit card required · 14-day free trial · Cancel anytime
-                    </p>
-                </motion.div>
+                        {industryHighlights.map((industry, i) => (
+                            <motion.div
+                                key={industry.slug}
+                                initial={{ opacity: 0, y: 24 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-30px" }}
+                                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                            >
+                                <Link
+                                    href={`/industries/${industry.slug}`}
+                                    style={{
+                                        display: "block",
+                                        position: "relative",
+                                        height: isMobile ? "200px" : "220px",
+                                        borderRadius: "16px",
+                                        overflow: "hidden",
+                                        textDecoration: "none",
+                                        fontFamily: PP_NEUE_MONTREAL,
+                                        boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+                                    }}
+                                >
+                                    <motion.div
+                                        style={{ position: "absolute", inset: 0 }}
+                                        whileHover={{ scale: 1.05 }}
+                                        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                                    >
+                                        <Image
+                                            src={industry.image}
+                                            alt={industry.title}
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 33vw"
+                                            style={{ objectFit: "cover" }}
+                                        />
+                                    </motion.div>
+                                    <div style={{
+                                        position: "absolute",
+                                        inset: 0,
+                                        background: "linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.08) 100%)",
+                                        zIndex: 1,
+                                    }} />
+                                    <div style={{
+                                        position: "absolute",
+                                        bottom: 0,
+                                        left: 0,
+                                        right: 0,
+                                        padding: isMobile ? "1.25rem 1.25rem" : "1.5rem 1.5rem",
+                                        zIndex: 2,
+                                        display: "flex",
+                                        alignItems: "flex-end",
+                                        justifyContent: "space-between",
+                                        gap: "0.75rem",
+                                    }}>
+                                        <h3 style={{
+                                            fontSize: isMobile ? "1.05rem" : "1.15rem",
+                                            fontWeight: 500,
+                                            fontFamily: PP_NEUE_MONTREAL,
+                                            color: "#fff",
+                                            margin: 0,
+                                            lineHeight: 1.25,
+                                            letterSpacing: "-0.01em",
+                                        }}>
+                                            {industry.title}
+                                        </h3>
+                                        <span style={{
+                                            flexShrink: 0,
+                                            display: "inline-flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            width: "32px",
+                                            height: "32px",
+                                            borderRadius: "50%",
+                                            backgroundColor: "rgba(255,255,255,0.15)",
+                                            color: "#fff",
+                                            backdropFilter: "blur(4px)",
+                                        }}>
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                <line x1="5" y1="12" x2="19" y2="12" />
+                                                <polyline points="12 5 19 12 12 19" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </Link>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
             </section>
+
+            <CTA
+                backgroundColor="#f8fafc"
+                tag="Ready to upgrade"
+                title="Switch to the audit platform built by ISO auditors"
+                description="Start free today and run gap analysis, audits, actions and reports in one structured platform."
+            />
 
             {/* FAQ Section */}
             <FAQAccordion
@@ -817,9 +1111,7 @@ export default function ComparisonPage() {
                 ]}
             />
 
-            <CTA />
-
             <Footer />
-        </>
+        </div>
     );
 }

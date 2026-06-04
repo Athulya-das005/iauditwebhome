@@ -4,7 +4,21 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-export default function CTA({ backgroundColor = "#fff" }: { backgroundColor?: string }) {
+interface CTAProps {
+    backgroundColor?: string;
+    tag?: string;
+    title?: React.ReactNode;
+    description?: string;
+    buttonText?: string;
+}
+
+export default function CTA({
+    backgroundColor = "#fff",
+    tag = "Ready to upgrade?",
+    title,
+    description = "Join the global community of auditors who have moved beyond spreadsheets. Create oversight in days, not months.",
+    buttonText = "Start Free Trial",
+}: CTAProps) {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -13,6 +27,10 @@ export default function CTA({ backgroundColor = "#fff" }: { backgroundColor?: st
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
+
+    const resolvedTitle = title ?? (
+        isMobile ? "Ready To Upgrade Your Audit Process?" : <>Ready To Upgrade Your<br /> Audit Process?</>
+    );
 
     return (
         <section id="cta" style={{
@@ -63,7 +81,7 @@ export default function CTA({ backgroundColor = "#fff" }: { backgroundColor?: st
                             }}
                         >
                             <span style={{ fontSize: '1rem' }}>✦</span>
-                            Ready to upgrade?
+                            {tag}
                             <span style={{ fontSize: '1rem' }}>✦</span>
                         </motion.div>
                         <motion.h2
@@ -79,7 +97,7 @@ export default function CTA({ backgroundColor = "#fff" }: { backgroundColor?: st
                                 letterSpacing: "-0.02em"
                             }}
                         >
-                            {isMobile ? "Ready To Upgrade Your Audit Process?" : <>Ready To Upgrade Your<br /> Audit Process?</>}
+                            {resolvedTitle}
                         </motion.h2>
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
@@ -95,7 +113,7 @@ export default function CTA({ backgroundColor = "#fff" }: { backgroundColor?: st
                                 maxWidth: "520px"
                             }}
                         >
-                            Join the global community of auditors who have moved beyond spreadsheets. Create oversight in days, not months.
+                            {description}
                         </motion.p>
 
                         <motion.div
@@ -123,7 +141,7 @@ export default function CTA({ backgroundColor = "#fff" }: { backgroundColor?: st
                                     textDecoration: 'none'
                                 }}
                             >
-                                <span>Start Free Trial</span>
+                                <span>{buttonText}</span>
                             </Link>
                         </motion.div>
 
