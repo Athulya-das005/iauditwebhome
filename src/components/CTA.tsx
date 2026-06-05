@@ -11,6 +11,9 @@ interface CTAProps {
     title?: React.ReactNode;
     description?: string;
     buttonText?: string;
+    buttonHref?: string;
+    secondaryButtonText?: string;
+    secondaryButtonHref?: string;
 }
 
 export default function CTA({
@@ -19,6 +22,9 @@ export default function CTA({
     title,
     description = "Join the global community of auditors who have moved beyond spreadsheets. Create oversight in days, not months.",
     buttonText = "Start Free Trial",
+    buttonHref = "https://apps.iaudit.global",
+    secondaryButtonText,
+    secondaryButtonHref = "/contact",
 }: CTAProps) {
     const [isMobile, setIsMobile] = useState(false);
 
@@ -91,11 +97,12 @@ export default function CTA({
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.2 }}
                             style={{
-                                fontSize: isMobile ? "2rem" : "2.8rem",
+                                fontSize: "clamp(1.45rem, 4vw, 2rem)",
                                 fontWeight: 500,
-                                lineHeight: 1.1,
+                                lineHeight: 1.15,
                                 marginBottom: "1.5rem",
-                                letterSpacing: "-0.02em"
+                                letterSpacing: "-0.02em",
+                                fontFamily: PP_NEUE_MONTREAL,
                             }}
                         >
                             {resolvedTitle}
@@ -105,14 +112,15 @@ export default function CTA({
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.3 }}
-                            style={{
-                                fontSize: isMobile ? "1rem" : "1.1rem",
-                                fontWeight: 400,
-                                opacity: 0.8,
-                                marginBottom: isMobile ? "2rem" : "2.5rem",
-                                lineHeight: 1.5,
-                                maxWidth: "520px"
-                            }}
+                        style={{
+                            fontSize: isMobile ? "0.95rem" : "1.05rem",
+                            fontWeight: 400,
+                            opacity: 0.8,
+                            marginBottom: isMobile ? "1.75rem" : "2.5rem",
+                            lineHeight: 1.6,
+                            maxWidth: "520px",
+                            fontFamily: PP_NEUE_MONTREAL,
+                        }}
                         >
                             {description}
                         </motion.p>
@@ -122,28 +130,57 @@ export default function CTA({
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.4 }}
-                            style={{ width: isMobile ? "100%" : "fit-content" }}
+                            style={{
+                                width: isMobile ? "100%" : "fit-content",
+                                display: "flex",
+                                flexDirection: isMobile ? "column" : "row",
+                                gap: "0.75rem",
+                                marginBottom: isMobile ? "1.75rem" : "3rem",
+                                alignItems: isMobile ? "stretch" : "center",
+                            }}
                         >
                             <Link
-                                href="https://apps.iaudit.global"
+                                href={buttonHref}
                                 className="btn-animate"
                                 style={{
                                     padding: isMobile ? "0.8rem 2rem" : "1rem 3rem",
                                     borderRadius: "6px",
                                     fontSize: "1rem",
                                     fontWeight: 500,
-                                    width: "100%",
-                                    marginBottom: isMobile ? "2rem" : "3rem",
-                                    border: 'none',
-                                    cursor: 'pointer',
-                                    display: 'inline-flex',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    textDecoration: 'none'
+                                    width: isMobile ? "100%" : "auto",
+                                    border: "none",
+                                    cursor: "pointer",
+                                    display: "inline-flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    textDecoration: "none",
                                 }}
                             >
                                 <span>{buttonText}</span>
                             </Link>
+                            {secondaryButtonText && (
+                                <Link
+                                    href={secondaryButtonHref}
+                                    className="btn-outline-animate"
+                                    style={{
+                                        padding: isMobile ? "0.8rem 2rem" : "1rem 3rem",
+                                        borderRadius: "6px",
+                                        fontSize: "1rem",
+                                        fontWeight: 500,
+                                        width: isMobile ? "100%" : "auto",
+                                        border: "1px solid rgba(255,255,255,0.35)",
+                                        background: "transparent",
+                                        color: "#fff",
+                                        cursor: "pointer",
+                                        display: "inline-flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        textDecoration: "none",
+                                    }}
+                                >
+                                    <span>{secondaryButtonText}</span>
+                                </Link>
+                            )}
                         </motion.div>
 
                         <motion.div

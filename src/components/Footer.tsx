@@ -154,6 +154,7 @@ export default function Footer() {
                                     { name: "Home", path: "/" },
                                     { name: "About iAudit", path: "/about" },
                                     { name: "Features", path: "/#features" },
+                                    { name: "Industries", path: "/industries" },
                                     { name: "Pricing", path: "/pricing" },
                                     { name: "Contact Us", path: "/contact" },
                                 ].map((item) => (

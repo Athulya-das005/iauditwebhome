@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { PP_NEUE_MONTREAL } from "@/constants/typography";
 
 const defaultTestimonials = [
     {
@@ -101,7 +102,7 @@ export default function Testimonials({
         <section id="testimonials" style={{
             padding: isMobile ? "2rem 0" : "3.5rem 0",
             backgroundColor: backgroundColor,
-            fontFamily: '"Pp Neue Montreal", sans-serif',
+            fontFamily: PP_NEUE_MONTREAL,
             overflow: "hidden",
             position: "relative"
         }}>
@@ -160,16 +161,17 @@ export default function Testimonials({
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         style={{
-                            fontSize: isMobile ? '1.9rem' : 'clamp(1.8rem, 2.8vw, 2.8rem)',
+                            fontSize: "clamp(2rem, 4vw, 2.8rem)",
                             fontWeight: 500,
-                            color: '#111827',
-                            letterSpacing: '-0.02em',
+                            color: "#111827",
+                            letterSpacing: "-0.03em",
                             margin: 0,
                             maxWidth: "900px",
                             marginLeft: "auto",
                             marginRight: "auto",
-                            lineHeight: 1.2,
-                            whiteSpace: isMobile ? "normal" : "nowrap",
+                            lineHeight: 1.1,
+                            whiteSpace: "normal",
+                            fontFamily: PP_NEUE_MONTREAL,
                         }}
                     >
                         {title}
@@ -339,11 +341,12 @@ export default function Testimonials({
                                     ))}
                                 </div>
 
-                                <p style={{
+                                <p                                 style={{
                                     fontSize: isMobile ? "1rem" : "1.25rem",
                                     color: "#374151",
                                     fontWeight: 400,
-                                    lineHeight: 1.5,
+                                    lineHeight: 1.6,
+                                    fontFamily: PP_NEUE_MONTREAL,
                                     marginBottom: isMobile ? "1.5rem" : "2rem",
                                     letterSpacing: "-0.01em",
                                     maxWidth: "640px",
@@ -353,10 +356,10 @@ export default function Testimonials({
                                 </p>
 
                                 <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-                                    <h4 style={{ fontSize: isMobile ? "1rem" : "1.1rem", fontWeight: 500, color: "#111827", margin: 0 }}>
+                                    <h4 style={{ fontSize: isMobile ? "1rem" : "1.1rem", fontWeight: 500, color: "#111827", margin: 0, fontFamily: PP_NEUE_MONTREAL }}>
                                         {activeTestimonials[index].author}
                                     </h4>
-                                    <p style={{ fontSize: "0.85rem", color: "#6B7280", margin: 0, fontWeight: 400 }}>
+                                    <p style={{ fontSize: "0.85rem", color: "#6B7280", margin: 0, fontWeight: 400, fontFamily: PP_NEUE_MONTREAL }}>
                                         {activeTestimonials[index].role} • {activeTestimonials[index].company}
                                     </p>
                                     <p style={{ fontSize: "0.7rem", color: "#9CA3AF", margin: "4px 0 0 0", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.04em" }}>

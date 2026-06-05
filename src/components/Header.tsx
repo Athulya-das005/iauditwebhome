@@ -98,6 +98,8 @@ export default function Header() {
         { label: "Features", href: "/#features" },
         { label: "Pricing", href: "/pricing" },
         { label: "ISO 14001:2026", href: "/ISO14001-2026" },
+        { label: "Industries", href: "/industries" },
+        /* DRAFT: Comparison pages hidden — uncomment when ready to publish
         { 
             label: "Comparison", 
             href: "/iaudit-global-vs-safetyculture",
@@ -111,6 +113,7 @@ export default function Header() {
                 }
             ]
         },
+        */
         { label: "Contact", href: "/contact" },
     ];
 

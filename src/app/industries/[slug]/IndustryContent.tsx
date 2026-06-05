@@ -211,7 +211,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             transition={{ duration: 0.6 }}
                             style={{ display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'inherit' }}
                         >
-                            <Link href="/#industries" style={{
+                            <Link href="/industries" style={{
                                 color: 'var(--textSecondary)',
                                 textDecoration: 'none',
                                 display: 'inline-flex',
