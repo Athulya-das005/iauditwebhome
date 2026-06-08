@@ -174,7 +174,7 @@ export default function IndustriesSmarterSection() {
                             marginRight: "auto",
                         }}
                     >
-                        Purpose-built audit workflows for every sector — from retail floors to remote mine sites.
+                        Helping organisations across sectors standardise audits, strengthen compliance and drive continual improvement.
                     </p>
                 </motion.div>
             </div>

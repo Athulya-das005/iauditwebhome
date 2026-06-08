@@ -96,6 +96,22 @@ export default function Header() {
         },
         */
         { label: "Features", href: "/#features" },
+        {
+            label: "Standards",
+            href: "/iso-9001-audit-management-software",
+            megamenu: [
+                {
+                    title: "ISO Standards",
+                    items: [
+                        { label: "ISO 9001 Software", href: "/iso-9001-audit-management-software" },
+                        /* DRAFT: Uncomment when ISO 14001 page is ready
+                        { label: "ISO 14001 Software", href: "/iso-14001-audit-management-software" },
+                        { label: "ISO 45001 Software", href: "/iso-45001-audit-management-software" },
+                        */
+                    ],
+                },
+            ],
+        },
         { label: "Pricing", href: "/pricing" },
         { label: "ISO 14001:2026", href: "/ISO14001-2026" },
         { label: "Industries", href: "/industries" },

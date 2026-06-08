@@ -121,6 +121,6 @@ export const industriesOverviewCopy: Record<
         layout: "image-middle",
         imageHeight: "medium",
         description:
-            "Manage ISO 9001, 14001 and 45001 audits across fleets, warehouses and distribution networks with a structured platform built for consistency and traceability.",
+            "Manage compliance, fleet safety and operational consistency across warehouses, transport operations and distribution networks.",
     },
 };
