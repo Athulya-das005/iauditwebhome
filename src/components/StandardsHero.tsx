@@ -64,9 +64,11 @@ export default function StandardsHero({
                     transition={{ duration: 0.5, delay: 0.16 }}
                     style={{
                         ...aboutType.heroLead(),
+                        fontSize: isMobile ? "0.97rem" : "1.05rem",
                         maxWidth: "720px",
                         margin: "0 auto 2.5rem",
                         padding: isMobile ? "0 0.25rem" : 0,
+                        lineHeight: isMobile ? 1.65 : 1.6,
                     }}
                 >
                     {description}

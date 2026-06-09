@@ -54,6 +54,8 @@ export default function AuditMateShowcase({
                         flexDirection: "column",
                         gap: "1.5rem",
                         order: isStacked ? (chatFirst ? 1 : 2) : chatFirst ? 2 : 1,
+                        textAlign: isMobile ? "center" : "left",
+                        alignItems: isMobile ? "center" : "flex-start",
                     }}
                 >
                     <motion.h2
@@ -65,6 +67,7 @@ export default function AuditMateShowcase({
                             ...aboutType.sectionH2(),
                             margin: 0,
                             lineHeight: isMobile ? 1.2 : 1.1,
+                            width: "100%",
                         }}
                     >
                         {title}
@@ -77,9 +80,12 @@ export default function AuditMateShowcase({
                         transition={{ delay: 0.18 }}
                         style={{
                             ...aboutType.heroLead(),
+                            fontSize: isMobile ? "0.97rem" : "1.05rem",
                             margin: 0,
-                            paddingLeft: "16px",
-                            borderLeft: "3px solid #058c42",
+                            maxWidth: isMobile ? "100%" : "520px",
+                            paddingLeft: isMobile ? 0 : "16px",
+                            borderLeft: isMobile ? "none" : "3px solid #058c42",
+                            textAlign: isMobile ? "center" : "left",
                         }}
                     >
                         {description}
@@ -90,6 +96,7 @@ export default function AuditMateShowcase({
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.26 }}
+                        style={{ width: isMobile ? "100%" : "auto", maxWidth: isMobile ? "340px" : "none" }}
                     >
                         <Link
                             href={ctaHref}
@@ -99,10 +106,12 @@ export default function AuditMateShowcase({
                                 fontSize: "0.9rem",
                                 display: "inline-flex",
                                 alignItems: "center",
+                                justifyContent: "center",
                                 gap: "10px",
                                 fontWeight: 600,
                                 textDecoration: "none",
                                 fontFamily: PP_NEUE_MONTREAL,
+                                width: isMobile ? "100%" : "auto",
                             }}
                         >
                             <span>

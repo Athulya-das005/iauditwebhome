@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import StandardsPlaceholder from "@/components/StandardsPlaceholder";
+import Iso45001Content from "@/components/Iso45001Content";
 
 export const metadata: Metadata = {
     title: "ISO 45001 Audit Management Software | iAudit Global",
@@ -8,10 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function Iso45001Page() {
-    return (
-        <StandardsPlaceholder
-            title="ISO 45001 Software"
-            description="Occupational health and safety audit software — page content coming soon."
-        />
-    );
+    return <Iso45001Content />;
 }

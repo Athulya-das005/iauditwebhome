@@ -104,10 +104,8 @@ export default function Header() {
                     title: "ISO Standards",
                     items: [
                         { label: "ISO 9001 Software", href: "/iso-9001-audit-management-software" },
-                        /* DRAFT: Uncomment when ISO 14001 page is ready
                         { label: "ISO 14001 Software", href: "/iso-14001-audit-management-software" },
                         { label: "ISO 45001 Software", href: "/iso-45001-audit-management-software" },
-                        */
                     ],
                 },
             ],

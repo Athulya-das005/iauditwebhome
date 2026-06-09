@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { PP_NEUE_MONTREAL } from "@/constants/typography";
 
 interface FAQItem {
     question: string;
@@ -38,7 +39,7 @@ export default function FAQAccordion({
             width: '100%',
             padding: isMobile ? '2rem 1.25rem' : '3.5rem 2rem',
             background: '#ffffff',
-            fontFamily: '"Pp Neue Montreal", sans-serif'
+            fontFamily: PP_NEUE_MONTREAL,
         }}>
             <motion.div
                 initial="hidden"
@@ -84,13 +85,15 @@ export default function FAQAccordion({
                         visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
                     }}
                     style={{
-                        fontSize: isMobile ? '2.2rem' : '3rem',
+                        fontSize: isMobile ? 'clamp(1.65rem, 5vw, 2.2rem)' : '3rem',
                         fontWeight: 500,
                         color: '#111827',
                         letterSpacing: '-0.02em',
                         lineHeight: 1.15,
-                        margin: '0 0 3.5rem 0',
-                        textAlign: 'center'
+                        margin: isMobile ? '0 0 2rem 0' : '0 0 3.5rem 0',
+                        padding: isMobile ? '0 0.25rem' : 0,
+                        textAlign: 'center',
+                        fontFamily: PP_NEUE_MONTREAL,
                     }}
                 >
                     {heading}
@@ -129,7 +132,7 @@ export default function FAQAccordion({
                                     border: 'none',
                                     cursor: 'pointer',
                                     textAlign: 'left',
-                                    fontFamily: '"Pp Neue Montreal", sans-serif'
+                                    fontFamily: PP_NEUE_MONTREAL,
                                 }}
                             >
                                 <span style={{
@@ -190,7 +193,8 @@ export default function FAQAccordion({
                                                 fontSize: isMobile ? '0.95rem' : '1.05rem',
                                                 color: '#6b7280',
                                                 lineHeight: 1.7,
-                                                margin: 0
+                                                margin: 0,
+                                                fontFamily: PP_NEUE_MONTREAL,
                                             }}>
                                                 {item.answer}
                                             </p>

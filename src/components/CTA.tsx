@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { PP_NEUE_MONTREAL } from "@/constants/typography";
+import { PP_NEUE_MONTREAL, aboutType } from "@/constants/typography";
 
 interface CTAProps {
     backgroundColor?: string;
@@ -84,7 +84,8 @@ export default function CTA({
                                 fontSize: '0.82rem',
                                 fontWeight: 500,
                                 letterSpacing: '0.01em',
-                                marginBottom: '0.75rem'
+                                marginBottom: '0.75rem',
+                                fontFamily: PP_NEUE_MONTREAL,
                             }}
                         >
                             <span style={{ fontSize: '1rem' }}>✦</span>
@@ -145,8 +146,6 @@ export default function CTA({
                                 style={{
                                     padding: isMobile ? "0.8rem 2rem" : "1rem 3rem",
                                     borderRadius: "6px",
-                                    fontSize: "1rem",
-                                    fontWeight: 500,
                                     width: isMobile ? "100%" : "auto",
                                     border: "none",
                                     cursor: "pointer",
@@ -154,6 +153,7 @@ export default function CTA({
                                     justifyContent: "center",
                                     alignItems: "center",
                                     textDecoration: "none",
+                                    ...aboutType.ctaButton(),
                                 }}
                             >
                                 <span>{buttonText}</span>
@@ -165,8 +165,6 @@ export default function CTA({
                                     style={{
                                         padding: isMobile ? "0.8rem 2rem" : "1rem 3rem",
                                         borderRadius: "6px",
-                                        fontSize: "1rem",
-                                        fontWeight: 500,
                                         width: isMobile ? "100%" : "auto",
                                         border: "1px solid rgba(255,255,255,0.35)",
                                         background: "transparent",
@@ -176,6 +174,7 @@ export default function CTA({
                                         justifyContent: "center",
                                         alignItems: "center",
                                         textDecoration: "none",
+                                        ...aboutType.ctaButton(),
                                     }}
                                 >
                                     <span>{secondaryButtonText}</span>
@@ -205,7 +204,7 @@ export default function CTA({
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
                                 </div>
-                                <span style={{ fontSize: "0.85rem", fontWeight: 400, opacity: 0.85 }}>Just pay what you see</span>
+                                <span style={{ fontSize: "0.85rem", fontWeight: 400, opacity: 0.85, fontFamily: PP_NEUE_MONTREAL }}>Just pay what you see</span>
                             </div>
                             <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
                                 <div style={{
@@ -217,7 +216,7 @@ export default function CTA({
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
                                 </div>
-                                <span style={{ fontSize: "0.85rem", fontWeight: 400, opacity: 0.85 }}>No hidden fees</span>
+                                <span style={{ fontSize: "0.85rem", fontWeight: 400, opacity: 0.85, fontFamily: PP_NEUE_MONTREAL }}>No hidden fees</span>
                             </div>
                         </motion.div>
                     </div>
