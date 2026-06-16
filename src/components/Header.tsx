@@ -5,6 +5,32 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { motion, AnimatePresence } from "framer-motion";
+import { industries } from "@/data/industries";
+
+const industryNavItems = industries.map((industry) => ({
+    label: industry.title,
+    href: `/industries/${industry.slug}`,
+}));
+
+const industryMegamenu = [
+    {
+        title: "By Industry",
+        items: industryNavItems.slice(0, 6),
+    },
+    {
+        title: "",
+        items: industryNavItems.slice(6, 12),
+    },
+    {
+        title: "",
+        items: industryNavItems.slice(12, 16),
+        card: {
+            title: "All Industries",
+            description: "Browse every sector iAudit supports with ISO-ready audit workflows.",
+            href: "/industries",
+        },
+    },
+];
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,6 +56,11 @@ export default function Header() {
         megamenu?: {
             title: string;
             items: { label: string; href: string }[];
+            card?: {
+                title: string;
+                description: string;
+                href: string;
+            };
         }[];
     }
 
@@ -112,7 +143,7 @@ export default function Header() {
         },
         { label: "Pricing", href: "/pricing" },
         { label: "ISO 14001:2026", href: "/ISO14001-2026" },
-        { label: "Industries", href: "/industries" },
+        { label: "Industries", href: "/industries", megamenu: industryMegamenu },
         /* DRAFT: Comparison pages hidden — uncomment when ready to publish
         { 
             label: "Comparison", 
@@ -204,26 +235,29 @@ export default function Header() {
                 {/* Desktop Navigation */}
                 <nav className="hidden-mobile" style={{
                     display: "flex",
-                    gap: "2rem",
+                    gap: "1.35rem",
                     alignItems: "center",
                     position: "absolute",
                     left: "50%",
                     transform: "translateX(-50%)",
                     zIndex: 10,
                 }}>
-                    {navItems.map((item) => (
+                    {navItems.map((item) => {
+                        const isIso2026 = item.label === "ISO 14001:2026";
+                        return (
                         <div
                             key={item.label}
                             onMouseEnter={() => setHoveredItem(item.megamenu ? item.label : null)}
-                            style={{ position: "relative", padding: "1rem 0" }}
+                            style={{ position: "relative", padding: "1rem 0", flexShrink: 0 }}
                         >
                             <Link
                                 href={item.href}
                                 style={{
-                                    fontWeight: item.label === "ISO 14001:2026" ? 600 : 500,
-                                    fontSize: "0.92rem",
-                                    color: hoveredItem === item.label ? "#058c42" : (item.label === "ISO 14001:2026" ? "#03624c" : "#111827"),
-                                    letterSpacing: "0.01em",
+                                    fontWeight: isIso2026 ? 600 : 500,
+                                    fontSize: isIso2026 ? "0.78rem" : "0.88rem",
+                                    color: hoveredItem === item.label ? "#058c42" : (isIso2026 ? "#03624c" : "#111827"),
+                                    letterSpacing: isIso2026 ? "0" : "0.01em",
+                                    whiteSpace: "nowrap",
                                     transition: "all 0.25s ease-in-out",
                                     fontFamily: '"Pp Neue Montreal", sans-serif',
                                     display: "flex",
@@ -242,7 +276,8 @@ export default function Header() {
                                 )}
                             </Link>
                         </div>
-                    ))}
+                        );
+                    })}
                 </nav>
 
                 {/* Right Actions (Desktop) */}
@@ -326,7 +361,11 @@ export default function Header() {
 
             {/* Desktop Megamenu Popup - Full Width */}
             <AnimatePresence>
-                {hoveredItem && navItems.find(n => n.label === hoveredItem)?.megamenu && (
+                {hoveredItem && navItems.find(n => n.label === hoveredItem)?.megamenu && (() => {
+                    const activeMegamenu = navItems.find(n => n.label === hoveredItem)?.megamenu ?? [];
+                    const isIndustriesMenu = hoveredItem === "Industries";
+                    const columnCount = Math.min(activeMegamenu.length, 3);
+                    return (
                     <motion.div
                         initial={{ opacity: 0, y: 0 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -337,47 +376,65 @@ export default function Header() {
                             top: "80px",
                             left: 0,
                             width: "100%",
-                            backgroundColor: "#fff",
+                            backgroundColor: isIndustriesMenu ? "#f4f4f5" : "#fff",
                             borderBottom: "1px solid rgba(0,0,0,0.06)",
                             boxShadow: "0 20px 40px rgba(0,0,0,0.12)",
-                            padding: "3rem 0",
+                            padding: isIndustriesMenu ? "2rem 0 2.25rem" : "3rem 0",
                             zIndex: 5,
                         }}
                     >
                         <div style={{
-                            maxWidth: "1440px",
+                            maxWidth: "1100px",
                             margin: "0 auto",
                             display: "grid",
-                            gridTemplateColumns: "repeat(3, 1fr)",
-                            gap: "4rem",
-                            padding: "0 2rem"
+                            gridTemplateColumns: `repeat(${columnCount}, 1fr)`,
+                            gap: isIndustriesMenu ? "1rem" : "4rem",
+                            padding: "0 2rem",
+                            alignItems: "stretch",
                         }}>
-                            {navItems.find(n => n.label === hoveredItem)?.megamenu?.map((section, sIdx) => (
-                                <div key={sIdx}>
+                            {activeMegamenu.map((section, sIdx) => (
+                                <div
+                                    key={sIdx}
+                                    style={isIndustriesMenu ? {
+                                        background: "#fff",
+                                        borderRadius: "16px",
+                                        border: "1px solid #ececec",
+                                        padding: "1.75rem 1.85rem",
+                                        boxShadow: "0 4px 20px rgba(0,0,0,0.04)",
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        minHeight: "100%",
+                                    } : undefined}
+                                >
+                                    {section.title ? (
                                     <h4 style={{
-                                        fontSize: "0.8rem",
-                                        fontWeight: 700,
-                                        color: "#6b7280",
-                                        textTransform: "uppercase",
-                                        letterSpacing: "0.05em",
+                                        fontSize: isIndustriesMenu ? "0.95rem" : "0.8rem",
+                                        fontWeight: isIndustriesMenu ? 600 : 700,
+                                        color: isIndustriesMenu ? "#111827" : "#6b7280",
+                                        textTransform: isIndustriesMenu ? "none" : "uppercase",
+                                        letterSpacing: isIndustriesMenu ? "-0.01em" : "0.05em",
                                         marginBottom: "1.25rem",
                                         fontFamily: '"Pp Neue Montreal", sans-serif',
                                     }}>
                                         {section.title}
                                     </h4>
-                                    <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                                    ) : (
+                                        <div style={{ height: isIndustriesMenu ? "1.95rem" : "1.25rem", marginBottom: "1.25rem" }} aria-hidden />
+                                    )}
+                                    <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: isIndustriesMenu ? "0.85rem" : "0.75rem", flex: 1 }}>
                                         {section.items.map((link, lIdx) => (
                                             <li key={lIdx}>
                                                 <Link
                                                     href={link.href}
                                                     style={{
-                                                        fontSize: "0.95rem",
+                                                        fontSize: "0.92rem",
                                                         color: "#111827",
                                                         textDecoration: "none",
                                                         transition: "all 0.2s",
                                                         fontWeight: 400,
                                                         display: "block",
-                                                        padding: "4px 0"
+                                                        padding: "2px 0",
+                                                        lineHeight: 1.4,
                                                     }}
                                                     onMouseEnter={(e) => (e.currentTarget.style.color = "#058c42")}
                                                     onMouseLeave={(e) => (e.currentTarget.style.color = "#111827")}
@@ -387,11 +444,65 @@ export default function Header() {
                                             </li>
                                         ))}
                                     </ul>
+                                    {section.card && (
+                                        <Link
+                                            href={section.card.href}
+                                            style={{
+                                                marginTop: "1.5rem",
+                                                padding: "1.1rem 1.15rem",
+                                                borderRadius: "12px",
+                                                background: "#f8faf9",
+                                                border: "1px solid #e8f0ec",
+                                                textDecoration: "none",
+                                                display: "block",
+                                                transition: "all 0.2s ease",
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.borderColor = "#bbf7d0";
+                                                e.currentTarget.style.background = "#f0fdf4";
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.borderColor = "#e8f0ec";
+                                                e.currentTarget.style.background = "#f8faf9";
+                                            }}
+                                        >
+                                            <div style={{
+                                                display: "flex",
+                                                alignItems: "center",
+                                                justifyContent: "space-between",
+                                                gap: "0.75rem",
+                                                marginBottom: "0.45rem",
+                                            }}>
+                                                <span style={{
+                                                    fontSize: "0.92rem",
+                                                    fontWeight: 600,
+                                                    color: "#111827",
+                                                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                                                }}>
+                                                    {section.card.title}
+                                                </span>
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#058c42" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                    <line x1="5" y1="12" x2="19" y2="12" />
+                                                    <polyline points="12 5 19 12 12 19" />
+                                                </svg>
+                                            </div>
+                                            <p style={{
+                                                margin: 0,
+                                                fontSize: "0.82rem",
+                                                lineHeight: 1.55,
+                                                color: "#6b7280",
+                                                fontFamily: '"Pp Neue Montreal", sans-serif',
+                                            }}>
+                                                {section.card.description}
+                                            </p>
+                                        </Link>
+                                    )}
                                 </div>
                             ))}
                         </div>
                     </motion.div>
-                )}
+                    );
+                })()}
             </AnimatePresence>
 
             {/* Mobile Menu Drawer */}
@@ -493,18 +604,45 @@ export default function Header() {
                                                     <div style={{ padding: "0 0 1.5rem 1rem", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
                                                         {item.megamenu.map((section, sIdx) => (
                                                             <div key={sIdx}>
+                                                                {section.title ? (
                                                                 <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.05em" }}>{section.title}</span>
-                                                                <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem", marginTop: "0.75rem" }}>
+                                                                ) : null}
+                                                                <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem", marginTop: section.title ? "0.75rem" : 0 }}>
                                                                     {section.items.map((link, lIdx) => (
                                                                         <Link
                                                                             key={lIdx}
                                                                             href={link.href}
                                                                             onClick={() => setIsMenuOpen(false)}
-                                                                            style={{ fontSize: "1rem", color: "#4b5563", fontWeight: 400 }}
+                                                                            style={{
+                                                                                fontSize: "1rem",
+                                                                                color: "#4b5563",
+                                                                                fontWeight: 400,
+                                                                            }}
                                                                         >
                                                                             {link.label}
                                                                         </Link>
                                                                     ))}
+                                                                    {section.card && (
+                                                                        <Link
+                                                                            href={section.card.href}
+                                                                            onClick={() => setIsMenuOpen(false)}
+                                                                            style={{
+                                                                                marginTop: "0.5rem",
+                                                                                padding: "1rem",
+                                                                                borderRadius: "12px",
+                                                                                background: "#f8faf9",
+                                                                                border: "1px solid #e8f0ec",
+                                                                                textDecoration: "none",
+                                                                            }}
+                                                                        >
+                                                                            <div style={{ fontSize: "0.95rem", fontWeight: 600, color: "#111827", marginBottom: "0.35rem" }}>
+                                                                                {section.card.title}
+                                                                            </div>
+                                                                            <div style={{ fontSize: "0.85rem", color: "#6b7280", lineHeight: 1.5 }}>
+                                                                                {section.card.description}
+                                                                            </div>
+                                                                        </Link>
+                                                                    )}
                                                                 </div>
                                                             </div>
                                                         ))}
