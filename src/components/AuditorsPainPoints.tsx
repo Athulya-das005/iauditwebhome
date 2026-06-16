@@ -93,7 +93,7 @@ export default function AuditorsPainPoints() {
                     transition={{ duration: 0.5 }}
                     style={{
                         textAlign: "center",
-                        ...aboutType.sectionH2(isMobile),
+                        ...aboutType.sectionH2(),
                         fontSize: isMobile
                             ? "clamp(1.65rem, 5vw, 2rem)"
                             : "clamp(2rem, 4vw, 3rem)",
