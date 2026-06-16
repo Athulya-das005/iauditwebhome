@@ -154,6 +154,8 @@ export default function Footer() {
                                     { name: "Home", path: "/" },
                                     { name: "About iAudit", path: "/about" },
                                     { name: "Features", path: "/#features" },
+                                    { name: "PDCA", path: "/pdca-cycle-audit-software" },
+                                    { name: "Built by auditors", path: "/audit-management-software-built-by-auditors" },
                                     { name: "Industries", path: "/industries" },
                                     { name: "Pricing", path: "/pricing" },
                                     { name: "Contact Us", path: "/contact" },

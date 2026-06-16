@@ -274,6 +274,60 @@ button {
   color: white !important;
 }
 
+/* Green first, white on hover (reverse of btn-outline-animate) */
+.btn-green-first-animate {
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #ffffff;
+  color: white !important;
+  border: 1px solid #058c42;
+  transition: all 0.4s ease;
+  z-index: 1;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(5, 140, 66, 0.12);
+}
+
+.btn-green-first-animate::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 120%;
+  height: 100%;
+  background: #058c42;
+  z-index: 5;
+  transform: skew(30deg);
+  transition: transform 0.5s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.btn-green-first-animate:hover::before {
+  transform: translate3d(100%, 0, 0) skew(30deg);
+}
+
+.btn-green-first-animate span {
+  position: relative;
+  z-index: 10;
+  transition: color 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white !important;
+}
+
+.btn-green-first-animate:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.btn-green-first-animate:hover span {
+  color: #006644 !important;
+}
+
 /* Responsive Utility Classes */
 .hidden-mobile {
   display: block;

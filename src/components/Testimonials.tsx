@@ -35,7 +35,7 @@ interface TestimonialItem {
     quote: string;
     author: string;
     role: string;
-    company: string;
+    company?: string;
     avatar: string;
     batch: string;
 }
@@ -360,7 +360,9 @@ export default function Testimonials({
                                         {activeTestimonials[index].author}
                                     </h4>
                                     <p style={{ fontSize: "0.85rem", color: "#6B7280", margin: 0, fontWeight: 400, fontFamily: PP_NEUE_MONTREAL }}>
-                                        {activeTestimonials[index].role} • {activeTestimonials[index].company}
+                                        {activeTestimonials[index].company
+                                            ? `${activeTestimonials[index].role} • ${activeTestimonials[index].company}`
+                                            : activeTestimonials[index].role}
                                     </p>
                                     <p style={{ fontSize: "0.7rem", color: "#9CA3AF", margin: "4px 0 0 0", fontWeight: 400, textTransform: "uppercase", letterSpacing: "0.04em" }}>
                                         {activeTestimonials[index].batch}

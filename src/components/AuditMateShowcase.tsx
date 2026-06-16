@@ -7,6 +7,7 @@ import { PP_NEUE_MONTREAL, aboutType } from "@/constants/typography";
 import { useIndustriesBreakpoints } from "@/hooks/useIndustriesBreakpoints";
 
 export interface AuditMateShowcaseProps {
+    tag?: string;
     title: string;
     description: string;
     ctaText?: string;
@@ -15,6 +16,7 @@ export interface AuditMateShowcaseProps {
 }
 
 export default function AuditMateShowcase({
+    tag,
     title,
     description,
     ctaText = "Try Audit Mate",
@@ -58,6 +60,27 @@ export default function AuditMateShowcase({
                         alignItems: isMobile ? "center" : "flex-start",
                     }}
                 >
+                    {tag && (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: "0.4rem",
+                                color: "#006644",
+                                fontWeight: 500,
+                                fontSize: isMobile ? "0.75rem" : "0.8rem",
+                                letterSpacing: "0.01em",
+                                marginBottom: "-0.5rem",
+                            }}
+                        >
+                            <span style={{ fontSize: "1rem" }}>✦</span>
+                            {tag}
+                            <span style={{ fontSize: "1rem" }}>✦</span>
+                        </motion.div>
+                    )}
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
