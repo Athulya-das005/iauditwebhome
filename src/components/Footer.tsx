@@ -157,6 +157,7 @@ export default function Footer() {
                                     { name: "PDCA", path: "/pdca-cycle-audit-software" },
                                     { name: "Built by auditors", path: "/audit-management-software-built-by-auditors" },
                                     { name: "Industries", path: "/industries" },
+                                    { name: "Case Studies", path: "/case-studies" },
                                     { name: "Pricing", path: "/pricing" },
                                     { name: "Contact Us", path: "/contact" },
                                 ].map((item) => (

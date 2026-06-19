@@ -70,7 +70,18 @@ export default function Hero() {
         }}>
 
             {/* ── Hero Text Block ── */}
-            <div style={{ maxWidth: "1100px", width: "100%", margin: "0 auto", paddingLeft: isMobile ? "1.25rem" : "2rem", paddingRight: isMobile ? "1.25rem" : "2rem", paddingTop: isMobile ? "24px" : "44px", paddingBottom: "0" }}>
+            <div style={{
+                maxWidth: "1100px",
+                width: "100%",
+                margin: "0 auto",
+                paddingLeft: isMobile ? "1.25rem" : "2rem",
+                paddingRight: isMobile ? "1.25rem" : "2rem",
+                paddingTop: isMobile ? "24px" : "44px",
+                paddingBottom: "0",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+            }}>
 
                 {/* Tag */}
                 <motion.div
@@ -100,20 +111,20 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.55, delay: 0.08 }}
                     style={{
-                        fontSize: isMobile ? "2.4rem" : "clamp(2.3rem, 4.5vw, 3.5rem)",
+                        fontSize: isMobile ? "3rem" : "clamp(3.1rem, 5.6vw, 4.5rem)",
                         fontWeight: 500,
-                        lineHeight: isMobile ? 1.2 : 1.1,
+                        lineHeight: isMobile ? 1.15 : 1.1,
                         letterSpacing: "-0.03em",
                         color: "#0d1117",
-                        maxWidth: "100%",
+                        width: "100%",
+                        maxWidth: isMobile ? "100%" : "980px",
                         margin: "0 auto 1.4rem",
                         fontFamily: '"Pp Neue Montreal", sans-serif',
-                        whiteSpace: isMobile ? "normal" : "nowrap",
-                        textAlign: "center"
+                        textAlign: "center",
                     }}
                 >
                     Still Running ISO Audits In{" "}
-                    <span style={{ color: "#058c42" }}>Word, Excel, And Email?</span>
+                    <span style={{ color: "#058c42", fontWeight: 500 }}>Word, Excel, And Email?</span>
                 </motion.h1>
 
                 {/* Sub-description */}

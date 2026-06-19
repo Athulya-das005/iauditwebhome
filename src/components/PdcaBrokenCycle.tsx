@@ -341,7 +341,7 @@ export default function PdcaBrokenCycle() {
                 background: "#ffffff",
                 overflow: "hidden",
                 fontFamily: PP_NEUE_MONTREAL,
-                padding: isMobile ? "3rem 0" : "4rem 0 3rem 0",
+                padding: isMobile ? "1.5rem 0 3rem" : "2.5rem 0 3rem",
             }}
             ref={containerRef}
         >

@@ -75,7 +75,7 @@ export default function AuditorsPainPoints() {
         <section
             style={{
                 background: "#f7f8f9",
-                padding: isMobile ? "3rem 0" : "4rem 0 2rem",
+                padding: isMobile ? "1.5rem 0 3rem" : "2.5rem 0 2rem",
                 fontFamily: PP_NEUE_MONTREAL,
             }}
         >

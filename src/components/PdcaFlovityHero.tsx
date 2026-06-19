@@ -10,34 +10,38 @@ const float = (duration: number, delay = 0) => ({
     transition: { repeat: Infinity, duration, ease: "easeInOut" as const, delay },
 });
 
+const STAGE_W = 560;
+const STAGE_H = 420;
+
+function getStageScale(width: number) {
+    if (width < 480) return 0.48;
+    if (width < 768) return 0.58;
+    if (width < 1024) return 0.72;
+    return 0.82;
+}
+
 export default function PdcaFlovityHero() {
-    const { isMobile } = useIndustriesBreakpoints();
+    const { isMobile, width } = useIndustriesBreakpoints();
+    const stageScale = getStageScale(width);
+    const scaledW = STAGE_W * stageScale;
+    const scaledH = STAGE_H * stageScale;
 
     return (
         <>
             <style
                 dangerouslySetInnerHTML={{
                     __html: `
-                .pdca-hero-container { padding: 2rem 2rem; }
+                .pdca-hero-container { padding: 6rem 2rem 2.5rem; }
                 .pdca-hero-left { text-align: left; align-items: flex-start; display: flex; flex-direction: column; }
-                .pdca-hero-right { transform: scale(0.82); transform-origin: center right; min-height: 420px; }
+                .pdca-hero-right { display: flex; justify-content: center; align-items: flex-start; }
                 .pdca-hero-title { font-size: clamp(2rem, 3.5vw, 2.85rem); letter-spacing: -0.02em; }
-                @media (max-width: 1024px) {
-                    .pdca-hero-right { transform: scale(0.72); transform-origin: center center; min-height: 380px; }
-                }
                 @media (max-width: 768px) {
-                    .pdca-hero-container { padding: 7rem 1.25rem 2.5rem; }
+                    .pdca-hero-container { padding: 7rem 1.25rem 1.25rem; }
                     .pdca-hero-left { text-align: center; align-items: center; width: 100%; }
                     .pdca-hero-btn-row { justify-content: center !important; }
                     .pdca-hero-title { font-size: 2.15rem; line-height: 1.12; }
-                    .pdca-hero-desc { font-size: 1rem; margin-bottom: 2rem; }
-                    .pdca-hero-right {
-                        transform: scale(0.58); transform-origin: top center; min-height: 240px;
-                        margin-top: 1.5rem; width: 100%; display: flex; justify-content: center;
-                    }
-                }
-                @media (max-width: 480px) {
-                    .pdca-hero-right { transform: scale(0.48); min-height: 200px; }
+                    .pdca-hero-desc { font-size: 1rem; margin-bottom: 1.5rem; }
+                    .pdca-hero-right { width: 100%; margin-top: 0.75rem; }
                 }
             `,
                 }}
@@ -48,10 +52,10 @@ export default function PdcaFlovityHero() {
                 style={{
                     width: "100%",
                     position: "relative",
-                    minHeight: isMobile ? "auto" : "calc(100vh - 80px)",
+                    minHeight: "auto",
                     background: "linear-gradient(135deg, #f0fdf7 0%, #ffffff 45%, #ffffff 100%)",
                     display: "flex",
-                    alignItems: "center",
+                    alignItems: isMobile ? "flex-start" : "center",
                     justifyContent: "center",
                     overflow: "hidden",
                     fontFamily: PP_NEUE_MONTREAL,
@@ -94,7 +98,7 @@ export default function PdcaFlovityHero() {
                         flexDirection: isMobile ? "column" : "row",
                         alignItems: "center",
                         justifyContent: "space-between",
-                        gap: isMobile ? "2rem" : "3rem",
+                        gap: isMobile ? "0.5rem" : "3rem",
                     }}
                 >
                     {/* Left — copy */}
@@ -203,19 +207,33 @@ export default function PdcaFlovityHero() {
                         className="pdca-hero-right"
                         style={{
                             flex: "1 1 520px",
-                            display: "flex",
-                            justifyContent: "center",
                             position: "relative",
+                            height: scaledH,
+                            maxWidth: "100%",
                         }}
                     >
+                        <div
+                            style={{
+                                width: scaledW,
+                                height: scaledH,
+                                maxWidth: "100%",
+                                margin: isMobile ? "0 auto" : undefined,
+                                position: "relative",
+                                overflow: "visible",
+                            }}
+                        >
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.92 }}
-                            animate={{ opacity: 1, scale: 1 }}
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.85, delay: 0.15 }}
                             style={{
-                                position: "relative",
-                                width: "560px",
-                                height: "420px",
+                                position: "absolute",
+                                top: 0,
+                                left: 0,
+                                width: STAGE_W,
+                                height: STAGE_H,
+                                transform: `scale(${stageScale})`,
+                                transformOrigin: "top left",
                             }}
                         >
                             {/* Main dashboard card */}
@@ -833,6 +851,7 @@ export default function PdcaFlovityHero() {
                                 PDCA OVERVIEW
                             </motion.div>
                         </motion.div>
+                        </div>
                     </div>
                 </div>
             </section>
