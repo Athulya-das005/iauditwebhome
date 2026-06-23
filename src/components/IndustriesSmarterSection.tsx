@@ -106,7 +106,7 @@ function MasonryCardContent({
                 {title}
                 <CardImage
                     src={industry.bgImage}
-                    alt={industry.title}
+                    alt={`${industry.title} industry for ISO audit management software`}
                     height={industry.imageHeight}
                     featured={industry.featured}
                 />
@@ -203,7 +203,7 @@ export default function IndustriesSmarterSection() {
                                     {industry.layout === "image-top" && (
                                         <CardImage
                                             src={industry.bgImage}
-                                            alt={industry.title}
+                                            alt={`${industry.title} industry for ISO audit management software`}
                                             height={industry.imageHeight}
                                             featured={industry.featured}
                                         />

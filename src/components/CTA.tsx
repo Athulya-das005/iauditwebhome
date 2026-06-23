@@ -14,6 +14,8 @@ interface CTAProps {
     buttonHref?: string;
     secondaryButtonText?: string;
     secondaryButtonHref?: string;
+    badges?: string[];
+    hideTag?: boolean;
 }
 
 export default function CTA({
@@ -25,6 +27,8 @@ export default function CTA({
     buttonHref = "https://apps.iaudit.global",
     secondaryButtonText,
     secondaryButtonHref = "/contact",
+    badges,
+    hideTag = false,
 }: CTAProps) {
     const [isMobile, setIsMobile] = useState(false);
 
@@ -38,6 +42,8 @@ export default function CTA({
     const resolvedTitle = title ?? (
         isMobile ? "Ready To Upgrade Your Audit Process?" : <>Ready To Upgrade Your<br /> Audit Process?</>
     );
+
+    const resolvedBadges = badges ?? ["Just pay what you see", "No hidden fees"];
 
     return (
         <section id="cta" style={{
@@ -72,6 +78,7 @@ export default function CTA({
                         textAlign: isMobile ? "center" : "left",
                         alignItems: isMobile ? "center" : "flex-start"
                     }}>
+                        {!hideTag && (
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             whileInView={{ opacity: 1, scale: 1 }}
@@ -92,6 +99,7 @@ export default function CTA({
                             {tag}
                             <span style={{ fontSize: '1rem' }}>✦</span>
                         </motion.div>
+                        )}
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -99,7 +107,7 @@ export default function CTA({
                             transition={{ duration: 0.6, delay: 0.2 }}
                             style={{
                                 fontSize: "clamp(1.45rem, 4vw, 2rem)",
-                                fontWeight: 500,
+                                fontWeight: 700,
                                 lineHeight: 1.15,
                                 marginBottom: "1.5rem",
                                 letterSpacing: "-0.02em",
@@ -191,10 +199,13 @@ export default function CTA({
                                 display: "flex",
                                 gap: isMobile ? "1rem" : "2rem",
                                 alignItems: "center",
-                                flexDirection: isMobile ? "column" : "row"
+                                flexDirection: isMobile ? "column" : "row",
+                                flexWrap: "wrap",
+                                justifyContent: isMobile ? "center" : "flex-start",
                             }}
                         >
-                            <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+                            {resolvedBadges.map((badge) => (
+                            <div key={badge} style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
                                 <div style={{
                                     width: "18px", height: "18px", borderRadius: "50%",
                                     backgroundColor: "rgba(255,255,255,0.12)",
@@ -204,20 +215,9 @@ export default function CTA({
                                         <polyline points="20 6 9 17 4 12"></polyline>
                                     </svg>
                                 </div>
-                                <span style={{ fontSize: "0.85rem", fontWeight: 400, opacity: 0.85, fontFamily: PP_NEUE_MONTREAL }}>Just pay what you see</span>
+                                <span style={{ fontSize: "0.85rem", fontWeight: 400, opacity: 0.85, fontFamily: PP_NEUE_MONTREAL }}>{badge}</span>
                             </div>
-                            <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-                                <div style={{
-                                    width: "18px", height: "18px", borderRadius: "50%",
-                                    backgroundColor: "rgba(255,255,255,0.12)",
-                                    display: "flex", alignItems: "center", justifyContent: "center"
-                                }}>
-                                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg>
-                                </div>
-                                <span style={{ fontSize: "0.85rem", fontWeight: 400, opacity: 0.85, fontFamily: PP_NEUE_MONTREAL }}>No hidden fees</span>
-                            </div>
+                            ))}
                         </motion.div>
                     </div>
 

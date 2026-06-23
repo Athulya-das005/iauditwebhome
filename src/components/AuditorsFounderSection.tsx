@@ -88,6 +88,7 @@ export default function AuditorsFounderSection() {
                                 transition={{ delay: 0.1 }}
                                 style={{
                                     ...aboutType.sectionH2(),
+                                    fontWeight: 700,
                                     fontSize: isMobile ? "2rem" : "clamp(2rem, 3.5vw, 3.2rem)",
                                     margin: 0,
                                     lineHeight: isMobile ? 1.25 : 1.1,

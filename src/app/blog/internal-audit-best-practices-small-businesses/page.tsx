@@ -2,8 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
+
+const HERO_IMAGE =
+    "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1920&h=1080&fit=crop&q=90";
 
 /* ─── Section images ─────────────────────────────────────────────────────── */
 const sectionImages: Record<string, string> = {
@@ -115,14 +119,13 @@ export default function BlogPost3() {
                 minHeight: isMobile ? "240px" : "440px",
                 maxHeight: "700px", overflow: "hidden",
             }}>
-                <img
-                    src="/images/blog-small-business.png"
+                <Image
+                    src={HERO_IMAGE}
                     alt="How to Manage ISO Audits Across Multiple Sites Without Losing Visibility"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                    onError={e => {
-                        e.currentTarget.src =
-                            "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1400&h=700&fit=crop&q=85";
-                    }}
+                    fill
+                    priority
+                    sizes="100vw"
+                    style={{ objectFit: "cover", objectPosition: "center" }}
                 />
                 <div style={{
                     position: "absolute", inset: 0,
@@ -269,7 +272,7 @@ export default function BlogPost3() {
                 {/* ── CENTER: Article ───────────────────────────────────── */}
                 <article>
                     <h1 style={{
-                        fontSize: isMobile ? "1.9rem" : "2.55rem", fontWeight: 400,
+                        fontSize: isMobile ? "2.15rem" : "2.85rem", fontWeight: 600,
                         color: "#111827", lineHeight: 1.2, letterSpacing: "-0.02em",
                         margin: "0 0 1rem", fontFamily: font,
                     }}>
@@ -421,7 +424,7 @@ export default function BlogPost3() {
                         {/* iAudit platform CTA */}
                         <div style={{ background: "linear-gradient(135deg, #002e1d 0%, #006644 100%)", borderRadius: "1.1rem", padding: isMobile ? "1.75rem 1.5rem" : "2.25rem", color: "#fff", position: "relative", overflow: "hidden", margin: "1.25rem 0" }}>
                             <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.055) 1px, transparent 0)", backgroundSize: "24px 24px", pointerEvents: "none" }} />
-                            <h3 style={{ fontSize: isMobile ? "1.15rem" : "1.4rem", fontWeight: 400, color: "#fff", margin: "0 0 0.75rem", fontFamily: font, lineHeight: 1.3, position: "relative" }}>
+                            <h3 style={{ fontSize: isMobile ? "1.25rem" : "1.5rem", fontWeight: 600, color: "#fff", margin: "0 0 0.75rem", fontFamily: font, lineHeight: 1.3, position: "relative" }}>
                                 iAudit Global: Built for Multi-Site Programmes
                             </h3>
                             <p style={{ color: "rgba(255,255,255,0.82)", fontSize: "0.95rem", lineHeight: 1.8, margin: "0 0 0.875rem", position: "relative", fontFamily: font }}>
@@ -478,7 +481,7 @@ export default function BlogPost3() {
                     <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.5rem" }}>
                         <div style={{ background: "linear-gradient(135deg, #002e1d 0%, #006644 100%)", borderRadius: "1.1rem", padding: isMobile ? "2rem 1.5rem" : "2.5rem", color: "#fff", position: "relative", overflow: "hidden" }}>
                             <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.055) 1px, transparent 0)", backgroundSize: "24px 24px", pointerEvents: "none" }} />
-                            <h2 style={{ fontSize: isMobile ? "1.35rem" : "1.7rem", fontWeight: 400, color: "#fff", margin: "0 0 0.75rem", fontFamily: font, lineHeight: 1.25, position: "relative" }}>
+                            <h2 style={{ fontSize: isMobile ? "1.45rem" : "1.85rem", fontWeight: 600, color: "#fff", margin: "0 0 0.75rem", fontFamily: font, lineHeight: 1.25, position: "relative" }}>
                                 Ready to See This in Practice?
                             </h2>
                             <p style={{ color: "rgba(255,255,255,0.82)", fontSize: "0.975rem", lineHeight: 1.8, margin: "0 0 0.875rem", position: "relative", fontFamily: font }}>
@@ -585,10 +588,10 @@ export default function BlogPost3() {
 }
 
 function h2(font: string): React.CSSProperties {
-    return { fontSize: "1.45rem", fontWeight: 500, color: "#111827", letterSpacing: "-0.018em", lineHeight: 1.28, margin: "0 0 0.75rem", fontFamily: font };
+    return { fontSize: "1.6rem", fontWeight: 600, color: "#111827", letterSpacing: "-0.018em", lineHeight: 1.28, margin: "0 0 0.75rem", fontFamily: font };
 }
 function h3(font: string): React.CSSProperties {
-    return { fontSize: "1.15rem", fontWeight: 600, color: "#111827", letterSpacing: "-0.01em", lineHeight: 1.3, margin: "0 0 0.625rem", fontFamily: font };
+    return { fontSize: "1.25rem", fontWeight: 700, color: "#111827", letterSpacing: "-0.01em", lineHeight: 1.3, margin: "0 0 0.625rem", fontFamily: font };
 }
 function para(font: string): React.CSSProperties {
     return { fontSize: "0.98rem", color: "#374151", lineHeight: 1.85, margin: "0 0 1rem", fontFamily: font };

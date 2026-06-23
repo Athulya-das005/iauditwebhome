@@ -91,7 +91,7 @@ const BlogCard = ({ item, isHorizontal = false }: { item: any, isHorizontal?: bo
             }}>
                 <motion.img
                     src={item.image}
-                    alt={item.title}
+                    alt={`Blog article cover: ${item.title}`}
                     initial={{ scale: 1 }}
                     animate={{ scale: isHovered ? 1.05 : 1 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
@@ -119,8 +119,8 @@ const BlogCard = ({ item, isHorizontal = false }: { item: any, isHorizontal?: bo
                     <span style={{ fontSize: '0.85rem', color: '#6B7280', fontWeight: 400 }}>{item.date}</span>
                 </div>
                 <h3 style={{
-                    fontSize: isHorizontal ? '1.1rem' : '1.25rem',
-                    fontWeight: 500,
+                    fontSize: isHorizontal ? '1.2rem' : '1.35rem',
+                    fontWeight: 600,
                     color: '#111827',
                     marginBottom: isHorizontal ? '1rem' : '2rem',
                     lineHeight: 1.3,
@@ -220,8 +220,8 @@ export default function BlogPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         style={{
-                            fontSize: isMobile ? '2.2rem' : '3rem',
-                            fontWeight: 500,
+                            fontSize: isMobile ? '2.4rem' : '3.25rem',
+                            fontWeight: 600,
                             color: '#111827',
                             letterSpacing: '-0.025em',
                             margin: '0 auto',
@@ -290,7 +290,7 @@ export default function BlogPage() {
                         <div style={{ height: isMobile ? '200px' : '280px', overflow: 'hidden', position: 'relative' }}>
                             <motion.img
                                 src={featuredPost.image}
-                                alt={featuredPost.title}
+                                alt={`Featured blog article cover: ${featuredPost.title}`}
                                 animate={{ scale: isFeaturedHovered ? 1.05 : 1 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
                                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -310,8 +310,8 @@ export default function BlogPage() {
                                 <span style={{ fontSize: '0.8rem', color: '#6B7280', fontWeight: 400 }}>{featuredPost.date}</span>
                             </div>
                             <h2 style={{
-                                fontSize: isMobile ? '1.5rem' : '1.8rem',
-                                fontWeight: 500,
+                                fontSize: isMobile ? '1.65rem' : '2.05rem',
+                                fontWeight: 600,
                                 color: '#111827',
                                 marginBottom: '1.5rem',
                                 lineHeight: 1.2,

@@ -85,13 +85,13 @@ export const comparisonType = {
 
 /** Typography scale aligned with /about (AboutNew.tsx) */
 export const aboutType = {
-    heroH1: (): CSSProperties => ({
-        fontSize: "clamp(2.4rem, 4.8vw, 3.8rem)",
-        fontWeight: 500,
-        lineHeight: 1.1,
+    heroH1: (isMobile = false): CSSProperties => ({
+        fontSize: isMobile ? "2.7rem" : "clamp(2.8rem, 5.2vw, 4rem)",
+        fontWeight: 600,
+        lineHeight: isMobile ? 1.15 : 1.1,
         letterSpacing: "-0.03em",
         fontFamily: PP_NEUE_MONTREAL,
-        color: "#111827",
+        color: "#0d1117",
     }),
     heroLead: (): CSSProperties => ({
         fontSize: "1.05rem",
@@ -102,7 +102,7 @@ export const aboutType = {
     }),
     sectionH2: (): CSSProperties => ({
         fontSize: "clamp(2rem, 4vw, 3rem)",
-        fontWeight: 500,
+        fontWeight: 600,
         lineHeight: 1.1,
         letterSpacing: "-0.03em",
         fontFamily: PP_NEUE_MONTREAL,

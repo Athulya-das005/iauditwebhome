@@ -189,7 +189,7 @@ export default function AuditorsIndustriesSection() {
                         fontSize: isMobile
                             ? "clamp(1.75rem, 5vw, 2.1rem)"
                             : "clamp(2rem, 3.5vw, 2.75rem)",
-                        fontWeight: 500,
+                        fontWeight: 700,
                         lineHeight: 1.15,
                         letterSpacing: "-0.02em",
                         textAlign: "center",

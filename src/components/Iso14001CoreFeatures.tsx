@@ -199,6 +199,7 @@ export default function Iso14001CoreFeatures() {
                     <h2
                         style={{
                             ...aboutType.sectionH2(),
+                            fontWeight: 600,
                             marginBottom: "1rem",
                             lineHeight: isMobile ? 1.2 : 1.1,
                         }}

@@ -1,0 +1,7 @@
+Contact: mailto:security@iaudit.global
+Preferred-Languages: en
+Policy: https://www.iaudit.global/security/vulnerability-disclosure-policy
+Acknowledgments: https://www.iaudit.global/security/hall-of-fame
+Scope: https://apps.iaudit.global
+Scope: https://site-mateai.co.uk
+Expires: 2027-06-01T00:00:00z

@@ -85,11 +85,11 @@ export default function ComparisonPage() {
     const [isMobile, setIsMobile] = useState(false);
 
     const partnerLogos = [
-        { src: "/images/clients/stannah.png", alt: "Stannah", title: "Stannah" },
-        { src: "/images/clients/fujitec.png", alt: "Fujitec", title: "Fujitec" },
-        { src: "/images/clients/construct-lifts.png", alt: "Construct Lifts", title: "Construct Lifts" },
-        { src: "/images/clients/peerless.png", alt: "Peerless Lift Services", title: "Peerless Lift Services" },
-        { src: "/images/clients/adstone.png", alt: "Adstone Construction Limited", title: "Adstone Construction Limited" },
+        { src: "/images/clients/stannah.png", alt: "Stannah client logo", title: "Stannah" },
+        { src: "/images/clients/fujitec.png", alt: "Fujitec client logo", title: "Fujitec" },
+        { src: "/images/clients/construct-lifts.png", alt: "Construct Lifts client logo", title: "Construct Lifts" },
+        { src: "/images/clients/peerless.png", alt: "Peerless Lift Services client logo", title: "Peerless Lift Services" },
+        { src: "/images/clients/adstone.png", alt: "Adstone Construction Limited client logo", title: "Adstone Construction Limited" },
     ];
 
     useEffect(() => {
@@ -1051,7 +1051,7 @@ export default function ComparisonPage() {
                                     >
                                         <Image
                                             src={industry.image}
-                                            alt={industry.title}
+                                            alt={`${industry.title} industry for ISO audit management software`}
                                             fill
                                             sizes="(max-width: 768px) 100vw, 33vw"
                                             style={{ objectFit: "cover" }}

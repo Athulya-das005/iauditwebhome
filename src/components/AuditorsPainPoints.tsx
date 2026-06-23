@@ -75,7 +75,7 @@ export default function AuditorsPainPoints() {
         <section
             style={{
                 background: "#f7f8f9",
-                padding: isMobile ? "1.5rem 0 3rem" : "2.5rem 0 2rem",
+                padding: isMobile ? "3rem 0" : "4rem 0 2rem",
                 fontFamily: PP_NEUE_MONTREAL,
             }}
         >
@@ -97,7 +97,7 @@ export default function AuditorsPainPoints() {
                         fontSize: isMobile
                             ? "clamp(1.65rem, 5vw, 2rem)"
                             : "clamp(2rem, 4vw, 3rem)",
-                        fontWeight: 500,
+                        fontWeight: 700,
                         lineHeight: 1.1,
                         letterSpacing: "-0.03em",
                         margin: "0 auto 1.1rem",

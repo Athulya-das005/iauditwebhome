@@ -93,6 +93,7 @@ export default function Iso14001IndustriesSection() {
                     <h2
                         style={{
                             ...aboutType.sectionH2(),
+                            fontWeight: 600,
                             maxWidth: "820px",
                             margin: "0 auto",
                             lineHeight: isMobile ? 1.2 : 1.1,
@@ -158,7 +159,7 @@ export default function Iso14001IndustriesSection() {
                                 >
                                     <Image
                                         src={item.bgImage}
-                                        alt={item.title}
+                                        alt={`${item.title} industry for ISO 14001 audit management software`}
                                         fill
                                         sizes="(max-width: 768px) 100vw, 33vw"
                                         style={{ objectFit: "cover", transition: "transform 0.45s ease" }}

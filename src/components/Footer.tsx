@@ -17,6 +17,90 @@ export default function Footer() {
 
     const currentYear = new Date().getFullYear();
 
+    type FooterLinkItem = { name: string; path?: string; external?: boolean };
+
+    const footerColumns: { title: string; items: FooterLinkItem[] }[] = [
+        {
+            title: "Product",
+            items: [
+                { name: "PDCA Cycle Audit Software", path: "/pdca-cycle-audit-software" },
+                { name: "Built by Auditors", path: "/audit-management-software-built-by-auditors" },
+                { name: "Pricing", path: "/pricing" },
+                { name: "Book a Demo", path: "https://calendly.com/iauditgloballtd/30min", external: true },
+            ],
+        },
+        {
+            title: "Standards",
+            items: [
+                { name: "ISO 9001 Software", path: "/standards/iso-9001-audit-management-software" },
+                { name: "ISO 14001 Software", path: "/standards/iso-14001-audit-management-software" },
+                { name: "ISO 45001 Software", path: "/standards/iso-45001-audit-management-software" },
+                { name: "ISO 14001:2026 Update", path: "/ISO14001-2026" },
+            ],
+        },
+        {
+            title: "Compare",
+            items: [
+                { name: "iAudit vs SafetyCulture" },
+                { name: "iAudit vs GoAudits" },
+            ],
+        },
+        {
+            title: "Resources & Company",
+            items: [
+                { name: "Vulnerability Disclosure", path: "/security/vulnerability-disclosure-policy" },
+                { name: "Case Studies", path: "/case-studies" },
+                { name: "Blog", path: "/blog" },
+                { name: "About Us", path: "/about" },
+                { name: "Contact", path: "/contact" },
+            ],
+        },
+    ];
+
+    const linkStyle: React.CSSProperties = {
+        fontSize: "0.95rem",
+        color: "rgba(0,0,0,0.6)",
+        textDecoration: "none",
+        fontWeight: 400,
+        transition: "color 0.2s ease",
+    };
+
+    const renderFooterItem = (item: FooterLinkItem) => {
+        if (!item.path) {
+            return (
+                <span style={{ ...linkStyle, cursor: "default" }}>
+                    {item.name}
+                </span>
+            );
+        }
+
+        if (item.external) {
+            return (
+                <a
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={linkStyle}
+                    onMouseOver={(e) => { e.currentTarget.style.color = "#006644"; }}
+                    onMouseOut={(e) => { e.currentTarget.style.color = "rgba(0,0,0,0.6)"; }}
+                >
+                    {item.name}
+                </a>
+            );
+        }
+
+        return (
+            <Link
+                href={item.path}
+                style={linkStyle}
+                onMouseOver={(e) => { e.currentTarget.style.color = "#006644"; }}
+                onMouseOut={(e) => { e.currentTarget.style.color = "rgba(0,0,0,0.6)"; }}
+            >
+                {item.name}
+            </Link>
+        );
+    };
+
     const socialLinks = [
         { name: "Instagram", href: "https://www.instagram.com/iauditglobal/?hl=en", icon: (props: any) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg> },
         { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61578820557173", icon: (props: any) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg> },
@@ -60,7 +144,7 @@ export default function Footer() {
                         >
                             <Image
                                 src="/iAudit Global-01.png"
-                                alt="iAudit Global Logo"
+                                alt="iAudit Global company logo"
                                 width={180} // Size increased a little bit more
                                 height={68}
                                 style={{ height: "auto", objectFit: "contain", objectPosition: "bottom" }}
@@ -106,8 +190,8 @@ export default function Footer() {
                     {/* Main Footer Content */}
                     <div style={{
                         display: "grid",
-                        gridTemplateColumns: isMobile ? "1fr" : "1.4fr 0.6fr 0.6fr 0.8fr",
-                        gap: isMobile ? "2.5rem" : "4rem",
+                        gridTemplateColumns: isMobile ? "1fr" : "1.3fr repeat(4, 1fr)",
+                        gap: isMobile ? "2.5rem" : "2.5rem",
                         textAlign: isMobile ? "center" : "left"
                     }}>
                         {/* Brand Column */}
@@ -119,7 +203,7 @@ export default function Footer() {
                             }}>
                                 <Image
                                     src="/iAudit Global-01.png"
-                                    alt="iAudit Global Logo"
+                                    alt="iAudit Global company logo"
                                     width={isMobile ? 120 : 150}
                                     height={isMobile ? 40 : 50}
                                     style={{ height: "auto", objectFit: "contain" }}
@@ -146,82 +230,21 @@ export default function Footer() {
                             </Link>
                         </div>
 
-                        {/* Company Links */}
-                        <div style={{ display: "flex", flexDirection: "column", alignItems: isMobile ? "center" : "flex-start" }}>
-                            <h4 style={{ fontSize: "1rem", fontWeight: 500, marginBottom: "1.5rem" }}>Company</h4>
-                            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.8rem" }}>
-                                {[
-                                    { name: "Home", path: "/" },
-                                    { name: "About iAudit", path: "/about" },
-                                    { name: "Features", path: "/#features" },
-                                    { name: "PDCA", path: "/pdca-cycle-audit-software" },
-                                    { name: "Built by auditors", path: "/audit-management-software-built-by-auditors" },
-                                    { name: "Industries", path: "/industries" },
-                                    { name: "Case Studies", path: "/case-studies" },
-                                    { name: "Pricing", path: "/pricing" },
-                                    { name: "Contact Us", path: "/contact" },
-                                ].map((item) => (
-                                    <li key={item.name}>
-                                        <Link href={item.path} style={{
-                                            fontSize: "0.95rem",
-                                            color: "rgba(0,0,0,0.6)",
-                                            textDecoration: "none",
-                                            fontWeight: 400,
-                                            transition: "color 0.2s ease"
-                                        }}
-                                            onMouseOver={(e: React.MouseEvent<HTMLAnchorElement>) => e.currentTarget.style.color = "#006644"}
-                                            onMouseOut={(e: React.MouseEvent<HTMLAnchorElement>) => e.currentTarget.style.color = "rgba(0,0,0,0.6)"}
-                                        >
-                                            {item.name}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        {/* Resources */}
-                        <div style={{ display: "flex", flexDirection: "column", alignItems: isMobile ? "center" : "flex-start" }}>
-                            <h4 style={{ fontSize: "1rem", fontWeight: 500, marginBottom: "1.5rem" }}>Resources</h4>
-                            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.8rem" }}>
-                                {[
-                                    { name: "Blog & Insights", path: "/blog" },
-                                ].map((item) => (
-                                    <li key={item.name}>
-                                        <Link href={item.path} style={{
-                                            fontSize: "0.95rem",
-                                            color: "rgba(0,0,0,0.6)",
-                                            textDecoration: "none",
-                                            fontWeight: 400,
-                                            transition: "color 0.2s ease"
-                                        }}
-                                            onMouseOver={(e: React.MouseEvent<HTMLAnchorElement>) => e.currentTarget.style.color = "#006644"}
-                                            onMouseOut={(e: React.MouseEvent<HTMLAnchorElement>) => e.currentTarget.style.color = "rgba(0,0,0,0.6)"}
-                                        >
-                                            {item.name}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        {/* Contact */}
-                        <div style={{ display: "flex", flexDirection: "column", alignItems: isMobile ? "center" : "flex-start" }}>
-                            <h4 style={{ fontSize: "1rem", fontWeight: 500, marginBottom: "1.5rem" }}>Contact</h4>
-                            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                                <div style={{ display: "flex", justifyContent: isMobile ? "center" : "flex-start", alignItems: "center", gap: "0.75rem", color: "rgba(0,0,0,0.6)", fontSize: "0.95rem" }}>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                                    <span>+44 7944 829129</span>
-                                </div>
-                                <div style={{ display: "flex", justifyContent: isMobile ? "center" : "flex-start", alignItems: "center", gap: "0.75rem", color: "rgba(0,0,0,0.6)", fontSize: "0.95rem" }}>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                                    <span>info@iaudit.global</span>
-                                </div>
-                                <div style={{ display: "flex", alignItems: isMobile ? "center" : "flex-start", gap: "0.75rem", color: "rgba(0,0,0,0.6)", fontSize: "0.95rem", flexDirection: isMobile ? "column" : "row", textAlign: isMobile ? "center" : "left" }}>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginTop: isMobile ? "0" : "2px", flexShrink: 0 }}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                                    <span>Unit 17f, The Lansbury Estates, Surrey, England <br /> Reg. No. 15826012 (England & Wales)</span>
-                                </div>
+                        {footerColumns.map((column) => (
+                            <div
+                                key={column.title}
+                                style={{ display: "flex", flexDirection: "column", alignItems: isMobile ? "center" : "flex-start" }}
+                            >
+                                <h4 style={{ fontSize: "1rem", fontWeight: 500, marginBottom: "1.5rem" }}>{column.title}</h4>
+                                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.8rem" }}>
+                                    {column.items.map((item) => (
+                                        <li key={item.name}>
+                                            {renderFooterItem(item)}
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </div>

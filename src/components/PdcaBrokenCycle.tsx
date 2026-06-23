@@ -341,7 +341,7 @@ export default function PdcaBrokenCycle() {
                 background: "#ffffff",
                 overflow: "hidden",
                 fontFamily: PP_NEUE_MONTREAL,
-                padding: isMobile ? "1.5rem 0 3rem" : "2.5rem 0 3rem",
+                padding: isMobile ? "3rem 0" : "4rem 0 3rem 0",
             }}
             ref={containerRef}
         >
@@ -384,7 +384,7 @@ export default function PdcaBrokenCycle() {
                             style={{
                                 fontSize: isMobile ? "2.2rem" : "3.2rem",
                                 lineHeight: 1.1,
-                                fontWeight: 500,
+                                fontWeight: 700,
                                 maxWidth: "650px",
                                 letterSpacing: "-0.02em",
                                 color: "#111827",

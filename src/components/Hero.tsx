@@ -8,6 +8,7 @@ import ScrollStack, { ScrollStackItem } from "./ScrollStack/ScrollStack";
 import LogoLoop from "./LogoLoop/LogoLoop";
 import HeroDashboard1 from "./HeroDashboard1";
 import HeroDashboard2 from "./HeroDashboard2";
+import { aboutType } from "@/constants/typography";
 
 
 
@@ -19,11 +20,11 @@ export default function Hero() {
     const [isMobile, setIsMobile] = useState(false);
 
     const partnerLogos = [
-        { src: "/images/clients/stannah.png", alt: "Stannah", title: "Stannah" },
-        { src: "/images/clients/fujitec.png", alt: "Fujitec", title: "Fujitec" },
-        { src: "/images/clients/construct-lifts.png", alt: "Construct Lifts", title: "Construct Lifts" },
-        { src: "/images/clients/peerless.png", alt: "Peerless Lift Services", title: "Peerless Lift Services" },
-        { src: "/images/clients/adstone.png", alt: "Adstone Construction Limited", title: "Adstone Construction Limited" },
+        { src: "/images/clients/stannah.png", alt: "Stannah client logo", title: "Stannah" },
+        { src: "/images/clients/fujitec.png", alt: "Fujitec client logo", title: "Fujitec" },
+        { src: "/images/clients/construct-lifts.png", alt: "Construct Lifts client logo", title: "Construct Lifts" },
+        { src: "/images/clients/peerless.png", alt: "Peerless Lift Services client logo", title: "Peerless Lift Services" },
+        { src: "/images/clients/adstone.png", alt: "Adstone Construction Limited client logo", title: "Adstone Construction Limited" },
     ];
 
     useEffect(() => {
@@ -111,20 +112,15 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.55, delay: 0.08 }}
                     style={{
-                        fontSize: isMobile ? "3rem" : "clamp(3.1rem, 5.6vw, 4.5rem)",
-                        fontWeight: 500,
-                        lineHeight: isMobile ? 1.15 : 1.1,
-                        letterSpacing: "-0.03em",
-                        color: "#0d1117",
+                        ...aboutType.heroH1(isMobile),
                         width: "100%",
                         maxWidth: isMobile ? "100%" : "980px",
                         margin: "0 auto 1.4rem",
-                        fontFamily: '"Pp Neue Montreal", sans-serif',
                         textAlign: "center",
                     }}
                 >
-                    Still Running ISO Audits In{" "}
-                    <span style={{ color: "#058c42", fontWeight: 500 }}>Word, Excel, And Email?</span>
+                    ISO Audit Software That{" "}
+                    <span style={{ color: "#058c42", fontWeight: 600 }}>Thinks Like An Auditor</span>
                 </motion.h1>
 
                 {/* Sub-description */}
@@ -143,7 +139,7 @@ export default function Hero() {
                         textAlign: "center"
                     }}
                 >
-                    Plan, execute, and report ISO 9001, 14001, 45001, and 27001 audits in one PDCA-driven platform. Built by certified auditors. Aligned to ISO 19011. Ready in minutes, not months.
+                    Plan, execute, and report ISO 9001, 14001, and 45001 audits in one PDCA-driven platform. Built by certified auditors. Aligned to ISO 19011. Ready in minutes, not months.
                 </motion.p>
 
                 {/* CTA Buttons */}

@@ -78,7 +78,7 @@ export default function Analytics() {
                             width="1"
                             style={{ display: "none" }}
                             src={`https://www.facebook.com/tr?id=${fbPixelId}&ev=PageView&noscript=1`}
-                            alt=""
+                            alt="Facebook Meta Pixel analytics tracking image"
                         />
                     </noscript>
                 </>
@@ -114,7 +114,7 @@ s.parentNode.insertBefore(b, s);
                     width="1"
                     style={{ display: "none" }}
                     src="https://px.ads.linkedin.com/collect/?pid=9714209&fmt=gif"
-                    alt=""
+                    alt="LinkedIn Insight Tag analytics tracking image"
                 />
             </noscript>
         </>

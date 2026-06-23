@@ -45,7 +45,7 @@ export default function About() {
     const cards = [
         {
             title: "ISO Standards Focus",
-            description: "Purpose-built for ISO 9001, 14001, 45001, and 27001 management system audits.",
+            description: "Purpose-built for ISO 9001, 14001, and 45001 management system audits.",
             animation: (
                 <div style={{ position: 'relative', height: '110px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '1rem' }}>
                     <div style={{
@@ -299,14 +299,14 @@ export default function About() {
                             style={{
                                 fontSize: isMobile ? '2.4rem' : '3.2rem',
                                 lineHeight: 1.1,
-                                fontWeight: 500,
+                                fontWeight: 600,
                                 maxWidth: '650px',
                                 letterSpacing: '-0.02em',
                                 color: '#111827',
                                 margin: isMobile ? '0 0 1rem 0' : '0'
                             }}
                         >
-                            ISO Audit Management That Actually Works
+                            ISO audit management that actually works
                         </motion.h2>
                     </div>
 

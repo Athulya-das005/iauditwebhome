@@ -107,6 +107,7 @@
 /* New class for branding label */
 .branding-label {
     font-size: 0.95rem !important;
+    font-weight: 600;
     letter-spacing: 0.05em;
     color: #111827;
     /* Darker for better visibility */

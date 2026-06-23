@@ -62,7 +62,7 @@ export default function AuditMateChatCard({ isMobile }: { isMobile: boolean }) {
                 >
                     <img
                         src={BOT_AVATAR}
-                        alt="Audit Mate"
+                        alt="Audit Mate AI audit assistant avatar"
                         style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     />
                 </div>

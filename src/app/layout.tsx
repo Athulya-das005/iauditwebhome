@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Analytics from "@/components/Analytics";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://iaudit.global"),
   title: "iAudit Global",
   description: "Internal audit management software",
   // Google Search Console verification

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import CorporateIllustration from './CorporateIllustration';
+import { aboutType } from "@/constants/typography";
 
 type Currency = "USD" | "GBP";
 type BillingCycle = "monthly" | "contract";
@@ -132,14 +133,10 @@ export default function Pricing({ isPageHero = false }: { isPageHero?: boolean }
                             viewport={{ once: true }}
                             transition={{ duration: 0.5 }}
                             style={{
-                                fontSize: isMobile ? '2.2rem' : '3.2rem',
-                                fontWeight: 500,
-                                color: '#111827',
-                                letterSpacing: '-0.02em',
-                                marginBottom: '1rem',
-                                lineHeight: 1.1,
-                                maxWidth: '900px',
-                                margin: '0 auto 1rem'
+                                ...aboutType.heroH1(isMobile),
+                                marginBottom: "1rem",
+                                maxWidth: "900px",
+                                margin: "0 auto 1rem",
                             }}
                         >
                             Flexible plans for every audit programme
@@ -152,7 +149,7 @@ export default function Pricing({ isPageHero = false }: { isPageHero?: boolean }
                             transition={{ duration: 0.5 }}
                             style={{
                                 fontSize: isMobile ? '2.2rem' : '3.2rem',
-                                fontWeight: 500,
+                                fontWeight: 600,
                                 color: '#111827',
                                 letterSpacing: '-0.02em',
                                 marginBottom: '1rem',
@@ -466,7 +463,7 @@ export default function Pricing({ isPageHero = false }: { isPageHero?: boolean }
                     <div style={{ flex: 1, textAlign: isMobile ? 'center' : 'left' }}>
                         <h2 style={{
                             fontSize: isMobile ? '1.5rem' : '1.9rem',
-                            fontWeight: 500,
+                            fontWeight: 600,
                             color: '#111827',
                             marginBottom: '1.5rem',
                             letterSpacing: '-0.02em',

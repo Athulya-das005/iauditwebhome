@@ -112,6 +112,7 @@ export default function PdcaAboutTeaser() {
                             transition={{ duration: 0.55, delay: 0.15 }}
                             style={{
                                 ...aboutType.sectionH2(),
+                                fontWeight: 700,
                                 margin: "0 0 1.25rem 0",
                                 lineHeight: isMobile ? 1.15 : 1.1,
                                 textAlign: isMobile ? "center" : "left",
@@ -241,7 +242,7 @@ export default function PdcaAboutTeaser() {
                                 >
                                     <Image
                                         src="/iAudit Global-01.png"
-                                        alt="iAudit Global"
+                                        alt="iAudit Global company logo"
                                         width={120}
                                         height={40}
                                         style={{ height: "auto", objectFit: "contain" }}

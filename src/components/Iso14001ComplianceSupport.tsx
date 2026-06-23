@@ -100,6 +100,7 @@ export default function Iso14001ComplianceSupport() {
                     <h2
                         style={{
                             ...aboutType.sectionH2(),
+                            fontWeight: 600,
                             maxWidth: "820px",
                             margin: "0 auto",
                             lineHeight: isMobile ? 1.2 : 1.1,

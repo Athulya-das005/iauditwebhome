@@ -196,7 +196,7 @@ export default function Iso9001CoreFeatures() {
                         <SectionTag isMobile={isMobile}>WHAT TO LOOK FOR</SectionTag>
                     </div>
 
-                    <h2 style={{ ...aboutType.sectionH2(), marginBottom: "1rem" }}>
+                    <h2 style={{ ...aboutType.sectionH2(), fontWeight: 600, marginBottom: "1rem" }}>
                         Core Features Your ISO 9001 Software Must Have
                     </h2>
 

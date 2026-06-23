@@ -189,7 +189,7 @@ export default function Industries() {
                         transition={{ delay: 0.1 }}
                         style={{
                             fontSize: isMobile ? "2.4rem" : "3.4rem",
-                            fontWeight: 500,
+                            fontWeight: 600,
                             color: "#111827",
                             lineHeight: isMobile ? 1.2 : 1.1,
                             margin: 0,
@@ -394,23 +394,32 @@ function IndustryCard({ item, isMobile }: { item: any, isMobile: boolean }) {
             className="industry-card"
             whileHover="hover"
             style={{
-                background: hasBgImage ? `url(${item.bgImage}) center/cover no-repeat` : `${item.color}18`,
+                background: hasBgImage ? undefined : `${item.color}18`,
                 border: hasBgImage ? "none" : `1.5px solid ${item.color}33`,
             }}
         >
+            {hasBgImage && (
+                <Image
+                    src={item.bgImage}
+                    alt={`${item.title} industry for ISO audit management software`}
+                    fill
+                    sizes="340px"
+                    style={{ objectFit: "cover", zIndex: 0 }}
+                />
+            )}
             <Link href={`/industries/${item.slug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}>
                 {hasBgImage && (
                     <div style={{
                         position: "absolute",
                         inset: 0,
                         background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 100%)",
-                        zIndex: 0
+                        zIndex: 1
                     }} />
                 )}
 
                 <div style={{
                     position: "relative",
-                    zIndex: 1,
+                    zIndex: 2,
                     padding: "24px",
                     height: "100%",
                     display: "flex",

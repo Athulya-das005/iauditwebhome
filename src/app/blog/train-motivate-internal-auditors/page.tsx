@@ -2,8 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
+
+const HERO_IMAGE =
+    "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&h=1080&fit=crop&q=90";
 
 /* ─── Section images after headings ─────────────────────────────────────── */
 const sectionImages: Record<string, string> = {
@@ -98,14 +102,13 @@ export default function BlogPost2() {
                 minHeight: isMobile ? "240px" : "440px",
                 maxHeight: "700px", overflow: "hidden",
             }}>
-                <img
-                    src="/images/blog-training-auditors.png"
+                <Image
+                    src={HERO_IMAGE}
                     alt="How To Train And Motivate Internal Auditors Without Burning Them Out"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                    onError={e => {
-                        e.currentTarget.src =
-                            "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&h=700&fit=crop&q=85";
-                    }}
+                    fill
+                    priority
+                    sizes="100vw"
+                    style={{ objectFit: "cover", objectPosition: "center" }}
                 />
                 <div style={{
                     position: "absolute", inset: 0,
@@ -252,7 +255,7 @@ export default function BlogPost2() {
                 {/* ── CENTER: Article ───────────────────────────────────── */}
                 <article>
                     <h1 style={{
-                        fontSize: isMobile ? "1.9rem" : "2.55rem", fontWeight: 400,
+                        fontSize: isMobile ? "2.15rem" : "2.85rem", fontWeight: 600,
                         color: "#111827", lineHeight: 1.2, letterSpacing: "-0.02em",
                         margin: "0 0 1rem", fontFamily: font,
                     }}>
@@ -379,7 +382,7 @@ export default function BlogPost2() {
                     <div id="pilot" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
                         <div style={{ background: "linear-gradient(135deg, #002e1d 0%, #006644 100%)", borderRadius: "1.1rem", padding: isMobile ? "2rem 1.5rem" : "2.5rem", color: "#fff", position: "relative", overflow: "hidden" }}>
                             <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.055) 1px, transparent 0)", backgroundSize: "24px 24px", pointerEvents: "none" }} />
-                            <h2 style={{ fontSize: isMobile ? "1.35rem" : "1.7rem", fontWeight: 400, color: "#fff", margin: "0 0 0.75rem", fontFamily: font, lineHeight: 1.25, position: "relative" }}>
+                            <h2 style={{ fontSize: isMobile ? "1.45rem" : "1.85rem", fontWeight: 600, color: "#fff", margin: "0 0 0.75rem", fontFamily: font, lineHeight: 1.25, position: "relative" }}>
                                 An Invitation to Shape the Future of ISO Internal Auditing
                             </h2>
                             <p style={{ color: "rgba(255,255,255,0.82)", fontSize: "0.975rem", lineHeight: 1.8, margin: "0 0 0.875rem", position: "relative", fontFamily: font }}>
@@ -487,10 +490,10 @@ export default function BlogPost2() {
 }
 
 function h2(font: string): React.CSSProperties {
-    return { fontSize: "1.45rem", fontWeight: 500, color: "#111827", letterSpacing: "-0.018em", lineHeight: 1.28, margin: "0 0 0.75rem", fontFamily: font };
+    return { fontSize: "1.6rem", fontWeight: 600, color: "#111827", letterSpacing: "-0.018em", lineHeight: 1.28, margin: "0 0 0.75rem", fontFamily: font };
 }
 function h3(font: string): React.CSSProperties {
-    return { fontSize: "1.15rem", fontWeight: 600, color: "#111827", letterSpacing: "-0.01em", lineHeight: 1.3, margin: "0 0 0.625rem", fontFamily: font };
+    return { fontSize: "1.25rem", fontWeight: 700, color: "#111827", letterSpacing: "-0.01em", lineHeight: 1.3, margin: "0 0 0.625rem", fontFamily: font };
 }
 function para(font: string): React.CSSProperties {
     return { fontSize: "0.98rem", color: "#374151", lineHeight: 1.85, margin: "0 0 1rem", fontFamily: font };

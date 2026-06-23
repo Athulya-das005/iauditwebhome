@@ -1,14 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import Footer from "@/components/Footer";
+import { aboutType } from "@/constants/typography";
+
+const CALENDLY_URL = "https://calendly.com/iauditgloballtd/30min";
 
 export default function ISO14001() {
     const [isMobile, setIsMobile] = useState(false);
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+    const calendlyRef = useRef<HTMLDivElement>(null);
 
     const toggleFaq = (index: number) => {
         setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -19,6 +23,32 @@ export default function ISO14001() {
         checkMobile();
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
+    useEffect(() => {
+        const initCalendly = () => {
+            const Calendly = (window as Window & {
+                Calendly?: { initInlineWidget: (opts: { url: string; parentElement: HTMLElement }) => void };
+            }).Calendly;
+
+            if (Calendly && calendlyRef.current && calendlyRef.current.childElementCount === 0) {
+                Calendly.initInlineWidget({
+                    url: CALENDLY_URL,
+                    parentElement: calendlyRef.current,
+                });
+            }
+        };
+
+        if ((window as Window & { Calendly?: unknown }).Calendly) {
+            initCalendly();
+            return;
+        }
+
+        const script = document.createElement("script");
+        script.src = "https://assets.calendly.com/assets/external/widget.js";
+        script.async = true;
+        script.onload = initCalendly;
+        document.body.appendChild(script);
     }, []);
 
     return (
@@ -58,14 +88,10 @@ export default function ISO14001() {
 
                     {/* Main Heading */}
                     <h1 style={{
-                        fontSize: isMobile ? "2.2rem" : "3.2rem",
-                        fontWeight: 500,
-                        lineHeight: 1.1,
-                        letterSpacing: "-0.02em",
-                        color: "#0d1117",
-                        marginBottom: "1.5rem"
+                        ...aboutType.heroH1(isMobile),
+                        marginBottom: "1.5rem",
                     }}>
-                        Transition to <span style={{ color: "#058c42" }}>ISO 14001:2026</span> with clarity and confidence
+                        Transition to <span style={{ color: "#058c42", fontWeight: 600 }}>ISO 14001:2026</span> with clarity and confidence
                     </h1>
 
                     {/* Description */}
@@ -92,7 +118,7 @@ export default function ISO14001() {
                     }}>
                         {/* Primary */}
                         <Link
-                            href="https://calendly.com/"
+                            href={CALENDLY_URL}
                             className="btn-animate"
                             style={{
                                 padding: "14px 28px",
@@ -147,7 +173,7 @@ export default function ISO14001() {
                     <div style={{ textAlign: "center", marginBottom: "3rem" }}>
                         <h2 style={{
                             fontSize: isMobile ? "1.8rem" : "2.5rem",
-                            fontWeight: 500,
+                            fontWeight: 700,
                             color: "#0d1117",
                             marginBottom: "1rem",
                             letterSpacing: "-0.01em"
@@ -235,7 +261,7 @@ export default function ISO14001() {
 
                     <div style={{ textAlign: "center" }}>
                         <Link
-                            href="https://calendly.com/"
+                            href={CALENDLY_URL}
                             className="btn-animate"
                             style={{
                                 padding: "14px 32px",
@@ -258,7 +284,7 @@ export default function ISO14001() {
                 <div style={{ maxWidth: "900px", margin: "0 auto" }}>
                     <h2 style={{
                         fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)",
-                        fontWeight: 500,
+                        fontWeight: 700,
                         color: "#0d1117",
                         marginBottom: "2rem",
                         letterSpacing: "-0.01em",
@@ -314,7 +340,7 @@ export default function ISO14001() {
                 <div style={{ maxWidth: "900px", margin: "0 auto", textAlign: "center" }}>
                     <h2 style={{
                         fontSize: isMobile ? "1.8rem" : "2.5rem",
-                        fontWeight: 500,
+                        fontWeight: 700,
                         marginBottom: "3rem",
                         letterSpacing: "-0.01em"
                     }}>
@@ -346,7 +372,7 @@ export default function ISO14001() {
                     </div>
 
                     <Link
-                        href="https://calendly.com/"
+                        href={CALENDLY_URL}
                         className="btn-animate"
                         style={{
                             padding: "16px 36px",
@@ -367,7 +393,7 @@ export default function ISO14001() {
                 <div style={{ maxWidth: "900px", margin: "0 auto", textAlign: "center" }}>
                     <h2 style={{
                         fontSize: isMobile ? "1.8rem" : "2.5rem",
-                        fontWeight: 500,
+                        fontWeight: 700,
                         color: "#0d1117",
                         marginBottom: "1.5rem",
                         letterSpacing: "-0.01em"
@@ -385,21 +411,26 @@ export default function ISO14001() {
                     </p>
 
                     <div style={{ textAlign: "center" }}>
-                        <Link
-                            href="https://calendly.com/"
-                            className="btn-animate"
+                        <div
                             style={{
-                                padding: "16px 40px",
-                                borderRadius: "8px",
-                                fontWeight: 600,
-                                fontSize: "1.1rem",
-                                display: "inline-block"
+                                background: "#fff",
+                                borderRadius: "16px",
+                                border: "1px solid #e5e7eb",
+                                boxShadow: "0 8px 30px rgba(0, 0, 0, 0.06)",
+                                overflow: "hidden",
+                                margin: "0 auto",
+                                maxWidth: "1000px",
                             }}
                         >
-                            <span>
-                                Schedule your call on Calendly →
-                            </span>
-                        </Link>
+                            <div
+                                ref={calendlyRef}
+                                style={{
+                                    minWidth: "320px",
+                                    height: isMobile ? "620px" : "700px",
+                                    width: "100%",
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
             </section>
@@ -471,7 +502,7 @@ export default function ISO14001() {
                             }}
                             style={{
                                 fontSize: isMobile ? '1.8rem' : '2.75rem',
-                                fontWeight: 500,
+                                fontWeight: 600,
                                 color: '#111827',
                                 letterSpacing: '-0.02em',
                                 margin: '0 auto 1.5rem auto',
@@ -736,7 +767,7 @@ export default function ISO14001() {
                     >
                         <h2 style={{
                             fontSize: isMobile ? "1.8rem" : "2.75rem",
-                            fontWeight: 500,
+                            fontWeight: 600,
                             color: "#111827",
                             marginBottom: "1.5rem",
                             letterSpacing: "-0.02em"
@@ -882,7 +913,7 @@ export default function ISO14001() {
                         }}
                         style={{
                             fontSize: isMobile ? '1.8rem' : '3rem',
-                            fontWeight: 500,
+                            fontWeight: 600,
                             color: '#111827',
                             letterSpacing: '-0.02em',
                             lineHeight: 1.15,

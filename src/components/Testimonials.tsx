@@ -4,6 +4,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PP_NEUE_MONTREAL } from "@/constants/typography";
 
+const decorativeTestimonialAvatarAlts = [
+    "Portrait of a business professional representing iAudit manufacturing customers",
+    "Portrait of a compliance professional using iAudit audit software",
+    "Portrait of an internal auditor in the iAudit customer community",
+    "Portrait of a quality assurance leader using the iAudit platform",
+] as const;
+
 const defaultTestimonials = [
     {
         quote: "iAudit helped us standardize audit execution across 12 locations. Our reporting time dropped by 60%.",
@@ -162,7 +169,7 @@ export default function Testimonials({
                         viewport={{ once: true }}
                         style={{
                             fontSize: "clamp(2rem, 4vw, 2.8rem)",
-                            fontWeight: 500,
+                            fontWeight: 700,
                             color: "#111827",
                             letterSpacing: "-0.03em",
                             margin: 0,
@@ -185,6 +192,7 @@ export default function Testimonials({
                             animate={{ y: [0, -10, 0] }}
                             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
                             src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=120&h=120"
+                            alt={decorativeTestimonialAvatarAlts[0]}
                             style={{
                                 position: "absolute",
                                 left: isMobile ? "5%" : "2%",
@@ -201,6 +209,7 @@ export default function Testimonials({
                             animate={{ y: [0, 12, 0] }}
                             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
                             src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=100&h=100"
+                            alt={decorativeTestimonialAvatarAlts[1]}
                             style={{
                                 position: "absolute",
                                 right: isMobile ? "5%" : "2%",
@@ -219,12 +228,14 @@ export default function Testimonials({
                                     animate={{ y: [0, -15, 0] }}
                                     transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
                                     src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=90&h=90"
+                                    alt={decorativeTestimonialAvatarAlts[2]}
                                     style={{ position: "absolute", left: "6%", bottom: "5%", width: "70px", height: "70px", borderRadius: "50%", border: "1px solid #f3f4f6", boxShadow: "0 8px 16px rgba(0,0,0,0.06)" }}
                                 />
                                 <motion.img
                                     animate={{ y: [0, 15, 0] }}
                                     transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
                                     src="https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=95&h=95"
+                                    alt={decorativeTestimonialAvatarAlts[3]}
                                     style={{ position: "absolute", right: "4%", bottom: "10%", width: "75px", height: "75px", borderRadius: "50%", border: "1px solid #f3f4f6", boxShadow: "0 8px 16px rgba(0,0,0,0.06)" }}
                                 />
                             </>
@@ -328,7 +339,7 @@ export default function Testimonials({
                                 }}>
                                     <img
                                         src={activeTestimonials[index].avatar}
-                                        alt={activeTestimonials[index].author}
+                                        alt={`${activeTestimonials[index].author}, ${activeTestimonials[index].role}${activeTestimonials[index].company ? ` at ${activeTestimonials[index].company}` : ""}`}
                                         style={{ width: "100%", height: "100%", objectFit: "cover" }}
                                     />
                                 </div>

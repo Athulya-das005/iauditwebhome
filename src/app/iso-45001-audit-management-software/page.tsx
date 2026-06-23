@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import Iso45001Content from "@/components/Iso45001Content";
+import StandardsPage, { metadata as standardsMetadata } from "../standards/iso-45001-audit-management-software/page";
+
+const canonicalUrl = "https://www.iaudit.global/standards/iso-45001-audit-management-software";
 
 export const metadata: Metadata = {
-    title: "ISO 45001 Audit Management Software | iAudit Global",
-    description:
-        "Run ISO 45001 occupational health and safety audits with hazard tracking, evidence capture and corrective action closure.",
+    ...standardsMetadata,
+    alternates: {
+        canonical: canonicalUrl,
+    },
 };
 
-export default function Iso45001Page() {
-    return <Iso45001Content />;
-}
+export default StandardsPage;

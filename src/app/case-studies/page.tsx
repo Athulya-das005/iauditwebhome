@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import CaseStudyPageContent from "@/components/case-study/CaseStudyPageContent";
 
 export const metadata: Metadata = {
-    title: "Case Studies | iAudit Global",
+    title: "How iAudit helped Apex Engineering secure 100% audit history continuity | iAudit Global",
     description:
-        "How Apex Engineering secured 100% audit history continuity across three production sites with iAudit Global.",
+        "How iAudit helped Apex Engineering secure 100% audit history continuity across three sites with unified ISO 9001 and ISO 14001 audit management.",
 };
 
 export default function CaseStudiesPage() {

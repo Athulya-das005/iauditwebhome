@@ -10,6 +10,7 @@ import CTA from '@/components/CTA';
 import Footer from '@/components/Footer';
 
 import { Industry } from '../../../data/industries';
+import { aboutType } from '@/constants/typography';
 
 export default function IndustryContent({ industry }: { industry: Industry }) {
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
@@ -124,8 +125,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                     min-height: 400px;
                 }
                 .flovity-hero-title {
-                    font-size: clamp(2rem, 3.5vw, 2.75rem);
-                    letter-spacing: -0.02em;
+                    letter-spacing: -0.03em;
                 }
                 @media (max-width: 1024px) {
                     .flovity-hero-right {
@@ -147,8 +147,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                         justify-content: center !important;
                     }
                     .flovity-hero-title {
-                        font-size: 2.25rem; /* Slightly smaller for mobile */
-                        line-height: 1.1;
+                        line-height: 1.15;
                     }
                     .flovity-hero-desc {
                         font-size: 1rem;
@@ -248,12 +247,8 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             </div>
 
                             <h1 className="flovity-hero-title" style={{
-                                fontSize: 'clamp(2.5rem, 4vw, 3.25rem)',
-                                fontWeight: 500,
-                                color: '#111827',
-                                lineHeight: 1.1,
-                                letterSpacing: '-0.02em',
-                                margin: '0 0 1.5rem 0'
+                                ...aboutType.heroH1(isMobile),
+                                margin: '0 0 1.5rem 0',
                             }}>
                                 {industry.heroHeading || `Streamline your workflows with ${industry.title} safety checks`}
                             </h1>
@@ -621,7 +616,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                 }}
                                 style={{
                                     fontSize: 'clamp(2.5rem, 4vw, 3.25rem)',
-                                    fontWeight: 500, // Explicitly requesting 500 weight but the font itself will render it slightly bolder if it's the requested visual
+                                    fontWeight: 700,
                                     color: '#111827',
                                     letterSpacing: '-0.02em',
                                     margin: '0 auto 1rem auto',
@@ -816,7 +811,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     }}
                                     style={{
                                         fontSize: 'clamp(2.5rem, 4vw, 3.25rem)',
-                                        fontWeight: 500,
+                                        fontWeight: 700,
                                         color: '#111827',
                                         letterSpacing: '-0.02em',
                                         lineHeight: 1.15,
@@ -1324,7 +1319,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     }}
                                     style={{
                                         fontSize: 'clamp(2.5rem, 4vw, 3.25rem)',
-                                        fontWeight: 500,
+                                        fontWeight: 700,
                                         color: '#111827',
                                         letterSpacing: '-0.02em',
                                         margin: '0 auto 1.5rem auto',
@@ -1665,7 +1660,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                 }}
                                 style={{
                                     fontSize: 'clamp(2.5rem, 4vw, 3rem)',
-                                    fontWeight: 500,
+                                    fontWeight: 700,
                                     color: '#111827',
                                     letterSpacing: '-0.02em',
                                     marginBottom: isMobile ? '2rem' : '3rem',
@@ -1912,7 +1907,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                             <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#fef3c7', overflow: 'hidden' }}>
                                                 <img 
                                                     src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200" 
-                                                    alt="Auditor"
+                                                    alt="Elena Rossi, ISO Lead Auditor"
                                                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                                 />
                                             </div>
@@ -1996,7 +1991,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             
                             <h2 style={{
                                 fontSize: 'clamp(2.2rem, 4vw, 2.75rem)',
-                                fontWeight: 500,
+                                fontWeight: 700,
                                 color: '#111827',
                                 marginBottom: '1.5rem',
                                 lineHeight: 1.2,
@@ -2275,7 +2270,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                             style={{
                                 fontSize: 'clamp(2.5rem, 4.5vw, 3.5rem)',
-                                fontWeight: 500,
+                                fontWeight: 700,
                                 color: '#ffffff',
                                 letterSpacing: '-0.02em',
                                 lineHeight: 1.15,
@@ -2461,7 +2456,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                 }}
                                 style={{
                                     fontSize: 'clamp(2rem, 4vw, 2.75rem)',
-                                    fontWeight: 500,
+                                    fontWeight: 700,
                                     color: '#111827',
                                     lineHeight: 1.1,
                                     marginBottom: isMobile ? '1rem' : '1.5rem',
@@ -2550,7 +2545,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             }}>
                                 <img
                                     src={industry.caseStudyImage}
-                                    alt={industry.caseStudyHeading}
+                                    alt={`Case study image: ${industry.caseStudyHeading}`}
                                     style={{
                                         width: '100%',
                                         height: 'auto',
@@ -2632,7 +2627,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                 }}
                                 style={{
                                     fontSize: 'clamp(2.2rem, 4vw, 3rem)',
-                                    fontWeight: 500,
+                                    fontWeight: 700,
                                     color: '#111827',
                                     letterSpacing: '-0.02em',
                                     lineHeight: 1.15,

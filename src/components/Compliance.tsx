@@ -75,7 +75,7 @@ export default function Compliance() {
                                 transition={{ delay: 0.1 }}
                                 style={{
                                     fontSize: isMobile ? '2.4rem' : '3.6rem',
-                                    fontWeight: 500,
+                                    fontWeight: 600,
                                     marginBottom: '1rem',
                                     lineHeight: 1.1,
                                     color: '#111827',

@@ -411,7 +411,7 @@ export default function Advantages() {
                         transition={{ delay: 0.1 }}
                         style={{
                             fontSize: isMobile ? '2.0rem' : '3.2rem',
-                            fontWeight: 500,
+                            fontWeight: 600,
                             marginBottom: '1.5rem',
                             lineHeight: isMobile ? 1.2 : 1.1,
                             color: '#111827',

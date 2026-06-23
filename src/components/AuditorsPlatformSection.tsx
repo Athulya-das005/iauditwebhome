@@ -111,6 +111,7 @@ export default function AuditorsPlatformSection() {
                             transition={{ duration: 0.55, delay: 0.15 }}
                             style={{
                                 ...aboutType.sectionH2(),
+                                fontWeight: 700,
                                 margin: "0 0 1.25rem 0",
                                 lineHeight: isMobile ? 1.15 : 1.1,
                             }}
@@ -305,7 +306,7 @@ export default function AuditorsPlatformSection() {
                             >
                                 <Image
                                     src="/iAudit Global-01.png"
-                                    alt="iAudit Global"
+                                    alt="iAudit Global company logo"
                                     width={110}
                                     height={36}
                                     style={{

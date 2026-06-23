@@ -73,7 +73,7 @@ export default function Resources() {
                         viewport={{ once: true }}
                         style={{
                             fontSize: isMobile ? '2.4rem' : '3.2rem',
-                            fontWeight: 500,
+                            fontWeight: 600,
                             color: '#111827',
                             letterSpacing: '-0.02em',
                             margin: 0,
@@ -116,7 +116,7 @@ export default function Resources() {
                             <div style={{ height: '220px', overflow: 'hidden', position: 'relative' }}>
                                 <motion.img
                                     src={item.image}
-                                    alt={item.title}
+                                    alt={`Blog article cover: ${item.title}`}
                                     animate={{ scale: hoveredId === item.id ? 1.08 : 1 }}
                                     transition={{ duration: 0.8, ease: "easeOut" }}
                                     style={{

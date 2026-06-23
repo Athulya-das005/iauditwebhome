@@ -81,6 +81,7 @@ export default function Iso14001ChoosingSoftware() {
                     <h2
                         style={{
                             ...aboutType.sectionH2(),
+                            fontWeight: 600,
                             margin: 0,
                             lineHeight: isMobile ? 1.2 : 1.1,
                             padding: isMobile ? "0 0.25rem" : 0,

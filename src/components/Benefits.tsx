@@ -75,7 +75,7 @@ export default function Benefits() {
                                 transition={{ delay: 0.1 }}
                                 style={{
                                     fontSize: isMobile ? "2.0rem" : '3.2rem',
-                                    fontWeight: 500,
+                                    fontWeight: 600,
                                     marginBottom: '1rem',
                                     lineHeight: isMobile ? 1.25 : 1.1,
                                     color: '#111827',

@@ -65,10 +65,10 @@ const orbitIcons = [
 ];
 
 function DataOwnershipVisual({ isMobile }: { isMobile: boolean }) {
-    const orbitSize = isMobile ? 280 : 380;
-    const orbitR = isMobile ? 108 : 148;
-    const cardWidth = isMobile ? 158 : 252;
-    const iconSize = isMobile ? 40 : 48;
+    const orbitSize = isMobile ? 300 : 380;
+    const orbitR = isMobile ? 118 : 148;
+    const cardWidth = isMobile ? 210 : 252;
+    const iconSize = isMobile ? 44 : 48;
 
     return (
         <motion.div
@@ -80,8 +80,8 @@ function DataOwnershipVisual({ isMobile }: { isMobile: boolean }) {
                 position: "relative",
                 background: "#f4f4f5",
                 borderRadius: isMobile ? "24px" : "32px",
-                padding: isMobile ? "24px 16px" : "48px 40px",
-                minHeight: isMobile ? "340px" : "480px",
+                padding: isMobile ? "32px 24px" : "48px 40px",
+                minHeight: isMobile ? "400px" : "480px",
                 overflow: "hidden",
                 width: "100%",
                 display: "flex",
@@ -198,14 +198,13 @@ function DataOwnershipVisual({ isMobile }: { isMobile: boolean }) {
                     transition={{ duration: 0.6, delay: 0.15 }}
                     style={{
                         position: "absolute",
-                        top: isMobile ? "6%" : "6%",
-                        left: isMobile ? "50%" : "0",
-                        transform: isMobile ? "translateX(-50%)" : undefined,
+                        top: isMobile ? "4%" : "6%",
+                        left: isMobile ? "2%" : "0",
                         zIndex: 2,
                         width: cardWidth,
                         background: "#fff",
-                        borderRadius: isMobile ? "14px" : "18px",
-                        padding: isMobile ? "14px 12px" : "26px 22px",
+                        borderRadius: "18px",
+                        padding: isMobile ? "20px 18px" : "26px 22px",
                         boxShadow: "0 16px 48px rgba(0,0,0,0.08)",
                         border: "1px solid #f0f0f0",
                     }}
@@ -216,14 +215,14 @@ function DataOwnershipVisual({ isMobile }: { isMobile: boolean }) {
                             style={{
                                 display: "flex",
                                 alignItems: "center",
-                                gap: isMobile ? "10px" : "14px",
-                                marginBottom: row < 2 ? (isMobile ? "12px" : "18px") : isMobile ? "14px" : "22px",
+                                gap: "14px",
+                                marginBottom: row < 2 ? "18px" : "22px",
                             }}
                         >
                             <div
                                 style={{
-                                    width: isMobile ? "24px" : "34px",
-                                    height: isMobile ? "24px" : "34px",
+                                    width: isMobile ? "30px" : "34px",
+                                    height: isMobile ? "30px" : "34px",
                                     borderRadius: "50%",
                                     flexShrink: 0,
                                     background: row === 1 ? "#004d40" : "#dbeafe",
@@ -233,16 +232,16 @@ function DataOwnershipVisual({ isMobile }: { isMobile: boolean }) {
                             <div style={{ flex: 1 }}>
                                 <div
                                     style={{
-                                        height: isMobile ? "5px" : "7px",
+                                        height: "7px",
                                         background: "#f3f4f6",
                                         borderRadius: "4px",
-                                        marginBottom: isMobile ? "5px" : "7px",
+                                        marginBottom: "7px",
                                         width: "100%",
                                     }}
                                 />
                                 <div
                                     style={{
-                                        height: isMobile ? "5px" : "7px",
+                                        height: "7px",
                                         background: "#f3f4f6",
                                         borderRadius: "4px",
                                         width: row === 1 ? "75%" : "55%",
@@ -254,11 +253,11 @@ function DataOwnershipVisual({ isMobile }: { isMobile: boolean }) {
                     <div
                         style={{
                             width: "100%",
-                            padding: isMobile ? "8px 0" : "12px 0",
-                            borderRadius: isMobile ? "8px" : "10px",
+                            padding: isMobile ? "11px 0" : "12px 0",
+                            borderRadius: "10px",
                             background: "#004d40",
                             color: "#fff",
-                            fontSize: isMobile ? "0.72rem" : "0.88rem",
+                            fontSize: isMobile ? "0.82rem" : "0.88rem",
                             fontWeight: 600,
                             textAlign: "center",
                             fontFamily: PP_NEUE_MONTREAL,
@@ -343,7 +342,7 @@ export default function AuditorsDataOwnershipSection() {
                                 fontSize: isMobile
                                     ? "clamp(1.85rem, 5vw, 2.25rem)"
                                     : "clamp(2rem, 3.5vw, 3rem)",
-                                fontWeight: 500,
+                                fontWeight: 700,
                                 lineHeight: isMobile ? 1.15 : 1.1,
                                 letterSpacing: "-0.02em",
                                 margin: "0 0 1.75rem 0",

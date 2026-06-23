@@ -46,7 +46,7 @@ export default function IndustriesDirectory() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.55, delay: 0.08 }}
                         style={{
-                            ...aboutType.heroH1(),
+                            ...aboutType.heroH1(isMobile),
                             marginBottom: "1.25rem",
                         }}
                     >

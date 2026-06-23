@@ -505,7 +505,7 @@ export default function AuditorsCoreAdvantages() {
                         style={{
                             ...aboutType.sectionH2(),
                             fontSize: isMobile ? "2rem" : "clamp(2rem, 3.5vw, 3.2rem)",
-                            fontWeight: 500,
+                            fontWeight: 700,
                             lineHeight: isMobile ? 1.2 : 1.1,
                             letterSpacing: "-0.02em",
                             maxWidth: "720px",

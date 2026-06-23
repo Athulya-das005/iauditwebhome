@@ -207,6 +207,7 @@ button {
   z-index: 5;
   transform: skew(30deg);
   transition: transform 0.5s cubic-bezier(0.3, 1, 0.8, 1);
+  pointer-events: none;
 }
 
 .btn-animate:hover::before {
@@ -248,6 +249,7 @@ button {
   z-index: 5;
   transform: skew(30deg);
   transition: transform 0.5s cubic-bezier(0.3, 1, 0.8, 1);
+  pointer-events: none;
 }
 
 .btn-outline-animate:hover::before {

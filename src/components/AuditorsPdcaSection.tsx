@@ -291,7 +291,7 @@ export default function AuditorsPdcaSection() {
                                 fontSize: isMobile
                                     ? "clamp(1.85rem, 5vw, 2.25rem)"
                                     : "clamp(2rem, 3.5vw, 3rem)",
-                                fontWeight: 500,
+                                fontWeight: 700,
                                 lineHeight: isMobile ? 1.15 : 1.1,
                                 letterSpacing: "-0.02em",
                                 margin: "0 0 1.25rem 0",

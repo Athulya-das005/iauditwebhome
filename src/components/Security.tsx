@@ -64,7 +64,7 @@ export default function Security() {
                             transition={{ delay: 0.1 }}
                             style={{
                                 fontSize: isMobile ? '2.4rem' : '3.6rem',
-                                fontWeight: 500,
+                                fontWeight: 600,
                                 color: "#111827",
                                 lineHeight: 1.1,
                                 letterSpacing: "-0.02em",
@@ -374,7 +374,7 @@ export default function Security() {
                                 }}>
                                     <img
                                         src={`https://i.pravatar.cc/150?u=${idx + 22}`}
-                                        alt="Avatar"
+                                        alt={`Illustration for ${card.text} security feature`}
                                         style={{ width: "100%", height: "100%", objectFit: "cover" }}
                                     />
                                 </div>

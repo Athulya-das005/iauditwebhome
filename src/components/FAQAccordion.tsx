@@ -86,7 +86,7 @@ export default function FAQAccordion({
                     }}
                     style={{
                         fontSize: isMobile ? 'clamp(1.65rem, 5vw, 2.2rem)' : '3rem',
-                        fontWeight: 500,
+                        fontWeight: 700,
                         color: '#111827',
                         letterSpacing: '-0.02em',
                         lineHeight: 1.15,

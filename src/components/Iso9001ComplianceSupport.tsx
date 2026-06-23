@@ -101,6 +101,7 @@ export default function Iso9001ComplianceSupport() {
                     <h2
                         style={{
                             ...aboutType.sectionH2(),
+                            fontWeight: 600,
                             maxWidth: "820px",
                             margin: "0 auto",
                         }}

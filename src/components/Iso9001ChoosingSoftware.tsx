@@ -80,6 +80,7 @@ export default function Iso9001ChoosingSoftware() {
                     <h2
                         style={{
                             ...aboutType.sectionH2(),
+                            fontWeight: 600,
                             margin: 0,
                             lineHeight: isMobile ? 1.2 : 1.1,
                         }}

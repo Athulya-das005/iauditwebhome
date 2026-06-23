@@ -100,6 +100,7 @@ export default function PdcaIndustriesSection() {
                     <h2
                         style={{
                             ...aboutType.sectionH2(),
+                            fontWeight: 700,
                             maxWidth: "780px",
                             margin: "0 auto",
                             lineHeight: isMobile ? 1.2 : 1.1,
@@ -170,7 +171,7 @@ export default function PdcaIndustriesSection() {
                                 >
                                     <Image
                                         src={item.bgImage}
-                                        alt={item.title}
+                                        alt={`${item.title} industry for PDCA audit management software`}
                                         fill
                                         sizes="(max-width: 768px) 100vw, 33vw"
                                         style={{

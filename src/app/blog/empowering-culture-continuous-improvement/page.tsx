@@ -2,8 +2,12 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
+
+const HERO_IMAGE =
+    "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&h=1080&fit=crop&q=90";
 
 /* ─── Section images after headings ─────────────────────────────────────── */
 const sectionImages: Record<string, string> = {
@@ -145,14 +149,13 @@ export default function BlogPost() {
                 maxHeight: "700px",
                 overflow: "hidden",
             }}>
-                <img
-                    src="/images/blog-continuous-improvement.png"
+                <Image
+                    src={HERO_IMAGE}
                     alt="Empowering a Culture of Continuous Improvement Through Audit"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                    onError={e => {
-                        e.currentTarget.src =
-                            "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1400&h=700&fit=crop&q=85";
-                    }}
+                    fill
+                    priority
+                    sizes="100vw"
+                    style={{ objectFit: "cover", objectPosition: "center" }}
                 />
                 {/* Gradient overlay at the bottom so the content reads cleanly */}
                 <div style={{
@@ -372,8 +375,8 @@ export default function BlogPost() {
                 {/* ── CENTER: Article ─────────────────────────────────── */}
                 <article>
                     <h1 style={{
-                        fontSize: isMobile ? "1.9rem" : "2.55rem",
-                        fontWeight: 400,          /* lighter, not heavy bold */
+                        fontSize: isMobile ? "2.15rem" : "2.85rem",
+                        fontWeight: 600,
                         color: "#111827",
                         lineHeight: 1.2,
                         letterSpacing: "-0.02em",
@@ -608,8 +611,8 @@ export default function BlogPost() {
                                 pointerEvents: "none",
                             }} />
                             <h2 style={{
-                                fontSize: isMobile ? "1.35rem" : "1.7rem",
-                                fontWeight: 400,
+                                fontSize: isMobile ? "1.45rem" : "1.85rem",
+                                fontWeight: 600,
                                 color: "#fff",
                                 margin: "0 0 0.75rem",
                                 fontFamily: font,
@@ -820,8 +823,8 @@ export default function BlogPost() {
 /* ─── Style helpers ───────────────────────────────────────────────────────── */
 function h2(font: string): React.CSSProperties {
     return {
-        fontSize: "1.45rem",
-        fontWeight: 500,
+        fontSize: "1.6rem",
+        fontWeight: 600,
         color: "#111827",
         letterSpacing: "-0.018em",
         lineHeight: 1.28,

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import Iso9001Content from "@/components/Iso9001Content";
+import StandardsPage, { metadata as standardsMetadata } from "../standards/iso-9001-audit-management-software/page";
+
+const canonicalUrl = "https://www.iaudit.global/standards/iso-9001-audit-management-software";
 
 export const metadata: Metadata = {
-    title: "ISO 9001 Audit Management Software | iAudit Global",
-    description:
-        "Stop managing ISO 9001 audits in spreadsheets. Purpose-built software with clause-level traceability and automated actions for quality management audits.",
+    ...standardsMetadata,
+    alternates: {
+        canonical: canonicalUrl,
+    },
 };
 
-export default function Iso9001Page() {
-    return <Iso9001Content />;
-}
+export default StandardsPage;

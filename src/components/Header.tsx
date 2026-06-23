@@ -24,11 +24,6 @@ const industryMegamenu = [
     {
         title: "",
         items: industryNavItems.slice(12, 16),
-        card: {
-            title: "All Industries",
-            description: "Browse every sector iAudit supports with ISO-ready audit workflows.",
-            href: "/industries",
-        },
     },
 ];
 
@@ -66,100 +61,49 @@ export default function Header() {
 
     const navItems: NavItem[] = [
         { label: "Home", href: "/" },
-        { label: "About", href: "/about" },
-        /*
-        {
-            label: "Solutions",
-            href: "/#solutions",
-            megamenu: [
-                {
-                    title: "By Industry",
-                    items: [
-                        { label: "Manufacturing", href: "/industries/manufacturing" },
-                        { label: "Health & Safety", href: "/industries/health-safety" },
-                        { label: "Construction", href: "/industries/construction" },
-                        { label: "Retail", href: "/industries/retail-iso-audit-software" },
-                        { label: "Hospitality", href: "/industries/hospitality-iso-audit-software" },
-                    ]
-                },
-                {
-                    title: "By Business Need",
-                    items: [
-                        { label: "ISO 9001 (Quality)", href: "/solutions/iso-9001" },
-                        { label: "ISO 14001 (Env)", href: "/solutions/iso-14001" },
-                        { label: "ISO 45001 (S&H)", href: "/solutions/iso-45001" },
-                        { label: "ISO 27001 (InfoSec)", href: "/solutions/iso-27001" },
-                        { label: "Internal Audits", href: "/solutions/internal-audits" },
-                    ]
-                },
-                {
-                    title: "Specialized",
-                    items: [
-                        { label: "Supplier Audits", href: "/solutions/supplier-audits" },
-                        { label: "Process Audits", href: "/solutions/process-audits" },
-                        { label: "Custom Checklists", href: "/solutions/custom-checklists" },
-                        { label: "Gap Analysis", href: "/solutions/gap-analysis" },
-                    ]
-                }
-            ]
-        },
-        {
-            label: "Customers",
-            href: "/#customers",
-            megamenu: [
-                {
-                    title: "Resources",
-                    items: [
-                        { label: "Case Studies", href: "/customers/case-studies" },
-                        { label: "Testimonials", href: "/#testimonials" },
-                        { label: "Customer Stories", href: "/customers/stories" },
-                    ]
-                },
-                {
-                    title: "Support",
-                    items: [
-                        { label: "Help Center", href: "https://support.iaudit.global" },
-                        { label: "Documentation", href: "/docs" },
-                        { label: "API Reference", href: "/api-docs" },
-                    ]
-                }
-            ]
-        },
-        */
-        { label: "Features", href: "/#features" },
         {
             label: "Standards",
-            href: "/iso-9001-audit-management-software",
+            href: "/standards/iso-9001-audit-management-software",
             megamenu: [
                 {
                     title: "ISO Standards",
                     items: [
-                        { label: "ISO 9001 Software", href: "/iso-9001-audit-management-software" },
-                        { label: "ISO 14001 Software", href: "/iso-14001-audit-management-software" },
-                        { label: "ISO 45001 Software", href: "/iso-45001-audit-management-software" },
+                        { label: "ISO 9001 Software", href: "/standards/iso-9001-audit-management-software" },
+                        { label: "ISO 14001 Software", href: "/standards/iso-14001-audit-management-software" },
+                        { label: "ISO 45001 Software", href: "/standards/iso-45001-audit-management-software" },
                     ],
                 },
             ],
         },
-        { label: "Pricing", href: "/pricing" },
-        { label: "ISO 14001:2026", href: "/ISO14001-2026" },
         { label: "Industries", href: "/industries", megamenu: industryMegamenu },
-        /* DRAFT: Comparison pages hidden — uncomment when ready to publish
-        { 
-            label: "Comparison", 
-            href: "/iaudit-global-vs-safetyculture",
+        { label: "ISO 14001:2026", href: "/ISO14001-2026" },
+        { label: "Pricing", href: "/pricing" },
+        {
+            label: "Resources",
+            href: "/case-studies",
             megamenu: [
                 {
-                    title: "Platform Comparisons",
+                    title: "Resources",
                     items: [
-                        { label: "vs SafetyCulture", href: "/iaudit-global-vs-safetyculture" },
-                        { label: "vs GoAudits", href: "/iaudit-global-vs-goaudits" },
-                    ]
-                }
-            ]
+                        { label: "Case Studies", href: "/case-studies" },
+                        { label: "Blog", href: "/blog" },
+                    ],
+                },
+            ],
         },
-        */
-        { label: "Contact", href: "/contact" },
+        {
+            label: "Company",
+            href: "/about",
+            megamenu: [
+                {
+                    title: "Company",
+                    items: [
+                        { label: "About Us", href: "/about" },
+                        { label: "Contact", href: "/contact" },
+                    ],
+                },
+            ],
+        },
     ];
 
     useEffect(() => {
@@ -224,7 +168,7 @@ export default function Header() {
                 <Link href="/" style={{ display: "flex", alignItems: "center", zIndex: 10 }}>
                     <Image
                         src="/iaudit-logo-new.png"
-                        alt="iAudit Global"
+                        alt="iAudit Global company logo"
                         width={isMobile ? 100 : 130}
                         height={isMobile ? 100 : 130}
                         style={{ height: "auto", objectFit: "contain" }}

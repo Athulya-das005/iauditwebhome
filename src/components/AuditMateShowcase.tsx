@@ -88,6 +88,7 @@ export default function AuditMateShowcase({
                         transition={{ delay: 0.1 }}
                         style={{
                             ...aboutType.sectionH2(),
+                            fontWeight: 700,
                             margin: 0,
                             lineHeight: isMobile ? 1.2 : 1.1,
                             width: "100%",

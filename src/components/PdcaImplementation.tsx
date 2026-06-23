@@ -333,7 +333,7 @@ export default function PdcaImplementation() {
                     style={{
                         textAlign: "center",
                         fontSize: "clamp(2rem, 4vw, 3rem)",
-                        fontWeight: 500,
+                        fontWeight: 700,
                         lineHeight: 1.1,
                         letterSpacing: "-0.03em",
                         color: "#0d1117",

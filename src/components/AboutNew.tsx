@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import CTA from "./CTA";
 import Footer from "./Footer";
+import { aboutType } from "@/constants/typography";
 
 /* ─── shared box shadow & border to mimic Flovity ───────────────────── */
 const SHADOW = "0 8px 30px rgba(0, 0, 0, 0.04)";
@@ -97,13 +98,9 @@ export default function AboutNew() {
                     transition={{ duration: 0.5, delay: 0.07 }}
                     style={{
                         textAlign: "center",
-                        fontSize: "clamp(2.4rem, 4.8vw, 3.8rem)",
-                        fontWeight: 500,
-                        lineHeight: 1.1,
-                        letterSpacing: "-0.03em",
-                        color: "#111827",
+                        ...aboutType.heroH1(isMobile),
                         maxWidth: "800px",
-                        margin: isMobile ? "0 auto 1.5rem" : "0 auto 1.5rem",
+                        margin: "0 auto 1.5rem",
                     }}
                 >
                     Audit software that thinks like an auditor
@@ -124,7 +121,7 @@ export default function AboutNew() {
                         margin: isMobile ? "0 auto 3rem" : "0 auto 4rem",
                     }}
                 >
-                    We spent years conducting ISO audits before building the platform we wished existed. Grounded in PDCA. Aligned with ISO 19011. Your data stays yours.
+                    We spent years conducting ISO audits before building the ISO audit management software we wished existed. Grounded in PDCA. Aligned with ISO 19011. Your data stays yours.
                 </motion.p>
 
                 {/* ══ BENTO GRID ══ */}
@@ -499,7 +496,7 @@ export default function AboutNew() {
                         transition={{ duration: 0.5, delay: 0.07 }}
                         style={{
                             fontSize: "clamp(2rem, 4vw, 3rem)",
-                            fontWeight: 500,
+                            fontWeight: 600,
                             lineHeight: 1.1,
                             letterSpacing: "-0.03em",
                             color: "#0d1117",
@@ -597,7 +594,7 @@ export default function AboutNew() {
                         <div style={{ padding: isMobile ? "1rem 0" : "1.4rem 0.2rem 0" }}>
                             <h3 style={{ fontWeight: 700, fontSize: isMobile ? "1.1rem" : "1.2rem", color: "#0d1117", margin: "0 0 0.6rem" }}>Structured Audits And PDCA</h3>
                             <p style={{ fontSize: "0.95rem", color: "#6b7280", lineHeight: 1.7, margin: "0 0 1rem" }}>
-                                Run ISO 9001, 14001, 45001 and 27001 audits in a platform that follows the full PDCA cycle from planning through to follow up.
+                                Run ISO 9001, 14001, and 45001 audits in a platform that follows the full PDCA cycle from planning through to follow up.
                             </p>
                             <a href="#" style={{ fontSize: "0.9rem", fontWeight: 600, color: "#006644", display: "inline-flex", alignItems: "center", gap: "0.3rem", textDecoration: "none" }}>
                                 Explore more <span>→</span>
@@ -930,14 +927,14 @@ export default function AboutNew() {
                         transition={{ duration: 0.55, delay: 0.15 }}
                         style={{
                             fontSize: "clamp(2rem, 3.8vw, 2.9rem)",
-                            fontWeight: 500,
+                            fontWeight: 600,
                             lineHeight: 1.12,
                             letterSpacing: "-0.03em",
                             color: "#0d1117",
                             margin: "0 0 1.2rem",
                         }}
                     >
-                        Audit Mate – Your ISO Co-Pilot Inside iAudit
+                        Audit Mate – your ISO co‑pilot inside iAudit
                     </motion.h2>
 
                     {/* Description */}
@@ -949,7 +946,7 @@ export default function AboutNew() {
                         style={{ fontSize: "0.97rem", lineHeight: 1.75, color: "#6b7280", margin: "0 0 2.5rem" }}
                     >
                         Audit Mate lives inside iAudit Global to help you plan and document internal ISO audits faster.
-                        It supports ISO 9001, 14001, 45001 and 27001, following ISO&nbsp;19011 and PDCA so auditors
+                        It supports ISO 9001, 14001, and 45001, following ISO&nbsp;19011 and PDCA so auditors
                         spend more time on real risks and less time wrestling with documents.
                     </motion.p>
 
@@ -975,7 +972,7 @@ export default function AboutNew() {
                         </div>
                         <div>
                             <p style={{ fontWeight: 700, fontSize: "1rem", color: "#0d1117", margin: "0 0 0.45rem" }}>
-                                Speed Up Audit Planning And Checklists
+                                Speed up audit planning and checklists
                             </p>
                             <p style={{ fontSize: "0.92rem", color: "#6b7280", lineHeight: 1.7, margin: 0 }}>
                                 Use Audit Mate to draft audit plans, clause-aligned checklists and sample questions,
@@ -1005,7 +1002,7 @@ export default function AboutNew() {
                         </div>
                         <div>
                             <p style={{ fontWeight: 700, fontSize: "1rem", color: "#0d1117", margin: "0 0 0.45rem" }}>
-                                Keep Audit Data Where It Belongs
+                                Keep audit data where it belongs
                             </p>
                             <p style={{ fontSize: "0.92rem", color: "#6b7280", lineHeight: 1.7, margin: 0 }}>
                                 Ask Audit Mate for clause guidance, evidence examples and PDCA links,
@@ -1043,7 +1040,7 @@ export default function AboutNew() {
                         style={{
                             textAlign: "center",
                             fontSize: "clamp(2rem, 4vw, 3rem)",
-                            fontWeight: 500,
+                            fontWeight: 600,
                             lineHeight: 1.1,
                             letterSpacing: "-0.03em",
                             color: "#0d1117",
@@ -1327,7 +1324,7 @@ export default function AboutNew() {
                                 Security By Default
                             </h3>
                             <p style={{ fontSize: "0.82rem", color: "#6b7280", lineHeight: 1.4, margin: "0 0 1.25rem", textAlign: "center" }}>
-                                We align our design with ISO 27001 thinking, using strong access controls.
+                                We align our design with ISO 27001 thinking, using strong access controls and encryption while keeping you in control of how data is stored and shared.
                             </p>
 
                             <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -1380,6 +1377,131 @@ export default function AboutNew() {
             </div>
             {/* end section 4 */}
 
+            {/* ══════════════════════════════════════════════════
+                SECTION 4.5 — Vision & Mission
+            ══════════════════════════════════════════════════ */}
+            <section style={{
+                padding: isMobile ? "3.5rem 0" : "5rem 0",
+                background: "#fff",
+            }}>
+                <div style={{ maxWidth: "1240px", margin: "0 auto", padding: isMobile ? "0 1.25rem" : "0 2rem" }}>
+                    <div style={{
+                        display: "grid",
+                        gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+                        gap: isMobile ? "3rem" : "4rem",
+                        marginBottom: isMobile ? "2.5rem" : "3.5rem",
+                    }}>
+                        {/* Vision */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.55 }}
+                        >
+                            <h2 style={{
+                                fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+                                fontWeight: 600,
+                                lineHeight: 1.1,
+                                letterSpacing: "-0.03em",
+                                color: "#0d1117",
+                                margin: "0 0 1rem",
+                            }}>
+                                Vision
+                            </h2>
+                            <p style={{
+                                fontSize: isMobile ? "1.05rem" : "1.15rem",
+                                fontWeight: 500,
+                                lineHeight: 1.45,
+                                color: "#111827",
+                                margin: "0 0 1.25rem",
+                                letterSpacing: "-0.01em",
+                            }}>
+                                To make ISO audits simple and effective in every organisation around the world
+                            </p>
+                            <p style={{ fontSize: "0.97rem", lineHeight: 1.75, color: "#6b7280", margin: 0 }}>
+                                We believe internal ISO audits should drive real improvement, not just tick boxes. Our vision is a world where audit programmes are easy to plan, execute and track, and where findings translate into actions that actually strengthen how organisations operate.
+                            </p>
+                        </motion.div>
+
+                        {/* Mission */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.55, delay: 0.1 }}
+                        >
+                            <h2 style={{
+                                fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+                                fontWeight: 600,
+                                lineHeight: 1.1,
+                                letterSpacing: "-0.03em",
+                                color: "#0d1117",
+                                margin: "0 0 1rem",
+                            }}>
+                                Mission
+                            </h2>
+                            <p style={{
+                                fontSize: isMobile ? "1.05rem" : "1.15rem",
+                                fontWeight: 500,
+                                lineHeight: 1.45,
+                                color: "#111827",
+                                margin: "0 0 1.25rem",
+                                letterSpacing: "-0.01em",
+                            }}>
+                                To bring the best auditor experience to customers globally through innovative software and services
+                            </p>
+                            <p style={{ fontSize: "0.97rem", lineHeight: 1.75, color: "#6b7280", margin: 0 }}>
+                                We build audit management software designed by ISO auditors, for ISO auditors. Our mission is to give quality, environmental, health &amp; safety and information security professionals the tools they need to run structured, evidence-based audits that follow PDCA, without the spreadsheet chaos, lost findings or scattered evidence that slow teams down.
+                            </p>
+                        </motion.div>
+                    </div>
+
+                    {/* ISO 9001 principles */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.15 }}
+                        style={{
+                            display: "flex",
+                            flexWrap: "wrap",
+                            justifyContent: "center",
+                            gap: isMobile ? "0.5rem" : "0.65rem",
+                            padding: isMobile ? "1.25rem" : "1.5rem 2rem",
+                            background: "#f7f8f9",
+                            borderRadius: "16px",
+                            border: "1px solid #f3f4f6",
+                        }}
+                    >
+                        {[
+                            "Customer Focus",
+                            "Leadership",
+                            "People Engagement",
+                            "Process Approach",
+                            "Improvement",
+                            "Relationship Management",
+                            "Evidence-Based Decision Making",
+                        ].map((principle) => (
+                            <span
+                                key={principle}
+                                style={{
+                                    padding: isMobile ? "0.35rem 0.75rem" : "0.45rem 0.9rem",
+                                    background: "#fff",
+                                    borderRadius: "999px",
+                                    border: "1px solid #e5e7eb",
+                                    fontSize: isMobile ? "0.78rem" : "0.88rem",
+                                    fontWeight: 500,
+                                    color: "#111827",
+                                    whiteSpace: "nowrap",
+                                }}
+                            >
+                                {principle}
+                            </span>
+                        ))}
+                    </motion.div>
+                </div>
+            </section>
+
             {/* SECTION 5: Our Journey (Milestones) */}
             <section style={{
                 padding: "4rem 0 2.5rem",
@@ -1417,7 +1539,7 @@ export default function AboutNew() {
                             transition={{ duration: 0.5, delay: 0.07 }}
                             style={{
                                 fontSize: "clamp(2rem, 4vw, 3rem)",
-                                fontWeight: 500,
+                                fontWeight: 600,
                                 lineHeight: 1.1,
                                 color: "#0d1117",
                                 letterSpacing: "-0.03em",
@@ -1567,7 +1689,17 @@ export default function AboutNew() {
                 </div>
             </section>
 
-            <CTA />
+            <CTA
+                hideTag
+                title={isMobile ? "Looking for more clarity in your audits?" : <>Looking for more clarity<br />in your audits?</>}
+                description="Our team can walk you through iAudit Global, or you can try it yourself with a 14 day free trial."
+                buttonText="Schedule a call"
+                buttonHref="/contact"
+                secondaryButtonText="Request a demo"
+                secondaryButtonHref="/contact"
+                badges={["14-day free trial", "No credit card required", "Cancel anytime"]}
+            />
+
             <Footer />
         </section>
     );
