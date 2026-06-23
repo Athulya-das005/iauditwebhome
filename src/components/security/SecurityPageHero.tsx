@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { PP_NEUE_MONTREAL } from "@/constants/typography";
-import { SecurityReportButton } from "@/components/security/SecurityMailLink";
+import { SecurityCopyEmailButton } from "@/components/security/SecurityMailLink";
 
 const GREY_DARK = "#1f2937";
 const GREY_LIGHT = "#d1d5db";
@@ -19,7 +19,7 @@ type SecurityPageHeroProps = {
     eyebrow: string;
     title: string;
     subtitle?: string;
-    cta?: { label: string; href: string };
+    cta?: boolean;
     imageSrc: string;
     imageAlt: string;
 };
@@ -121,8 +121,7 @@ export default function SecurityPageHero({
                 )}
 
                 {cta && (
-                    <SecurityReportButton
-                        label={cta.label}
+                    <SecurityCopyEmailButton
                         style={{
                             display: "inline-flex",
                             alignSelf: "flex-start",

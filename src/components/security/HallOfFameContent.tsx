@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { PP_NEUE_MONTREAL } from "@/constants/typography";
 import { hallOfFameResearchers } from "@/data/hallOfFameResearchers";
 import SecurityPageHero, { SECURITY_HERO_IMAGES } from "@/components/security/SecurityPageHero";
-import { SecurityReportButton } from "@/components/security/SecurityMailLink";
+import { SecurityCopyEmailButton } from "@/components/security/SecurityMailLink";
 
 const GREY_DARK = "#1f2937";
 const GREY_BODY = "#4b5563";
@@ -95,10 +95,7 @@ export default function HallOfFameContent() {
                 ]}
                 eyebrow="Information Security"
                 title="Hall of Fame"
-                cta={{
-                    label: "Report security issue now",
-                    href: "mailto:security@iaudit.global",
-                }}
+                cta
                 imageSrc={SECURITY_HERO_IMAGES.hallOfFame}
                 imageAlt="Team collaborating in a modern office environment"
             />
@@ -195,8 +192,7 @@ export default function HallOfFameContent() {
                     <p style={{ margin: 0, color: "#f9fafb", fontSize: isMobile ? "1.05rem" : "1.1rem", fontWeight: 600 }}>
                         Report a security vulnerability to iAudit Global
                     </p>
-                    <SecurityReportButton
-                        label="Report now"
+                    <SecurityCopyEmailButton
                         style={{
                             display: "inline-flex",
                             justifyContent: "center",
