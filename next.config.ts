@@ -13,6 +13,20 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/.well-known/security",
+        destination: "/.well-known/security.txt",
+        permanent: true,
+      },
+      {
+        source: "/security",
+        destination: "/.well-known/security.txt",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^\.well-known/security$ /.well-known/security.txt [R=301,L]
+  RewriteRule ^security$ /.well-known/security.txt [R=301,L]
+</IfModule>
+
+<Files "security.txt">
+  Header set Content-Type "text/plain; charset=utf-8"
+</Files>
