@@ -67,7 +67,7 @@ const faqs = [
     },
     {
         q: "Can one audit programme support multiple ISO standards?",
-        a: "Yes. Many organisations operate integrated management systems covering ISO 9001, ISO 14001, ISO 45001 and ISO 27001. A single, well-designed audit programme can assess shared processes and controls across standards, improving efficiency while supporting consistent continuous improvement.",
+        a: "Yes. Many organisations operate integrated management systems covering ISO 9001, ISO 14001 and ISO 45001. A single, well-designed audit programme can assess shared processes and controls across standards, improving efficiency while supporting consistent continuous improvement.",
     },
 ];
 
@@ -389,7 +389,7 @@ export default function BlogPost() {
                     {/* ── Intro ────────────────────────────────────────── */}
                     <div id="intro" style={{ scrollMarginTop: "58px" }}>
                         <p style={para(font)}>
-                            For many organisations, internal audits are still treated as periodic compliance checks. Something to prepare for, pass, and move on from. Yet ISO standards were never intended to support a tick-box culture. At their core, ISO 9001, ISO 14001, ISO 45001 and ISO 27001 are frameworks for learning, adaptation, and improvement.
+                            For many organisations, internal audits are still treated as periodic compliance checks. Something to prepare for, pass, and move on from. Yet ISO standards were never intended to support a tick-box culture. At their core, ISO 9001, ISO 14001 and ISO 45001 are frameworks for learning, adaptation, and improvement.
                         </p>
                         <p style={para(font)}>
                             When audits are planned, executed, and followed up effectively, they become one of the most powerful drivers of continuous improvement. The difference lies not in the standard itself, but in how audits are used within the management system.
@@ -419,7 +419,7 @@ export default function BlogPost() {
                         <h2 style={h2(font)}>How ISO Standards Embed Continuous Improvement</h2>
                         <SectionImage src={sectionImages["iso-standards"]} alt="ISO standards continuous improvement" />
                         <p style={para(font)}>
-                            ISO standards are designed as living systems rather than static rulebooks. ISO 9001, ISO 14001, ISO 45001 and ISO 27001 all require organisations to demonstrate continual improvement of their management systems.
+                            ISO standards are designed as living systems rather than static rulebooks. ISO 9001, ISO 14001 and ISO 45001 all require organisations to demonstrate continual improvement of their management systems.
                         </p>
                         <p style={para(font)}>At an operational level, continuous improvement is driven through the PDCA cycle:</p>
 
@@ -510,7 +510,7 @@ export default function BlogPost() {
                             { title: "They embed PDCA in daily work.", desc: "PDCA is applied not only at system level but within processes, projects, and teams. Internal audits validate how work is actually performed, not just how it is documented." },
                             { title: "They empower people to speak up.", desc: "Psychological safety encourages early reporting of issues and improvement ideas. This leads to better audit evidence and faster detection of systemic risks." },
                             { title: "They use meaningful metrics.", desc: "Instead of counting audits or nonconformities, they track time to close corrective actions, recurrence rates, and audit effectiveness." },
-                            { title: "They integrate standards.", desc: "Many operate integrated management systems covering ISO 9001, ISO 14001, ISO 45001 and ISO 27001, reducing duplication and focusing improvement where it delivers the greatest benefit." },
+                            { title: "They integrate standards.", desc: "Many operate integrated management systems covering ISO 9001, ISO 14001 and ISO 45001, reducing duplication and focusing improvement where it delivers the greatest benefit." },
                         ].map((item, i) => (
                             <div key={i} style={{
                                 background: "#fff", borderRadius: "0.75rem",
@@ -587,7 +587,7 @@ export default function BlogPost() {
                             Traditional audit software often treats audits as isolated events. ISO-focused platforms designed around PDCA treat them as part of a continuous improvement loop.
                         </p>
                         <p style={para(font)}>
-                            iAudit Global is being developed with this principle at its core. By linking audit planning, execution, findings, corrective actions, and follow-up in one system, it supports organisations in moving from audit for certification to audit for improvement across ISO 9001, ISO 14001, ISO 45001 and ISO 27001.
+                            iAudit Global is being developed with this principle at its core. By linking audit planning, execution, findings, corrective actions, and follow-up in one system, it supports organisations in moving from audit for certification to audit for improvement across ISO 9001, ISO 14001 and ISO 45001.
                         </p>
                         <p style={para(font)}>
                             Rather than adding another tool, the aim is to provide a practical backbone for continuous improvement driven by evidence and learning.

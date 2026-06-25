@@ -29,7 +29,7 @@ export const aerospaceIndustryPageSchema = {
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web-based",
             description:
-                "Plan, execute, and report ISO 9001, 14001, 45001, and 27001 audits in one PDCA-driven platform. Built by certified auditors. Aligned to ISO 19011.",
+                "Plan, execute, and report ISO 9001, 14001 and 45001 audits in one PDCA-driven platform. Built by certified auditors. Aligned to ISO 19011.",
             offers: {
                 "@type": "Offer",
                 price: "0",
@@ -72,7 +72,7 @@ export const aerospaceIndustryPageSchema = {
                     name: "What standards does iAudit Global support?",
                     acceptedAnswer: {
                         "@type": "Answer",
-                        text: "iAudit Global supports ISO 9001, 14001, 45001, and 27001 management system audits.",
+                        text: "iAudit Global supports ISO 9001, 14001 and 45001 management system audits.",
                     },
                 },
                 {

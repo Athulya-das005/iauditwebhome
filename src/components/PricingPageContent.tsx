@@ -47,7 +47,7 @@ const pricingTestimonials = [
 const pricingFaqs = [
     {
         question: "What is iAudit Global?",
-        answer: "iAudit Global is ISO audit management software for internal audits. It is purpose built for ISO 9001, 14001, 45001 and 27001, following ISO 19011 and the PDCA cycle so you can plan, execute and track your audit programme in one place.",
+        answer: "iAudit Global is ISO audit management software for internal audits. It is purpose built for ISO 9001, 14001 and 45001, following ISO 19011 and the PDCA cycle so you can plan, execute and track your audit programme in one place.",
     },
     {
         question: "Is the 14 day free trial really free and do I need a credit card?",

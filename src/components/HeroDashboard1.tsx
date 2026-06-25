@@ -150,7 +150,7 @@ export default function HeroDashboard1() {
                         <tbody>
                             {[
                                 { id: 1, name: "ISO 9001:2015 QMS", clause: "Clause 7.1.5", type: "Major N/C", typeColor: "#dc2626", typeBg: "#fee2e2", detail: "Calibration records missing", desc: "Equipment not calibrated properly" },
-                                { id: 2, name: "ISO 27001 ISMS", clause: "Clause 8.2", type: "OFI", typeColor: "#d97706", typeBg: "#fef3c7", detail: "Risk assessment update", desc: "Consider emerging threats" },
+                                { id: 2, name: "ISO 14001 EMS", clause: "Clause 8.2", type: "OFI", typeColor: "#d97706", typeBg: "#fef3c7", detail: "Environmental aspect review", desc: "Consider emerging operational impacts" },
                                 { id: 3, name: "ISO 14001 EMS", clause: "Clause 6.1.2", type: "Minor N/C", typeColor: "#ea580c", typeBg: "#ffedd5", detail: "Spill kit incomplete", desc: "Missing absorbent pads" },
                                 { id: 4, name: "ISO 45001 OHSMS", clause: "Clause 10.2", type: "OFI", typeColor: "#d97706", typeBg: "#fef3c7", detail: "Incident reporting delay", desc: "Streamline reporting workflow" },
                             ].map((row, i) => (

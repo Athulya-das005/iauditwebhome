@@ -1923,7 +1923,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
 
                                     {/* Bottom label */}
                                     <div style={{ margin: '0 25px 20px', fontSize: '0.8rem', fontWeight: 600, color: '#111827' }}>
-                                        Security Patch (ISO 27001)
+                                        Security Patch
                                     </div>
 
                                 </div>

@@ -45,7 +45,7 @@ export default function Benefits() {
 
                     <div style={{ order: isMobile ? 2 : 1 }}>
                         <AuditMateChatCard isMobile={isMobile} />
-                    </div>
+                        </div>
 
                     {/* Right: Content */}
                     <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", order: isMobile ? 1 : 2 }}>

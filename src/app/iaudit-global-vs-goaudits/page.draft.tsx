@@ -28,7 +28,6 @@ const comparisonData = [
     { feature: "ISO 9001 audit support", iaudit: true, competitor: true },
     { feature: "ISO 14001 audit support", iaudit: true, competitor: true },
     { feature: "ISO 45001 audit support", iaudit: true, competitor: true },
-    { feature: "ISO 27001 audit support", iaudit: true, competitor: false },
     { feature: "ISO 14001:2026 transition ready", iaudit: true, competitor: false },
     { feature: "Gap analysis tools", iaudit: true, competitor: false },
     { feature: "Self-assessment module", iaudit: true, competitor: false },

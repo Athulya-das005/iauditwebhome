@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
 import Header from "@/components/Header";
+import StickyScrollButton from "@/components/StickyScrollButton";
 import Analytics from "@/components/Analytics";
 
 export const metadata: Metadata = {
@@ -52,6 +53,7 @@ f.parentNode.insertBefore(j,f);
         <Analytics />
         <Header />
         <main>{children}</main>
+        <StickyScrollButton />
       </body>
     </html>
   );

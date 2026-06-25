@@ -109,7 +109,7 @@ export default function About() {
                         { text: "ISO 9001", color: "#ecfdf5", textColor: "#059669", delay: 0.5, top: '45%', left: '10%' },
                         { text: "Management", color: "#fff7ed", textColor: "#d97706", delay: 1, top: '15%', left: '55%' },
                         { text: "Auditee", color: "#f0f9ff", textColor: "#0284c7", delay: 1.5, top: '40%', left: '60%' },
-                        { text: "ISO 27001", color: "#fdf2f8", textColor: "#db2777", delay: 2, top: '70%', left: '35%' },
+                        { text: "ISO 14001", color: "#fdf2f8", textColor: "#db2777", delay: 2, top: '70%', left: '35%' },
                         { text: "Compliance", color: "#f5f3ff", textColor: "#7c3aed", delay: 2.5, top: '65%', left: '18%' }
                     ].map((tag, i) => (
                         <motion.div

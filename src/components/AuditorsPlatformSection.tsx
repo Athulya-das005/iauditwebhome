@@ -5,7 +5,7 @@ import Image from "next/image";
 import { PP_NEUE_MONTREAL, aboutType } from "@/constants/typography";
 import { useIndustriesBreakpoints } from "@/hooks/useIndustriesBreakpoints";
 
-const isoStandards = ["ISO 9001", "ISO 14001", "ISO 45001", "ISO 27001"];
+const isoStandards = ["ISO 9001", "ISO 14001", "ISO 45001"];
 
 const clauseLabels = [
     "Clause 4 — Context",

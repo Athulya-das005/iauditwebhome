@@ -386,7 +386,7 @@ export default function BlogPost2() {
                                 An Invitation to Shape the Future of ISO Internal Auditing
                             </h2>
                             <p style={{ color: "rgba(255,255,255,0.82)", fontSize: "0.975rem", lineHeight: 1.8, margin: "0 0 0.875rem", position: "relative", fontFamily: font }}>
-                                We believe internal audit should be simple, effective and meaningful. Built by auditors who understand the challenges you face every day, iAudit is purpose-built for ISO 9001, ISO 14001, ISO 45001 and ISO 27001 internal audits.
+                                We believe internal audit should be simple, effective and meaningful. Built by auditors who understand the challenges you face every day, iAudit is purpose-built for ISO 9001, ISO 14001 and ISO 45001 internal audits.
                             </p>
                             <p style={{ color: "rgba(255,255,255,0.82)", fontSize: "0.975rem", lineHeight: 1.8, margin: "0 0 0.875rem", position: "relative", fontFamily: font }}>
                                 We are launching the iAudit Global Pilot Programme to co-design the future of audit programme management with professionals like you.

@@ -1324,7 +1324,7 @@ export default function AboutNew() {
                                 Security By Default
                             </h3>
                             <p style={{ fontSize: "0.82rem", color: "#6b7280", lineHeight: 1.4, margin: "0 0 1.25rem", textAlign: "center" }}>
-                                We align our design with ISO 27001 thinking, using strong access controls and encryption while keeping you in control of how data is stored and shared.
+                                We use strong access controls and encryption while keeping you in control of how data is stored and shared.
                             </p>
 
                             <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "1rem" }}>

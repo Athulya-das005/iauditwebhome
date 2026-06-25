@@ -321,8 +321,8 @@ export const industries: Industry[] = [
                 description: "ISO 9001 supports service quality and supply chain integrity, while ISO 14001 manages fleet emissions and waste."
             },
             {
-                title: "Safety and information security",
-                description: "ISO 45001 supports driver and warehouse safety. ISO 27001 protects supply chain data and customer privacy."
+                title: "Occupational health and safety",
+                description: "ISO 45001 supports driver and warehouse safety."
             }
         ],
         testimonials: [
@@ -384,7 +384,7 @@ export const industries: Industry[] = [
             },
             {
                 question: "What is iAudit Global for transport and logistics?",
-                answer: "iAudit Global is transport and logistics audit software built for fleet operators, warehouses and distribution networks. It supports ISO 9001, 14001, 45001 and 27001 internal audits with standardised checklists and centralised findings."
+                answer: "iAudit Global is transport and logistics audit software built for fleet operators, warehouses and distribution networks. It supports ISO 9001, 14001 and 45001 internal audits with standardised checklists and centralised findings."
             },
             {
                 question: "How does iAudit help multi‑site distribution groups?",
@@ -409,7 +409,7 @@ export const industries: Industry[] = [
         id: "03",
         slug: "construction-iso-audit-software",
         title: "Construction",
-        description: "Move beyond spreadsheets with construction audit software for ISO 9001, 14001, 45001 and 27001 across every active project.",
+        description: "Move beyond spreadsheets with construction audit software for ISO 9001, 14001 and 45001 across every active project.",
         color: "#84cc16",
         bgImage: "/images/construction-bg.jpg",
         heroSparkleText: "Construction ISO audit software",
@@ -485,8 +485,8 @@ export const industries: Industry[] = [
                 description: "ISO 9001 controls ITPs and defect reduction while ISO 14001 manages site waste and pollution prevention."
             },
             {
-                title: "Safety and information security",
-                description: "ISO 45001 manages site safety and hazard tracking while ISO 27001 protects project data and models."
+                title: "Occupational health and safety",
+                description: "ISO 45001 manages site safety and hazard tracking."
             }
         ],
         testimonials: [],
@@ -712,7 +712,7 @@ export const industries: Industry[] = [
         id: "05",
         slug: "healthcare-compliance-software",
         title: "Healthcare",
-        description: "Manage ISO 9001, 14001, 45001 and 27001 audits with healthcare compliance software built for clinical, operational and governance teams.",
+        description: "Manage ISO 9001, 14001 and 45001 audits with healthcare compliance software built for clinical, operational and governance teams.",
         color: "#0284c7",
         bgImage: "/images/healthcare-bg.png",
         heroSparkleText: "Healthcare Compliance Software",
@@ -772,7 +772,7 @@ export const industries: Industry[] = [
                 title: "Integrated ISO audits across healthcare",
                 description: "",
                 bullets: [
-                    "Run ISO 9001, 14001, 45001 and 27001 audits in one system",
+                    "Run ISO 9001, 14001 and 45001 audits in one system",
                     "Reduce duplicate effort across clinical, operational and support teams"
                 ]
             }
@@ -1088,8 +1088,8 @@ export const industries: Industry[] = [
                 description: "ISO 9001 supports guest experience and service quality, while ISO 14001 manages waste, energy use and impact."
             },
             {
-                title: "Safety and information security",
-                description: "ISO 45001 supports workplace safety. ISO 27001 protects guest data, PMS security and GDPR compliance."
+                title: "Occupational health and safety",
+                description: "ISO 45001 supports workplace safety across guest-facing and back-of-house teams."
             }
         ],
         testimonials: [
@@ -1151,7 +1151,7 @@ export const industries: Industry[] = [
             },
             {
                 question: "What is iAudit Global for hospitality?",
-                answer: "iAudit Global is hospitality audit software built by ISO auditors for hotels, restaurants, venues and catering groups. It supports ISO 9001, 14001, 45001 and 27001 internal audits with standardised checklists, centralised findings and evidence, and PDCA‑driven follow up across all properties."
+                answer: "iAudit Global is hospitality audit software built by ISO auditors for hotels, restaurants, venues and catering groups. It supports ISO 9001, 14001 and 45001 internal audits with standardised checklists, centralised findings and evidence, and PDCA‑driven follow up across all properties."
             },
             {
                 question: "How does iAudit help multi‑property hotel and restaurant groups?",
@@ -1252,8 +1252,8 @@ export const industries: Industry[] = [
                 description: "ISO 9001 handles PPM completion and SLAs. ISO 14001 manages energy, waste and F gas compliance."
             },
             {
-                title: "Safety and building security",
-                description: "ISO 45001 tracks high risk maintenance hazards. ISO 27001 protects CAFM data and sensitive client building records."
+                title: "Occupational health and safety",
+                description: "ISO 45001 tracks high risk maintenance hazards and contractor safety."
             }
         ],
         testimonialsHeading: "Helping FM teams move beyond spreadsheets",

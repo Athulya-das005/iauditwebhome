@@ -29,7 +29,7 @@ export const hospitalityIndustryPageSchema = {
             name: "iAudit Global Hospitality Audit Software",
             image: logoUrl,
             description:
-                "ISO 9001, 14001, 45001 and 27001 audit management software for hotels, restaurants, and venues. Track findings, corrective actions and audits across all properties.",
+                "ISO 9001, 14001 and 45001 audit management software for hotels, restaurants, and venues. Track findings, corrective actions and audits across all properties.",
             brand: {
                 "@type": "Organization",
                 name: "iAudit Global",
@@ -69,7 +69,7 @@ export const hospitalityIndustryPageSchema = {
                     name: "What is iAudit Global for hospitality?",
                     acceptedAnswer: {
                         "@type": "Answer",
-                        text: "iAudit Global is hospitality audit software built by ISO auditors, supporting ISO 9001, 14001, 45001 and 27001 audits with standardised checklists, centralised findings, and PDCA-driven follow-up.",
+                        text: "iAudit Global is hospitality audit software built by ISO auditors, supporting ISO 9001, 14001 and 45001 audits with standardised checklists, centralised findings, and PDCA-driven follow-up.",
                     },
                 },
                 {

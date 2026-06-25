@@ -6,7 +6,7 @@ const ogImage = "https://www.iaudit.global/iaudit-logo-new.png";
 export const constructionIndustryMetadata: Metadata = {
     title: "Construction Audit Software for ISO Compliance | iAudit Global",
     description:
-        "Construction audit software for ISO 9001, 14001, 45001 and 27001. Replace spreadsheets with structured site audits, ITP tracking, NCR management and multi-site compliance visibility.",
+        "Construction audit software for ISO 9001, 14001 and 45001. Replace spreadsheets with structured site audits, ITP tracking, NCR management and multi-site compliance visibility.",
     keywords: [
         "construction audit software",
         "ISO construction audits",
@@ -29,7 +29,7 @@ export const constructionIndustryMetadata: Metadata = {
     openGraph: {
         title: "Construction Audit Software for ISO Compliance | iAudit Global",
         description:
-            "Run ISO 9001, 14001, 45001 and 27001 construction audits without spreadsheets. Manage ITPs, NCRs and site compliance across every project.",
+            "Run ISO 9001, 14001 and 45001 construction audits without spreadsheets. Manage ITPs, NCRs and site compliance across every project.",
         type: "website",
         url: pageUrl,
         siteName: "iAudit Global",

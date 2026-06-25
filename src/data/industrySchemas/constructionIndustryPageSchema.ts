@@ -12,7 +12,7 @@ export const constructionIndustryPageSchema = {
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
             description:
-                "iAudit Global is construction audit software for ISO 9001, ISO 14001, ISO 45001 and ISO 27001. It helps organisations manage site audits, inspection and test plans, NCR tracking and multi-site compliance in one PDCA-driven platform.",
+                "iAudit Global is construction audit software for ISO 9001, ISO 14001 and ISO 45001. It helps organisations manage site audits, inspection and test plans, NCR tracking and multi-site compliance in one PDCA-driven platform.",
             image: logoUrl,
             offers: {
                 "@type": "Offer",
@@ -27,7 +27,7 @@ export const constructionIndustryPageSchema = {
             name: "iAudit Global Construction Audit Software",
             image: logoUrl,
             description:
-                "Construction audit software built for ISO 9001, ISO 14001, ISO 45001 and ISO 27001 compliance. Centralise site findings, manage inspection and test plans and track non-conformances across construction projects.",
+                "Construction audit software built for ISO 9001, ISO 14001 and ISO 45001 compliance. Centralise site findings, manage inspection and test plans and track non-conformances across construction projects.",
             brand: {
                 "@type": "Brand",
                 name: "iAudit Global",

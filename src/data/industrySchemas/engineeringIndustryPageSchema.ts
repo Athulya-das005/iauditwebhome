@@ -10,7 +10,7 @@ export const engineeringIndustryPageSchema = {
             url: "https://www.iaudit.global/",
             logo: logoUrl,
             description:
-                "ISO audit management software built by certified auditors for ISO 9001, 14001, 45001 and 27001 audits.",
+                "ISO audit management software built by certified auditors for ISO 9001, 14001 and 45001 audits.",
             foundingLocation: {
                 "@type": "Place",
                 name: "England",

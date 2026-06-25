@@ -194,7 +194,7 @@ export default function Compliance() {
                                         style={{ width: "6px", height: "6px", background: "#058c42", borderRadius: "50%" }}
                                     />
                                     <span style={{ fontSize: isMobile ? "0.75rem" : "0.88rem", fontWeight: 500, color: "#374151" }}>
-                                        {isMobile ? "Scanning: Security" : "Scanning: ISO 27001, GDPR, SOC 2"}
+                                        {isMobile ? "Scanning: Security" : "Scanning: GDPR, SOC 2"}
                                     </span>
                                 </div>
                                 <div style={{

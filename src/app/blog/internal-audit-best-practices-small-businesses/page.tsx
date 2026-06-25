@@ -284,7 +284,7 @@ export default function BlogPost3() {
                         <p style={para(font)}>If you have ever tried to coordinate a quality or safety audit programme for an organisation with ten, twenty or fifty locations, you know the feeling.</p>
                         <p style={para(font)}>Emails flying back and forth. Spreadsheets that are out of date the moment you save them. Site managers sending reports in three different formats. And the constant worry that a major nonconformity is sitting on someone&rsquo;s laptop where you cannot see it.</p>
                         <p style={para(font)}>The challenge of how to manage ISO audits across multiple sites is not just about logistics. It is about visibility. Without a central view, you are flying blind.</p>
-                        <p style={para(font)}>This guide covers practical steps to take back control. Whether you are managing ISO 9001, 14001, 45001 or 27001, the principles are the same: standardise the approach, centralise the data, and use your audit programme to drive improvement everywhere, not just locally.</p>
+                        <p style={para(font)}>This guide covers practical steps to take back control. Whether you are managing ISO 9001, 14001 and 45001, the principles are the same: standardise the approach, centralise the data, and use your audit programme to drive improvement everywhere, not just locally.</p>
                     </div>
 
                     {/* ── Section 1: Challenge ──────────────────────────── */}
@@ -432,7 +432,7 @@ export default function BlogPost3() {
                             </p>
                             <ul style={{ margin: 0, paddingLeft: 0, listStyle: "none" }}>
                                 {[
-                                    "PDCA based audit workflows for ISO 9001, 14001, 45001 and 27001",
+                                    "PDCA based audit workflows for ISO 9001, 14001 and 45001",
                                     "Multi-site dashboards showing findings and actions by site, process or standard",
                                     "Role based access so auditors, managers and auditees see what they need, nothing more",
                                 ].map(item => (

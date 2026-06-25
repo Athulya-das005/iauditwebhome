@@ -41,8 +41,8 @@ export default function Footer() {
         {
             title: "Compare",
             items: [
-                { name: "iAudit vs SafetyCulture" },
-                { name: "iAudit vs GoAudits" },
+                { name: "SafetyCulture Alternative" },
+                { name: "GoAudits Alternative" },
             ],
         },
         {
