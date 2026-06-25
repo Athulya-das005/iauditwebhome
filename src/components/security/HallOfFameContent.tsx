@@ -11,7 +11,6 @@ const GREY_DARK = "#1f2937";
 const GREY_BODY = "#4b5563";
 const GREY_MUTED = "#6b7280";
 const BORDER = "#e5e7eb";
-const LINK_BLUE = "#2563eb";
 
 function LinkedInIcon() {
     return (
@@ -39,20 +38,15 @@ function ReporterTable({
 }) {
     const sorted = [...researchers].sort((a, b) => b.reportCount - a.reportCount);
 
-    const linkStyle = {
-        color: LINK_BLUE,
-        textDecoration: "underline",
-        textUnderlineOffset: "3px",
-        fontWeight: 500,
-    };
+    const gridColumns = isMobile ? "1fr 52px 64px" : "1fr 120px 160px";
 
     return (
         <div style={{ marginTop: "0.5rem" }}>
             <div
                 style={{
                     display: "grid",
-                    gridTemplateColumns: isMobile ? "1fr auto" : "1fr 180px",
-                    gap: isMobile ? "0.5rem 1rem" : "0",
+                    gridTemplateColumns: gridColumns,
+                    gap: isMobile ? "0.5rem" : "0",
                     padding: isMobile ? "0.85rem 0" : "0.9rem 0",
                     borderBottom: `1px solid ${BORDER}`,
                     fontWeight: 700,
@@ -61,6 +55,7 @@ function ReporterTable({
                 }}
             >
                 <div>Reporter</div>
+                <div style={{ textAlign: "center" }}>Profile</div>
                 <div style={{ textAlign: "right" }}>{yearLabel}</div>
             </div>
 
@@ -69,8 +64,8 @@ function ReporterTable({
                     key={researcher.linkedIn}
                     style={{
                         display: "grid",
-                        gridTemplateColumns: isMobile ? "1fr auto" : "1fr 180px",
-                        gap: isMobile ? "0.5rem 1rem" : "0",
+                        gridTemplateColumns: gridColumns,
+                        gap: isMobile ? "0.5rem" : "0",
                         alignItems: "center",
                         padding: isMobile ? "0.85rem 0" : "0.9rem 0",
                         borderBottom: `1px solid ${BORDER}`,
@@ -79,58 +74,43 @@ function ReporterTable({
                         color: GREY_BODY,
                     }}
                 >
-                    <div
+                    <span
                         style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "0.35rem",
+                            fontWeight: 600,
+                            color: GREY_DARK,
                         }}
                     >
-                        <div
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "0.5rem",
-                                flexWrap: "wrap",
-                            }}
-                        >
-                            <span
-                                style={{
-                                    fontWeight: 600,
-                                    color: GREY_DARK,
-                                }}
-                            >
-                                {researcher.name}
-                            </span>
-                            <a
-                                href={researcher.linkedIn}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label={`${researcher.name} on LinkedIn`}
-                                title={`${researcher.name} on LinkedIn`}
-                                style={{
-                                    display: "inline-flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    color: "#0a66c2",
-                                    textDecoration: "none",
-                                    flexShrink: 0,
-                                }}
-                            >
-                                <LinkedInIcon />
-                            </a>
-                        </div>
+                        {researcher.name}
+                    </span>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
                         <a
                             href={researcher.linkedIn}
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label={`${researcher.name} on LinkedIn`}
+                            title={`${researcher.name} on LinkedIn`}
                             style={{
-                                ...linkStyle,
-                                fontSize: "0.88rem",
-                                wordBreak: "break-all",
+                                display: "inline-flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                width: "36px",
+                                height: "36px",
+                                borderRadius: "8px",
+                                color: "#0a66c2",
+                                background: "#f0f7ff",
+                                textDecoration: "none",
+                                transition: "background 0.2s ease, transform 0.2s ease",
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.background = "#e0efff";
+                                e.currentTarget.style.transform = "scale(1.05)";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.background = "#f0f7ff";
+                                e.currentTarget.style.transform = "scale(1)";
                             }}
                         >
-                            {researcher.linkedIn.replace(/^https?:\/\//, "")}
+                            <LinkedInIcon />
                         </a>
                     </div>
                     <div
