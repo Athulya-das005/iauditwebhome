@@ -1,10 +1,19 @@
 export type HallOfFameResearcher = {
     name: string;
-    linkedIn?: string;
-    twitter?: string;
-    report: string;
-    date: string;
+    linkedIn: string;
+    reportCount: number;
 };
 
-/** Add validated researchers here as reports are closed. */
-export const hallOfFameResearchers: HallOfFameResearcher[] = [];
+/** Validated researchers with accepted reports. Sorted by report count in the UI. */
+export const hallOfFameResearchers: HallOfFameResearcher[] = [
+    {
+        name: "Santhosh Kumar",
+        linkedIn: "https://www.linkedin.com/in/connectwithsanthosh/",
+        reportCount: 3,
+    },
+    {
+        name: "Rince K J",
+        linkedIn: "https://www.linkedin.com/in/rincekj17",
+        reportCount: 1,
+    },
+];

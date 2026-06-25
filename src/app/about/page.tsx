@@ -3,7 +3,7 @@ import AboutNew from "@/components/AboutNew";
 import AboutPageJsonLd from "@/components/seo/AboutPageJsonLd";
 
 const pageUrl = "https://www.iaudit.global/about";
-const ogImage = "https://iaudit.global/logo.png";
+const ogImage = "https://www.iaudit.global/iaudit-logo-new.png";
 
 export const metadata: Metadata = {
     title: "About iAudit Global | ISO Audit Management Software",

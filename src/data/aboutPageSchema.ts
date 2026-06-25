@@ -6,7 +6,7 @@ export const aboutPageSchema = {
             "@id": "https://www.iaudit.global/#organization",
             name: "iAudit Global",
             url: "https://www.iaudit.global/",
-            logo: "https://iaudit.global/logo.png",
+            logo: "https://www.iaudit.global/iaudit-logo-new.png",
             foundingDate: "2024",
             founders: [
                 {

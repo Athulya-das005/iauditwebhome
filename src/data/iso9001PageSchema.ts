@@ -6,7 +6,7 @@ export const iso9001PageSchema = {
             "@id": "https://www.iaudit.global/#organization",
             name: "iAudit Global",
             url: "https://www.iaudit.global/",
-            logo: "https://www.iaudit.global/assets/logo.png",
+            logo: "https://www.iaudit.global/iaudit-logo-new.png",
         },
         {
             "@type": "WebPage",

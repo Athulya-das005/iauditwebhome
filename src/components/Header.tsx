@@ -12,7 +12,13 @@ const industryNavItems = industries.map((industry) => ({
     href: `/industries/${industry.slug}`,
 }));
 
-const industryMegamenu = [
+const standardsNavItems = [
+    { label: "ISO 9001 Software", href: "/standards/iso-9001-audit-management-software" },
+    { label: "ISO 14001 Software", href: "/standards/iso-14001-audit-management-software" },
+    { label: "ISO 45001 Software", href: "/standards/iso-45001-audit-management-software" },
+];
+
+const industriesAndStandardsMegamenu = [
     {
         title: "By Industry",
         items: industryNavItems.slice(0, 6),
@@ -24,6 +30,10 @@ const industryMegamenu = [
     {
         title: "",
         items: industryNavItems.slice(12, 16),
+    },
+    {
+        title: "ISO Standards",
+        items: standardsNavItems,
     },
 ];
 
@@ -62,20 +72,10 @@ export default function Header() {
     const navItems: NavItem[] = [
         { label: "Home", href: "/" },
         {
-            label: "Standards",
-            href: "/standards/iso-9001-audit-management-software",
-            megamenu: [
-                {
-                    title: "ISO Standards",
-                    items: [
-                        { label: "ISO 9001 Software", href: "/standards/iso-9001-audit-management-software" },
-                        { label: "ISO 14001 Software", href: "/standards/iso-14001-audit-management-software" },
-                        { label: "ISO 45001 Software", href: "/standards/iso-45001-audit-management-software" },
-                    ],
-                },
-            ],
+            label: "Industries & Standards",
+            href: "/industries",
+            megamenu: industriesAndStandardsMegamenu,
         },
-        { label: "Industries", href: "/industries", megamenu: industryMegamenu },
         { label: "ISO 14001:2026", href: "/ISO14001-2026" },
         { label: "Pricing", href: "/pricing" },
         {
@@ -307,8 +307,8 @@ export default function Header() {
             <AnimatePresence>
                 {hoveredItem && navItems.find(n => n.label === hoveredItem)?.megamenu && (() => {
                     const activeMegamenu = navItems.find(n => n.label === hoveredItem)?.megamenu ?? [];
-                    const isIndustriesMenu = hoveredItem === "Industries";
-                    const columnCount = Math.min(activeMegamenu.length, 3);
+                    const isIndustriesMenu = hoveredItem === "Industries & Standards";
+                    const columnCount = Math.min(activeMegamenu.length, 4);
                     return (
                     <motion.div
                         initial={{ opacity: 0, y: 0 }}
@@ -328,10 +328,12 @@ export default function Header() {
                         }}
                     >
                         <div style={{
-                            maxWidth: "1100px",
+                            maxWidth: "1240px",
                             margin: "0 auto",
                             display: "grid",
-                            gridTemplateColumns: `repeat(${columnCount}, 1fr)`,
+                            gridTemplateColumns: isIndustriesMenu
+                                ? "1.1fr 1.1fr 1.1fr 0.85fr"
+                                : `repeat(${columnCount}, 1fr)`,
                             gap: isIndustriesMenu ? "1rem" : "4rem",
                             padding: "0 2rem",
                             alignItems: "stretch",

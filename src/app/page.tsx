@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import IsoStandardsSection from "@/components/IsoStandardsSection";
 import Features from "@/components/Features";
 import Industries from "@/components/Industries";
 import Advantages from "@/components/Advantages";
@@ -14,8 +15,8 @@ import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import HomePageJsonLd from "@/components/seo/HomePageJsonLd";
 
-const siteUrl = "https://iaudit.global";
-const ogImage = `${siteUrl}/logo.png`;
+const siteUrl = "https://www.iaudit.global";
+const ogImage = "https://www.iaudit.global/iaudit-logo-new.png";
 
 export const metadata: Metadata = {
     title: "ISO Audit Software | ISO 9001, 14001, and 45001 Audit Platform",
@@ -74,6 +75,7 @@ export default function Home() {
             <HomePageJsonLd />
             <Hero />
             <About />
+            <IsoStandardsSection />
             <Features />
             <Industries />
             <Advantages />

@@ -4,8 +4,8 @@ export const homePageSchema = {
         {
             "@type": "Organization",
             name: "iAudit Global",
-            url: "https://iaudit.global",
-            logo: "https://iaudit.global/logo.png",
+            url: "https://www.iaudit.global",
+            logo: "https://www.iaudit.global/iaudit-logo-new.png",
             email: "info@iaudit.global",
             telephone: "+44 1233 456 789",
             address: {
@@ -23,7 +23,7 @@ export const homePageSchema = {
         {
             "@type": "SoftwareApplication",
             name: "iAudit Global",
-            url: "https://iaudit.global",
+            url: "https://www.iaudit.global",
             applicationCategory: "BusinessApplication",
             applicationSubCategory: "ISO Audit Software",
             operatingSystem: "Web",
@@ -53,7 +53,7 @@ export const homePageSchema = {
                 "@type": "Brand",
                 name: "iAudit Global",
             },
-            url: "https://iaudit.global",
+            url: "https://www.iaudit.global",
             offers: [
                 {
                     "@type": "Offer",
@@ -61,7 +61,7 @@ export const homePageSchema = {
                     price: "0",
                     priceCurrency: "USD",
                     availability: "https://schema.org/InStock",
-                    url: "https://iaudit.global/pricing",
+                    url: "https://www.iaudit.global/pricing",
                 },
                 {
                     "@type": "Offer",
@@ -69,7 +69,7 @@ export const homePageSchema = {
                     price: "15.60",
                     priceCurrency: "USD",
                     availability: "https://schema.org/InStock",
-                    url: "https://iaudit.global/pricing",
+                    url: "https://www.iaudit.global/pricing",
                 },
                 {
                     "@type": "Offer",
@@ -77,7 +77,7 @@ export const homePageSchema = {
                     price: "25.90",
                     priceCurrency: "USD",
                     availability: "https://schema.org/InStock",
-                    url: "https://iaudit.global/pricing",
+                    url: "https://www.iaudit.global/pricing",
                 },
                 {
                     "@type": "Offer",
@@ -85,7 +85,7 @@ export const homePageSchema = {
                     price: "30.10",
                     priceCurrency: "USD",
                     availability: "https://schema.org/InStock",
-                    url: "https://iaudit.global/pricing",
+                    url: "https://www.iaudit.global/pricing",
                 },
             ],
         },
@@ -114,39 +114,39 @@ export const homePageSchema = {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://iaudit.global",
+                    item: "https://www.iaudit.global",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Features",
-                    item: "https://iaudit.global/#features",
+                    item: "https://www.iaudit.global/#features",
                 },
                 {
                     "@type": "ListItem",
                     position: 3,
                     name: "Pricing",
-                    item: "https://iaudit.global/#pricing",
+                    item: "https://www.iaudit.global/#pricing",
                 },
             ],
         },
         {
             "@type": "BlogPosting",
             headline: "Continuous Improvement Through Internal Audits",
-            url: "https://iaudit.global/continuous-improvement-through-internal-audits",
+            url: "https://www.iaudit.global/continuous-improvement-through-internal-audits",
             publisher: {
                 "@type": "Organization",
                 name: "iAudit Global",
                 logo: {
                     "@type": "ImageObject",
-                    url: "https://iaudit.global/logo.png",
+                    url: "https://www.iaudit.global/iaudit-logo-new.png",
                 },
             },
         },
         {
             "@type": "BlogPosting",
             headline: "Train And Motivate Internal Auditors For Better Audit Results",
-            url: "https://iaudit.global/train-and-motivate-internal-auditors-for-better-audit-results",
+            url: "https://www.iaudit.global/train-and-motivate-internal-auditors-for-better-audit-results",
             publisher: {
                 "@type": "Organization",
                 name: "iAudit Global",
@@ -155,7 +155,7 @@ export const homePageSchema = {
         {
             "@type": "BlogPosting",
             headline: "How To Manage ISO Audits Across Multiple Sites",
-            url: "https://iaudit.global/how-to-manage-iso-audits-across-multiple-sites",
+            url: "https://www.iaudit.global/how-to-manage-iso-audits-across-multiple-sites",
             publisher: {
                 "@type": "Organization",
                 name: "iAudit Global",
@@ -164,7 +164,7 @@ export const homePageSchema = {
         {
             "@type": "BlogPosting",
             headline: "Internal Audit Best Practices For Small Businesses",
-            url: "https://iaudit.global/internal-audit-best-practices-for-small-businesses",
+            url: "https://www.iaudit.global/internal-audit-best-practices-for-small-businesses",
             publisher: {
                 "@type": "Organization",
                 name: "iAudit Global",

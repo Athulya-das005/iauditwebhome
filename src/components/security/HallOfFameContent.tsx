@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { PP_NEUE_MONTREAL } from "@/constants/typography";
-import { hallOfFameResearchers } from "@/data/hallOfFameResearchers";
+import { hallOfFameResearchers, type HallOfFameResearcher } from "@/data/hallOfFameResearchers";
 import SecurityPageHero, { SECURITY_HERO_IMAGES } from "@/components/security/SecurityPageHero";
 import { SecurityCopyEmailButton } from "@/components/security/SecurityMailLink";
 
@@ -11,59 +11,141 @@ const GREY_DARK = "#1f2937";
 const GREY_BODY = "#4b5563";
 const GREY_MUTED = "#6b7280";
 const BORDER = "#e5e7eb";
+const LINK_BLUE = "#2563eb";
 
-function ResearcherEntry({
-    name,
-    linkedIn,
-    twitter,
-    report,
-    date,
+function LinkedInIcon() {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden
+        >
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+        </svg>
+    );
+}
+
+function ReporterTable({
+    researchers,
+    isMobile,
+    yearLabel,
 }: {
-    name: string;
-    linkedIn?: string;
-    twitter?: string;
-    report: string;
-    date: string;
+    researchers: HallOfFameResearcher[];
+    isMobile: boolean;
+    yearLabel: string;
 }) {
+    const sorted = [...researchers].sort((a, b) => b.reportCount - a.reportCount);
+
     const linkStyle = {
-        color: GREY_DARK,
+        color: LINK_BLUE,
         textDecoration: "underline",
-        textUnderlineOffset: "2px",
-        wordBreak: "break-all" as const,
+        textUnderlineOffset: "3px",
+        fontWeight: 500,
     };
 
     return (
-        <article
-            style={{
-                padding: "1.35rem 0",
-                borderBottom: `1px solid ${BORDER}`,
-                fontSize: "0.98rem",
-                lineHeight: 1.7,
-                color: GREY_BODY,
-            }}
-        >
-            <p style={{ margin: "0 0 0.35rem", fontWeight: 700, color: GREY_DARK }}>
-                Name: {name}
-            </p>
-            {linkedIn && (
-                <p style={{ margin: "0 0 0.35rem" }}>
-                    LinkedIn:{" "}
-                    <a href={linkedIn} target="_blank" rel="noopener noreferrer" style={linkStyle}>
-                        {linkedIn}
-                    </a>
-                </p>
-            )}
-            {twitter && (
-                <p style={{ margin: "0 0 0.35rem" }}>
-                    X (Twitter):{" "}
-                    <a href={twitter} target="_blank" rel="noopener noreferrer" style={linkStyle}>
-                        {twitter}
-                    </a>
-                </p>
-            )}
-            <p style={{ margin: "0 0 0.35rem" }}>{report}</p>
-            <p style={{ margin: 0, color: GREY_MUTED, fontSize: "0.92rem" }}>{date}</p>
-        </article>
+        <div style={{ marginTop: "0.5rem" }}>
+            <div
+                style={{
+                    display: "grid",
+                    gridTemplateColumns: isMobile ? "1fr auto" : "1fr 180px",
+                    gap: isMobile ? "0.5rem 1rem" : "0",
+                    padding: isMobile ? "0.85rem 0" : "0.9rem 0",
+                    borderBottom: `1px solid ${BORDER}`,
+                    fontWeight: 700,
+                    color: GREY_DARK,
+                    fontSize: "0.95rem",
+                }}
+            >
+                <div>Reporter</div>
+                <div style={{ textAlign: "right" }}>{yearLabel}</div>
+            </div>
+
+            {sorted.map((researcher) => (
+                <div
+                    key={researcher.linkedIn}
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: isMobile ? "1fr auto" : "1fr 180px",
+                        gap: isMobile ? "0.5rem 1rem" : "0",
+                        alignItems: "center",
+                        padding: isMobile ? "0.85rem 0" : "0.9rem 0",
+                        borderBottom: `1px solid ${BORDER}`,
+                        fontSize: "0.95rem",
+                        lineHeight: 1.5,
+                        color: GREY_BODY,
+                    }}
+                >
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "0.35rem",
+                        }}
+                    >
+                        <div
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "0.5rem",
+                                flexWrap: "wrap",
+                            }}
+                        >
+                            <span
+                                style={{
+                                    fontWeight: 600,
+                                    color: GREY_DARK,
+                                }}
+                            >
+                                {researcher.name}
+                            </span>
+                            <a
+                                href={researcher.linkedIn}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`${researcher.name} on LinkedIn`}
+                                title={`${researcher.name} on LinkedIn`}
+                                style={{
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    color: "#0a66c2",
+                                    textDecoration: "none",
+                                    flexShrink: 0,
+                                }}
+                            >
+                                <LinkedInIcon />
+                            </a>
+                        </div>
+                        <a
+                            href={researcher.linkedIn}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                ...linkStyle,
+                                fontSize: "0.88rem",
+                                wordBreak: "break-all",
+                            }}
+                        >
+                            {researcher.linkedIn.replace(/^https?:\/\//, "")}
+                        </a>
+                    </div>
+                    <div
+                        style={{
+                            textAlign: "right",
+                            fontWeight: 500,
+                            color: GREY_DARK,
+                            fontVariantNumeric: "tabular-nums",
+                        }}
+                    >
+                        {researcher.reportCount}
+                    </div>
+                </div>
+            ))}
+        </div>
     );
 }
 
@@ -143,21 +225,17 @@ export default function HallOfFameContent() {
                         color: GREY_DARK,
                         margin: "0 0 1rem",
                         lineHeight: 1.3,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.02em",
                     }}
                 >
-                    List of security researchers
+                    Security researchers
                 </h2>
 
-                <hr style={{ border: "none", borderTop: `1px solid ${BORDER}`, margin: "0 0 0.5rem" }} />
-
                 {hallOfFameResearchers.length > 0 ? (
-                    <div>
-                        {hallOfFameResearchers.map((researcher, index) => (
-                            <ResearcherEntry key={`${researcher.name}-${researcher.date}-${index}`} {...researcher} />
-                        ))}
-                    </div>
+                    <ReporterTable
+                        researchers={hallOfFameResearchers}
+                        isMobile={isMobile}
+                        yearLabel="Accepted reports"
+                    />
                 ) : (
                     <div
                         style={{

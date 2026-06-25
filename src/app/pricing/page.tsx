@@ -3,7 +3,7 @@ import PricingPageContent from "@/components/PricingPageContent";
 import PricingPageJsonLd from "@/components/seo/PricingPageJsonLd";
 
 const pageUrl = "https://www.iaudit.global/pricing";
-const ogImage = "https://iaudit.global/logo.png";
+const ogImage = "https://www.iaudit.global/iaudit-logo-new.png";
 
 export const metadata: Metadata = {
     title: "iAudit Global Pricing | ISO Audit Software Plans & Costs",

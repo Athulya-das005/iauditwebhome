@@ -6,7 +6,7 @@ export const auditorsPageSchema = {
             "@id": "https://www.iaudit.global/#organization",
             name: "iAudit Global",
             url: "https://www.iaudit.global",
-            logo: "https://www.iaudit.global/logo.png",
+            logo: "https://www.iaudit.global/iaudit-logo-new.png",
             email: "info@iaudit.global",
             telephone: "+44 7944 829129",
             address: {
