@@ -106,6 +106,7 @@ export default function Header() {
                     title: "Company",
                     items: [
                         { label: "About Us", href: "/about" },
+                        { label: "Built by Auditors", href: "/audit-management-software-built-by-auditors" },
                         { label: "Contact", href: "/contact" },
                     ],
                 },

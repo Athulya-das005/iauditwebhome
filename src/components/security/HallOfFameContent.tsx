@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { PP_NEUE_MONTREAL } from "@/constants/typography";
 import { hallOfFameResearchers, type HallOfFameResearcher } from "@/data/hallOfFameResearchers";
@@ -76,11 +77,28 @@ function ReporterTable({
                 >
                     <span
                         style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "0.45rem",
                             fontWeight: 600,
                             color: GREY_DARK,
                         }}
                     >
                         {researcher.name}
+                        {researcher.flagIcon && (
+                            <Image
+                                src={researcher.flagIcon}
+                                alt="India flag"
+                                width={22}
+                                height={16}
+                                style={{
+                                    width: "22px",
+                                    height: "16px",
+                                    objectFit: "contain",
+                                    flexShrink: 0,
+                                }}
+                            />
+                        )}
                     </span>
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <a
