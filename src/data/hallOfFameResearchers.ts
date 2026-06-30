@@ -23,4 +23,9 @@ export const hallOfFameResearchers: HallOfFameResearcher[] = [
         reportCount: 1,
         flagIcon: "/india-flag.png",
     },
+    {
+        name: "Huntersoham",
+        linkedIn: "https://www.linkedin.com/in/huntersoham",
+        reportCount: 1,
+    },
 ];
