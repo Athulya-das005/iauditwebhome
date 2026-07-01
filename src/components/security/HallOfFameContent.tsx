@@ -37,10 +37,7 @@ function ReporterTable({
     isMobile: boolean;
     yearLabel: string;
 }) {
-    const sorted = [...researchers].sort((a, b) => {
-        if (a.pinToTop !== b.pinToTop) return a.pinToTop ? -1 : 1;
-        return b.reportCount - a.reportCount;
-    });
+    const sorted = [...researchers].sort((a, b) => b.reportCount - a.reportCount);
 
     const gridColumns = isMobile ? "1fr 52px 64px" : "1fr 120px 160px";
 
