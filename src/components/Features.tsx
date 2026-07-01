@@ -8,7 +8,7 @@ const pdcaSteps = [
     {
         tag: "Step 01",
         title: "Plan",
-        subtitle: "Build Risk-Based Audit Programmes In Minutes",
+        subtitle: "Build Risk Based Audit Programmes",
         description: "Define audit objectives, scope, and criteria aligned with ISO requirements and internal priorities. Create multi-year audit programmes that focus on high-risk processes and strategic goals.",
         icon: (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -18,7 +18,7 @@ const pdcaSteps = [
     {
         tag: "Step 02",
         title: "Do",
-        subtitle: "Execute Audits With Structure And Consistency",
+        subtitle: "Execute Structured Internal Audits",
         description: "Conduct audits using structured checklists, guided interviews, and proper sampling techniques. Collect evidence digitally, capture good practices, and document nonconformities as you go.",
         icon: (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
@@ -28,7 +28,7 @@ const pdcaSteps = [
     {
         tag: "Step 03",
         title: "Check",
-        subtitle: "Analyse Findings And Spot What Matters",
+        subtitle: "Analyse Findings and Trends",
         description: "Review audit results, identify trends, and assess process effectiveness across your organisation. Generate clear, actionable reports that highlight key risks, systemic issues, and their impact on your objectives.",
         icon: (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -38,7 +38,7 @@ const pdcaSteps = [
     {
         tag: "Step 04",
         title: "Act",
-        subtitle: "Close The Loop On Every Finding",
+        subtitle: "Close the loop on every finding",
         description: "Link findings to corrective actions with assigned owners and deadlines. Track progress, verify effectiveness, and ensure nothing falls through the cracks.",
         icon: (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path><polyline points="21 3 21 8 16 8"></polyline></svg>

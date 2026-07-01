@@ -306,7 +306,7 @@ export default function About() {
                                 margin: isMobile ? '0 0 1rem 0' : '0'
                             }}
                         >
-                            ISO audit management that actually works
+                            Auditor-led ISO audit management.
                         </motion.h2>
                     </div>
 

@@ -144,7 +144,7 @@ export default function IsoStandardsSection() {
                             maxWidth: "860px",
                         }}
                     >
-                        One audit management system for ISO 9001, ISO 14001, and ISO 45001
+                        ISO 9001, 14001 and 45001 in One Platform
                     </motion.h2>
 
                     <motion.p

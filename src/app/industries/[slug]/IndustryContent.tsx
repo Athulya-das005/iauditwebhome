@@ -280,7 +280,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     }}
                                 >
                                     <span>
-                                        Get started free
+                                        {industry.heroPrimaryButton || "Get started free"}
                                         <span ref={primaryArrowRef} style={{ display: 'inline-flex', alignItems: 'center' }}>
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                                 <line x1="7" y1="17" x2="17" y2="7" />
@@ -305,7 +305,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     }}
                                 >
                                     <span>
-                                        Book a demo
+                                        {industry.heroSecondaryButton || "Book a demo"}
                                         <span ref={secondaryArrowRef} style={{ display: 'inline-flex', alignItems: 'center' }}>
                                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                                 <line x1="7" y1="17" x2="17" y2="7" />
@@ -738,7 +738,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
             )}
 
             {/* "How iAudit supports ISO audits" Section (Flovity "home-three" AI Agents clone) */}
-            {industry.supportHeading && industry.supportItems && (
+            {industry.supportItems && industry.supportItems.length > 0 && (
                 <div 
                     id="support-section"
                     style={{
@@ -804,6 +804,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     </motion.div>
                                 )}
                                 
+                                {industry.supportHeading && (
                                 <motion.h2 
                                     variants={{
                                         hidden: { opacity: 0, y: 30 },
@@ -821,6 +822,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                 >
                                     {industry.supportHeading}
                                 </motion.h2>
+                                )}
                             </div>
                         </div>
 
@@ -1385,8 +1387,11 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                                         <div style={{ width: '52px', height: '52px', borderRadius: '50%', border: '2px solid rgba(255,255,255,0.2)', padding: '2px' }}>
                                             <div style={{ width: '100%', height: '100%', borderRadius: '50%', background: '#f8fafc', overflow: 'hidden' }}>
-                                                {/* Representing the profile image from reference */}
-                                                <svg viewBox="0 0 100 100" fill="none"><rect width="100" height="100" fill="#e2e8f0"/><circle cx="50" cy="35" r="20" fill="#94a3b8"/><path d="M15 85c0-12 15-22 35-22s35 10 35 22" stroke="#94a3b8" strokeWidth="10"/></svg>
+                                                <img
+                                                    src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=100&h=100"
+                                                    alt="Audit Mate AI audit assistant avatar"
+                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                                />
                                             </div>
                                         </div>
                                         <div>
@@ -1411,7 +1416,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                             <span style={{ fontSize: '1rem' }}>✦</span> Audit Mate
                                         </div>
                                         <div style={{ color: '#374151', fontSize: '0.95rem', lineHeight: 1.5 }}>
-                                            Welcome to iAudit! How can I assist you today?
+                                            {industry.auditMateChat?.welcomeMessage || "Welcome to iAudit! How can I assist you today?"}
                                         </div>
                                     </motion.div>
 
@@ -1422,7 +1427,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                         style={{ background: '#f87171', borderRadius: '12px 12px 2px 12px', padding: '16px 20px', maxWidth: '85%', alignSelf: 'flex-end', boxShadow: '0 8px 16px rgba(248, 113, 113, 0.2)' }}
                                     >
                                         <div style={{ color: '#ffffff', fontSize: '0.95rem', lineHeight: 1.5 }}>
-                                            Can you help me automate non-conformity tracking?
+                                            {industry.auditMateChat?.userMessage || "Can you help me automate non-conformity tracking?"}
                                         </div>
                                     </motion.div>
 
@@ -1436,7 +1441,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                             <span style={{ fontSize: '1rem' }}>✦</span> Audit Mate
                                         </div>
                                         <div style={{ color: '#374151', fontSize: '0.95rem', lineHeight: 1.5 }}>
-                                            Absolutely! Let me fetch your current audit findings...
+                                            {industry.auditMateChat?.botReply || "Absolutely! Let me fetch your current audit findings..."}
                                         </div>
                                     </motion.div>
                                 </div>
@@ -1448,7 +1453,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                         transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                                         style={{ width: '14px', height: '14px', border: '2px solid rgba(255,255,255,0.2)', borderTopColor: '#ffffff', borderRadius: '50%' }}
                                     />
-                                    <div style={{ color: '#ffffff', fontSize: '0.9rem', opacity: 0.8 }}>Syncing ISO records...</div>
+                                    <div style={{ color: '#ffffff', fontSize: '0.9rem', opacity: 0.8 }}>{industry.auditMateChat?.syncingText || "Syncing ISO records..."}</div>
                                 </div>
                             </motion.div>
 

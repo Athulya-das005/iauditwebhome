@@ -7,6 +7,8 @@ export interface Industry {
     bgImage?: string;
     heroSparkleText?: string;
     heroHeading?: string;
+    heroPrimaryButton?: string;
+    heroSecondaryButton?: string;
     challengesSparkleText?: string;
     challengesHeading?: string;
     challengesCards?: { title: string, description: string }[];
@@ -73,6 +75,12 @@ export interface Industry {
         item2Subtitle?: string;
         item3Title?: string;
         item3Subtitle?: string;
+    };
+    auditMateChat?: {
+        welcomeMessage?: string;
+        userMessage?: string;
+        botReply?: string;
+        syncingText?: string;
     };
 }
 
@@ -409,7 +417,7 @@ export const industries: Industry[] = [
         id: "03",
         slug: "construction-iso-audit-software",
         title: "Construction",
-        description: "Move beyond spreadsheets with construction audit software for ISO 9001, 14001 and 45001 across every active project.",
+        description: "Move beyond spreadsheets with construction audit software for ISO 9001, 14001, and 45001 across every active project.",
         color: "#84cc16",
         bgImage: "/images/construction-bg.jpg",
         heroSparkleText: "Construction ISO audit software",
@@ -477,16 +485,22 @@ export const industries: Industry[] = [
         auditMateSparkle: "Audit Mate for construction",
         auditMateHeading: "Your AI assistant for construction audit planning",
         auditMateDescription: "Use Audit Mate to generate ISO checklists for site inspections, ITPs, subcontractors and environmental controls.",
+        auditMateChat: {
+            welcomeMessage: "Welcome to iAudit! I can help you plan construction site audits across your projects.",
+            userMessage: "Can you generate an ITP checklist for our active site?",
+            botReply: "Absolutely! I'll create clause-mapped checklists for site inspections, ITPs, subcontractors and environmental controls.",
+            syncingText: "Building construction audit templates...",
+        },
         standardsSparkleText: "ISO standards for construction",
-        standardsHeading: "ISO standards we support for construction projects",
+        standardsHeading: "ISO Standards for Construction Projects",
         standardsItems: [
             {
                 title: "Quality and environmental management",
                 description: "ISO 9001 controls ITPs and defect reduction while ISO 14001 manages site waste and pollution prevention."
             },
             {
-                title: "Occupational health and safety",
-                description: "ISO 45001 manages site safety and hazard tracking."
+                title: "Safety and information security",
+                description: "ISO 45001 manages site safety and hazard tracking across every active project."
             }
         ],
         testimonials: [],
@@ -552,6 +566,8 @@ export const industries: Industry[] = [
         bgImage: "/images/manufacturing-bg.jpg",
         heroSparkleText: "Manufacturing ISO audit software by iAudit",
         heroHeading: "Manufacturing Audit Software for ISO Compliance",
+        heroPrimaryButton: "Sign up free",
+        heroSecondaryButton: "Book a demo",
         challengesSparkleText: "Manufacturing compliance challenges",
         challengesHeading: "Why manufacturing audits break down on the shopfloor",
         challengesCards: [
@@ -615,6 +631,12 @@ export const industries: Industry[] = [
         auditMateSparkle: "AI for manufacturing audits",
         auditMateHeading: "Your AI co‑pilot for production audit planning",
         auditMateDescription: "Use Audit Mate to draft specific checklists for FMEAs, tool wear and batch traceability records.",
+        auditMateChat: {
+            welcomeMessage: "Welcome to iAudit! I can help you plan manufacturing audits across your production lines.",
+            userMessage: "Can you draft a checklist for batch traceability and tool wear?",
+            botReply: "Absolutely! I'll draft specific checklists for FMEAs, tool wear and batch traceability records.",
+            syncingText: "Building manufacturing audit templates...",
+        },
         standardsSparkleText: "Standards for manufacturing",
         standardsHeading: "ISO standards supported for your factory floor",
         standardsDescription: "Our manufacturing audit software provides deep support for the standards that matter most to production and operational teams.",
@@ -716,7 +738,7 @@ export const industries: Industry[] = [
         color: "#0284c7",
         bgImage: "/images/healthcare-bg.png",
         heroSparkleText: "Healthcare Compliance Software",
-        heroHeading: "Healthcare Compliance Software for ISO Audits",
+        heroHeading: "Healthcare ISO Audits, Under Control",
         challengesSparkleText: "Healthcare compliance challenges",
         challengesHeading: "Why generic tools miss healthcare safety risks",
         challengesCards: [
@@ -734,7 +756,7 @@ export const industries: Industry[] = [
             }
         ],
         supportSparkleText: "iAudit for healthcare",
-        supportHeading: "How iAudit supports healthcare compliance audits",
+        supportHeading: "Healthcare ISO Audits Made Structured",
         supportItems: [
             {
                 title: "Clinical and patient safety audits",
@@ -780,6 +802,12 @@ export const industries: Industry[] = [
         auditMateSparkle: "Healthcare audit assistant",
         auditMateHeading: "Your AI assistant for healthcare audit planning",
         auditMateDescription: "Generate healthcare-specific ISO checklists for patient safety, training, incidents and environmental controls instantly.",
+        auditMateChat: {
+            welcomeMessage: "Welcome to iAudit! I can help you plan healthcare audits across your clinical and support teams.",
+            userMessage: "Can you generate a patient safety checklist for our ward audits?",
+            botReply: "Absolutely! I'll create healthcare-specific ISO checklists for patient safety, training, incidents and environmental controls.",
+            syncingText: "Building healthcare audit templates...",
+        },
         standardsSparkleText: "ISO standards for healthcare",
         standardsHeading: "ISO standards supported for healthcare providers",
         standardsDescription: "Use our healthcare compliance software to manage clinical quality, environmental impact and worker safety standards effectively.",
@@ -793,16 +821,50 @@ export const industries: Industry[] = [
                 description: "ISO 14001 controls clinical waste and emissions, while ISO 45001 tracks sharps safety and wellbeing."
             }
         ],
-        testimonials: [],
+        testimonialsHeading: "What healthcare teams say about iAudit",
+        testimonials: [
+            {
+                quote: "Before using iAudit healthcare compliance software, our audits lived in paper files and spreadsheets. Now we track findings, evidence and actions centrally across wards and support teams.",
+                author: "Dr. Helen Marsh",
+                role: "Clinical Governance Lead",
+                company: "Regional NHS Trust",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Verified Healthcare Expert"
+            },
+            {
+                quote: "We needed a healthcare compliance software that understood ISO, not just generic forms. iAudit helped us standardise audits, improve follow-up and reduce repeat findings across sites.",
+                author: "James Okonkwo",
+                role: "Quality Manager",
+                company: "Metro Health Group",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "ISO 9001 Specialist"
+            },
+            {
+                quote: "Our biggest issue was delayed action tracking. With iAudit healthcare compliance software, governance teams now see audit trends earlier and close patient safety actions faster.",
+                author: "Sarah Lindstrom",
+                role: "Patient Safety Director",
+                company: "Nordic Care Services",
+                avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Certified Lead Auditor"
+            },
+            {
+                quote: "We used to prepare for ISO audits manually for weeks. iAudit Global gave us one healthcare compliance software platform for checklists, evidence, reporting and real visibility.",
+                author: "Michael Torres",
+                role: "Compliance Manager",
+                company: "Unity Healthcare",
+                avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200&h=200",
+                batch: "Healthcare Compliance Lead"
+            }
+        ],
         checklistsTag: "Free healthcare audit checklists",
-        checklistsHeading: "Professional ISO audit checklists designed specifically for healthcare providers",
+        checklistsHeading: "Professional ISO Audit Checklists for Healthcare",
         checklistsDescription: "Download our ISO 9001, 14001 and 45001 checklists to streamline clinical, environmental and worker safety audits within your healthcare compliance software.",
         checklistsItems: [
             "ISO 9001:2015 Quality Management Systems – Healthcare Audit Checklist",
             "ISO 14001:2015 Environmental Management Systems – Healthcare Audit Checklist",
             "ISO 45001:2018 Occupational Health and Safety – Healthcare Audit Checklist"
         ],
-        ctaHeading: "Achieve 100% clinical compliance confidence today",
+        ctaHeading: "Achieve 100% Clinical Compliance Today",
         ctaDescription: "Start free or book a demo to simplify healthcare audits, actions, evidence and compliance in one place.",
         ctaPrimaryButton: "Get started free",
         ctaSecondaryButton: "Book a demo",
@@ -1019,7 +1081,7 @@ export const industries: Industry[] = [
         heroSparkleText: "Hospitality audit software by iAudit",
         heroHeading: "Hospitality Audit Software for ISO Compliance",
         challengesSparkleText: "Hospitality audit challenges",
-        challengesHeading: "Why Hospitality Audits Need A Different Approach",
+        challengesHeading: "Why hospitality audits need a different approach",
         challengesCards: [
             {
                 title: "Guest experience quality",
@@ -1035,7 +1097,6 @@ export const industries: Industry[] = [
             }
         ],
         supportSparkleText: "iAudit for hospitality",
-        supportHeading: "How iAudit Supports ISO Audits In Hospitality",
         supportItems: [
             {
                 title: "Standardised checklists across all properties",
@@ -1079,9 +1140,25 @@ export const industries: Industry[] = [
             }
         ],
         auditMateSparkle: "Audit Mate for hospitality",
-        auditMateHeading: "Your AI Assistant For Hospitality Audit Planning",
+        auditMateHeading: "Your AI assistant for hospitality audit planning",
         auditMateDescription: "Let Audit Mate instantly generate clause-mapped checklists for food safety, room inspections, and guest complaints.",
-        standardsHeading: "Standards We Support For Hospitality",
+        auditMateVisuals: {
+            card1Title: "Food Safety Audit",
+            card1Subtitle: "Clause 8.5 Mapped",
+            item1Title: "Room 402 Inspection",
+            item1Subtitle: "ISO 9001 Section 7",
+            item2Title: "Guest Complaints Log",
+            item2Subtitle: "Clause 10.2 NCR",
+            item3Title: "Kitchen Checklist Ready",
+            item3Subtitle: "Hospitality Template",
+        },
+        auditMateChat: {
+            welcomeMessage: "Welcome to iAudit! I can help you plan hospitality audits across your properties.",
+            userMessage: "Can you generate a food safety checklist for our hotel kitchen?",
+            botReply: "Absolutely! I'll create clause-mapped checklists for food safety, room inspections, and guest complaints.",
+            syncingText: "Building hospitality audit templates...",
+        },
+        standardsHeading: "Standards we support for hospitality",
         standardsItems: [
             {
                 title: "Quality and environmental management",
@@ -1089,9 +1166,10 @@ export const industries: Industry[] = [
             },
             {
                 title: "Occupational health and safety",
-                description: "ISO 45001 supports workplace safety across guest-facing and back-of-house teams."
+                description: "ISO 45001 manages kitchen safety, manual handling and staff wellbeing across all your hospitality properties."
             }
         ],
+        testimonialsHeading: "What hospitality teams say about iAudit",
         testimonials: [
             {
                 quote: "iAudit gave us a single view of audit findings across five hotels. Housekeeping, F&B and maintenance issues are now tracked in one place, and our external ISO 9001 audits have become far more predictable.",
@@ -1119,7 +1197,7 @@ export const industries: Industry[] = [
             }
         ],
         checklistsTag: "Free hospitality audit checklists",
-        checklistsHeading: "Start Your Next Hospitality Audit With A Ready‑Made Checklist",
+        checklistsHeading: "Start your next hospitality audit with a ready‑made checklist",
         checklistsDescription: "Download free ISO audit checklists built for hospitality teams, covering quality, food safety, housekeeping, events, guest complaints and supplier management.",
         checklistsItems: [
             "Housekeeping and Room Quality Inspection Checklist",
@@ -1129,12 +1207,12 @@ export const industries: Industry[] = [
             "Event and Banqueting Quality Audit Checklist",
             "Seasonal Staff Competence and Training Audit Checklist"
         ],
-        ctaHeading: "Your ISO Hospitality Audit Transformation Starts Here",
-        ctaDescription: "Book a personalised demo or try iAudit free to see how our hospitality audit software simplifies ISO audits across your operations, ensuring consistency, visibility and certification readiness.",
+        ctaHeading: "Your ISO hospitality audit transformation starts here",
+        ctaDescription: "Book a personalised demo or try iAudit free to see how our hospitality audit software simplifies.",
         ctaPrimaryButton: "Sign up free",
         ctaSecondaryButton: "Watch demo",
         caseStudySparkle: "Hospitality case study",
-        caseStudyHeading: "See How Hospitality Teams Run Better Audits",
+        caseStudyHeading: "See how hospitality teams run better audits",
         caseStudyDescription: "Read how hotel groups and catering companies moved away from scattered spreadsheets to achieve multi-property ISO compliance with our hospitality audit software.",
         caseStudyButton: "Read more",
         caseStudyImage: "/images/hospitality-case-study.png",
@@ -1505,7 +1583,7 @@ export const industries: Industry[] = [
         color: "#eab308",
         bgImage: "/images/mining-bg.jpg",
         heroSparkleText: "Mining compliance software by iAudit",
-        heroHeading: "Mining Compliance Software for ISO Standards",
+        heroHeading: "Control Risk Across Every Mine Site",
         challengesSparkleText: "Mining compliance challenges",
         challengesHeading: "Why mining compliance is harder to manage",
         challengesCards: [
@@ -1523,52 +1601,58 @@ export const industries: Industry[] = [
             }
         ],
         supportSparkleText: "iAudit for mining",
-        supportHeading: "A structured approach to ISO audits in the mining sector",
+        supportHeading: "Controlling Mining Risk Through ISO Audits",
         supportItems: [
             {
                 title: "Grade control and assay traceability",
                 description: "",
                 bullets: [
-                    "Capture digital evidence of weightometer calibrations and blast hole assays directly at the source to ensure ISO 9001 quality compliance.",
-                    "Verify metallurgical accounting and sampling accuracy to meet off take specifications and avoid costly shipment penalties."
+                    "Capture calibration evidence at the source.",
+                    "Verify sampling accuracy to avoid costly shipment penalties."
                 ]
             },
             {
                 title: "TSF and environmental oversight",
                 description: "",
                 bullets: [
-                    "Audit Tailings Storage Facility integrity against GISTM requirements with structured checklists and piezometer data attachments.",
-                    "Track acid mine drainage and water licence compliance across multiple remote sites from one central mining compliance software dashboard."
+                    "Audit TSF integrity against GISTM requirements.",
+                    "Track water licence compliance across sites from one dashboard."
                 ]
             },
             {
                 title: "Ground control and blasting safety",
                 description: "",
                 bullets: [
-                    "Manage ISO 45001 compliance by tracking ground control management plans and proximity detection system audits.",
-                    "Verify shotfirer competencies and pre entry inspection records to ensure critical safety controls are active on every shift."
+                    "Track ground control plans and proximity audits.",
+                    "Verify shotfirer competencies and safety controls on every shift."
                 ]
             },
             {
                 title: "Multi site and contractor visibility",
                 description: "",
                 bullets: [
-                    "Standardise audit programmes across dispersed locations to ensure consistent quality and safety standards regardless of the region.",
-                    "Monitor contractor compliance and safety inductions in real time to reduce the risk of third party incidents on site."
+                    "Standardise audit programmes across all remote locations.",
+                    "Monitor contractor safety inductions and compliance in real time."
                 ]
             },
             {
                 title: "Offline audits for remote locations",
                 description: "",
                 bullets: [
-                    "Conduct full ISO audits in pits or underground areas without a Wi-Fi connection using our mobile offline mode.",
-                    "Sync findings, photos and signatures to the cloud automatically once the device returns to a connected area."
+                    "Conduct full audits underground or in pits without Wi-Fi.",
+                    "Sync findings and evidence automatically once the device reconnects."
                 ]
             }
         ],
         auditMateSparkle: "Audit Mate for mining compliance",
         auditMateHeading: "AI assistant for your mining audit planning",
         auditMateDescription: "Generate mining checklists for ground control, TSF monitoring, dust risks, contractors and calibration instantly.",
+        auditMateChat: {
+            welcomeMessage: "Welcome to iAudit! I can help you plan mining audits across your remote sites.",
+            userMessage: "Can you generate a TSF monitoring checklist for our tailings facility?",
+            botReply: "Absolutely! I'll generate mining checklists for ground control, TSF monitoring, dust risks, contractors and calibration.",
+            syncingText: "Building mining audit templates...",
+        },
         standardsSparkleText: "ISO standards for mining",
         standardsHeading: "ISO standards supported for mining operations",
         standardsDescription: "Use mining compliance software to manage quality, environmental and safety audits with clearer evidence and control.",
@@ -1586,25 +1670,25 @@ export const industries: Industry[] = [
         testimonials: [
             {
                 quote: "Our biggest issue was evidence scattered across shifts and contractors. With iAudit, findings, photos and actions sit together. We have fewer repeat issues and far less time wasted rebuilding audit packs before surveillance.",
-                author: "Sarah Jenkins",
-                role: "Group Operations Director",
-                company: "Luxury Stay Hotels",
+                author: "David Okello",
+                role: "Safety and Compliance Manager",
+                company: "Northern Minerals Group",
                 avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
-                batch: "Verified Hospitality Expert"
+                batch: "Verified Mining Expert"
             },
             {
                 quote: "Environmental checks were inconsistent across sites, especially around water and tailings controls. Now we run the same structured audits everywhere and track actions properly. It is easier to see where risk is building and act early.",
-                author: "Mark Thompson",
-                role: "Food Safety Lead",
-                company: "Urban Table Group",
+                author: "Rachel Ng",
+                role: "Environmental Superintendent",
+                company: "Pacific Copper Operations",
                 avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
-                batch: "ISO 9001 Specialist"
+                batch: "ISO 14001 Specialist"
             },
             {
                 quote: "We used to close actions because the spreadsheet needed to look tidy. Now we verify effectiveness before closure. That has changed the conversation from compliance reporting to control, which is what management actually needs.",
-                author: "Elena Rossi",
-                role: "Events Compliance Manager",
-                company: "Grand Venue Co.",
+                author: "Marcus Webb",
+                role: "Head of Quality Assurance",
+                company: "Iron Ridge Mining",
                 avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200",
                 batch: "Certified Lead Auditor"
             }

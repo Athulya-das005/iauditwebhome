@@ -53,7 +53,7 @@ export const hospitalityIndustryPageSchema = {
                     name: "What is an ISO 9001 hospitality audit?",
                     acceptedAnswer: {
                         "@type": "Answer",
-                        text: "An ISO 9001 hospitality audit checks hotel, restaurant or venue processes such as reservations, housekeeping, food service, events and complaints to ensure quality and repeatable management.",
+                        text: "An ISO 9001 hospitality audit checks how well a hotel, restaurant or venue controls its key processes, such as reservations, housekeeping, food and beverage service, events and complaint handling. Auditors look at both documentation and real practice to see whether guest experience, service quality and supplier management are managed in a planned, repeatable way.",
                     },
                 },
                 {
@@ -61,7 +61,7 @@ export const hospitalityIndustryPageSchema = {
                     name: "How often should hospitality businesses run internal ISO audits?",
                     acceptedAnswer: {
                         "@type": "Answer",
-                        text: "Most hospitality organisations run a full internal audit at least once a year, with more frequent audits on higher-risk areas like food safety, housekeeping, and events.",
+                        text: "Most hospitality organisations run a full internal audit cycle at least once a year, with more frequent focused audits on higher‑risk areas such as food safety, housekeeping and events. Multi‑property groups often use a rolling programme so each site and department is sampled several times between certification audits.",
                     },
                 },
                 {
@@ -69,15 +69,15 @@ export const hospitalityIndustryPageSchema = {
                     name: "What is iAudit Global for hospitality?",
                     acceptedAnswer: {
                         "@type": "Answer",
-                        text: "iAudit Global is hospitality audit software built by ISO auditors, supporting ISO 9001, 14001 and 45001 audits with standardised checklists, centralised findings, and PDCA-driven follow-up.",
+                        text: "iAudit Global is hospitality audit software built by ISO auditors for hotels, restaurants, venues and catering groups. It supports ISO 9001, 14001 and 45001 internal audits with standardised checklists, centralised findings and evidence, and PDCA‑driven follow up across all properties.",
                     },
                 },
                 {
                     "@type": "Question",
-                    name: "How does iAudit help multi-property hotel and restaurant groups?",
+                    name: "How does iAudit help multi‑property hotel and restaurant groups?",
                     acceptedAnswer: {
                         "@type": "Answer",
-                        text: "It allows one audit programme across all sites, pushes checklists to every property, and uses dashboards to compare scores, findings, and actions, ensuring consistent standards and guest experience.",
+                        text: "You can run one audit programme across every site, push the same checklist to each property and use dashboards to compare scores, findings and actions. This makes it far easier to keep brand standards, guest experience and food safety controls consistent across your whole portfolio.",
                     },
                 },
                 {
@@ -85,7 +85,23 @@ export const hospitalityIndustryPageSchema = {
                     name: "Can iAudit support food safety, allergen and Natasha's Law checks?",
                     acceptedAnswer: {
                         "@type": "Answer",
-                        text: "Yes, iAudit audits HACCP controls, allergen management, and Natasha's Law compliance alongside ISO 9001 requirements, capturing evidence and tracking corrective actions.",
+                        text: "Yes. While your HACCP system remains the core of food safety, iAudit lets you audit HACCP controls, allergen management and Natasha's Law compliance alongside ISO 9001 requirements. You can attach photos of labels, temperature records and kitchen conditions, and track food safety corrective actions through to closure.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "Does the software work for front‑of‑house and housekeeping teams on the floor?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Our hospitality audit software is designed for real operations, not just offices. Auditors and supervisors can complete room inspections, service audits and kitchen checks on mobile devices, capture photos as evidence and, if needed, work offline in areas with poor connectivity, syncing data when they are back online.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "How is our audit data kept secure and who owns it?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Your audit data always belongs to your organisation. iAudit Global uses encryption and role‑based access to protect your information, and we operate a strict zero‑access policy, meaning we do not view or mine your findings or evidence. You can export your data at any time if you ever decide to leave the platform.",
                     },
                 },
             ],
