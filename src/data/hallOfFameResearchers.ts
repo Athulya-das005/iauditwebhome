@@ -34,4 +34,9 @@ export const hallOfFameResearchers: HallOfFameResearcher[] = [
         linkedIn: "https://www.linkedin.com/in/huntersoham",
         reportCount: 1,
     },
+    {
+        name: "Pathan Aslam",
+        linkedIn: "https://www.linkedin.com/in/aslam-pathan/",
+        reportCount: 1,
+    },
 ];
