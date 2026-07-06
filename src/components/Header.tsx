@@ -79,7 +79,7 @@ export default function Header() {
 
     const navItems: NavItem[] = [
         {
-            label: "industries & solutions",
+            label: "Industries & Solutions",
             href: "/industries",
             megamenu: industriesAndStandardsMegamenu,
         },
@@ -296,7 +296,8 @@ export default function Header() {
                         cursor: "pointer",
                         padding: "0.5rem",
                         zIndex: 1100,
-                        position: "relative"
+                        position: "relative",
+                        visibility: isMenuOpen ? "hidden" : "visible",
                     }}
                 >
                     <div style={{
@@ -326,7 +327,7 @@ export default function Header() {
             <AnimatePresence>
                 {hoveredItem && navItems.find(n => n.label === hoveredItem)?.megamenu && (() => {
                     const activeMegamenu = navItems.find(n => n.label === hoveredItem)?.megamenu ?? [];
-                    const isIndustriesMenu = hoveredItem === "industries & solutions";
+                    const isIndustriesMenu = hoveredItem === "Industries & Solutions";
                     const columnCount = Math.min(activeMegamenu.length, 4);
                     return (
                     <motion.div
@@ -499,11 +500,22 @@ export default function Header() {
                         <div style={{ height: "80px", display: "flex", alignItems: "center", justifyContent: "flex-end", padding: "0 1.5rem", flexShrink: 0 }}>
                             <button
                                 onClick={() => setIsMenuOpen(false)}
-                                style={{ background: "none", border: "none", cursor: "pointer", padding: "0.5rem" }}
+                                style={{
+                                    background: "none",
+                                    border: "none",
+                                    cursor: "pointer",
+                                    padding: "0.5rem",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    width: "44px",
+                                    height: "44px",
+                                }}
                                 aria-label="Close menu"
                             >
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                                    <line x1="5" y1="5" x2="19" y2="19" />
+                                    <line x1="19" y1="5" x2="5" y2="19" />
                                 </svg>
                             </button>
                         </div>
