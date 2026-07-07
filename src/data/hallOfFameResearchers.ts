@@ -49,4 +49,9 @@ export const hallOfFameResearchers: HallOfFameResearcher[] = [
         linkedIn: "https://www.linkedin.com/company/trinityxploit/",
         reportCount: 1,
     },
+    {
+        name: "Team-DisclosureX",
+        linkedIn: "https://www.linkedin.com/company/cybrgen-limited/",
+        reportCount: 1,
+    },
 ];
