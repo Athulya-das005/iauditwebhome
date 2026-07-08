@@ -6,7 +6,6 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(__dirname),
   },
-  output: "export",
   reactCompiler: true,
   images: {
     unoptimized: true,

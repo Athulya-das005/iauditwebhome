@@ -1,55 +1,61 @@
-export type HallOfFameResearcher = {
-    name: string;
-    linkedIn: string;
-    reportCount: number;
-    flagIcon?: string;
-};
+import type { HallOfFameResearcher } from "@/types/hall-of-fame";
 
-/** Validated researchers with accepted reports. Sorted by report count in the UI. */
+/** Fallback list used when the API is unavailable during local development. */
+export type { HallOfFameResearcher };
+
 export const hallOfFameResearchers: HallOfFameResearcher[] = [
     {
+        id: "santhosh-kumar",
         name: "Santhosh Kumar",
         linkedIn: "https://www.linkedin.com/in/connectwithsanthosh/",
         reportCount: 3,
     },
     {
+        id: "yash-k-jare",
         name: "Yash K. Jare",
         linkedIn: "https://www.linkedin.com/in/yash-jare-3136b124b/",
         reportCount: 2,
         flagIcon: "/india-flag.png",
     },
     {
+        id: "rince-k-j",
         name: "Rince K J",
         linkedIn: "https://www.linkedin.com/in/rincekj17",
         reportCount: 1,
     },
     {
+        id: "ankit-pandey",
         name: "Ankit Pandey",
         linkedIn: "https://www.linkedin.com/in/ankit-pandey-b1697928a",
         reportCount: 1,
         flagIcon: "/india-flag.png",
     },
     {
+        id: "huntersoham",
         name: "Huntersoham",
         linkedIn: "https://www.linkedin.com/in/huntersoham",
         reportCount: 1,
     },
     {
+        id: "pathan-aslam",
         name: "Pathan Aslam",
         linkedIn: "https://www.linkedin.com/in/aslam-pathan/",
         reportCount: 1,
     },
     {
+        id: "thinesh-s",
         name: "Thinesh S",
         linkedIn: "https://www.linkedin.com/in/thineshsthinesh",
         reportCount: 1,
     },
     {
+        id: "team-trinityxploit",
         name: "Team TrinityXploit",
         linkedIn: "https://www.linkedin.com/company/trinityxploit/",
         reportCount: 1,
     },
     {
+        id: "team-disclosurex",
         name: "Team-DisclosureX",
         linkedIn: "https://www.linkedin.com/company/cybrgen-limited/",
         reportCount: 1,

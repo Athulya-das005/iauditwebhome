@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { PP_NEUE_MONTREAL } from "@/constants/typography";
-import { hallOfFameResearchers, type HallOfFameResearcher } from "@/data/hallOfFameResearchers";
+import { hallOfFameResearchers as fallbackResearchers, type HallOfFameResearcher } from "@/data/hallOfFameResearchers";
 import SecurityPageHero, { SECURITY_HERO_IMAGES } from "@/components/security/SecurityPageHero";
 import { SecurityCopyEmailButton } from "@/components/security/SecurityMailLink";
 
@@ -62,7 +62,7 @@ function ReporterTable({
 
             {sorted.map((researcher) => (
                 <div
-                    key={researcher.linkedIn}
+                    key={researcher.id ?? researcher.linkedIn}
                     style={{
                         display: "grid",
                         gridTemplateColumns: gridColumns,
@@ -149,12 +149,33 @@ function ReporterTable({
 
 export default function HallOfFameContent() {
     const [isMobile, setIsMobile] = useState(false);
+    const [researchers, setResearchers] = useState<HallOfFameResearcher[]>(fallbackResearchers);
+    const [loadingResearchers, setLoadingResearchers] = useState(true);
 
     useEffect(() => {
         const check = () => setIsMobile(window.innerWidth < 900);
         check();
         window.addEventListener("resize", check);
         return () => window.removeEventListener("resize", check);
+    }, []);
+
+    useEffect(() => {
+        async function loadResearchers() {
+            try {
+                const response = await fetch("/api/hall-of-fame", { cache: "no-store" });
+                if (!response.ok) return;
+                const data = (await response.json()) as { researchers?: HallOfFameResearcher[] };
+                if (Array.isArray(data.researchers)) {
+                    setResearchers(data.researchers);
+                }
+            } catch {
+                // Keep fallback list when API is unavailable.
+            } finally {
+                setLoadingResearchers(false);
+            }
+        }
+
+        loadResearchers();
     }, []);
 
     const linkStyle = {
@@ -228,9 +249,11 @@ export default function HallOfFameContent() {
                     Security researchers
                 </h2>
 
-                {hallOfFameResearchers.length > 0 ? (
+                {loadingResearchers ? (
+                    <p style={{ margin: 0, color: GREY_MUTED, fontSize: "0.98rem" }}>Loading researchers...</p>
+                ) : researchers.length > 0 ? (
                     <ReporterTable
-                        researchers={hallOfFameResearchers}
+                        researchers={researchers}
                         isMobile={isMobile}
                         yearLabel="Accepted reports"
                     />
