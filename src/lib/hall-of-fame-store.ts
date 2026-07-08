@@ -26,7 +26,50 @@ export function createResearcherId(name: string, existing: HallOfFameResearcher[
     return candidate;
 }
 
+function serializeResearchers(researchers: HallOfFameResearcher[]) {
+    return `${JSON.stringify(researchers, null, 2)}\n`;
+}
+
+function githubConfig() {
+    return {
+        token: process.env.GITHUB_TOKEN,
+        repo: process.env.GITHUB_REPO,
+        branch: process.env.GITHUB_BRANCH ?? "main",
+    };
+}
+
+async function readFromGitHub(): Promise<HallOfFameResearcher[] | null> {
+    const { token, repo, branch } = githubConfig();
+    if (!token || !repo) return null;
+
+    const res = await fetch(
+        `https://api.github.com/repos/${repo}/contents/${GITHUB_FILE_PATH}?ref=${branch}`,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                Accept: "application/vnd.github+json",
+                "X-GitHub-Api-Version": "2022-11-28",
+            },
+            cache: "no-store",
+        }
+    );
+
+    if (!res.ok) return null;
+
+    const file = (await res.json()) as { content?: string; encoding?: string };
+    if (file.encoding !== "base64" || !file.content) return null;
+
+    const raw = Buffer.from(file.content.replace(/\n/g, ""), "base64").toString("utf8");
+    const parsed = JSON.parse(raw) as HallOfFameResearcher[];
+    return Array.isArray(parsed) ? parsed : null;
+}
+
 export async function readHallOfFameResearchers(): Promise<HallOfFameResearcher[]> {
+    if (process.env.VERCEL) {
+        const fromGitHub = await readFromGitHub();
+        if (fromGitHub) return fromGitHub;
+    }
+
     try {
         const raw = await fs.readFile(DATA_FILE, "utf8");
         const parsed = JSON.parse(raw) as HallOfFameResearcher[];
@@ -36,17 +79,13 @@ export async function readHallOfFameResearchers(): Promise<HallOfFameResearcher[
     }
 }
 
-async function writeLocalResearchers(researchers: HallOfFameResearcher[]) {
-    const content = `${JSON.stringify(researchers, null, 2)}\n`;
+async function writeLocalResearchers(content: string) {
     await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
     await fs.writeFile(DATA_FILE, content, "utf8");
-    return content;
 }
 
 async function publishToGitHub(content: string, message: string) {
-    const token = process.env.GITHUB_TOKEN;
-    const repo = process.env.GITHUB_REPO;
-    const branch = process.env.GITHUB_BRANCH ?? "main";
+    const { token, repo, branch } = githubConfig();
 
     if (!token || !repo) {
         return { publishedToGitHub: false as const };
@@ -98,7 +137,32 @@ export async function saveHallOfFameResearchers(
     researchers: HallOfFameResearcher[],
     commitMessage: string
 ) {
-    const content = await writeLocalResearchers(researchers);
+    const content = serializeResearchers(researchers);
+
+    // Vercel/serverless filesystem is read-only — publish directly to GitHub.
+    if (process.env.VERCEL) {
+        const github = await publishToGitHub(content, commitMessage);
+        if (!github.publishedToGitHub) {
+            throw new Error(
+                "GitHub publish is not configured. Add GITHUB_TOKEN and GITHUB_REPO in Vercel environment variables."
+            );
+        }
+        return github;
+    }
+
+    try {
+        await writeLocalResearchers(content);
+    } catch (error) {
+        const code = (error as NodeJS.ErrnoException).code;
+        if (code !== "EROFS" && code !== "EPERM") {
+            throw error;
+        }
+    }
+
     const github = await publishToGitHub(content, commitMessage);
+    if (!github.publishedToGitHub) {
+        return github;
+    }
+
     return github;
 }
