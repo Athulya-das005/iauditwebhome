@@ -210,7 +210,7 @@ export default function HallOfFameContent() {
                 }}
             >
                 <p style={{ fontSize: "1rem", lineHeight: 1.8, color: GREY_BODY, margin: "0 0 1rem" }}>
-                    To continuously improve the security of our platform and protect our customers&apos; data,
+                    To continuously improve the security of our platform and protect the data of our customers,{" "}
                     iAudit Global encourages security researchers to responsibly disclose vulnerabilities in our
                     publicly accessible systems. Once a finding has been validated and remediated, researchers may
                     be acknowledged on this page with a brief description of their report and a link to their
