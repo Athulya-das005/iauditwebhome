@@ -1363,14 +1363,11 @@ export const industries: Industry[] = [
         ],
         checklistsTag: "Free facilities management audit checklists",
         checklistsHeading: "Free facilities management ISO audit checklists",
-        checklistsDescription: "Download ISO 9001, 14001 and 45001 checklists for statutory compliance, subcontractors, PTW, water, F-gas and corrective actions.",
+        checklistsDescription: "Download ISO 9001, 14001 and 45001 facilities management audit checklists to support your next building compliance audit.",
         checklistsItems: [
-            "Statutory PPM and Asset Compliance Checklist (ISO 9001)",
-            "Subcontractor Competence and Certification Checklist (ISO 9001 / 45001)",
-            "CAFM Accuracy and Site Evidence Verification Checklist (ISO 9001)",
-            "F-Gas, Water and Waste Controls Checklist (ISO 14001)",
-            "Permit to Work and High-Risk Activities Checklist (ISO 45001)",
-            "NCR, Corrective Action and Effectiveness Checklist (ISO 9001 / 45001)"
+            "ISO 9001 Facilities-Management Audit Checklist",
+            "ISO 14001 Facilities-Management Audit Checklist",
+            "ISO 45001 Facilities-Management Audit Checklist"
         ],
         ctaHeading: "Run smarter facilities management ISO audits",
         ctaDescription: "Start free or book a demo to standardise audits, evidence and actions across your estate.",

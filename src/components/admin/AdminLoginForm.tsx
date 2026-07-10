@@ -29,7 +29,7 @@ export default function AdminLoginForm() {
                 return;
             }
 
-            const next = searchParams.get("next") || "/admin/hall-of-fame";
+            const next = searchParams.get("next") || "/admin";
             router.replace(next);
             router.refresh();
         } catch {
@@ -64,10 +64,10 @@ export default function AdminLoginForm() {
                     iAudit Admin
                 </p>
                 <h1 style={{ margin: "0 0 0.5rem", fontSize: "1.6rem", color: "#111827" }}>
-                    Hall of Fame login
+                    Admin login
                 </h1>
                 <p style={{ margin: "0 0 1.5rem", color: "#6b7280", lineHeight: 1.6 }}>
-                    Sign in to add, edit, or remove security researchers on the public Hall of Fame page.
+                    Sign in to manage the iAudit website admin tools, including checklist leads and Hall of Fame.
                 </p>
 
                 <form onSubmit={handleSubmit} style={{ display: "grid", gap: "1rem" }}>

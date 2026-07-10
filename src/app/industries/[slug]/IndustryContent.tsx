@@ -8,6 +8,7 @@ import Link from 'next/link';
 import Testimonials from '@/components/Testimonials';
 import CTA from '@/components/CTA';
 import Footer from '@/components/Footer';
+import ChecklistLeadModal from '@/components/ChecklistLeadModal';
 
 import { Industry } from '../../../data/industries';
 import { aboutType } from '@/constants/typography';
@@ -15,6 +16,7 @@ import { aboutType } from '@/constants/typography';
 export default function IndustryContent({ industry }: { industry: Industry }) {
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
     const [isMobile, setIsMobile] = useState(false);
+    const [selectedChecklist, setSelectedChecklist] = useState<string | null>(null);
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -2041,6 +2043,15 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             {industry.checklistsItems.map((item: string, idx: number) => (
                                 <motion.div
                                     key={idx}
+                                    role="button"
+                                    tabIndex={0}
+                                    onClick={() => setSelectedChecklist(item)}
+                                    onKeyDown={(event) => {
+                                        if (event.key === "Enter" || event.key === " ") {
+                                            event.preventDefault();
+                                            setSelectedChecklist(item);
+                                        }
+                                    }}
                                     variants={{
                                         hidden: { opacity: 0, y: 20 },
                                         visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
@@ -2757,6 +2768,14 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
 
             <CTA backgroundColor="#F0FDF4" />
             <Footer />
+
+            <ChecklistLeadModal
+                open={Boolean(selectedChecklist)}
+                checklistName={selectedChecklist ?? ""}
+                industrySlug={industry.slug}
+                industryTitle={industry.title}
+                onClose={() => setSelectedChecklist(null)}
+            />
         </main>
     );
 }

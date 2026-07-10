@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import type { HallOfFameResearcher } from "@/types/hall-of-fame";
 
 type FormState = {
@@ -197,6 +198,12 @@ export default function HallOfFameAdminPage() {
                     </h1>
                 </div>
                 <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+                    <Link href="/admin" style={{ ...secondaryButtonStyle, textDecoration: "none", display: "inline-flex", alignItems: "center" }}>
+                        Admin home
+                    </Link>
+                    <Link href="/admin/checklist-leads" style={{ ...secondaryButtonStyle, textDecoration: "none", display: "inline-flex", alignItems: "center" }}>
+                        Checklist leads
+                    </Link>
                     <button
                         type="button"
                         onClick={handlePublish}
