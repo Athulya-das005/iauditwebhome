@@ -2065,11 +2065,32 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                         alignItems: 'center',
                                         textAlign: 'center',
                                         boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
-                                        transition: 'transform 0.2s',
-                                        cursor: 'pointer'
+                                        transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease',
+                                        cursor: 'pointer',
+                                        border: '1px solid transparent',
+                                        textDecoration: 'none',
                                     }}
-                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
-                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(-4px)';
+                                        e.currentTarget.style.boxShadow = '0 12px 28px rgba(5, 140, 66, 0.14)';
+                                        e.currentTarget.style.borderColor = '#86efac';
+                                        const title = e.currentTarget.querySelector('h3') as HTMLElement | null;
+                                        if (title) {
+                                            title.style.color = '#058c42';
+                                            title.style.textDecoration = 'underline';
+                                            title.style.textUnderlineOffset = '3px';
+                                        }
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(0)';
+                                        e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.03)';
+                                        e.currentTarget.style.borderColor = 'transparent';
+                                        const title = e.currentTarget.querySelector('h3') as HTMLElement | null;
+                                        if (title) {
+                                            title.style.color = '#334155';
+                                            title.style.textDecoration = 'none';
+                                        }
+                                    }}
                                 >
                                     {/* Animated checkmark container */}
                                     <div style={{
@@ -2096,10 +2117,21 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                         fontWeight: 600,
                                         color: '#334155',
                                         margin: 0,
-                                        lineHeight: 1.4
+                                        lineHeight: 1.4,
+                                        transition: 'color 0.2s ease, text-decoration-color 0.2s ease',
                                     }}>
                                         {item}
                                     </h3>
+                                    <span
+                                        style={{
+                                            marginTop: '1rem',
+                                            fontSize: '0.88rem',
+                                            fontWeight: 600,
+                                            color: '#058c42',
+                                        }}
+                                    >
+                                        Get checklist →
+                                    </span>
                                 </motion.div>
                             ))}
                         </motion.div>

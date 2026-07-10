@@ -1857,14 +1857,11 @@ export const industries: Industry[] = [
         ],
         checklistsTag: "Free pharmaceutical audit checklists",
         checklistsHeading: "Download ISO aligned checklists for pharmaceutical operations",
-        checklistsDescription: "Download ISO 9001, 14001 and 45001 checklists for batch records, CAPA, waste, exposure controls and follow-up.",
+        checklistsDescription: "Download ISO 9001, 14001 and 45001 pharmaceutical audit checklists to support your next compliance audit.",
         checklistsItems: [
-            "Data Integrity and Batch Record Audit Checklist (ISO 9001)",
-            "CAPA and Change Control Effectiveness Checklist (ISO 9001)",
-            "Supplier Qualification and GMP Evidence Checklist (ISO 9001)",
-            "Effluent, Solvent and F-Gas Compliance Checklist (ISO 14001)",
-            "HPAPI, Containment and Exposure Control Checklist (ISO 45001)",
-            "NCR, Incident and Effectiveness Verification Checklist (ISO 9001 and 45001)"
+            "ISO 9001 Pharma Audit Checklist",
+            "ISO 14001 Pharma Audit Checklist",
+            "ISO 45001 Pharma Audit Checklist"
         ],
         ctaHeading: "Run smarter pharmaceutical ISO audits from one system",
         ctaDescription: "Start free or book a demo to standardise audits, evidence and CAPA across every site.",
