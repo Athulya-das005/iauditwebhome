@@ -13,7 +13,39 @@
       "existingCustomer": "Yes",
       "emailOptIn": true
     },
-    "answers": [],
-    "status": "lead_captured"
+    "answers": [
+      {
+        "questionId": "q1",
+        "question": "Which best describes your organisation’s current ISO / audit maturity?",
+        "answer": "Certified and actively maintaining an audit programme"
+      },
+      {
+        "questionId": "q2",
+        "question": "How do you currently plan and schedule internal audits?",
+        "answer": "Annual plan exists, but schedules often slip"
+      },
+      {
+        "questionId": "q3",
+        "question": "How consistently do you capture audit evidence across sites or teams?",
+        "answer": "Mix of paper, Excel and email"
+      },
+      {
+        "questionId": "q4",
+        "question": "How effectively do you track findings and corrective actions to closure?",
+        "answer": "Findings are discussed, but rarely tracked formally"
+      },
+      {
+        "questionId": "q5",
+        "question": "How visible is audit performance to leadership?",
+        "answer": "Live dashboards and regular management review inputs"
+      },
+      {
+        "questionId": "q6",
+        "question": "What is your biggest gap today in self-assessment and gap analysis?",
+        "answer": "Knowing where we stand against ISO requirements"
+      }
+    ],
+    "status": "completed",
+    "scorePercent": 100
   }
 ]
