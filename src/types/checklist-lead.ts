@@ -4,11 +4,15 @@ export type ChecklistLead = {
     checklistName: string;
     industrySlug: string;
     industryTitle: string;
-    firstName: string;
-    lastName: string;
+    fullName: string;
     email: string;
-    phone: string;
-    company: string;
+    /** ISO timestamp when the checklist was emailed manually; unset = not sent yet */
+    emailSentAt?: string | null;
+    /** Legacy fields kept for older saved leads */
+    firstName?: string;
+    lastName?: string;
+    phone?: string;
+    company?: string;
     city?: string;
 };
 

@@ -127,7 +127,7 @@ export async function addChecklistLead(lead: ChecklistLead) {
         const next = [lead, ...existing.leads];
         await publishToGitHub(
             next,
-            `Add checklist lead: ${lead.firstName} ${lead.lastName} (${lead.checklistName})`,
+            `Add checklist lead: ${lead.fullName} (${lead.checklistName})`,
             existing.sha
         );
         return { lead, publishedToGitHub: true as const };
@@ -147,8 +147,87 @@ export async function addChecklistLead(lead: ChecklistLead) {
 
     const github = await publishToGitHub(
         next,
-        `Add checklist lead: ${lead.firstName} ${lead.lastName} (${lead.checklistName})`
+        `Add checklist lead: ${lead.fullName} (${lead.checklistName})`
     );
 
     return { lead, publishedToGitHub: github.publishedToGitHub };
+}
+
+export async function deleteChecklistLead(id: string) {
+    if (process.env.VERCEL) {
+        const existing = (await readFromGitHub()) ?? { leads: [] };
+        const next = existing.leads.filter((lead) => lead.id !== id);
+        if (next.length === existing.leads.length) {
+            throw new Error("Lead not found.");
+        }
+        await publishToGitHub(next, `Delete checklist lead ${id}`, existing.sha);
+        return { publishedToGitHub: true as const };
+    }
+
+    const existing = await readLocalLeads();
+    const next = existing.filter((lead) => lead.id !== id);
+    if (next.length === existing.length) {
+        throw new Error("Lead not found.");
+    }
+
+    try {
+        await writeLocalLeads(next);
+    } catch (error) {
+        const code = (error as NodeJS.ErrnoException).code;
+        if (code !== "EROFS" && code !== "EPERM") {
+            throw error;
+        }
+    }
+
+    const github = await publishToGitHub(next, `Delete checklist lead ${id}`);
+    return { publishedToGitHub: github.publishedToGitHub };
+}
+
+export async function setChecklistLeadEmailSent(id: string, emailSent: boolean) {
+    const emailSentAt = emailSent ? new Date().toISOString() : null;
+
+    if (process.env.VERCEL) {
+        const existing = (await readFromGitHub()) ?? { leads: [] };
+        const index = existing.leads.findIndex((lead) => lead.id === id);
+        if (index === -1) {
+            throw new Error("Lead not found.");
+        }
+        const next = existing.leads.map((lead) =>
+            lead.id === id ? { ...lead, emailSentAt } : lead
+        );
+        await publishToGitHub(
+            next,
+            emailSent
+                ? `Mark checklist lead emailed: ${id}`
+                : `Mark checklist lead not emailed: ${id}`,
+            existing.sha
+        );
+        return { lead: next[index], publishedToGitHub: true as const };
+    }
+
+    const existing = await readLocalLeads();
+    const index = existing.findIndex((lead) => lead.id === id);
+    if (index === -1) {
+        throw new Error("Lead not found.");
+    }
+
+    const next = existing.map((lead) => (lead.id === id ? { ...lead, emailSentAt } : lead));
+
+    try {
+        await writeLocalLeads(next);
+    } catch (error) {
+        const code = (error as NodeJS.ErrnoException).code;
+        if (code !== "EROFS" && code !== "EPERM") {
+            throw error;
+        }
+    }
+
+    const github = await publishToGitHub(
+        next,
+        emailSent
+            ? `Mark checklist lead emailed: ${id}`
+            : `Mark checklist lead not emailed: ${id}`
+    );
+
+    return { lead: next[index], publishedToGitHub: github.publishedToGitHub };
 }

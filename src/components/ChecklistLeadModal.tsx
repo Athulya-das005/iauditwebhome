@@ -11,21 +11,13 @@ type ChecklistLeadModalProps = {
 };
 
 type FormState = {
-    firstName: string;
-    lastName: string;
+    fullName: string;
     email: string;
-    phone: string;
-    company: string;
-    city: string;
 };
 
 const emptyForm: FormState = {
-    firstName: "",
-    lastName: "",
+    fullName: "",
     email: "",
-    phone: "",
-    company: "",
-    city: "",
 };
 
 export default function ChecklistLeadModal({
@@ -277,38 +269,17 @@ export default function ChecklistLeadModal({
                                 gap: "0.9rem",
                             }}
                         >
-                            <div
-                                style={{
-                                    display: "grid",
-                                    gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-                                    gap: "0.8rem",
-                                }}
-                            >
-                                <Field label="First name *">
+                            <div style={{ display: "grid", gap: "0.85rem" }}>
+                                <Field label="Full name *">
                                     <input
                                         type="text"
                                         required
-                                        autoComplete="given-name"
-                                        value={form.firstName}
+                                        autoComplete="name"
+                                        value={form.fullName}
                                         onChange={(event) =>
                                             setForm((current) => ({
                                                 ...current,
-                                                firstName: event.target.value,
-                                            }))
-                                        }
-                                        style={inputStyle}
-                                    />
-                                </Field>
-                                <Field label="Last name *">
-                                    <input
-                                        type="text"
-                                        required
-                                        autoComplete="family-name"
-                                        value={form.lastName}
-                                        onChange={(event) =>
-                                            setForm((current) => ({
-                                                ...current,
-                                                lastName: event.target.value,
+                                                fullName: event.target.value,
                                             }))
                                         }
                                         style={inputStyle}
@@ -322,44 +293,6 @@ export default function ChecklistLeadModal({
                                         value={form.email}
                                         onChange={(event) =>
                                             setForm((current) => ({ ...current, email: event.target.value }))
-                                        }
-                                        style={inputStyle}
-                                    />
-                                </Field>
-                                <Field label="Phone number *">
-                                    <input
-                                        type="tel"
-                                        required
-                                        autoComplete="tel"
-                                        value={form.phone}
-                                        onChange={(event) =>
-                                            setForm((current) => ({ ...current, phone: event.target.value }))
-                                        }
-                                        style={inputStyle}
-                                    />
-                                </Field>
-                                <Field label="Company *">
-                                    <input
-                                        type="text"
-                                        required
-                                        autoComplete="organization"
-                                        value={form.company}
-                                        onChange={(event) =>
-                                            setForm((current) => ({
-                                                ...current,
-                                                company: event.target.value,
-                                            }))
-                                        }
-                                        style={inputStyle}
-                                    />
-                                </Field>
-                                <Field label="City (optional)">
-                                    <input
-                                        type="text"
-                                        autoComplete="address-level2"
-                                        value={form.city}
-                                        onChange={(event) =>
-                                            setForm((current) => ({ ...current, city: event.target.value }))
                                         }
                                         style={inputStyle}
                                     />

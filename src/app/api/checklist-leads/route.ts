@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/auth";
-import { addChecklistLead, readChecklistLeads } from "@/lib/checklist-leads-store";
+import {
+    addChecklistLead,
+    deleteChecklistLead,
+    readChecklistLeads,
+    setChecklistLeadEmailSent,
+} from "@/lib/checklist-leads-store";
 import type { ChecklistLead } from "@/types/checklist-lead";
 
 function isValidEmail(email: string) {
@@ -16,23 +21,68 @@ export async function GET() {
     return NextResponse.json({ leads });
 }
 
+export async function DELETE(request: Request) {
+    if (!(await isAdminAuthenticated())) {
+        return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
+    }
+
+    try {
+        const body = (await request.json()) as { id?: string };
+        const id = body.id?.trim();
+        if (!id) {
+            return NextResponse.json({ error: "Lead id is required." }, { status: 400 });
+        }
+
+        await deleteChecklistLead(id);
+        return NextResponse.json({ ok: true });
+    } catch (error) {
+        const message = error instanceof Error ? error.message : "Unable to delete lead.";
+        return NextResponse.json({ error: message }, { status: 500 });
+    }
+}
+
+export async function PATCH(request: Request) {
+    if (!(await isAdminAuthenticated())) {
+        return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
+    }
+
+    try {
+        const body = (await request.json()) as { id?: string; emailSent?: boolean };
+        const id = body.id?.trim();
+        if (!id) {
+            return NextResponse.json({ error: "Lead id is required." }, { status: 400 });
+        }
+        if (typeof body.emailSent !== "boolean") {
+            return NextResponse.json({ error: "emailSent must be true or false." }, { status: 400 });
+        }
+
+        const result = await setChecklistLeadEmailSent(id, body.emailSent);
+        return NextResponse.json({ ok: true, lead: result.lead });
+    } catch (error) {
+        const message = error instanceof Error ? error.message : "Unable to update lead.";
+        return NextResponse.json({ error: message }, { status: 500 });
+    }
+}
+
 export async function POST(request: Request) {
     try {
-        const body = (await request.json()) as Partial<ChecklistLead>;
+        const body = (await request.json()) as Partial<ChecklistLead> & {
+            fullName?: string;
+            firstName?: string;
+            lastName?: string;
+        };
 
-        const firstName = body.firstName?.trim() ?? "";
-        const lastName = body.lastName?.trim() ?? "";
+        const fullName =
+            body.fullName?.trim() ||
+            [body.firstName?.trim(), body.lastName?.trim()].filter(Boolean).join(" ").trim();
         const email = body.email?.trim().toLowerCase() ?? "";
-        const phone = body.phone?.trim() ?? "";
-        const company = body.company?.trim() ?? "";
-        const city = body.city?.trim() ?? "";
         const checklistName = body.checklistName?.trim() ?? "";
         const industrySlug = body.industrySlug?.trim() ?? "";
         const industryTitle = body.industryTitle?.trim() ?? "";
 
-        if (!firstName || !lastName || !email || !phone || !company || !checklistName) {
+        if (!fullName || !email || !checklistName) {
             return NextResponse.json(
-                { error: "Please fill in all required fields." },
+                { error: "Please fill in your full name and work email." },
                 { status: 400 }
             );
         }
@@ -47,12 +97,8 @@ export async function POST(request: Request) {
             checklistName,
             industrySlug,
             industryTitle,
-            firstName,
-            lastName,
+            fullName,
             email,
-            phone,
-            company,
-            ...(city ? { city } : {}),
         };
 
         const result = await addChecklistLead(lead);
