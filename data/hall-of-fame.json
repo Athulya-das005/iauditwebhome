@@ -32,12 +32,6 @@
     "reportCount": 1
   },
   {
-    "id": "pathan-aslam",
-    "name": "Pathan Aslam",
-    "linkedIn": "https://www.linkedin.com/in/aslam-pathan/",
-    "reportCount": 1
-  },
-  {
     "id": "thinesh-s",
     "name": "Thinesh S",
     "linkedIn": "https://www.linkedin.com/in/thineshsthinesh",
@@ -66,5 +60,11 @@
     "name": "Kartik Kapil Lonkar",
     "linkedIn": "https://www.linkedin.com/in/kartik-lonkar-0347432b2",
     "reportCount": 1
+  },
+  {
+    "id": "pathan-aslam",
+    "name": "Pathan Aslam",
+    "linkedIn": "https://www.linkedin.com/in/aslam-pathan/",
+    "reportCount": 3
   }
 ]
