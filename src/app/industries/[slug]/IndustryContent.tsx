@@ -175,6 +175,25 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                         justify-content: center;
                     }
                 }
+                @media (max-width: 991px) {
+                    .case-study-grid {
+                        grid-template-columns: 1fr !important;
+                        gap: 3rem !important;
+                    }
+                    .case-study-content {
+                        align-items: center !important;
+                        text-align: center !important;
+                    }
+                    .case-study-sparkle {
+                        justify-content: center !important;
+                    }
+                }
+                @media (max-width: 640px) {
+                    .hero-btn-container {
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                }
             `}} />
             <div className="flovity-hero-container" style={{
                 width: '100%',
@@ -2441,27 +2460,6 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                         gap: '6rem',
                         alignItems: 'center'
                     }} className="case-study-grid">
-                        <style jsx>{`
-                            @media (max-width: 991px) {
-                                .case-study-grid {
-                                    grid-template-columns: 1fr !important;
-                                    gap: 3rem !important;
-                                }
-                                .case-study-content {
-                                    align-items: center !important;
-                                    text-align: center !important;
-                                }
-                                .case-study-sparkle {
-                                    justify-content: center !important;
-                                }
-                            }
-                            @media (max-width: 640px) {
-                                .hero-btn-container {
-                                    flex-direction: column;
-                                    align-items: center;
-                                }
-                            }
-                        `}</style>
                         {/* Left Column: Content */}
                         <motion.div
                             className="case-study-content"

@@ -151,110 +151,152 @@ export default function Header() {
 
     return (
         <header
-            onMouseLeave={() => setHoveredItem(null)}
             style={{
-                position: "sticky",
+                position: "fixed",
                 top: 0,
+                left: 0,
+                right: 0,
                 zIndex: 1000,
-                backgroundColor: isMenuOpen
-                    ? "#ffffff"
-                    : showGlassEffect
-                        ? "rgba(255, 255, 255, 0.72)"
-                        : "transparent",
-                backdropFilter: showGlassEffect ? "blur(12px)" : "none",
-                WebkitBackdropFilter: showGlassEffect ? "blur(12px)" : "none",
-                borderBottom: isMenuOpen || showGlassEffect
-                    ? "1px solid rgba(0, 0, 0, 0.06)"
-                    : "1px solid transparent",
-                boxShadow: showGlassEffect
-                    ? "0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05)"
-                    : "none",
-                transition: "all 0.5s ease-in-out",
+                padding: isMobile ? "0.65rem 0.7rem 0" : "0.85rem 1.15rem 0",
+                background: "transparent",
+                pointerEvents: "none",
                 fontFamily: '"Pp Neue Montreal", sans-serif',
             }}
         >
-            <div style={{
-                maxWidth: "1440px",
-                margin: "0 auto",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                height: "80px",
-                padding: isMobile ? "0 1.25rem" : "0 2rem",
-                position: "relative",
-            }}>
-                {/* Logo */}
-                <Link href="/" style={{ display: "flex", alignItems: "center", zIndex: 10 }}>
-                    <Image
-                        src="/iaudit-logo-new.png"
-                        alt="iAudit Global company logo"
-                        width={isMobile ? 100 : 130}
-                        height={isMobile ? 100 : 130}
-                        style={{ height: "auto", objectFit: "contain" }}
-                        priority
-                    />
-                </Link>
-
-                {/* Desktop Navigation */}
-                <nav className="hidden-mobile" style={{
+            <div
+                onMouseLeave={() => setHoveredItem(null)}
+                style={{
+                    width: "100%",
+                    maxWidth: "1600px",
+                    margin: "0 auto",
+                    position: "relative",
+                    pointerEvents: "auto",
+                }}
+            >
+            <div
+                style={{
                     display: "flex",
-                    gap: "1.35rem",
                     alignItems: "center",
-                    position: "absolute",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    zIndex: 10,
-                }}>
-                    {navItems.map((item) => {
-                        const isIso2026 = item.label === "ISO 14001:2026";
-                        return (
-                        <div
-                            key={item.label}
-                            onMouseEnter={() => setHoveredItem(item.megamenu ? item.label : null)}
-                            style={{ position: "relative", padding: "1rem 0", flexShrink: 0 }}
-                        >
-                            <Link
-                                href={item.href}
-                                style={{
-                                    fontWeight: isIso2026 ? 600 : 500,
-                                    fontSize: isIso2026 ? "0.78rem" : "0.88rem",
-                                    color: hoveredItem === item.label ? "#058c42" : (isIso2026 ? "#03624c" : "#111827"),
-                                    letterSpacing: isIso2026 ? "0" : "0.01em",
-                                    whiteSpace: "nowrap",
-                                    transition: "all 0.25s ease-in-out",
-                                    fontFamily: '"Pp Neue Montreal", sans-serif',
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: "4px"
-                                }}
+                    justifyContent: "space-between",
+                    height: isMobile ? "80px" : "90px",
+                    padding: isMobile ? "0 0.9rem 0 1.4rem" : "0 0.85rem 0 1.65rem",
+                    position: "relative",
+                    backgroundColor: "rgba(255, 255, 255, 0.78)",
+                    backdropFilter: "blur(20px) saturate(180%)",
+                    WebkitBackdropFilter: "blur(20px) saturate(180%)",
+                    border: "1px solid rgba(5, 140, 66, 0.22)",
+                    borderRadius: "18px",
+                    boxShadow: showGlassEffect
+                        ? "0 14px 40px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(15, 23, 42, 0.06)"
+                        : "0 8px 28px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04)",
+                    transition: "box-shadow 0.35s ease, background-color 0.35s ease",
+                    gap: "1rem",
+                }}
+            >
+                {/* Left: Logo + menu (HeyGen-style) */}
+                <div
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: isMobile ? "0" : "1.15rem",
+                        minWidth: 0,
+                        flex: "1 1 auto",
+                        zIndex: 10,
+                    }}
+                >
+                    <Link href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
+                        <Image
+                            src="/iaudit-logo-nav.png"
+                            alt="iAudit Global company logo"
+                            width={271}
+                            height={200}
+                            style={{
+                                height: isMobile ? "38px" : "46px",
+                                width: "auto",
+                                objectFit: "contain",
+                                display: "block",
+                            }}
+                            priority
+                        />
+                    </Link>
+
+                    <div
+                        className="hidden-mobile"
+                        aria-hidden
+                        style={{
+                            width: "1px",
+                            height: "28px",
+                            backgroundColor: "rgba(15, 23, 42, 0.12)",
+                            flexShrink: 0,
+                        }}
+                    />
+
+                    {/* Desktop Navigation — left-aligned after logo */}
+                    <nav
+                        className="hidden-mobile"
+                        style={{
+                            display: "flex",
+                            gap: "1.55rem",
+                            alignItems: "center",
+                            minWidth: 0,
+                        }}
+                    >
+                        {navItems.map((item) => {
+                            const isIso2026 = item.label === "ISO 14001:2026";
+                            return (
+                            <div
+                                key={item.label}
+                                onMouseEnter={() => setHoveredItem(item.megamenu ? item.label : null)}
+                                style={{ position: "relative", padding: "1rem 0", flexShrink: 0 }}
                             >
-                                {item.label}
-                                {item.megamenu && (
-                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{
-                                        transition: "transform 0.3s",
-                                        transform: hoveredItem === item.label ? "rotate(180deg)" : "rotate(0deg)"
-                                    }}>
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
-                                )}
-                            </Link>
-                        </div>
-                        );
-                    })}
-                </nav>
+                                <Link
+                                    href={item.href}
+                                    style={{
+                                        fontWeight: 500,
+                                        fontSize: isIso2026 ? "0.875rem" : "0.9375rem",
+                                        color: hoveredItem === item.label ? "#058c42" : (isIso2026 ? "#03624c" : "#1f2937"),
+                                        letterSpacing: "-0.01em",
+                                        whiteSpace: "nowrap",
+                                        transition: "color 0.2s ease",
+                                        fontFamily: '"Pp Neue Montreal", sans-serif',
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "5px",
+                                    }}
+                                >
+                                    {item.label}
+                                    {item.megamenu && (
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{
+                                            transition: "transform 0.3s",
+                                            transform: hoveredItem === item.label ? "rotate(180deg)" : "rotate(0deg)"
+                                        }}>
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    )}
+                                </Link>
+                            </div>
+                            );
+                        })}
+                    </nav>
+                </div>
 
                 {/* Right Actions (Desktop) */}
-                <div className="hidden-mobile" style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                <div className="hidden-mobile" style={{ display: "flex", alignItems: "center", gap: "0.85rem", flexShrink: 0, marginLeft: "auto" }}>
                     <Link
                         href="https://apps.iaudit.global/login"
                         className="btn-animate"
                         style={{
                             padding: "0.55rem 1.2rem",
-                            borderRadius: "6px",
+                            borderRadius: "9999px",
                             fontWeight: 500,
-                            fontSize: "0.85rem",
+                            fontSize: "0.88rem",
                             fontFamily: '"Pp Neue Montreal", sans-serif',
                             letterSpacing: "0.01em",
+                            backgroundColor: "#058c42",
+                            border: "none",
+                            boxShadow: "none",
+                            isolation: "isolate",
+                            transform: "translateZ(0)",
                         }}
                     >
                         <span>Login</span>
@@ -266,12 +308,17 @@ export default function Header() {
                         style={{
                             gap: "0.4rem",
                             padding: "0.55rem 1.35rem",
-                            borderRadius: "6px",
+                            borderRadius: "9999px",
                             fontWeight: 500,
-                            fontSize: "0.85rem",
+                            fontSize: "0.88rem",
                             fontFamily: '"Pp Neue Montreal", sans-serif',
                             letterSpacing: "0.01em",
                             willChange: "transform",
+                            backgroundColor: "#058c42",
+                            border: "none",
+                            boxShadow: "none",
+                            isolation: "isolate",
+                            transform: "translateZ(0)",
                         }}
                     >
                         <span>
@@ -298,6 +345,7 @@ export default function Header() {
                         zIndex: 1100,
                         position: "relative",
                         visibility: isMenuOpen ? "hidden" : "visible",
+                        flexShrink: 0,
                     }}
                 >
                     <div style={{
@@ -323,7 +371,7 @@ export default function Header() {
                 </button>
             </div>
 
-            {/* Desktop Megamenu Popup - Full Width */}
+            {/* Desktop Megamenu Popup */}
             <AnimatePresence>
                 {hoveredItem && navItems.find(n => n.label === hoveredItem)?.megamenu && (() => {
                     const activeMegamenu = navItems.find(n => n.label === hoveredItem)?.megamenu ?? [];
@@ -331,24 +379,26 @@ export default function Header() {
                     const columnCount = Math.min(activeMegamenu.length, 4);
                     return (
                     <motion.div
-                        initial={{ opacity: 0, y: 0 }}
+                        initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.25, ease: "easeOut" }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{ duration: 0.22, ease: "easeOut" }}
                         style={{
                             position: "absolute",
-                            top: "80px",
+                            top: "calc(100% + 0.65rem)",
                             left: 0,
-                            width: "100%",
+                            right: 0,
                             backgroundColor: isIndustriesMenu
-                                ? "rgba(244, 244, 245, 0.88)"
-                                : "rgba(255, 255, 255, 0.88)",
+                                ? "rgba(244, 244, 245, 0.98)"
+                                : "rgba(255, 255, 255, 0.98)",
                             backdropFilter: "blur(16px)",
                             WebkitBackdropFilter: "blur(16px)",
-                            borderBottom: "1px solid rgba(0,0,0,0.06)",
-                            boxShadow: "0 20px 40px rgba(0,0,0,0.12)",
-                            padding: isIndustriesMenu ? "2rem 0 2.25rem" : "3rem 0",
+                            border: "1px solid rgba(15, 23, 42, 0.08)",
+                            borderRadius: "28px",
+                            boxShadow: "0 24px 48px rgba(15, 23, 42, 0.14)",
+                            padding: isIndustriesMenu ? "2rem 0 2.25rem" : "2.5rem 0",
                             zIndex: 5,
+                            overflow: "hidden",
                         }}
                     >
                         <div style={{
@@ -474,6 +524,7 @@ export default function Header() {
                     );
                 })()}
             </AnimatePresence>
+            </div>
 
             {/* Mobile Menu Drawer */}
             <AnimatePresence>
@@ -494,6 +545,7 @@ export default function Header() {
                             display: "flex",
                             flexDirection: "column",
                             boxShadow: "-10px 0 30px rgba(0,0,0,0.1)",
+                            pointerEvents: "auto",
                         }}
                     >
                         {/* Close button row */}
