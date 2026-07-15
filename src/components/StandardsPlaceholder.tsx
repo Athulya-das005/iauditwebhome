@@ -17,7 +17,10 @@ export default function StandardsPlaceholder({
                         radial-gradient(ellipse 60% 50% at 80% 0%, rgba(0,77,64,0.10) 0%, transparent 70%),
                         #fafffe
                     `,
-                    padding: "100px 2rem 80px",
+                    paddingTop: "var(--page-top-offset)",
+                    paddingLeft: "2rem",
+                    paddingRight: "2rem",
+                    paddingBottom: "80px",
                     textAlign: "center",
                     fontFamily: PP_NEUE_MONTREAL,
                     minHeight: "50vh",

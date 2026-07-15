@@ -113,7 +113,10 @@ export default function ComparisonPage() {
                         radial-gradient(ellipse 60% 50% at 80% 0%, rgba(0,77,64,0.10) 0%, transparent 70%),
                         #fafffe
                     `,
-                    padding: isMobile ? "60px 1.25rem 40px" : "100px 2rem 80px",
+                    paddingTop: "var(--page-top-offset)",
+                    paddingLeft: isMobile ? "1.25rem" : "2rem",
+                    paddingRight: isMobile ? "1.25rem" : "2rem",
+                    paddingBottom: isMobile ? "40px" : "80px",
                     textAlign: "center",
                     fontFamily: PP_NEUE_MONTREAL,
                 }}

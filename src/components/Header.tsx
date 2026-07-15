@@ -184,7 +184,7 @@ export default function Header() {
                     backgroundColor: "rgba(255, 255, 255, 0.78)",
                     backdropFilter: "blur(20px) saturate(180%)",
                     WebkitBackdropFilter: "blur(20px) saturate(180%)",
-                    border: "1px solid rgba(5, 140, 66, 0.22)",
+                    border: "1px solid #058c42",
                     borderRadius: "18px",
                     boxShadow: showGlassEffect
                         ? "0 14px 40px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(15, 23, 42, 0.06)"

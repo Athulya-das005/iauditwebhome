@@ -37,7 +37,7 @@ export default function SecurityPageHero({
     return (
         <div
             style={{
-                marginTop: "80px",
+                marginTop: "var(--page-top-offset)",
                 display: "grid",
                 gridTemplateColumns: isMobile ? "1fr" : "1.05fr 0.95fr",
                 minHeight: isMobile ? "auto" : "400px",

@@ -18,7 +18,7 @@ export default function PdcaFlovityHero() {
             <style
                 dangerouslySetInnerHTML={{
                     __html: `
-                .pdca-hero-container { padding: 2rem 2rem; }
+                .pdca-hero-container { padding: var(--page-top-offset) 2rem 2.5rem; }
                 .pdca-hero-left { text-align: left; align-items: flex-start; display: flex; flex-direction: column; }
                 .pdca-hero-right { transform: scale(0.82); transform-origin: center right; min-height: 420px; }
                 .pdca-hero-title { font-size: clamp(2rem, 3.5vw, 2.85rem); letter-spacing: -0.02em; }
@@ -26,7 +26,7 @@ export default function PdcaFlovityHero() {
                     .pdca-hero-right { transform: scale(0.72); transform-origin: center center; min-height: 380px; }
                 }
                 @media (max-width: 768px) {
-                    .pdca-hero-container { padding: 7rem 1.25rem 2.5rem; }
+                    .pdca-hero-container { padding: var(--page-top-offset) 1.25rem 2.5rem; }
                     .pdca-hero-left { text-align: center; align-items: center; width: 100%; }
                     .pdca-hero-btn-row { justify-content: center !important; }
                     .pdca-hero-title { font-size: 2.15rem; line-height: 1.12; }

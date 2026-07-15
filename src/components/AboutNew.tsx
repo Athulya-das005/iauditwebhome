@@ -43,10 +43,11 @@ export default function AboutNew() {
         <section
             id="about-new"
             style={{
+                paddingTop: "var(--page-top-offset)",
+                paddingBottom: isMobile ? "1rem" : "2rem",
                 background: "#ffffff",
                 overflow: "hidden",
                 fontFamily: '"Pp Neue Montreal", sans-serif',
-                padding: isMobile ? "5rem 0 1rem" : "7rem 0 2rem",
             }}
         >
             {/* SVG Gradients for Card 1 */}

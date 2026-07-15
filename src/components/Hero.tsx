@@ -60,7 +60,7 @@ export default function Hero() {
                 radial-gradient(ellipse 50% 60% at 0% 0%, rgba(0,166,81,0.15) 0%, transparent 100%),
                 radial-gradient(ellipse 50% 60% at 100% 0%, rgba(0,166,81,0.15) 0%, transparent 100%)
             `,
-            paddingTop: isMobile ? "60px" : "100px",
+            paddingTop: "var(--page-top-offset)",
             paddingBottom: "0",
             textAlign: "center",
             overflow: "hidden",
@@ -77,7 +77,7 @@ export default function Hero() {
                 margin: "0 auto",
                 paddingLeft: isMobile ? "1.25rem" : "2rem",
                 paddingRight: isMobile ? "1.25rem" : "2rem",
-                paddingTop: isMobile ? "24px" : "44px",
+                paddingTop: isMobile ? "1.5rem" : "2.25rem",
                 paddingBottom: "0",
                 display: "flex",
                 flexDirection: "column",

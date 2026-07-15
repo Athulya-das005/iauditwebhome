@@ -196,7 +196,12 @@ export default function BlogPage() {
     return (
         <div style={{ backgroundColor: "#f8f9fa", minHeight: "100vh", fontFamily: '"Pp Neue Montreal", sans-serif' }}>
             {/* Hero Section */}
-            <section style={{ padding: isMobile ? "5.5rem 0 2.5rem" : "8rem 0 4rem", backgroundColor: "#f8f9fa", textAlign: "center" }}>
+            <section style={{
+                paddingTop: "var(--page-top-offset)",
+                paddingBottom: isMobile ? "2.5rem" : "4rem",
+                backgroundColor: "#f8f9fa",
+                textAlign: "center",
+            }}>
                 <div style={{ maxWidth: "1260px", margin: "0 auto", padding: isMobile ? "0 1.25rem" : "0 2rem" }}>
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}

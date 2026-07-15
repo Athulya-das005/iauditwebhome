@@ -59,7 +59,7 @@ export default function ISO14001() {
                     radial-gradient(ellipse 50% 60% at 0% 0%, rgba(0,166,81,0.15) 0%, transparent 100%),
                     radial-gradient(ellipse 50% 60% at 100% 0%, rgba(0,166,81,0.15) 0%, transparent 100%)
                 `,
-                paddingTop: isMobile ? "60px" : "100px",
+                paddingTop: "var(--page-top-offset)",
                 paddingBottom: isMobile ? "40px" : "80px",
                 textAlign: "center",
                 display: "flex",

@@ -113,7 +113,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
             {/* New Flovity-Inspired Hero */}
             <style dangerouslySetInnerHTML={{__html: `
                 .flovity-hero-container {
-                    padding: 2rem 2rem;
+                    padding: var(--page-top-offset) 2rem 2rem;
                 }
                 .flovity-hero-left {
                     text-align: left;
@@ -138,7 +138,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                 }
                 @media (max-width: 768px) {
                     .flovity-hero-container {
-                        padding: 7rem 1.5rem 2rem; /* Added bottom padding, kept top for header offset */
+                        padding: var(--page-top-offset) 1.5rem 2rem;
                     }
                     .flovity-hero-left {
                         text-align: center;

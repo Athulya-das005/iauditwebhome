@@ -26,7 +26,10 @@ export default function IndustriesDirectory() {
                         radial-gradient(ellipse 60% 50% at 80% 0%, rgba(0,77,64,0.10) 0%, transparent 70%),
                         #fafffe
                     `,
-                    padding: isMobile ? "60px 1.25rem 48px" : "100px 2rem 72px",
+                    paddingTop: "var(--page-top-offset)",
+                    paddingLeft: isMobile ? "1.25rem" : "2rem",
+                    paddingRight: isMobile ? "1.25rem" : "2rem",
+                    paddingBottom: isMobile ? "48px" : "72px",
                     textAlign: "center",
                     fontFamily: PP_NEUE_MONTREAL,
                 }}

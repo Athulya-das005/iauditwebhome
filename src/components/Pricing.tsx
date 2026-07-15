@@ -100,7 +100,8 @@ export default function Pricing({ isPageHero = false }: { isPageHero?: boolean }
 
     return (
         <section id="pricing" style={{
-            padding: isMobile ? "3.5rem 0" : "5rem 0",
+            paddingTop: isPageHero ? "var(--page-top-offset)" : (isMobile ? "3.5rem" : "5rem"),
+            paddingBottom: isMobile ? "3.5rem" : "5rem",
             backgroundColor: "#fff",
             fontFamily: '"Pp Neue Montreal", sans-serif',
             overflow: "hidden"

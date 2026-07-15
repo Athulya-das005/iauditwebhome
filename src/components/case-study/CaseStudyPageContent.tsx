@@ -15,7 +15,7 @@ const HEADER_BG = "#f1f6f3";
 const GREEN_PILL_BG = "#e3f0ea";
 const GREEN_PILL_TEXT = "#0d4a38";
 const BODY_BG = "#f9f7f4";
-const HEADER_HEIGHT = 80;
+const HEADER_HEIGHT = 110;
 const SUBNAV_HEIGHT = 50;
 
 const tocItems = [
@@ -297,7 +297,13 @@ export default function CaseStudyPageContent() {
     return (
         <div style={{ fontFamily: PP_NEUE_MONTREAL, background: "#fff" }}>
             {/* Hero header */}
-            <section style={{ background: HEADER_BG, padding: isMobile ? "2rem 1.25rem 2.5rem" : "2.5rem 2rem 3.5rem" }}>
+            <section style={{
+                background: HEADER_BG,
+                paddingTop: "var(--page-top-offset)",
+                paddingLeft: isMobile ? "1.25rem" : "2rem",
+                paddingRight: isMobile ? "1.25rem" : "2rem",
+                paddingBottom: isMobile ? "2.5rem" : "3.5rem",
+            }}>
                 <div style={{ maxWidth: "1180px", margin: "0 auto" }}>
                     <nav style={{ fontSize: "0.88rem", color: "#6b7280", marginBottom: "1.5rem" }}>
                         <Link href="/case-studies" style={{ color: "#6b7280", textDecoration: "none" }}>

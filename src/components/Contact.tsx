@@ -96,7 +96,8 @@ export default function Contact() {
 
     return (
         <section id="contact" style={{
-            padding: isMobile ? "4rem 0" : "6rem 0",
+            paddingTop: "var(--page-top-offset)",
+            paddingBottom: isMobile ? "4rem" : "6rem",
             backgroundColor: "#fff",
             fontFamily: '"Pp Neue Montreal", sans-serif',
             overflow: "hidden"
