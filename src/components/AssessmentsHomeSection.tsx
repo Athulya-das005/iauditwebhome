@@ -322,7 +322,7 @@ export default function AssessmentsHomeSection() {
                     }}
                 >
                     <Link
-                        href="/iso-audit-assessments"
+                        href="/iso-audit-assessments/self-assessment"
                         className="btn-animate"
                         style={{
                             padding: "0.85rem 1.85rem",
@@ -335,7 +335,7 @@ export default function AssessmentsHomeSection() {
                         }}
                     >
                         <span style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-                            Explore all assessments
+                            Start free assessment
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="18"

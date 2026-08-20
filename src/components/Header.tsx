@@ -86,6 +86,29 @@ export default function Header() {
 
     const [hoveredItem, setHoveredItem] = useState<string | null>(null);
     const [expandedItem, setExpandedItem] = useState<string | null>(null);
+    const closeMenuTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    const openMegamenu = (label: string | null) => {
+        if (closeMenuTimeoutRef.current) {
+            clearTimeout(closeMenuTimeoutRef.current);
+            closeMenuTimeoutRef.current = null;
+        }
+        setHoveredItem(label);
+    };
+
+    const scheduleCloseMegamenu = () => {
+        if (closeMenuTimeoutRef.current) clearTimeout(closeMenuTimeoutRef.current);
+        closeMenuTimeoutRef.current = setTimeout(() => {
+            setHoveredItem(null);
+            closeMenuTimeoutRef.current = null;
+        }, 180);
+    };
+
+    useEffect(() => {
+        return () => {
+            if (closeMenuTimeoutRef.current) clearTimeout(closeMenuTimeoutRef.current);
+        };
+    }, []);
 
     interface NavItem {
         label: string;
@@ -182,7 +205,13 @@ export default function Header() {
         >
             <div
                 className={`site-header-nav${isCondensed ? " is-condensed" : ""}`}
-                onMouseLeave={() => setHoveredItem(null)}
+                onMouseEnter={() => {
+                    if (closeMenuTimeoutRef.current) {
+                        clearTimeout(closeMenuTimeoutRef.current);
+                        closeMenuTimeoutRef.current = null;
+                    }
+                }}
+                onMouseLeave={scheduleCloseMegamenu}
                 style={{ position: "relative" }}
             >
             <div className="site-header-nav-inner">
@@ -221,7 +250,7 @@ export default function Header() {
                         return (
                         <div
                             key={item.label}
-                            onMouseEnter={() => setHoveredItem(item.megamenu ? item.label : null)}
+                            onMouseEnter={() => openMegamenu(item.megamenu ? item.label : null)}
                             style={{ position: "relative", padding: "1rem 0", flexShrink: 0 }}
                         >
                             <Link
@@ -366,11 +395,20 @@ export default function Header() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.22, ease: "easeOut" }}
+                        onMouseEnter={() => openMegamenu(hoveredItem)}
                         style={{
                             position: "absolute",
-                            top: "calc(100% + 0.65rem)",
+                            top: "100%",
                             left: 0,
                             right: 0,
+                            /* Keep a continuous hover bridge so the cursor can reach the panel */
+                            paddingTop: "0.75rem",
+                            backgroundColor: "transparent",
+                            zIndex: 5,
+                        }}
+                    >
+                    <div
+                        style={{
                             backgroundColor: isIndustriesMenu
                                 ? "rgba(244, 244, 245, 0.98)"
                                 : "rgba(255, 255, 255, 0.98)",
@@ -380,7 +418,6 @@ export default function Header() {
                             borderRadius: "28px",
                             boxShadow: "0 24px 48px rgba(15, 23, 42, 0.14)",
                             padding: isIndustriesMenu ? "2rem 0 2.25rem" : "2.5rem 0",
-                            zIndex: 5,
                             overflow: "hidden",
                         }}
                     >
@@ -503,6 +540,7 @@ export default function Header() {
                                 </div>
                             ))}
                         </div>
+                    </div>
                     </motion.div>
                     );
                 })()}

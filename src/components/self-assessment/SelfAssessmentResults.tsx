@@ -173,7 +173,7 @@ export default function SelfAssessmentResults({ session, questionsByClause, isMo
         <div style={{ minHeight: "100vh", background: "#f4f5f7", fontFamily: font, padding: isMobile ? "calc(var(--page-top-offset) + 0.6rem) 1rem 3rem" : "calc(var(--page-top-offset) + 0.8rem) 1.75rem 4rem" }}>
             <div style={{ maxWidth: "1040px", margin: "0 auto" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "0.75rem", marginBottom: "1rem", flexWrap: "wrap" }}>
-                    <Link href="/iso-audit-assessments" style={{ color: "#4b5563", textDecoration: "none", fontWeight: 600 }}>
+                    <Link href="/iso-audit-assessments/self-assessment" style={{ color: "#4b5563", textDecoration: "none", fontWeight: 600 }}>
                         ← Back to List
                     </Link>
                     <div style={{ display: "flex", gap: "0.55rem" }}>

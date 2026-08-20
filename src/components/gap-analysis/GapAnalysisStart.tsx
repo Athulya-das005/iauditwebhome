@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
+import { useEffect, useState, type CSSProperties, type ComponentType, type FormEvent, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -45,12 +45,18 @@ export const selfAssessmentStartConfig: AssessmentStartConfig = {
     title: "ISO Self Assessment",
     description:
         "Enter your details to start a fast self assessment against ISO 9001, 14001 or 45001. Answer Yes or No clause by clause, add your own questions, and track progress as you go.",
-    cta: "Start self assessment",
+    cta: "Start free assessment",
     image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1600&q=80",
     imageAlt: "ISO Self Assessment",
 };
 
-export default function GapAnalysisStart({ config = gapConfig }: { config?: AssessmentStartConfig }) {
+export default function GapAnalysisStart({
+    config = gapConfig,
+    Landing,
+}: {
+    config?: AssessmentStartConfig;
+    Landing?: ComponentType<{ onStart: () => void }>;
+}) {
     const router = useRouter();
     const [open, setOpen] = useState(false);
     const [firstName, setFirstName] = useState("");
@@ -151,43 +157,49 @@ export default function GapAnalysisStart({ config = gapConfig }: { config?: Asse
 
     return (
         <div style={{ minHeight: "100vh", background: "#f7f8f5", fontFamily: font }}>
-            <div style={{ position: "relative", width: "100%", height: "42vh", minHeight: "280px", maxHeight: "460px", overflow: "hidden", paddingTop: "var(--page-top-offset)" }}>
-                <Image
-                    src={config.image}
-                    alt={config.imageAlt}
-                    fill
-                    priority
-                    sizes="100vw"
-                    quality={90}
-                    style={{ objectFit: "cover" }}
-                />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(4,28,18,0.15), rgba(4,28,18,0.72))" }} />
-                <div style={{ position: "absolute", left: "1.5rem", right: "1.5rem", bottom: "1.75rem", maxWidth: "1180px", margin: "0 auto" }}>
-                    <p style={{ margin: "0 0 0.5rem", color: "#9fe3c0", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", fontSize: "0.75rem" }}>
-                        {config.eyebrow}
-                    </p>
-                    <h1 style={{ margin: 0, color: "#fff", fontSize: "2.4rem", letterSpacing: "-0.03em" }}>{config.title}</h1>
-                </div>
-            </div>
+            {Landing ? (
+                <Landing onStart={() => setOpen(true)} />
+            ) : (
+                <>
+                    <div style={{ position: "relative", width: "100%", height: "42vh", minHeight: "280px", maxHeight: "460px", overflow: "hidden", paddingTop: "var(--page-top-offset)" }}>
+                        <Image
+                            src={config.image}
+                            alt={config.imageAlt}
+                            fill
+                            priority
+                            sizes="100vw"
+                            quality={90}
+                            style={{ objectFit: "cover" }}
+                        />
+                        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(4,28,18,0.15), rgba(4,28,18,0.72))" }} />
+                        <div style={{ position: "absolute", left: "1.5rem", right: "1.5rem", bottom: "1.75rem", maxWidth: "1180px", margin: "0 auto" }}>
+                            <p style={{ margin: "0 0 0.5rem", color: "#9fe3c0", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", fontSize: "0.75rem" }}>
+                                {config.eyebrow}
+                            </p>
+                            <h1 style={{ margin: 0, color: "#fff", fontSize: "2.4rem", letterSpacing: "-0.03em" }}>{config.title}</h1>
+                        </div>
+                    </div>
 
-            <div style={{ maxWidth: "820px", margin: "0 auto", padding: "2.5rem 1.25rem 5rem" }}>
-                <Link href="/iso-audit-assessments" style={{ color: "#006644", textDecoration: "none", fontWeight: 600, fontSize: "0.88rem" }}>
-                    ← Back to assessments
-                </Link>
-                <p style={{ margin: "1.25rem 0 1.75rem", color: "#4b5563", fontSize: "1.05rem", lineHeight: 1.8 }}>
-                    {config.description}
-                </p>
-                <div style={{ background: "#fff", border: "1px solid #e6ebe4", borderRadius: "1.2rem", padding: "1.5rem 1.4rem", boxShadow: "0 12px 32px rgba(16,47,32,0.06)" }}>
-                    <p style={{ margin: "0 0 0.35rem", fontWeight: 700, color: "#143528", fontSize: "1.15rem" }}>Request your report</p>
-                    <p style={{ margin: "0 0 1.1rem", color: "#6b7280", fontSize: "0.95rem", lineHeight: 1.65 }}>
-                        Complete a short form, then start the assessment. We will also save your details so we can send the report.
-                    </p>
-                    <button type="button" onClick={() => setOpen(true)} style={primaryBtn}>
-                        {config.cta}
-                    </button>
-                </div>
-            </div>
-            <Footer />
+                    <div style={{ maxWidth: "820px", margin: "0 auto", padding: "2.5rem 1.25rem 5rem" }}>
+                        <Link href="/iso-audit-assessments/self-assessment" style={{ color: "#006644", textDecoration: "none", fontWeight: 600, fontSize: "0.88rem" }}>
+                            ← Back to self assessment
+                        </Link>
+                        <p style={{ margin: "1.25rem 0 1.75rem", color: "#4b5563", fontSize: "1.05rem", lineHeight: 1.8 }}>
+                            {config.description}
+                        </p>
+                        <div style={{ background: "#fff", border: "1px solid #e6ebe4", borderRadius: "1.2rem", padding: "1.5rem 1.4rem", boxShadow: "0 12px 32px rgba(16,47,32,0.06)" }}>
+                            <p style={{ margin: "0 0 0.35rem", fontWeight: 700, color: "#143528", fontSize: "1.15rem" }}>Request your report</p>
+                            <p style={{ margin: "0 0 1.1rem", color: "#6b7280", fontSize: "0.95rem", lineHeight: 1.65 }}>
+                                Complete a short form, then start the assessment. We will also save your details so we can send the report.
+                            </p>
+                            <button type="button" onClick={() => setOpen(true)} style={primaryBtn}>
+                                {config.cta}
+                            </button>
+                        </div>
+                    </div>
+                    <Footer />
+                </>
+            )}
 
             {open ? (
                 <div
@@ -201,9 +213,9 @@ export default function GapAnalysisStart({ config = gapConfig }: { config?: Asse
                         zIndex: 2200,
                         background: "rgba(8, 18, 14, 0.62)",
                         display: "flex",
-                        alignItems: "flex-start",
+                        alignItems: "center",
                         justifyContent: "center",
-                        padding: "calc(var(--page-top-offset) + 0.5rem) 1.25rem 1.5rem",
+                        padding: isMobile ? "1rem" : "1.5rem",
                         overflow: "auto",
                     }}
                 >
@@ -212,17 +224,19 @@ export default function GapAnalysisStart({ config = gapConfig }: { config?: Asse
                         style={{
                             width: "100%",
                             maxWidth: "920px",
+                            maxHeight: isMobile ? "calc(100dvh - 2rem)" : "calc(100dvh - 3rem)",
+                            overflowY: "auto",
                             background: "#fff",
                             borderRadius: "1.15rem",
                             padding: isMobile ? "1.15rem 1.1rem 1.15rem" : "1.35rem 1.6rem 1.3rem",
                             boxShadow: "0 24px 60px rgba(0,0,0,0.22)",
-                            marginBottom: "1rem",
+                            margin: "auto",
                         }}
                     >
-                        <h2 id="gap-modal-title" style={{ margin: "0 0 1rem", color: "#4b5563", fontSize: "1.12rem", fontWeight: 600, lineHeight: 1.4 }}>
+                        <h2 id="gap-modal-title" style={{ margin: "0 0 1rem", color: "#4b5563", fontSize: isMobile ? "1rem" : "1.12rem", fontWeight: 600, lineHeight: 1.4 }}>
                             Enter your details below to start the scorecard
                         </h2>
-                        <form onSubmit={handleStart} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "0.7rem 1rem" }}>
+                        <form onSubmit={handleStart} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "0.85rem" : "0.7rem 1rem" }}>
                             <Field label="First name*">
                                 <input required value={firstName} onChange={(e) => setFirstName(e.target.value)} style={inputStyle} />
                             </Field>
@@ -336,14 +350,15 @@ function Field({ label, children }: { label: string; children: ReactNode }) {
 
 const inputStyle: CSSProperties = {
     width: "100%",
-    padding: "0.65rem 0.85rem",
+    padding: "0.75rem 0.85rem",
     borderRadius: "0.65rem",
-    border: "1px solid #d1d5db",
-    fontSize: "0.95rem",
+    border: "1px solid #e5e7eb",
+    fontSize: "16px",
     fontFamily: font,
-    boxSizing: "border-box",
-    background: "#fff",
     color: "#111827",
+    background: "#fff",
+    boxSizing: "border-box",
+    minHeight: "44px",
 };
 
 const primaryBtn: CSSProperties = {
