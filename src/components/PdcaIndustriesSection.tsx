@@ -13,7 +13,7 @@ const industryItems = [
         description:
             "Use the PDCA cycle to find root causes for defects and verify process controls are working.",
         slug: "manufacturing-iso-audit-software",
-        bgImage: "/images/manufacturing-bg.jpg",
+        bgImage: "/images/manufacturing-bg.webp",
         accent: "#006644",
     },
     {
@@ -21,7 +21,7 @@ const industryItems = [
         description:
             "Apply the PDCA cycle to improve weld quality, material traceability, and critical safety controls.",
         slug: "basic-metals-and-fabrication-iso-audit-software",
-        bgImage: "/images/metal-fabrication-bg.jpg",
+        bgImage: "/images/metal-fabrication-bg.webp",
         accent: "#0d9488",
     },
     {
@@ -29,7 +29,7 @@ const industryItems = [
         description:
             "Use PDCA to apply lessons learned from one project to the next, reducing on-site risk.",
         slug: "construction-iso-audit-software",
-        bgImage: "/images/construction-bg.jpg",
+        bgImage: "/images/construction-bg.webp",
         accent: "#059669",
     },
     {
@@ -37,7 +37,7 @@ const industryItems = [
         description:
             "Standardise service delivery and drive operational efficiency with a consistent, data-backed PDCA workflow.",
         slug: "transport-and-logistics-iso-audit-software",
-        bgImage: "/images/logistics-bg.jpg",
+        bgImage: "/images/logistics-bg.webp",
         accent: "#047857",
     },
     {
@@ -45,7 +45,7 @@ const industryItems = [
         description:
             "Improve patient safety and clinical outcomes by applying a structured PDCA process to audits.",
         slug: "healthcare-compliance-software",
-        bgImage: "/images/healthcare-bg.png",
+        bgImage: "/images/healthcare-bg.webp",
         accent: "#006644",
     },
     {
@@ -53,7 +53,7 @@ const industryItems = [
         description:
             "Guarantee service quality and meet technical specifications with a PDCA cycle verifying every step.",
         slug: "engineering-iso-audit-software",
-        bgImage: "/images/engineering-bg.jpg",
+        bgImage: "/images/engineering-bg.webp",
         accent: "#0f766e",
     },
 ];
@@ -297,6 +297,7 @@ export default function PdcaIndustriesSection() {
                         marginTop: isMobile ? "2.5rem" : "3rem",
                     }}
                 >
+                    {/* Offline until /industries directory is live
                     <Link
                         href="/industries"
                         className="btn-outline-animate"
@@ -332,6 +333,7 @@ export default function PdcaIndustriesSection() {
                             </svg>
                         </span>
                     </Link>
+                    */}
                 </motion.div>
             </div>
         </section>

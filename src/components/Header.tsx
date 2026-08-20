@@ -50,10 +50,34 @@ export default function Header() {
     }, []);
 
     useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.scrollY > 150);
-        handleScroll();
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
+        // Open Design–style condense with hysteresis (avoids jitter near threshold)
+        const CONDENSE_ON = 64;
+        const CONDENSE_OFF = 24;
+        let condensed = false;
+        let ticking = false;
+
+        const apply = () => {
+            ticking = false;
+            const y = window.scrollY;
+            if (!condensed && y > CONDENSE_ON) {
+                condensed = true;
+                setIsScrolled(true);
+            } else if (condensed && y < CONDENSE_OFF) {
+                condensed = false;
+                setIsScrolled(false);
+            }
+        };
+
+        const onScroll = () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(apply);
+        };
+
+        condensed = window.scrollY > CONDENSE_ON;
+        setIsScrolled(condensed);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
 
@@ -80,7 +104,8 @@ export default function Header() {
     const navItems: NavItem[] = [
         {
             label: "Industries & Solutions",
-            href: "/industries",
+            // href: "/industries", // offline until directory page is ready
+            href: "#",
             megamenu: industriesAndStandardsMegamenu,
         },
         { label: "ISO 14001:2026", href: "/ISO14001-2026" },
@@ -147,63 +172,22 @@ export default function Header() {
         }
     }, [isMenuOpen]);
 
-    const showGlassEffect = isScrolled && !isMenuOpen;
+    // Floating capsule after scroll (or while mobile menu is open)
+    const isCondensed = isScrolled || isMenuOpen;
 
     return (
         <header
-            style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                right: 0,
-                zIndex: 1000,
-                padding: isMobile ? "0.65rem 0.7rem 0" : "0.85rem 1.15rem 0",
-                background: "transparent",
-                pointerEvents: "none",
-                fontFamily: '"Pp Neue Montreal", sans-serif',
-            }}
+            className="site-header-chrome"
+            style={{ fontFamily: '"Pp Neue Montreal", sans-serif' }}
         >
             <div
+                className={`site-header-nav${isCondensed ? " is-condensed" : ""}`}
                 onMouseLeave={() => setHoveredItem(null)}
-                style={{
-                    width: "100%",
-                    maxWidth: "1600px",
-                    margin: "0 auto",
-                    position: "relative",
-                    pointerEvents: "auto",
-                }}
+                style={{ position: "relative" }}
             >
-            <div
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    height: isMobile ? "80px" : "90px",
-                    padding: isMobile ? "0 0.9rem 0 1.4rem" : "0 0.85rem 0 1.65rem",
-                    position: "relative",
-                    backgroundColor: "rgba(255, 255, 255, 0.78)",
-                    backdropFilter: "blur(20px) saturate(180%)",
-                    WebkitBackdropFilter: "blur(20px) saturate(180%)",
-                    border: "1px solid #058c42",
-                    borderRadius: "18px",
-                    boxShadow: showGlassEffect
-                        ? "0 14px 40px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(15, 23, 42, 0.06)"
-                        : "0 8px 28px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04)",
-                    transition: "box-shadow 0.35s ease, background-color 0.35s ease",
-                    gap: "1rem",
-                }}
-            >
-                {/* Left: Logo + menu (HeyGen-style) */}
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: isMobile ? "0" : "1.15rem",
-                        minWidth: 0,
-                        flex: "1 1 auto",
-                        zIndex: 10,
-                    }}
-                >
+            <div className="site-header-nav-inner">
+                {/* Left: Logo */}
+                <div className="site-header-brand" style={{ display: "flex", alignItems: "center", minWidth: 0, zIndex: 10 }}>
                     <Link href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
                         <Image
                             src="/iaudit-logo-nav.png"
@@ -211,80 +195,78 @@ export default function Header() {
                             width={271}
                             height={200}
                             style={{
-                                height: isMobile ? "38px" : "46px",
+                                height: isMobile ? "44px" : isCondensed ? "48px" : "52px",
                                 width: "auto",
                                 objectFit: "contain",
                                 display: "block",
+                                transition: "height 420ms cubic-bezier(0.22, 0.61, 0.36, 1)",
                             }}
                             priority
                         />
                     </Link>
-
-                    <div
-                        className="hidden-mobile"
-                        aria-hidden
-                        style={{
-                            width: "1px",
-                            height: "28px",
-                            backgroundColor: "rgba(15, 23, 42, 0.12)",
-                            flexShrink: 0,
-                        }}
-                    />
-
-                    {/* Desktop Navigation — left-aligned after logo */}
-                    <nav
-                        className="hidden-mobile"
-                        style={{
-                            display: "flex",
-                            gap: "1.55rem",
-                            alignItems: "center",
-                            minWidth: 0,
-                        }}
-                    >
-                        {navItems.map((item) => {
-                            const isIso2026 = item.label === "ISO 14001:2026";
-                            return (
-                            <div
-                                key={item.label}
-                                onMouseEnter={() => setHoveredItem(item.megamenu ? item.label : null)}
-                                style={{ position: "relative", padding: "1rem 0", flexShrink: 0 }}
-                            >
-                                <Link
-                                    href={item.href}
-                                    style={{
-                                        fontWeight: 500,
-                                        fontSize: isIso2026 ? "0.875rem" : "0.9375rem",
-                                        color: hoveredItem === item.label ? "#058c42" : (isIso2026 ? "#03624c" : "#1f2937"),
-                                        letterSpacing: "-0.01em",
-                                        whiteSpace: "nowrap",
-                                        transition: "color 0.2s ease",
-                                        fontFamily: '"Pp Neue Montreal", sans-serif',
-                                        display: "flex",
-                                        alignItems: "center",
-                                        gap: "5px",
-                                    }}
-                                >
-                                    {item.label}
-                                    {item.megamenu && (
-                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{
-                                            transition: "transform 0.3s",
-                                            transform: hoveredItem === item.label ? "rotate(180deg)" : "rotate(0deg)"
-                                        }}>
-                                            <polyline points="6 9 12 15 18 9"></polyline>
-                                        </svg>
-                                    )}
-                                </Link>
-                            </div>
-                            );
-                        })}
-                    </nav>
                 </div>
 
+                {/* Center: Desktop Navigation */}
+                <nav
+                    className="hidden-mobile site-header-links"
+                    style={{
+                        display: "flex",
+                        gap: "1.35rem",
+                        alignItems: "center",
+                        zIndex: 10,
+                    }}
+                >
+                    {navItems.map((item) => {
+                        const isIso2026 = item.label === "ISO 14001:2026";
+                        return (
+                        <div
+                            key={item.label}
+                            onMouseEnter={() => setHoveredItem(item.megamenu ? item.label : null)}
+                            style={{ position: "relative", padding: "1rem 0", flexShrink: 0 }}
+                        >
+                            <Link
+                                href={item.href}
+                                style={{
+                                    fontWeight: 500,
+                                    fontSize: isIso2026 ? "0.875rem" : "0.9375rem",
+                                    color: hoveredItem === item.label ? "#058c42" : (isIso2026 ? "#03624c" : "#1f2937"),
+                                    letterSpacing: "-0.01em",
+                                    whiteSpace: "nowrap",
+                                    transition: "color 0.2s ease",
+                                    fontFamily: '"Pp Neue Montreal", sans-serif',
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "5px",
+                                }}
+                            >
+                                {item.label}
+                                {item.megamenu && (
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{
+                                        transition: "transform 0.3s",
+                                        transform: hoveredItem === item.label ? "rotate(180deg)" : "rotate(0deg)"
+                                    }}>
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                )}
+                            </Link>
+                        </div>
+                        );
+                    })}
+                </nav>
+
                 {/* Right Actions (Desktop) */}
-                <div className="hidden-mobile" style={{ display: "flex", alignItems: "center", gap: "0.85rem", flexShrink: 0, marginLeft: "auto" }}>
+                <div
+                    className="hidden-mobile site-header-actions"
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.75rem",
+                        zIndex: 10,
+                    }}
+                >
                     <Link
                         href="https://apps.iaudit.global/login"
-                        className="btn-animate"
+                        className="btn-animate btn-animate-pill"
                         style={{
                             padding: "0.55rem 1.2rem",
                             borderRadius: "9999px",
@@ -304,7 +286,7 @@ export default function Header() {
                     <Link
                         href="https://apps.iaudit.global"
                         ref={buttonRef}
-                        className="btn-animate"
+                        className="btn-animate btn-animate-pill"
                         style={{
                             gap: "0.4rem",
                             padding: "0.55rem 1.35rem",
@@ -346,6 +328,7 @@ export default function Header() {
                         position: "relative",
                         visibility: isMenuOpen ? "hidden" : "visible",
                         flexShrink: 0,
+                        marginLeft: "auto",
                     }}
                 >
                     <div style={{
@@ -524,7 +507,6 @@ export default function Header() {
                     );
                 })()}
             </AnimatePresence>
-            </div>
 
             {/* Mobile Menu Drawer */}
             <AnimatePresence>
@@ -739,6 +721,7 @@ export default function Header() {
                     </motion.div>
                 )}
             </AnimatePresence>
+            </div>
         </header>
     );
 }

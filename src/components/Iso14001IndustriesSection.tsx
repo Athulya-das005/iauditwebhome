@@ -13,42 +13,42 @@ const industryItems = [
         description:
             "Audit spill kits, waste segregation, and permit compliance across diverse project sites and environmental zones.",
         slug: "construction-iso-audit-software",
-        bgImage: "/images/construction-bg.jpg",
+        bgImage: "/images/construction-bg.webp",
     },
     {
         title: "Manufacturing",
         description:
             "Manage emissions, effluents, and resource efficiency while tracking ISO 14001 nonconformities through to verified closure.",
         slug: "manufacturing-iso-audit-software",
-        bgImage: "/images/manufacturing-bg.jpg",
+        bgImage: "/images/manufacturing-bg.webp",
     },
     {
         title: "Logistics",
         description:
             "Track transport impacts, fuel efficiency, and spill readiness across warehouses and distribution networks in one place.",
         slug: "transport-and-logistics-iso-audit-software",
-        bgImage: "/images/logistics-bg.jpg",
+        bgImage: "/images/logistics-bg.webp",
     },
     {
         title: "Chemicals & Pharmaceuticals",
         description:
             "Audit REACH compliance, hazardous waste streams, and chemical storage with secure, practitioner-led environmental checklists.",
         slug: "pharmaceutical-compliance-audit-software",
-        bgImage: "/images/pharmaceutical-bg.jpg",
+        bgImage: "/images/pharmaceutical-bg.webp",
     },
     {
         title: "Food & Beverage",
         description:
             "Monitor water usage, effluent quality, and sustainable waste management while ensuring audit consistency across locations.",
         slug: "food-and-beverage-iso-audit-software",
-        bgImage: "/images/food-beverage-bg.jpg",
+        bgImage: "/images/food-beverage-bg.webp",
     },
     {
         title: "Facilities Management",
         description:
             "Centralise energy audits, waste tracking, and environmental permit compliance for every property in your portfolio.",
         slug: "facilities-management-iso-audit-software",
-        bgImage: "/images/facilities-bg.jpg",
+        bgImage: "/images/facilities-bg.webp",
     },
 ];
 
@@ -219,6 +219,7 @@ export default function Iso14001IndustriesSection() {
                         marginTop: isMobile ? "2.5rem" : "3rem",
                     }}
                 >
+                    {/* Offline until /industries directory is live
                     <Link
                         href="/industries"
                         className="btn-outline-animate"
@@ -254,6 +255,7 @@ export default function Iso14001IndustriesSection() {
                             </svg>
                         </span>
                     </Link>
+                    */}
                 </motion.div>
             </div>
         </section>

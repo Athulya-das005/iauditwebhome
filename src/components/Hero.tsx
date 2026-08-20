@@ -236,12 +236,12 @@ export default function Hero() {
                         useWindowScroll={true}
                     >
                         <ScrollStackItem>
-                            <div style={{ maxWidth: "760px", margin: "0 auto", borderRadius: "20px", overflow: "hidden", boxShadow: "0 20px 60px -10px rgba(5, 140, 66, 0.3), 0 8px 24px -6px rgba(5, 140, 66, 0.15)" }}>
+                            <div style={{ maxWidth: "980px", margin: "0 auto", borderRadius: "20px", overflow: "hidden", boxShadow: "0 20px 60px -10px rgba(5, 140, 66, 0.3), 0 8px 24px -6px rgba(5, 140, 66, 0.15)" }}>
                                 <HeroDashboard1 />
                             </div>
                         </ScrollStackItem>
                         <ScrollStackItem>
-                            <div style={{ maxWidth: "1200px", margin: "0 auto", borderRadius: "20px", overflow: "hidden", boxShadow: "0 20px 60px -10px rgba(5, 140, 66, 0.3), 0 8px 24px -6px rgba(5, 140, 66, 0.15)" }}>
+                            <div style={{ maxWidth: "980px", margin: "0 auto", borderRadius: "20px", overflow: "hidden", boxShadow: "0 20px 60px -10px rgba(5, 140, 66, 0.3), 0 8px 24px -6px rgba(5, 140, 66, 0.15)" }}>
                                 <HeroDashboard2 />
                             </div>
                         </ScrollStackItem>

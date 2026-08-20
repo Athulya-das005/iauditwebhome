@@ -7,20 +7,20 @@ import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 
 const HERO_IMAGE =
-    "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&h=1080&fit=crop&q=90";
+    "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&h=1080&fit=crop&q=90&fm=webp";
 
 /* ─── Section images after headings ─────────────────────────────────────── */
 const sectionImages: Record<string, string> = {
     "hidden-cost":
-        "https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=900&h=480&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=900&h=480&fit=crop&q=80&fm=webp",
     "training-works":
-        "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=900&h=480&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=900&h=480&fit=crop&q=80&fm=webp",
     "motivation":
-        "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=900&h=480&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=900&h=480&fit=crop&q=80&fm=webp",
     "sustainable":
-        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&h=480&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&h=480&fit=crop&q=80&fm=webp",
     "path-forward":
-        "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900&h=480&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900&h=480&fit=crop&q=80&fm=webp",
 };
 
 /* ─── TOC ──────────────────────────────────────────────────────────────────── */
@@ -60,7 +60,6 @@ export default function BlogPost2() {
     const [isMobile, setIsMobile] = useState(false);
     const [activeSection, setActiveSection] = useState("intro");
     const [tocOpen, setTocOpen] = useState(false);
-    const [showScrollTop, setShowScrollTop] = useState(false);
 
     const font = '"Pp Neue Montreal", sans-serif';
 
@@ -73,7 +72,6 @@ export default function BlogPost2() {
 
     useEffect(() => {
         const onScroll = () => {
-            setShowScrollTop(window.scrollY > 400);
             for (let i = tocItems.length - 1; i >= 0; i--) {
                 const el = document.getElementById(tocItems[i].id);
                 if (el && el.getBoundingClientRect().top < 140) {
@@ -463,28 +461,6 @@ export default function BlogPost2() {
 
             <CTA />
             <Footer />
-
-            {/* ── Scroll-to-top button ──────────────────────────────────── */}
-            <button
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                aria-label="Scroll to top"
-                style={{
-                    position: "fixed", bottom: "2rem", right: "2rem",
-                    width: "48px", height: "48px", borderRadius: "50%",
-                    background: "#006644", border: "none", cursor: "pointer",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    boxShadow: "0 4px 16px rgba(0,102,68,0.4)",
-                    opacity: showScrollTop ? 1 : 0,
-                    pointerEvents: showScrollTop ? "auto" : "none",
-                    transform: showScrollTop ? "translateY(0) scale(1)" : "translateY(12px) scale(0.85)",
-                    transition: "opacity 0.3s ease, transform 0.3s ease",
-                    zIndex: 100,
-                }}
-            >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="18 15 12 9 6 15" />
-                </svg>
-            </button>
         </div>
     );
 }

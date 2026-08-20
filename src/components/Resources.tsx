@@ -9,21 +9,21 @@ const resources = [
         id: 1,
         title: "Internal Audit Best Practices For Small Businesses",
         date: "November 20, 2025",
-        image: "/images/blog-small-business.png",
+        image: "/images/blog-small-business.webp",
         link: "/blog/internal-audit-best-practices-small-businesses"
     },
     {
         id: 2,
         title: "Empowering A Culture Of Continuous Improvement Through Audit",
         date: "November 20, 2025",
-        image: "/images/blog-continuous-improvement.png",
+        image: "/images/blog-continuous-improvement.webp",
         link: "/blog/empowering-culture-continuous-improvement"
     },
     {
         id: 3,
         title: "How To Train And Motivate Internal Auditors Without Burning Them Out",
         date: "November 20, 2025",
-        image: "/images/blog-auditor-training.png",
+        image: "/images/blog-auditor-training.webp",
         link: "/blog/train-motivate-internal-auditors"
     }
 ];

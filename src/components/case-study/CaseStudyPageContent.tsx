@@ -247,7 +247,6 @@ export default function CaseStudyPageContent() {
     const [isTablet, setIsTablet] = useState(false);
     const [activeSection, setActiveSection] = useState("challenge");
     const [tocOpen, setTocOpen] = useState(false);
-    const [showScrollTop, setShowScrollTop] = useState(false);
     const data = apexCaseStudy;
 
     useEffect(() => {
@@ -266,7 +265,6 @@ export default function CaseStudyPageContent() {
 
     useEffect(() => {
         const onScroll = () => {
-            setShowScrollTop(window.scrollY > 400);
             for (let i = tocItems.length - 1; i >= 0; i--) {
                 const el = document.getElementById(tocItems[i].id);
                 if (el && el.getBoundingClientRect().top < stickySidebarTop + 60) {
@@ -697,35 +695,6 @@ export default function CaseStudyPageContent() {
             />
 
             <Footer />
-
-            <button
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                aria-label="Scroll to top"
-                style={{
-                    position: "fixed",
-                    bottom: "2rem",
-                    right: "2rem",
-                    width: "48px",
-                    height: "48px",
-                    borderRadius: "50%",
-                    background: "#006644",
-                    border: "none",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    boxShadow: "0 4px 16px rgba(0,102,68,0.4)",
-                    opacity: showScrollTop ? 1 : 0,
-                    pointerEvents: showScrollTop ? "auto" : "none",
-                    transform: showScrollTop ? "translateY(0) scale(1)" : "translateY(12px) scale(0.85)",
-                    transition: "opacity 0.3s ease, transform 0.3s ease",
-                    zIndex: 50,
-                }}
-            >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="18 15 12 9 6 15" />
-                </svg>
-            </button>
         </div>
     );
 }

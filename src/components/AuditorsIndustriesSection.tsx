@@ -319,6 +319,7 @@ export default function AuditorsIndustriesSection() {
                         marginTop: isMobile ? "2rem" : "2.5rem",
                     }}
                 >
+                    {/* Offline until /industries directory is live
                     <Link
                         href="/industries"
                         className="btn-outline-animate"
@@ -355,6 +356,7 @@ export default function AuditorsIndustriesSection() {
                             </svg>
                         </span>
                     </Link>
+                    */}
                 </motion.div>
             </div>
         </section>

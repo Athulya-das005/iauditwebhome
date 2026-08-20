@@ -18,7 +18,7 @@ export const apexCaseStudy = {
     insightsFrom: {
         name: "Mathew Chiweda",
         role: "Quality & Compliance Manager",
-        avatar: "/images/mathew-chiweda.png",
+        avatar: "/images/mathew-chiweda.webp",
     },
     useCases: ["ISO 9001 & 14001 Internal Audits"],
     departments: ["Operations & Quality Assurance"],
@@ -56,7 +56,7 @@ To manage these programmes, the team relied on 18 separate Excel trackers and ov
             author: "David Harrison",
             role: "Quality & Compliance Manager",
         },
-        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=640&fit=crop&q=80",
+        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=640&fit=crop&q=80&fm=webp",
     },
     solution: {
         heading: "The Solution: Standardising ISO 9001 and ISO 14001 Audits with iAudit Global",
@@ -80,7 +80,7 @@ David's team utilised Audit Mate, the built-in AI assistant, to generate 12 clau
                 text: "Leadership can now monitor compliance trends across all three sites through a central dashboard tracking over 50 open corrective actions. They can instantly see which factories have open non‑conformities and monitor the progress of actions through to closure, reducing the time required for management review preparation from 16 hours to less than 30 minutes.",
             },
         ],
-        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&h=640&fit=crop&q=80",
+        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&h=640&fit=crop&q=80&fm=webp",
     },
     results: {
         heading: "The Results: Improving ISO 9001 and ISO 14001 Audit Efficiency for Apex Engineering",
@@ -115,21 +115,21 @@ export const moreCaseStudies: CaseStudyCard[] = [
         slug: "apex-engineering-fabrication",
         title: "How iAudit helped Apex Engineering secure 100% audit history continuity across three sites",
         excerpt: "Learn how a multi-site manufacturer replaced spreadsheets with a unified ISO audit trail.",
-        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=500&fit=crop&q=80",
+        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=500&fit=crop&q=80&fm=webp",
         logoText: "APEX",
     },
     {
         slug: "stannah-lifts-compliance",
         title: "How Stannah standardised ISO 9001 audits across global service teams",
         excerpt: "See how structured checklists improved consistency across field and factory operations.",
-        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&h=500&fit=crop&q=80",
+        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&h=500&fit=crop&q=80&fm=webp",
         logoText: "Stannah",
     },
     {
         slug: "construct-lifts-safety",
         title: "How Construct Lifts cut corrective action closure time by 40%",
         excerpt: "Discover how real-time NCR tracking transformed their ISO 45001 programme.",
-        image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=500&fit=crop&q=80",
+        image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=500&fit=crop&q=80&fm=webp",
         logoText: "Construct",
     },
 ];

@@ -13,42 +13,42 @@ const industryItems = [
         description:
             "Manage site safety, monitor subcontractor compliance, and audit high-risk activities across multiple complex project locations.",
         slug: "construction-iso-audit-software",
-        bgImage: "/images/construction-bg.jpg",
+        bgImage: "/images/construction-bg.webp",
     },
     {
         title: "Manufacturing",
         description:
             "Audit machinery guarding, LOTO procedures, and manual handling risks while tracking safety nonconformities to closure.",
         slug: "manufacturing-iso-audit-software",
-        bgImage: "/images/manufacturing-bg.jpg",
+        bgImage: "/images/manufacturing-bg.webp",
     },
     {
         title: "Healthcare",
         description:
             "Ensure staff safety by standardising audits for sharps handling, patient moving, and clinical environment risk controls.",
         slug: "healthcare-compliance-software",
-        bgImage: "/images/healthcare-bg.png",
+        bgImage: "/images/healthcare-bg.webp",
     },
     {
         title: "Logistics & Transport",
         description:
             "Audit warehouse safety, vehicle maintenance, and driver wellbeing across diverse distribution networks and terminal locations.",
         slug: "transport-and-logistics-iso-audit-software",
-        bgImage: "/images/logistics-bg.jpg",
+        bgImage: "/images/logistics-bg.webp",
     },
     {
         title: "Oil & Gas",
         description:
             "Manage process safety, permit-to-work compliance, and emergency response readiness in high-hazard, regulated industrial environments.",
         slug: "mining-compliance-software",
-        bgImage: "/images/mining-bg.jpg",
+        bgImage: "/images/mining-bg.webp",
     },
     {
         title: "Basic Metals & Fabrication",
         description:
             "Audit welding fumes, lifting safety, and machinery hazards while tracking fabrication-specific safety risks to closure.",
         slug: "basic-metals-and-fabrication-iso-audit-software",
-        bgImage: "/images/metal-fabrication-bg.jpg",
+        bgImage: "/images/metal-fabrication-bg.webp",
     },
 ];
 
@@ -219,6 +219,7 @@ export default function Iso45001IndustriesSection() {
                         marginTop: isMobile ? "2.5rem" : "3rem",
                     }}
                 >
+                    {/* Offline until /industries directory is live
                     <Link
                         href="/industries"
                         className="btn-outline-animate"
@@ -254,6 +255,7 @@ export default function Iso45001IndustriesSection() {
                             </svg>
                         </span>
                     </Link>
+                    */}
                 </motion.div>
             </div>
         </section>

@@ -145,12 +145,18 @@ export async function addChecklistLead(lead: ChecklistLead) {
         }
     }
 
-    const github = await publishToGitHub(
-        next,
-        `Add checklist lead: ${lead.fullName} (${lead.checklistName})`
-    );
+    let publishedToGitHub = false;
+    try {
+        const github = await publishToGitHub(
+            next,
+            `Add checklist lead: ${lead.fullName} (${lead.checklistName})`
+        );
+        publishedToGitHub = github.publishedToGitHub;
+    } catch {
+        // GitHub publish is optional; local save is sufficient
+    }
 
-    return { lead, publishedToGitHub: github.publishedToGitHub };
+    return { lead, publishedToGitHub };
 }
 
 export async function deleteChecklistLead(id: string) {

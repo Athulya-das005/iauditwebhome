@@ -13,12 +13,12 @@ import SectionTag from "@/components/SectionTag";
 import { PP_NEUE_MONTREAL, comparisonType } from "@/constants/typography";
 
 const industryHighlights = [
-    { title: "Manufacturing", slug: "manufacturing-iso-audit-software", image: "/images/manufacturing-bg.jpg" },
-    { title: "Construction", slug: "construction-iso-audit-software", image: "/images/construction-bg.jpg" },
-    { title: "Healthcare", slug: "healthcare-compliance-software", image: "/images/healthcare-bg.png" },
-    { title: "Logistics & Transport", slug: "transport-and-logistics-iso-audit-software", image: "/images/logistics-bg.jpg" },
-    { title: "Basic Metal & Fabrication", slug: "basic-metals-and-fabrication-iso-audit-software", image: "/images/metal-fabrication-bg.jpg" },
-    { title: "Engineering Services", slug: "engineering-iso-audit-software", image: "/images/engineering-bg.jpg" },
+    { title: "Manufacturing", slug: "manufacturing-iso-audit-software", image: "/images/manufacturing-bg.webp" },
+    { title: "Construction", slug: "construction-iso-audit-software", image: "/images/construction-bg.webp" },
+    { title: "Healthcare", slug: "healthcare-compliance-software", image: "/images/healthcare-bg.webp" },
+    { title: "Logistics & Transport", slug: "transport-and-logistics-iso-audit-software", image: "/images/logistics-bg.webp" },
+    { title: "Basic Metal & Fabrication", slug: "basic-metals-and-fabrication-iso-audit-software", image: "/images/metal-fabrication-bg.webp" },
+    { title: "Engineering Services", slug: "engineering-iso-audit-software", image: "/images/engineering-bg.webp" },
 ];
 
 const comparisonData = [

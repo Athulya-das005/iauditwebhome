@@ -157,7 +157,7 @@ export default function SecurityPageHero({
 
 export const SECURITY_HERO_IMAGES = {
     disclosure:
-        "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1400&h=900&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1400&h=900&fit=crop&q=80&fm=webp",
     hallOfFame:
-        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1400&h=900&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1400&h=900&fit=crop&q=80&fm=webp",
 };

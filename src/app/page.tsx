@@ -9,6 +9,7 @@ import Benefits from "@/components/Benefits";
 import Compliance from "@/components/Compliance";
 import Security from "@/components/Security";
 import AuditPerformanceSection from "@/components/AuditPerformanceSection";
+import AssessmentsHomeSection from "@/components/AssessmentsHomeSection";
 import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
 import Resources from "@/components/Resources";
@@ -84,6 +85,7 @@ export default function Home() {
             <Compliance />
             <Security />
             <AuditPerformanceSection />
+            <AssessmentsHomeSection />
             <Pricing />
             <Testimonials />
             <Resources />

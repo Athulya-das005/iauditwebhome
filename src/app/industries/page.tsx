@@ -1,3 +1,8 @@
+import { notFound } from "next/navigation";
+
+// Industries directory is offline until ready to launch.
+// Uncomment the block below (and remove notFound) when the page is finished.
+/*
 import type { Metadata } from "next";
 import IndustriesDirectory from "@/components/IndustriesDirectory";
 import IndustriesPageJsonLd from "@/components/seo/IndustriesPageJsonLd";
@@ -49,4 +54,9 @@ export default function IndustriesPage() {
             <IndustriesDirectory />
         </>
     );
+}
+*/
+
+export default function IndustriesPage() {
+    notFound();
 }

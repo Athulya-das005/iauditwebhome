@@ -13,42 +13,42 @@ const industryItems = [
         description:
             "Ensure product consistency, manage supplier quality, and maintain critical process controls.",
         slug: "manufacturing-iso-audit-software",
-        bgImage: "/images/manufacturing-bg.jpg",
+        bgImage: "/images/manufacturing-bg.webp",
     },
     {
         title: "Construction",
         description:
             "Manage project quality, control documentation, and ensure compliance across complex jobsites.",
         slug: "construction-iso-audit-software",
-        bgImage: "/images/construction-bg.jpg",
+        bgImage: "/images/construction-bg.webp",
     },
     {
         title: "Logistics & Transport",
         description:
             "Standardize service delivery, track customer requirements, and ensure consistent on-time performance.",
         slug: "transport-and-logistics-iso-audit-software",
-        bgImage: "/images/logistics-bg.jpg",
+        bgImage: "/images/logistics-bg.webp",
     },
     {
         title: "Engineering Services",
         description:
             "Guarantee service quality, manage project documentation, and meet precise technical specifications.",
         slug: "engineering-iso-audit-software",
-        bgImage: "/images/engineering-bg.jpg",
+        bgImage: "/images/engineering-bg.webp",
     },
     {
         title: "Healthcare",
         description:
             "Improve patient safety by standardizing clinical, lab, and administrative process controls.",
         slug: "healthcare-compliance-software",
-        bgImage: "/images/healthcare-bg.png",
+        bgImage: "/images/healthcare-bg.webp",
     },
     {
         title: "Hospitality",
         description:
             "Deliver consistent guest experiences by standardizing service, housekeeping, and F&B quality.",
         slug: "hospitality-iso-audit-software",
-        bgImage: "/images/hospitality-bg.jpg",
+        bgImage: "/images/hospitality-bg.webp",
     },
 ];
 
@@ -218,6 +218,7 @@ export default function Iso9001IndustriesSection() {
                         marginTop: isMobile ? "2.5rem" : "3rem",
                     }}
                 >
+                    {/* Offline until /industries directory is live
                     <Link
                         href="/industries"
                         className="btn-outline-animate"
@@ -250,6 +251,7 @@ export default function Iso9001IndustriesSection() {
                             </svg>
                         </span>
                     </Link>
+                    */}
                 </motion.div>
             </div>
         </section>

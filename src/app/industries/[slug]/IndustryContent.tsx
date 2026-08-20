@@ -231,6 +231,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                             transition={{ duration: 0.6 }}
                             style={{ display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'inherit' }}
                         >
+                            {/* Offline until /industries directory is live
                             <Link href="/industries" style={{
                                 color: 'var(--textSecondary)',
                                 textDecoration: 'none',
@@ -251,6 +252,7 @@ export default function IndustryContent({ industry }: { industry: Industry }) {
                                 </svg>
                                 Back to Industries
                             </Link>
+                            */}
 
                             <div style={{
                                 display: 'inline-flex',

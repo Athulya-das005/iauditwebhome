@@ -122,7 +122,7 @@ export default function StickyScrollButton() {
                     >
                         <Link
                             href={TRIAL_URL}
-                            className="btn-animate"
+                            className="btn-animate btn-animate-pill"
                             style={{
                                 display: "inline-flex",
                                 alignItems: "center",

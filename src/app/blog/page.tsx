@@ -9,26 +9,26 @@ import Footer from "@/components/Footer";
 const newResources = [
     {
         id: "new-1",
-        title: "How AI agents are transforming business workflows",
-        date: "November 20, 2025",
-        image: "/images/blog-ai-transform.png",
-        link: "#",
+        title: "How to Manage ISO Audits Across Multiple Sites Without Losing Visibility",
+        date: "March 13, 2026",
+        image: "/images/blog-ai-transform.webp",
+        link: "/blog/how-to-manage-iso-audits-across-multiple-sites",
         featured: true
     },
     {
         id: "new-2",
-        title: "Simplifying complex workflows through adaptive AI systems",
-        date: "November 20, 2025",
-        image: "/images/blog-complex-workflows.png",
-        link: "#",
+        title: "ISO Standards for Reliable Transport and Logistics Operations",
+        date: "March 20, 2026",
+        image: "/images/blog-complex-workflows.webp",
+        link: "/blog/iso-standards-for-transport-and-logistics-management",
         featured: false
     },
     {
         id: "new-3",
-        title: "Unlock possibilities with intelligent process automation",
-        date: "November 20, 2025",
-        image: "/images/blog-process-automation.png",
-        link: "#",
+        title: "Why Internal Audits Are Critical in Manufacturing",
+        date: "March 27, 2026",
+        image: "/images/blog-process-automation.webp",
+        link: "/blog/why-internal-audits-are-critical-in-manufacturing",
         featured: false
     }
 ];
@@ -38,21 +38,21 @@ const existingResources = [
         id: 1,
         title: "Internal Audit Best Practices For Small Businesses",
         date: "November 20, 2025",
-        image: "/images/blog-small-business.png",
+        image: "/images/blog-small-business.webp",
         link: "/blog/internal-audit-best-practices-small-businesses"
     },
     {
         id: 2,
         title: "Empowering A Culture Of Continuous Improvement Through Audit",
         date: "November 20, 2025",
-        image: "/images/blog-continuous-improvement.png",
+        image: "/images/blog-continuous-improvement.webp",
         link: "/blog/empowering-culture-continuous-improvement"
     },
     {
         id: 3,
         title: "How To Train And Motivate Internal Auditors Without Burning Them Out",
         date: "November 20, 2025",
-        image: "/images/blog-auditor-training.png",
+        image: "/images/blog-auditor-training.webp",
         link: "/blog/train-motivate-internal-auditors"
     }
 ];
@@ -248,6 +248,7 @@ export default function BlogPage() {
                     gap: isMobile ? '1rem' : '1.5rem'
                 }}>
                     {/* Large Featured Card (Popular Blog) */}
+                    <Link href={featuredPost.link} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -262,8 +263,10 @@ export default function BlogPage() {
                             display: 'flex',
                             flexDirection: 'column',
                             position: 'relative',
+                            height: '100%',
                             boxShadow: isFeaturedHovered ? '0 25px 50px -12px rgba(0, 0, 0, 0.1)' : '0 4px 6px -1px rgba(0, 0, 0, 0.03)',
-                            transition: 'all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1)'
+                            transition: 'all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1)',
+                            cursor: 'pointer',
                         }}
                     >
                         {/* Diagonal Ribbon for "Popular blog" */}
@@ -326,14 +329,13 @@ export default function BlogPage() {
                             </h2>
                             <div style={{ marginTop: 'auto' }}>
                                 <div style={{ width: '100%', height: '2px', backgroundColor: '#F3F4F6', marginBottom: '1.25rem' }} />
-                                <Link href="#" style={{
+                                <span style={{
                                     display: 'inline-flex',
                                     alignItems: 'center',
                                     gap: '8px',
                                     color: '#006644',
                                     fontSize: '0.95rem',
                                     fontWeight: 500,
-                                    textDecoration: 'none',
                                     position: 'relative'
                                 }}>
                                     Learn more
@@ -356,10 +358,11 @@ export default function BlogPage() {
                                         transformOrigin: 'left',
                                         transition: 'transform 0.3s ease'
                                     }} />
-                                </Link>
+                                </span>
                             </div>
                         </div>
                     </motion.div>
+                    </Link>
 
                     {/* Small Cards Column */}
                     <div style={{ display: 'grid', gridTemplateRows: '1fr 1fr', gap: '1.25rem' }}>

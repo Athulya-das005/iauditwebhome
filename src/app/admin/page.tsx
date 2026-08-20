@@ -16,6 +16,12 @@ const sections = [
         description:
             "View people who requested ISO audit checklists. Use their details to email the checklist manually.",
     },
+    {
+        href: "/admin/assessment-leads",
+        title: "Assessment Report Leads",
+        description:
+            "View people who requested a self assessment or gap analysis report. Email the report manually.",
+    },
 ];
 
 export default function AdminHomePage() {
