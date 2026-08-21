@@ -119,7 +119,9 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
             setEmailNote(
                 data.emailed
                     ? `Your full ${format === "pdf" ? "PDF" : "Word"} report has been emailed to ${session.email}, and the same file has started downloading.`
-                    : `Your ${format === "pdf" ? "PDF" : "Word"} report has started downloading. Email was not sent to ${session.email}. Add SMTP settings in .env.local (Gmail App Password), restart the server, and try again.`
+                    : `Your ${format === "pdf" ? "PDF" : "Word"} report has started downloading. Email was not sent to ${session.email}.${
+                          data.warning ? ` ${data.warning}` : " Mail settings are missing on the live server — add SMTP or Resend env vars and redeploy."
+                      }`
             );
             setStep("done");
         } catch {

@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import {
     assessmentIndustries,
     departmentOptions,
+    gapIsoStandardOptions,
     isoStandardOptions,
     organisationSizeOptions,
     yesNoOptions,
@@ -74,6 +75,8 @@ export default function GapAnalysisStart({
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [isMobile, setIsMobile] = useState(false);
+    const standardOptions =
+        config.assessmentType === "self-assessment" ? isoStandardOptions : gapIsoStandardOptions;
 
     useEffect(() => {
         const check = () => setIsMobile(window.innerWidth < 800);
@@ -289,7 +292,7 @@ export default function GapAnalysisStart({
                                     </button>
                                     {standardOpen ? (
                                         <div style={{ position: "absolute", left: 0, right: 0, top: "calc(100% + 4px)", background: "#fff", border: "1px solid #e5e7eb", borderRadius: "0.7rem", boxShadow: "0 12px 28px rgba(0,0,0,0.12)", zIndex: 2, overflow: "hidden" }}>
-                                            {isoStandardOptions.map((option) => {
+                                            {standardOptions.map((option) => {
                                                 const selected = isoStandard === option.value;
                                                 return (
                                                     <button

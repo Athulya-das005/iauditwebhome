@@ -6,6 +6,8 @@ import { sendGapReportEmail } from "@/lib/send-gap-report-email";
 import type { GapAnalysisSession } from "@/types/gap-analysis-session";
 import type { GapFinding } from "@/data/gap-analysis-clauses";
 
+export const maxDuration = 60;
+
 type Payload = {
     format?: "pdf" | "word";
     sendEmail?: boolean;

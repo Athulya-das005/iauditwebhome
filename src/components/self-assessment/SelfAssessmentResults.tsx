@@ -3,7 +3,7 @@
 import { useMemo, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { selfAssessmentClauses, type SelfAnswer } from "@/data/self-assessment-clauses";
+import { type SelfAnswer, type SelfAssessmentClause } from "@/data/self-assessment-clauses";
 import { maturityForScore } from "@/lib/self-report-data";
 import type { GapAnalysisSession } from "@/types/gap-analysis-session";
 
@@ -11,6 +11,7 @@ type QuestionRow = { text: string; answer: SelfAnswer };
 
 type Props = {
     session: GapAnalysisSession;
+    clauses: SelfAssessmentClause[];
     questionsByClause: QuestionRow[][];
     isMobile: boolean;
 };
@@ -21,7 +22,7 @@ const NO = "#ef4444";
 const ORANGE = "#f59e0b";
 const GREY = "#e5e7eb";
 
-export default function SelfAssessmentResults({ session, questionsByClause, isMobile }: Props) {
+export default function SelfAssessmentResults({ session, clauses, questionsByClause, isMobile }: Props) {
     const router = useRouter();
     const [step, setStep] = useState<"choose" | "sending" | "done">("choose");
     const [format, setFormat] = useState<"pdf" | "word">("pdf");
@@ -31,7 +32,7 @@ export default function SelfAssessmentResults({ session, questionsByClause, isMo
     const [downloading, setDownloading] = useState<"pdf" | "word" | null>(null);
 
     const stats = useMemo(() => {
-        const clauses = selfAssessmentClauses.map((clause, index) => {
+        const clauseStats = clauses.map((clause, index) => {
             const rows = questionsByClause[index] ?? [];
             const yes = rows.filter((row) => row.answer === "yes").length;
             const no = rows.filter((row) => row.answer === "no").length;
@@ -47,13 +48,13 @@ export default function SelfAssessmentResults({ session, questionsByClause, isMo
                 questions: rows,
             };
         });
-        const yes = clauses.reduce((acc, item) => acc + item.yes, 0);
-        const no = clauses.reduce((acc, item) => acc + item.no, 0);
-        const unanswered = clauses.reduce((acc, item) => acc + item.unanswered, 0);
+        const yes = clauseStats.reduce((acc, item) => acc + item.yes, 0);
+        const no = clauseStats.reduce((acc, item) => acc + item.no, 0);
+        const unanswered = clauseStats.reduce((acc, item) => acc + item.unanswered, 0);
         const total = yes + no + unanswered;
         const overall = total === 0 ? 0 : Math.round((yes / total) * 100);
-        return { clauses, yes, no, unanswered, total, overall, maturity: maturityForScore(overall) };
-    }, [questionsByClause]);
+        return { clauses: clauseStats, yes, no, unanswered, total, overall, maturity: maturityForScore(overall, session.isoStandard) };
+    }, [clauses, questionsByClause, session.isoStandard]);
 
     function payload(selectedFormat: "pdf" | "word") {
         return {
@@ -94,6 +95,7 @@ export default function SelfAssessmentResults({ session, questionsByClause, isMo
                 filename?: string;
                 contentType?: string;
                 fileBase64?: string;
+                warning?: string;
             };
             if (!response.ok) {
                 setError(data.error ?? "Unable to send the report.");
@@ -106,7 +108,9 @@ export default function SelfAssessmentResults({ session, questionsByClause, isMo
             setEmailNote(
                 data.emailed
                     ? `Your full ${format === "pdf" ? "PDF" : "Word"} report has been emailed to ${session.email}, and the same file has started downloading.`
-                    : `Your ${format === "pdf" ? "PDF" : "Word"} report has started downloading. Email was not sent to ${session.email}.`
+                    : `Your ${format === "pdf" ? "PDF" : "Word"} report has started downloading. Email was not sent to ${session.email}.${
+                          data.warning ? ` ${data.warning}` : " Mail settings are missing on the live server — add SMTP or Resend env vars and redeploy."
+                      }`
             );
             setStep("done");
         } catch {
@@ -174,7 +178,7 @@ export default function SelfAssessmentResults({ session, questionsByClause, isMo
             <div style={{ maxWidth: "1040px", margin: "0 auto" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "0.75rem", marginBottom: "1rem", flexWrap: "wrap" }}>
                     <Link href="/iso-audit-assessments/self-assessment" style={{ color: "#4b5563", textDecoration: "none", fontWeight: 600 }}>
-                        ← Back to List
+                        ← Back to assessment page
                     </Link>
                     <div style={{ display: "flex", gap: "0.55rem" }}>
                         <button type="button" disabled={downloading !== null} onClick={() => downloadReport("pdf")} style={pdfOutline}>

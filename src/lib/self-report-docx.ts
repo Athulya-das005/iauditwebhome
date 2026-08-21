@@ -1,12 +1,25 @@
 import { promises as fs } from "fs";
 import path from "path";
-import { Document, ImageRun, Packer, Paragraph, Table, TableCell, TableRow, TextRun, WidthType, BorderStyle, HeadingLevel } from "docx";
+import {
+    AlignmentType,
+    Document,
+    ImageRun,
+    Packer,
+    Paragraph,
+    Table,
+    TableCell,
+    TableRow,
+    TextRun,
+    WidthType,
+    BorderStyle,
+    HeadingLevel,
+} from "docx";
 import type { SelfReportData } from "@/lib/self-report-data";
+import { buildClauseBarChartPng, buildScoreDonutPng } from "@/lib/self-report-charts";
 
 const GREEN = "006644";
 const YES = "16A34A";
 const NO = "EF4444";
-const BAR = "F59E0B";
 const thin = { style: BorderStyle.SINGLE, size: 4, color: "E5E7EB" };
 const borders = { top: thin, bottom: thin, left: thin, right: thin };
 
@@ -23,36 +36,13 @@ function cell(text: string, opts?: { bold?: boolean; fill?: string; color?: stri
     });
 }
 
-function barCell(percent: number) {
-    const fillWidth = Math.max(200, Math.round((Math.min(Math.max(percent, 0), 100) / 100) * 3600));
-    return new TableCell({
-        borders,
-        children: [
-            new Table({
-                width: { size: fillWidth, type: WidthType.DXA },
-                rows: [
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                borders: {
-                                    top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                    bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                    left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                    right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                },
-                                shading: { fill: BAR },
-                                children: [new Paragraph({ children: [new TextRun({ text: " ", size: 16 })] })],
-                            }),
-                        ],
-                    }),
-                ],
-            }),
-        ],
-    });
-}
-
 export async function buildSelfDocx(data: SelfReportData) {
     const children: (Paragraph | Table)[] = [];
+    const [donutPng, barPng] = await Promise.all([
+        buildScoreDonutPng(data.yes, data.total, data.maturity.stage),
+        buildClauseBarChartPng(data.clauses),
+    ]);
+
     try {
         const logoBytes = await fs.readFile(path.join(process.cwd(), "public", "iaudit-logo-nav.png"));
         children.push(
@@ -66,9 +56,22 @@ export async function buildSelfDocx(data: SelfReportData) {
 
     children.push(
         new Paragraph({ text: "Maturity Assessment Result", heading: HeadingLevel.TITLE }),
-        new Paragraph({ children: [new TextRun({ text: `${data.session.isoStandard}  |  ${data.session.organisation}  |  ${data.auditDate}`, color: "6B7280" })] }),
+        new Paragraph({
+            children: [new TextRun({ text: `${data.session.isoStandard}  |  ${data.session.organisation}  |  ${data.auditDate}`, color: "6B7280" })],
+        }),
         new Paragraph({ children: [new TextRun({ text: `Score: ${data.yes} / ${data.total}`, bold: true, color: GREEN, size: 32 })] }),
         new Paragraph({ text: "Total Score", heading: HeadingLevel.HEADING_1 }),
+        new Paragraph({
+            alignment: AlignmentType.CENTER,
+            spacing: { after: 120 },
+            children: [
+                new ImageRun({
+                    type: "png",
+                    data: new Uint8Array(donutPng),
+                    transformation: { width: 210, height: 230 },
+                }),
+            ],
+        }),
         new Table({
             width: { size: 9360, type: WidthType.DXA },
             rows: [
@@ -113,9 +116,7 @@ export async function buildSelfDocx(data: SelfReportData) {
                         cell("Max", { bold: true, fill: GREEN, color: "FFFFFF" }),
                     ],
                 }),
-                ...data.clauses.map(
-                    (clause) => new TableRow({ children: [cell(clause.label), cell(String(clause.yes)), cell(String(clause.total))] })
-                ),
+                ...data.clauses.map((clause) => new TableRow({ children: [cell(clause.label), cell(String(clause.yes)), cell(String(clause.total))] })),
                 new TableRow({
                     children: [
                         cell("TOTAL SCORE", { bold: true, fill: "ECFDF3" }),
@@ -126,26 +127,15 @@ export async function buildSelfDocx(data: SelfReportData) {
             ],
         }),
         new Paragraph({ text: "Score by Clause", heading: HeadingLevel.HEADING_1 }),
-        new Table({
-            width: { size: 9360, type: WidthType.DXA },
-            rows: [
-                new TableRow({
-                    children: [
-                        cell("Clause", { bold: true, fill: GREEN, color: "FFFFFF", width: 2800 }),
-                        cell("Score", { bold: true, fill: GREEN, color: "FFFFFF", width: 5200 }),
-                        cell("%", { bold: true, fill: GREEN, color: "FFFFFF", width: 1360 }),
-                    ],
+        new Paragraph({
+            alignment: AlignmentType.CENTER,
+            spacing: { after: 160 },
+            children: [
+                new ImageRun({
+                    type: "png",
+                    data: new Uint8Array(barPng),
+                    transformation: { width: 520, height: 231 },
                 }),
-                ...data.clauses.map(
-                    (clause) =>
-                        new TableRow({
-                            children: [
-                                cell(`${clause.label} (${clause.yes}/${clause.total})`, { width: 2800 }),
-                                barCell(clause.percent),
-                                cell(`${clause.percent}%`, { width: 1360 }),
-                            ],
-                        })
-                ),
             ],
         })
     );

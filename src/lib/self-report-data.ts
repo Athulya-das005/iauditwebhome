@@ -35,16 +35,24 @@ export type SelfReportData = {
     clauses: SelfReportClause[];
 };
 
-export function maturityForScore(percent: number): MaturityInfo {
+function systemLabel(isoStandard?: string) {
+    const value = (isoStandard ?? "").toLowerCase();
+    if (value.includes("14001")) return { short: "EMS", full: "environmental management system (EMS)", focus: "environmental" };
+    if (value.includes("45001")) return { short: "OH&S MS", full: "OH&S management system", focus: "health and safety" };
+    return { short: "QMS", full: "quality management system (QMS)", focus: "quality" };
+}
+
+export function maturityForScore(percent: number, isoStandard?: string): MaturityInfo {
+    const sys = systemLabel(isoStandard);
     if (percent >= 75) {
         return {
             stage: "Advanced Stage",
-            description: "Your organisation has a well-established QMS. Most requirements are in place. Continue to refine evidence, monitoring and improvement so the system stays effective.",
+            description: `Your organisation has a well-established ${sys.short}. Most requirements are in place. Continue to refine evidence, monitoring and improvement so the system stays effective.`,
             actions: [
                 "Keep internal audits on a planned cycle and track actions to close-out.",
                 "Use management review outputs to drive measurable improvement.",
-                "Strengthen competence records for QMS-critical roles.",
-                "Confirm change control when processes or the QMS are updated.",
+                `Strengthen competence records for ${sys.short}-critical roles.`,
+                `Confirm change control when processes or the ${sys.short} are updated.`,
             ],
             timeline: "1–3 months to close remaining gaps.",
         };
@@ -52,14 +60,14 @@ export function maturityForScore(percent: number): MaturityInfo {
     if (percent >= 50) {
         return {
             stage: "Moderate Stage",
-            description: "Your organization has a basic QMS in place and is working toward maturity. Most requirements are addressed but need refinement.",
+            description: `Your organization has a basic ${sys.short} in place and is working toward maturity. Most requirements are addressed but need refinement.`,
             actions: [
-                "Engage BSI or certified gap assessment consultant to identify specific gaps.",
+                "Engage a certified gap assessment consultant to identify specific gaps.",
                 "Implement corrective actions from gap assessment findings.",
                 "Enhance internal audit capability and frequency.",
                 "Strengthen management review process with data-driven decisions.",
-                "Develop competence framework for QMS-critical roles.",
-                "If climate is relevant: Integrate climate risks into your QMS risk register and monitoring plans.",
+                `Develop competence framework for ${sys.short}-critical roles.`,
+                `Integrate ${sys.focus} risks into your ${sys.short} risk register and monitoring plans where relevant.`,
                 "Enroll staff in auditor training (ISO 19011 principles).",
             ],
             timeline: "3–6 months with structured improvement.",
@@ -68,7 +76,7 @@ export function maturityForScore(percent: number): MaturityInfo {
     if (percent >= 25) {
         return {
             stage: "Developing Stage",
-            description: "Some QMS elements are in place, but several clauses still need documented practice and evidence before the system can be considered ready.",
+            description: `Some ${sys.short} elements are in place, but several clauses still need documented practice and evidence before the system can be considered ready.`,
             actions: [
                 "Map missing processes against ISO clauses 4–10.",
                 "Assign owners for policy, objectives, documented information and operations.",
@@ -79,15 +87,17 @@ export function maturityForScore(percent: number): MaturityInfo {
         };
     }
     return {
-        stage: "Initial Stage",
-        description: "The QMS is at an early stage. Foundational requirements around context, leadership, planning and documented information still need to be established.",
+        stage: "Early Stage",
+        description: `Your organization is at the foundation stage of ${sys.full} implementation. ${sys.focus.charAt(0).toUpperCase()}${sys.focus.slice(1)} processes are emerging but require development.`,
         actions: [
-            "Define the scope of the QMS and interested parties.",
-            "Establish a quality policy and assign roles and authorities.",
-            "Identify processes, risks and quality objectives.",
+            `Define the scope of the ${sys.short} and interested parties.`,
+            `Establish a ${sys.focus} policy and assign roles and authorities.`,
+            `Identify processes, risks and ${sys.focus} objectives.`,
             "Provide resources and start controlling documented information.",
+            "Map key processes and significant aspects or risks.",
+            "Build competence and awareness for people whose work affects performance.",
         ],
-        timeline: "12+ months to build a complete system.",
+        timeline: "6–12 months with focused effort",
     };
 }
 
@@ -126,7 +136,7 @@ export function buildSelfReportData(
         unanswered,
         total,
         overall,
-        maturity: maturityForScore(overall),
+        maturity: maturityForScore(overall, session.isoStandard),
         clauses: clauseRows,
     };
 }

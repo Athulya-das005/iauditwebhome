@@ -7,10 +7,26 @@ const IAUDIT_INBOX = "info@iaudit.global";
 
 export type ReportKind = "gap-analysis" | "self-assessment";
 
+function isProductionHost() {
+    return Boolean(process.env.VERCEL || process.env.NODE_ENV === "production");
+}
+
 export function isMailConfigured() {
     return Boolean(
         process.env.RESEND_API_KEY?.trim() ||
             (process.env.SMTP_HOST?.trim() && process.env.SMTP_USER?.trim() && process.env.SMTP_PASS?.trim())
+    );
+}
+
+function mailNotConfiguredMessage() {
+    if (isProductionHost()) {
+        return (
+            "Mail is not configured on the live server. In Vercel → Project → Settings → Environment Variables, " +
+            "add SMTP_HOST, SMTP_USER, SMTP_PASS (and optional SMTP_FROM / SMTP_PORT), or RESEND_API_KEY + RESEND_FROM, then redeploy."
+        );
+    }
+    return (
+        "Mail is not configured. Add SMTP_HOST, SMTP_USER and SMTP_PASS (Gmail App Password) in .env.local, then restart npm run dev."
     );
 }
 
@@ -128,9 +144,21 @@ async function sendWithSmtp(options: {
         port,
         secure,
         auth: { user, pass },
+        // Serverless hosts (Vercel) need short, explicit timeouts and no extra verify round-trip.
+        connectionTimeout: 12_000,
+        greetingTimeout: 12_000,
+        socketTimeout: 25_000,
+        tls: {
+            minVersion: "TLSv1.2",
+        },
+        requireTLS: !secure && port === 587,
     });
 
-    await transporter.verify();
+    // Skip verify() in production — it often times out on serverless and is not required to send.
+    if (!isProductionHost()) {
+        await transporter.verify();
+    }
+
     await transporter.sendMail({
         from: fromAddress.includes("<") ? fromAddress : `"${FROM_NAME}" <${fromAddress}>`,
         to: options.data.session.email.trim(),
@@ -157,16 +185,32 @@ export async function sendGapReportEmail(options: {
     kind?: ReportKind;
 }) {
     if (!isMailConfigured()) {
-        throw new Error(
-            "Mail is not configured. Add SMTP_HOST, SMTP_USER and SMTP_PASS (Gmail App Password) in .env.local, then restart npm run dev."
-        );
+        throw new Error(mailNotConfiguredMessage());
     }
 
-    const sentWithResend = await sendWithResend(options);
-    if (sentWithResend) return;
+    const errors: string[] = [];
 
-    const sentWithSmtp = await sendWithSmtp(options);
-    if (sentWithSmtp) return;
+    try {
+        const sentWithResend = await sendWithResend(options);
+        if (sentWithResend) return;
+    } catch (error) {
+        const message = error instanceof Error ? error.message : "Resend failed.";
+        errors.push(message);
+        console.error("Report email (Resend) failed:", message);
+    }
 
-    throw new Error("Mail is not configured. Add SMTP settings or RESEND_API_KEY in .env.local.");
+    try {
+        const sentWithSmtp = await sendWithSmtp(options);
+        if (sentWithSmtp) return;
+    } catch (error) {
+        const message = error instanceof Error ? error.message : "SMTP failed.";
+        errors.push(message);
+        console.error("Report email (SMTP) failed:", message);
+    }
+
+    if (errors.length) {
+        throw new Error(errors.join(" | "));
+    }
+
+    throw new Error(mailNotConfiguredMessage());
 }
