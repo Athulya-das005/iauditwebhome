@@ -44,7 +44,7 @@ export async function POST(request: Request) {
                         session: data.session,
                         auditDate: data.auditDate,
                         overall: data.yes,
-                        status: data.maturity.stage,
+                        status: data.yes >= 44 ? "Pass" : "Fail",
                         comply: data.yes,
                         ofi: 0,
                         nc: data.no,
