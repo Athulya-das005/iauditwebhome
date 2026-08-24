@@ -12,7 +12,7 @@ type Payload = {
     format?: "pdf" | "word";
     sendEmail?: boolean;
     session?: GapAnalysisSession;
-    clauses?: { label: string; questions: { text: string; answer: SelfAnswer }[] }[];
+    clauses?: { label: string; questions: { text: string; answer: SelfAnswer; notes?: string }[] }[];
 };
 
 export async function POST(request: Request) {
@@ -43,8 +43,8 @@ export async function POST(request: Request) {
                     data: {
                         session: data.session,
                         auditDate: data.auditDate,
-                        overall: data.overall,
-                        status: data.overall >= 80 ? "Pass" : "Fail",
+                        overall: data.yes,
+                        status: data.maturity.stage,
                         comply: data.yes,
                         ofi: 0,
                         nc: data.no,

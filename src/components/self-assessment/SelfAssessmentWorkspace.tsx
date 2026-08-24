@@ -13,8 +13,13 @@ import type { GapAnalysisSession } from "@/types/gap-analysis-session";
 
 type QuestionState = {
     id: string;
+    number: number;
     text: string;
     answer: SelfAnswer;
+    notes: string;
+    is2026?: boolean;
+    isClimate?: boolean;
+    custom?: boolean;
 };
 
 const font = '"Pp Neue Montreal", sans-serif';
@@ -22,10 +27,14 @@ const YES = "#16a34a";
 const NO = "#ef4444";
 
 function makeQuestions(clauses: SelfAssessmentClause[], clauseIndex: number): QuestionState[] {
-    return (clauses[clauseIndex]?.questions ?? []).map((text, index) => ({
-        id: `c${clauseIndex}-q${index + 1}`,
-        text,
+    return (clauses[clauseIndex]?.questions ?? []).map((item, index) => ({
+        id: `c${clauseIndex}-q${item.number ?? index + 1}`,
+        number: item.number,
+        text: item.text,
         answer: "",
+        notes: "",
+        is2026: item.is2026,
+        isClimate: item.isClimate,
     }));
 }
 
@@ -70,6 +79,8 @@ export default function SelfAssessmentWorkspace() {
     }, [router]);
 
     const questions = questionsByClause[clauseIndex] ?? [];
+    const clauseYes = useMemo(() => questions.filter((item) => item.answer === "yes").length, [questions]);
+    const clauseMax = questions.length;
     const totals = useMemo(() => {
         const all = questionsByClause.flat();
         return {
@@ -89,6 +100,14 @@ export default function SelfAssessmentWorkspace() {
         );
     }
 
+    function setNotes(id: string, notes: string) {
+        setQuestionsByClause((prev) =>
+            prev.map((clause, index) =>
+                index === clauseIndex ? clause.map((item) => (item.id === id ? { ...item, notes } : item)) : clause
+            )
+        );
+    }
+
     function deleteQuestion(id: string) {
         setQuestionsByClause((prev) =>
             prev.map((clause, index) => (index === clauseIndex ? clause.filter((item) => item.id !== id) : clause))
@@ -100,11 +119,21 @@ export default function SelfAssessmentWorkspace() {
         const text = newQuestion.trim();
         if (!text) return;
         setQuestionsByClause((prev) =>
-            prev.map((clause, index) =>
-                index === clauseIndex
-                    ? [...clause, { id: `c${clauseIndex}-custom-${Date.now()}`, text, answer: "" }]
-                    : clause
-            )
+            prev.map((clause, index) => {
+                if (index !== clauseIndex) return clause;
+                const nextNumber = Math.max(0, ...clause.map((q) => q.number)) + 1;
+                return [
+                    ...clause,
+                    {
+                        id: `c${clauseIndex}-custom-${Date.now()}`,
+                        number: nextNumber,
+                        text,
+                        answer: "" as SelfAnswer,
+                        notes: "",
+                        custom: true,
+                    },
+                ];
+            })
         );
         setNewQuestion("");
         setAddOpen(false);
@@ -131,7 +160,7 @@ export default function SelfAssessmentWorkspace() {
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", marginBottom: "1.15rem" }}>
                     <div>
                         <h1 style={{ margin: 0, fontSize: isMobile ? "1.85rem" : "2.15rem", color: "#111827", letterSpacing: "-0.03em" }}>Self Assessment</h1>
-                        <p style={{ margin: "0.4rem 0 0", color: "#6b7280" }}>Evaluate your organization&apos;s compliance with ISO standards</p>
+                        <p style={{ margin: "0.4rem 0 0", color: "#6b7280" }}>ISO 14001:2026 — Yes/No questions across clauses 4–10</p>
                     </div>
                     <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: "0.85rem", padding: "0.55rem 0.85rem", minWidth: "92px", textAlign: "right" }}>
                         <div style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.08em", color: "#9ca3af" }}>PROGRESS</div>
@@ -153,7 +182,27 @@ export default function SelfAssessmentWorkspace() {
                             Clause {clauseIndex + 1} of {clauses.length}
                         </span>
                     </div>
-                    <div style={{ marginTop: "0.85rem", height: "8px", background: "#eef2f0", borderRadius: "999px", overflow: "hidden" }}>
+
+                    <div
+                        style={{
+                            marginTop: "0.85rem",
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "baseline",
+                            gap: "0.75rem",
+                            flexWrap: "wrap",
+                        }}
+                    >
+                        <p style={{ margin: 0, color: "#0f766e", fontWeight: 700, fontSize: isMobile ? "0.92rem" : "1rem", lineHeight: 1.4 }}>
+                            {currentClause.label} Subtotal:{" "}
+                            <span style={{ color: YES, fontWeight: 800 }}>
+                                {clauseYes} / {clauseMax}
+                            </span>
+                        </p>
+                        <span style={{ color: "#9ca3af", fontSize: "0.82rem" }}>1 point per Yes</span>
+                    </div>
+
+                    <div style={{ marginTop: "0.75rem", height: "8px", background: "#eef2f0", borderRadius: "999px", overflow: "hidden" }}>
                         <div style={{ width: `${clauseProgress}%`, height: "100%", background: YES, borderRadius: "999px" }} />
                     </div>
                 </section>
@@ -168,15 +217,23 @@ export default function SelfAssessmentWorkspace() {
 
                     {questions.length === 0 ? (
                         <p style={{ color: "#6b7280", padding: "1.25rem 0 1.6rem" }}>
-                            Questions for this clause will be added next. You can add a custom question, or continue to the next clause.
+                            No questions for this clause yet. Add a custom question, or continue to the next clause.
                         </p>
                     ) : (
                         questions.map((question, index) => (
                             <article key={question.id} style={{ padding: "1.15rem 0", borderTop: index === 0 ? "none" : "1px solid #f3f4f6" }}>
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "0.75rem" }}>
-                                    <p style={{ margin: 0, color: "#374151", fontWeight: 600, lineHeight: 1.55, flex: 1 }}>
-                                        Q{index + 1}. {question.text}
-                                    </p>
+                                    <div style={{ flex: 1, minWidth: 0 }}>
+                                        {(question.is2026 || question.isClimate) ? (
+                                            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginBottom: "0.45rem" }}>
+                                                {question.is2026 ? <span style={tag2026}>★ 2026</span> : null}
+                                                {question.isClimate ? <span style={tagClimate}>[Climate]</span> : null}
+                                            </div>
+                                        ) : null}
+                                        <p style={{ margin: 0, color: "#374151", fontWeight: 600, lineHeight: 1.55 }}>
+                                            Q{question.number || index + 1}. {question.text}
+                                        </p>
+                                    </div>
                                     <button type="button" aria-label="Delete question" onClick={() => deleteQuestion(question.id)} style={trashBtn}>
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                             <polyline points="3 6 5 6 21 6" />
@@ -200,9 +257,34 @@ export default function SelfAssessmentWorkspace() {
                                         onClick={() => setAnswer(question.id, question.answer === "no" ? "" : "no")}
                                     />
                                 </div>
+                                <label style={{ display: "block", marginTop: "0.85rem" }}>
+                                    <span style={{ display: "block", marginBottom: "0.35rem", color: "#6b7280", fontWeight: 700, fontSize: "0.85rem" }}>
+                                        Notes:
+                                    </span>
+                                    <textarea
+                                        value={question.notes}
+                                        onChange={(event) => setNotes(question.id, event.target.value)}
+                                        rows={2}
+                                        placeholder="Optional notes for this question..."
+                                        style={notesField}
+                                    />
+                                </label>
                             </article>
                         ))
                     )}
+
+                    <div
+                        style={{
+                            margin: "0.35rem 0 1.1rem",
+                            paddingTop: "0.85rem",
+                            borderTop: "1px solid #e5e7eb",
+                            color: "#0f766e",
+                            fontWeight: 700,
+                            fontSize: "0.95rem",
+                        }}
+                    >
+                        {currentClause.label} Subtotal: {clauseYes} / {clauseMax}
+                    </div>
                 </section>
 
                 <div style={{ display: "flex", justifyContent: "space-between", gap: "0.75rem", marginTop: "1.15rem" }}>
@@ -371,6 +453,21 @@ const trashBtn: CSSProperties = {
     padding: "0.2rem",
 };
 
+const notesField: CSSProperties = {
+    width: "100%",
+    boxSizing: "border-box",
+    border: "none",
+    borderBottom: "1.5px solid #d1d5db",
+    borderRadius: 0,
+    padding: "0.45rem 0.1rem",
+    fontFamily: font,
+    fontSize: "0.92rem",
+    color: "#374151",
+    background: "transparent",
+    resize: "vertical",
+    outline: "none",
+};
+
 const prevBtn: CSSProperties = {
     border: "1px solid #e5e7eb",
     background: "#fff",
@@ -396,6 +493,32 @@ const nextBtn: CSSProperties = {
 const completeBtn: CSSProperties = {
     ...nextBtn,
     background: "#15803d",
+};
+
+const tag2026: CSSProperties = {
+    display: "inline-block",
+    background: "#ecfdf3",
+    color: "#166534",
+    border: "1px solid #bbf7d0",
+    borderRadius: "999px",
+    padding: "0.12rem 0.55rem",
+    fontSize: "0.7rem",
+    fontWeight: 800,
+    letterSpacing: "0.02em",
+    fontFamily: font,
+};
+
+const tagClimate: CSSProperties = {
+    display: "inline-block",
+    background: "#eff6ff",
+    color: "#1d4ed8",
+    border: "1px solid #bfdbfe",
+    borderRadius: "999px",
+    padding: "0.12rem 0.55rem",
+    fontSize: "0.7rem",
+    fontWeight: 800,
+    letterSpacing: "0.02em",
+    fontFamily: font,
 };
 
 const ghostBtn: CSSProperties = {

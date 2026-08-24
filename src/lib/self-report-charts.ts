@@ -1,9 +1,10 @@
 import sharp from "sharp";
+import { maturityTone } from "@/lib/self-report-data";
 
-const ORANGE = "#F59E0B";
 const GREY = "#E5E7EB";
 const TEXT = "#111827";
 const MUTED = "#6B7280";
+const ORANGE = "#F59E0B";
 
 function polar(cx: number, cy: number, r: number, angleDeg: number) {
     const rad = ((angleDeg - 90) * Math.PI) / 180;
@@ -40,7 +41,7 @@ function escapeXml(value: string) {
     return value.replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char] ?? char));
 }
 
-/** Donut matching on-screen / PDF Total Score chart (Yes = orange, Remaining = grey). */
+/** Donut matching on-screen / PDF Total Score chart (Yes = stage colour, Remaining = grey). */
 export async function buildScoreDonutPng(yes: number, total: number, stage: string): Promise<Buffer> {
     const rest = Math.max(total - yes, 0);
     const sum = Math.max(yes + rest, 1);
@@ -50,6 +51,7 @@ export async function buildScoreDonutPng(yes: number, total: number, stage: stri
     const cy = 200;
     const outer = 130;
     const inner = 78;
+    const tone = maturityTone(stage);
 
     const yesSweep = (yes / sum) * 360;
     const restSweep = (rest / sum) * 360;
@@ -63,12 +65,12 @@ export async function buildScoreDonutPng(yes: number, total: number, stage: stri
 <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
   <rect width="100%" height="100%" fill="#ffffff"/>
   ${restPath ? `<path d="${restPath}" fill="${GREY}"/>` : ""}
-  ${yesPath ? `<path d="${yesPath}" fill="${ORANGE}"/>` : ""}
+  ${yesPath ? `<path d="${yesPath}" fill="${tone.accent}"/>` : ""}
   <text x="${cx}" y="${cy - 6}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="${TEXT}">${escapeXml(score)}</text>
   <text x="${cx}" y="${cy + 22}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="${MUTED}">${escapeXml(sub)}</text>
-  <rect x="${cx - 90}" y="${cy + outer + 28}" rx="14" ry="14" width="180" height="28" fill="#EEF2F6"/>
-  <text x="${cx}" y="${cy + outer + 47}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="${MUTED}">${escapeXml(stageLabel)}</text>
-  <rect x="${cx - 78}" y="${cy + outer + 72}" width="12" height="12" fill="${ORANGE}" rx="2"/>
+  <rect x="${cx - 90}" y="${cy + outer + 28}" rx="14" ry="14" width="180" height="28" fill="${tone.badgeBg}" stroke="${tone.softBorder}"/>
+  <text x="${cx}" y="${cy + outer + 47}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="${tone.badgeText}">${escapeXml(stageLabel)}</text>
+  <rect x="${cx - 78}" y="${cy + outer + 72}" width="12" height="12" fill="${tone.accent}" rx="2"/>
   <text x="${cx - 60}" y="${cy + outer + 82}" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="${TEXT}">Yes</text>
   <rect x="${cx + 10}" y="${cy + outer + 72}" width="12" height="12" fill="${GREY}" rx="2"/>
   <text x="${cx + 28}" y="${cy + outer + 82}" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="${TEXT}">Remaining</text>

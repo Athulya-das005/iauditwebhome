@@ -3,7 +3,7 @@ import SelfAssessmentWorkspace from "@/components/self-assessment/SelfAssessment
 
 export const metadata: Metadata = {
     title: "Self Assessment Workspace | iAudit Global",
-    description: "Evaluate your organisation’s compliance with ISO standards.",
+    description: "Work through the ISO 14001:2026 self assessment — 65 Yes/No questions across clauses 4–10.",
     robots: { index: false, follow: false },
 };
 

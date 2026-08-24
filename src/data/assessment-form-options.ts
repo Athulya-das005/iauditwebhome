@@ -43,11 +43,9 @@ export const departmentOptions = [
 
 export const yesNoOptions = ["Yes", "No"] as const;
 
-/** Self Assessment — show standard name */
+/** Self Assessment — ISO 14001:2026 only */
 export const isoStandardOptions = [
-    { value: "ISO 9001 - Quality Management", label: "ISO 9001 - Quality Management" },
-    { value: "ISO 14001 - Environmental Management", label: "ISO 14001 - Environmental Management" },
-    { value: "ISO 45001 - Occupational Health & Safety", label: "ISO 45001 - Occupational Health & Safety" },
+    { value: "ISO 14001:2026", label: "ISO 14001:2026" },
 ] as const;
 
 /** Gap Analysis — show standard year */

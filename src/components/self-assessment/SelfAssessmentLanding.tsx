@@ -14,7 +14,7 @@ const steps = [
     {
         step: "Step 1",
         title: "Select your standard and organisation",
-        text: "Choose ISO 9001, ISO 14001 or ISO 45001. Select the site or department you are evaluating.",
+        text: "Choose ISO 14001:2026. Select the site or department you are evaluating.",
         image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80",
     },
     {
@@ -96,7 +96,7 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
             >
                 <Image
                     src={HERO_IMAGE}
-                    alt="ISO Self Assessment for ISO 9001, 14001 and 45001"
+                    alt="ISO 14001:2026 Self Assessment"
                     fill
                     priority
                     sizes="100vw"
@@ -166,7 +166,7 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                             maxWidth: "680px",
                         }}
                     >
-                        Evaluate your management system clause by clause against ISO 9001, ISO 14001 and ISO 45001.
+                        Evaluate your environmental management system clause by clause against ISO 14001:2026.
                         Identify gaps, measure readiness and build a structured improvement plan before your next
                         audit.
                     </p>
@@ -182,6 +182,9 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                         <button type="button" onClick={onStart} style={ctaBtnStyle}>
                             Start free assessment
                         </button>
+                        <Link href="/iso-audit-assessments/self-assessment/checklist" style={ghostCtaStyle}>
+                            View the checklist
+                        </Link>
                         <Link
                             href={CALENDLY_URL}
                             target="_blank"
@@ -189,6 +192,102 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                             style={ghostCtaStyle}
                         >
                             Book a demo
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* Brochure-style View Checklist promo */}
+            <section
+                id="view-checklist"
+                style={{
+                    background: "linear-gradient(135deg, #eef8f1 0%, #f7f8f5 50%, #e8f4ec 100%)",
+                    padding: isMobile
+                        ? isNarrow
+                            ? "2.75rem 1rem"
+                            : "3.25rem 1.25rem"
+                        : "4.5rem 2rem",
+                }}
+            >
+                <div
+                    style={{
+                        maxWidth: "1100px",
+                        margin: "0 auto",
+                        display: "grid",
+                        gridTemplateColumns: isMobile ? "1fr" : "0.95fr 1.05fr",
+                        gap: isMobile ? "1.5rem" : "2.75rem",
+                        alignItems: "center",
+                        width: "100%",
+                        boxSizing: "border-box",
+                    }}
+                >
+                    <div
+                        style={{
+                            position: "relative",
+                            width: "100%",
+                            aspectRatio: isMobile ? "16 / 11" : "4 / 5",
+                            borderRadius: isMobile ? "1.1rem" : "1.35rem",
+                            overflow: "hidden",
+                            boxShadow: "0 18px 48px rgba(16,47,32,0.12)",
+                        }}
+                    >
+                        <Image
+                            src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80"
+                            alt="ISO 14001:2026 Self-Assessment Checklist"
+                            fill
+                            sizes="(max-width: 900px) 100vw, 480px"
+                            quality={90}
+                            style={{ objectFit: "cover" }}
+                        />
+                    </div>
+                    <div>
+                        <p style={{ margin: "0 0 0.3rem", color: "#6b7280", fontSize: "0.85rem", fontWeight: 600 }}>Checklist</p>
+                        <p style={{ margin: "0 0 0.85rem", color: "#6b7280", fontSize: "0.85rem", fontWeight: 600 }}>Sustainability · ISO 14001:2026</p>
+                        <h2
+                            style={{
+                                margin: "0 0 1rem",
+                                color: "#10291d",
+                                fontSize: isNarrow ? "1.55rem" : isMobile ? "1.85rem" : "2.45rem",
+                                lineHeight: 1.15,
+                                letterSpacing: "-0.03em",
+                                fontWeight: 700,
+                                wordBreak: "break-word",
+                            }}
+                        >
+                            ISO 14001:2026 Self-Assessment Checklist
+                        </h2>
+                        <p
+                            style={{
+                                margin: "0 0 1.35rem",
+                                color: "#4b5563",
+                                fontSize: isNarrow ? "0.98rem" : "1.05rem",
+                                lineHeight: 1.7,
+                                maxWidth: "34rem",
+                            }}
+                        >
+                            Preview how the assessment works before you start. Explore all 65 questions, tick Yes or No,
+                            see your live score, and read maturity guidance, 2026 key changes and climate considerations
+                            from our checklist.
+                        </p>
+                        <Link
+                            href="/iso-audit-assessments/self-assessment/checklist"
+                            style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                background: "#1f2937",
+                                color: "#fff",
+                                textDecoration: "none",
+                                borderRadius: "0.55rem",
+                                padding: isNarrow ? "0.85rem 1.15rem" : "0.9rem 1.35rem",
+                                fontWeight: 700,
+                                fontSize: isNarrow ? "0.9rem" : "0.95rem",
+                                minHeight: "48px",
+                                width: isMobile ? "100%" : "auto",
+                                boxSizing: "border-box",
+                            }}
+                        >
+                            View the Checklist
                         </Link>
                     </div>
                 </div>
@@ -453,7 +552,7 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                 buttonHref="#start"
                 secondaryButtonText="Book a demo"
                 secondaryButtonHref={CALENDLY_URL}
-                badges={["No credit card required", "Clause-based for ISO 9001, 14001 & 45001"]}
+                badges={["No credit card required", "Clause-based for ISO 14001:2026"]}
             />
             <StartCtaBridge onStart={onStart} />
             <Footer />

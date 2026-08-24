@@ -4,10 +4,10 @@ import { useMemo, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { type SelfAnswer, type SelfAssessmentClause } from "@/data/self-assessment-clauses";
-import { maturityForScore } from "@/lib/self-report-data";
+import { maturityForYesCount, maturityTone } from "@/lib/self-report-data";
 import type { GapAnalysisSession } from "@/types/gap-analysis-session";
 
-type QuestionRow = { text: string; answer: SelfAnswer };
+type QuestionRow = { text: string; answer: SelfAnswer; notes?: string };
 
 type Props = {
     session: GapAnalysisSession;
@@ -53,8 +53,10 @@ export default function SelfAssessmentResults({ session, clauses, questionsByCla
         const unanswered = clauseStats.reduce((acc, item) => acc + item.unanswered, 0);
         const total = yes + no + unanswered;
         const overall = total === 0 ? 0 : Math.round((yes / total) * 100);
-        return { clauses: clauseStats, yes, no, unanswered, total, overall, maturity: maturityForScore(overall, session.isoStandard) };
+        return { clauses: clauseStats, yes, no, unanswered, total, overall, maturity: maturityForYesCount(yes, session.isoStandard) };
     }, [clauses, questionsByClause, session.isoStandard]);
+
+    const tone = maturityTone(stats.maturity.stage);
 
     function payload(selectedFormat: "pdf" | "word") {
         return {
@@ -192,14 +194,27 @@ export default function SelfAssessmentResults({ session, clauses, questionsByCla
                 {emailNote ? <p style={{ margin: "0 0 1rem", color: "#166534", background: "#ecfdf3", borderRadius: "0.75rem", padding: "0.85rem 1rem" }}>{emailNote}</p> : null}
                 {downloadError ? <p style={{ margin: "0 0 1rem", color: "#b91c1c" }}>{downloadError}</p> : null}
 
-                <section style={{ background: "#e8f8ef", borderRadius: "1rem", padding: isMobile ? "1.1rem 1rem" : "1.25rem 1.4rem", display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1rem", flexWrap: "wrap", marginBottom: "1rem" }}>
+                <section
+                    style={{
+                        background: tone.softBg,
+                        border: `1px solid ${tone.softBorder}`,
+                        borderRadius: "1rem",
+                        padding: isMobile ? "1.1rem 1rem" : "1.25rem 1.4rem",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        gap: "1rem",
+                        flexWrap: "wrap",
+                        marginBottom: "1rem",
+                    }}
+                >
                     <div>
                         <h1 style={{ margin: 0, fontSize: isMobile ? "1.45rem" : "1.75rem", color: "#0f172a" }}>Maturity Assessment Result</h1>
                         <p style={{ margin: "0.35rem 0 0", color: "#6b7280" }}>
                             {session.isoStandard} | {session.organisation} | {new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
                         </p>
                     </div>
-                    <div style={{ color: YES, fontWeight: 800, fontSize: "1.7rem" }}>
+                    <div style={{ color: tone.accent, fontWeight: 800, fontSize: "1.7rem" }}>
                         {stats.yes} / {stats.total}
                     </div>
                 </section>
@@ -207,17 +222,35 @@ export default function SelfAssessmentResults({ session, clauses, questionsByCla
                 <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "0.9fr 1.1fr", gap: "1rem", marginBottom: "1rem" }}>
                     <section style={card}>
                         <h2 style={cardTitle}>Total Score</h2>
-                        <ScoreDonut yes={stats.yes} rest={Math.max(stats.total - stats.yes, 0)} total={stats.total} />
+                        <ScoreDonut yes={stats.yes} rest={Math.max(stats.total - stats.yes, 0)} total={stats.total} stageColor={tone.accent} />
                         <div style={{ textAlign: "center", marginTop: "0.5rem" }}>
-                            <span style={{ display: "inline-block", background: "#eef2f6", color: "#4b5563", borderRadius: "999px", padding: "0.28rem 0.8rem", fontSize: "0.78rem", fontWeight: 800, letterSpacing: "0.04em" }}>
+                            <span
+                                style={{
+                                    display: "inline-block",
+                                    background: tone.badgeBg,
+                                    color: tone.badgeText,
+                                    border: `1px solid ${tone.softBorder}`,
+                                    borderRadius: "999px",
+                                    padding: "0.28rem 0.8rem",
+                                    fontSize: "0.78rem",
+                                    fontWeight: 800,
+                                    letterSpacing: "0.04em",
+                                }}
+                            >
                                 {stats.maturity.stage.toUpperCase()}
                             </span>
                         </div>
                     </section>
-                    <section style={card}>
-                        <h2 style={{ ...cardTitle, color: "#0f172a" }}>Your Position: {stats.maturity.stage}</h2>
+                    <section
+                        style={{
+                            ...card,
+                            background: tone.softBg,
+                            border: `1.5px solid ${tone.softBorder}`,
+                        }}
+                    >
+                        <h2 style={{ ...cardTitle, color: tone.text }}>Your Position: {stats.maturity.stage}</h2>
                         <p style={{ margin: "0 0 1rem", color: "#4b5563", lineHeight: 1.7 }}>{stats.maturity.description}</p>
-                        <p style={{ margin: "0 0 0.7rem", fontWeight: 800, color: "#0f172a", fontSize: "0.82rem", letterSpacing: "0.04em" }}>RECOMMENDED ACTIONS:</p>
+                        <p style={{ margin: "0 0 0.7rem", fontWeight: 800, color: tone.text, fontSize: "0.82rem", letterSpacing: "0.04em" }}>RECOMMENDED ACTIONS:</p>
                         <div style={{ display: "grid", gap: "0.55rem" }}>
                             {stats.maturity.actions.map((action, index) => (
                                 <div key={action} style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem", color: "#374151", lineHeight: 1.6 }}>
@@ -226,7 +259,7 @@ export default function SelfAssessmentResults({ session, clauses, questionsByCla
                                             width: 18,
                                             height: 18,
                                             borderRadius: "50%",
-                                            background: YES,
+                                            background: tone.accent,
                                             color: "#fff",
                                             fontSize: "0.7rem",
                                             fontWeight: 800,
@@ -243,7 +276,7 @@ export default function SelfAssessmentResults({ session, clauses, questionsByCla
                                 </div>
                             ))}
                         </div>
-                        <p style={{ margin: "1rem 0 0", color: "#6b7280" }}>
+                        <p style={{ margin: "1rem 0 0", color: tone.text, fontWeight: 600 }}>
                             <strong>Timeline:</strong> {stats.maturity.timeline}
                         </p>
                     </section>
@@ -271,7 +304,7 @@ export default function SelfAssessmentResults({ session, clauses, questionsByCla
                             ))}
                             <tr>
                                 <td style={{ padding: "0.7rem 0.4rem", fontWeight: 800 }}>TOTAL SCORE</td>
-                                <td style={{ padding: "0.7rem 0.4rem", textAlign: "right", fontWeight: 800, color: YES }}>{stats.yes}</td>
+                                <td style={{ padding: "0.7rem 0.4rem", textAlign: "right", fontWeight: 800, color: tone.accent }}>{stats.yes}</td>
                                 <td style={{ padding: "0.7rem 0.4rem", textAlign: "right", fontWeight: 800 }}>{stats.total}</td>
                             </tr>
                         </tbody>
@@ -297,12 +330,16 @@ export default function SelfAssessmentResults({ session, clauses, questionsByCla
 
                 {stats.clauses.map((clause) => (
                     <section key={clause.label} style={{ marginBottom: "1.15rem" }}>
-                        <h2 style={{ margin: "0 0 0.65rem", background: "#f3f4f6", borderRadius: "0.7rem", padding: "0.7rem 0.9rem", fontSize: "1.05rem", color: "#0f172a" }}>
-                            {clause.label}
+                        <h2 style={{ margin: "0 0 0.65rem", background: "#f3f4f6", borderRadius: "0.7rem", padding: "0.7rem 0.9rem", fontSize: "1.05rem", color: "#0f172a", display: "flex", justifyContent: "space-between", gap: "0.75rem", flexWrap: "wrap" }}>
+                            <span>{clause.label}</span>
+                            <span style={{ color: "#0f766e", fontWeight: 800, fontSize: "0.95rem" }}>
+                                Subtotal: {clause.yes} / {clause.total}
+                            </span>
                         </h2>
                         <div style={{ background: "#fff", borderRadius: "0.9rem", border: "1px solid #e5e7eb", overflow: "hidden" }}>
                             {clause.questions.map((question, index) => {
                                 const compliant = question.answer === "yes";
+                                const note = question.notes?.trim();
                                 return (
                                     <article key={`${clause.label}-${index}`} style={{ padding: "0.95rem 1rem", borderTop: index === 0 ? "none" : "1px solid #f3f4f6" }}>
                                         <div style={{ display: "flex", gap: "0.7rem", alignItems: "flex-start" }}>
@@ -323,7 +360,7 @@ export default function SelfAssessmentResults({ session, clauses, questionsByCla
                                             >
                                                 {compliant ? "✓" : "!"}
                                             </span>
-                                            <div>
+                                            <div style={{ flex: 1, minWidth: 0 }}>
                                                 <p style={{ margin: 0, color: "#111827", lineHeight: 1.55 }}>{question.text}</p>
                                                 <span
                                                     style={{
@@ -340,6 +377,11 @@ export default function SelfAssessmentResults({ session, clauses, questionsByCla
                                                 >
                                                     {compliant ? "COMPLIANT" : "NON-COMPLIANT"}
                                                 </span>
+                                                {note ? (
+                                                    <p style={{ margin: "0.65rem 0 0", color: "#4b5563", lineHeight: 1.55, fontSize: "0.9rem" }}>
+                                                        <strong style={{ color: "#6b7280" }}>Notes:</strong> {note}
+                                                    </p>
+                                                ) : null}
                                             </div>
                                         </div>
                                     </article>
@@ -353,10 +395,10 @@ export default function SelfAssessmentResults({ session, clauses, questionsByCla
     );
 }
 
-function ScoreDonut({ yes, rest, total }: { yes: number; rest: number; total: number }) {
+function ScoreDonut({ yes, rest, total, stageColor }: { yes: number; rest: number; total: number; stageColor: string }) {
     const [tip, setTip] = useState<{ label: string; value: number; x: number; y: number } | null>(null);
     const segments = [
-        { label: "Yes", value: yes, color: ORANGE },
+        { label: "Yes", value: yes, color: stageColor },
         { label: "Remaining", value: rest, color: GREY },
     ];
     const paths = donutPaths(segments, 80, 80, 70, 42);
@@ -386,7 +428,7 @@ function ScoreDonut({ yes, rest, total }: { yes: number; rest: number; total: nu
             {tip ? (
                 <div style={{ ...tooltip, left: tip.x + 10, top: Math.max(8, tip.y - 42) }}>
                     <div>{tip.label}</div>
-                    <div style={{ color: tip.label === "Yes" ? ORANGE : "#6b7280" }}>Count: {tip.value}</div>
+                    <div style={{ color: tip.label === "Yes" ? stageColor : "#6b7280" }}>Count: {tip.value}</div>
                 </div>
             ) : null}
         </div>

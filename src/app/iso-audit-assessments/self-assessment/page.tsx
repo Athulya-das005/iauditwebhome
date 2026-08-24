@@ -3,9 +3,9 @@ import GapAnalysisStart, { selfAssessmentStartConfig } from "@/components/gap-an
 import SelfAssessmentLanding from "@/components/self-assessment/SelfAssessmentLanding";
 
 const pageUrl = "https://www.iaudit.global/iso-audit-assessments/self-assessment";
-const title = "ISO Self Assessment Tool for ISO 9001, 14001 and 45001";
+const title = "ISO 14001:2026 Self Assessment | iAudit Global";
 const description =
-    "Run a clause-based ISO Self Assessment across ISO 9001, 14001 and 45001. Identify compliance gaps and build a structured improvement plan before your next audit.";
+    "Run a clause-based ISO 14001:2026 Self Assessment. Identify EMS compliance gaps and build a structured improvement plan before your next audit.";
 
 export const metadata: Metadata = {
     title,

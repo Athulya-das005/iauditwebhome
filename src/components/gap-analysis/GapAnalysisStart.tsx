@@ -45,7 +45,7 @@ export const selfAssessmentStartConfig: AssessmentStartConfig = {
     eyebrow: "Yes / No readiness check",
     title: "ISO Self Assessment",
     description:
-        "Enter your details to start a fast self assessment against ISO 9001, 14001 or 45001. Answer Yes or No clause by clause, add your own questions, and track progress as you go.",
+        "Enter your details to start a fast self assessment against ISO 14001:2026. Answer Yes or No clause by clause and track progress as you go.",
     cta: "Start free assessment",
     image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1600&q=80",
     imageAlt: "ISO Self Assessment",
@@ -68,7 +68,9 @@ export default function GapAnalysisStart({
     const [organisationSize, setOrganisationSize] = useState("");
     const [department, setDepartment] = useState("");
     const [existingCustomer, setExistingCustomer] = useState("");
-    const [isoStandard, setIsoStandard] = useState<IsoStandardValue | "">("");
+    const [isoStandard, setIsoStandard] = useState<IsoStandardValue | "">(
+        config.assessmentType === "self-assessment" ? "ISO 14001:2026" : ""
+    );
     const [auditScope, setAuditScope] = useState("");
     const [emailOptIn, setEmailOptIn] = useState(false);
     const [standardOpen, setStandardOpen] = useState(false);

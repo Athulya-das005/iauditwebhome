@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { motion, AnimatePresence } from "framer-motion";
@@ -38,6 +39,7 @@ const industriesAndStandardsMegamenu = [
 ];
 
 export default function Header() {
+    const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
@@ -195,13 +197,18 @@ export default function Header() {
         }
     }, [isMenuOpen]);
 
-    // Floating capsule after scroll (or while mobile menu is open)
+    // Floating capsule after scroll (or while mobile menu / megamenu is open)
     const isCondensed = isScrolled || isMenuOpen;
+    // Hide-on-scroll only on the /blog listing page (not individual posts or other routes)
+    const hideNavOnScroll = pathname === "/blog";
+    const isHeaderVisible =
+        !hideNavOnScroll || !isScrolled || isMenuOpen || Boolean(hoveredItem);
 
     return (
         <header
-            className="site-header-chrome"
+            className={`site-header-chrome${isHeaderVisible ? "" : " is-away"}`}
             style={{ fontFamily: '"Pp Neue Montreal", sans-serif' }}
+            aria-hidden={!isHeaderVisible}
         >
             <div
                 className={`site-header-nav${isCondensed ? " is-condensed" : ""}`}

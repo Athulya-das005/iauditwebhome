@@ -2,6 +2,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import { LineCapStyle, PDFDocument, StandardFonts, rgb, type PDFPage, type RGB } from "pdf-lib";
 import type { SelfReportData } from "@/lib/self-report-data";
+import { maturityTone } from "@/lib/self-report-data";
 
 const GREEN = rgb(0, 0.4, 0.266);
 const TEXT = rgb(0.07, 0.09, 0.15);
@@ -12,6 +13,12 @@ const GREY = rgb(0.78, 0.8, 0.82);
 const YES = rgb(0.09, 0.64, 0.29);
 const NO = rgb(0.94, 0.27, 0.27);
 const FILL = rgb(0.94, 0.98, 0.95);
+
+function hexToRgb(hex: string): RGB {
+    const clean = hex.replace("#", "");
+    const n = parseInt(clean, 16);
+    return rgb(((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255);
+}
 
 function polar(cx: number, cy: number, r: number, angle: number) {
     return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
@@ -116,7 +123,13 @@ export async function buildSelfPdf(data: SelfReportData) {
         y -= h + 16;
     }
 
-    page.drawRectangle({ x: margin, y: y - 52, width: 511, height: 62, color: FILL, borderColor: rgb(0.78, 0.9, 0.82), borderWidth: 0.8 });
+    const tone = maturityTone(data.maturity.stage);
+    const stageColor = hexToRgb(tone.accent);
+    const stageFill = hexToRgb(tone.softBg);
+    const stageBorder = hexToRgb(tone.softBorder);
+    const stageText = hexToRgb(tone.text);
+
+    page.drawRectangle({ x: margin, y: y - 52, width: 511, height: 62, color: stageFill, borderColor: stageBorder, borderWidth: 0.8 });
     page.drawText("Maturity Assessment Result", { x: margin + 14, y: y - 8, size: 16, font: bold, color: TEXT });
     page.drawText(`${data.session.isoStandard}  |  ${data.session.organisation}  |  ${data.auditDate}`, {
         x: margin + 14,
@@ -125,7 +138,7 @@ export async function buildSelfPdf(data: SelfReportData) {
         font: regular,
         color: MUTED,
     });
-    page.drawText(`${data.yes} / ${data.total}`, { x: margin + 400, y: y - 14, size: 18, font: bold, color: GREEN });
+    page.drawText(`${data.yes} / ${data.total}`, { x: margin + 400, y: y - 14, size: 18, font: bold, color: stageColor });
     y -= 86;
 
     page.drawText("Total Score", { x: margin, y, size: 13, font: bold, color: TEXT });
@@ -133,22 +146,22 @@ export async function buildSelfPdf(data: SelfReportData) {
     const cx = 297;
     const cy = y - 78;
     drawDonut(page, cx, cy, 70, 42, [
-        { value: data.yes, color: ORANGE },
+        { value: data.yes, color: stageColor },
         { value: Math.max(data.total - data.yes, 0), color: GREY },
     ]);
     const score = `${data.yes} / ${data.total}`;
     page.drawText(score, { x: cx - bold.widthOfTextAtSize(score, 12) / 2, y: cy + 4, size: 12, font: bold, color: TEXT });
     page.drawText(`${data.yes} questions yes`, { x: cx - regular.widthOfTextAtSize(`${data.yes} questions yes`, 8) / 2, y: cy - 10, size: 8, font: regular, color: MUTED });
     const stageLabel = data.maturity.stage.toUpperCase();
-    page.drawText(stageLabel, { x: cx - bold.widthOfTextAtSize(stageLabel, 8) / 2, y: cy - 102, size: 8, font: bold, color: MUTED });
-    page.drawRectangle({ x: cx - 70, y: cy - 124, width: 8, height: 8, color: ORANGE });
+    page.drawText(stageLabel, { x: cx - bold.widthOfTextAtSize(stageLabel, 8) / 2, y: cy - 102, size: 8, font: bold, color: stageText });
+    page.drawRectangle({ x: cx - 70, y: cy - 124, width: 8, height: 8, color: stageColor });
     page.drawText("Yes", { x: cx - 58, y: cy - 123, size: 8, font: regular, color: TEXT });
     page.drawRectangle({ x: cx + 8, y: cy - 124, width: 8, height: 8, color: GREY });
     page.drawText("Remaining", { x: cx + 20, y: cy - 123, size: 8, font: regular, color: TEXT });
     y = cy - 148;
 
     ensure(80);
-    page.drawText(`Your Position: ${data.maturity.stage}`, { x: margin, y, size: 13, font: bold, color: TEXT });
+    page.drawText(`Your Position: ${data.maturity.stage}`, { x: margin, y, size: 13, font: bold, color: stageText });
     y -= 16;
     wrapText(data.maturity.description, regular, 10, 511).forEach((line) => {
         ensure(14);
@@ -156,12 +169,12 @@ export async function buildSelfPdf(data: SelfReportData) {
         y -= 13;
     });
     y -= 8;
-    page.drawText("RECOMMENDED ACTIONS:", { x: margin, y, size: 10, font: bold, color: TEXT });
+    page.drawText("RECOMMENDED ACTIONS:", { x: margin, y, size: 10, font: bold, color: stageText });
     y -= 16;
     data.maturity.actions.forEach((action, index) => {
         const lines = wrapText(action, regular, 9, 488);
         ensure(lines.length * 12 + 6);
-        page.drawCircle({ x: margin + 6, y: y + 3, size: 6, color: YES });
+        page.drawCircle({ x: margin + 6, y: y + 3, size: 6, color: stageColor });
         page.drawText(String(index + 1), { x: margin + 3.5, y: y, size: 7, font: bold, color: rgb(1, 1, 1) });
         lines.forEach((line, lineIndex) => {
             page.drawText(line, { x: margin + 18, y, size: 9, font: regular, color: TEXT });
@@ -170,7 +183,7 @@ export async function buildSelfPdf(data: SelfReportData) {
         y -= 16;
     });
     ensure(20);
-    page.drawText(`Timeline: ${data.maturity.timeline}`, { x: margin, y, size: 9, font: bold, color: MUTED });
+    page.drawText(`Timeline: ${data.maturity.timeline}`, { x: margin, y, size: 9, font: bold, color: stageText });
     y -= 28;
 
     ensure(40);
@@ -223,11 +236,14 @@ export async function buildSelfPdf(data: SelfReportData) {
     data.clauses.forEach((clause) => {
         ensure(28);
         page.drawRectangle({ x: margin, y: y - 6, width: 511, height: 18, color: FILL });
-        page.drawText(clause.label, { x: margin + 8, y, size: 11, font: bold, color: TEXT });
+        const clauseHeader = `${clause.label}  —  Subtotal: ${clause.yes} / ${clause.total}`;
+        page.drawText(clauseHeader.slice(0, 78), { x: margin + 8, y, size: 10, font: bold, color: TEXT });
         y -= 24;
         clause.questions.forEach((question) => {
             const lines = wrapText(question.text, regular, 9, 470);
-            ensure(lines.length * 12 + 18);
+            const note = question.notes?.trim();
+            const noteLines = note ? wrapText(`Notes: ${note}`, regular, 8, 470) : [];
+            ensure(lines.length * 12 + noteLines.length * 11 + 20);
             const compliant = question.answer === "yes";
             const color = compliant ? YES : NO;
             page.drawCircle({ x: margin + 8, y: y + 3, size: 5, color });
@@ -236,7 +252,17 @@ export async function buildSelfPdf(data: SelfReportData) {
                 y -= 12;
             });
             page.drawText(compliant ? "COMPLIANT" : "NON-COMPLIANT", { x: margin + 20, y, size: 8, font: bold, color });
-            y -= 16;
+            y -= 14;
+            if (noteLines.length) {
+                noteLines.forEach((line) => {
+                    ensure(12);
+                    page.drawText(line, { x: margin + 20, y, size: 8, font: regular, color: MUTED });
+                    y -= 11;
+                });
+                y -= 4;
+            } else {
+                y -= 2;
+            }
         });
         y -= 8;
     });
