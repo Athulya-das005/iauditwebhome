@@ -3,58 +3,70 @@ import path from "path";
 import { PDFDocument, StandardFonts, rgb, type PDFPage, type RGB } from "pdf-lib";
 import type { GapReportData } from "@/lib/gap-report-data";
 import { findingLabel } from "@/lib/gap-report-data";
+import { buildFindingMixDonutPng, buildGapClauseBarPng } from "@/lib/gap-report-charts";
+import { normalizeEvidenceImage } from "@/lib/gap-report-images";
 
 const GREEN = rgb(0, 0.4, 0.266);
 const COMPLY = rgb(0.098, 0.714, 0.506);
 const OFI = rgb(0.957, 0.612, 0.11);
 const NC = rgb(0.937, 0.306, 0.306);
-const BAR = rgb(0.161, 0.671, 0.886);
 const TEXT = rgb(0.067, 0.094, 0.153);
 const MUTED = rgb(0.42, 0.45, 0.5);
 const LINE = rgb(0.898, 0.906, 0.922);
 const FILL = rgb(0.953, 0.957, 0.965);
+const WHITE = rgb(1, 1, 1);
 
-function hexRgb(hex: string): RGB {
-    const n = hex.replace("#", "");
-    return rgb(parseInt(n.slice(0, 2), 16) / 255, parseInt(n.slice(2, 4), 16) / 255, parseInt(n.slice(4, 6), 16) / 255);
+const PAGE_W = 595;
+const PAGE_H = 842;
+const MARGIN = 42;
+const CONTENT_W = PAGE_W - MARGIN * 2;
+const BOTTOM = 48;
+
+/** Helvetica / WinAnsi cannot encode ★ and some Unicode punctuation used in the checklist. */
+function pdfSafeText(value: string) {
+    return String(value ?? "")
+        .replace(/\r\n/g, "\n")
+        .replace(/\r/g, "\n")
+        .replace(/★/g, "*")
+        .replace(/☑/g, "[Yes]")
+        .replace(/⭕/g, "[OFI]")
+        .replace(/✕|✖|✗/g, "[X]")
+        .replace(/[–—]/g, "-")
+        .replace(/[‘’]/g, "'")
+        .replace(/[“”]/g, '"')
+        .replace(/÷/g, "/")
+        .replace(/×/g, "x")
+        .replace(/…/g, "...")
+        .replace(/•/g, "-")
+        .replace(/[^\x09\x0A\x20-\x7E]/g, "?");
 }
 
-function polar(cx: number, cy: number, r: number, angle: number) {
-    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
+function findingColor(finding: GapReportData["questions"][number]["finding"]): RGB {
+    if (finding === "comply") return COMPLY;
+    if (finding === "ofi") return OFI;
+    if (finding === "nc") return NC;
+    return MUTED;
 }
 
-function drawDonut(
-    page: PDFPage,
-    cx: number,
-    cy: number,
-    rOut: number,
-    rIn: number,
-    segments: { value: number; color: RGB }[]
-) {
-    const sum = segments.reduce((acc, item) => acc + item.value, 0);
-    if (sum <= 0) {
-        page.drawCircle({ x: cx, y: cy, size: rOut, color: LINE });
-        page.drawCircle({ x: cx, y: cy, size: rIn, color: rgb(1, 1, 1) });
-        return;
-    }
-
-    let angle = Math.PI / 2;
-    segments.forEach((item) => {
-        if (item.value <= 0) return;
-        const sweep = (item.value / sum) * Math.PI * 2;
-        const steps = Math.max(16, Math.ceil(sweep / 0.08));
-        const first = polar(cx, cy, rOut, angle);
-        let d = `M ${cx} ${cy} L ${first.x} ${first.y}`;
-        for (let i = 1; i <= steps; i++) {
-            const a = angle - (sweep * i) / steps;
-            const p = polar(cx, cy, rOut, a);
-            d += ` L ${p.x} ${p.y}`;
-        }
-        d += " Z";
-        page.drawSvgPath(d, { color: item.color });
-        angle -= sweep;
+function wrapText(text: string, font: { widthOfTextAtSize: (t: string, s: number) => number }, size: number, maxWidth: number) {
+    const paragraphs = pdfSafeText(text).split("\n");
+    const lines: string[] = [];
+    paragraphs.forEach((paragraph) => {
+        const words = paragraph.split(/\s+/).filter(Boolean);
+        if (words.length === 0) return;
+        let current = "";
+        words.forEach((word) => {
+            const next = current ? `${current} ${word}` : word;
+            if (font.widthOfTextAtSize(next, size) > maxWidth && current) {
+                lines.push(current);
+                current = word;
+            } else {
+                current = next;
+            }
+        });
+        if (current) lines.push(current);
     });
-    page.drawCircle({ x: cx, y: cy, size: rIn, color: rgb(1, 1, 1) });
+    return lines;
 }
 
 async function embedLogo(pdf: PDFDocument) {
@@ -68,10 +80,119 @@ async function embedLogo(pdf: PDFDocument) {
                 return await pdf.embedJpg(bytes);
             }
         } catch {
-            // try the next logo file
+            // try next
         }
     }
     return null;
+}
+
+type Font = Awaited<ReturnType<PDFDocument["embedFont"]>>;
+
+class PdfLayout {
+    page: PDFPage;
+    y = PAGE_H - MARGIN;
+
+    constructor(
+        private pdf: PDFDocument,
+        private regular: Font,
+        private bold: Font,
+        private italic: Font
+    ) {
+        this.page = pdf.addPage([PAGE_W, PAGE_H]);
+    }
+
+    newPage() {
+        this.page = this.pdf.addPage([PAGE_W, PAGE_H]);
+        this.y = PAGE_H - MARGIN;
+    }
+
+    ensure(height: number) {
+        if (this.y - height < BOTTOM) this.newPage();
+    }
+
+    gap(amount: number) {
+        this.y -= amount;
+    }
+
+    text(
+        value: string,
+        opts: { size: number; font?: Font; color?: RGB; x?: number; bold?: boolean }
+    ) {
+        const font = opts.font ?? (opts.bold ? this.bold : this.regular);
+        const color = opts.color ?? TEXT;
+        this.page.drawText(pdfSafeText(value).replace(/\n/g, " "), {
+            x: opts.x ?? MARGIN,
+            y: this.y,
+            size: opts.size,
+            font,
+            color,
+        });
+    }
+
+    paragraph(
+        value: string,
+        opts: { size?: number; font?: Font; color?: RGB; bold?: boolean; lineGap?: number; maxLines?: number }
+    ) {
+        const size = opts.size ?? 10;
+        const font = opts.font ?? (opts.bold ? this.bold : this.regular);
+        const color = opts.color ?? TEXT;
+        const lineGap = opts.lineGap ?? 13;
+        const lines = wrapText(value, font, size, CONTENT_W);
+        const limited = opts.maxLines ? lines.slice(0, opts.maxLines) : lines;
+        limited.forEach((line) => {
+            this.ensure(lineGap + 4);
+            this.text(line, { size, font, color });
+            this.y -= lineGap;
+        });
+    }
+
+    heading(value: string, size = 16) {
+        this.ensure(28);
+        this.text(value, { size, bold: true });
+        this.y -= 22;
+    }
+
+    subheading(value: string) {
+        this.ensure(22);
+        this.text(value, { size: 13, bold: true, color: GREEN });
+        this.y -= 18;
+    }
+
+    image(img: Awaited<ReturnType<PDFDocument["embedPng"]>>, width: number, height: number, centered = true) {
+        this.ensure(height + 16);
+        const x = centered ? MARGIN + (CONTENT_W - width) / 2 : MARGIN;
+        this.page.drawImage(img, { x, y: this.y - height, width, height });
+        this.y -= height + 16;
+    }
+
+    tableRow(values: string[], widths: number[], opts?: { header?: boolean; colors?: RGB[] }) {
+        const rowH = 18;
+        this.ensure(rowH + 8);
+        let x = MARGIN;
+        values.forEach((value, i) => {
+            if (opts?.header) {
+                this.page.drawRectangle({ x, y: this.y - 5, width: widths[i], height: rowH, color: GREEN });
+                this.page.drawText(pdfSafeText(value), {
+                    x: x + 4,
+                    y: this.y,
+                    size: 8,
+                    font: this.bold,
+                    color: WHITE,
+                });
+            } else {
+                this.page.drawRectangle({ x, y: this.y - 5, width: widths[i], height: rowH, borderColor: LINE, borderWidth: 0.5 });
+                this.page.drawText(pdfSafeText(value).slice(0, i === 0 ? 34 : 10), {
+                    x: x + 4,
+                    y: this.y,
+                    size: 8,
+                    font: this.regular,
+                    color: opts?.colors?.[i] ?? TEXT,
+                });
+            }
+            x += widths[i];
+        });
+        this.y -= rowH;
+    }
 }
 
 export async function buildGapPdf(data: GapReportData) {
@@ -81,175 +202,195 @@ export async function buildGapPdf(data: GapReportData) {
     const regular = await pdf.embedFont(StandardFonts.Helvetica);
     const bold = await pdf.embedFont(StandardFonts.HelveticaBold);
     const italic = await pdf.embedFont(StandardFonts.HelveticaOblique);
+    const layout = new PdfLayout(pdf, regular, bold, italic);
 
-    let page = pdf.addPage([595, 842]);
-    const margin = 42;
-    let y = 800;
-
-    const ensureSpace = (need: number) => {
-        if (y - need < 48) {
-            page = pdf.addPage([595, 842]);
-            y = 800;
-        }
-    };
+    const [donutPng, barPng] = await Promise.all([
+        buildFindingMixDonutPng(data.comply, data.ofi, data.nc),
+        buildGapClauseBarPng(data.clauses),
+    ]);
+    const donutImage = await pdf.embedPng(donutPng);
+    const barImage = await pdf.embedPng(barPng);
 
     const logo = await embedLogo(pdf);
     if (logo) {
         const logoH = 48;
         const logoW = Math.min((logo.width / logo.height) * logoH, 160);
-        page.drawImage(logo, { x: margin, y: y - logoH + 8, width: logoW, height: logoH });
-        y -= logoH + 18;
+        layout.ensure(logoH + 12);
+        layout.page.drawImage(logo, { x: MARGIN, y: layout.y - logoH + 8, width: logoW, height: logoH });
+        layout.y -= logoH + 18;
     } else {
-        page.drawText("iAudit Global", { x: margin, y, size: 13, font: bold, color: GREEN });
-        y -= 28;
+        layout.text("iAudit Global", { size: 13, bold: true, color: GREEN });
+        layout.y -= 28;
     }
-    page.drawText("Gap Analysis Report", { x: margin, y, size: 22, font: bold, color: TEXT });
-    y -= 24;
+
+    layout.heading("Gap Analysis Report", 22);
 
     const cover = [
         ["Name of Company", data.session.organisation],
         ["Audit Date", data.auditDate],
         ["ISO Standard", data.session.isoStandard],
-        ["Location of Audit", data.session.industry || "—"],
-        ["Company Representatives", `${data.session.firstName} ${data.session.lastName}`.trim() || "—"],
-        ["Name of Auditor", `${data.session.firstName} ${data.session.lastName}`.trim() || "—"],
+        ["Location of Audit", data.session.industry || "-"],
+        ["Company Representatives", `${data.session.firstName} ${data.session.lastName}`.trim() || "-"],
+        ["Name of Auditor", `${data.session.firstName} ${data.session.lastName}`.trim() || "-"],
         ["Contact email", data.session.email],
-        ["Scope of Audit", data.session.auditScope || "—"],
+        ["Scope of Audit", data.session.auditScope || "-"],
     ];
     cover.forEach(([label, value]) => {
-        page.drawRectangle({ x: margin, y: y - 6, width: 160, height: 20, color: FILL });
-        page.drawRectangle({ x: margin, y: y - 6, width: 510, height: 20, borderColor: LINE, borderWidth: 0.6 });
-        page.drawText(label, { x: margin + 6, y: y, size: 9, font: bold, color: TEXT });
-        page.drawText((value || "—").slice(0, 78), { x: margin + 170, y, size: 9, font: regular, color: TEXT });
-        y -= 20;
+        layout.ensure(24);
+        layout.page.drawRectangle({ x: MARGIN, y: layout.y - 6, width: 160, height: 20, color: FILL });
+        layout.page.drawRectangle({ x: MARGIN, y: layout.y - 6, width: CONTENT_W, height: 20, borderColor: LINE, borderWidth: 0.6 });
+        layout.text(label, { size: 9, bold: true, x: MARGIN + 6 });
+        layout.text((value || "-").slice(0, 78), { size: 9, x: MARGIN + 170 });
+        layout.y -= 22;
     });
 
-    y -= 18;
-    page.drawText("Audit Result Summary", { x: margin, y, size: 16, font: bold, color: TEXT });
-    y -= 20;
-    page.drawText(`Compliance Score: ${data.overall}%`, { x: margin, y, size: 13, font: bold, color: TEXT });
-    y -= 16;
-    page.drawText(`Status: ${data.status}`, {
-        x: margin,
-        y,
+    layout.gap(16);
+    layout.heading("Scoring Summary");
+    layout.text(`Compliance Percentage: (${data.comply} / ${data.totalQuestions}) x 100 = ${data.overall}%`, {
         size: 12,
-        font: bold,
-        color: data.status === "Pass" ? GREEN : hexRgb("#DC2626"),
+        bold: true,
     });
-    y -= 24;
-    page.drawText("Clause-wise Compliance", { x: margin, y, size: 13, font: bold, color: TEXT });
-    y -= 18;
+    layout.y -= 20;
 
-    const chartTop = y;
-    const cx = 130;
-    const cy = chartTop - 78;
-    drawDonut(page, cx, cy, 70, 42, [
-        { value: data.comply, color: COMPLY },
-        { value: data.ofi, color: OFI },
-        { value: data.nc, color: NC },
-    ]);
-    page.drawRectangle({ x: cx - 88, y: cy - 96, width: 8, height: 8, color: COMPLY });
-    page.drawText("Comply", { x: cx - 76, y: cy - 95, size: 9, font: regular, color: COMPLY });
-    page.drawRectangle({ x: cx - 16, y: cy - 96, width: 8, height: 8, color: OFI });
-    page.drawText("OFI", { x: cx - 4, y: cy - 95, size: 9, font: regular, color: OFI });
-    page.drawRectangle({ x: cx + 42, y: cy - 96, width: 8, height: 8, color: NC });
-    page.drawText("NC", { x: cx + 54, y: cy - 95, size: 9, font: regular, color: NC });
+    layout.ensure(18);
+    layout.page.drawRectangle({ x: MARGIN, y: layout.y - 4, width: 10, height: 10, color: COMPLY });
+    layout.text(`Comply: ${data.comply}`, { size: 11, bold: true, color: COMPLY, x: MARGIN + 14 });
+    layout.page.drawRectangle({ x: MARGIN + 118, y: layout.y - 4, width: 10, height: 10, color: OFI });
+    layout.text(`OFI: ${data.ofi}`, { size: 11, bold: true, color: OFI, x: MARGIN + 132 });
+    layout.page.drawRectangle({ x: MARGIN + 210, y: layout.y - 4, width: 10, height: 10, color: NC });
+    layout.text(`NC: ${data.nc}`, { size: 11, bold: true, color: NC, x: MARGIN + 224 });
+    layout.y -= 22;
 
-    const barX = 250;
-    const barW = 300;
-    const barH = 140;
-    const padL = 24;
-    const plotW = barW - padL;
-    const plotH = barH - 28;
-    [0, 25, 50, 75, 100].forEach((tick) => {
-        const ty = chartTop - 20 - plotH + (tick / 100) * plotH;
-        page.drawLine({ start: { x: barX + padL, y: ty }, end: { x: barX + barW, y: ty }, thickness: 0.6, color: LINE, dashArray: [3, 3] });
-        page.drawText(String(tick), { x: barX, y: ty - 3, size: 7, font: regular, color: MUTED });
-    });
-    const gap = plotW / Math.max(data.clauses.length, 1);
-    const colW = gap * 0.45;
-    data.clauses.forEach((clause, index) => {
-        const h = (clause.percent / 100) * plotH;
-        const bx = barX + padL + gap * index + (gap - colW) / 2;
-        page.drawRectangle({ x: bx, y: chartTop - 20 - plotH, width: colW, height: Math.max(h, 1), color: BAR });
-        page.drawText(clause.label.replace(/^(\d+)\.\s*/, "$1 "), { x: bx - 8, y: chartTop - 34 - plotH, size: 6, font: regular, color: MUTED });
-    });
+    layout.paragraph(
+        `Maturity Level: ${data.maturity.stage} (${data.maturity.percentLabel}) - ${data.maturity.status}. ${data.maturity.action}. Timeline: ${data.maturity.timeline}`,
+        { size: 10, color: MUTED, lineGap: 12 }
+    );
+    layout.gap(6);
+    layout.paragraph(
+        `Certification Readiness: ${data.readiness.label} (${data.readiness.ncLabel}). ${data.readiness.action}. Timeline: ${data.readiness.timeline}`,
+        { size: 10, color: MUTED, lineGap: 12 }
+    );
+    layout.gap(12);
 
-    y = chartTop - 190;
-    ensureSpace(40);
-    page.drawText("Detailed Scorecard", { x: margin, y, size: 13, font: bold, color: TEXT });
-    y -= 18;
-    const headers = ["Clause", "Total", "Comply", "OFI", "NC", "Score"];
-    const widths = [150, 70, 70, 70, 70, 80];
-    const rowH = 16;
-    const drawRow = (values: string[], header: boolean) => {
-        ensureSpace(rowH + 4);
-        let x = margin;
-        values.forEach((value, i) => {
-            if (header) {
-                page.drawRectangle({ x, y: y - 4, width: widths[i], height: rowH, color: GREEN });
-                page.drawText(value, { x: x + 4, y, size: 8, font: bold, color: rgb(1, 1, 1) });
-            } else {
-                page.drawRectangle({ x, y: y - 4, width: widths[i], height: rowH, borderColor: LINE, borderWidth: 0.5 });
-                page.drawText(value.slice(0, 28), { x: x + 4, y, size: 8, font: regular, color: TEXT });
-            }
-            x += widths[i];
+    // Charts on a fresh page so the pie chart is never clipped or missing.
+    layout.newPage();
+    layout.subheading("Finding mix");
+    layout.image(donutImage, 240, 250);
+
+    const mixWidths = [CONTENT_W / 3, CONTENT_W / 3, CONTENT_W / 3];
+    layout.ensure(44);
+    let mixX = MARGIN;
+    ["Comply", "OFI", "NC"].forEach((label, i) => {
+        const fill = [COMPLY, OFI, NC][i];
+        layout.page.drawRectangle({ x: mixX, y: layout.y - 5, width: mixWidths[i], height: 18, color: fill });
+        layout.page.drawText(pdfSafeText(label), {
+            x: mixX + 6,
+            y: layout.y,
+            size: 9,
+            font: bold,
+            color: WHITE,
         });
-        y -= rowH;
-    };
-    drawRow(headers, true);
+        mixX += mixWidths[i];
+    });
+    layout.y -= 18;
+    layout.tableRow([String(data.comply), String(data.ofi), String(data.nc)], mixWidths);
+    layout.gap(16);
+
+    layout.subheading("Clause-wise Compliance");
+    layout.image(barImage, CONTENT_W, 210);
+
+    const clauseWidths = [CONTENT_W * 0.46, CONTENT_W * 0.36, CONTENT_W * 0.18];
+    layout.tableRow(["Clause", "Compliance", "%"], clauseWidths, { header: true });
     data.clauses.forEach((clause) => {
-        drawRow([clause.label, String(clause.total), String(clause.comply), String(clause.ofi), String(clause.nc), `${clause.percent}%`], false);
+        layout.ensure(20);
+        let x = MARGIN;
+        layout.page.drawRectangle({ x, y: layout.y - 5, width: clauseWidths[0], height: 18, borderColor: LINE, borderWidth: 0.5 });
+        layout.text(clause.label.slice(0, 42), { size: 8, x: x + 4 });
+        x += clauseWidths[0];
+        const barInnerW = clauseWidths[1] - 8;
+        const fillW = Math.max(2, (clause.percent / 100) * barInnerW);
+        layout.page.drawRectangle({ x: x + 4, y: layout.y - 3, width: barInnerW, height: 10, color: FILL });
+        layout.page.drawRectangle({ x: x + 4, y: layout.y - 3, width: fillW, height: 10, color: rgb(0.161, 0.671, 0.886) });
+        x += clauseWidths[1];
+        layout.page.drawRectangle({ x, y: layout.y - 5, width: clauseWidths[2], height: 18, borderColor: LINE, borderWidth: 0.5 });
+        layout.text(`${clause.percent}%`, { size: 8, x: x + 4 });
+        layout.y -= 18;
     });
 
-    y -= 18;
-    ensureSpace(24);
-    page.drawText("Detailed Audit Findings", { x: margin, y, size: 16, font: bold, color: TEXT });
-    y -= 18;
-    data.questions.forEach((question, index) => {
-        ensureSpace(56);
-        page.drawText(`${index + 1}. ${question.clauseLabel}`.slice(0, 90), { x: margin, y, size: 9, font: bold, color: GREEN });
-        y -= 13;
-        const lines = wrapText(question.text, regular, 9, 510);
-        lines.forEach((line) => {
-            ensureSpace(14);
-            page.drawText(line, { x: margin, y, size: 9, font: regular, color: TEXT });
-            y -= 12;
+    layout.gap(16);
+    layout.subheading("Detailed Scorecard");
+    const scoreWidths = [190, 55, 65, 55, 55, 91];
+    layout.tableRow(["Clause", "Total", "Comply", "OFI", "NC", "Score"], scoreWidths, { header: true });
+    data.clauses.forEach((clause) => {
+        layout.tableRow(
+            [clause.label, String(clause.total), String(clause.comply), String(clause.ofi), String(clause.nc), `${clause.percent}%`],
+            scoreWidths,
+            { colors: [TEXT, TEXT, COMPLY, OFI, NC, TEXT] }
+        );
+    });
+
+    layout.gap(16);
+    layout.heading("Detailed Audit Findings");
+
+    for (let index = 0; index < data.questions.length; index++) {
+        const question = data.questions[index];
+        layout.ensure(80);
+        layout.gap(8);
+        layout.paragraph(`${index + 1}. ${question.clauseLabel}`, { size: 10, bold: true, color: GREEN, lineGap: 13, maxLines: 2 });
+        layout.paragraph(question.text, { size: 9, lineGap: 12 });
+
+        layout.ensure(16);
+        const findingPrefix = "Finding: ";
+        layout.text(findingPrefix, { size: 9, bold: true, color: MUTED });
+        layout.text(findingLabel(question.finding), {
+            size: 9,
+            bold: true,
+            color: findingColor(question.finding),
+            x: MARGIN + bold.widthOfTextAtSize(findingPrefix, 9),
         });
-        page.drawText(`Finding: ${findingLabel(question.finding)}`, { x: margin, y, size: 9, font: regular, color: MUTED });
-        y -= 12;
-        if (question.evidence) {
-            ensureSpace(14);
-            page.drawText(`Evidence: ${question.evidence.slice(0, 110)}`, { x: margin, y, size: 9, font: regular, color: MUTED });
-            y -= 12;
-        }
-        if (question.actionPlan) {
-            ensureSpace(14);
-            page.drawText(`Action plan: ${question.actionPlan.slice(0, 110)}`, { x: margin, y, size: 9, font: regular, color: MUTED });
-            y -= 12;
-        }
-        y -= 6;
-    });
+        layout.y -= 16;
 
-    ensureSpace(20);
-    page.drawText("Built with iAudit Global", { x: margin, y, size: 9, font: italic, color: MUTED });
+        if (question.evidence?.trim()) {
+            layout.paragraph(`Evidence: ${question.evidence}`, { size: 9, color: MUTED, lineGap: 12, maxLines: 6 });
+        }
+
+        if (question.actionPlan?.trim()) {
+            layout.text("Action plan:", { size: 9, bold: true, color: MUTED });
+            layout.y -= 14;
+            question.actionPlan
+                .split(/\n+/)
+                .map((line) => line.trim())
+                .filter(Boolean)
+                .forEach((line) => {
+                    layout.paragraph(line, { size: 9, color: MUTED, lineGap: 12, maxLines: 4 });
+                });
+        }
+
+        if (question.evidenceImage) {
+            const bytes = await normalizeEvidenceImage(question.evidenceImage);
+            if (bytes) {
+                try {
+                    const image = await pdf.embedJpg(bytes);
+                    const maxW = 260;
+                    const maxH = 170;
+                    const scale = Math.min(maxW / image.width, maxH / image.height, 1);
+                    const w = image.width * scale;
+                    const h = image.height * scale;
+                    layout.text("Evidence image:", { size: 9, bold: true, color: MUTED });
+                    layout.y -= 12;
+                    layout.image(image, w, h, false);
+                } catch {
+                    // skip broken image
+                }
+            }
+        }
+
+        layout.gap(10);
+    }
+
+    layout.ensure(24);
+    layout.gap(8);
+    layout.text("Built with iAudit Global", { size: 9, font: italic, color: MUTED });
 
     return Buffer.from(await pdf.save());
-}
-
-function wrapText(text: string, font: { widthOfTextAtSize: (t: string, s: number) => number }, size: number, maxWidth: number) {
-    const words = text.split(/\s+/);
-    const lines: string[] = [];
-    let current = "";
-    words.forEach((word) => {
-        const next = current ? `${current} ${word}` : word;
-        if (font.widthOfTextAtSize(next, size) > maxWidth && current) {
-            lines.push(current);
-            current = word;
-        } else {
-            current = next;
-        }
-    });
-    if (current) lines.push(current);
-    return lines.slice(0, 6);
 }

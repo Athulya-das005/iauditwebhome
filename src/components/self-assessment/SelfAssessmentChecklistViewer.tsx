@@ -157,7 +157,7 @@ export default function SelfAssessmentChecklistViewer() {
 
             <div style={{ maxWidth: "920px", margin: "0 auto", padding: isMobile ? "0 1.15rem 3rem" : "0 1.5rem 4rem" }}>
                 <div style={{ marginBottom: "1.5rem" }}>
-                    <Link href="/iso-audit-assessments/self-assessment" style={{ color: "#4b5563", textDecoration: "none", fontWeight: 600, fontSize: "0.92rem" }}>
+                    <Link href="/iso-14001-2026-self-assessment-tool" style={{ color: "#4b5563", textDecoration: "none", fontWeight: 600, fontSize: "0.92rem" }}>
                         ← Back to self assessment
                     </Link>
                 </div>
@@ -501,7 +501,7 @@ export default function SelfAssessmentChecklistViewer() {
                     <p style={{ margin: "0 0 1.1rem", color: "rgba(255,255,255,0.78)", lineHeight: 1.65 }}>
                         Start the full ISO 14001:2026 self assessment to capture notes, email your PDF/Word report, and track recommended actions.
                     </p>
-                    <Link href="/iso-audit-assessments/self-assessment" style={{ ...darkBtn, background: "#07a34d" }}>
+                    <Link href="/iso-14001-2026-self-assessment-tool" style={{ ...darkBtn, background: "#07a34d" }}>
                         Start free assessment
                     </Link>
                 </section>

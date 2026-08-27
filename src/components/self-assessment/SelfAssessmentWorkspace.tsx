@@ -63,7 +63,7 @@ export default function SelfAssessmentWorkspace() {
     useEffect(() => {
         const raw = sessionStorage.getItem(SELF_SESSION_KEY);
         if (!raw) {
-            router.replace("/iso-audit-assessments/self-assessment");
+            router.replace("/iso-14001-2026-self-assessment-tool");
             return;
         }
         try {
@@ -74,7 +74,7 @@ export default function SelfAssessmentWorkspace() {
             setQuestionsByClause(buildQuestionsByClause(nextClauses));
             setClauseIndex(0);
         } catch {
-            router.replace("/iso-audit-assessments/self-assessment");
+            router.replace("/iso-14001-2026-self-assessment-tool");
         }
     }, [router]);
 

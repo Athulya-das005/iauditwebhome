@@ -5,14 +5,23 @@ import Link from "next/link";
 import Image from "next/image";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
-import { gapAnalysisClauses, type GapFinding } from "@/data/gap-analysis-clauses";
+import { GAP_TOTAL_QUESTIONS, gapAnalysisClauses, type GapFinding } from "@/data/gap-analysis-clauses";
+import {
+    compliancePercent,
+    maturityForPercent,
+    maturityTone,
+    readinessForNcCount,
+} from "@/lib/gap-report-data";
 import type { GapAnalysisSession } from "@/types/gap-analysis-session";
 
 type FindingRow = {
+    code?: string;
+    title?: string;
     text: string;
     finding: GapFinding | "";
     actionPlan: string;
     evidence: string;
+    evidenceImage?: string;
 };
 
 type Props = {
@@ -50,20 +59,24 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
             nc += clauseNc;
             const percent = total === 0 ? 0 : Math.round((clauseComply / total) * 100);
             return {
-                label: `${clause.clauseNumber}. ${clause.title}`,
+                label: clause.label,
                 percent,
                 questions: rows.map((row) => ({
-                    text: row.text,
+                    text: [row.code, row.title, row.text].filter(Boolean).join(" — "),
                     finding: row.finding,
                     actionPlan: row.actionPlan,
                     evidence: row.evidence,
+                    evidenceImage: row.evidenceImage || "",
                 })),
             };
         });
-        const total = comply + ofi + nc;
-        const overall = total === 0 ? 0 : Math.round((comply / total) * 100);
-        return { comply, ofi, nc, total, overall, clauses };
+        const overall = compliancePercent(comply, GAP_TOTAL_QUESTIONS);
+        const maturity = maturityForPercent(overall);
+        const readiness = readinessForNcCount(nc);
+        return { comply, ofi, nc, overall, maturity, readiness, clauses };
     }, [questionsByClause]);
+
+    const tone = maturityTone(stats.maturity.stage);
 
     const displayName = session.organisation || `${session.firstName} ${session.lastName}`.trim();
 
@@ -195,7 +208,7 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
                         {emailNote || `Your full report has been emailed to ${session.email}.`}
                     </p>
                     <p style={{ margin: "0.85rem 0 0", color: "#4b5563", fontSize: "1rem", lineHeight: 1.75 }}>
-                        These results give a snapshot of readiness against the selected ISO standard, highlighting strengths and areas for improvement. Review your scores below to help you prioritise actions, allocate resources, and plan with confidence.
+                        Compliance % = (Total Comply ÷ {GAP_TOTAL_QUESTIONS}) × 100. Review maturity level and certification readiness by NC count from the ISO 14001:2026 Gap Analysis Checklist.
                     </p>
                 </div>
 
@@ -219,12 +232,12 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
 
                 <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "1rem", marginBottom: "1rem" }}>
                     <section style={cardStyle}>
-                        <h2 style={cardTitle}>Audit Summary</h2>
-                        <p style={cardSub}>Overall compliance status.</p>
-                        <p style={{ margin: "0.35rem 0 0.45rem", fontSize: "3rem", fontWeight: 800, color: "#111827", textAlign: "center", letterSpacing: "-0.03em" }}>{stats.overall}%</p>
+                        <h2 style={cardTitle}>Scoring Summary</h2>
+                        <p style={cardSub}>Compliance Percentage: (Comply ÷ {GAP_TOTAL_QUESTIONS}) × 100</p>
+                        <p style={{ margin: "0.35rem 0 0.45rem", fontSize: "3rem", fontWeight: 800, color: tone.accent, textAlign: "center", letterSpacing: "-0.03em" }}>{stats.overall}%</p>
                         <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.85rem" }}>
-                            <span style={{ background: "#e8f8ef", color: "#166534", borderRadius: "999px", padding: "0.28rem 0.85rem", fontSize: "0.85rem", fontWeight: 700 }}>
-                                {stats.overall >= 80 ? "Compliance Achieved" : "Gaps Identified"}
+                            <span style={{ background: tone.badgeBg, color: tone.badgeText, borderRadius: "999px", padding: "0.28rem 0.85rem", fontSize: "0.85rem", fontWeight: 700 }}>
+                                {stats.maturity.stage} · {stats.maturity.percentLabel}
                             </span>
                         </div>
                         <DonutChart comply={stats.comply} ofi={stats.ofi} nc={stats.nc} />
@@ -232,15 +245,17 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
 
                     <section style={cardStyle}>
                         <h2 style={cardTitle}>Clause Breakdown</h2>
-                        <p style={cardSub}>Compliance by ISO clause.</p>
+                        <p style={cardSub}>Comply count by ISO clause.</p>
                         <BarChart clauses={stats.clauses} />
                         <div style={{ marginTop: "1.15rem", display: "grid", gap: "0.65rem" }}>
                             {stats.clauses.map((clause) => (
-                                <div key={clause.label} style={{ display: "grid", gridTemplateColumns: "140px 1fr 48px", alignItems: "center", gap: "0.65rem" }}>
-                                    <span style={{ color: "#374151", fontSize: "0.88rem" }}>{clause.label}</span>
-                                    <div style={{ height: "8px", background: TRACK, borderRadius: "999px", overflow: "hidden" }}>
-                                        <div style={{ width: `${clause.percent}%`, height: "100%", background: COMPLY }} />
-                                    </div>
+                                <div key={clause.label} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr auto" : "minmax(0, 1.4fr) 1fr 48px", alignItems: "center", gap: "0.65rem" }}>
+                                    <span style={{ color: "#374151", fontSize: "0.82rem" }}>{clause.label}</span>
+                                    {!isMobile ? (
+                                        <div style={{ height: "8px", background: TRACK, borderRadius: "999px", overflow: "hidden" }}>
+                                            <div style={{ width: `${clause.percent}%`, height: "100%", background: COMPLY }} />
+                                        </div>
+                                    ) : null}
                                     <span style={{ color: "#111827", fontWeight: 700, fontSize: "0.88rem", textAlign: "right" }}>{clause.percent}%</span>
                                 </div>
                             ))}
@@ -248,14 +263,31 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
                     </section>
                 </div>
 
-                <section style={cardStyle}>
+                <section style={{ ...cardStyle, marginBottom: "1rem" }}>
                     <h2 style={{ ...cardTitle, marginBottom: "0.9rem" }}>Detailed Findings Status</h2>
                     <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: "0.85rem" }}>
-                        <StatusBox label="Compliant Items" value={stats.comply} background="#e8f8ef" color="#16a34a" />
-                        <StatusBox label="Opportunities for Improvement" value={stats.ofi} background="#fff7e6" color="#d97706" />
-                        <StatusBox label="Non-Conformities" value={stats.nc} background="#feecec" color="#dc2626" />
+                        <StatusBox label="Comply (☑)" value={stats.comply} background="#e8f8ef" color="#16a34a" />
+                        <StatusBox label="OFI (⭕)" value={stats.ofi} background="#fff7e6" color="#d97706" />
+                        <StatusBox label="NC (✕)" value={stats.nc} background="#feecec" color="#dc2626" />
                     </div>
                 </section>
+
+                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "1rem", marginBottom: "1rem" }}>
+                    <section style={{ ...cardStyle, borderColor: tone.softBorder, background: tone.softBg }}>
+                        <h2 style={{ ...cardTitle, color: tone.text }}>Maturity Level</h2>
+                        <p style={{ margin: "0 0 0.35rem", fontSize: "1.45rem", fontWeight: 800, color: tone.text }}>{stats.maturity.stage}</p>
+                        <p style={{ margin: "0 0 0.45rem", color: tone.text, fontWeight: 700 }}>{stats.maturity.percentLabel} · {stats.maturity.status}</p>
+                        <p style={{ margin: "0 0 0.35rem", color: "#4b5563", lineHeight: 1.6 }}>{stats.maturity.action}</p>
+                        <p style={{ margin: 0, color: tone.text, fontWeight: 700 }}>Timeline: {stats.maturity.timeline}</p>
+                    </section>
+                    <section style={cardStyle}>
+                        <h2 style={cardTitle}>Certification Readiness</h2>
+                        <p style={{ margin: "0 0 0.35rem", fontSize: "1.45rem", fontWeight: 800, color: "#111827" }}>{stats.readiness.label}</p>
+                        <p style={{ margin: "0 0 0.45rem", color: "#374151", fontWeight: 700 }}>{stats.readiness.ncLabel} · {stats.nc} NC found</p>
+                        <p style={{ margin: "0 0 0.35rem", color: "#4b5563", lineHeight: 1.6 }}>{stats.readiness.action}</p>
+                        <p style={{ margin: 0, color: "#111827", fontWeight: 700 }}>Timeline: {stats.readiness.timeline}</p>
+                    </section>
+                </div>
             </div>
 
             <section style={{ background: "linear-gradient(180deg, #f7faf8 0%, #ffffff 100%)", padding: isMobile ? "2.25rem 1.15rem 0.5rem" : "3.25rem 2rem 0.75rem" }}>
@@ -413,6 +445,11 @@ function DonutChart({ comply, ofi, nc }: { comply: number; ofi: number; nc: numb
     );
 }
 
+function shortClauseLabel(label: string) {
+    const match = label.match(/Clause\s+(\d+)/i);
+    return match ? `Cl. ${match[1]}` : label.slice(0, 8);
+}
+
 function BarChart({ clauses }: { clauses: { label: string; percent: number }[] }) {
     const [tip, setTip] = useState<{ label: string; percent: number; x: number; y: number } | null>(null);
     const width = 520;
@@ -420,7 +457,7 @@ function BarChart({ clauses }: { clauses: { label: string; percent: number }[] }
     const padL = 36;
     const padR = 12;
     const padT = 12;
-    const padB = 58;
+    const padB = 36;
     const plotW = width - padL - padR;
     const plotH = height - padT - padB;
     const barW = plotW / clauses.length * 0.55;
@@ -463,8 +500,8 @@ function BarChart({ clauses }: { clauses: { label: string; percent: number }[] }
                                     });
                                 }}
                             />
-                            <text x={x + barW / 2} y={height - 8} textAnchor="middle" fontSize="10" fill="#6b7280">
-                                {clause.label.split(" ")[0]} {clause.label.split(" ").slice(1).join(" ")}
+                            <text x={x + barW / 2} y={height - 10} textAnchor="middle" fontSize="11" fill="#6b7280">
+                                {shortClauseLabel(clause.label)}
                             </text>
                         </g>
                     );

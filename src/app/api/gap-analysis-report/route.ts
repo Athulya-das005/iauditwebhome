@@ -7,12 +7,24 @@ import type { GapAnalysisSession } from "@/types/gap-analysis-session";
 import type { GapFinding } from "@/data/gap-analysis-clauses";
 
 export const maxDuration = 60;
+export const runtime = "nodejs";
+/** Allow compressed evidence images in the report payload. */
+export const dynamic = "force-dynamic";
 
 type Payload = {
     format?: "pdf" | "word";
     sendEmail?: boolean;
     session?: GapAnalysisSession;
-    clauses?: { label: string; questions: { text: string; finding: GapFinding | ""; actionPlan: string; evidence: string }[] }[];
+    clauses?: {
+        label: string;
+        questions: {
+            text: string;
+            finding: GapFinding | "";
+            actionPlan: string;
+            evidence: string;
+            evidenceImage?: string;
+        }[];
+    }[];
 };
 
 export async function POST(request: Request) {

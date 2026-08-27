@@ -48,11 +48,9 @@ export const isoStandardOptions = [
     { value: "ISO 14001:2026", label: "ISO 14001:2026" },
 ] as const;
 
-/** Gap Analysis — show standard year */
+/** Gap Analysis — ISO 14001:2026 only */
 export const gapIsoStandardOptions = [
-    { value: "ISO 9001:2015", label: "ISO 9001:2015" },
-    { value: "ISO 14001:2015", label: "ISO 14001:2015" },
-    { value: "ISO 45001:2018", label: "ISO 45001:2018" },
+    { value: "ISO 14001:2026", label: "ISO 14001:2026" },
 ] as const;
 
 export type IsoStandardValue =

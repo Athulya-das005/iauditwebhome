@@ -1,7 +1,22 @@
 import { promises as fs } from "fs";
 import path from "path";
-import { Document, ImageRun, Packer, Paragraph, Table, TableCell, TableRow, TextRun, WidthType, AlignmentType, HeadingLevel, BorderStyle } from "docx";
-import { findingLabel, type GapReportData } from "@/lib/gap-report-data";
+import {
+    AlignmentType,
+    BorderStyle,
+    Document,
+    HeadingLevel,
+    ImageRun,
+    Packer,
+    Paragraph,
+    Table,
+    TableCell,
+    TableRow,
+    TextRun,
+    WidthType,
+} from "docx";
+import { findingColorHex, findingLabel, type GapReportData } from "@/lib/gap-report-data";
+import { buildFindingMixDonutPng, buildGapClauseBarPng } from "@/lib/gap-report-charts";
+import { parseDataImage } from "@/lib/gap-report-images";
 
 const GREEN = "006644";
 const COMPLY = "19B681";
@@ -10,6 +25,8 @@ const NC = "EF4E4E";
 const BAR = "29ABE2";
 const thin = { style: BorderStyle.SINGLE, size: 4, color: "E5E7EB" };
 const borders = { top: thin, bottom: thin, left: thin, right: thin };
+const none = { style: BorderStyle.NONE, size: 0, color: "FFFFFF" };
+const noBorders = { top: none, bottom: none, left: none, right: none };
 
 function cell(text: string, opts?: { bold?: boolean; fill?: string; color?: string; width?: number }) {
     return new TableCell({
@@ -18,6 +35,7 @@ function cell(text: string, opts?: { bold?: boolean; fill?: string; color?: stri
         shading: opts?.fill ? { fill: opts.fill } : undefined,
         children: [
             new Paragraph({
+                spacing: { before: 60, after: 60 },
                 children: [new TextRun({ text, bold: opts?.bold, color: opts?.color ?? "111827", font: "Calibri", size: 18 })],
             }),
         ],
@@ -35,12 +53,7 @@ function barCell(percent: number) {
                     new TableRow({
                         children: [
                             new TableCell({
-                                borders: {
-                                    top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                    bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                    left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                    right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                },
+                                borders: noBorders,
                                 shading: { fill: BAR },
                                 children: [new Paragraph({ children: [new TextRun({ text: " ", size: 16 })] })],
                             }),
@@ -50,6 +63,28 @@ function barCell(percent: number) {
             }),
         ],
     });
+}
+
+function parseDataImageForDocx(dataUrl: string): { type: "png" | "jpg"; data: Uint8Array } | null {
+    const parsed = parseDataImage(dataUrl);
+    if (!parsed) return null;
+    if (parsed.mime.includes("png")) return { type: "png", data: new Uint8Array(parsed.bytes) };
+    if (parsed.mime.includes("jpeg") || parsed.mime.includes("jpg")) return { type: "jpg", data: new Uint8Array(parsed.bytes) };
+    return { type: "png", data: new Uint8Array(parsed.bytes) };
+}
+
+function actionPlanParagraphs(actionPlan: string) {
+    return actionPlan
+        .split(/\n+/)
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .map(
+            (line) =>
+                new Paragraph({
+                    spacing: { after: 60 },
+                    children: [new TextRun({ text: line, color: "4B5563", size: 18 })],
+                })
+        );
 }
 
 export async function buildGapDocx(data: GapReportData) {
@@ -65,29 +100,28 @@ export async function buildGapDocx(data: GapReportData) {
         ["Scope of Audit", data.session.auditScope || "—"],
     ];
 
-    const scoreHeader = new TableRow({
-        children: ["Clause", "Total Questions", "Comply", "OFI", "NC", "Score"].map((label) => cell(label, { bold: true, fill: GREEN, color: "FFFFFF" })),
-    });
-    const scoreRows = data.clauses.map((clause) =>
-        new TableRow({
-            children: [clause.label, String(clause.total), String(clause.comply), String(clause.ofi), String(clause.nc), `${clause.percent}%`].map((value) => cell(value)),
-        })
-    );
+    const [donutPng, barPng] = await Promise.all([
+        buildFindingMixDonutPng(data.comply, data.ofi, data.nc),
+        buildGapClauseBarPng(data.clauses),
+    ]);
 
-    const findingHeader = new TableRow({
-        children: ["#", "Clause", "Question", "Finding", "Evidence", "Action Plan"].map((label) => cell(label, { bold: true, fill: GREEN, color: "FFFFFF" })),
+    const scoreHeader = new TableRow({
+        children: ["Clause", "Total Questions", "Comply", "OFI", "NC", "Score"].map((label) =>
+            cell(label, { bold: true, fill: GREEN, color: "FFFFFF" })
+        ),
     });
-    const findingRows = data.questions.map((question, index) =>
-        new TableRow({
-            children: [
-                String(index + 1),
-                question.clauseLabel,
-                question.text,
-                findingLabel(question.finding),
-                question.evidence,
-                question.actionPlan,
-            ].map((value) => cell(value)),
-        })
+    const scoreRows = data.clauses.map(
+        (clause) =>
+            new TableRow({
+                children: [
+                    cell(clause.label),
+                    cell(String(clause.total)),
+                    cell(String(clause.comply), { color: COMPLY, bold: true }),
+                    cell(String(clause.ofi), { color: OFI, bold: true }),
+                    cell(String(clause.nc), { color: NC, bold: true }),
+                    cell(`${clause.percent}%`),
+                ],
+            })
     );
 
     const children: (Paragraph | Table)[] = [];
@@ -96,6 +130,7 @@ export async function buildGapDocx(data: GapReportData) {
         const logoBytes = await fs.readFile(path.join(process.cwd(), "public", "iaudit-logo-nav.png"));
         children.push(
             new Paragraph({
+                spacing: { after: 120 },
                 children: [
                     new ImageRun({
                         type: "png",
@@ -115,11 +150,59 @@ export async function buildGapDocx(data: GapReportData) {
             width: { size: 9360, type: WidthType.DXA },
             rows: cover.map(([label, value]) => new TableRow({ children: [cell(label, { bold: true, fill: "F3F4F6" }), cell(value)] })),
         }),
-        new Paragraph({ text: "" }),
-        new Paragraph({ text: "Audit Result Summary", heading: HeadingLevel.HEADING_1 }),
-        new Paragraph({ children: [new TextRun({ text: `Compliance Score: ${data.overall}%`, bold: true, size: 28 })] }),
-        new Paragraph({ children: [new TextRun({ text: `Status: ${data.status}`, bold: true, color: data.status === "Pass" ? GREEN : "DC2626" })] }),
-        new Paragraph({ text: "Finding mix", heading: HeadingLevel.HEADING_2 }),
+        new Paragraph({ spacing: { before: 200, after: 80 }, children: [] }),
+        new Paragraph({ text: "Scoring Summary", heading: HeadingLevel.HEADING_1 }),
+        new Paragraph({
+            spacing: { after: 120 },
+            children: [
+                new TextRun({
+                    text: `Compliance Percentage: (${data.comply} ÷ ${data.totalQuestions}) × 100 = ${data.overall}%`,
+                    bold: true,
+                    size: 28,
+                }),
+            ],
+        }),
+        new Paragraph({
+            spacing: { after: 80 },
+            children: [
+                new TextRun({ text: `Comply: ${data.comply}`, bold: true, color: COMPLY }),
+                new TextRun({ text: "   |   " }),
+                new TextRun({ text: `OFI: ${data.ofi}`, bold: true, color: OFI }),
+                new TextRun({ text: "   |   " }),
+                new TextRun({ text: `NC: ${data.nc}`, bold: true, color: NC }),
+            ],
+        }),
+        new Paragraph({
+            spacing: { after: 80 },
+            children: [
+                new TextRun({
+                    text: `Maturity Level: ${data.maturity.stage} (${data.maturity.percentLabel}) — ${data.maturity.status}. ${data.maturity.action}. Timeline: ${data.maturity.timeline}`,
+                }),
+            ],
+        }),
+        new Paragraph({
+            spacing: { after: 160 },
+            children: [
+                new TextRun({
+                    text: `Certification Readiness: ${data.readiness.label} (${data.readiness.ncLabel}). ${data.readiness.action}. Timeline: ${data.readiness.timeline}`,
+                }),
+            ],
+        }),
+        new Paragraph({
+            spacing: { before: 120, after: 160 },
+            children: [new TextRun({ text: "Finding mix", bold: true, size: 26, color: GREEN })],
+        }),
+        new Paragraph({
+            alignment: AlignmentType.CENTER,
+            spacing: { after: 200 },
+            children: [
+                new ImageRun({
+                    type: "png",
+                    data: new Uint8Array(donutPng),
+                    transformation: { width: 240, height: 250 },
+                }),
+            ],
+        }),
         new Table({
             width: { size: 9360, type: WidthType.DXA },
             rows: [
@@ -135,7 +218,21 @@ export async function buildGapDocx(data: GapReportData) {
                 }),
             ],
         }),
-        new Paragraph({ text: "Clause-wise Compliance", heading: HeadingLevel.HEADING_2 }),
+        new Paragraph({
+            spacing: { before: 240, after: 120 },
+            children: [new TextRun({ text: "Clause-wise Compliance", bold: true, size: 26, color: GREEN })],
+        }),
+        new Paragraph({
+            alignment: AlignmentType.CENTER,
+            spacing: { after: 160 },
+            children: [
+                new ImageRun({
+                    type: "png",
+                    data: new Uint8Array(barPng),
+                    transformation: { width: 500, height: 210 },
+                }),
+            ],
+        }),
         new Table({
             width: { size: 9360, type: WidthType.DXA },
             rows: [
@@ -154,12 +251,90 @@ export async function buildGapDocx(data: GapReportData) {
                 ),
             ],
         }),
-        new Paragraph({ text: "Detailed Scorecard", heading: HeadingLevel.HEADING_2 }),
+        new Paragraph({
+            spacing: { before: 240, after: 120 },
+            children: [new TextRun({ text: "Detailed Scorecard", bold: true, size: 26, color: GREEN })],
+        }),
         new Table({ width: { size: 9360, type: WidthType.DXA }, rows: [scoreHeader, ...scoreRows] }),
-        new Paragraph({ text: "" }),
-        new Paragraph({ text: "Detailed Audit Findings", heading: HeadingLevel.HEADING_1 }),
-        new Table({ width: { size: 9360, type: WidthType.DXA }, rows: [findingHeader, ...findingRows] }),
-        new Paragraph({ text: "" }),
+        new Paragraph({ spacing: { before: 200 }, children: [] }),
+        new Paragraph({ text: "Detailed Audit Findings", heading: HeadingLevel.HEADING_1 })
+    );
+
+    data.questions.forEach((question, index) => {
+        children.push(
+            new Paragraph({
+                spacing: { before: 200, after: 60 },
+                children: [
+                    new TextRun({
+                        text: `${index + 1}. ${question.clauseLabel}`,
+                        bold: true,
+                        color: GREEN,
+                        size: 20,
+                    }),
+                ],
+            }),
+            new Paragraph({
+                spacing: { after: 60 },
+                children: [new TextRun({ text: question.text, size: 18 })],
+            }),
+            new Paragraph({
+                spacing: { after: 60 },
+                children: [
+                    new TextRun({ text: "Finding: ", bold: true, color: "6B7280", size: 18 }),
+                    new TextRun({
+                        text: findingLabel(question.finding),
+                        bold: true,
+                        color: findingColorHex(question.finding).replace("#", ""),
+                        size: 18,
+                    }),
+                ],
+            })
+        );
+
+        if (question.evidence?.trim()) {
+            children.push(
+                new Paragraph({
+                    spacing: { after: 60 },
+                    children: [new TextRun({ text: `Evidence: ${question.evidence}`, color: "4B5563", size: 18 })],
+                })
+            );
+        }
+
+        if (question.actionPlan?.trim()) {
+            children.push(
+                new Paragraph({
+                    spacing: { after: 40 },
+                    children: [new TextRun({ text: "Action plan:", bold: true, color: "6B7280", size: 18 })],
+                }),
+                ...actionPlanParagraphs(question.actionPlan)
+            );
+        }
+
+        if (question.evidenceImage) {
+            const parsed = parseDataImageForDocx(question.evidenceImage);
+            if (parsed) {
+                children.push(
+                    new Paragraph({
+                        spacing: { before: 80, after: 60 },
+                        children: [new TextRun({ text: "Evidence image:", bold: true, color: "6B7280", size: 18 })],
+                    }),
+                    new Paragraph({
+                        spacing: { after: 120 },
+                        children: [
+                            new ImageRun({
+                                type: parsed.type,
+                                data: parsed.data,
+                                transformation: { width: 280, height: 180 },
+                            }),
+                        ],
+                    })
+                );
+            }
+        }
+    });
+
+    children.push(
+        new Paragraph({ spacing: { before: 280 }, children: [] }),
         new Paragraph({ children: [new TextRun({ text: "Built with iAudit Global", italics: true, color: "6B7280", size: 16 })] })
     );
 

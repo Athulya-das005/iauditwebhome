@@ -3,6 +3,7 @@ import { buildSelfReportData, selfReportFileName } from "@/lib/self-report-data"
 import { buildSelfPdf } from "@/lib/self-report-pdf";
 import { buildSelfDocx } from "@/lib/self-report-docx";
 import { sendGapReportEmail } from "@/lib/send-gap-report-email";
+import { maturityForPercent, readinessForNcCount } from "@/lib/gap-report-data";
 import type { GapAnalysisSession } from "@/types/gap-analysis-session";
 import type { SelfAnswer } from "@/data/self-assessment-clauses";
 
@@ -39,6 +40,7 @@ export async function POST(request: Request) {
 
         if (body.sendEmail !== false) {
             try {
+                const selfPercent = data.total === 0 ? 0 : Math.round((data.yes / data.total) * 100);
                 await sendGapReportEmail({
                     data: {
                         session: data.session,
@@ -48,6 +50,9 @@ export async function POST(request: Request) {
                         comply: data.yes,
                         ofi: 0,
                         nc: data.no,
+                        totalQuestions: data.total,
+                        maturity: maturityForPercent(selfPercent),
+                        readiness: readinessForNcCount(data.no),
                         clauses: data.clauses.map((clause) => ({
                             label: clause.label,
                             total: clause.total,

@@ -179,7 +179,7 @@ export default function SelfAssessmentResults({ session, clauses, questionsByCla
         <div style={{ minHeight: "100vh", background: "#f4f5f7", fontFamily: font, padding: isMobile ? "calc(var(--page-top-offset) + 0.6rem) 1rem 3rem" : "calc(var(--page-top-offset) + 0.8rem) 1.75rem 4rem" }}>
             <div style={{ maxWidth: "1040px", margin: "0 auto" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "0.75rem", marginBottom: "1rem", flexWrap: "wrap" }}>
-                    <Link href="/iso-audit-assessments/self-assessment" style={{ color: "#4b5563", textDecoration: "none", fontWeight: 600 }}>
+                    <Link href="/iso-14001-2026-self-assessment-tool" style={{ color: "#4b5563", textDecoration: "none", fontWeight: 600 }}>
                         ← Back to assessment page
                     </Link>
                     <div style={{ display: "flex", gap: "0.55rem" }}>
@@ -317,7 +317,7 @@ export default function SelfAssessmentResults({ session, clauses, questionsByCla
                 </section>
 
                 <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: "0.7rem", marginBottom: "1.25rem" }}>
-                    <button type="button" onClick={() => router.push("/iso-audit-assessments/self-assessment")} style={ghostWide}>
+                    <button type="button" onClick={() => router.push("/iso-14001-2026-self-assessment-tool")} style={ghostWide}>
                         Start New
                     </button>
                     <button type="button" disabled={downloading !== null} onClick={() => downloadReport("pdf")} style={{ ...pdfOutline, width: "100%" }}>

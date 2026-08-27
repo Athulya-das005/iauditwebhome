@@ -5,51 +5,31 @@ import Link from "next/link";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
-import FAQAccordion from "@/components/FAQAccordion";
-import { selfAssessmentFaqItems } from "@/data/selfAssessmentPageSchema";
+import { checklistMeta, quickStartGuide } from "@/data/gap-analysis-checklist-content";
 
-const HERO_IMAGE = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1920&q=80";
+const HERO_IMAGE = "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80";
+const SNAPSHOT_IMAGE = "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80";
 const CALENDLY_URL = "https://calendly.com/iauditgloballtd/30min";
+const CHECKLIST_HREF = "/iso-audit-assessments/gap-analysis/checklist";
 
-const steps = [
-    {
-        step: "01",
-        title: "Answer",
-        text: "Work through questions covering the key areas of your environmental management system.",
-        image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80",
-    },
-    {
-        step: "02",
-        title: "Assess",
-        text: "Review your responses to see where your current practices are strong and where attention may be required.",
-        image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=900&q=80",
-    },
-    {
-        step: "03",
-        title: "Identify",
-        text: "Use the results to identify potential gaps, weaknesses and areas that warrant a closer review.",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
-    },
-    {
-        step: "04",
-        title: "Act",
-        text: "Use your results to plan the next steps, whether that means further assessment, internal auditing or corrective action.",
-        image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80",
-    },
+const stepImages = [
+    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80",
 ];
 
-const understandingBullets = [
-    "Understand your current position and how your environmental management system aligns with ISO 14001:2026.",
-    "Identify areas requiring attention before a formal audit or transition review.",
-    "Prioritise further investigation where your current practices may need improvement.",
-    "Prepare for the transition if your organisation currently works to ISO 14001:2015.",
-];
+const steps = quickStartGuide.slice(0, 4).map((text, index) => ({
+    step: `Step ${index + 1}`,
+    text,
+    image: stepImages[index],
+}));
 
 type Props = {
     onStart: () => void;
 };
 
-export default function SelfAssessmentLanding({ onStart }: Props) {
+export default function GapAnalysisLanding({ onStart }: Props) {
     const [isMobile, setIsMobile] = useState(false);
     const [isNarrow, setIsNarrow] = useState(false);
     const font = '"Pp Neue Montreal", sans-serif';
@@ -104,7 +84,7 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
             >
                 <Image
                     src={HERO_IMAGE}
-                    alt="ISO 14001:2026 Self Assessment"
+                    alt="ISO 14001:2026 Gap Analysis"
                     fill
                     priority
                     sizes="100vw"
@@ -149,11 +129,11 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                             lineHeight: 1.4,
                         }}
                     >
-                        Free ISO 14001:2026 Self Assessment Tool by iAudit Global
+                        ISO Gap Analysis by iAudit Global
                     </p>
                     <h1
                         style={{
-                            margin: "0 0 1rem",
+                            margin: "0 0 0.5rem",
                             color: "#fff",
                             fontSize: isNarrow ? "1.85rem" : isMobile ? "2.25rem" : "4.15rem",
                             lineHeight: isMobile ? 1.15 : 1.08,
@@ -163,7 +143,7 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                             wordBreak: "break-word",
                         }}
                     >
-                        See How Ready You Are for ISO 14001:2026
+                        ISO 14001:2026 Gap Analysis
                     </h1>
                     <p
                         style={{
@@ -174,9 +154,7 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                             maxWidth: "680px",
                         }}
                     >
-                        Check your environmental management system against ISO 14001:2026 with our free self
-                        assessment, and identify areas that may need attention before your next audit or transition
-                        review.
+                        {checklistMeta.subtitle}
                     </p>
                     <div
                         style={{
@@ -188,8 +166,11 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                         }}
                     >
                         <button type="button" onClick={onStart} style={ctaBtnStyle}>
-                            Start free assessment
+                            Start gap analysis
                         </button>
+                        <Link href={CHECKLIST_HREF} style={ghostCtaStyle}>
+                            View the Checklist
+                        </Link>
                         <Link
                             href={CALENDLY_URL}
                             target="_blank"
@@ -199,120 +180,6 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                             Book a demo
                         </Link>
                     </div>
-                </div>
-            </section>
-
-            {/* 2 — Understanding */}
-            <section
-                style={{
-                    maxWidth: "1100px",
-                    margin: "0 auto",
-                    padding: isMobile
-                        ? isNarrow
-                            ? "2.75rem 1rem"
-                            : "3.25rem 1.25rem"
-                        : "5.5rem 2rem",
-                    textAlign: "center",
-                    boxSizing: "border-box",
-                    width: "100%",
-                }}
-            >
-                <p
-                    style={{
-                        margin: "0 0 0.75rem",
-                        color: "#006644",
-                        fontWeight: 700,
-                        letterSpacing: isNarrow ? "0.06em" : "0.12em",
-                        textTransform: "uppercase",
-                        fontSize: isNarrow ? "0.68rem" : "0.75rem",
-                        lineHeight: 1.4,
-                    }}
-                >
-                    Understanding ISO Self Assessment
-                </p>
-                <h2
-                    style={{
-                        margin: "0 0 1rem",
-                        fontSize: isNarrow ? "1.55rem" : isMobile ? "1.85rem" : "2.6rem",
-                        color: "#143528",
-                        letterSpacing: "-0.03em",
-                        lineHeight: 1.2,
-                        wordBreak: "break-word",
-                    }}
-                >
-                    What Is an ISO 14001:2026 Self Assessment?
-                </h2>
-                <p
-                    style={{
-                        margin: "0 auto 1.1rem",
-                        maxWidth: "760px",
-                        color: "#4b5563",
-                        fontSize: isNarrow ? "0.95rem" : "1.05rem",
-                        lineHeight: 1.75,
-                    }}
-                >
-                    An ISO 14001:2026 Self Assessment is a structured review of your environmental management system
-                    against the requirements and key areas of the updated standard.
-                </p>
-                <p
-                    style={{
-                        margin: "0 auto 0.85rem",
-                        maxWidth: "760px",
-                        color: "#4b5563",
-                        fontSize: isNarrow ? "0.95rem" : "1.05rem",
-                        lineHeight: 1.75,
-                    }}
-                >
-                    It helps you:
-                </p>
-                <ul
-                    style={{
-                        margin: "0 auto 1.35rem",
-                        maxWidth: "760px",
-                        paddingLeft: "1.25rem",
-                        color: "#4b5563",
-                        fontSize: isNarrow ? "0.95rem" : "1.05rem",
-                        lineHeight: 1.75,
-                        textAlign: "left",
-                    }}
-                >
-                    {understandingBullets.map((item) => (
-                        <li key={item} style={{ marginBottom: "0.45rem" }}>
-                            {item}
-                        </li>
-                    ))}
-                </ul>
-                <p
-                    style={{
-                        margin: "0 auto 1.75rem",
-                        maxWidth: "760px",
-                        color: "#4b5563",
-                        fontSize: isNarrow ? "0.95rem" : "1.05rem",
-                        lineHeight: 1.75,
-                    }}
-                >
-                    The assessment is not a certification audit and does not confirm conformity. Instead, it provides a
-                    practical starting point for reviewing areas such as organisational context, leadership, planning,
-                    operational controls, performance evaluation and improvement.
-                </p>
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        marginBottom: "0.5rem",
-                        width: "100%",
-                    }}
-                >
-                    <button
-                        type="button"
-                        onClick={onStart}
-                        style={{
-                            ...ctaBtnStyle,
-                            maxWidth: isMobile ? "100%" : "320px",
-                        }}
-                    >
-                        Start free assessment
-                    </button>
                 </div>
             </section>
 
@@ -352,7 +219,7 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                     >
                         <Image
                             src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80"
-                            alt="ISO 14001:2026 Self-Assessment Checklist"
+                            alt={checklistMeta.title}
                             fill
                             sizes="(max-width: 900px) 100vw, 480px"
                             quality={90}
@@ -361,7 +228,9 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                     </div>
                     <div>
                         <p style={{ margin: "0 0 0.3rem", color: "#6b7280", fontSize: "0.85rem", fontWeight: 600 }}>Checklist</p>
-                        <p style={{ margin: "0 0 0.85rem", color: "#6b7280", fontSize: "0.85rem", fontWeight: 600 }}>Sustainability · ISO 14001:2026</p>
+                        <p style={{ margin: "0 0 0.85rem", color: "#6b7280", fontSize: "0.85rem", fontWeight: 600 }}>
+                            {checklistMeta.subtitle} · ISO 14001:2026
+                        </p>
                         <h2
                             style={{
                                 margin: "0 0 1rem",
@@ -373,7 +242,7 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                                 wordBreak: "break-word",
                             }}
                         >
-                            ISO 14001:2026 Self-Assessment Checklist
+                            {checklistMeta.title}
                         </h2>
                         <p
                             style={{
@@ -384,12 +253,10 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                                 maxWidth: "34rem",
                             }}
                         >
-                            Preview how the assessment works before you start. Explore all 65 questions, tick Yes or No,
-                            see your live score, and read maturity guidance, 2026 key changes and climate considerations
-                            from our checklist.
+                            {checklistMeta.purpose}
                         </p>
                         <Link
-                            href="/iso-audit-assessments/self-assessment/checklist"
+                            href={CHECKLIST_HREF}
                             style={{
                                 display: "inline-flex",
                                 alignItems: "center",
@@ -412,7 +279,111 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                 </div>
             </section>
 
-            {/* 3 — How it works */}
+            {/* 2 — About */}
+            <section
+                style={{
+                    maxWidth: "1100px",
+                    margin: "0 auto",
+                    padding: isMobile
+                        ? isNarrow
+                            ? "2.75rem 1rem"
+                            : "3.25rem 1.25rem"
+                        : "5.5rem 2rem",
+                    textAlign: "center",
+                    boxSizing: "border-box",
+                    width: "100%",
+                }}
+            >
+                <p
+                    style={{
+                        margin: "0 0 0.75rem",
+                        color: "#006644",
+                        fontWeight: 700,
+                        letterSpacing: isNarrow ? "0.06em" : "0.12em",
+                        textTransform: "uppercase",
+                        fontSize: isNarrow ? "0.68rem" : "0.75rem",
+                        lineHeight: 1.4,
+                    }}
+                >
+                    About this assessment
+                </p>
+                <h2
+                    style={{
+                        margin: "0 0 1rem",
+                        fontSize: isNarrow ? "1.55rem" : isMobile ? "1.85rem" : "2.6rem",
+                        color: "#143528",
+                        letterSpacing: "-0.03em",
+                        lineHeight: 1.2,
+                        wordBreak: "break-word",
+                    }}
+                >
+                    {checklistMeta.title}
+                </h2>
+                <p
+                    style={{
+                        margin: "0 auto 1.75rem",
+                        maxWidth: "760px",
+                        color: "#4b5563",
+                        fontSize: isNarrow ? "0.95rem" : "1.05rem",
+                        lineHeight: 1.75,
+                    }}
+                >
+                    {checklistMeta.purpose}
+                </p>
+                <p
+                    style={{
+                        margin: "0 auto 1.75rem",
+                        maxWidth: "760px",
+                        color: "#6b7280",
+                        fontSize: isNarrow ? "0.9rem" : "0.98rem",
+                        lineHeight: 1.65,
+                    }}
+                >
+                    {checklistMeta.note2026} · Scoring: {checklistMeta.scoring}
+                </p>
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginBottom: "2rem",
+                        width: "100%",
+                    }}
+                >
+                    <button
+                        type="button"
+                        onClick={onStart}
+                        style={{
+                            ...ctaBtnStyle,
+                            maxWidth: isMobile ? "100%" : "320px",
+                        }}
+                    >
+                        Start gap analysis
+                    </button>
+                </div>
+                <div
+                    style={{
+                        position: "relative",
+                        width: "100%",
+                        maxWidth: "920px",
+                        margin: "0 auto",
+                        borderRadius: isMobile ? "1rem" : "1.25rem",
+                        overflow: "hidden",
+                        boxShadow: "0 18px 50px rgba(16,47,32,0.12)",
+                        aspectRatio: isMobile ? "16 / 10" : "16 / 8",
+                    }}
+                >
+                    <Image
+                        src={SNAPSHOT_IMAGE}
+                        alt={checklistMeta.title}
+                        fill
+                        sizes="(max-width: 900px) 100vw, 920px"
+                        quality={90}
+                        style={{ objectFit: "cover" }}
+                    />
+                </div>
+            </section>
+
+            {/* 3 — How it works (Quick Start Guide) */}
             <section
                 id="how-it-works"
                 style={{
@@ -436,7 +407,7 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                             textAlign: "center",
                         }}
                     >
-                        How it works
+                        Quick Start Guide
                     </p>
                     <h2
                         style={{
@@ -449,7 +420,7 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                             wordBreak: "break-word",
                         }}
                     >
-                        How the Free ISO 14001:2026 Self Assessment Works
+                        How to complete the Gap Analysis Checklist
                     </h2>
                     <p
                         style={{
@@ -461,8 +432,11 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                             fontSize: isNarrow ? "0.95rem" : "1.02rem",
                         }}
                     >
-                        Complete our free, structured assessment, review your results and use the findings to identify
-                        priorities for further review or improvement.
+                        Mark each question{" "}
+                        <span style={{ color: "#16a34a", fontWeight: 800 }}>☑ Comply</span>,{" "}
+                        <span style={{ color: "#ea580c", fontWeight: 800 }}>⭕ OFI</span>, or{" "}
+                        <span style={{ color: "#dc2626", fontWeight: 800 }}>✕ NC</span>{" "}
+                        across {checklistMeta.totalQuestions} auditable questions covering clauses 4–10.
                     </p>
                     <div
                         style={{
@@ -486,7 +460,7 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                                 <div style={{ position: "relative", height: isNarrow ? "150px" : "180px" }}>
                                     <Image
                                         src={item.image}
-                                        alt={item.title}
+                                        alt={item.step}
                                         fill
                                         sizes="(max-width: 900px) 100vw, 540px"
                                         quality={90}
@@ -513,17 +487,6 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                                     >
                                         {item.step}
                                     </p>
-                                    <h3
-                                        style={{
-                                            margin: "0 0 0.65rem",
-                                            fontSize: isNarrow ? "1.1rem" : "1.25rem",
-                                            color: "#143528",
-                                            letterSpacing: "-0.02em",
-                                            lineHeight: 1.3,
-                                        }}
-                                    >
-                                        {item.title}
-                                    </h3>
                                     <p
                                         style={{
                                             margin: 0,
@@ -531,6 +494,7 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                                             lineHeight: 1.7,
                                             flex: 1,
                                             fontSize: isNarrow ? "0.92rem" : "1rem",
+                                            fontWeight: 600,
                                         }}
                                     >
                                         {item.text}
@@ -555,7 +519,7 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                                 maxWidth: isMobile ? "100%" : "320px",
                             }}
                         >
-                            Start free assessment
+                            Start gap analysis
                         </button>
                     </div>
                 </div>
@@ -564,15 +528,14 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
             {/* 5 — Get started */}
             <CTA
                 tag="Get started"
-                title={<>Ready to Check Your ISO 14001:2026 Readiness?</>}
-                description="Take the free ISO 14001:2026 Self Assessment and identify areas requiring attention before your next audit."
-                buttonText="Start free assessment"
+                title={<>Start your ISO 14001:2026 Gap Analysis</>}
+                description={checklistMeta.purpose}
+                buttonText="Start gap analysis"
                 buttonHref="#start"
                 secondaryButtonText="Book a demo"
                 secondaryButtonHref={CALENDLY_URL}
-                badges={["No credit card required"]}
+                badges={[`${checklistMeta.totalQuestions} questions`, "Comply / OFI / NC", "ISO 14001:2026"]}
             />
-            <FAQAccordion items={selfAssessmentFaqItems} heading="Frequently asked questions" sparkleText="FAQ" />
             <StartCtaBridge onStart={onStart} />
             <Footer />
         </div>

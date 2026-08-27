@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import { SELF_ASSESSMENT_PAGE_PATH, SELF_ASSESSMENT_PAGE_URL } from "@/data/selfAssessmentPageSchema";
 
 // Original assessments hub page is temporarily disabled.
-// Landing content now lives on /iso-audit-assessments/self-assessment.
+// Landing content now lives on /iso-14001-2026-self-assessment-tool.
 /*
 import AssessmentsLanding from "./AssessmentsLanding";
 
@@ -31,16 +32,16 @@ export default function IsoAuditAssessmentsPage() {
 }
 */
 
-const pageUrl = "https://www.iaudit.global/iso-audit-assessments/self-assessment";
+const pageUrl = SELF_ASSESSMENT_PAGE_URL;
 
 export const metadata: Metadata = {
-    title: "ISO 14001:2026 Self Assessment | iAudit Global",
+    title: "ISO 14001:2026 Self Assessment Tool | iAudit Global",
     description:
-        "Run a clause-based ISO 14001:2026 Self Assessment. Identify EMS compliance gaps and build a structured improvement plan before your next audit.",
+        "Use the free ISO 14001:2026 Self Assessment Tool to check your EMS readiness, identify areas for attention and plan your next steps.",
     robots: { index: false, follow: true },
     alternates: { canonical: pageUrl },
 };
 
 export default function IsoAuditAssessmentsPage() {
-    redirect("/iso-audit-assessments/self-assessment");
+    redirect(SELF_ASSESSMENT_PAGE_PATH);
 }

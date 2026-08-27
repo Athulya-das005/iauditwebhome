@@ -16,7 +16,7 @@ type Props = {
 
 export default function AssessmentPlaceholder({ type, title, eyebrow, description, image }: Props) {
     const font = '"Pp Neue Montreal", sans-serif';
-    const pagePath = type === "self-assessment" ? "/iso-audit-assessments/self-assessment" : "/iso-audit-assessments/gap-analysis";
+    const pagePath = type === "self-assessment" ? "/iso-14001-2026-self-assessment-tool" : "/iso-audit-assessments/gap-analysis";
 
     return (
         <div style={{ minHeight: "100vh", background: "#f7f8f5", fontFamily: font }}>
@@ -30,7 +30,7 @@ export default function AssessmentPlaceholder({ type, title, eyebrow, descriptio
             </div>
 
             <div style={{ maxWidth: "820px", margin: "0 auto", padding: "2.5rem 1.25rem 5rem" }}>
-                <Link href="/iso-audit-assessments/self-assessment" style={{ color: "#006644", textDecoration: "none", fontWeight: 600, fontSize: "0.88rem" }}>
+                <Link href="/iso-14001-2026-self-assessment-tool" style={{ color: "#006644", textDecoration: "none", fontWeight: 600, fontSize: "0.88rem" }}>
                     ← Back to assessments
                 </Link>
                 <p style={{ margin: "1.25rem 0 1.75rem", color: "#4b5563", fontSize: "1.05rem", lineHeight: 1.8 }}>{description}</p>

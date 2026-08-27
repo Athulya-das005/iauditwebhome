@@ -17,29 +17,30 @@ import {
 import { GAP_SESSION_KEY } from "@/data/gap-analysis-clauses";
 import type { AssessmentStartConfig } from "@/data/self-assessment-clauses";
 import { SELF_SESSION_KEY } from "@/data/self-assessment-clauses";
+import { SELF_ASSESSMENT_PAGE_PATH } from "@/data/selfAssessmentPageSchema";
 import type { GapAnalysisSession } from "@/types/gap-analysis-session";
 
 const font = '"Pp Neue Montreal", sans-serif';
 
 const gapConfig: AssessmentStartConfig = {
     assessmentType: "gap-analysis",
-    assessmentTitle: "ISO Gap Analysis",
+    assessmentTitle: "ISO 14001:2026 Gap Analysis",
     pagePath: "/iso-audit-assessments/gap-analysis",
     workspacePath: "/iso-audit-assessments/gap-analysis/workspace",
     sessionKey: GAP_SESSION_KEY,
-    eyebrow: "Clause-by-clause review",
-    title: "ISO Gap Analysis",
+    eyebrow: "Comply / OFI / NC review",
+    title: "ISO 14001:2026 Gap Analysis",
     description:
-        "Enter your details to start a structured gap analysis against ISO 9001, 14001 or 45001. Record findings, evidence and actions clause by clause.",
+        "Enter your details to start a structured gap analysis against ISO 14001:2026. Mark Comply, OFI or NC across 61 questions and capture evidence clause by clause.",
     cta: "Start gap analysis",
     image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=80",
-    imageAlt: "ISO Gap Analysis",
+    imageAlt: "ISO 14001:2026 Gap Analysis",
 };
 
 export const selfAssessmentStartConfig: AssessmentStartConfig = {
     assessmentType: "self-assessment",
     assessmentTitle: "ISO Self Assessment",
-    pagePath: "/iso-audit-assessments/self-assessment",
+    pagePath: SELF_ASSESSMENT_PAGE_PATH,
     workspacePath: "/iso-audit-assessments/self-assessment/workspace",
     sessionKey: SELF_SESSION_KEY,
     eyebrow: "Yes / No readiness check",
@@ -68,9 +69,7 @@ export default function GapAnalysisStart({
     const [organisationSize, setOrganisationSize] = useState("");
     const [department, setDepartment] = useState("");
     const [existingCustomer, setExistingCustomer] = useState("");
-    const [isoStandard, setIsoStandard] = useState<IsoStandardValue | "">(
-        config.assessmentType === "self-assessment" ? "ISO 14001:2026" : ""
-    );
+    const [isoStandard, setIsoStandard] = useState<IsoStandardValue | "">("ISO 14001:2026");
     const [auditScope, setAuditScope] = useState("");
     const [emailOptIn, setEmailOptIn] = useState(false);
     const [standardOpen, setStandardOpen] = useState(false);
@@ -186,7 +185,7 @@ export default function GapAnalysisStart({
                     </div>
 
                     <div style={{ maxWidth: "820px", margin: "0 auto", padding: "2.5rem 1.25rem 5rem" }}>
-                        <Link href="/iso-audit-assessments/self-assessment" style={{ color: "#006644", textDecoration: "none", fontWeight: 600, fontSize: "0.88rem" }}>
+                        <Link href={config.pagePath} style={{ color: "#006644", textDecoration: "none", fontWeight: 600, fontSize: "0.88rem" }}>
                             ← Back to self assessment
                         </Link>
                         <p style={{ margin: "1.25rem 0 1.75rem", color: "#4b5563", fontSize: "1.05rem", lineHeight: 1.8 }}>
