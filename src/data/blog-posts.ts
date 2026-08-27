@@ -676,6 +676,16 @@ export function getAllPostsSorted(posts: BlogPost[] = blogPosts) {
     return [...posts].sort((a, b) => (a.datePublished < b.datePublished ? 1 : -1));
 }
 
+/** Match author names case-insensitively (handles Mathew vs Matthew spelling). */
+export function getPostsByAuthor(authorNames: string | string[], posts: BlogPost[] = blogPosts) {
+    const names = (Array.isArray(authorNames) ? authorNames : [authorNames]).map((n) => n.toLowerCase());
+    return getAllPostsSorted(posts.filter((p) => names.includes(p.author.toLowerCase())));
+}
+
+export function getMatthewChiwedaPosts(posts: BlogPost[] = blogPosts) {
+    return getPostsByAuthor(["Matthew Chiweda", "Mathew Chiweda"], posts);
+}
+
 export function getTopPosts(limit = 5, posts: BlogPost[] = blogPosts) {
     const sorted = getAllPostsSorted(posts);
     // Mid-shelf picks — not the newest cluster, not the oldest archive

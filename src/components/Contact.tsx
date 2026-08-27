@@ -16,6 +16,7 @@ export default function Contact() {
     });
 
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const [isMobile, setIsMobile] = useState(false);
 
@@ -45,31 +46,35 @@ export default function Contact() {
             return;
         }
 
+        setIsSubmitting(true);
+
         try {
-            const response = await fetch("https://formsubmit.co/ajax/info@iaudit.global", {
+            const response = await fetch("/api/contact", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    name: `${firstName} ${lastName}`,
-                    email: email,
-                    phone: phone,
-                    subject: subject,
-                    message: message,
-                    _subject: `New iAudit Contact: ${subject}`
-                })
+                    firstName,
+                    lastName,
+                    phone,
+                    subject,
+                    email,
+                    message,
+                    agreed,
+                }),
             });
+
+            const data = (await response.json()) as { error?: string };
 
             if (response.ok) {
                 setIsSubmitted(true);
             } else {
-                alert("Something went wrong. Please try again or email us directly at info@iaudit.global");
+                alert(data.error || "Something went wrong. Please try again or email us directly at info@iaudit.global");
             }
         } catch (error) {
             console.error("Submission error:", error);
             alert("Submission failed. Please check your internet connection and try again.");
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -371,6 +376,7 @@ export default function Contact() {
                                     <button
                                         type="submit"
                                         className="btn-animate"
+                                        disabled={isSubmitting}
                                         style={{
                                             width: "100%",
                                             padding: "1rem",
@@ -379,7 +385,8 @@ export default function Contact() {
                                             borderRadius: "8px",
                                             fontSize: "0.95rem",
                                             fontWeight: 600,
-                                            cursor: "pointer",
+                                            cursor: isSubmitting ? "not-allowed" : "pointer",
+                                            opacity: isSubmitting ? 0.75 : 1,
                                             display: "flex",
                                             alignItems: "center",
                                             justifyContent: "center",
@@ -387,11 +394,13 @@ export default function Contact() {
                                         }}
                                     >
                                         <span style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                                            Sent Message
-                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                                <polyline points="7 7 17 7 17 17"></polyline>
-                                            </svg>
+                                            {isSubmitting ? "Sending..." : "Send Message"}
+                                            {!isSubmitting && (
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                                </svg>
+                                            )}
                                         </span>
                                     </button>
                                 </div>
