@@ -1,89 +1,84 @@
+import { PNG } from "pngjs";
 import { maturityTone } from "@/lib/self-report-data";
 
-const GREY = "#E5E7EB";
-const TEXT = "#111827";
-const MUTED = "#6B7280";
-const ORANGE = "#F59E0B";
+type Color = readonly [number, number, number, number];
 
-async function renderPng(svg: string) {
-    const { default: sharp } = await import("sharp");
-    return sharp(Buffer.from(svg)).png().toBuffer();
-}
+const WHITE: Color = [255, 255, 255, 255];
+const GREY: Color = [229, 231, 235, 255];
+const GRID: Color = [229, 231, 235, 255];
+const ORANGE: Color = [245, 158, 11, 255];
 
-function polar(cx: number, cy: number, r: number, angleDeg: number) {
-    const rad = ((angleDeg - 90) * Math.PI) / 180;
-    return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
-}
-
-function donutSlice(cx: number, cy: number, outer: number, inner: number, start: number, sweep: number) {
-    if (sweep <= 0) return "";
-    if (sweep >= 359.99) {
-        return [
-            `M ${cx} ${cy - outer}`,
-            `A ${outer} ${outer} 0 1 1 ${cx - 0.01} ${cy - outer}`,
-            `L ${cx - 0.01} ${cy - inner}`,
-            `A ${inner} ${inner} 0 1 0 ${cx} ${cy - inner}`,
-            "Z",
-        ].join(" ");
-    }
-    const end = start + sweep;
-    const large = sweep > 180 ? 1 : 0;
-    const p1 = polar(cx, cy, outer, start);
-    const p2 = polar(cx, cy, outer, end);
-    const p3 = polar(cx, cy, inner, end);
-    const p4 = polar(cx, cy, inner, start);
+function hexColor(hex: string): Color {
+    const clean = hex.replace("#", "");
     return [
-        `M ${p1.x} ${p1.y}`,
-        `A ${outer} ${outer} 0 ${large} 1 ${p2.x} ${p2.y}`,
-        `L ${p3.x} ${p3.y}`,
-        `A ${inner} ${inner} 0 ${large} 0 ${p4.x} ${p4.y}`,
-        "Z",
-    ].join(" ");
+        parseInt(clean.slice(0, 2), 16),
+        parseInt(clean.slice(2, 4), 16),
+        parseInt(clean.slice(4, 6), 16),
+        255,
+    ];
 }
 
-function escapeXml(value: string) {
-    return value.replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char] ?? char));
+function canvas(width: number, height: number) {
+    const image = new PNG({ width, height });
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            setPixel(image, x, y, WHITE);
+        }
+    }
+    return image;
 }
 
-/** Donut matching on-screen / PDF Total Score chart (Yes = stage colour, Remaining = grey). */
+function setPixel(image: PNG, x: number, y: number, color: Color) {
+    if (x < 0 || y < 0 || x >= image.width || y >= image.height) return;
+    const index = (image.width * y + x) << 2;
+    image.data[index] = color[0];
+    image.data[index + 1] = color[1];
+    image.data[index + 2] = color[2];
+    image.data[index + 3] = color[3];
+}
+
+function fillRect(image: PNG, x: number, y: number, width: number, height: number, color: Color) {
+    for (let row = Math.max(0, y); row < Math.min(image.height, y + height); row++) {
+        for (let column = Math.max(0, x); column < Math.min(image.width, x + width); column++) {
+            setPixel(image, column, row, color);
+        }
+    }
+}
+
+function drawHorizontalLine(image: PNG, x1: number, x2: number, y: number, color: Color) {
+    for (let x = x1; x <= x2; x++) setPixel(image, x, y, color);
+}
+
+function drawDonut(image: PNG, cx: number, cy: number, outer: number, inner: number, yesRatio: number, accent: Color) {
+    const outerSquared = outer * outer;
+    const innerSquared = inner * inner;
+    const yesSweep = Math.max(0, Math.min(1, yesRatio)) * Math.PI * 2;
+
+    for (let y = cy - outer; y <= cy + outer; y++) {
+        for (let x = cx - outer; x <= cx + outer; x++) {
+            const dx = x - cx;
+            const dy = y - cy;
+            const distanceSquared = dx * dx + dy * dy;
+            if (distanceSquared < innerSquared || distanceSquared > outerSquared) continue;
+
+            // Start at 12 o'clock and move clockwise.
+            const angle = (Math.atan2(dy, dx) + Math.PI / 2 + Math.PI * 2) % (Math.PI * 2);
+            setPixel(image, x, y, angle <= yesSweep ? accent : GREY);
+        }
+    }
+}
+
+/** Donut matching the on-screen / PDF Total Score chart. */
 export async function buildScoreDonutPng(yes: number, total: number, stage: string): Promise<Buffer> {
-    const rest = Math.max(total - yes, 0);
-    const sum = Math.max(yes + rest, 1);
-    const width = 420;
-    const height = 460;
-    const cx = 210;
-    const cy = 200;
-    const outer = 130;
-    const inner = 78;
-    const tone = maturityTone(stage);
-
-    const yesSweep = (yes / sum) * 360;
-    const restSweep = (rest / sum) * 360;
-    const yesPath = donutSlice(cx, cy, outer, inner, 0, yesSweep);
-    const restPath = donutSlice(cx, cy, outer, inner, yesSweep, restSweep);
-    const score = `${yes} / ${total}`;
-    const sub = `${yes} questions yes`;
-    const stageLabel = stage.toUpperCase();
-
-    const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
-  <rect width="100%" height="100%" fill="#ffffff"/>
-  ${restPath ? `<path d="${restPath}" fill="${GREY}"/>` : ""}
-  ${yesPath ? `<path d="${yesPath}" fill="${tone.accent}"/>` : ""}
-  <text x="${cx}" y="${cy - 6}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="${TEXT}">${escapeXml(score)}</text>
-  <text x="${cx}" y="${cy + 22}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="${MUTED}">${escapeXml(sub)}</text>
-  <rect x="${cx - 90}" y="${cy + outer + 28}" rx="14" ry="14" width="180" height="28" fill="${tone.badgeBg}" stroke="${tone.softBorder}"/>
-  <text x="${cx}" y="${cy + outer + 47}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="${tone.badgeText}">${escapeXml(stageLabel)}</text>
-  <rect x="${cx - 78}" y="${cy + outer + 72}" width="12" height="12" fill="${tone.accent}" rx="2"/>
-  <text x="${cx - 60}" y="${cy + outer + 82}" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="${TEXT}">Yes</text>
-  <rect x="${cx + 10}" y="${cy + outer + 72}" width="12" height="12" fill="${GREY}" rx="2"/>
-  <text x="${cx + 28}" y="${cy + outer + 82}" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="${TEXT}">Remaining</text>
-</svg>`;
-
-    return renderPng(svg);
+    const image = canvas(420, 460);
+    const accent = hexColor(maturityTone(stage).accent);
+    drawDonut(image, 210, 190, 130, 78, total > 0 ? yes / total : 0, accent);
+    fillRect(image, 120, 360, 14, 14, accent);
+    fillRect(image, 286, 360, 14, 14, GREY);
+    return PNG.sync.write(image);
 }
 
-/** Vertical bar chart for Score by Clause (matches PDF orange bars). */
+/** Vertical bar chart for Score by Clause. */
 export async function buildClauseBarChartPng(
     clauses: { label: string; percent: number; yes: number; total: number }[]
 ): Promise<Buffer> {
@@ -96,39 +91,21 @@ export async function buildClauseBarChartPng(
     const plotW = width - padL - padR;
     const plotH = height - padT - padB;
     const gap = plotW / Math.max(clauses.length, 1);
-    const barW = gap * 0.48;
+    const barW = Math.max(8, Math.floor(gap * 0.48));
     const maxTick = 60;
+    const image = canvas(width, height);
 
-    const grid = [0, 15, 30, 45, 60]
-        .map((tick) => {
-            const y = padT + plotH - (tick / maxTick) * plotH;
-            return `
-              <line x1="${padL}" x2="${width - padR}" y1="${y}" y2="${y}" stroke="#E5E7EB" stroke-dasharray="4 4"/>
-              <text x="${padL - 8}" y="${y + 4}" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#9CA3AF">${tick}</text>`;
-        })
-        .join("");
+    [0, 15, 30, 45, 60].forEach((tick) => {
+        const y = padT + plotH - (tick / maxTick) * plotH;
+        drawHorizontalLine(image, padL, width - padR, Math.round(y), GRID);
+    });
 
-    const bars = clauses
-        .map((clause, index) => {
-            const mapped = (clause.percent / 100) * maxTick;
-            const h = Math.max((mapped / maxTick) * plotH, clause.percent > 0 ? 2 : 0);
-            const x = padL + gap * index + (gap - barW) / 2;
-            const y = padT + plotH - h;
-            const clauseNum = escapeXml(clause.label.split(".")[0] ?? String(index + 4));
-            const meta = `${clause.yes}/${clause.total}  ${clause.percent}%`;
-            return `
-              <rect x="${x}" y="${y}" width="${barW}" height="${h}" fill="${ORANGE}" rx="2"/>
-              <text x="${x + barW / 2}" y="${height - 28}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="${MUTED}">Cl. ${clauseNum}</text>
-              <text x="${x + barW / 2}" y="${height - 12}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="${TEXT}">${escapeXml(meta)}</text>`;
-        })
-        .join("");
+    clauses.forEach((clause, index) => {
+        const heightForBar = Math.max((Math.max(0, clause.percent) / 100) * maxTick / maxTick * plotH, clause.percent > 0 ? 2 : 0);
+        const x = Math.round(padL + gap * index + (gap - barW) / 2);
+        const y = Math.round(padT + plotH - heightForBar);
+        fillRect(image, x, y, barW, Math.max(1, Math.round(heightForBar)), ORANGE);
+    });
 
-    const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
-  <rect width="100%" height="100%" fill="#ffffff"/>
-  ${grid}
-  ${bars}
-</svg>`;
-
-    return renderPng(svg);
+    return PNG.sync.write(image);
 }
