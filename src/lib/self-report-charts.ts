@@ -1,10 +1,14 @@
-import sharp from "sharp";
 import { maturityTone } from "@/lib/self-report-data";
 
 const GREY = "#E5E7EB";
 const TEXT = "#111827";
 const MUTED = "#6B7280";
 const ORANGE = "#F59E0B";
+
+async function renderPng(svg: string) {
+    const { default: sharp } = await import("sharp");
+    return sharp(Buffer.from(svg)).png().toBuffer();
+}
 
 function polar(cx: number, cy: number, r: number, angleDeg: number) {
     const rad = ((angleDeg - 90) * Math.PI) / 180;
@@ -76,7 +80,7 @@ export async function buildScoreDonutPng(yes: number, total: number, stage: stri
   <text x="${cx + 28}" y="${cy + outer + 82}" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="${TEXT}">Remaining</text>
 </svg>`;
 
-    return sharp(Buffer.from(svg)).png().toBuffer();
+    return renderPng(svg);
 }
 
 /** Vertical bar chart for Score by Clause (matches PDF orange bars). */
@@ -126,5 +130,5 @@ export async function buildClauseBarChartPng(
   ${bars}
 </svg>`;
 
-    return sharp(Buffer.from(svg)).png().toBuffer();
+    return renderPng(svg);
 }

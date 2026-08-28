@@ -8,6 +8,8 @@ import type { GapAnalysisSession } from "@/types/gap-analysis-session";
 import type { SelfAnswer } from "@/data/self-assessment-clauses";
 
 export const maxDuration = 60;
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 type Payload = {
     format?: "pdf" | "word";

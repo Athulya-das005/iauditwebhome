@@ -40,10 +40,43 @@ function cell(text: string, opts?: { bold?: boolean; fill?: string; color?: stri
 export async function buildSelfDocx(data: SelfReportData) {
     const children: (Paragraph | Table)[] = [];
     const tone = maturityTone(data.maturity.stage);
-    const [donutPng, barPng] = await Promise.all([
-        buildScoreDonutPng(data.yes, data.total, data.maturity.stage),
-        buildClauseBarChartPng(data.clauses),
-    ]);
+    let donutPng: Buffer | null = null;
+    let barPng: Buffer | null = null;
+    try {
+        [donutPng, barPng] = await Promise.all([
+            buildScoreDonutPng(data.yes, data.total, data.maturity.stage),
+            buildClauseBarChartPng(data.clauses),
+        ]);
+    } catch (error) {
+        // Keep the report usable if native image rendering is unavailable.
+        console.error("Self-assessment chart rendering skipped:", error);
+    }
+    const donutParagraph = donutPng
+        ? new Paragraph({
+              alignment: AlignmentType.CENTER,
+              spacing: { after: 120 },
+              children: [
+                  new ImageRun({
+                      type: "png",
+                      data: new Uint8Array(donutPng),
+                      transformation: { width: 210, height: 230 },
+                  }),
+              ],
+          })
+        : new Paragraph({ children: [new TextRun({ text: "Score chart unavailable on this server.", color: "6B7280" })] });
+    const barParagraph = barPng
+        ? new Paragraph({
+              alignment: AlignmentType.CENTER,
+              spacing: { after: 160 },
+              children: [
+                  new ImageRun({
+                      type: "png",
+                      data: new Uint8Array(barPng),
+                      transformation: { width: 520, height: 231 },
+                  }),
+              ],
+          })
+        : new Paragraph({ children: [new TextRun({ text: "Clause chart unavailable on this server.", color: "6B7280" })] });
 
     try {
         const logoBytes = await fs.readFile(path.join(process.cwd(), "public", "iaudit-logo-nav.png"));
@@ -63,17 +96,7 @@ export async function buildSelfDocx(data: SelfReportData) {
         }),
         new Paragraph({ children: [new TextRun({ text: `Score: ${data.yes} / ${data.total}`, bold: true, color: tone.accentHex, size: 32 })] }),
         new Paragraph({ text: "Total Score", heading: HeadingLevel.HEADING_1 }),
-        new Paragraph({
-            alignment: AlignmentType.CENTER,
-            spacing: { after: 120 },
-            children: [
-                new ImageRun({
-                    type: "png",
-                    data: new Uint8Array(donutPng),
-                    transformation: { width: 210, height: 230 },
-                }),
-            ],
-        }),
+        donutParagraph,
         new Table({
             width: { size: 9360, type: WidthType.DXA },
             rows: [
@@ -131,17 +154,7 @@ export async function buildSelfDocx(data: SelfReportData) {
             ],
         }),
         new Paragraph({ text: "Score by Clause", heading: HeadingLevel.HEADING_1 }),
-        new Paragraph({
-            alignment: AlignmentType.CENTER,
-            spacing: { after: 160 },
-            children: [
-                new ImageRun({
-                    type: "png",
-                    data: new Uint8Array(barPng),
-                    transformation: { width: 520, height: 231 },
-                }),
-            ],
-        })
+        barParagraph
     );
 
     data.clauses.forEach((clause) => {
