@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     root: path.resolve(__dirname),
   },
   reactCompiler: true,
-  serverExternalPackages: ["pdfkit", "pdf-lib", "googleapis"],
+  serverExternalPackages: ["pdfkit", "pdf-lib", "sharp", "googleapis"],
   images: {
     unoptimized: true,
     remotePatterns: [
