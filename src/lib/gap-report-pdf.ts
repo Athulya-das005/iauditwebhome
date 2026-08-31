@@ -234,7 +234,6 @@ export async function buildGapPdf(data: GapReportData) {
         ["Scope of Audit", data.session.auditScope || "-"],
     ];
     layout.heading("Assessment Details", 14);
-    layout.gap(8);
     const detailsBoxHeight = Math.ceil(cover.length / 2) * 30 + 26;
     layout.ensure(detailsBoxHeight + 8);
     const detailsTop = layout.y;
@@ -257,7 +256,7 @@ export async function buildGapPdf(data: GapReportData) {
         layout.y -= 30;
     }
 
-    layout.gap(34);
+    layout.gap(44);
     layout.heading("Gap Analysis Report", 22);
     layout.heading("Scoring Summary");
     layout.text(`Compliance Percentage: (${data.comply} / ${data.totalQuestions}) x 100 = ${data.overall}%`, {

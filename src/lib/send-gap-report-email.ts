@@ -238,28 +238,19 @@ export async function sendGapReportEmail(options: {
         throw new Error(mailNotConfiguredMessage());
     }
 
-    const errors: string[] = [];
-
-    try {
-        const sentWithResend = await sendWithResend(options);
-        if (sentWithResend) return;
-    } catch (error) {
-        const message = error instanceof Error ? error.message : "Resend failed.";
-        errors.push(message);
-        console.error("Report email (Resend) failed:", message);
+    const smtpConfigured = Boolean(
+        process.env.SMTP_HOST?.trim() &&
+            process.env.SMTP_USER?.trim() &&
+            process.env.SMTP_PASS?.trim()
+    );
+    if (smtpConfigured) {
+        await sendWithSmtp(options);
+        return;
     }
 
-    try {
-        const sentWithSmtp = await sendWithSmtp(options);
-        if (sentWithSmtp) return;
-    } catch (error) {
-        const message = error instanceof Error ? error.message : "SMTP failed.";
-        errors.push(message);
-        console.error("Report email (SMTP) failed:", message);
-    }
-
-    if (errors.length) {
-        throw new Error(errors.join(" | "));
+    if (process.env.RESEND_API_KEY?.trim()) {
+        await sendWithResend(options);
+        return;
     }
 
     throw new Error(mailNotConfiguredMessage());
