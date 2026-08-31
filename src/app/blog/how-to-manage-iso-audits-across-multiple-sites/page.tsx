@@ -70,7 +70,7 @@ const jsonLd = {
             image: ogImage,
             author: {
                 "@type": "Person",
-                name: "iAudit Global Team",
+                name: "Mathew Chiweda",
             },
             publisher: {
                 "@type": "Organization",

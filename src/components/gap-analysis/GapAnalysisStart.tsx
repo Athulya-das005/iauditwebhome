@@ -29,10 +29,10 @@ const gapConfig: AssessmentStartConfig = {
     workspacePath: "/iso-audit-assessments/gap-analysis/workspace",
     sessionKey: GAP_SESSION_KEY,
     eyebrow: "Comply / OFI / NC review",
-    title: "ISO 14001:2026 Gap Analysis",
+    title: "Start Your ISO 14001:2026 Gap Analysis",
     description:
-        "Enter your details to start a structured gap analysis against ISO 14001:2026. Mark Comply, OFI or NC across 61 questions and capture evidence clause by clause.",
-    cta: "Start gap analysis",
+        "Complete a free ISO 14001:2026 Gap Analysis to identify EMS gaps, assess transition readiness and plan the actions needed.",
+    cta: "Start free gap analysis",
     image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=80",
     imageAlt: "ISO 14001:2026 Gap Analysis",
 };

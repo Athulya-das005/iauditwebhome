@@ -155,7 +155,7 @@ export default function MatthewChiwedaAuthor() {
                                     whiteSpace: "nowrap",
                                 }}
                             >
-                                Matthew Chiweda
+                                Mathew Chiweda
                             </li>
                         </ol>
                     </nav>
@@ -195,7 +195,7 @@ export default function MatthewChiwedaAuthor() {
                             >
                                 <Image
                                     src={PHOTO}
-                                    alt="Matthew Chiweda — Co-founder of iAudit Global"
+                                    alt="Mathew Chiweda — Co-founder of iAudit Global"
                                     fill
                                     priority
                                     sizes={isMobile ? "100vw" : "420px"}
@@ -237,7 +237,7 @@ export default function MatthewChiwedaAuthor() {
                                     fontWeight: 600,
                                 }}
                             >
-                                Matthew Chiweda
+                                Mathew Chiweda
                             </h1>
                             <p
                                 style={{
@@ -349,7 +349,7 @@ export default function MatthewChiwedaAuthor() {
 
                     <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.06 }}>
                         <p style={{ ...bodyPara, fontSize: isMobile ? "0.95rem" : "1.02rem", lineHeight: 1.75 }}>
-                            Matthew Chiweda is a PDCA ISO Audit Specialist and Co-founder of iAudit Global, with more
+                            Mathew Chiweda is a PDCA ISO Audit Specialist and Co-founder of iAudit Global, with more
                             than 20 years of experience in quality, health and safety, environmental management and ISO
                             management systems. His work spans consultancy, internal auditing, implementation, training
                             and site inspections across construction, engineering, manufacturing and other operational
@@ -363,7 +363,7 @@ export default function MatthewChiwedaAuthor() {
                                 lineHeight: 1.75,
                             }}
                         >
-                            Matthew specialises in ISO 9001, ISO 14001 and ISO 45001, helping organisations build
+                            Mathew specialises in ISO 9001, ISO 14001 and ISO 45001, helping organisations build
                             practical management systems and prepare for effective audits. At iAudit Global, he combines
                             hands-on audit experience with a practical approach to improving audit planning, evidence
                             capture, findings management and continual improvement.

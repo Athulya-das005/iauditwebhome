@@ -6,7 +6,7 @@ import { PP_NEUE_MONTREAL } from "@/constants/typography";
 
 interface FAQItem {
     question: string;
-    answer: string;
+    answer: React.ReactNode;
 }
 
 interface FAQAccordionProps {

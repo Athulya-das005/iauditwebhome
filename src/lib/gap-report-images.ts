@@ -1,5 +1,3 @@
-import sharp from "sharp";
-
 export function parseDataImage(dataUrl: string): { mime: string; bytes: Buffer } | null {
     const match = dataUrl.match(/^data:image\/([a-zA-Z0-9.+-]+);base64,([\s\S]+)$/);
     if (!match) return null;
@@ -14,6 +12,7 @@ export async function normalizeEvidenceImage(dataUrl: string): Promise<Buffer | 
     const parsed = parseDataImage(dataUrl);
     if (!parsed) return null;
     try {
+        const { default: sharp } = await import("sharp");
         return await sharp(parsed.bytes).rotate().jpeg({ quality: 72 }).toBuffer();
     } catch {
         return null;

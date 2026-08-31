@@ -805,20 +805,20 @@ export default function Iso9001ManufacturingNcBlogContent() {
                                     width: "90px",
                                     height: "90px",
                                     borderRadius: "50%",
-                                    background: "linear-gradient(135deg, #002e1d, #006644)",
+                                    backgroundImage: 'url("/images/mathew-chiweda.webp")',
+                                    backgroundSize: "cover",
+                                    backgroundPosition: "center top",
+                                    overflow: "hidden",
                                     margin: "0 auto 1.1rem",
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: "center",
                                 }}
                             >
-                                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                                    <circle cx="12" cy="7" r="4" />
-                                </svg>
+
                             </div>
                             <p style={{ margin: "0 0 0.3rem", fontWeight: 700, color: "#111827", fontSize: "1.05rem", fontFamily: font }}>
-                                iAudit Global Team
+                                Mathew Chiweda
                             </p>
                             <p
                                 style={{
@@ -835,7 +835,7 @@ export default function Iso9001ManufacturingNcBlogContent() {
                             </p>
                             <div style={{ height: "1px", background: "#f0ede8", margin: "0 0 1.1rem" }} />
                             <p style={{ margin: "0 0 1.75rem", fontSize: "0.875rem", color: "#6B7280", lineHeight: 1.7, fontFamily: font }}>
-                                Helping manufacturing teams identify, track and prevent recurring ISO 9001 nonconformities through structured internal audits.
+                                Mathew Chiweda is a PDCA ISO Audit Specialist and Co-founder of iAudit Global. With extensive experience across quality, health and safety, environmental management and auditing, he supports organisations in implementing practical management systems, conducting effective audits and improving performance across complex operational environments and multiple sectors.
                             </p>
                             <Link
                                 href="/contact"
@@ -853,7 +853,7 @@ export default function Iso9001ManufacturingNcBlogContent() {
                                     fontFamily: font,
                                 }}
                             >
-                                Book Consultation
+                                Free consultation
                             </Link>
                         </div>
                     </aside>
@@ -874,20 +874,20 @@ export default function Iso9001ManufacturingNcBlogContent() {
                                 width: "72px",
                                 height: "72px",
                                 borderRadius: "50%",
-                                background: "linear-gradient(135deg, #002e1d, #006644)",
+                                backgroundImage: 'url("/images/mathew-chiweda.webp")',
+                                    backgroundSize: "cover",
+                                    backgroundPosition: "center top",
+                                    overflow: "hidden",
                                 margin: "0 auto 0.875rem",
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center",
                             }}
                         >
-                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                                <circle cx="12" cy="7" r="4" />
-                            </svg>
+
                         </div>
                         <p style={{ margin: "0 0 0.3rem", fontWeight: 700, color: "#111827", fontSize: "1rem", fontFamily: font }}>
-                            iAudit Global Team
+                            Mathew Chiweda
                         </p>
                         <p
                             style={{
@@ -903,8 +903,8 @@ export default function Iso9001ManufacturingNcBlogContent() {
                             Author
                         </p>
                         <p style={{ margin: "0 0 1.25rem", fontSize: "0.875rem", color: "#6B7280", lineHeight: 1.7, fontFamily: font }}>
-                            Helping manufacturing teams prevent recurring ISO 9001 nonconformities through structured internal audits.
-                        </p>
+                                Mathew Chiweda is a PDCA ISO Audit Specialist and Co-founder of iAudit Global. With extensive experience across quality, health and safety, environmental management and auditing, he supports organisations in implementing practical management systems, conducting effective audits and improving performance across complex operational environments and multiple sectors.
+                            </p>
                         <Link
                             href="/contact"
                             style={{
@@ -921,7 +921,7 @@ export default function Iso9001ManufacturingNcBlogContent() {
                                 fontFamily: font,
                             }}
                         >
-                            Book Consultation
+                            Free consultation
                         </Link>
                     </div>
                 )}

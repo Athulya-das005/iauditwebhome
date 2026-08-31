@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     root: path.resolve(__dirname),
   },
   reactCompiler: true,
-  serverExternalPackages: ["pdfkit", "pdf-lib", "sharp", "googleapis"],
+  serverExternalPackages: ["pdfkit", "pdf-lib", "googleapis"],
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -27,6 +27,11 @@ const nextConfig: NextConfig = {
       {
         source: "/iso-audit-assessments/self-assessment",
         destination: "/iso-14001-2026-self-assessment-tool",
+        permanent: true,
+      },
+      {
+        source: "/author/matthew-chiweda",
+        destination: "/author/mathew-chiweda",
         permanent: true,
       },
     ];

@@ -13,6 +13,17 @@ export type BlogPost = {
 /** Single source of truth for the /blog listing. Add new posts here when published. */
 export const blogPosts: BlogPost[] = [
     {
+        slug: "how-to-maintain-an-iso-9001-risk-register",
+        title: "How to Maintain an ISO 9001 Risk Register",
+        excerpt:
+            "Learn how to keep risks current, review controls, track actions and use audit findings to improve risk-based thinking.",
+        datePublished: "2026-08-31",
+        readTime: "10 Min Read",
+        image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=700&fit=crop&q=80&fm=webp",
+        author: "Mathew Chiweda",
+        categories: ["Risk-Based Auditing", "ISO 9001"],
+    },
+    {
         slug: "risk-based-auditing-in-manufacturing",
         title: "Risk-Based Auditing in Manufacturing: Moving Beyond the Calendar",
         excerpt:
@@ -458,7 +469,11 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
             {
                 id: "risk-based-auditing",
                 label: "Risk-Based Auditing",
-                slugs: ["risk-based-auditing-in-manufacturing", "how-to-audit-risk-based-thinking"],
+                slugs: [
+                    "how-to-maintain-an-iso-9001-risk-register",
+                    "risk-based-auditing-in-manufacturing",
+                    "how-to-audit-risk-based-thinking",
+                ],
             },
         ],
     },
@@ -489,6 +504,7 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
                 id: "risk-based-thinking",
                 label: "Risk-Based Thinking",
                 slugs: [
+                    "how-to-maintain-an-iso-9001-risk-register",
                     "risk-based-thinking-in-iso-9001",
                     "how-to-audit-risk-based-thinking",
                     "risk-based-auditing-in-manufacturing",
@@ -676,14 +692,14 @@ export function getAllPostsSorted(posts: BlogPost[] = blogPosts) {
     return [...posts].sort((a, b) => (a.datePublished < b.datePublished ? 1 : -1));
 }
 
-/** Match author names case-insensitively (handles Mathew vs Matthew spelling). */
+/** Match author names case-insensitively. */
 export function getPostsByAuthor(authorNames: string | string[], posts: BlogPost[] = blogPosts) {
     const names = (Array.isArray(authorNames) ? authorNames : [authorNames]).map((n) => n.toLowerCase());
     return getAllPostsSorted(posts.filter((p) => names.includes(p.author.toLowerCase())));
 }
 
 export function getMatthewChiwedaPosts(posts: BlogPost[] = blogPosts) {
-    return getPostsByAuthor(["Matthew Chiweda", "Mathew Chiweda"], posts);
+    return getPostsByAuthor("Mathew Chiweda", posts);
 }
 
 export function getTopPosts(limit = 5, posts: BlogPost[] = blogPosts) {

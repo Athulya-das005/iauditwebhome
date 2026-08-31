@@ -493,13 +493,22 @@ img {
     backdrop-filter 260ms ease;
 }
 
+.site-header-nav.has-dark-hero {
+  /* Only image-led dark landing heroes need a light contrast surface. */
+  background: hsl(0 0% 100% / 0.94);
+  border-color: hsl(0 0% 100% / 0.72);
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  backdrop-filter: blur(14px) saturate(1.15);
+}
+
 .site-header-nav.is-condensed {
   margin: 14px auto 0;
   width: min(1180px, calc(100% - 32px));
   padding: 8px 0;
   border-radius: 999px;
   border: 1px solid #058c42;
-  background: hsl(0 0% 100% / 0.55);
+  background: hsl(0 0% 100% / 0.92);
   -webkit-backdrop-filter: blur(12px) saturate(1.4);
   backdrop-filter: blur(12px) saturate(1.4);
   overflow: visible;

@@ -631,11 +631,11 @@ export default function Iso140012026UpdateBlogContent() {
                                     fontFamily: font,
                                 }}
                             >
-                                Co-founder, iAudit Global
+                                Author
                             </p>
                             <div style={{ height: "1px", background: "#f0ede8", margin: "0 0 1.1rem" }} />
                             <p style={{ margin: "0 0 1.75rem", fontSize: "0.875rem", color: "#6B7280", lineHeight: 1.7, fontFamily: font }}>
-                                Helping environmental teams prepare for ISO 14001:2026 without rebuilding the whole system.
+                                Mathew Chiweda is a PDCA ISO Audit Specialist and Co-founder of iAudit Global. With extensive experience across quality, health and safety, environmental management and auditing, he supports organisations in implementing practical management systems, conducting effective audits and improving performance across complex operational environments and multiple sectors.
                             </p>
                             <Link
                                 href="/contact"
@@ -653,7 +653,7 @@ export default function Iso140012026UpdateBlogContent() {
                                     fontFamily: font,
                                 }}
                             >
-                                Book Consultation
+                                Free consultation
                             </Link>
                         </div>
                     </aside>
@@ -702,11 +702,11 @@ export default function Iso140012026UpdateBlogContent() {
                                 fontFamily: font,
                             }}
                         >
-                            Co-founder, iAudit Global
+                            Author
                         </p>
                         <p style={{ margin: "0 0 1.25rem", fontSize: "0.875rem", color: "#6B7280", lineHeight: 1.7, fontFamily: font }}>
-                            Helping environmental teams prepare for ISO 14001:2026 without rebuilding the whole system.
-                        </p>
+                                Mathew Chiweda is a PDCA ISO Audit Specialist and Co-founder of iAudit Global. With extensive experience across quality, health and safety, environmental management and auditing, he supports organisations in implementing practical management systems, conducting effective audits and improving performance across complex operational environments and multiple sectors.
+                            </p>
                         <Link
                             href="/contact"
                             style={{
@@ -723,7 +723,7 @@ export default function Iso140012026UpdateBlogContent() {
                                 fontFamily: font,
                             }}
                         >
-                            Book Consultation
+                            Free consultation
                         </Link>
                     </div>
                 )}

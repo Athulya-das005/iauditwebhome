@@ -179,7 +179,7 @@ export default function BlogListing() {
                                 fontFamily: FONT,
                             }}
                         >
-                            Insights for Better ISO Auditing, Compliance &amp; Continuous Improvement
+                            Insights for Better ISO Auditing
                         </motion.h1>
                         <motion.p
                             initial={{ opacity: 0, y: 14 }}
@@ -194,9 +194,7 @@ export default function BlogListing() {
                                 fontFamily: FONT,
                             }}
                         >
-                            Practical guides, expert insights and actionable advice to help you plan audits, manage
-                            compliance, strengthen your management systems and drive continuous improvement across your
-                            organisation.
+                            Practical guidance on ISO audits, compliance, management systems and continuous improvement.
                         </motion.p>
                     </div>
                 </div>
@@ -664,6 +662,15 @@ function MetaRow({
     showReadTime?: boolean;
     compact?: boolean;
 }) {
+    const authorStyle: React.CSSProperties = {
+        fontSize: "0.72rem",
+        fontWeight: 600,
+        letterSpacing: "0.08em",
+        textTransform: "uppercase",
+        color: "#9CA3AF",
+        fontFamily: FONT,
+    };
+
     return (
         <div
             style={{
@@ -675,18 +682,13 @@ function MetaRow({
                 marginTop: "0.85rem",
             }}
         >
-            <span
-                style={{
-                    fontSize: "0.72rem",
-                    fontWeight: 600,
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    color: "#9CA3AF",
-                    fontFamily: FONT,
-                }}
-            >
-                By {post.author}
-            </span>
+            {post.author.trim().toLowerCase() === "mathew chiweda" ? (
+                <Link href="/author/mathew-chiweda" style={{ ...authorStyle, textDecoration: "none" }}>
+                    By {post.author}
+                </Link>
+            ) : (
+                <span style={authorStyle}>By {post.author}</span>
+            )}
             {compact ? (
                 <span style={{ color: "#D1D5DB", fontSize: "0.65rem", lineHeight: 1 }} aria-hidden>
                     ·
@@ -711,7 +713,8 @@ function MetaRow({
 function LatestCard({ post, isMobile }: { post: BlogPost; isMobile: boolean }) {
     return (
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55 }}>
-            <Link href={blogHref(post.slug)} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
+            <div>
+                <Link href={blogHref(post.slug)} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
                 <div
                     style={{
                         borderRadius: "1.35rem",
@@ -723,6 +726,8 @@ function LatestCard({ post, isMobile }: { post: BlogPost; isMobile: boolean }) {
                 >
                     <HoverImage src={post.image} alt={post.title} />
                 </div>
+                </Link>
+                <Link href={blogHref(post.slug)} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
                 <h2
                     style={{
                         margin: 0,
@@ -736,8 +741,9 @@ function LatestCard({ post, isMobile }: { post: BlogPost; isMobile: boolean }) {
                 >
                     {post.title}
                 </h2>
+                </Link>
                 <MetaRow post={post} showReadTime={false} compact />
-            </Link>
+            </div>
         </motion.div>
     );
 }
@@ -745,21 +751,21 @@ function LatestCard({ post, isMobile }: { post: BlogPost; isMobile: boolean }) {
 function FeaturedCard({ post, delay, isMobile }: { post: BlogPost; delay: number; isMobile: boolean }) {
     return (
         <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay }}>
-            <Link
-                href={blogHref(post.slug)}
+            <div
                 style={{
-                    textDecoration: "none",
-                    color: "inherit",
                     display: "grid",
                     gridTemplateColumns: isMobile ? "110px 1fr" : "128px 1fr",
                     gap: "0.95rem",
                     alignItems: "start",
                 }}
             >
-                <div style={{ borderRadius: "0.85rem", overflow: "hidden", position: "relative", aspectRatio: "4 / 3" }}>
-                    <HoverImage src={post.image} alt={post.title} />
-                </div>
+                <Link href={blogHref(post.slug)} style={{ display: "block" }}>
+                    <div style={{ borderRadius: "0.85rem", overflow: "hidden", position: "relative", aspectRatio: "4 / 3" }}>
+                        <HoverImage src={post.image} alt={post.title} />
+                    </div>
+                </Link>
                 <div>
+                    <Link href={blogHref(post.slug)} style={{ textDecoration: "none", color: "inherit" }}>
                     <h3
                         style={{
                             margin: "0 0 0.45rem",
@@ -773,6 +779,7 @@ function FeaturedCard({ post, delay, isMobile }: { post: BlogPost; delay: number
                     >
                         {post.title}
                     </h3>
+                    </Link>
                     <p
                         style={{
                             margin: "0 0 0.55rem",
@@ -790,7 +797,7 @@ function FeaturedCard({ post, delay, isMobile }: { post: BlogPost; delay: number
                     </p>
                     <MetaRow post={post} showReadTime={false} />
                 </div>
-            </Link>
+            </div>
         </motion.div>
     );
 }

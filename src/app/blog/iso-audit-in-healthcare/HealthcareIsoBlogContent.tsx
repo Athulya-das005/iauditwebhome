@@ -612,7 +612,7 @@ export default function HealthcareIsoBlogContent() {
                                 Mathew Chiweda
                             </p>
                             <p style={{ margin: "0.25rem 0 0", color: "rgba(255,255,255,0.7)", fontSize: "0.88rem", fontFamily: font, position: "relative" }}>
-                                Co-founder, iAudit Global
+                                Author
                             </p>
                         </div>
                     </div>
@@ -662,11 +662,11 @@ export default function HealthcareIsoBlogContent() {
                                     fontFamily: font,
                                 }}
                             >
-                                Co-founder, iAudit Global
+                                Author
                             </p>
                             <div style={{ height: "1px", background: "#f0ede8", margin: "0 0 1.1rem" }} />
                             <p style={{ margin: "0 0 1.75rem", fontSize: "0.875rem", color: "#6B7280", lineHeight: 1.7, fontFamily: font }}>
-                                18 years consulting on ISO management systems across regulated industries — helping healthcare quality teams audit with rigour and care.
+                                Mathew Chiweda is a PDCA ISO Audit Specialist and Co-founder of iAudit Global. With extensive experience across quality, health and safety, environmental management and auditing, he supports organisations in implementing practical management systems, conducting effective audits and improving performance across complex operational environments and multiple sectors.
                             </p>
                             <Link
                                 href="/contact"
@@ -684,7 +684,7 @@ export default function HealthcareIsoBlogContent() {
                                     fontFamily: font,
                                 }}
                             >
-                                Book Consultation
+                                Free consultation
                             </Link>
                         </div>
                     </aside>
@@ -733,11 +733,11 @@ export default function HealthcareIsoBlogContent() {
                                 fontFamily: font,
                             }}
                         >
-                            Co-founder, iAudit Global
+                            Author
                         </p>
                         <p style={{ margin: "0 0 1.25rem", fontSize: "0.875rem", color: "#6B7280", lineHeight: 1.7, fontFamily: font }}>
-                            Helping healthcare quality teams turn ISO audits into safer, more reliable care.
-                        </p>
+                                Mathew Chiweda is a PDCA ISO Audit Specialist and Co-founder of iAudit Global. With extensive experience across quality, health and safety, environmental management and auditing, he supports organisations in implementing practical management systems, conducting effective audits and improving performance across complex operational environments and multiple sectors.
+                            </p>
                         <Link
                             href="/contact"
                             style={{
@@ -754,7 +754,7 @@ export default function HealthcareIsoBlogContent() {
                                 fontFamily: font,
                             }}
                         >
-                            Book Consultation
+                            Free consultation
                         </Link>
                     </div>
                 )}

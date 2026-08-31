@@ -199,6 +199,8 @@ export default function Header() {
 
     // Floating capsule after scroll (or while mobile menu / megamenu is open)
     const isCondensed = isScrolled || isMenuOpen;
+    // These landing pages place a darkened image directly behind the transparent header.
+    const hasDarkHero = pathname === "/iso-14001-2026-self-assessment-tool" || pathname === "/iso-audit-assessments/gap-analysis";
     // Hide-on-scroll only on the /blog listing page (not individual posts or other routes)
     const hideNavOnScroll = pathname === "/blog";
     const isHeaderVisible =
@@ -211,7 +213,7 @@ export default function Header() {
             aria-hidden={!isHeaderVisible}
         >
             <div
-                className={`site-header-nav${isCondensed ? " is-condensed" : ""}`}
+                className={`site-header-nav${isCondensed ? " is-condensed" : ""}${hasDarkHero ? " has-dark-hero" : ""}`}
                 onMouseEnter={() => {
                     if (closeMenuTimeoutRef.current) {
                         clearTimeout(closeMenuTimeoutRef.current);

@@ -5,7 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
-import { checklistMeta, quickStartGuide } from "@/data/gap-analysis-checklist-content";
+import FAQAccordion from "@/components/FAQAccordion";
+import { gapAnalysisFaqItems } from "@/data/gapAnalysisPageSchema";
+import { checklistMeta } from "@/data/gap-analysis-checklist-content";
 
 const HERO_IMAGE = "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80";
 const SNAPSHOT_IMAGE = "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80";
@@ -19,11 +21,32 @@ const stepImages = [
     "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80",
 ];
 
-const steps = quickStartGuide.slice(0, 4).map((text, index) => ({
-    step: `Step ${index + 1}`,
-    text,
-    image: stepImages[index],
-}));
+const steps = [
+    {
+        step: "01",
+        title: "Review Your Current EMS",
+        text: "Work through structured questions covering the key areas of your existing environmental management system.",
+        image: stepImages[0],
+    },
+    {
+        step: "02",
+        title: "Find Your Gaps",
+        text: "Identify requirements that need attention, further evidence, process changes or additional controls.",
+        image: stepImages[1],
+    },
+    {
+        step: "03",
+        title: "Plan Your Actions",
+        text: "Turn identified gaps into clear actions so your team knows what needs attention first.",
+        image: stepImages[2],
+    },
+    {
+        step: "04",
+        title: "Track Your Progress",
+        text: "Monitor completed actions and use your assessment results to support ongoing improvement and transition preparation.",
+        image: stepImages[3],
+    },
+];
 
 type Props = {
     onStart: () => void;
@@ -111,9 +134,9 @@ export default function GapAnalysisLanding({ onStart }: Props) {
                         margin: "0 auto",
                         padding: isMobile
                             ? isNarrow
-                                ? "6.5rem 1rem 2.75rem"
-                                : "7rem 1.25rem 3.25rem"
-                            : "8.5rem 2rem 5rem",
+                                ? "7.5rem 1rem 2.75rem"
+                                : "8rem 1.25rem 3.25rem"
+                            : "10rem 2rem 5rem",
                         width: "100%",
                         boxSizing: "border-box",
                     }}
@@ -129,7 +152,7 @@ export default function GapAnalysisLanding({ onStart }: Props) {
                             lineHeight: 1.4,
                         }}
                     >
-                        ISO Gap Analysis by iAudit Global
+                        Free ISO 14001:2026 Gap Analysis by iAudit Global
                     </p>
                     <h1
                         style={{
@@ -143,7 +166,7 @@ export default function GapAnalysisLanding({ onStart }: Props) {
                             wordBreak: "break-word",
                         }}
                     >
-                        ISO 14001:2026 Gap Analysis
+                        Find the Gaps in Your Environmental Management System
                     </h1>
                     <p
                         style={{
@@ -154,7 +177,7 @@ export default function GapAnalysisLanding({ onStart }: Props) {
                             maxWidth: "680px",
                         }}
                     >
-                        {checklistMeta.subtitle}
+                        Assess your environmental management system against ISO 14001:2026 requirements and identify gaps before your transition.
                     </p>
                     <div
                         style={{
@@ -166,11 +189,8 @@ export default function GapAnalysisLanding({ onStart }: Props) {
                         }}
                     >
                         <button type="button" onClick={onStart} style={ctaBtnStyle}>
-                            Start gap analysis
+                            Start free gap analysis
                         </button>
-                        <Link href={CHECKLIST_HREF} style={ghostCtaStyle}>
-                            View the Checklist
-                        </Link>
                         <Link
                             href={CALENDLY_URL}
                             target="_blank"
@@ -305,7 +325,7 @@ export default function GapAnalysisLanding({ onStart }: Props) {
                         lineHeight: 1.4,
                     }}
                 >
-                    About this assessment
+                    Understanding Gap Analysis
                 </p>
                 <h2
                     style={{
@@ -317,7 +337,7 @@ export default function GapAnalysisLanding({ onStart }: Props) {
                         wordBreak: "break-word",
                     }}
                 >
-                    {checklistMeta.title}
+                    What Is an ISO 14001:2026 Gap Analysis?
                 </h2>
                 <p
                     style={{
@@ -328,7 +348,7 @@ export default function GapAnalysisLanding({ onStart }: Props) {
                         lineHeight: 1.75,
                     }}
                 >
-                    {checklistMeta.purpose}
+                    An ISO 14001:2026 Gap Analysis compares your existing environmental management system with the requirements of the updated standard.
                 </p>
                 <p
                     style={{
@@ -339,7 +359,41 @@ export default function GapAnalysisLanding({ onStart }: Props) {
                         lineHeight: 1.65,
                     }}
                 >
-                    {checklistMeta.note2026} · Scoring: {checklistMeta.scoring}
+                    It helps you see what is already in place, where gaps exist and what may need to change before transition.
+                </p>
+                <p
+                    style={{
+                        margin: "0 auto 1.75rem",
+                        maxWidth: isMobile ? "760px" : "1000px",
+                        color: "#6b7280",
+                        fontSize: isNarrow ? "0.9rem" : "0.98rem",
+                        lineHeight: 1.65,
+                        whiteSpace: isMobile ? "normal" : "nowrap",
+                    }}
+                >
+                    Rather than treating every area as a problem, the assessment shows where your attention is actually needed.
+                </p>
+                <p
+                    style={{
+                        margin: "0 auto 1.75rem",
+                        maxWidth: "760px",
+                        color: "#6b7280",
+                        fontSize: isNarrow ? "0.9rem" : "0.98rem",
+                        lineHeight: 1.65,
+                    }}
+                >
+                    It can also help you prioritise actions, prepare for internal audits and plan your transition with a clearer understanding of your current position.
+                </p>
+                <p
+                    style={{
+                        margin: "0 auto 1.75rem",
+                        maxWidth: "760px",
+                        color: "#6b7280",
+                        fontSize: isNarrow ? "0.9rem" : "0.98rem",
+                        lineHeight: 1.65,
+                    }}
+                >
+                    The aim is simple: understand where your EMS stands today and what needs to happen next.
                 </p>
                 <div
                     style={{
@@ -357,7 +411,7 @@ export default function GapAnalysisLanding({ onStart }: Props) {
                             maxWidth: isMobile ? "100%" : "320px",
                         }}
                     >
-                        Start gap analysis
+                        Start free gap analysis
                     </button>
                 </div>
                 <div
@@ -383,7 +437,7 @@ export default function GapAnalysisLanding({ onStart }: Props) {
                 </div>
             </section>
 
-            {/* 3 — How it works (Quick Start Guide) */}
+            {/* 3 — How it works */}
             <section
                 id="how-it-works"
                 style={{
@@ -407,7 +461,7 @@ export default function GapAnalysisLanding({ onStart }: Props) {
                             textAlign: "center",
                         }}
                     >
-                        Quick Start Guide
+                        How It Works
                     </p>
                     <h2
                         style={{
@@ -420,7 +474,7 @@ export default function GapAnalysisLanding({ onStart }: Props) {
                             wordBreak: "break-word",
                         }}
                     >
-                        How to complete the Gap Analysis Checklist
+                        How the Free ISO 14001:2026 Gap Analysis Works
                     </h2>
                     <p
                         style={{
@@ -432,11 +486,7 @@ export default function GapAnalysisLanding({ onStart }: Props) {
                             fontSize: isNarrow ? "0.95rem" : "1.02rem",
                         }}
                     >
-                        Mark each question{" "}
-                        <span style={{ color: "#16a34a", fontWeight: 800 }}>☑ Comply</span>,{" "}
-                        <span style={{ color: "#ea580c", fontWeight: 800 }}>⭕ OFI</span>, or{" "}
-                        <span style={{ color: "#dc2626", fontWeight: 800 }}>✕ NC</span>{" "}
-                        across {checklistMeta.totalQuestions} auditable questions covering clauses 4–10.
+                        Work through the requirements, identify gaps, prioritise actions and build a clearer path towards ISO 14001:2026 transition.
                     </p>
                     <div
                         style={{
@@ -487,6 +537,17 @@ export default function GapAnalysisLanding({ onStart }: Props) {
                                     >
                                         {item.step}
                                     </p>
+                                    <h3
+                                        style={{
+                                            margin: "0 0 0.6rem",
+                                            color: "#10291d",
+                                            lineHeight: 1.3,
+                                            fontSize: isNarrow ? "1rem" : "1.1rem",
+                                            fontWeight: 700,
+                                        }}
+                                    >
+                                        {item.title}
+                                    </h3>
                                     <p
                                         style={{
                                             margin: 0,
@@ -494,7 +555,6 @@ export default function GapAnalysisLanding({ onStart }: Props) {
                                             lineHeight: 1.7,
                                             flex: 1,
                                             fontSize: isNarrow ? "0.92rem" : "1rem",
-                                            fontWeight: 600,
                                         }}
                                     >
                                         {item.text}
@@ -519,22 +579,23 @@ export default function GapAnalysisLanding({ onStart }: Props) {
                                 maxWidth: isMobile ? "100%" : "320px",
                             }}
                         >
-                            Start gap analysis
+                            Start free gap analysis
                         </button>
                     </div>
                 </div>
             </section>
 
+            <FAQAccordion items={gapAnalysisFaqItems} heading="Frequently Asked Questions" sparkleText="FAQ" />
+
             {/* 5 — Get started */}
             <CTA
-                tag="Get started"
-                title={<>Start your ISO 14001:2026 Gap Analysis</>}
-                description={checklistMeta.purpose}
-                buttonText="Start gap analysis"
+                tag="Start Your Gap Analysis"
+                title={<>Start Your ISO 14001:2026 Gap Analysis</>}
+                description="Start your free ISO 14001:2026 Gap Analysis and see where your environmental management system needs attention."
+                buttonText="Start free gap analysis"
                 buttonHref="#start"
                 secondaryButtonText="Book a demo"
                 secondaryButtonHref={CALENDLY_URL}
-                badges={[`${checklistMeta.totalQuestions} questions`, "Comply / OFI / NC", "ISO 14001:2026"]}
             />
             <StartCtaBridge onStart={onStart} />
             <Footer />
