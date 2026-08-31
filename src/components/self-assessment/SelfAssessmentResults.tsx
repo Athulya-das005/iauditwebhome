@@ -3,6 +3,7 @@
 import { useMemo, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import AssessmentDetailsCard from "@/components/assessment/AssessmentDetailsCard";
 import { type SelfAnswer, type SelfAssessmentClause } from "@/data/self-assessment-clauses";
 import { maturityForYesCount, maturityTone } from "@/lib/self-report-data";
 import type { GapAnalysisSession } from "@/types/gap-analysis-session";
@@ -194,6 +195,7 @@ export default function SelfAssessmentResults({ session, clauses, questionsByCla
                 {emailNote ? <p style={{ margin: "0 0 1rem", color: "#166534", background: "#ecfdf3", borderRadius: "0.75rem", padding: "0.85rem 1rem" }}>{emailNote}</p> : null}
                 {downloadError ? <p style={{ margin: "0 0 1rem", color: "#b91c1c" }}>{downloadError}</p> : null}
 
+                <AssessmentDetailsCard session={session} />
                 <section
                     style={{
                         background: tone.softBg,

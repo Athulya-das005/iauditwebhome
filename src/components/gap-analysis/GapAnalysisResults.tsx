@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
+import AssessmentDetailsCard from "@/components/assessment/AssessmentDetailsCard";
 import { GAP_TOTAL_QUESTIONS, gapAnalysisClauses, type GapFinding } from "@/data/gap-analysis-clauses";
 import {
     compliancePercent,
@@ -230,6 +231,7 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
                 </div>
                 {downloadError ? <p style={{ margin: "0 0 1rem", color: "#b91c1c", fontSize: "0.9rem" }}>{downloadError}</p> : null}
 
+                <AssessmentDetailsCard session={session} />
                 <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "1rem", marginBottom: "1rem" }}>
                     <section style={cardStyle}>
                         <h2 style={cardTitle}>Scoring Summary</h2>

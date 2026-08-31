@@ -81,6 +81,14 @@ async function embedLogo(pdf: PDFDocument) {
     }
 }
 
+function pdfSafeText(value: string) {
+    return String(value ?? "")
+        .replace(/[–—]/g, "-")
+        .replace(/[‘’]/g, "'")
+        .replace(/[“”]/g, '"')
+        .replace(/[^\x09\x0A\x20-\x7E]/g, "?");
+}
+
 function wrapText(text: string, font: { widthOfTextAtSize: (t: string, s: number) => number }, size: number, maxWidth: number) {
     const words = text.split(/\s+/);
     const lines: string[] = [];
@@ -96,6 +104,11 @@ function wrapText(text: string, font: { widthOfTextAtSize: (t: string, s: number
     });
     if (current) lines.push(current);
     return lines;
+}
+
+function shortClauseLabel(label: string) {
+    const match = label.match(/(?:Clause|Cl\.)\s*(\d+)/i);
+    return match ? `Cl. ${match[1]}` : label.slice(0, 8);
 }
 
 export async function buildSelfPdf(data: SelfReportData) {
@@ -122,6 +135,44 @@ export async function buildSelfPdf(data: SelfReportData) {
         page.drawImage(logo, { x: margin, y: y - h + 8, width: w, height: h });
         y -= h + 16;
     }
+
+    const fullName = `${data.session.firstName} ${data.session.lastName}`.trim();
+    const details = [
+        ["Name", fullName],
+        ["Email", data.session.email],
+        ["Organisation", data.session.organisation],
+        ["Industry", data.session.industry],
+        ["Organisation size", data.session.organisationSize],
+        ["Department", data.session.department],
+        ["ISO standard", data.session.isoStandard],
+        ["Audit scope", data.session.auditScope],
+        ["Assessment date", data.auditDate],
+        ["Existing customer", data.session.existingCustomer],
+    ];
+    const detailsBoxHeight = 166;
+    ensure(detailsBoxHeight + 18);
+    const detailsTop = y;
+    page.drawRectangle({
+        x: margin,
+        y: detailsTop - detailsBoxHeight,
+        width: 511,
+        height: detailsBoxHeight,
+        color: FILL,
+        borderColor: GREEN,
+        borderWidth: 0.8,
+    });
+    page.drawText("Assessment Details", { x: margin + 14, y: detailsTop - 20, size: 12, font: bold, color: GREEN });
+    const detailsRowY = detailsTop - 42;
+    const detailsColumnWidth = 255.5;
+    details.forEach(([label, value], index) => {
+        const column = index % 2;
+        const row = Math.floor(index / 2);
+        const x = margin + column * detailsColumnWidth + 14;
+        const rowY = detailsRowY - row * 25;
+        page.drawText(label, { x, y: rowY, size: 7, font: bold, color: MUTED });
+        page.drawText(pdfSafeText(value || "-").slice(0, 36), { x, y: rowY - 10, size: 9, font: regular, color: TEXT });
+    });
+    y = detailsTop - detailsBoxHeight - 18;
 
     const tone = maturityTone(data.maturity.stage);
     const stageColor = hexToRgb(tone.accent);
@@ -228,8 +279,10 @@ export async function buildSelfPdf(data: SelfReportData) {
         const h = (mapped / 60) * plotH;
         const bx = margin + 24 + gap * index + (gap - barW) / 2;
         page.drawRectangle({ x: bx, y: y - plotH, width: barW, height: Math.max(h, 1), color: ORANGE });
-        page.drawText(`Cl. ${clause.label.split(".")[0]}`, { x: bx - 4, y: y - plotH - 12, size: 7, font: regular, color: MUTED });
-        page.drawText(`${clause.yes}/${clause.total}  ${clause.percent}%`, { x: bx - 6, y: y - plotH - 22, size: 6, font: regular, color: TEXT });
+        const clauseLabel = shortClauseLabel(clause.label);
+        page.drawText(clauseLabel, { x: bx - regular.widthOfTextAtSize(clauseLabel, 7) / 2 + barW / 2, y: y - plotH - 12, size: 7, font: regular, color: MUTED });
+        const percentLabel = `${clause.percent}%`;
+        page.drawText(percentLabel, { x: bx - regular.widthOfTextAtSize(percentLabel, 6) / 2 + barW / 2, y: y - plotH - 22, size: 6, font: regular, color: TEXT });
     });
     y -= plotH + 40;
 

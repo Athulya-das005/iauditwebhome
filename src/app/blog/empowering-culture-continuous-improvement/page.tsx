@@ -26,6 +26,7 @@ const sectionImages: Record<string, string> = {
 /* ─── TOC data ───────────────────────────────────────────────────────────── */
 const tocItems = [
     { id: "intro", label: "Introduction" },
+    { id: "tldr", label: "TL;DR" },
     { id: "what-ci-means", label: "What a CI Culture Really Means" },
     { id: "iso-standards", label: "How ISO Standards Embed CI" },
     { id: "role-of-audit", label: "The Role of Audit in Driving CI" },
@@ -394,6 +395,18 @@ export default function BlogPost() {
                             This article explores how organisations can move from audit for compliance to audit for improvement, and how modern internal audit software can help embed a lasting culture of continual improvement.
                         </p>
                     </div>
+
+                    <div id="tldr" style={{ scrollMarginTop: "58px", marginTop: "1.5rem" }}>
+                        <div style={{ background: "rgba(0,102,68,0.05)", border: "1px solid rgba(0,102,68,0.14)", borderRadius: "0.875rem", padding: isMobile ? "1.25rem" : "1.5rem 1.75rem" }}>
+                            <h2 style={{ ...h2(font), marginBottom: "0.75rem" }}>TL;DR</h2>
+                            <p style={{ ...para(font), marginBottom: 0 }}>
+                                Internal audits should do more than support certification. They should help organisations learn, adapt and improve. The strongest audit programmes use the PDCA cycle to connect findings, corrective actions and follow-up, so audits become part of everyday decision-making rather than a periodic compliance task.
+                            </p>
+                        </div>
+                    </div>
+                    <p style={{ ...para(font), marginTop: "1rem" }}>
+                        A real culture of continuous improvement depends on risk-based audits, meaningful corrective action, management review and shared learning across teams. Internal audit software makes this easier by keeping findings, actions and trends in one place, helping organisations move from audit for compliance to audit for improvement.
+                    </p>
 
                     {/* ── Section 1 ─────────────────────────────────────── */}
                     <div id="what-ci-means" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>

@@ -145,11 +145,13 @@ export async function buildGapDocx(data: GapReportData) {
     }
 
     children.push(
-        new Paragraph({ text: "Gap Analysis Report", heading: HeadingLevel.TITLE }),
+        new Paragraph({ text: "Assessment Details", heading: HeadingLevel.HEADING_2 }),
         new Table({
             width: { size: 9360, type: WidthType.DXA },
-            rows: cover.map(([label, value]) => new TableRow({ children: [cell(label, { bold: true, fill: "F3F4F6" }), cell(value)] })),
+            rows: cover.map(([label, value]) => new TableRow({ children: [cell(label, { bold: true, fill: "F0FDF4" }), cell(value, { fill: "F0FDF4" })] })),
         }),
+        new Paragraph({ spacing: { before: 120, after: 120 }, children: [] }),
+        new Paragraph({ text: "Gap Analysis Report", heading: HeadingLevel.TITLE }),
         new Paragraph({ spacing: { before: 200, after: 80 }, children: [] }),
         new Paragraph({ text: "Scoring Summary", heading: HeadingLevel.HEADING_1 }),
         new Paragraph({

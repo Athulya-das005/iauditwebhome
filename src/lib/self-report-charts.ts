@@ -46,6 +46,45 @@ function fillRect(png: PNG, x: number, y: number, width: number, height: number,
     }
 }
 
+const GLYPHS: Record<string, string[]> = {
+    " ": ["00000", "00000", "00000", "00000", "00000", "00000", "00000"],
+    ".": ["00000", "00000", "00000", "00000", "00000", "00110", "00110"],
+    C: ["01110", "10001", "10000", "10000", "10000", "10001", "01110"],
+    L: ["10000", "10000", "10000", "10000", "10000", "10000", "11111"],
+    "0": ["01110", "10001", "10011", "10101", "11001", "10001", "01110"],
+    "1": ["00100", "01100", "00100", "00100", "00100", "00100", "01110"],
+    "2": ["01110", "10001", "00001", "00010", "00100", "01000", "11111"],
+    "3": ["11110", "00001", "00001", "01110", "00001", "00001", "11110"],
+    "4": ["00010", "00110", "01010", "10010", "11111", "00010", "00010"],
+    "5": ["11111", "10000", "10000", "11110", "00001", "00001", "11110"],
+    "6": ["01110", "10000", "10000", "11110", "10001", "10001", "01110"],
+    "7": ["11111", "00001", "00010", "00100", "01000", "01000", "01000"],
+    "8": ["01110", "10001", "10001", "01110", "10001", "10001", "01110"],
+    "9": ["01110", "10001", "10001", "01111", "00001", "00001", "01110"],
+};
+
+function drawBitmapText(png: PNG, text: string, x: number, y: number, color: Color) {
+    let cursor = x;
+    for (const character of text.toUpperCase()) {
+        const glyph = GLYPHS[character];
+        if (!glyph) {
+            cursor += 6;
+            continue;
+        }
+        glyph.forEach((row, rowIndex) => {
+            [...row].forEach((pixel, columnIndex) => {
+                if (pixel === "1") setPixel(png, cursor + columnIndex, y + rowIndex, color);
+            });
+        });
+        cursor += 6;
+    }
+}
+
+function shortClauseLabel(label: string) {
+    const match = label.match(/(?:Clause|Cl\.)\s*(\d+)/i);
+    return match ? `Cl. ${match[1]}` : label.slice(0, 8);
+}
+
 function drawDonut(png: PNG, cx: number, cy: number, outer: number, inner: number, ratio: number, accent: Color) {
     const start = Math.max(0, Math.min(1, ratio)) * Math.PI * 2;
     for (let y = cy - outer; y <= cy + outer; y += 1) {
@@ -99,6 +138,8 @@ export async function buildClauseBarChartPng(
         const y = padT + plotH - height;
         fillRect(png, x, y, barW, height, ORANGE);
         fillRect(png, x, png.height - 34, barW, 2, MUTED);
+        const label = shortClauseLabel(clause.label);
+        drawBitmapText(png, label, Math.round(x + barW / 2 - (label.length * 6) / 2), png.height - 28, MUTED);
     });
 
     return encode(png);

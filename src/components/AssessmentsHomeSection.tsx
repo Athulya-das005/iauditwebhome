@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 const assessments = [
     {
-        title: "ISO Self Assessment",
+        title: "ISO 14001:2026 Self Assessment",
         subtitle: "Maturity snapshot in minutes",
         description:
             "A fast, clause-aligned check of how mature your management system is today. Ideal for quality, HSE and operations teams who want a first snapshot before a deeper review.",
@@ -18,7 +18,7 @@ const assessments = [
         buttonClass: "btn-animate",
     },
     {
-        title: "ISO Gap Analysis",
+        title: "ISO 14001:2026 Gap Analysis",
         subtitle: "Structured compliance review",
         description:
             "A structured look at where current practice falls short of ISO 14001:2026. Mark Comply, OFI or NC across 61 questions to identify nonconformities, missing evidence and the actions that should come first.",
@@ -125,7 +125,7 @@ export default function AssessmentsHomeSection() {
                             margin: "0 auto 1.5rem",
                         }}
                     >
-                        Take a free ISO self assessment or gap analysis to benchmark your management system against the audit areas that matter most — built by practising ISO auditors.
+                        Take a free ISO self assessment or gap analysis to benchmark your management system against the audit areas that matter most, built by practising ISO auditors.
                     </motion.p>
 
                     <motion.div

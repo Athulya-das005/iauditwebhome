@@ -39,17 +39,17 @@ const gapConfig: AssessmentStartConfig = {
 
 export const selfAssessmentStartConfig: AssessmentStartConfig = {
     assessmentType: "self-assessment",
-    assessmentTitle: "ISO Self Assessment",
+    assessmentTitle: "ISO 14001:2026 Self Assessment",
     pagePath: SELF_ASSESSMENT_PAGE_PATH,
     workspacePath: "/iso-audit-assessments/self-assessment/workspace",
     sessionKey: SELF_SESSION_KEY,
     eyebrow: "Yes / No readiness check",
-    title: "ISO Self Assessment",
+    title: "ISO 14001:2026 Self Assessment",
     description:
         "Enter your details to start a fast self assessment against ISO 14001:2026. Answer Yes or No clause by clause and track progress as you go.",
     cta: "Start free assessment",
     image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1600&q=80",
-    imageAlt: "ISO Self Assessment",
+    imageAlt: "ISO 14001:2026 Self Assessment",
 };
 
 export default function GapAnalysisStart({

@@ -228,7 +228,7 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                         lineHeight: 1.4,
                     }}
                 >
-                    Understanding ISO Self Assessment
+                    Understanding ISO 14001:2026 Self Assessment
                 </p>
                 <h2
                     style={{

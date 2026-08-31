@@ -223,8 +223,6 @@ export async function buildGapPdf(data: GapReportData) {
         layout.y -= 28;
     }
 
-    layout.heading("Gap Analysis Report", 22);
-
     const cover = [
         ["Name of Company", data.session.organisation],
         ["Audit Date", data.auditDate],
@@ -235,6 +233,19 @@ export async function buildGapPdf(data: GapReportData) {
         ["Contact email", data.session.email],
         ["Scope of Audit", data.session.auditScope || "-"],
     ];
+    layout.heading("Assessment Details", 14);
+    const detailsBoxHeight = cover.length * 22 + 12;
+    layout.ensure(detailsBoxHeight + 8);
+    const detailsTop = layout.y;
+    layout.page.drawRectangle({
+        x: MARGIN,
+        y: detailsTop - detailsBoxHeight,
+        width: CONTENT_W,
+        height: detailsBoxHeight,
+        color: rgb(0.94, 0.99, 0.96),
+        borderColor: COMPLY,
+        borderWidth: 0.8,
+    });
     cover.forEach(([label, value]) => {
         layout.ensure(24);
         layout.page.drawRectangle({ x: MARGIN, y: layout.y - 6, width: 160, height: 20, color: FILL });
@@ -244,7 +255,8 @@ export async function buildGapPdf(data: GapReportData) {
         layout.y -= 22;
     });
 
-    layout.gap(16);
+    layout.gap(12);
+    layout.heading("Gap Analysis Report", 22);
     layout.heading("Scoring Summary");
     layout.text(`Compliance Percentage: (${data.comply} / ${data.totalQuestions}) x 100 = ${data.overall}%`, {
         size: 12,

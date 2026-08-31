@@ -89,7 +89,37 @@ export async function buildSelfDocx(data: SelfReportData) {
         children.push(new Paragraph({ children: [new TextRun({ text: "iAudit Global", bold: true, color: GREEN, size: 28 })] }));
     }
 
+    const fullName = `${data.session.firstName} ${data.session.lastName}`.trim();
+    const details = [
+        ["Name", fullName],
+        ["Email", data.session.email],
+        ["Organisation", data.session.organisation],
+        ["Industry", data.session.industry],
+        ["Organisation size", data.session.organisationSize],
+        ["Department", data.session.department],
+        ["ISO standard", data.session.isoStandard],
+        ["Audit scope", data.session.auditScope],
+        ["Assessment date", data.auditDate],
+        ["Existing customer", data.session.existingCustomer],
+    ];
+    const detailRows: TableRow[] = [];
+    for (let index = 0; index < details.length; index += 2) {
+        const left = details[index];
+        const right = details[index + 1];
+        detailRows.push(
+            new TableRow({
+                children: [
+                    cell(`${left[0]}\n${left[1] || "—"}`, { fill: "F0FDF4" }),
+                    right ? cell(`${right[0]}\n${right[1] || "—"}`, { fill: "F0FDF4" }) : cell("", { fill: "F0FDF4" }),
+                ],
+            })
+        );
+    }
+
     children.push(
+        new Paragraph({ text: "Assessment Details", heading: HeadingLevel.HEADING_2 }),
+        new Table({ width: { size: 9360, type: WidthType.DXA }, rows: detailRows }),
+        new Paragraph({ spacing: { after: 120 }, children: [] }),
         new Paragraph({ text: "Maturity Assessment Result", heading: HeadingLevel.TITLE }),
         new Paragraph({
             children: [new TextRun({ text: `${data.session.isoStandard}  |  ${data.session.organisation}  |  ${data.auditDate}`, color: "6B7280" })],

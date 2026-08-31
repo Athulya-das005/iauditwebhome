@@ -26,6 +26,7 @@ const sectionImages: Record<string, string> = {
 /* ─── TOC ──────────────────────────────────────────────────────────────────── */
 const tocItems = [
     { id: "intro", label: "Introduction" },
+    { id: "tldr", label: "TL;DR" },
     { id: "hidden-cost", label: "The Hidden Cost of Auditor Burnout" },
     { id: "training-works", label: "Training That Actually Works" },
     { id: "structured-foundation", label: "Structured Foundation" },
@@ -266,6 +267,21 @@ export default function BlogPost2() {
                         <p style={para(font)}>Internal auditors are burning out. And most organisations do not even notice until it is too late.</p>
                         <p style={para(font)}>The signs are familiar: auditors going through the motions, findings becoming superficial, the same observations appearing year after year without real improvement. When I ask these auditors what happened, the answer is almost always the same. They started enthusiastic, received minimal training, got little recognition, and eventually stopped caring.</p>
                         <p style={para(font)}>This is not an auditor problem. It is a management problem. And it is one we can fix.</p>
+                    </div>
+
+                    <div id="tldr" style={{ scrollMarginTop: "58px", marginTop: "1.5rem" }}>
+                        <div style={{ background: "rgba(0,102,68,0.05)", border: "1px solid rgba(0,102,68,0.14)", borderRadius: "0.875rem", padding: isMobile ? "1.25rem" : "1.5rem 1.75rem" }}>
+                            <h2 style={{ ...h2(font), marginBottom: "0.75rem" }}>TL;DR</h2>
+                            <p style={para(font)}>
+                                If you want to train and motivate internal auditors, a one-day course and a checklist will not do the job. Internal auditors burn out when they are overloaded, undertrained and expected to improve systems without enough support or recognition.
+                            </p>
+                            <p style={para(font)}>
+                                To train and motivate internal auditors properly, organisations need a structured foundation, supervised practical experience, ongoing development, realistic workloads and visible proof that audit findings lead to change. When those pieces are missing, audits become repetitive, superficial and less useful over time.
+                            </p>
+                            <p style={{ ...para(font), marginBottom: 0 }}>
+                                The good news is that this is fixable. Better training, better follow-up and the right ISO audit management software can help auditors spend less time on admin and more time delivering meaningful audits.
+                            </p>
+                        </div>
                     </div>
 
                     {/* Section 1 */}

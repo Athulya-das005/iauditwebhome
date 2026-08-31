@@ -97,14 +97,14 @@ export default function AssessmentsLanding() {
                     <h2 style={{ margin: "0 0 2.25rem", color: "#fff", fontSize: isMobile ? "1.85rem" : "2.5rem", textAlign: "center", letterSpacing: "-0.03em" }}>Self assessment or gap analysis</h2>
                     <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "1.25rem" }}>
                         <OptionCard
-                            title="ISO Self Assessment"
+                            title="ISO 14001:2026 Self Assessment"
                             text="A fast, clause-aligned check of how mature your management system is today. Ideal for quality, HSE and operations teams who want a first snapshot before a deeper review."
                             href="/iso-14001-2026-self-assessment-tool"
                             cta="Start self assessment"
                             image="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=80"
                         />
                         <OptionCard
-                            title="ISO Gap Analysis"
+                            title="ISO 14001:2026 Gap Analysis"
                             text="A structured look at where current practice falls short of ISO 14001:2026. Mark Comply, OFI or NC across 61 questions to identify nonconformities, missing evidence and the actions that should come first."
                             href="/iso-audit-assessments/gap-analysis"
                             cta="Start gap analysis"
