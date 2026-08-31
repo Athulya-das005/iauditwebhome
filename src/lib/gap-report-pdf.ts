@@ -4,7 +4,7 @@ import { PDFDocument, StandardFonts, rgb, type PDFPage, type RGB } from "pdf-lib
 import type { GapReportData } from "@/lib/gap-report-data";
 import { findingLabel } from "@/lib/gap-report-data";
 import { buildFindingMixDonutPng, buildGapClauseBarPng } from "@/lib/gap-report-charts";
-import { normalizeEvidenceImage } from "@/lib/gap-report-images";
+import { parseDataImage } from "@/lib/gap-report-images";
 
 const GREEN = rgb(0, 0.4, 0.266);
 const COMPLY = rgb(0.098, 0.714, 0.506);
@@ -367,10 +367,13 @@ export async function buildGapPdf(data: GapReportData) {
         }
 
         if (question.evidenceImage) {
-            const bytes = await normalizeEvidenceImage(question.evidenceImage);
-            if (bytes) {
+            const parsedImage = parseDataImage(question.evidenceImage);
+            if (parsedImage && ["jpeg", "jpg", "png"].includes(parsedImage.mime)) {
                 try {
-                    const image = await pdf.embedJpg(bytes);
+                    const image =
+                        parsedImage.mime === "png"
+                            ? await pdf.embedPng(parsedImage.bytes)
+                            : await pdf.embedJpg(parsedImage.bytes);
                     const maxW = 260;
                     const maxH = 170;
                     const scale = Math.min(maxW / image.width, maxH / image.height, 1);
