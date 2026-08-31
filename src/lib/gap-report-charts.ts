@@ -8,6 +8,7 @@ const NC: Color = [239, 78, 78, 255];
 const BAR: Color = [0, 174, 239, 255];
 const GREY: Color = [229, 231, 235, 255];
 const MUTED: Color = [156, 163, 175, 255];
+const TEXT: Color = [17, 24, 39, 255];
 
 function image(width: number, height: number) {
     const png = new PNG({ width, height });
@@ -35,6 +36,7 @@ function fillRect(png: PNG, x: number, y: number, width: number, height: number,
 const GLYPHS: Record<string, string[]> = {
     " ": ["00000", "00000", "00000", "00000", "00000", "00000", "00000"],
     ".": ["00000", "00000", "00000", "00000", "00000", "00110", "00110"],
+    "%": ["11001", "11010", "00010", "00100", "01000", "01011", "10011"],
     C: ["01110", "10001", "10000", "10000", "10000", "10001", "01110"],
     L: ["10000", "10000", "10000", "10000", "10000", "10000", "11111"],
     "0": ["01110", "10001", "10011", "10101", "11001", "10001", "01110"],
@@ -122,6 +124,9 @@ export async function buildFindingMixDonutPng(comply: number, ofi: number, nc: n
     fillRect(png, 90, 346, 12, 12, COMPLY);
     fillRect(png, 200, 346, 12, 12, OFI);
     fillRect(png, 290, 346, 12, 12, NC);
+    drawBitmapText(png, String(comply), 108, 350, TEXT);
+    drawBitmapText(png, String(ofi), 218, 350, TEXT);
+    drawBitmapText(png, String(nc), 308, 350, TEXT);
     return encode(png);
 }
 
@@ -150,6 +155,8 @@ export async function buildGapClauseBarPng(clauses: { label: string; percent: nu
         fillRect(png, x, png.height - 28, barW, 2, MUTED);
         const label = shortClauseLabel(clause.label);
         drawBitmapText(png, label, Math.round(x + barW / 2 - (label.length * 6) / 2), png.height - 22, MUTED);
+        const percent = `${clause.percent}%`;
+        drawBitmapText(png, percent, Math.round(x + barW / 2 - (percent.length * 6) / 2), png.height - 12, TEXT);
     });
 
     return encode(png);

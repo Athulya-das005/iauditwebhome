@@ -104,8 +104,8 @@ The iAudit Global Team`;
 
 function mailSubject(data: GapReportData, kind: ReportKind = "gap-analysis") {
     return kind === "self-assessment"
-        ? `${data.session.isoStandard} Self Assessment Report`
-        : `${data.session.isoStandard} Gap Analysis Report`;
+        ? `Your ${data.session.isoStandard} Self Assessment Results`
+        : `Your ${data.session.isoStandard} Gap Analysis Results`;
 }
 
 async function sendWithResend(options: {

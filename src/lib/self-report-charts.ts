@@ -6,6 +6,7 @@ type Color = [number, number, number, number];
 const WHITE: Color = [255, 255, 255, 255];
 const GREY: Color = [229, 231, 235, 255];
 const MUTED: Color = [156, 163, 175, 255];
+const TEXT: Color = [17, 24, 39, 255];
 const ORANGE: Color = [245, 158, 11, 255];
 
 function colorFromHex(hex: string): Color {
@@ -49,8 +50,17 @@ function fillRect(png: PNG, x: number, y: number, width: number, height: number,
 const GLYPHS: Record<string, string[]> = {
     " ": ["00000", "00000", "00000", "00000", "00000", "00000", "00000"],
     ".": ["00000", "00000", "00000", "00000", "00000", "00110", "00110"],
+    "/": ["00001", "00010", "00010", "00100", "01000", "01000", "10000"],
+    "%": ["11001", "11010", "00010", "00100", "01000", "01011", "10011"],
     C: ["01110", "10001", "10000", "10000", "10000", "10001", "01110"],
+    E: ["11111", "10000", "10000", "11110", "10000", "10000", "11111"],
     L: ["10000", "10000", "10000", "10000", "10000", "10000", "11111"],
+    N: ["10001", "11001", "10101", "10011", "10001", "10001", "10001"],
+    R: ["11110", "10001", "10001", "11110", "10100", "10010", "10001"],
+    S: ["01111", "10000", "10000", "01110", "00001", "00001", "11110"],
+    T: ["11111", "00100", "00100", "00100", "00100", "00100", "00100"],
+    U: ["10001", "10001", "10001", "10001", "10001", "10001", "01110"],
+    Y: ["10001", "10001", "01010", "00100", "00100", "00100", "00100"],
     "0": ["01110", "10001", "10011", "10101", "11001", "10001", "01110"],
     "1": ["00100", "01100", "00100", "00100", "00100", "00100", "01110"],
     "2": ["01110", "10001", "00001", "00010", "00100", "01000", "11111"],
@@ -63,20 +73,22 @@ const GLYPHS: Record<string, string[]> = {
     "9": ["01110", "10001", "10001", "01111", "00001", "00001", "01110"],
 };
 
-function drawBitmapText(png: PNG, text: string, x: number, y: number, color: Color) {
+function drawBitmapText(png: PNG, text: string, x: number, y: number, color: Color, scale = 1) {
     let cursor = x;
     for (const character of text.toUpperCase()) {
         const glyph = GLYPHS[character];
         if (!glyph) {
-            cursor += 6;
+            cursor += 6 * scale;
             continue;
         }
         glyph.forEach((row, rowIndex) => {
             [...row].forEach((pixel, columnIndex) => {
-                if (pixel === "1") setPixel(png, cursor + columnIndex, y + rowIndex, color);
+                if (pixel === "1") {
+                    fillRect(png, cursor + columnIndex * scale, y + rowIndex * scale, scale, scale, color);
+                }
             });
         });
-        cursor += 6;
+        cursor += 6 * scale;
     }
 }
 
@@ -107,9 +119,17 @@ function encode(png: PNG) {
 export async function buildScoreDonutPng(yes: number, total: number, stage: string): Promise<Buffer> {
     const png = image(420, 460);
     const tone = maturityTone(stage);
+    const ratio = total > 0 ? Math.max(0, Math.min(1, yes / total)) : 0;
+    const score = `${yes}/${total}`;
+    const percent = `${Math.round(ratio * 100)}%`;
+    const remaining = `${Math.round((1 - ratio) * 100)}%`;
     drawDonut(png, 210, 200, 130, 78, total > 0 ? yes / total : 0, colorFromHex(tone.accentHex));
+    drawBitmapText(png, score, Math.round(210 - (score.length * 12) / 2), 178, TEXT, 2);
+    drawBitmapText(png, percent, Math.round(210 - (percent.length * 12) / 2), 204, TEXT, 2);
     fillRect(png, 110, 358, 12, 12, colorFromHex(tone.accentHex));
     fillRect(png, 298, 358, 12, 12, GREY);
+    drawBitmapText(png, `YES ${percent}`, 128, 354, TEXT);
+    drawBitmapText(png, `REST ${remaining}`, 316, 354, TEXT);
     return encode(png);
 }
 
@@ -140,6 +160,8 @@ export async function buildClauseBarChartPng(
         fillRect(png, x, png.height - 34, barW, 2, MUTED);
         const label = shortClauseLabel(clause.label);
         drawBitmapText(png, label, Math.round(x + barW / 2 - (label.length * 6) / 2), png.height - 28, MUTED);
+        const percent = `${clause.percent}%`;
+        drawBitmapText(png, percent, Math.round(x + barW / 2 - (percent.length * 6) / 2), png.height - 16, TEXT);
     });
 
     return encode(png);

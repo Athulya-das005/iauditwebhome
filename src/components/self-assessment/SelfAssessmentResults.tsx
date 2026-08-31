@@ -440,18 +440,18 @@ function ScoreDonut({ yes, rest, total, stageColor }: { yes: number; rest: numbe
 function ClauseBarChart({ clauses }: { clauses: { label: string; percent: number; yes: number; total: number }[] }) {
     const [tip, setTip] = useState<{ label: string; percent: number; yes: number; total: number; x: number; y: number } | null>(null);
     const width = 640;
-    const height = 260;
+    const height = 280;
     const padL = 40;
     const padR = 16;
     const padT = 16;
-    const padB = 42;
+    const padB = 60;
     const plotW = width - padL - padR;
     const plotH = height - padT - padB;
     const gap = plotW / Math.max(clauses.length, 1);
     const barW = gap * 0.48;
     return (
         <div style={{ position: "relative" }}>
-            <svg viewBox={`0 0 ${width} ${height}`} width="100%" height="260" onMouseLeave={() => setTip(null)}>
+            <svg viewBox={`0 0 ${width} ${height}`} width="100%" height="280" onMouseLeave={() => setTip(null)}>
                 {[0, 15, 30, 45, 60].map((tick) => {
                     const y = padT + plotH - (tick / 60) * plotH;
                     return (
@@ -491,8 +491,11 @@ function ClauseBarChart({ clauses }: { clauses: { label: string; percent: number
                                     });
                                 }}
                             />
-                            <text x={x + barW / 2} y={height - 12} textAnchor="middle" fontSize="11" fill="#6b7280">
-                                Cl. {clause.label.split(".")[0]}
+                            <text x={x + barW / 2} y={height - 32} textAnchor="middle" fontSize="11" fill="#6b7280">
+                                {shortClauseLabel(clause.label)}
+                            </text>
+                            <text x={x + barW / 2} y={height - 12} textAnchor="middle" fontSize="10" fill="#111827">
+                                {clause.percent}%
                             </text>
                         </g>
                     );
@@ -509,6 +512,11 @@ function ClauseBarChart({ clauses }: { clauses: { label: string; percent: number
             ) : null}
         </div>
     );
+}
+
+function shortClauseLabel(label: string) {
+    const match = label.match(/(?:Clause|Cl\.)\s*(\d+)/i);
+    return match ? `Cl. ${match[1]}` : label.slice(0, 8);
 }
 
 function polar(cx: number, cy: number, r: number, angle: number) {

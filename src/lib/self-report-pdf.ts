@@ -320,5 +320,9 @@ export async function buildSelfPdf(data: SelfReportData) {
         y -= 8;
     });
 
+    ensure(28);
+    page.drawLine({ start: { x: margin, y: y + 10 }, end: { x: margin + 511, y: y + 10 }, thickness: 0.6, color: LINE });
+    page.drawText("Built with iAudit Global", { x: margin, y: y - 4, size: 9, font: regular, color: MUTED });
+
     return Buffer.from(await pdf.save());
 }
