@@ -22,7 +22,6 @@ const GREEN = "006644";
 const COMPLY = "19B681";
 const OFI = "F49C1C";
 const NC = "EF4E4E";
-const BAR = "29ABE2";
 const thin = { style: BorderStyle.SINGLE, size: 4, color: "E5E7EB" };
 const borders = { top: thin, bottom: thin, left: thin, right: thin };
 const none = { style: BorderStyle.NONE, size: 0, color: "FFFFFF" };
@@ -42,6 +41,12 @@ function cell(text: string, opts?: { bold?: boolean; fill?: string; color?: stri
     });
 }
 
+function clauseBarColor(percent: number) {
+    if (percent >= 75) return COMPLY;
+    if (percent >= 50) return OFI;
+    return NC;
+}
+
 function barCell(percent: number) {
     const fillWidth = Math.max(200, Math.round((Math.min(Math.max(percent, 0), 100) / 100) * 3600));
     return new TableCell({
@@ -54,7 +59,7 @@ function barCell(percent: number) {
                         children: [
                             new TableCell({
                                 borders: noBorders,
-                                shading: { fill: BAR },
+                                shading: { fill: clauseBarColor(percent) },
                                 children: [new Paragraph({ children: [new TextRun({ text: " ", size: 16 })] })],
                             }),
                         ],

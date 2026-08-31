@@ -48,6 +48,12 @@ function findingColor(finding: GapReportData["questions"][number]["finding"]): R
     return MUTED;
 }
 
+function clauseBarColor(percent: number): RGB {
+    if (percent >= 75) return COMPLY;
+    if (percent >= 50) return OFI;
+    return NC;
+}
+
 function wrapText(text: string, font: { widthOfTextAtSize: (t: string, s: number) => number }, size: number, maxWidth: number) {
     const paragraphs = pdfSafeText(text).split("\n");
     const lines: string[] = [];
@@ -322,7 +328,7 @@ export async function buildGapPdf(data: GapReportData) {
         const barInnerW = clauseWidths[1] - 8;
         const fillW = Math.max(2, (clause.percent / 100) * barInnerW);
         layout.page.drawRectangle({ x: x + 4, y: layout.y - 3, width: barInnerW, height: 10, color: FILL });
-        layout.page.drawRectangle({ x: x + 4, y: layout.y - 3, width: fillW, height: 10, color: rgb(0.161, 0.671, 0.886) });
+        layout.page.drawRectangle({ x: x + 4, y: layout.y - 3, width: fillW, height: 10, color: clauseBarColor(clause.percent) });
         x += clauseWidths[1];
         layout.page.drawRectangle({ x, y: layout.y - 5, width: clauseWidths[2], height: 18, borderColor: LINE, borderWidth: 0.5 });
         layout.text(`${clause.percent}%`, { size: 8, x: x + 4 });

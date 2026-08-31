@@ -452,6 +452,12 @@ function shortClauseLabel(label: string) {
     return match ? `Cl. ${match[1]}` : label.slice(0, 8);
 }
 
+function clauseBarColor(percent: number) {
+    if (percent >= 75) return COMPLY;
+    if (percent >= 50) return OFI;
+    return NC;
+}
+
 function BarChart({ clauses }: { clauses: { label: string; percent: number }[] }) {
     const [tip, setTip] = useState<{ label: string; percent: number; x: number; y: number } | null>(null);
     const width = 520;
@@ -488,7 +494,7 @@ function BarChart({ clauses }: { clauses: { label: string; percent: number }[] }
                                 y={y}
                                 width={barW}
                                 height={Math.max(h, 0)}
-                                fill={BAR_BLUE}
+                                fill={clauseBarColor(clause.percent)}
                                 rx="2"
                                 style={{ cursor: "pointer" }}
                                 onMouseMove={(event) => {

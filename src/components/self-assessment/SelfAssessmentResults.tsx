@@ -21,6 +21,7 @@ const font = '"Pp Neue Montreal", sans-serif';
 const YES = "#16a34a";
 const NO = "#ef4444";
 const ORANGE = "#f59e0b";
+const CLAUSE_GREEN = "#19b681";
 const GREY = "#e5e7eb";
 
 export default function SelfAssessmentResults({ session, clauses, questionsByClause, isMobile }: Props) {
@@ -475,7 +476,7 @@ function ClauseBarChart({ clauses }: { clauses: { label: string; percent: number
                                 y={y}
                                 width={barW}
                                 height={Math.max(h, 1)}
-                                fill={ORANGE}
+                                fill={clauseBarColor(clause.percent)}
                                 rx="2"
                                 style={{ cursor: "pointer" }}
                                 onMouseMove={(event) => {
@@ -517,6 +518,12 @@ function ClauseBarChart({ clauses }: { clauses: { label: string; percent: number
 function shortClauseLabel(label: string) {
     const match = label.match(/(?:Clause|Cl\.)\s*(\d+)/i);
     return match ? `Cl. ${match[1]}` : label.slice(0, 8);
+}
+
+function clauseBarColor(percent: number) {
+    if (percent >= 75) return CLAUSE_GREEN;
+    if (percent >= 50) return ORANGE;
+    return NO;
 }
 
 function polar(cx: number, cy: number, r: number, angle: number) {

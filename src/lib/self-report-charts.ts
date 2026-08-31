@@ -8,6 +8,8 @@ const GREY: Color = [229, 231, 235, 255];
 const MUTED: Color = [156, 163, 175, 255];
 const TEXT: Color = [17, 24, 39, 255];
 const ORANGE: Color = [245, 158, 11, 255];
+const CLAUSE_GREEN: Color = [25, 182, 129, 255];
+const CLAUSE_RED: Color = [239, 78, 78, 255];
 
 function colorFromHex(hex: string): Color {
     const clean = hex.replace("#", "");
@@ -97,6 +99,12 @@ function shortClauseLabel(label: string) {
     return match ? `Cl. ${match[1]}` : label.slice(0, 8);
 }
 
+function clauseBarColor(percent: number) {
+    if (percent >= 75) return CLAUSE_GREEN;
+    if (percent >= 50) return ORANGE;
+    return CLAUSE_RED;
+}
+
 function drawDonut(png: PNG, cx: number, cy: number, outer: number, inner: number, ratio: number, accent: Color) {
     const start = Math.max(0, Math.min(1, ratio)) * Math.PI * 2;
     for (let y = cy - outer; y <= cy + outer; y += 1) {
@@ -156,7 +164,7 @@ export async function buildClauseBarChartPng(
         const height = Math.max(0, Math.round((Math.max(0, Math.min(100, clause.percent)) / 100) * plotH));
         const x = Math.round(padL + gap * index + (gap - barW) / 2);
         const y = padT + plotH - height;
-        fillRect(png, x, y, barW, height, ORANGE);
+        fillRect(png, x, y, barW, height, clauseBarColor(clause.percent));
         fillRect(png, x, png.height - 34, barW, 2, MUTED);
         const label = shortClauseLabel(clause.label);
         drawBitmapText(png, label, Math.round(x + barW / 2 - (label.length * 6) / 2), png.height - 28, MUTED);

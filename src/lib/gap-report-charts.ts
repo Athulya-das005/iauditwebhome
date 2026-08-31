@@ -9,6 +9,8 @@ const BAR: Color = [0, 174, 239, 255];
 const GREY: Color = [229, 231, 235, 255];
 const MUTED: Color = [156, 163, 175, 255];
 const TEXT: Color = [17, 24, 39, 255];
+const CLAUSE_GREEN: Color = [25, 182, 129, 255];
+const CLAUSE_RED: Color = [239, 78, 78, 255];
 
 function image(width: number, height: number) {
     const png = new PNG({ width, height });
@@ -71,6 +73,12 @@ function drawBitmapText(png: PNG, text: string, x: number, y: number, color: Col
 function shortClauseLabel(label: string) {
     const match = label.match(/(?:Clause|Cl\.)\s*(\d+)/i);
     return match ? `Cl. ${match[1]}` : label.slice(0, 8);
+}
+
+function clauseBarColor(percent: number) {
+    if (percent >= 75) return CLAUSE_GREEN;
+    if (percent >= 50) return BAR;
+    return CLAUSE_RED;
 }
 
 function drawDonut(
@@ -151,7 +159,7 @@ export async function buildGapClauseBarPng(clauses: { label: string; percent: nu
         const height = Math.max(0, Math.round((Math.max(0, Math.min(100, clause.percent)) / 100) * plotH));
         const x = Math.round(padL + gap * index + (gap - barW) / 2);
         const y = padT + plotH - height;
-        fillRect(png, x, y, barW, height, BAR);
+        fillRect(png, x, y, barW, height, clauseBarColor(clause.percent));
         fillRect(png, x, png.height - 28, barW, 2, MUTED);
         const label = shortClauseLabel(clause.label);
         drawBitmapText(png, label, Math.round(x + barW / 2 - (label.length * 6) / 2), png.height - 22, MUTED);

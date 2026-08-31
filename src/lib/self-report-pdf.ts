@@ -9,6 +9,8 @@ const TEXT = rgb(0.07, 0.09, 0.15);
 const MUTED = rgb(0.42, 0.45, 0.5);
 const LINE = rgb(0.9, 0.91, 0.92);
 const ORANGE = rgb(0.96, 0.62, 0.11);
+const CLAUSE_GREEN = rgb(0.098, 0.714, 0.506);
+const CLAUSE_RED = rgb(0.937, 0.306, 0.306);
 const GREY = rgb(0.78, 0.8, 0.82);
 const YES = rgb(0.09, 0.64, 0.29);
 const NO = rgb(0.94, 0.27, 0.27);
@@ -109,6 +111,12 @@ function wrapText(text: string, font: { widthOfTextAtSize: (t: string, s: number
 function shortClauseLabel(label: string) {
     const match = label.match(/(?:Clause|Cl\.)\s*(\d+)/i);
     return match ? `Cl. ${match[1]}` : label.slice(0, 8);
+}
+
+function clauseBarColor(percent: number): RGB {
+    if (percent >= 75) return CLAUSE_GREEN;
+    if (percent >= 50) return ORANGE;
+    return CLAUSE_RED;
 }
 
 export async function buildSelfPdf(data: SelfReportData) {
@@ -278,7 +286,7 @@ export async function buildSelfPdf(data: SelfReportData) {
         const mapped = (clause.percent / 100) * 60;
         const h = (mapped / 60) * plotH;
         const bx = margin + 24 + gap * index + (gap - barW) / 2;
-        page.drawRectangle({ x: bx, y: y - plotH, width: barW, height: Math.max(h, 1), color: ORANGE });
+        page.drawRectangle({ x: bx, y: y - plotH, width: barW, height: Math.max(h, 1), color: clauseBarColor(clause.percent) });
         const clauseLabel = shortClauseLabel(clause.label);
         page.drawText(clauseLabel, { x: bx - regular.widthOfTextAtSize(clauseLabel, 7) / 2 + barW / 2, y: y - plotH - 12, size: 7, font: regular, color: MUTED });
         const percentLabel = `${clause.percent}%`;
