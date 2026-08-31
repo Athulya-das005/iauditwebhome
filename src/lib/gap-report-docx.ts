@@ -267,22 +267,21 @@ export async function buildGapDocx(data: GapReportData) {
         new Paragraph({ text: "Detailed Audit Findings", heading: HeadingLevel.HEADING_1 })
     );
 
+    let currentClause = "";
     data.questions.forEach((question, index) => {
+        if (question.clauseLabel !== currentClause) {
+            currentClause = question.clauseLabel;
+            children.push(
+                new Paragraph({
+                    spacing: { before: 220, after: 80 },
+                    children: [new TextRun({ text: currentClause, bold: true, color: GREEN, size: 24 })],
+                })
+            );
+        }
         children.push(
             new Paragraph({
-                spacing: { before: 200, after: 60 },
-                children: [
-                    new TextRun({
-                        text: `${index + 1}. ${question.clauseLabel}`,
-                        bold: true,
-                        color: GREEN,
-                        size: 20,
-                    }),
-                ],
-            }),
-            new Paragraph({
-                spacing: { after: 60 },
-                children: [new TextRun({ text: question.text, size: 18 })],
+                spacing: { before: 80, after: 60 },
+                children: [new TextRun({ text: `${index + 1}. ${question.text}`, size: 18 })],
             }),
             new Paragraph({
                 spacing: { after: 60 },

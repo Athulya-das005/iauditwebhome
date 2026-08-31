@@ -13,7 +13,7 @@ const NC = rgb(0.937, 0.306, 0.306);
 const TEXT = rgb(0.067, 0.094, 0.153);
 const MUTED = rgb(0.42, 0.45, 0.5);
 const LINE = rgb(0.898, 0.906, 0.922);
-const FILL = rgb(0.953, 0.957, 0.965);
+const TRACK = rgb(0.122, 0.161, 0.212);
 const WHITE = rgb(1, 1, 1);
 
 const PAGE_W = 595;
@@ -46,12 +46,6 @@ function findingColor(finding: GapReportData["questions"][number]["finding"]): R
     if (finding === "ofi") return OFI;
     if (finding === "nc") return NC;
     return MUTED;
-}
-
-function clauseBarColor(percent: number): RGB {
-    if (percent >= 75) return COMPLY;
-    if (percent >= 50) return OFI;
-    return NC;
 }
 
 function wrapText(text: string, font: { widthOfTextAtSize: (t: string, s: number) => number }, size: number, maxWidth: number) {
@@ -240,7 +234,7 @@ export async function buildGapPdf(data: GapReportData) {
         ["Scope of Audit", data.session.auditScope || "-"],
     ];
     layout.heading("Assessment Details", 14);
-    const detailsBoxHeight = cover.length * 22 + 12;
+    const detailsBoxHeight = Math.ceil(cover.length / 2) * 30 + 26;
     layout.ensure(detailsBoxHeight + 8);
     const detailsTop = layout.y;
     layout.page.drawRectangle({
@@ -252,16 +246,17 @@ export async function buildGapPdf(data: GapReportData) {
         borderColor: COMPLY,
         borderWidth: 0.8,
     });
-    cover.forEach(([label, value]) => {
-        layout.ensure(24);
-        layout.page.drawRectangle({ x: MARGIN, y: layout.y - 6, width: 160, height: 20, color: FILL });
-        layout.page.drawRectangle({ x: MARGIN, y: layout.y - 6, width: CONTENT_W, height: 20, borderColor: LINE, borderWidth: 0.6 });
-        layout.text(label, { size: 9, bold: true, x: MARGIN + 6 });
-        layout.text((value || "-").slice(0, 78), { size: 9, x: MARGIN + 170 });
-        layout.y -= 22;
-    });
+    for (let index = 0; index < cover.length; index += 2) {
+        const rowY = layout.y;
+        [cover[index], cover[index + 1]].forEach(([label, value], column) => {
+            const x = MARGIN + column * (CONTENT_W / 2) + 12;
+            layout.page.drawText(pdfSafeText(label), { x, y: rowY, size: 7, font: bold, color: MUTED });
+            layout.page.drawText(pdfSafeText(value || "-").slice(0, 34), { x, y: rowY - 11, size: 9, font: regular, color: TEXT });
+        });
+        layout.y -= 30;
+    }
 
-    layout.gap(12);
+    layout.gap(26);
     layout.heading("Gap Analysis Report", 22);
     layout.heading("Scoring Summary");
     layout.text(`Compliance Percentage: (${data.comply} / ${data.totalQuestions}) x 100 = ${data.overall}%`, {
@@ -290,8 +285,6 @@ export async function buildGapPdf(data: GapReportData) {
     );
     layout.gap(12);
 
-    // Charts on a fresh page so the pie chart is never clipped or missing.
-    layout.newPage();
     layout.subheading("Finding mix");
     layout.image(donutImage, 240, 250);
 
@@ -327,8 +320,8 @@ export async function buildGapPdf(data: GapReportData) {
         x += clauseWidths[0];
         const barInnerW = clauseWidths[1] - 8;
         const fillW = Math.max(2, (clause.percent / 100) * barInnerW);
-        layout.page.drawRectangle({ x: x + 4, y: layout.y - 3, width: barInnerW, height: 10, color: FILL });
-        layout.page.drawRectangle({ x: x + 4, y: layout.y - 3, width: fillW, height: 10, color: clauseBarColor(clause.percent) });
+        layout.page.drawRectangle({ x: x + 4, y: layout.y - 3, width: barInnerW, height: 10, color: TRACK });
+        layout.page.drawRectangle({ x: x + 4, y: layout.y - 3, width: fillW, height: 10, color: COMPLY });
         x += clauseWidths[1];
         layout.page.drawRectangle({ x, y: layout.y - 5, width: clauseWidths[2], height: 18, borderColor: LINE, borderWidth: 0.5 });
         layout.text(`${clause.percent}%`, { size: 8, x: x + 4 });
@@ -350,12 +343,17 @@ export async function buildGapPdf(data: GapReportData) {
     layout.gap(16);
     layout.heading("Detailed Audit Findings");
 
+    let currentClause = "";
     for (let index = 0; index < data.questions.length; index++) {
         const question = data.questions[index];
+        if (question.clauseLabel !== currentClause) {
+            currentClause = question.clauseLabel;
+            layout.subheading(currentClause);
+            layout.gap(2);
+        }
         layout.ensure(80);
         layout.gap(8);
-        layout.paragraph(`${index + 1}. ${question.clauseLabel}`, { size: 10, bold: true, color: GREEN, lineGap: 13, maxLines: 2 });
-        layout.paragraph(question.text, { size: 9, lineGap: 12 });
+        layout.paragraph(`${index + 1}. ${question.text}`, { size: 9, lineGap: 12 });
 
         layout.ensure(16);
         const findingPrefix = "Finding: ";
