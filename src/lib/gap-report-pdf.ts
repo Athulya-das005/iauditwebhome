@@ -230,7 +230,7 @@ export async function buildGapPdf(data: GapReportData) {
     const layout = new PdfLayout(pdf, regular, bold, italic);
 
     const [donutPng, barPng] = await Promise.all([
-        buildFindingMixDonutPng(data.comply, data.ofi, data.nc),
+        buildFindingMixDonutPng(data.comply, data.ofi, data.nc, data.overall, data.maturity.stage),
         buildGapClauseBarPng(data.clauses),
     ]);
     const donutImage = await pdf.embedPng(donutPng);
@@ -321,7 +321,7 @@ export async function buildGapPdf(data: GapReportData) {
     layout.gap(12);
 
     const donutW = 240;
-    const donutH = 250;
+    const donutH = 290;
     const mixTableH = 36;
     layout.ensure(18 + 6 + donutH + 8 + mixTableH);
     layout.subheading("Finding mix");
@@ -347,11 +347,11 @@ export async function buildGapPdf(data: GapReportData) {
     layout.tableRow([String(data.comply), String(data.ofi), String(data.nc)], mixWidths);
     layout.gap(16);
 
-    const barH = 220;
-    layout.ensure(18 + 6 + barH + 28 + 20);
+    const barH = 240;
+    layout.ensure(18 + 6 + barH + 8 + 20);
     layout.subheading("Clause-wise Compliance");
     layout.gap(4);
-    layout.image(barImage, CONTENT_W, barH, true, { skipEnsure: true, afterGap: 28 });
+    layout.image(barImage, CONTENT_W, barH, true, { skipEnsure: true, afterGap: 18 });
 
     const clauseWidths = [CONTENT_W * 0.46, CONTENT_W * 0.36, CONTENT_W * 0.18];
     layout.tableRow(["Clause", "Compliance", "%"], clauseWidths, { header: true });

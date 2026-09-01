@@ -106,7 +106,7 @@ export async function buildGapDocx(data: GapReportData) {
     ];
 
     const [donutPng, barPng] = await Promise.all([
-        buildFindingMixDonutPng(data.comply, data.ofi, data.nc),
+        buildFindingMixDonutPng(data.comply, data.ofi, data.nc, data.overall, data.maturity.stage),
         buildGapClauseBarPng(data.clauses),
     ]);
 
@@ -206,7 +206,7 @@ export async function buildGapDocx(data: GapReportData) {
                 new ImageRun({
                     type: "png",
                     data: new Uint8Array(donutPng),
-                    transformation: { width: 240, height: 250 },
+                    transformation: { width: 240, height: 290 },
                 }),
             ],
         }),
@@ -236,7 +236,7 @@ export async function buildGapDocx(data: GapReportData) {
                 new ImageRun({
                     type: "png",
                     data: new Uint8Array(barPng),
-                    transformation: { width: 500, height: 210 },
+                    transformation: { width: 500, height: 240 },
                 }),
             ],
         }),
