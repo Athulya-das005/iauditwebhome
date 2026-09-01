@@ -12,6 +12,41 @@ const IAUDIT_INBOX = "info@iaudit.global";
 
 export type ReportKind = "gap-analysis" | "self-assessment";
 
+function resolveReportMailProvider(): "smtp" | "resend" | null {
+    const preferred = process.env.REPORT_MAIL_PROVIDER?.trim().toLowerCase();
+    const smtpConfigured = Boolean(
+        process.env.SMTP_HOST?.trim() &&
+            process.env.SMTP_USER?.trim() &&
+            process.env.SMTP_PASS?.trim()
+    );
+    const resendConfigured = Boolean(process.env.RESEND_API_KEY?.trim());
+
+    if (preferred === "smtp") return smtpConfigured ? "smtp" : null;
+    if (preferred === "resend") return resendConfigured ? "resend" : null;
+    if (smtpConfigured) return "smtp";
+    if (resendConfigured) return "resend";
+    return null;
+}
+
+const recentReportSends = globalThis as typeof globalThis & {
+    __reportSendCache?: Map<string, number>;
+};
+
+function shouldSkipDuplicateReportSend(key: string) {
+    if (!recentReportSends.__reportSendCache) {
+        recentReportSends.__reportSendCache = new Map();
+    }
+    const now = Date.now();
+    const cache = recentReportSends.__reportSendCache;
+    for (const [storedKey, sentAt] of cache.entries()) {
+        if (now - sentAt > 120_000) cache.delete(storedKey);
+    }
+    const lastSentAt = cache.get(key);
+    if (lastSentAt && now - lastSentAt < 120_000) return true;
+    cache.set(key, now);
+    return false;
+}
+
 function isProductionHost() {
     return Boolean(process.env.VERCEL || process.env.NODE_ENV === "production");
 }
@@ -86,22 +121,6 @@ function escapeHtml(value: string) {
     return value.replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char] ?? char));
 }
 
-function emailText(data: GapReportData, kind: ReportKind = "gap-analysis") {
-    const product = kind === "self-assessment" ? "self assessment" : "gap analysis";
-    return `Dear ${data.session.firstName || "there"},
-
-Thank you for taking the ${data.session.isoStandard} ${product}.
-
-Your results are ready. They show how ready your organisation’s management system is against the selected ISO standard, highlight your strengths, and pinpoint opportunities for improvement so that you can plan the next actions with confidence.
-
-Your detailed report is attached to this email. Open the attached report to view your results.
-
-If you have any questions, please send an email to ${IAUDIT_INBOX} and we will be more than happy to help.
-
-Yours sincerely,
-The iAudit Global Team`;
-}
-
 function mailSubject(data: GapReportData, kind: ReportKind = "gap-analysis") {
     return kind === "self-assessment"
         ? `Your ${data.session.isoStandard} Self Assessment Results`
@@ -131,7 +150,6 @@ async function sendWithResend(options: {
             to: [options.data.session.email.trim()],
             subject: mailSubject(options.data, kind),
             html: gapReportEmailHtml(options.data, kind, logo ? "cid:iaudit-logo" : LOGO_URL),
-            text: emailText(options.data, kind),
             attachments: [
                 ...(logo
                     ? [
@@ -202,7 +220,6 @@ async function sendWithSmtp(options: {
         replyTo: IAUDIT_INBOX,
         subject: mailSubject(options.data, kind),
         html: gapReportEmailHtml(options.data, kind, logo ? "cid:iaudit-logo" : LOGO_URL),
-        text: emailText(options.data, kind),
         attachments: [
             ...(logo
                 ? [
@@ -233,22 +250,26 @@ export async function sendGapReportEmail(options: {
     content: Buffer;
     contentType: string;
     kind?: ReportKind;
+    idempotencyKey?: string;
 }) {
     if (!isMailConfigured()) {
         throw new Error(mailNotConfiguredMessage());
     }
 
-    const smtpConfigured = Boolean(
-        process.env.SMTP_HOST?.trim() &&
-            process.env.SMTP_USER?.trim() &&
-            process.env.SMTP_PASS?.trim()
-    );
-    if (smtpConfigured) {
-        await sendWithSmtp(options);
+    const dedupeKey =
+        options.idempotencyKey?.trim() ||
+        `${options.data.session.email.trim().toLowerCase()}:${options.filename}:${options.content.length}`;
+    if (shouldSkipDuplicateReportSend(dedupeKey)) {
+        console.info("Skipped duplicate report email send:", dedupeKey);
         return;
     }
 
-    if (process.env.RESEND_API_KEY?.trim()) {
+    const provider = resolveReportMailProvider();
+    if (provider === "smtp") {
+        await sendWithSmtp(options);
+        return;
+    }
+    if (provider === "resend") {
         await sendWithResend(options);
         return;
     }

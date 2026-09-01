@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type CSSProperties } from "react";
+import { useMemo, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import CTA from "@/components/CTA";
@@ -45,6 +45,7 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
     const [emailNote, setEmailNote] = useState("");
     const [downloadError, setDownloadError] = useState("");
     const [downloading, setDownloading] = useState<"pdf" | "word" | null>(null);
+    const sendRequestKeyRef = useRef("");
     const stats = useMemo(() => {
         let comply = 0;
         let ofi = 0;
@@ -106,13 +107,17 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
     }
 
     async function sendReport() {
+        if (step === "sending") return;
         setError("");
         setStep("sending");
+        const idempotencyKey =
+            sendRequestKeyRef.current ||
+            (sendRequestKeyRef.current = `${session.email}:${format}:${Date.now()}:${Math.random().toString(36).slice(2, 10)}`);
         try {
             const response = await fetch("/api/gap-analysis-report", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ ...reportPayload(format), sendEmail: true }),
+                body: JSON.stringify({ ...reportPayload(format), sendEmail: true, idempotencyKey }),
             });
             const data = (await response.json()) as {
                 error?: string;
@@ -125,6 +130,7 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
             if (!response.ok) {
                 setError(data.error ?? "Unable to send the report.");
                 setStep("choose");
+                sendRequestKeyRef.current = "";
                 return;
             }
             if (data.fileBase64 && data.filename && data.contentType) {
@@ -141,6 +147,7 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
         } catch {
             setError("Unable to send the report. Please try again.");
             setStep("choose");
+            sendRequestKeyRef.current = "";
         }
     }
 

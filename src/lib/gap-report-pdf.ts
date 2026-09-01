@@ -152,6 +152,24 @@ class PdfLayout {
         this.y -= 22;
     }
 
+    title(value: string, size = 22) {
+        this.ensure(size + 12);
+        this.page.drawText(pdfSafeText(value), { x: MARGIN, y: this.y, size, font: this.bold, color: TEXT });
+        this.y -= size + 10;
+    }
+
+    sectionHeading(value: string, size = 16) {
+        this.ensure(size + 10);
+        this.page.drawText(pdfSafeText(value), { x: MARGIN, y: this.y, size, font: this.bold, color: TEXT });
+        this.y -= size + 6;
+    }
+
+    detailHeading(value: string) {
+        this.ensure(18);
+        this.page.drawText(pdfSafeText(value), { x: MARGIN, y: this.y, size: 14, font: this.bold, color: TEXT });
+        this.y -= 18;
+    }
+
     subheading(value: string) {
         this.ensure(22);
         this.text(value, { size: 13, bold: true, color: GREEN });
@@ -235,8 +253,8 @@ export async function buildGapPdf(data: GapReportData) {
         ["Scope of Audit", data.session.auditScope || "-"],
     ];
 
-    layout.subheading("Assessment Details");
-    layout.gap(6);
+    layout.detailHeading("Assessment Details");
+    layout.gap(8);
 
     const detailsPadTop = 14;
     const detailsPadBottom = 14;
@@ -264,14 +282,16 @@ export async function buildGapPdf(data: GapReportData) {
         layout.page.drawText(pdfSafeText(value || "-").slice(0, 52), { x: valueX, y: rowY, size: 9, font: regular, color: TEXT });
     });
 
-    layout.y = detailsBottom - 24;
-    layout.heading("Gap Analysis Report", 22);
-    layout.heading("Scoring Summary");
-    layout.text(`Compliance Percentage: (${data.comply} / ${data.totalQuestions}) x 100 = ${data.overall}%`, {
-        size: 12,
-        bold: true,
-    });
-    layout.y -= 20;
+    layout.y = detailsBottom - 32;
+    layout.title("Gap Analysis Report");
+    layout.gap(10);
+    layout.sectionHeading("Scoring Summary");
+    layout.gap(4);
+    layout.page.drawText(
+        pdfSafeText(`Compliance Percentage: (${data.comply} / ${data.totalQuestions}) x 100 = ${data.overall}%`),
+        { x: MARGIN, y: layout.y, size: 12, font: bold, color: TEXT }
+    );
+    layout.y -= 18;
 
     layout.ensure(18);
     layout.page.drawRectangle({ x: MARGIN, y: layout.y - 4, width: 10, height: 10, color: COMPLY });

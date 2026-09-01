@@ -14,6 +14,7 @@ export const dynamic = "force-dynamic";
 type Payload = {
     format?: "pdf" | "word";
     sendEmail?: boolean;
+    idempotencyKey?: string;
     session?: GapAnalysisSession;
     clauses?: { label: string; questions: { text: string; answer: SelfAnswer; notes?: string }[] }[];
 };
@@ -69,6 +70,7 @@ export async function POST(request: Request) {
                     content,
                     contentType,
                     kind: "self-assessment",
+                    idempotencyKey: body.idempotencyKey,
                 });
                 emailed = true;
             } catch (error) {

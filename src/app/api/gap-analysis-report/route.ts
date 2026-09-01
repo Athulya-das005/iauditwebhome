@@ -14,6 +14,7 @@ export const dynamic = "force-dynamic";
 type Payload = {
     format?: "pdf" | "word";
     sendEmail?: boolean;
+    idempotencyKey?: string;
     session?: GapAnalysisSession;
     clauses?: {
         label: string;
@@ -52,7 +53,7 @@ export async function POST(request: Request) {
 
         if (body.sendEmail !== false) {
             try {
-                await sendGapReportEmail({ data, filename, content, contentType });
+                await sendGapReportEmail({ data, filename, content, contentType, idempotencyKey: body.idempotencyKey });
                 emailed = true;
             } catch (error) {
                 warning = error instanceof Error ? error.message : "Unable to send email.";
