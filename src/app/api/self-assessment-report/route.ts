@@ -4,6 +4,7 @@ import { buildSelfPdf } from "@/lib/self-report-pdf";
 import { buildSelfDocx } from "@/lib/self-report-docx";
 import { sendGapReportEmail } from "@/lib/send-gap-report-email";
 import { maturityForPercent, readinessForNcCount } from "@/lib/gap-report-data";
+import { buildReportIdempotencyKey, selfAssessmentFingerprint } from "@/lib/report-idempotency";
 import type { GapAnalysisSession } from "@/types/gap-analysis-session";
 import type { SelfAnswer } from "@/data/self-assessment-clauses";
 
@@ -31,6 +32,15 @@ export async function POST(request: Request) {
 
         const data = buildSelfReportData(body.session, body.clauses);
         const filename = selfReportFileName(data, body.format);
+        const idempotencyKey = buildReportIdempotencyKey("self-assessment", {
+            clientKey: body.idempotencyKey,
+            email: body.session.email,
+            format: body.format,
+            isoStandard: body.session.isoStandard,
+            organisation: body.session.organisation,
+            auditScope: body.session.auditScope,
+            fingerprint: selfAssessmentFingerprint(body.clauses),
+        });
         const content = body.format === "pdf" ? await buildSelfPdf(data) : Buffer.from(await buildSelfDocx(data));
         const contentType =
             body.format === "pdf"
@@ -70,7 +80,7 @@ export async function POST(request: Request) {
                     content,
                     contentType,
                     kind: "self-assessment",
-                    idempotencyKey: body.idempotencyKey,
+                    idempotencyKey,
                 });
                 emailed = true;
             } catch (error) {

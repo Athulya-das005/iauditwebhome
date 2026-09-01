@@ -3,6 +3,7 @@ import { buildGapReportData, reportFileName } from "@/lib/gap-report-data";
 import { buildGapPdf } from "@/lib/gap-report-pdf";
 import { buildGapDocx } from "@/lib/gap-report-docx";
 import { sendGapReportEmail } from "@/lib/send-gap-report-email";
+import { buildReportIdempotencyKey, gapAnalysisFingerprint } from "@/lib/report-idempotency";
 import type { GapAnalysisSession } from "@/types/gap-analysis-session";
 import type { GapFinding } from "@/data/gap-analysis-clauses";
 
@@ -40,6 +41,15 @@ export async function POST(request: Request) {
 
         const data = buildGapReportData(body.session, body.clauses);
         const filename = reportFileName(data, body.format);
+        const idempotencyKey = buildReportIdempotencyKey("gap-analysis", {
+            clientKey: body.idempotencyKey,
+            email: body.session.email,
+            format: body.format,
+            isoStandard: body.session.isoStandard,
+            organisation: body.session.organisation,
+            auditScope: body.session.auditScope,
+            fingerprint: gapAnalysisFingerprint(body.clauses),
+        });
         const content =
             body.format === "pdf" ? await buildGapPdf(data) : Buffer.from(await buildGapDocx(data));
         const contentType =
@@ -53,7 +63,7 @@ export async function POST(request: Request) {
 
         if (body.sendEmail !== false) {
             try {
-                await sendGapReportEmail({ data, filename, content, contentType, idempotencyKey: body.idempotencyKey });
+                await sendGapReportEmail({ data, filename, content, contentType, idempotencyKey });
                 emailed = true;
             } catch (error) {
                 warning = error instanceof Error ? error.message : "Unable to send email.";

@@ -1,11 +1,12 @@
 "use client";
 
-import { useMemo, useState, type CSSProperties } from "react";
+import { useMemo, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import AssessmentDetailsCard from "@/components/assessment/AssessmentDetailsCard";
 import { type SelfAnswer, type SelfAssessmentClause } from "@/data/self-assessment-clauses";
 import { maturityForYesCount, maturityTone } from "@/lib/self-report-data";
+import { getClientReportSendKey } from "@/lib/report-idempotency-client";
 import type { GapAnalysisSession } from "@/types/gap-analysis-session";
 
 type QuestionRow = { text: string; answer: SelfAnswer; notes?: string };
@@ -32,6 +33,7 @@ export default function SelfAssessmentResults({ session, clauses, questionsByCla
     const [emailNote, setEmailNote] = useState("");
     const [downloadError, setDownloadError] = useState("");
     const [downloading, setDownloading] = useState<"pdf" | "word" | null>(null);
+    const sendingRef = useRef(false);
 
     const stats = useMemo(() => {
         const clauseStats = clauses.map((clause, index) => {
@@ -85,13 +87,16 @@ export default function SelfAssessmentResults({ session, clauses, questionsByCla
     }
 
     async function sendReport() {
+        if (step === "sending" || sendingRef.current) return;
+        sendingRef.current = true;
         setError("");
         setStep("sending");
+        const idempotencyKey = getClientReportSendKey(`${session.email}:${session.isoStandard}:self-assessment`);
         try {
             const response = await fetch("/api/self-assessment-report", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ ...payload(format), sendEmail: true }),
+                body: JSON.stringify({ ...payload(format), sendEmail: true, idempotencyKey }),
             });
             const data = (await response.json()) as {
                 error?: string;
@@ -120,6 +125,8 @@ export default function SelfAssessmentResults({ session, clauses, questionsByCla
         } catch {
             setError("Unable to send the report. Please try again.");
             setStep("choose");
+        } finally {
+            sendingRef.current = false;
         }
     }
 

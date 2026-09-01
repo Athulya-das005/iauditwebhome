@@ -13,6 +13,7 @@ import {
     maturityTone,
     readinessForNcCount,
 } from "@/lib/gap-report-data";
+import { getClientReportSendKey } from "@/lib/report-idempotency-client";
 import type { GapAnalysisSession } from "@/types/gap-analysis-session";
 
 type FindingRow = {
@@ -45,7 +46,7 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
     const [emailNote, setEmailNote] = useState("");
     const [downloadError, setDownloadError] = useState("");
     const [downloading, setDownloading] = useState<"pdf" | "word" | null>(null);
-    const sendRequestKeyRef = useRef("");
+    const sendingRef = useRef(false);
     const stats = useMemo(() => {
         let comply = 0;
         let ofi = 0;
@@ -107,12 +108,11 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
     }
 
     async function sendReport() {
-        if (step === "sending") return;
+        if (step === "sending" || sendingRef.current) return;
+        sendingRef.current = true;
         setError("");
         setStep("sending");
-        const idempotencyKey =
-            sendRequestKeyRef.current ||
-            (sendRequestKeyRef.current = `${session.email}:${format}:${Date.now()}:${Math.random().toString(36).slice(2, 10)}`);
+        const idempotencyKey = getClientReportSendKey(`${session.email}:${session.isoStandard}:gap-analysis`);
         try {
             const response = await fetch("/api/gap-analysis-report", {
                 method: "POST",
@@ -130,7 +130,6 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
             if (!response.ok) {
                 setError(data.error ?? "Unable to send the report.");
                 setStep("choose");
-                sendRequestKeyRef.current = "";
                 return;
             }
             if (data.fileBase64 && data.filename && data.contentType) {
@@ -147,7 +146,8 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
         } catch {
             setError("Unable to send the report. Please try again.");
             setStep("choose");
-            sendRequestKeyRef.current = "";
+        } finally {
+            sendingRef.current = false;
         }
     }
 

@@ -2,6 +2,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import nodemailer from "nodemailer";
 import type { GapReportData } from "@/lib/gap-report-data";
+import { claimReportEmailSend, releaseReportEmailSend } from "@/lib/report-email-dedupe";
 
 const CONTACT_URL = "https://www.iaudit.global/contact";
 const LOGO_URL = "https://www.iaudit.global/iaudit-logo-nav.png";
@@ -23,28 +24,14 @@ function resolveReportMailProvider(): "smtp" | "resend" | null {
 
     if (preferred === "smtp") return smtpConfigured ? "smtp" : null;
     if (preferred === "resend") return resendConfigured ? "resend" : null;
+    // When both are configured, always prefer SMTP so only one provider sends the report.
     if (smtpConfigured) return "smtp";
     if (resendConfigured) return "resend";
     return null;
 }
 
-const recentReportSends = globalThis as typeof globalThis & {
-    __reportSendCache?: Map<string, number>;
-};
-
-function shouldSkipDuplicateReportSend(key: string) {
-    if (!recentReportSends.__reportSendCache) {
-        recentReportSends.__reportSendCache = new Map();
-    }
-    const now = Date.now();
-    const cache = recentReportSends.__reportSendCache;
-    for (const [storedKey, sentAt] of cache.entries()) {
-        if (now - sentAt > 120_000) cache.delete(storedKey);
-    }
-    const lastSentAt = cache.get(key);
-    if (lastSentAt && now - lastSentAt < 120_000) return true;
-    cache.set(key, now);
-    return false;
+async function shouldSkipDuplicateReportSend(key: string) {
+    return !(await claimReportEmailSend(key));
 }
 
 function isProductionHost() {
@@ -133,6 +120,7 @@ async function sendWithResend(options: {
     content: Buffer;
     contentType: string;
     kind?: ReportKind;
+    idempotencyKey?: string;
 }) {
     const apiKey = process.env.RESEND_API_KEY?.trim();
     if (!apiKey) return false;
@@ -144,6 +132,7 @@ async function sendWithResend(options: {
         headers: {
             Authorization: `Bearer ${apiKey}`,
             "Content-Type": "application/json",
+            ...(options.idempotencyKey ? { "Idempotency-Key": options.idempotencyKey.slice(0, 256) } : {}),
         },
         body: JSON.stringify({
             from: REPORT_FROM,
@@ -258,20 +247,25 @@ export async function sendGapReportEmail(options: {
 
     const dedupeKey =
         options.idempotencyKey?.trim() ||
-        `${options.data.session.email.trim().toLowerCase()}:${options.filename}:${options.content.length}`;
-    if (shouldSkipDuplicateReportSend(dedupeKey)) {
+        `${options.kind ?? "gap-analysis"}:${options.data.session.email.trim().toLowerCase()}:${options.filename}:${options.content.length}`;
+    if (await shouldSkipDuplicateReportSend(dedupeKey)) {
         console.info("Skipped duplicate report email send:", dedupeKey);
         return;
     }
 
     const provider = resolveReportMailProvider();
-    if (provider === "smtp") {
-        await sendWithSmtp(options);
-        return;
-    }
-    if (provider === "resend") {
-        await sendWithResend(options);
-        return;
+    try {
+        if (provider === "smtp") {
+            await sendWithSmtp({ ...options, idempotencyKey: dedupeKey });
+            return;
+        }
+        if (provider === "resend") {
+            await sendWithResend({ ...options, idempotencyKey: dedupeKey });
+            return;
+        }
+    } catch (error) {
+        await releaseReportEmailSend(dedupeKey);
+        throw error;
     }
 
     throw new Error(mailNotConfiguredMessage());
