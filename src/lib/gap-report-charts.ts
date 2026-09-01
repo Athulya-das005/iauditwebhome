@@ -144,7 +144,7 @@ export async function buildGapClauseBarPng(clauses: { label: string; percent: nu
     const padL = 44;
     const padR = 20;
     const padT = 20;
-    const padB = 40;
+    const padB = 54;
     const plotW = png.width - padL - padR;
     const plotH = png.height - padT - padB;
     const gap = plotW / Math.max(clauses.length, 1);
@@ -160,11 +160,11 @@ export async function buildGapClauseBarPng(clauses: { label: string; percent: nu
         const x = Math.round(padL + gap * index + (gap - barW) / 2);
         const y = padT + plotH - height;
         fillRect(png, x, y, barW, height, clauseBarColor(clause.percent));
-        fillRect(png, x, png.height - 28, barW, 2, MUTED);
+        fillRect(png, x, png.height - 34, barW, 2, MUTED);
         const label = shortClauseLabel(clause.label);
-        drawBitmapText(png, label, Math.round(x + barW / 2 - (label.length * 6) / 2), png.height - 22, MUTED);
+        drawBitmapText(png, label, Math.round(x + barW / 2 - (label.length * 6) / 2), png.height - 28, MUTED);
         const percent = `${clause.percent}%`;
-        drawBitmapText(png, percent, Math.round(x + barW / 2 - (percent.length * 6) / 2), png.height - 12, TEXT);
+        drawBitmapText(png, percent, Math.round(x + barW / 2 - (percent.length * 6) / 2), png.height - 16, TEXT);
     });
 
     return encode(png);
