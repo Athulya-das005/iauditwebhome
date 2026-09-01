@@ -40,7 +40,7 @@ export const hallOfFameResearchers: HallOfFameResearcher[] = [
         id: "pathan-aslam",
         name: "Pathan Aslam",
         linkedIn: "https://www.linkedin.com/in/aslam-pathan/",
-        reportCount: 1,
+        reportCount: 5,
     },
     {
         id: "thinesh-s",
