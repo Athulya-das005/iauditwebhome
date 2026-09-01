@@ -176,11 +176,18 @@ class PdfLayout {
         this.y -= 18;
     }
 
-    image(img: Awaited<ReturnType<PDFDocument["embedPng"]>>, width: number, height: number, centered = true) {
-        this.ensure(height + 16);
+    image(
+        img: Awaited<ReturnType<PDFDocument["embedPng"]>>,
+        width: number,
+        height: number,
+        centered = true,
+        opts?: { skipEnsure?: boolean; afterGap?: number }
+    ) {
+        const afterGap = opts?.afterGap ?? 16;
+        if (!opts?.skipEnsure) this.ensure(height + afterGap);
         const x = centered ? MARGIN + (CONTENT_W - width) / 2 : MARGIN;
         this.page.drawImage(img, { x, y: this.y - height, width, height });
-        this.y -= height + 16;
+        this.y -= height + afterGap;
     }
 
     tableRow(values: string[], widths: number[], opts?: { header?: boolean; colors?: RGB[] }) {
@@ -313,8 +320,13 @@ export async function buildGapPdf(data: GapReportData) {
     );
     layout.gap(12);
 
+    const donutW = 240;
+    const donutH = 250;
+    const mixTableH = 36;
+    layout.ensure(18 + 6 + donutH + 8 + mixTableH);
     layout.subheading("Finding mix");
-    layout.image(donutImage, 240, 250);
+    layout.gap(4);
+    layout.image(donutImage, donutW, donutH, true, { skipEnsure: true, afterGap: 8 });
 
     const mixWidths = [CONTENT_W / 3, CONTENT_W / 3, CONTENT_W / 3];
     layout.ensure(44);
@@ -335,8 +347,11 @@ export async function buildGapPdf(data: GapReportData) {
     layout.tableRow([String(data.comply), String(data.ofi), String(data.nc)], mixWidths);
     layout.gap(16);
 
+    const barH = 210;
+    layout.ensure(18 + 6 + barH + 8 + 20);
     layout.subheading("Clause-wise Compliance");
-    layout.image(barImage, CONTENT_W, 210);
+    layout.gap(4);
+    layout.image(barImage, CONTENT_W, barH, true, { skipEnsure: true, afterGap: 8 });
 
     const clauseWidths = [CONTENT_W * 0.46, CONTENT_W * 0.36, CONTENT_W * 0.18];
     layout.tableRow(["Clause", "Compliance", "%"], clauseWidths, { header: true });
