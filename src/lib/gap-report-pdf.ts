@@ -223,40 +223,48 @@ export async function buildGapPdf(data: GapReportData) {
         layout.y -= 28;
     }
 
+    const fullName = `${data.session.firstName} ${data.session.lastName}`.trim();
     const cover = [
         ["Name of Company", data.session.organisation],
         ["Audit Date", data.auditDate],
         ["ISO Standard", data.session.isoStandard],
         ["Location of Audit", data.session.industry || "-"],
-        ["Company Representatives", `${data.session.firstName} ${data.session.lastName}`.trim() || "-"],
-        ["Name of Auditor", `${data.session.firstName} ${data.session.lastName}`.trim() || "-"],
+        ["Company Representatives", fullName || "-"],
+        ["Name of Auditor", fullName || "-"],
         ["Contact email", data.session.email],
         ["Scope of Audit", data.session.auditScope || "-"],
     ];
-    layout.heading("Assessment Details", 14);
-    const detailsBoxHeight = Math.ceil(cover.length / 2) * 30 + 26;
-    layout.ensure(detailsBoxHeight + 8);
+
+    layout.subheading("Assessment Details");
+    layout.gap(6);
+
+    const detailsPadTop = 14;
+    const detailsPadBottom = 14;
+    const detailsRowHeight = 22;
+    const detailsBoxHeight = detailsPadTop + cover.length * detailsRowHeight + detailsPadBottom;
+    layout.ensure(detailsBoxHeight + 12);
     const detailsTop = layout.y;
+    const detailsBottom = detailsTop - detailsBoxHeight;
+
     layout.page.drawRectangle({
         x: MARGIN,
-        y: detailsTop - detailsBoxHeight,
+        y: detailsBottom,
         width: CONTENT_W,
         height: detailsBoxHeight,
         color: rgb(0.94, 0.99, 0.96),
         borderColor: COMPLY,
         borderWidth: 0.8,
     });
-    for (let index = 0; index < cover.length; index += 2) {
-        const rowY = layout.y;
-        [cover[index], cover[index + 1]].forEach(([label, value], column) => {
-            const x = MARGIN + column * (CONTENT_W / 2) + 12;
-            layout.page.drawText(pdfSafeText(label), { x, y: rowY, size: 7, font: bold, color: MUTED });
-            layout.page.drawText(pdfSafeText(value || "-").slice(0, 34), { x, y: rowY - 11, size: 9, font: regular, color: TEXT });
-        });
-        layout.y -= 30;
-    }
 
-    layout.gap(44);
+    const labelX = MARGIN + 14;
+    const valueX = MARGIN + CONTENT_W * 0.42;
+    cover.forEach(([label, value], index) => {
+        const rowY = detailsTop - detailsPadTop - index * detailsRowHeight - 8;
+        layout.page.drawText(pdfSafeText(label), { x: labelX, y: rowY, size: 8, font: bold, color: MUTED });
+        layout.page.drawText(pdfSafeText(value || "-").slice(0, 52), { x: valueX, y: rowY, size: 9, font: regular, color: TEXT });
+    });
+
+    layout.y = detailsBottom - 24;
     layout.heading("Gap Analysis Report", 22);
     layout.heading("Scoring Summary");
     layout.text(`Compliance Percentage: (${data.comply} / ${data.totalQuestions}) x 100 = ${data.overall}%`, {
