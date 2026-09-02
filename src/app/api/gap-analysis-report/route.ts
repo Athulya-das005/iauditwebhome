@@ -4,6 +4,7 @@ import { buildGapPdf } from "@/lib/gap-report-pdf";
 import { buildGapDocx } from "@/lib/gap-report-docx";
 import { sendGapReportEmail } from "@/lib/send-gap-report-email";
 import { buildReportIdempotencyKey, gapAnalysisFingerprint } from "@/lib/report-idempotency";
+import { ensureAssessmentLeadSaved } from "@/lib/assessment-leads-store";
 import type { GapAnalysisSession } from "@/types/gap-analysis-session";
 import type { GapFinding } from "@/data/gap-analysis-clauses";
 
@@ -38,6 +39,13 @@ export async function POST(request: Request) {
         if (!body.session?.email || !body.clauses?.length) {
             return NextResponse.json({ error: "Missing report details." }, { status: 400 });
         }
+
+        await ensureAssessmentLeadSaved({
+            session: body.session,
+            assessmentType: "gap-analysis",
+            assessmentTitle: `${body.session.isoStandard} Gap Analysis`,
+            pagePath: "/iso-audit-assessments/gap-analysis",
+        }).catch((error) => console.error("Gap analysis lead backup save failed:", error));
 
         const data = buildGapReportData(body.session, body.clauses);
         const filename = reportFileName(data, body.format);

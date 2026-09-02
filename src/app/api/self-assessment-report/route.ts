@@ -5,6 +5,7 @@ import { buildSelfDocx } from "@/lib/self-report-docx";
 import { sendGapReportEmail } from "@/lib/send-gap-report-email";
 import { maturityForPercent, readinessForNcCount } from "@/lib/gap-report-data";
 import { buildReportIdempotencyKey, selfAssessmentFingerprint } from "@/lib/report-idempotency";
+import { ensureAssessmentLeadSaved } from "@/lib/assessment-leads-store";
 import type { GapAnalysisSession } from "@/types/gap-analysis-session";
 import type { SelfAnswer } from "@/data/self-assessment-clauses";
 
@@ -29,6 +30,13 @@ export async function POST(request: Request) {
         if (!body.session?.email || !body.clauses?.length) {
             return NextResponse.json({ error: "Missing report details." }, { status: 400 });
         }
+
+        await ensureAssessmentLeadSaved({
+            session: body.session,
+            assessmentType: "self-assessment",
+            assessmentTitle: `${body.session.isoStandard} Self Assessment`,
+            pagePath: "/iso-14001-2026-self-assessment-tool",
+        }).catch((error) => console.error("Self assessment lead backup save failed:", error));
 
         const data = buildSelfReportData(body.session, body.clauses);
         const filename = selfReportFileName(data, body.format);

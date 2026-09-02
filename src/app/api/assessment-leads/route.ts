@@ -110,6 +110,15 @@ export async function POST(request: Request) {
         };
 
         const result = await addAssessmentLead(lead);
+        if (process.env.VERCEL && !result.saved) {
+            return NextResponse.json(
+                {
+                    error:
+                        "We could not save your details right now. Please check Google Sheets / GitHub admin settings and try again.",
+                },
+                { status: 503 }
+            );
+        }
         return NextResponse.json({ ok: true, lead: result.lead });
     } catch (error) {
         const message = error instanceof Error ? error.message : "Unable to save your details.";

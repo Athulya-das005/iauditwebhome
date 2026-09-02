@@ -1,6 +1,13 @@
 import { promises as fs } from "fs";
 import path from "path";
 import type { AssessmentLead } from "@/types/assessment-lead";
+import { isGoogleSheetsConfigured } from "@/lib/google-sheets";
+import {
+    appendAssessmentLeadToSheet,
+    deleteAssessmentLeadFromSheet,
+    readAssessmentLeadsFromSheet,
+    updateAssessmentLeadEmailSentInSheet,
+} from "@/lib/assessment-leads-sheets";
 
 const DATA_FILE = path.join(process.cwd(), "data", "assessment-leads.json");
 const GITHUB_FILE_PATH = "data/assessment-leads.json";
@@ -96,29 +103,51 @@ async function publishToGitHub(leads: AssessmentLead[], message: string, sha?: s
     return { publishedToGitHub: true as const };
 }
 
+function sortLeads(leads: AssessmentLead[]) {
+    return [...leads].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+}
+
 export async function readAssessmentLeads(): Promise<AssessmentLead[]> {
-    if (process.env.VERCEL) {
-        const fromGitHub = await readFromGitHub();
-        if (fromGitHub) {
-            return [...fromGitHub.leads].sort(
-                (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-            );
+    if (isGoogleSheetsConfigured()) {
+        try {
+            return sortLeads(await readAssessmentLeadsFromSheet());
+        } catch (error) {
+            console.error("Assessment leads sheet read failed:", error);
         }
     }
 
-    const local = await readLocalLeads();
-    return [...local].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    if (process.env.VERCEL) {
+        const fromGitHub = await readFromGitHub();
+        if (fromGitHub) return sortLeads(fromGitHub.leads);
+        return [];
+    }
+
+    return sortLeads(await readLocalLeads());
 }
 
 export async function addAssessmentLead(lead: AssessmentLead) {
+    let savedToSheet = false;
+    let publishedToGitHub = false;
+
+    if (isGoogleSheetsConfigured()) {
+        try {
+            savedToSheet = await appendAssessmentLeadToSheet(lead);
+        } catch (error) {
+            console.error("Assessment lead sheet save failed:", error);
+        }
+    }
+
     if (process.env.VERCEL) {
+        if (savedToSheet) return { lead, saved: true, publishedToGitHub: false, savedToSheet: true };
         const existing = (await readFromGitHub()) ?? { leads: [] };
         const next = [lead, ...existing.leads];
         try {
             await publishToGitHub(next, `Add assessment lead: ${lead.email} (${lead.assessmentType})`, existing.sha);
-            return { lead, publishedToGitHub: true as const };
-        } catch {
-            return { lead, publishedToGitHub: false as const };
+            publishedToGitHub = true;
+            return { lead, saved: true, publishedToGitHub, savedToSheet: false };
+        } catch (error) {
+            console.error("Assessment lead GitHub save failed:", error);
+            return { lead, saved: false, publishedToGitHub: false, savedToSheet: false };
         }
     }
 
@@ -132,18 +161,29 @@ export async function addAssessmentLead(lead: AssessmentLead) {
         if (code !== "EROFS" && code !== "EPERM") throw error;
     }
 
-    let publishedToGitHub = false;
-    try {
-        const github = await publishToGitHub(next, `Add assessment lead: ${lead.email} (${lead.assessmentType})`);
-        publishedToGitHub = github.publishedToGitHub;
-    } catch {
-        // optional
+    if (!savedToSheet) {
+        try {
+            const github = await publishToGitHub(next, `Add assessment lead: ${lead.email} (${lead.assessmentType})`);
+            publishedToGitHub = github.publishedToGitHub;
+        } catch {
+            // optional locally
+        }
     }
 
-    return { lead, publishedToGitHub };
+    return { lead, saved: true, publishedToGitHub, savedToSheet };
 }
 
 export async function deleteAssessmentLead(id: string) {
+    if (isGoogleSheetsConfigured()) {
+        try {
+            await deleteAssessmentLeadFromSheet(id);
+            return;
+        } catch (error) {
+            console.error("Assessment lead sheet delete failed:", error);
+            if (process.env.VERCEL) throw new Error("Unable to delete lead.");
+        }
+    }
+
     const existing = process.env.VERCEL ? ((await readFromGitHub()) ?? { leads: [] }) : { leads: await readLocalLeads(), sha: undefined };
     const next = existing.leads.filter((lead) => lead.id !== id);
     if (next.length === existing.leads.length) throw new Error("Lead not found.");
@@ -160,12 +200,21 @@ export async function deleteAssessmentLead(id: string) {
     try {
         await publishToGitHub(next, `Delete assessment lead ${id}`, existing.sha);
     } catch {
-        // optional locally
         if (process.env.VERCEL) throw new Error("Unable to delete lead.");
     }
 }
 
 export async function setAssessmentLeadEmailSent(id: string, emailSent: boolean) {
+    if (isGoogleSheetsConfigured()) {
+        try {
+            const lead = await updateAssessmentLeadEmailSentInSheet(id, emailSent);
+            if (lead) return { lead };
+        } catch (error) {
+            console.error("Assessment lead sheet update failed:", error);
+            if (process.env.VERCEL) throw new Error("Unable to update lead.");
+        }
+    }
+
     const emailSentAt = emailSent ? new Date().toISOString() : null;
     const existing = process.env.VERCEL ? ((await readFromGitHub()) ?? { leads: [] }) : { leads: await readLocalLeads(), sha: undefined };
     const index = existing.leads.findIndex((lead) => lead.id === id);
@@ -193,4 +242,59 @@ export async function setAssessmentLeadEmailSent(id: string, emailSent: boolean)
     }
 
     return { lead: next.find((lead) => lead.id === id)! };
+}
+
+export async function ensureAssessmentLeadSaved(input: {
+    session: {
+        firstName?: string;
+        lastName?: string;
+        email: string;
+        organisation?: string;
+        industry?: string;
+        organisationSize?: string;
+        department?: string;
+        existingCustomer?: string;
+        isoStandard?: string;
+        auditScope?: string;
+        emailOptIn?: boolean;
+    };
+    assessmentType: AssessmentLead["assessmentType"];
+    assessmentTitle: string;
+    pagePath: string;
+}) {
+    const email = input.session.email.trim().toLowerCase();
+    if (!email) return;
+
+    const existing = await readAssessmentLeads();
+    const recent = existing.find(
+        (lead) =>
+            lead.email === email &&
+            lead.assessmentType === input.assessmentType &&
+            Date.now() - new Date(lead.createdAt).getTime() < 24 * 60 * 60 * 1000
+    );
+    if (recent) return;
+
+    const firstName = input.session.firstName?.trim() ?? "";
+    const lastName = input.session.lastName?.trim() ?? "";
+    const lead: AssessmentLead = {
+        id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+        createdAt: new Date().toISOString(),
+        assessmentType: input.assessmentType,
+        assessmentTitle: input.assessmentTitle,
+        pagePath: input.pagePath,
+        fullName: `${firstName} ${lastName}`.trim() || email.split("@")[0],
+        firstName,
+        lastName,
+        email,
+        company: input.session.organisation?.trim() ?? "",
+        industry: input.session.industry?.trim() ?? "",
+        organisationSize: input.session.organisationSize?.trim() ?? "",
+        department: input.session.department?.trim() ?? "",
+        existingCustomer: input.session.existingCustomer?.trim() ?? "",
+        isoStandard: input.session.isoStandard?.trim() ?? "",
+        auditScope: input.session.auditScope?.trim() ?? "",
+        emailOptIn: Boolean(input.session.emailOptIn),
+    };
+
+    await addAssessmentLead(lead);
 }
