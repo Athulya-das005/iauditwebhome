@@ -90,31 +90,35 @@ export async function buildSelfDocx(data: SelfReportData) {
     }
 
     const fullName = `${data.session.firstName} ${data.session.lastName}`.trim();
-    const details = [
-        ["Name", fullName],
-        ["Email", data.session.email],
-        ["Organisation", data.session.organisation],
-        ["Industry", data.session.industry],
-        ["Organisation size", data.session.organisationSize],
-        ["Department", data.session.department],
-        ["ISO standard", data.session.isoStandard],
-        ["Audit scope", data.session.auditScope],
-        ["Assessment date", data.auditDate],
-        ["Existing customer", data.session.existingCustomer],
+    const detailsRows: [string, string][][] = [
+        [
+            ["Name", fullName],
+            ["Email", data.session.email],
+        ],
+        [
+            ["Organisation", data.session.organisation],
+            ["Industry", data.session.industry],
+        ],
+        [
+            ["Department", data.session.department],
+            ["ISO standard", data.session.isoStandard],
+        ],
+        [
+            ["Audit scope", data.session.auditScope],
+            ["Assessment date", data.auditDate],
+        ],
     ];
-    const detailRows: TableRow[] = [];
-    for (let index = 0; index < details.length; index += 2) {
-        const left = details[index];
-        const right = details[index + 1];
-        detailRows.push(
+    const labelWidth = 1400;
+    const valueWidth = 3280;
+    const detailRows: TableRow[] = detailsRows.map(
+        (row) =>
             new TableRow({
-                children: [
-                    cell(`${left[0]}\n${left[1] || "—"}`, { fill: "F0FDF4" }),
-                    right ? cell(`${right[0]}\n${right[1] || "—"}`, { fill: "F0FDF4" }) : cell("", { fill: "F0FDF4" }),
-                ],
+                children: row.flatMap(([label, value]) => [
+                    cell(label, { bold: true, fill: "F0FDF4", color: "6B7280", width: labelWidth }),
+                    cell(value || "—", { fill: "F0FDF4", width: valueWidth }),
+                ]),
             })
-        );
-    }
+    );
 
     children.push(
         new Paragraph({ text: "Assessment Details", heading: HeadingLevel.HEADING_2 }),
