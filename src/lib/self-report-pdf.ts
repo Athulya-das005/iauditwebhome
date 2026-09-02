@@ -145,42 +145,84 @@ export async function buildSelfPdf(data: SelfReportData) {
     }
 
     const fullName = `${data.session.firstName} ${data.session.lastName}`.trim();
-    const details = [
-        ["Name", fullName],
-        ["Email", data.session.email],
-        ["Organisation", data.session.organisation],
-        ["Industry", data.session.industry],
-        ["Organisation size", data.session.organisationSize],
-        ["Department", data.session.department],
-        ["ISO standard", data.session.isoStandard],
-        ["Audit scope", data.session.auditScope],
-        ["Assessment date", data.auditDate],
-        ["Existing customer", data.session.existingCustomer],
+    const detailsRows: [string, string][][] = [
+        [
+            ["Name", fullName],
+            ["Email", data.session.email],
+        ],
+        [
+            ["Organisation", data.session.organisation],
+            ["Industry", data.session.industry],
+        ],
+        [
+            ["Department", data.session.department],
+            ["ISO standard", data.session.isoStandard],
+        ],
+        [
+            ["Audit scope", data.session.auditScope],
+            ["Assessment date", data.auditDate],
+        ],
     ];
-    const detailsBoxHeight = 166;
-    ensure(detailsBoxHeight + 18);
+
+    page.drawText("Assessment Details", { x: margin, y: y, size: 12, font: bold, color: GREEN });
+    y -= 18;
+
+    const boxWidth = 511;
+    const halfWidth = boxWidth / 2;
+    const rowHeight = 26;
+    const padTop = 12;
+    const padBottom = 12;
+    const detailsBoxHeight = padTop + detailsRows.length * rowHeight + padBottom;
+    ensure(detailsBoxHeight + 12);
     const detailsTop = y;
+    const detailsBottom = detailsTop - detailsBoxHeight;
+
     page.drawRectangle({
         x: margin,
-        y: detailsTop - detailsBoxHeight,
-        width: 511,
+        y: detailsBottom,
+        width: boxWidth,
         height: detailsBoxHeight,
         color: FILL,
         borderColor: GREEN,
         borderWidth: 0.8,
     });
-    page.drawText("Assessment Details", { x: margin + 14, y: detailsTop - 20, size: 12, font: bold, color: GREEN });
-    const detailsRowY = detailsTop - 42;
-    const detailsColumnWidth = 255.5;
-    details.forEach(([label, value], index) => {
-        const column = index % 2;
-        const row = Math.floor(index / 2);
-        const x = margin + column * detailsColumnWidth + 14;
-        const rowY = detailsRowY - row * 25;
-        page.drawText(label, { x, y: rowY, size: 7, font: bold, color: MUTED });
-        page.drawText(pdfSafeText(value || "-").slice(0, 36), { x, y: rowY - 10, size: 9, font: regular, color: TEXT });
+
+    const midX = margin + halfWidth;
+    page.drawLine({
+        start: { x: midX, y: detailsBottom },
+        end: { x: midX, y: detailsTop },
+        thickness: 0.6,
+        color: LINE,
     });
-    y = detailsTop - detailsBoxHeight - 18;
+
+    detailsRows.forEach((row, rowIndex) => {
+        const rowTop = detailsTop - padTop - rowIndex * rowHeight;
+        const rowBottom = rowTop - rowHeight;
+        if (rowIndex < detailsRows.length - 1) {
+            page.drawLine({
+                start: { x: margin, y: rowBottom },
+                end: { x: margin + boxWidth, y: rowBottom },
+                thickness: 0.5,
+                color: LINE,
+            });
+        }
+
+        row.forEach(([label, value], columnIndex) => {
+            const labelX = margin + columnIndex * halfWidth + 14;
+            const valueX = margin + columnIndex * halfWidth + halfWidth * 0.38;
+            const rowY = rowTop - 10;
+            page.drawText(label, { x: labelX, y: rowY, size: 7, font: bold, color: MUTED });
+            page.drawText(pdfSafeText(value || "-").slice(0, 32), { x: valueX, y: rowY, size: 9, font: regular, color: TEXT });
+            page.drawLine({
+                start: { x: margin + columnIndex * halfWidth + halfWidth * 0.34, y: rowBottom + 4 },
+                end: { x: margin + columnIndex * halfWidth + halfWidth * 0.34, y: rowTop - 2 },
+                thickness: 0.4,
+                color: LINE,
+            });
+        });
+    });
+
+    y = detailsBottom - 18;
 
     const tone = maturityTone(data.maturity.stage);
     const stageColor = hexToRgb(tone.accent);
