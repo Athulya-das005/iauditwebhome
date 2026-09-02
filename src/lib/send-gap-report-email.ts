@@ -256,7 +256,7 @@ export async function sendGapReportEmail(options: {
     const provider = resolveReportMailProvider();
     try {
         if (provider === "smtp") {
-            await sendWithSmtp({ ...options, idempotencyKey: dedupeKey });
+            await sendWithSmtp(options);
             return;
         }
         if (provider === "resend") {
