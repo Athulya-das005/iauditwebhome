@@ -13,6 +13,17 @@ export type BlogPost = {
 /** Single source of truth for the /blog listing. Add new posts here when published. */
 export const blogPosts: BlogPost[] = [
     {
+        slug: "what-has-changed-in-iso-14001-2026",
+        title: "What Has Changed in ISO 14001:2026? Key Changes Explained",
+        excerpt:
+            "Key changes from ISO 14001:2015 — climate change, biodiversity, lifecycle thinking, change management and what to do next for transition.",
+        datePublished: "2026-09-02",
+        readTime: "12 Min Read",
+        image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=700&fit=crop&q=80&fm=webp",
+        author: "Mathew Chiweda",
+        categories: ["ISO 14001", "Compliance"],
+    },
+    {
         slug: "how-to-maintain-an-iso-9001-risk-register",
         title: "How to Maintain an ISO 9001 Risk Register",
         excerpt:
@@ -530,7 +541,11 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
             {
                 id: "iso-14001-2026",
                 label: "ISO 14001:2026",
-                slugs: ["iso-14001-2026-update", "iso-14001-2026-requirements-for-manufacturing-industry"],
+                slugs: [
+                    "what-has-changed-in-iso-14001-2026",
+                    "iso-14001-2026-update",
+                    "iso-14001-2026-requirements-for-manufacturing-industry",
+                ],
             },
             {
                 id: "environmental-auditing",
@@ -541,6 +556,7 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
                 id: "environmental-compliance",
                 label: "Environmental Compliance",
                 slugs: [
+                    "what-has-changed-in-iso-14001-2026",
                     "manage-environmental-permits-across-multiple-manufacturing-sites",
                     "iso-14001-2026-requirements-for-manufacturing-industry",
                 ],
