@@ -1,8 +1,13 @@
 import { google } from "googleapis";
-import type { AssessmentLead } from "@/types/assessment-lead";
+import type { AssessmentLead, AssessmentType } from "@/types/assessment-lead";
 import { isGoogleSheetsConfigured, googleSheetsNotConfiguredMessage } from "@/lib/google-sheets";
 
-const DEFAULT_SPREADSHEET_ID = "1Dsm6MJ0sESNThyKpRBhZn_Nsyw2CSKK91UN6HET6_p4";
+/** Dedicated spreadsheet for assessment leads (separate from contact form sheet). */
+const DEFAULT_ASSESSMENT_SPREADSHEET_ID = "1J4VSaNrjbN0KnanRPd3irRqc6EDRWisn0_Fj2nWJnHc";
+
+/** Preferred tab titles — matched with trim against live sheet tab names. */
+const DEFAULT_SELF_ASSESSMENT_TAB = "Self Accessment";
+const DEFAULT_GAP_ANALYSIS_TAB = "Gap Analysis";
 
 const HEADERS = [
     "ID",
@@ -25,12 +30,28 @@ const HEADERS = [
     "Email Sent At",
 ];
 
-function getSpreadsheetId() {
-    return process.env.GOOGLE_SHEETS_SPREADSHEET_ID?.trim() || DEFAULT_SPREADSHEET_ID;
+function getAssessmentSpreadsheetId() {
+    return (
+        process.env.GOOGLE_SHEETS_ASSESSMENT_SPREADSHEET_ID?.trim() ||
+        DEFAULT_ASSESSMENT_SPREADSHEET_ID
+    );
 }
 
-function getTabName() {
-    return process.env.GOOGLE_SHEETS_ASSESSMENT_LEADS_TAB_NAME?.trim() || "Assessment Leads";
+function getSelfAssessmentTabName() {
+    return process.env.GOOGLE_SHEETS_SELF_ASSESSMENT_TAB_NAME?.trim() || DEFAULT_SELF_ASSESSMENT_TAB;
+}
+
+function getGapAnalysisTabName() {
+    return process.env.GOOGLE_SHEETS_GAP_ANALYSIS_TAB_NAME?.trim() || DEFAULT_GAP_ANALYSIS_TAB;
+}
+
+function getPreferredTabName(assessmentType: AssessmentType) {
+    return assessmentType === "gap-analysis" ? getGapAnalysisTabName() : getSelfAssessmentTabName();
+}
+
+function quoteSheetRange(tabName: string, a1: string) {
+    const escaped = tabName.replace(/'/g, "''");
+    return `'${escaped}'!${a1}`;
 }
 
 function getCredentials() {
@@ -87,12 +108,18 @@ function leadToRow(lead: AssessmentLead) {
     ];
 }
 
-function rowToLead(row: string[]): AssessmentLead | null {
+function rowToLead(row: string[], fallbackType?: AssessmentType): AssessmentLead | null {
     if (!row[0]?.trim()) return null;
+    const typeFromRow =
+        row[2] === "gap-analysis"
+            ? "gap-analysis"
+            : row[2] === "self-assessment"
+              ? "self-assessment"
+              : null;
     return {
         id: row[0],
         createdAt: row[1] || new Date().toISOString(),
-        assessmentType: row[2] === "gap-analysis" ? "gap-analysis" : "self-assessment",
+        assessmentType: typeFromRow ?? fallbackType ?? "self-assessment",
         assessmentTitle: row[3] || "",
         pagePath: row[4] || "",
         fullName: row[5] || "",
@@ -111,16 +138,47 @@ function rowToLead(row: string[]): AssessmentLead | null {
     };
 }
 
-async function ensureTabAndHeaders(sheets: ReturnType<typeof google.sheets>, spreadsheetId: string, tabName: string) {
+async function listSheetTitles(sheets: ReturnType<typeof google.sheets>, spreadsheetId: string) {
     const meta = await sheets.spreadsheets.get({ spreadsheetId });
-    const existing = meta.data.sheets?.find((sheet) => sheet.properties?.title === tabName);
-    if (!existing) {
+    return (meta.data.sheets ?? [])
+        .map((sheet) => ({
+            title: sheet.properties?.title ?? "",
+            sheetId: sheet.properties?.sheetId,
+        }))
+        .filter((sheet) => sheet.title);
+}
+
+/** Resolve preferred name to the exact live tab title (handles trailing spaces). */
+function resolveExactTabTitle(
+    titles: { title: string; sheetId?: number | null }[],
+    preferredName: string
+) {
+    const preferred = preferredName.trim().toLowerCase();
+    const exact = titles.find((t) => t.title === preferredName);
+    if (exact) return exact.title;
+    const trimmed = titles.find((t) => t.title.trim().toLowerCase() === preferred);
+    if (trimmed) return trimmed.title;
+    return null;
+}
+
+async function ensureTabAndHeaders(
+    sheets: ReturnType<typeof google.sheets>,
+    spreadsheetId: string,
+    preferredTabName: string
+) {
+    let titles = await listSheetTitles(sheets, spreadsheetId);
+    let exactTitle = resolveExactTabTitle(titles, preferredTabName);
+
+    if (!exactTitle) {
         await sheets.spreadsheets.batchUpdate({
             spreadsheetId,
-            requestBody: { requests: [{ addSheet: { properties: { title: tabName } } }] },
+            requestBody: { requests: [{ addSheet: { properties: { title: preferredTabName } } }] },
         });
+        titles = await listSheetTitles(sheets, spreadsheetId);
+        exactTitle = resolveExactTabTitle(titles, preferredTabName) ?? preferredTabName;
     }
-    const headerRange = `'${tabName}'!A1:R1`;
+
+    const headerRange = quoteSheetRange(exactTitle, "A1:R1");
     const headerRes = await sheets.spreadsheets.values.get({ spreadsheetId, range: headerRange });
     if (!headerRes.data.values?.[0]?.[0]) {
         await sheets.spreadsheets.values.update({
@@ -130,32 +188,88 @@ async function ensureTabAndHeaders(sheets: ReturnType<typeof google.sheets>, spr
             requestBody: { values: [HEADERS] },
         });
     }
+
+    return exactTitle;
+}
+
+async function readLeadsFromTab(
+    sheets: ReturnType<typeof google.sheets>,
+    spreadsheetId: string,
+    preferredTabName: string,
+    fallbackType: AssessmentType
+): Promise<AssessmentLead[]> {
+    const tabName = await ensureTabAndHeaders(sheets, spreadsheetId, preferredTabName);
+    const res = await sheets.spreadsheets.values.get({
+        spreadsheetId,
+        range: quoteSheetRange(tabName, "A2:R"),
+    });
+    const rows = res.data.values ?? [];
+    return rows
+        .map((row) => rowToLead(row as string[], fallbackType))
+        .filter((lead): lead is AssessmentLead => Boolean(lead));
+}
+
+async function findLeadRow(
+    sheets: ReturnType<typeof google.sheets>,
+    spreadsheetId: string,
+    id: string
+): Promise<{ tabName: string; rowIndex: number; lead: AssessmentLead } | null> {
+    for (const [preferred, fallbackType] of [
+        [getSelfAssessmentTabName(), "self-assessment"],
+        [getGapAnalysisTabName(), "gap-analysis"],
+    ] as const) {
+        const tabName = await ensureTabAndHeaders(sheets, spreadsheetId, preferred);
+        const res = await sheets.spreadsheets.values.get({
+            spreadsheetId,
+            range: quoteSheetRange(tabName, "A2:R"),
+        });
+        const rows = res.data.values ?? [];
+        const rowIndex = rows.findIndex((row) => row[0] === id);
+        if (rowIndex === -1) continue;
+        const lead = rowToLead(rows[rowIndex] as string[], fallbackType);
+        if (!lead) continue;
+        return { tabName, rowIndex, lead };
+    }
+    return null;
+}
+
+async function getNumericSheetId(
+    sheets: ReturnType<typeof google.sheets>,
+    spreadsheetId: string,
+    tabName: string
+) {
+    const titles = await listSheetTitles(sheets, spreadsheetId);
+    const match = titles.find((t) => t.title === tabName || t.title.trim() === tabName.trim());
+    if (match?.sheetId === undefined || match?.sheetId === null) {
+        throw new Error(`Sheet tab "${tabName}" not found.`);
+    }
+    return match.sheetId;
 }
 
 export async function readAssessmentLeadsFromSheet(): Promise<AssessmentLead[]> {
     if (!isGoogleSheetsConfigured()) return [];
     const sheets = getSheetsClient();
-    const spreadsheetId = getSpreadsheetId();
-    const tabName = getTabName();
-    await ensureTabAndHeaders(sheets, spreadsheetId, tabName);
-    const range = `'${tabName}'!A2:R`;
-    const res = await sheets.spreadsheets.values.get({ spreadsheetId, range });
-    const rows = res.data.values ?? [];
-    return rows
-        .map((row) => rowToLead(row as string[]))
-        .filter((lead): lead is AssessmentLead => Boolean(lead))
-        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    const spreadsheetId = getAssessmentSpreadsheetId();
+
+    const [selfLeads, gapLeads] = await Promise.all([
+        readLeadsFromTab(sheets, spreadsheetId, getSelfAssessmentTabName(), "self-assessment"),
+        readLeadsFromTab(sheets, spreadsheetId, getGapAnalysisTabName(), "gap-analysis"),
+    ]);
+
+    return [...selfLeads, ...gapLeads].sort(
+        (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
 }
 
 export async function appendAssessmentLeadToSheet(lead: AssessmentLead) {
     if (!isGoogleSheetsConfigured()) return false;
     const sheets = getSheetsClient();
-    const spreadsheetId = getSpreadsheetId();
-    const tabName = getTabName();
-    await ensureTabAndHeaders(sheets, spreadsheetId, tabName);
+    const spreadsheetId = getAssessmentSpreadsheetId();
+    const preferred = getPreferredTabName(lead.assessmentType);
+    const tabName = await ensureTabAndHeaders(sheets, spreadsheetId, preferred);
     await sheets.spreadsheets.values.append({
         spreadsheetId,
-        range: `'${tabName}'!A:R`,
+        range: quoteSheetRange(tabName, "A:R"),
         valueInputOption: "USER_ENTERED",
         insertDataOption: "INSERT_ROWS",
         requestBody: { values: [leadToRow(lead)] },
@@ -163,45 +277,32 @@ export async function appendAssessmentLeadToSheet(lead: AssessmentLead) {
     return true;
 }
 
-async function getSheetId(sheets: ReturnType<typeof google.sheets>, spreadsheetId: string, tabName: string) {
-    const meta = await sheets.spreadsheets.get({ spreadsheetId });
-    const sheet = meta.data.sheets?.find((item) => item.properties?.title === tabName);
-    if (sheet?.properties?.sheetId === undefined || sheet?.properties?.sheetId === null) {
-        throw new Error(`Sheet tab "${tabName}" not found.`);
-    }
-    return sheet.properties.sheetId;
-}
-
 export async function updateAssessmentLeadEmailSentInSheet(id: string, emailSent: boolean) {
     if (!isGoogleSheetsConfigured()) return null;
     const sheets = getSheetsClient();
-    const spreadsheetId = getSpreadsheetId();
-    const tabName = getTabName();
-    const leads = await readAssessmentLeadsFromSheet();
-    const index = leads.findIndex((lead) => lead.id === id);
-    if (index === -1) throw new Error("Lead not found.");
+    const spreadsheetId = getAssessmentSpreadsheetId();
+    const found = await findLeadRow(sheets, spreadsheetId, id);
+    if (!found) throw new Error("Lead not found.");
+
     const emailSentAt = emailSent ? new Date().toISOString() : "";
-    const rowNumber = index + 2;
+    const rowNumber = found.rowIndex + 2;
     await sheets.spreadsheets.values.update({
         spreadsheetId,
-        range: `'${tabName}'!R${rowNumber}`,
+        range: quoteSheetRange(found.tabName, `R${rowNumber}`),
         valueInputOption: "USER_ENTERED",
         requestBody: { values: [[emailSentAt]] },
     });
-    return { ...leads[index], emailSentAt: emailSent ? emailSentAt : null };
+    return { ...found.lead, emailSentAt: emailSent ? emailSentAt : null };
 }
 
 export async function deleteAssessmentLeadFromSheet(id: string) {
     if (!isGoogleSheetsConfigured()) return false;
     const sheets = getSheetsClient();
-    const spreadsheetId = getSpreadsheetId();
-    const tabName = getTabName();
-    const range = `'${tabName}'!A2:A`;
-    const res = await sheets.spreadsheets.values.get({ spreadsheetId, range });
-    const rows = res.data.values ?? [];
-    const rowIndex = rows.findIndex((row) => row[0] === id);
-    if (rowIndex === -1) throw new Error("Lead not found.");
-    const sheetId = await getSheetId(sheets, spreadsheetId, tabName);
+    const spreadsheetId = getAssessmentSpreadsheetId();
+    const found = await findLeadRow(sheets, spreadsheetId, id);
+    if (!found) throw new Error("Lead not found.");
+
+    const sheetId = await getNumericSheetId(sheets, spreadsheetId, found.tabName);
     await sheets.spreadsheets.batchUpdate({
         spreadsheetId,
         requestBody: {
@@ -211,8 +312,8 @@ export async function deleteAssessmentLeadFromSheet(id: string) {
                         range: {
                             sheetId,
                             dimension: "ROWS",
-                            startIndex: rowIndex + 1,
-                            endIndex: rowIndex + 2,
+                            startIndex: found.rowIndex + 1,
+                            endIndex: found.rowIndex + 2,
                         },
                     },
                 },
@@ -220,4 +321,12 @@ export async function deleteAssessmentLeadFromSheet(id: string) {
         },
     });
     return true;
+}
+
+export function getAssessmentSheetsConfig() {
+    return {
+        spreadsheetId: getAssessmentSpreadsheetId(),
+        selfAssessmentTab: getSelfAssessmentTabName(),
+        gapAnalysisTab: getGapAnalysisTabName(),
+    };
 }
