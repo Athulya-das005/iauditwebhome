@@ -5,34 +5,15 @@ import Script from "next/script";
 /**
  * Analytics Component
  *
- * Centralizes website analytics (except Microsoft Clarity, which is in layout <head>):
- * - Google Analytics (gtag.js)
+ * Centralizes website analytics (except GTM, Google Ads gtag, and Clarity in layout <head>):
  * - Facebook Pixel
  * - LinkedIn Insight Tag
  */
 export default function Analytics() {
-    const gaId = process.env.NEXT_PUBLIC_GA_ID;
     const fbPixelId = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
 
     return (
         <>
-            {gaId && (
-                <>
-                    <Script
-                        src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-                        strategy="afterInteractive"
-                    />
-                    <Script id="google-analytics" strategy="afterInteractive">
-                        {`
-                            window.dataLayer = window.dataLayer || [];
-                            function gtag(){dataLayer.push(arguments);}
-                            gtag('js', new Date());
-                            gtag('config', '${gaId}');
-                        `}
-                    </Script>
-                </>
-            )}
-
             {fbPixelId && (
                 <>
                     <Script id="facebook-pixel" strategy="afterInteractive">

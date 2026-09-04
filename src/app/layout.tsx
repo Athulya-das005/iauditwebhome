@@ -26,7 +26,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Google Tag Manager — as high in <head> as possible */}
+        {/* Google tag (gtag.js) — Google Ads AW-17863252154 */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17863252154" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-17863252154');
+            `.trim(),
+          }}
+        />
+        {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
