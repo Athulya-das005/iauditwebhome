@@ -505,13 +505,13 @@ export default function SecurityPracticesContent() {
                         {/* On mobile: badge centred at top, text below */}
                         {isMobile && (
                             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem", marginBottom: "1.75rem" }}>
-                                <div style={{ borderRadius: "50%", overflow: "hidden", width: "120px", height: "120px", boxShadow: "0 8px 32px rgba(0,0,0,0.35)" }}>
+                                <div style={{ width: "120px", height: "120px" }}>
                                     <Image
                                         src="/ico-logo.jpg"
                                         alt="ICO — Information Commissioner's Office registration badge"
                                         width={120}
                                         height={120}
-                                        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                                        style={{ width: "100%", height: "auto", display: "block" }}
                                     />
                                 </div>
                                 <div style={{ textAlign: "center", fontSize: "0.7rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.4 }}>
@@ -654,11 +654,7 @@ export default function SecurityPracticesContent() {
                                 >
                                     <div
                                         style={{
-                                            borderRadius: "50%",
-                                            overflow: "hidden",
                                             width: "160px",
-                                            height: "160px",
-                                            boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
                                         }}
                                     >
                                         <Image
@@ -666,7 +662,7 @@ export default function SecurityPracticesContent() {
                                             alt="ICO — Information Commissioner's Office registration badge"
                                             width={160}
                                             height={160}
-                                            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                                            style={{ width: "100%", height: "auto", display: "block" }}
                                         />
                                     </div>
                                     <div
