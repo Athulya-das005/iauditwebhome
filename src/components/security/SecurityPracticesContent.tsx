@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { PP_NEUE_MONTREAL } from "@/constants/typography";
 import SecurityPageHero, { SECURITY_HERO_IMAGES } from "@/components/security/SecurityPageHero";
 
@@ -502,19 +502,21 @@ export default function SecurityPracticesContent() {
                             color: "#fff",
                         }}
                     >
-                        {/* On mobile: badge on top centred, then text below */}
+                        {/* On mobile: badge centred at top, text below */}
                         {isMobile && (
-                            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.6rem", marginBottom: "1.75rem" }}>
-                                <Image
-                                    src="/ico-badge.jpg"
-                                    alt="ICO — Information Commissioner's Office badge"
-                                    width={130}
-                                    height={130}
-                                    style={{ borderRadius: "50%", display: "block" }}
-                                />
-                                <div style={{ textAlign: "center", fontSize: "0.7rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.4 }}>
+                            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem", marginBottom: "1.75rem" }}>
+                                <div style={{ borderRadius: "50%", overflow: "hidden", width: "120px", height: "120px", boxShadow: "0 8px 32px rgba(0,0,0,0.35)" }}>
+                                    <Image
+                                        src="/ico-logo.jpg"
+                                        alt="ICO — Information Commissioner's Office registration badge"
+                                        width={120}
+                                        height={120}
+                                        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                                    />
+                                </div>
+                                <div style={{ textAlign: "center", fontSize: "0.7rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.4 }}>
                                     <div>Registered under UK GDPR</div>
-                                    <div style={{ fontWeight: 600, color: "rgba(255,255,255,0.7)", marginTop: "0.15rem" }}>Ref: ZB910189</div>
+                                    <div style={{ fontWeight: 600, color: "rgba(255,255,255,0.75)", marginTop: "0.15rem" }}>Ref: ZB910189</div>
                                 </div>
                             </div>
                         )}
@@ -563,7 +565,7 @@ export default function SecurityPracticesContent() {
 
                                 <p
                                     style={{
-                                        fontSize: "0.95rem",
+                                        fontSize: "0.97rem",
                                         lineHeight: 1.75,
                                         color: "#d1d5db",
                                         margin: "0 0 1.5rem",
@@ -639,7 +641,7 @@ export default function SecurityPracticesContent() {
                                 </a>
                             </div>
 
-                            {/* Right: ICO badge — desktop only (mobile shown above) */}
+                            {/* Right: ICO badge — desktop only */}
                             {!isMobile && (
                                 <div
                                     style={{
@@ -650,23 +652,33 @@ export default function SecurityPracticesContent() {
                                         flexShrink: 0,
                                     }}
                                 >
-                                    <Image
-                                        src="/ico-badge.jpg"
-                                        alt="ICO — Information Commissioner's Office badge"
-                                        width={160}
-                                        height={160}
-                                        style={{ borderRadius: "50%", display: "block" }}
-                                    />
+                                    <div
+                                        style={{
+                                            borderRadius: "50%",
+                                            overflow: "hidden",
+                                            width: "160px",
+                                            height: "160px",
+                                            boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
+                                        }}
+                                    >
+                                        <Image
+                                            src="/ico-logo.jpg"
+                                            alt="ICO — Information Commissioner's Office registration badge"
+                                            width={160}
+                                            height={160}
+                                            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                                        />
+                                    </div>
                                     <div
                                         style={{
                                             textAlign: "center",
                                             fontSize: "0.7rem",
-                                            color: "rgba(255,255,255,0.5)",
+                                            color: "rgba(255,255,255,0.55)",
                                             lineHeight: 1.4,
                                         }}
                                     >
                                         <div>Registered under UK GDPR</div>
-                                        <div style={{ fontWeight: 600, color: "rgba(255,255,255,0.7)", marginTop: "0.15rem" }}>Ref: ZB910189</div>
+                                        <div style={{ fontWeight: 600, color: "rgba(255,255,255,0.75)", marginTop: "0.15rem" }}>Ref: ZB910189</div>
                                     </div>
                                 </div>
                             )}
