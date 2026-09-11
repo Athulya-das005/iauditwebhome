@@ -4,11 +4,6 @@
       "source": "/.well-known/security",
       "destination": "/.well-known/security.txt",
       "permanent": true
-    },
-    {
-      "source": "/security",
-      "destination": "/.well-known/security.txt",
-      "permanent": true
     }
   ],
   "headers": [
