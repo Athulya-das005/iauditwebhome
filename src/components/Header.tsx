@@ -157,7 +157,7 @@ export default function Header() {
                     items: [
                         { label: "About Us", href: "/about" },
                         { label: "Built by Auditors", href: "/audit-management-software-built-by-auditors" },
-                        { label: "Trust & Security", href: "/security" },
+                        { label: "Trust & Security", href: "/trust-and-security" },
                         { label: "Contact", href: "/contact" },
                     ],
                 },

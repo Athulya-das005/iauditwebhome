@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import SecurityPracticesContent from "@/components/security/SecurityPracticesContent";
 import Footer from "@/components/Footer";
 
-const pageUrl = "https://www.iaudit.global/security";
+const pageUrl = "https://www.iaudit.global/trust-and-security";
 
 export const metadata: Metadata = {
     title: "Trust & Security | Security Practices | iAudit Global",
@@ -21,6 +21,7 @@ export const metadata: Metadata = {
         "access control",
         "UK GDPR",
         "ZB910189",
+        "trust and security",
     ],
     alternates: {
         canonical: pageUrl,
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
     },
 };
 
-export default function SecurityPracticesPage() {
+export default function TrustAndSecurityPage() {
     return (
         <>
             <SecurityPracticesContent />
