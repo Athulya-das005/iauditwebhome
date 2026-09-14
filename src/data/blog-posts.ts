@@ -13,6 +13,17 @@ export type BlogPost = {
 /** Single source of truth for the /blog listing. Add new posts here when published. */
 export const blogPosts: BlogPost[] = [
     {
+        slug: "iso-14001-2026-gap-analysis",
+        title: "ISO 14001:2026 Gap Analysis: Identify & Close Gaps",
+        excerpt:
+            "How to conduct an ISO 14001:2026 gap analysis, identify compliance gaps, prioritise actions and prepare your EMS for transition.",
+        datePublished: "2026-09-14",
+        readTime: "11 Min Read",
+        image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&h=700&fit=crop&q=80&fm=webp",
+        author: "Mathew Chiweda",
+        categories: ["ISO 14001", "Compliance"],
+    },
+    {
         slug: "what-has-changed-in-iso-14001-2026",
         title: "What Has Changed in ISO 14001:2026? Key Changes Explained",
         excerpt:
@@ -542,6 +553,7 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
                 id: "iso-14001-2026",
                 label: "ISO 14001:2026",
                 slugs: [
+                    "iso-14001-2026-gap-analysis",
                     "what-has-changed-in-iso-14001-2026",
                     "iso-14001-2026-update",
                     "iso-14001-2026-requirements-for-manufacturing-industry",
@@ -556,6 +568,7 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
                 id: "environmental-compliance",
                 label: "Environmental Compliance",
                 slugs: [
+                    "iso-14001-2026-gap-analysis",
                     "what-has-changed-in-iso-14001-2026",
                     "manage-environmental-permits-across-multiple-manufacturing-sites",
                     "iso-14001-2026-requirements-for-manufacturing-industry",
