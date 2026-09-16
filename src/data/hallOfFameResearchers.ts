@@ -60,4 +60,16 @@ export const hallOfFameResearchers: HallOfFameResearcher[] = [
         linkedIn: "https://www.linkedin.com/company/cybrgen-limited/",
         reportCount: 1,
     },
+    {
+        id: "magdy-khalil",
+        name: "Magdy Khalil",
+        linkedIn: "https://www.linkedin.com/in/magdy-khalil/",
+        reportCount: 1,
+    },
+    {
+        id: "omkar-dalavi",
+        name: "Omkar Dalavi",
+        linkedIn: "https://www.linkedin.com/in/omkar-dalavi-3b3a1733b/",
+        reportCount: 1,
+    },
 ];
