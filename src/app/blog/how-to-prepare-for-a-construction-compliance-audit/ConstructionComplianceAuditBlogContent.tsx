@@ -151,6 +151,7 @@ export default function ConstructionComplianceAuditBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -248,8 +249,8 @@ export default function ConstructionComplianceAuditBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -360,7 +361,7 @@ export default function ConstructionComplianceAuditBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -423,7 +424,7 @@ export default function ConstructionComplianceAuditBlogContent() {
                         How to Prepare for a Construction Compliance Audit and Reduce Risk on Site
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             Preparing for a construction compliance audit is not about last-minute paperwork. It is about proving that your project controls work in practice. To stay audit-ready, centralise key documents, verify that Inspection and Test Plans are actively used on site, review nonconformities for repeat issues, and conduct internal construction site audits before the external review. A strong construction compliance audit process focuses on traceability, supervision, safety controls and corrective action effectiveness across ISO 9001, 14001 and 45001 requirements.
                         </p>
@@ -444,7 +445,7 @@ export default function ConstructionComplianceAuditBlogContent() {
                         </p>
                     </div>
 
-                    <div id="centralise" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="centralise" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>The Foundation: Centralise Your Documentation</h2>
                         <SectionImage src={sectionImages.centralise} alt="Centralised construction project documentation for compliance audits" />
                         <p style={para(font)}>
@@ -490,7 +491,7 @@ export default function ConstructionComplianceAuditBlogContent() {
                         </p>
                     </div>
 
-                    <div id="pre-audit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="pre-audit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>The Pre-Audit: Identifying the Gaps Early</h2>
                         <SectionImage src={sectionImages.preaudit} alt="Pre-audit gap analysis for construction compliance" />
                         <p style={para(font)}>
@@ -504,7 +505,7 @@ export default function ConstructionComplianceAuditBlogContent() {
                         </p>
                     </div>
 
-                    <div id="physical" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="physical" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>The Physical Site: Inspecting the Reality</h2>
                         <SectionImage src={sectionImages.physical} alt="Physical site inspection for construction compliance audit" />
                         <p style={para(font)}>
@@ -520,7 +521,7 @@ export default function ConstructionComplianceAuditBlogContent() {
                         </ul>
                     </div>
 
-                    <div id="audit-day" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="audit-day" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>The Audit Day: Professionalism and Transparency</h2>
                         <SectionImage src={sectionImages.auditday} alt="Construction compliance audit day on site" />
                         <p style={para(font)}>
@@ -534,7 +535,7 @@ export default function ConstructionComplianceAuditBlogContent() {
                         </p>
                     </div>
 
-                    <div id="post-audit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="post-audit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Post-Audit: Turning Findings into Improvement</h2>
                         <SectionImage src={sectionImages.postaudit} alt="Post-audit corrective actions and PDCA improvement in construction" />
                         <p style={para(font)}>
@@ -548,7 +549,7 @@ export default function ConstructionComplianceAuditBlogContent() {
                         </p>
                     </div>
 
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How iAudit Global Simplifies Preparation</h2>
                         <SectionImage src={sectionImages.iaudit} alt="iAudit Global audit management software for construction compliance" />
                         <p style={para(font)}>
@@ -571,7 +572,7 @@ export default function ConstructionComplianceAuditBlogContent() {
                         </p>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Stop Reacting, Start Controlling</h2>
                         <p style={para(font)}>
                             A construction compliance audit should be a routine check of a healthy system. If you follow a structured approach by organising your documentation, conducting regular internal reviews and sampling the physical reality of the site, you remove the disruption and risk.
@@ -668,7 +669,7 @@ export default function ConstructionComplianceAuditBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -805,9 +806,11 @@ export default function ConstructionComplianceAuditBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

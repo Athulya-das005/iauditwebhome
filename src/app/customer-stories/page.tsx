@@ -1,11 +1,7 @@
-import { notFound } from "next/navigation";
-
-// Customer Stories page is incomplete — keep offline until ready to launch.
-// Uncomment the block below (and remove notFound) when the page is finished.
-/*
 import type { Metadata } from "next";
 import CustomerStoriesPageContent from "@/components/customer-stories/CustomerStoriesPageContent";
 
+// WIP: route enabled for local work only. Do not add to nav/footer until launch.
 const pageUrl = "https://www.iaudit.global/customer-stories";
 
 export const metadata: Metadata = {
@@ -23,13 +19,12 @@ export const metadata: Metadata = {
         siteName: "iAudit Global",
         type: "website",
     },
+    robots: {
+        index: false,
+        follow: false,
+    },
 };
 
 export default function CustomerStoriesPage() {
     return <CustomerStoriesPageContent />;
-}
-*/
-
-export default function CustomerStoriesPage() {
-    notFound();
 }

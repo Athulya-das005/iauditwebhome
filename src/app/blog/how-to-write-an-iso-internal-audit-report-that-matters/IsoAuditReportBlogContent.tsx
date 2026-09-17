@@ -279,6 +279,7 @@ export default function IsoAuditReportBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -353,7 +354,7 @@ export default function IsoAuditReportBlogContent() {
                 </div>
             </div>
 
-            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: 0, zIndex: 40 }}>
+            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: "var(--blog-sticky-top)", zIndex: 50 }}>
                 <div style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 1.5rem", height: "50px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     <Link href="/blog" style={{ display: "inline-flex", alignItems: "center", gap: "5px", color: "#6B7280", fontSize: "0.79rem", fontWeight: 500, textDecoration: "none", letterSpacing: "0.04em", textTransform: "uppercase", fontFamily: font }}>
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -383,7 +384,7 @@ export default function IsoAuditReportBlogContent() {
 
             <div style={{ maxWidth: "1260px", margin: "0 auto", padding: isMobile ? "2rem 1.25rem" : "3rem 1.5rem 5rem", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "210px 1fr 240px", gap: isMobile ? "2rem" : "3rem", alignItems: "start" }}>
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#374151", margin: "0 0 0.625rem", fontFamily: font }}>Contents</p>
                         <div style={{ position: "relative" }}>
                             <div style={{ position: "absolute", left: "10px", top: 0, bottom: 0, width: "1px", background: "#e4e0db" }} />
@@ -406,7 +407,7 @@ export default function IsoAuditReportBlogContent() {
                         How to Write an ISO Internal Audit Report That Your Next Auditor Will Appreciate
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             Most organisations invest time planning an internal audit, interviewing people, reviewing records and gathering evidence. Then, right at the end, they rush the report.
                         </p>
@@ -419,7 +420,7 @@ export default function IsoAuditReportBlogContent() {
                         </p>
                     </div>
 
-                    <div id="what" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="what" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>What Is an ISO Internal Audit Report?</h2>
                         <SectionImage src={sectionImages.what} alt="What is an ISO internal audit report" />
                         <p style={para(font)}>
@@ -434,7 +435,7 @@ export default function IsoAuditReportBlogContent() {
                         </p>
                     </div>
 
-                    <div id="why" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="why" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Why Your Audit Report Matters More Than You Think</h2>
                         <p style={para(font)}>A good audit report is not written for the auditor. It is written for the people who need to act on its findings.</p>
                         <ul style={{ margin: "0 0 1.25rem", paddingLeft: 0, listStyle: "none" }}>
@@ -458,7 +459,7 @@ export default function IsoAuditReportBlogContent() {
                         </p>
                     </div>
 
-                    <div id="how" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="how" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How to Write an ISO Internal Audit Report</h2>
                         <SectionImage src={sectionImages.how} alt="How to write an ISO internal audit report with clear evidence" />
                         <p style={para(font)}>
@@ -559,7 +560,7 @@ export default function IsoAuditReportBlogContent() {
                         <p style={para(font)}>An audit only delivers value when improvements are implemented and verified.</p>
                     </div>
 
-                    <div id="mistakes" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="mistakes" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Common Mistakes That Make Audit Reports Less Useful</h2>
                         <p style={para(font)}>Even experienced auditors can fall into habits that reduce the value of their reports.</p>
                         {commonMistakes.map((item) => (
@@ -569,7 +570,7 @@ export default function IsoAuditReportBlogContent() {
                         ))}
                     </div>
 
-                    <div id="template" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="template" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>A Simple ISO Internal Audit Report Template</h2>
                         <p style={para(font)}>
                             If you are learning how to write an ISO internal audit report, following a consistent structure makes the process much easier.
@@ -588,11 +589,11 @@ export default function IsoAuditReportBlogContent() {
                         </p>
                     </div>
 
-                    <div id="free-template" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="free-template" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <TemplateDownloadBox isMobile={isMobile} font={font} />
                     </div>
 
-                    <div id="improvement" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="improvement" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Turning Audit Reports into Continual Improvement</h2>
                         <SectionImage src={sectionImages.improvement} alt="Turning ISO internal audit reports into continual improvement" />
                         <p style={para(font)}>
@@ -632,7 +633,7 @@ export default function IsoAuditReportBlogContent() {
                         </p>
                     </div>
 
-                    <div id="practice" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="practice" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Put Better Audit Reporting into Practice</h2>
                         <p style={para(font)}>
                             Learning how to write an ISO internal audit report is only part of the process. The real value comes from what happens after the report is written.
@@ -677,7 +678,7 @@ export default function IsoAuditReportBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div style={{ background: "#fff", borderRadius: "1.1rem", border: "1px solid #e8e4df", padding: "2rem 1.5rem", textAlign: "center" }}>
                             <div style={{ width: "90px", height: "90px", borderRadius: "50%", backgroundImage: 'url("/images/mathew-chiweda.webp")',
                                     backgroundSize: "cover",
@@ -717,6 +718,8 @@ export default function IsoAuditReportBlogContent() {
                     </div>
                 )}
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

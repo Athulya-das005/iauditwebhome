@@ -232,6 +232,7 @@ export default function Iso9001ManufacturingNcBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -329,8 +330,8 @@ export default function Iso9001ManufacturingNcBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -441,7 +442,7 @@ export default function Iso9001ManufacturingNcBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -504,7 +505,7 @@ export default function Iso9001ManufacturingNcBlogContent() {
                         Common ISO 9001 Nonconformities in Manufacturing
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             When I review internal and external audit reports from manufacturing environments, the same patterns appear again and again.
                         </p>
@@ -516,7 +517,7 @@ export default function Iso9001ManufacturingNcBlogContent() {
                         </p>
                     </div>
 
-                    <div id="why" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="why" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Why ISO 9001 Nonconformities Are Common in Manufacturing</h2>
                         <SectionImage src={sectionImages.why} alt="Why ISO 9001 nonconformities are common in manufacturing environments" />
                         <p style={para(font)}>Manufacturing operates under pressure.</p>
@@ -531,7 +532,7 @@ export default function Iso9001ManufacturingNcBlogContent() {
                         </p>
                     </div>
 
-                    <div id="common" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="common" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Common ISO 9001 Nonconformities in Manufacturing</h2>
                         <SectionImage src={sectionImages.common} alt="Common ISO 9001 nonconformities found during manufacturing audits" />
                         <p style={para(font)}>
@@ -612,7 +613,7 @@ export default function Iso9001ManufacturingNcBlogContent() {
                         ))}
                     </div>
 
-                    <div id="reappearing" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="reappearing" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Why These Nonconformities Keep Reappearing</h2>
                         <SectionImage src={sectionImages.reappearing} alt="Why ISO 9001 nonconformities keep reappearing in manufacturing audits" />
                         <p style={para(font)}>
@@ -629,7 +630,7 @@ export default function Iso9001ManufacturingNcBlogContent() {
                         </p>
                     </div>
 
-                    <div id="reduce" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="reduce" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How to Reduce ISO 9001 Nonconformities in Manufacturing</h2>
                         <SectionImage src={sectionImages.reduce} alt="How to reduce ISO 9001 nonconformities in manufacturing through structured audits" />
                         <p style={para(font)}>
@@ -667,7 +668,7 @@ export default function Iso9001ManufacturingNcBlogContent() {
                         </p>
                     </div>
 
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How iAudit Supports ISO 9001 Internal Audits in Manufacturing</h2>
                         <p style={para(font)}>
                             We built iAudit Global because we saw these exact nonconformities happening in the businesses we were auditing. We realised that spreadsheets and Word documents were part of the problem. They do not allow for the visibility or the follow-up that a modern manufacturing business needs.
@@ -790,7 +791,7 @@ export default function Iso9001ManufacturingNcBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -927,9 +928,11 @@ export default function Iso9001ManufacturingNcBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

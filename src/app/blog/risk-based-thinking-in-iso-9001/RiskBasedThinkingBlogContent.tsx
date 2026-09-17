@@ -134,6 +134,7 @@ export default function RiskBasedThinkingBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div style={{ position: "relative", width: "100%", height: isMobile ? "55vw" : "70vh", minHeight: isMobile ? "240px" : "440px", maxHeight: "700px", overflow: "hidden" }}>
                 <Image src={HERO_IMAGE} alt="Risk-based thinking in ISO 9001 quality management" fill priority sizes="100vw" style={{ objectFit: "cover", objectPosition: "center" }} />
                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0) 30%, rgba(0,0,0,0.58) 100%)" }} />
@@ -147,7 +148,7 @@ export default function RiskBasedThinkingBlogContent() {
                 </div>
             </div>
 
-            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: 0, zIndex: 40 }}>
+            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: "var(--blog-sticky-top)", zIndex: 50 }}>
                 <div style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 1.5rem", height: "50px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     <Link href="/blog" style={{ display: "inline-flex", alignItems: "center", gap: "5px", color: "#6B7280", fontSize: "0.79rem", fontWeight: 500, textDecoration: "none", letterSpacing: "0.04em", textTransform: "uppercase", fontFamily: font }}>
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
@@ -175,7 +176,7 @@ export default function RiskBasedThinkingBlogContent() {
 
             <div style={{ maxWidth: "1260px", margin: "0 auto", padding: isMobile ? "2rem 1.25rem" : "3rem 1.5rem 5rem", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "210px 1fr 240px", gap: isMobile ? "2rem" : "3rem", alignItems: "start" }}>
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#374151", margin: "0 0 0.625rem", fontFamily: font }}>Contents</p>
                         <div style={{ position: "relative" }}>
                             <div style={{ position: "absolute", left: "10px", top: 0, bottom: 0, width: "1px", background: "#e4e0db" }} />
@@ -198,13 +199,13 @@ export default function RiskBasedThinkingBlogContent() {
                         Understanding Risk-based Thinking in ISO 9001:2015
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>The term &ldquo;Risk-based thinking&rdquo; often sounds like academic theory. I have sat in numerous management reviews where the phrase is met with blank stares or, more commonly, a frantic search for the latest version of a risk register spreadsheet.</p>
                         <p style={para(font)}>In reality, Risk-based thinking is the formal name for what every competent manager does every day: planning for the &ldquo;what ifs&rdquo;.</p>
                         <p style={para(font)}>When ISO 9001:2015 was released, it introduced a fundamental shift in how organisations approach quality. It moved away from being a reactive system focused on fixing mistakes to a proactive system focused on preventing them. For any professional involved in internal audits, understanding the practical application of this mindset is essential for moving beyond simple checkbox compliance.</p>
                     </div>
 
-                    <div id="shift" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="shift" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Understanding the Shift: From Preventive Action to Systemic Resilience</h2>
                         <SectionImage src={sectionImages.shift} alt="Shift from ISO 9001 preventive action to risk-based thinking" />
                         <p style={para(font)}>To understand ISO 9001 Risk-based thinking, we have to look at what came before it. In the 2008 version of the standard, there was a specific clause (8.5.3) for &ldquo;Preventive Action&rdquo;. This often led teams to treat risk as a separate, isolated task, usually a document filled out once a year just before the external auditor arrived.</p>
@@ -216,7 +217,7 @@ export default function RiskBasedThinkingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="clause" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="clause" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>The Core Requirements of Clause 6.1</h2>
                         <SectionImage src={sectionImages.clause} alt="ISO 9001 Clause 6.1 risks and opportunities requirements" />
                         <p style={para(font)}>ISO defines risk as the &ldquo;effect of uncertainty&rdquo; (Source: ISO 31000:2018). This definition is vital because uncertainty can have both negative and positive effects. ISO 9001 Risk-based thinking requires you to look at both Risks (what might go wrong) and Opportunities (what might go right).</p>
@@ -232,7 +233,7 @@ export default function RiskBasedThinkingBlogContent() {
                         <p style={para(font)}>The standard does not actually require a formal, documented risk management process or a &ldquo;Risk Register&rdquo; in the traditional sense. However, it does require evidence that the organisation has considered its risks and taken appropriate action. In a professional audit, &ldquo;I thought about it&rdquo; is never enough. Auditors look for the objective evidence of that thinking.</p>
                     </div>
 
-                    <div id="context" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="context" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Why Context Is the Foundation of Risk</h2>
                         <SectionImage src={sectionImages.context} alt="ISO 9001 context of the organisation as the foundation of risk" />
                         <p style={para(font)}>You cannot identify risks if you do not understand where your organisation sits in the world. This is why Clause 6 (Planning) is so closely linked to Clause 4 (Context of the Organisation).</p>
@@ -245,7 +246,7 @@ export default function RiskBasedThinkingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="shopfloor" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="shopfloor" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Moving Risk Out of the Spreadsheet and Onto the Shop Floor</h2>
                         <SectionImage src={sectionImages.shopfloor} alt="Moving ISO 9001 risk-based thinking onto the shop floor" />
                         <p style={para(font)}>The most common failure I see in ISO systems is the &ldquo;Spreadsheet Trap&rdquo;. An organisation creates a massive Excel file with 200 line items of potential risks. They assign a score, colour it red or green, and then never look at it again until next year.</p>
@@ -258,7 +259,7 @@ export default function RiskBasedThinkingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="audits" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="audits" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>The Role of Internal Audits in Verifying Risk Control</h2>
                         <SectionImage src={sectionImages.audits} alt="Internal audits verifying ISO 9001 risk-based thinking" />
                         <p style={para(font)}>Internal audits are the primary tool for verifying that Risk-based thinking is actually functioning. One of the hardest things to audit is a &ldquo;mindset&rdquo;, but you can audit the results of that mindset.</p>
@@ -274,7 +275,7 @@ export default function RiskBasedThinkingBlogContent() {
                         <p style={para(font)}>If the &ldquo;Actions to address risk&rdquo; (Clause 6.1.2) are not visible in the operational processes, then the thinking has not been integrated. The internal audit is the &ldquo;Check&rdquo; phase that determines whether the organisation is actually managing its uncertainty or just documenting it.</p>
                     </div>
 
-                    <div id="effectiveness" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="effectiveness" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Evaluating the Effectiveness of Actions Taken</h2>
                         <SectionImage src={sectionImages.effectiveness} alt="Evaluating effectiveness of ISO 9001 risk actions with PDCA" />
                         <p style={para(font)}>This is arguably the most frequently missed requirement in the entire ISO 9001 standard. Clause 6.1.2.2 requires the organisation to &ldquo;evaluate the effectiveness&rdquo; of the actions taken to address risks.</p>
@@ -286,7 +287,7 @@ export default function RiskBasedThinkingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Conclusion: Risk as a Tool for Governance</h2>
                         <SectionImage src={sectionImages.conclusion} alt="Using ISO 9001 risk-based thinking as a governance tool" />
                         <p style={para(font)}>Risk-based thinking in ISO 9001:2015 is not a compliance burden. It is a tool for better leadership. It provides the data needed to make informed decisions about where to spend time, money, and energy.</p>
@@ -315,7 +316,7 @@ export default function RiskBasedThinkingBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div style={{ background: "#fff", borderRadius: "1.1rem", border: "1px solid #e8e4df", padding: "2rem 1.5rem", textAlign: "center" }}>
                             <div style={{ width: "90px", height: "90px", borderRadius: "50%", backgroundImage: 'url("/images/mathew-chiweda.webp")',
                                     backgroundSize: "cover",
@@ -352,9 +353,11 @@ export default function RiskBasedThinkingBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

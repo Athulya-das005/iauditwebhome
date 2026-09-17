@@ -156,6 +156,7 @@ export default function AuditDataDelayBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -253,8 +254,8 @@ export default function AuditDataDelayBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -365,7 +366,7 @@ export default function AuditDataDelayBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -428,7 +429,7 @@ export default function AuditDataDelayBlogContent() {
                         Why Audit Data That Arrives Too Late Is Costing You Control
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             When internal audit data is delayed, it stops being a preventive tool and becomes a historical record. Most organisations lose critical insight because findings are scattered across spreadsheets, corrective actions lack automated follow-up, and multi-site patterns remain hidden until months later. By the time findings reach leadership, the decision window has closed and problems have already compounded across sites. Real-time audit management systems solve this by centralising all audit activity, automating corrective action tracking, and providing instant cross-site visibility. Late audit data weakens ISO compliance; real-time data strengthens operational control.
                         </p>
@@ -446,7 +447,7 @@ export default function AuditDataDelayBlogContent() {
                         </p>
                     </div>
 
-                    <div id="cost" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="cost" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>The Real Cost of Delayed Audit Data</h2>
                         <SectionImage src={sectionImages.cost} alt="The real cost of delayed internal audit data across sites" />
                         <p style={para(font)}>
@@ -466,7 +467,7 @@ export default function AuditDataDelayBlogContent() {
                         </p>
                     </div>
 
-                    <div id="delays" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="delays" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Where the Delays Actually Happen</h2>
                         <SectionImage src={sectionImages.delays} alt="Where audit data delays happen in spreadsheets and email chains" />
                         <p style={para(font)}>
@@ -480,7 +481,7 @@ export default function AuditDataDelayBlogContent() {
                         ))}
                     </div>
 
-                    <div id="iso" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iso" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How This Undermines ISO Compliance</h2>
                         <SectionImage src={sectionImages.iso} alt="How delayed audit data undermines ISO 9001 compliance" />
                         <p style={para(font)}>
@@ -494,7 +495,7 @@ export default function AuditDataDelayBlogContent() {
                         </p>
                     </div>
 
-                    <div id="multisite" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="multisite" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>The Challenge of Managing Audit Data Across Multiple Sites</h2>
                         <SectionImage src={sectionImages.multisite} alt="Managing audit data visibility across multiple sites" />
                         <p style={para(font)}>
@@ -514,7 +515,7 @@ export default function AuditDataDelayBlogContent() {
                         </p>
                     </div>
 
-                    <div id="realtime" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="realtime" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How Real-Time Audit Data Prevents Repeat Findings</h2>
                         <SectionImage src={sectionImages.realtime} alt="Real-time audit data preventing repeat findings across sites" />
                         <p style={para(font)}>
@@ -543,7 +544,7 @@ export default function AuditDataDelayBlogContent() {
                         </p>
                     </div>
 
-                    <div id="visibility" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="visibility" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How Structured Audit Management Improves Visibility</h2>
                         <SectionImage src={sectionImages.visibility} alt="Structured audit management improving real-time visibility" />
                         <p style={para(font)}>
@@ -560,7 +561,7 @@ export default function AuditDataDelayBlogContent() {
                         </p>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Why Real-Time Audit Management Is Critical for ISO Compliance</h2>
                         <p style={para(font)}>
                             Audit data that arrives late costs you control. It transforms what should be a preventive system into a reactive one.
@@ -649,7 +650,7 @@ export default function AuditDataDelayBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -786,9 +787,11 @@ export default function AuditDataDelayBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

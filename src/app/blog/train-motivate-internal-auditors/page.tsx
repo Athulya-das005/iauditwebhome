@@ -94,6 +94,7 @@ export default function BlogPost2() {
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
 
+            <div className="blog-reading-scope">
             {/* ── Big Hero Image ───────────────────────────────────────── */}
             <div style={{
                 position: "relative", width: "100%",
@@ -149,7 +150,7 @@ export default function BlogPost2() {
             {/* ── Top bar ──────────────────────────────────────────────── */}
             <div style={{
                 borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4",
-                position: "sticky", top: 0, zIndex: 40,
+                position: "sticky", top: "var(--blog-sticky-top)", zIndex: 50,
             }}>
                 <div style={{
                     maxWidth: "1260px", margin: "0 auto", padding: "0 1.5rem",
@@ -219,7 +220,7 @@ export default function BlogPost2() {
 
                 {/* ── LEFT: TOC ─────────────────────────────────────────── */}
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p style={{
                             fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.13em",
                             textTransform: "uppercase", color: "#374151", margin: "0 0 0.625rem", fontFamily: font,
@@ -262,14 +263,14 @@ export default function BlogPost2() {
                     </h1>
 
                     {/* Intro */}
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>After 18 years of implementing management systems and conducting internal audits across manufacturing, construction, and lift engineering, I have seen a pattern that concerns me.</p>
                         <p style={para(font)}>Internal auditors are burning out. And most organisations do not even notice until it is too late.</p>
                         <p style={para(font)}>The signs are familiar: auditors going through the motions, findings becoming superficial, the same observations appearing year after year without real improvement. When I ask these auditors what happened, the answer is almost always the same. They started enthusiastic, received minimal training, got little recognition, and eventually stopped caring.</p>
                         <p style={para(font)}>This is not an auditor problem. It is a management problem. And it is one we can fix.</p>
                     </div>
 
-                    <div id="tldr" style={{ scrollMarginTop: "58px", marginTop: "1.5rem" }}>
+                    <div id="tldr" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "1.5rem" }}>
                         <div style={{ background: "rgba(0,102,68,0.05)", border: "1px solid rgba(0,102,68,0.14)", borderRadius: "0.875rem", padding: isMobile ? "1.25rem" : "1.5rem 1.75rem" }}>
                             <h2 style={{ ...h2(font), marginBottom: "0.75rem" }}>TL;DR</h2>
                             <p style={para(font)}>
@@ -285,7 +286,7 @@ export default function BlogPost2() {
                     </div>
 
                     {/* Section 1 */}
-                    <div id="hidden-cost" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="hidden-cost" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>The Hidden Cost of Auditor Burnout</h2>
                         <SectionImage src={sectionImages["hidden-cost"]} alt="Auditor burnout" />
                         <p style={para(font)}>Internal auditors sit in an unusual position. They are expected to be critical friends, identifying weaknesses in processes run by their colleagues. They need technical knowledge of ISO 9001, 14001, or 45001 standards. They must write clear reports, handle difficult conversations, and follow up on corrective actions. All this while often doing their &ldquo;real job&rdquo; alongside audit duties, frequently without the support of effective internal audit software.</p>
@@ -294,7 +295,7 @@ export default function BlogPost2() {
                     </div>
 
                     {/* Section 2 */}
-                    <div id="training-works" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="training-works" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Training That Actually Works</h2>
                         <SectionImage src={sectionImages["training-works"]} alt="Auditor training session" />
                         <p style={para(font)}>Let me be direct. A one-day ISO awareness course does not create a competent auditor. It creates someone who knows the standard exists.</p>
@@ -302,7 +303,7 @@ export default function BlogPost2() {
                     </div>
 
                     {/* Sub-section: Structured Foundation */}
-                    <div id="structured-foundation" style={{ scrollMarginTop: "58px", marginTop: "1.5rem" }}>
+                    <div id="structured-foundation" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "1.5rem" }}>
                         <h3 style={h3(font)}>Structured Foundation</h3>
                         <p style={para(font)}>Before anyone conducts an audit, they need to understand the standard they are auditing against, the principles in ISO 19011, and the specific processes within your organisation. This is not optional background reading. It is essential knowledge.</p>
                         <p style={para(font)}>At iAudit Global, we built our platform around the PDCA cycle because that is how effective auditing works, supported by practical audit software for internal audit that reduces administrative burden.</p>
@@ -323,7 +324,7 @@ export default function BlogPost2() {
                     </div>
 
                     {/* Sub-section: Practical Experience */}
-                    <div id="practical-experience" style={{ scrollMarginTop: "58px", marginTop: "1.5rem" }}>
+                    <div id="practical-experience" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "1.5rem" }}>
                         <h3 style={h3(font)}>Practical Experience</h3>
                         <p style={para(font)}>Theory without practice creates auditors who know the right words but cannot apply them.</p>
                         <p style={para(font)}>Pair new auditors with experienced ones. Let them observe before they lead. Give them smaller, lower-risk audits first. Provide immediate feedback after each audit.</p>
@@ -331,14 +332,14 @@ export default function BlogPost2() {
                     </div>
 
                     {/* Sub-section: Ongoing Development */}
-                    <div id="ongoing-development" style={{ scrollMarginTop: "58px", marginTop: "1.5rem" }}>
+                    <div id="ongoing-development" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "1.5rem" }}>
                         <h3 style={h3(font)}>Ongoing Development</h3>
                         <p style={para(font)}>Standards change. Organisations change. Auditors need regular updates, not a course every five years when recertification comes around.</p>
                         <p style={para(font)}>This does not mean expensive external training for every session. Internal knowledge sharing, reviewing audit reports together, discussing challenging findings as a team. These activities build competence without significant cost.</p>
                     </div>
 
                     {/* Section 3: Motivation */}
-                    <div id="motivation" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="motivation" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Motivation That Lasts</h2>
                         <SectionImage src={sectionImages["motivation"]} alt="Team motivation" />
                         <p style={para(font)}>Training gives auditors the skills. Motivation gives them the reason to use those skills well.</p>
@@ -357,7 +358,7 @@ export default function BlogPost2() {
                     </div>
 
                     {/* Section 4: Sustainable Programmes */}
-                    <div id="sustainable" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="sustainable" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Building Sustainable Programmes</h2>
                         <SectionImage src={sectionImages["sustainable"]} alt="Sustainable audit programme" />
                         <p style={para(font)}>The PDCA approach applies here too.</p>
@@ -378,7 +379,7 @@ export default function BlogPost2() {
                     </div>
 
                     {/* Section 5: Path Forward */}
-                    <div id="path-forward" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="path-forward" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>The Path Forward</h2>
                         <SectionImage src={sectionImages["path-forward"]} alt="Path to better audit programmes" />
                         <p style={para(font)}>Organisations that get this right gain a significant advantage. Their internal audits actually drive improvement. Their management systems deliver value beyond the certificate on the wall. Their auditors become advocates for quality, environmental responsibility, and safety rather than reluctant participants in a compliance exercise.</p>
@@ -393,7 +394,7 @@ export default function BlogPost2() {
                     </div>
 
                     {/* Section 6: Pilot CTA */}
-                    <div id="pilot" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="pilot" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <div style={{ background: "linear-gradient(135deg, #002e1d 0%, #006644 100%)", borderRadius: "1.1rem", padding: isMobile ? "2rem 1.5rem" : "2.5rem", color: "#fff", position: "relative", overflow: "hidden" }}>
                             <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.055) 1px, transparent 0)", backgroundSize: "24px 24px", pointerEvents: "none" }} />
                             <h2 style={{ fontSize: isMobile ? "1.45rem" : "1.85rem", fontWeight: 600, color: "#fff", margin: "0 0 0.75rem", fontFamily: font, lineHeight: 1.25, position: "relative" }}>
@@ -435,7 +436,7 @@ export default function BlogPost2() {
 
                 {/* ── RIGHT: Author card ────────────────────────────────── */}
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div style={{ background: "#fff", borderRadius: "1.1rem", border: "1px solid #e8e4df", padding: "2rem 1.5rem", textAlign: "center" }}>
                             <div style={{ width: "90px", height: "90px", borderRadius: "50%", backgroundImage: 'url("/images/mathew-chiweda.webp")',
                                     backgroundSize: "cover",
@@ -476,6 +477,8 @@ export default function BlogPost2() {
                     </div>
                 )}
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

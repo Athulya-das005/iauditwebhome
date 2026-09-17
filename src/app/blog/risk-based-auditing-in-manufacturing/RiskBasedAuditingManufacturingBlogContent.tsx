@@ -146,6 +146,7 @@ export default function RiskBasedAuditingManufacturingBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -210,7 +211,7 @@ export default function RiskBasedAuditingManufacturingBlogContent() {
                 </div>
             </div>
 
-            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: 0, zIndex: 40 }}>
+            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: "var(--blog-sticky-top)", zIndex: 50 }}>
                 <div
                     style={{
                         maxWidth: "1260px",
@@ -315,7 +316,7 @@ export default function RiskBasedAuditingManufacturingBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -377,7 +378,7 @@ export default function RiskBasedAuditingManufacturingBlogContent() {
                         Risk-Based Auditing in Manufacturing: Moving Beyond the Calendar
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             I have seen many internal audit programmes that look perfect on a spreadsheet. Every site or
                             department is scheduled for one audit per year. The checklists are identical, the depth is
@@ -401,7 +402,7 @@ export default function RiskBasedAuditingManufacturingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="equal-depth" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="equal-depth" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>The Failure of &ldquo;Equal-Depth&rdquo; Auditing</h2>
                         <SectionImage
                             src={sectionImages.equalDepth}
@@ -431,7 +432,7 @@ export default function RiskBasedAuditingManufacturingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="physical-cost" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="physical-cost" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>The Physical Cost of Poor Risk Oversight</h2>
                         <SectionImage
                             src={sectionImages.cost}
@@ -495,7 +496,7 @@ export default function RiskBasedAuditingManufacturingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="high-risk" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="high-risk" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Identifying High-Risk Nodes in the Production Cycle</h2>
                         <SectionImage
                             src={sectionImages.highRisk}
@@ -539,7 +540,7 @@ export default function RiskBasedAuditingManufacturingBlogContent() {
                         ))}
                     </div>
 
-                    <div id="predictor" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="predictor" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Turning Internal Audit Data into a Predictor of Failure</h2>
                         <SectionImage
                             src={sectionImages.predictor}
@@ -571,7 +572,7 @@ export default function RiskBasedAuditingManufacturingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How iAudit Global Structures Risk-Based Oversight</h2>
                         <SectionImage
                             src={sectionImages.iaudit}
@@ -628,7 +629,7 @@ export default function RiskBasedAuditingManufacturingBlogContent() {
                         </div>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Conclusion: Turning Audits into a Governance Asset</h2>
                         <SectionImage
                             src={sectionImages.conclusion}
@@ -737,7 +738,7 @@ export default function RiskBasedAuditingManufacturingBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -874,9 +875,11 @@ export default function RiskBasedAuditingManufacturingBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

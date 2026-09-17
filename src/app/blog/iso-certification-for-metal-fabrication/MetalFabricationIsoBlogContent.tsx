@@ -390,6 +390,7 @@ export default function MetalFabricationIsoBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -464,7 +465,7 @@ export default function MetalFabricationIsoBlogContent() {
                 </div>
             </div>
 
-            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: 0, zIndex: 40 }}>
+            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: "var(--blog-sticky-top)", zIndex: 50 }}>
                 <div style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 1.5rem", height: "50px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     <Link href="/blog" style={{ display: "inline-flex", alignItems: "center", gap: "5px", color: "#6B7280", fontSize: "0.79rem", fontWeight: 500, textDecoration: "none", letterSpacing: "0.04em", textTransform: "uppercase", fontFamily: font }}>
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -494,7 +495,7 @@ export default function MetalFabricationIsoBlogContent() {
 
             <div style={{ maxWidth: "1260px", margin: "0 auto", padding: isMobile ? "2rem 1.25rem" : "3rem 1.5rem 5rem", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "210px 1fr 240px", gap: isMobile ? "2rem" : "3rem", alignItems: "start" }}>
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#374151", margin: "0 0 0.625rem", fontFamily: font }}>Contents</p>
                         <div style={{ position: "relative" }}>
                             <div style={{ position: "absolute", left: "10px", top: 0, bottom: 0, width: "1px", background: "#e4e0db" }} />
@@ -517,7 +518,7 @@ export default function MetalFabricationIsoBlogContent() {
                         ISO Certification for Metal Fabrication: Requirements, Audits and Common Gaps
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             The certification auditor asks to see material traceability for a structural weld completed three weeks ago. You have the mill certificate. You have the WPS. But the heat number photographed at goods-in doesn't match the one stamped on the finished assembly. The trail is broken. What should have been a routine surveillance audit is now a major non-conformance.
                         </p>
@@ -526,7 +527,7 @@ export default function MetalFabricationIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="what" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="what" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>What ISO Certification Means for Metal Fabrication</h2>
                         <SectionImage src={sectionImages.what} alt="Metal fabrication workshop preparing for ISO certification" />
                         <p style={para(font)}>
@@ -549,13 +550,13 @@ export default function MetalFabricationIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="core-requirements" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="core-requirements" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Core Requirements: What ISO Actually Demands from Fabricators</h2>
                         <p style={para(font)}>Here's what each standard requires in a fabrication environment:</p>
                         <RequirementsTable font={font} isMobile={isMobile} />
                     </div>
 
-                    <div id="iso-9001" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iso-9001" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>ISO 9001 for Metal Fabrication</h2>
                         <SectionImage src={sectionImages.iso9001} alt="Welding and traceability controls for ISO 9001 in metal fabrication" />
                         <p style={para(font)}>
@@ -578,7 +579,7 @@ export default function MetalFabricationIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="iso-45001" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iso-45001" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>ISO 45001 for Metal Fabrication</h2>
                         <SectionImage src={sectionImages.iso45001} alt="Shop floor safety controls for ISO 45001 in fabrication" />
                         <p style={para(font)}>
@@ -598,7 +599,7 @@ export default function MetalFabricationIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="iso-14001" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iso-14001" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>ISO 14001 for Metal Fabrication</h2>
                         <SectionImage src={sectionImages.iso14001} alt="Environmental controls for ISO 14001 in metal fabrication" />
                         <p style={para(font)}>
@@ -618,7 +619,7 @@ export default function MetalFabricationIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="gaps" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="gaps" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Common Gaps in Fabrication ISO Audits</h2>
                         <SectionImage src={sectionImages.gaps} alt="Common ISO audit gaps in metal fabrication businesses" />
                         <p style={para(font)}>
@@ -635,7 +636,7 @@ export default function MetalFabricationIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="close-gaps" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="close-gaps" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How to Close the Gaps</h2>
                         <SectionImage src={sectionImages.close} alt="Closing ISO audit gaps with centralised evidence and tracking" />
                         <p style={para(font)}>Closing these gaps requires five changes to how fabrication audits are managed:</p>
@@ -649,7 +650,7 @@ export default function MetalFabricationIsoBlogContent() {
                         ))}
                     </div>
 
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How iAudit Global Helps</h2>
                         <p style={para(font)}>
                             iAudit Global was built by ISO auditors who worked in fabrication environments. It centralises material traceability evidence, tracks welder and LEV expiry dates, links NDT reports to specific findings, and follows PDCA so corrective actions actually close.
@@ -660,7 +661,7 @@ export default function MetalFabricationIsoBlogContent() {
                         <p style={para(font)}>Your audit history stays with your organisation. We operate a zero-access policy, so your findings remain private.</p>
                     </div>
 
-                    <div id="trial" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="trial" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <div style={{ background: "linear-gradient(145deg, #002e1d 0%, #006644 55%, #058c42 100%)", borderRadius: "1.25rem", padding: isMobile ? "1.75rem 1.35rem" : "2.25rem 2rem", position: "relative", overflow: "hidden" }}>
                             <div style={{ position: "absolute", top: "-40px", right: "-40px", width: "180px", height: "180px", borderRadius: "50%", background: "rgba(255,255,255,0.06)" }} />
                             <h2 style={{ fontSize: isMobile ? "1.45rem" : "1.7rem", fontWeight: 600, color: "#fff", letterSpacing: "-0.018em", lineHeight: 1.28, margin: "0 0 1rem", fontFamily: font, position: "relative" }}>
@@ -690,7 +691,7 @@ export default function MetalFabricationIsoBlogContent() {
                         </div>
                     </div>
 
-                    <div id="review" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="review" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <div style={{ background: "#fff", borderRadius: "1.25rem", border: "1px solid #e8e4df", padding: isMobile ? "1.75rem 1.35rem" : "2.25rem 2rem", boxShadow: "0 4px 20px rgba(0,0,0,0.06)" }}>
                             <h2 style={h2(font)}>Free ISO Programme Review (First 500 Companies Only)</h2>
                             <p style={para(font)}>
@@ -718,7 +719,7 @@ export default function MetalFabricationIsoBlogContent() {
                         </div>
                     </div>
 
-                    <div id="summary" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="summary" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <p style={para(font)}>
                             ISO certification for metal fabrication requires strict control over material traceability, welder qualifications, and safety compliance. ISO 9001 governs quality processes including heat number tracking, WPS/WPQR documentation, and NDT evidence. ISO 45001 covers welding fume control, LEV testing, LOTO procedures, and LOLER compliance. ISO 14001 manages hazardous waste, REACH chemicals, and effluent monitoring.
                         </p>
@@ -732,7 +733,7 @@ export default function MetalFabricationIsoBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div style={{ background: "#fff", borderRadius: "1.1rem", border: "1px solid #e8e4df", padding: "2rem 1.5rem", textAlign: "center" }}>
                             <div style={{ width: "90px", height: "90px", borderRadius: "50%", backgroundImage: 'url("/images/mathew-chiweda.webp")',
                                     backgroundSize: "cover",
@@ -773,9 +774,11 @@ export default function MetalFabricationIsoBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

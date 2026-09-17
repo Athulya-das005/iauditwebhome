@@ -243,6 +243,7 @@ export default function EnvironmentalPermitsBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -340,8 +341,8 @@ export default function EnvironmentalPermitsBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -452,7 +453,7 @@ export default function EnvironmentalPermitsBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -515,7 +516,7 @@ export default function EnvironmentalPermitsBlogContent() {
                         How to Manage Environmental Permits Across Multiple Manufacturing Sites
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <div
                             style={{
                                 background: "rgba(0,102,68,0.05)",
@@ -543,7 +544,7 @@ export default function EnvironmentalPermitsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="complexity" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="complexity" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Why Multi Site Environmental Compliance Is Complex in Manufacturing</h2>
                         <SectionImage src={sectionImages.complexity} alt="Multi-site environmental compliance complexity in manufacturing" />
                         <p style={para(font)}>
@@ -557,7 +558,7 @@ export default function EnvironmentalPermitsBlogContent() {
                         ))}
                     </div>
 
-                    <div id="register" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="register" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Create a Centralised Environmental Permit Register for All Sites</h2>
                         <SectionImage src={sectionImages.register} alt="Centralised environmental permit register for manufacturing sites" />
                         <p style={para(font)}>
@@ -586,7 +587,7 @@ export default function EnvironmentalPermitsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="tasks" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="tasks" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Translate Permit Conditions into Actionable Compliance Tasks</h2>
                         <SectionImage src={sectionImages.tasks} alt="Translating environmental permit conditions into operational compliance tasks" />
                         <p style={para(font)}>
@@ -636,7 +637,7 @@ export default function EnvironmentalPermitsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="ownership" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="ownership" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Assign Clear Ownership Across Corporate and Site Levels</h2>
                         <p style={para(font)}>
                             Responsibility for environmental compliance often becomes blurred in multi-site organisations. To avoid &ldquo;compliance gaps,&rdquo; you need a clear governance model.
@@ -662,7 +663,7 @@ export default function EnvironmentalPermitsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="calendar" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="calendar" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Implement a Compliance Calendar Across All Manufacturing Facilities</h2>
                         <SectionImage src={sectionImages.calendar} alt="Environmental compliance calendar across manufacturing facilities" />
                         <p style={para(font)}>
@@ -708,7 +709,7 @@ export default function EnvironmentalPermitsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="audit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="audit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Audit Environmental Permit Compliance Regularly</h2>
                         <SectionImage src={sectionImages.audit} alt="Auditing environmental permit compliance in manufacturing" />
                         <p style={para(font)}>
@@ -736,7 +737,7 @@ export default function EnvironmentalPermitsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="regulatory" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="regulatory" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Monitor Regulatory Changes and Manage Permit Modifications</h2>
                         <SectionImage src={sectionImages.regulatory} alt="Monitoring regulatory changes and environmental permit modifications" />
                         <p style={para(font)}>
@@ -747,7 +748,7 @@ export default function EnvironmentalPermitsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="visibility" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="visibility" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Develop Executive Visibility Across All Sites</h2>
                         <SectionImage src={sectionImages.visibility} alt="Executive visibility dashboard for multi-site environmental compliance" />
                         <p style={para(font)}>
@@ -767,7 +768,7 @@ export default function EnvironmentalPermitsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Building Structured Environmental Compliance Across Multiple Manufacturing Sites</h2>
                         <p style={para(font)}>
                             Effective multi site environmental compliance manufacturing relies on moving away from fragmented, person-dependent systems. By centralising your permit inventory, standardising how obligations are tracked and maintaining a rigorous audit programme, you protect your organisation from both legal and operational risks.
@@ -777,7 +778,7 @@ export default function EnvironmentalPermitsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How iAudit Supports Environmental Compliance in Manufacturing</h2>
                         <p style={para(font)}>
                             iAudit Global is an ISO audit management platform built by certified Lead Auditors who understand the complexity of manufacturing compliance. We created the software to solve the exact problem of fragmented audit data and scattered compliance records.
@@ -897,7 +898,7 @@ export default function EnvironmentalPermitsBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -1034,9 +1035,11 @@ export default function EnvironmentalPermitsBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

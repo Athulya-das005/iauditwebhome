@@ -123,6 +123,7 @@ export default function ConstructionIso9001BlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -220,8 +221,8 @@ export default function ConstructionIso9001BlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -332,7 +333,7 @@ export default function ConstructionIso9001BlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -395,7 +396,7 @@ export default function ConstructionIso9001BlogContent() {
                         Prepare for ISO 9001 in Construction: What You Actually Need
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             When I visit construction sites before an ISO 9001 audit, the pattern is usually the same. People are busy, paperwork is scattered, and a week before the audit someone realises a lot of things are in heads and inboxes, not in a place an auditor can actually see.
                         </p>
@@ -404,7 +405,7 @@ export default function ConstructionIso9001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="why-matters" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="why-matters" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Why ISO 9001 matters on construction projects</h2>
                         <SectionImage src={sectionImages["why-matters"]} alt="Construction site activity supporting quality and project delivery" />
                         <p style={para(font)}>
@@ -422,7 +423,7 @@ export default function ConstructionIso9001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="auditors" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="auditors" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>What auditors really look for in construction companies</h2>
                         <SectionImage src={sectionImages.auditors} alt="Construction project planning and quality review" />
                         <p style={para(font)}>Most auditors want to see three things.</p>
@@ -444,7 +445,7 @@ export default function ConstructionIso9001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="step-1" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="step-1" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Step 1: Map your scope and key processes</h2>
                         <SectionImage src={sectionImages.scope} alt="Mapping construction project processes and scope" />
                         <p style={para(font)}>Before you touch documents, get clear on what is in and what is out.</p>
@@ -466,7 +467,7 @@ export default function ConstructionIso9001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="step-2" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="step-2" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Step 2: Get your documentation and records in shape</h2>
                         <SectionImage src={sectionImages.documentation} alt="Construction quality documentation and project records" />
                         <p style={para(font)}>
@@ -493,7 +494,7 @@ export default function ConstructionIso9001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="step-3" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="step-3" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Step 3: Check what is really happening on site</h2>
                         <SectionImage src={sectionImages.site} alt="Construction site walk and inspection readiness" />
                         <p style={para(font)}>Most of the real story is on the site, not in the office.</p>
@@ -510,7 +511,7 @@ export default function ConstructionIso9001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="step-4" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="step-4" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Step 4: How I use internal audits to prepare for ISO 9001 in construction</h2>
                         <SectionImage src={sectionImages["internal-audits"]} alt="Internal audit discussion for construction quality systems" />
                         <p style={para(font)}>
@@ -539,7 +540,7 @@ export default function ConstructionIso9001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="step-5" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="step-5" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Step 5: Bring your people and subcontractors with you</h2>
                         <SectionImage src={sectionImages.people} alt="Construction team briefing before an ISO audit" />
                         <p style={para(font)}>
@@ -557,7 +558,7 @@ export default function ConstructionIso9001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="mistakes" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="mistakes" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Common mistakes when companies prepare for ISO 9001 in construction</h2>
                         <SectionImage src={sectionImages.mistakes} alt="Avoiding common ISO 9001 preparation mistakes on construction projects" />
                         <p style={para(font)}>
@@ -575,7 +576,7 @@ export default function ConstructionIso9001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="checklist" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="checklist" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>A short checklist to help you prepare for ISO 9001 in construction</h2>
                         <p style={para(font)}>
                             Here is a quick checklist you can use to prepare for ISO 9001 in construction in a more controlled way:
@@ -590,7 +591,7 @@ export default function ConstructionIso9001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <div
                             style={{
                                 background: "linear-gradient(145deg, #002e1d 0%, #006644 55%, #058c42 100%)",
@@ -677,7 +678,7 @@ export default function ConstructionIso9001BlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -817,6 +818,8 @@ export default function ConstructionIso9001BlogContent() {
                     </div>
                 )}
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

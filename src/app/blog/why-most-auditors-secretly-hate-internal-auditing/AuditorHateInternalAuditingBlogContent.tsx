@@ -183,6 +183,7 @@ export default function AuditorHateInternalAuditingBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -280,8 +281,8 @@ export default function AuditorHateInternalAuditingBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -392,7 +393,7 @@ export default function AuditorHateInternalAuditingBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -455,7 +456,7 @@ export default function AuditorHateInternalAuditingBlogContent() {
                         Why Most Auditors Secretly Hate Internal Auditing
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             Why most auditors secretly hate internal auditing has little to do with auditing itself.
                         </p>
@@ -483,7 +484,7 @@ export default function AuditorHateInternalAuditingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="administration" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="administration" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>It&apos;s Not the Audit. It&apos;s the Administration.</h2>
                         <SectionImage src={sectionImages.admin} alt="Administrative overload in internal audit reporting and spreadsheet work" />
                         <p style={para(font)}>
@@ -530,7 +531,7 @@ export default function AuditorHateInternalAuditingBlogContent() {
                         <p style={para(font)}>Formatting hell is not auditing. It is administration.</p>
                     </div>
 
-                    <div id="follow-up" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="follow-up" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Follow-Up Fatigue</h2>
                         <SectionImage src={sectionImages.followup} alt="Repeat nonconformities causing follow-up fatigue for internal auditors" />
                         <p style={para(font)}>
@@ -549,7 +550,7 @@ export default function AuditorHateInternalAuditingBlogContent() {
                         <p style={para(font)}>Auditors start asking themselves: does this process actually change anything?</p>
                     </div>
 
-                    <div id="disconnected" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="disconnected" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Disconnected Data Across Sites</h2>
                         <SectionImage src={sectionImages.data} alt="Disconnected audit data across sites hidden in separate spreadsheets" />
                         <p style={para(font)}>
@@ -567,7 +568,7 @@ export default function AuditorHateInternalAuditingBlogContent() {
                         <p style={para(font)}>Auditors do not hate auditing. They hate not being able to see the full picture.</p>
                     </div>
 
-                    <div id="evidence" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="evidence" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Chasing Evidence After the Audit</h2>
                         <SectionImage src={sectionImages.evidence} alt="Chasing site evidence after an internal audit instead of capturing it in real time" />
                         <p style={para(font)}>Another common frustration is reconstructing evidence after the event.</p>
@@ -583,7 +584,7 @@ export default function AuditorHateInternalAuditingBlogContent() {
                         <p style={para(font)}>And they find the latter exhausting.</p>
                     </div>
 
-                    <div id="calendar" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="calendar" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Calendar-Driven Audits Instead of Risk-Based Audits</h2>
                         <SectionImage src={sectionImages.calendar} alt="Calendar-driven internal audit programmes instead of risk-based scheduling" />
                         <p style={para(font)}>Many internal audit programmes still operate on fixed annual calendars.</p>
@@ -599,7 +600,7 @@ export default function AuditorHateInternalAuditingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="leadership" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="leadership" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>When Leadership Only Wants the Certificate</h2>
                         <SectionImage src={sectionImages.leadership} alt="Leadership treating internal audits as insurance for the external audit" />
                         <p style={para(font)}>
@@ -614,7 +615,7 @@ export default function AuditorHateInternalAuditingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="want" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="want" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>What Auditors Actually Want</h2>
                         <p style={para(font)}>Auditors do not hate internal auditing.</p>
                         <p style={para(font)}>They want:</p>
@@ -643,7 +644,7 @@ export default function AuditorHateInternalAuditingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="fix" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="fix" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How to Fix Internal Audit Fatigue</h2>
                         <p style={para(font)}>
                             If internal auditing feels heavy in your organisation, the solution is not fewer audits.
@@ -657,7 +658,7 @@ export default function AuditorHateInternalAuditingBlogContent() {
                         <p style={para(font)}>Most audit frustration is structural, not cultural.</p>
                     </div>
 
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How iAudit Global Changes the Audit Experience</h2>
                         <SectionImage src={sectionImages.iaudit} alt="iAudit Global audit management software reducing internal audit fatigue" />
                         <p style={para(font)}>
@@ -674,7 +675,7 @@ export default function AuditorHateInternalAuditingBlogContent() {
                         ))}
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Internal Auditing Should Not Feel Like Theatre</h2>
                         <p style={para(font)}>
                             Why most auditors secretly hate internal auditing has very little to do with auditing itself.
@@ -765,7 +766,7 @@ export default function AuditorHateInternalAuditingBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -902,9 +903,11 @@ export default function AuditorHateInternalAuditingBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

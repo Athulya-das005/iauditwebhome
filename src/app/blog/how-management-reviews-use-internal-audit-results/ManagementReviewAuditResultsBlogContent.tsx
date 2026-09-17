@@ -152,6 +152,7 @@ export default function ManagementReviewAuditResultsBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -249,8 +250,8 @@ export default function ManagementReviewAuditResultsBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -361,7 +362,7 @@ export default function ManagementReviewAuditResultsBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -424,7 +425,7 @@ export default function ManagementReviewAuditResultsBlogContent() {
                         How Management Reviews Should Use Internal Audit Results
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             How management reviews should use internal audit results is not about reviewing long lists of open and closed NCRs. It is about analysing patterns, recurring themes, severity exposure and trend direction to drive informed leadership decisions. ISO 9001 expects audit results to support continual improvement, risk-based thinking and verified corrective action effectiveness. Effective management reviews focus on systemic insight rather than administrative updates. Structured audit management systems like iAudit Global help organisations aggregate findings across sites, track corrective action effectiveness and embed PDCA workflows, turning internal audit results into board-level decision support.
                         </p>
@@ -439,7 +440,7 @@ export default function ManagementReviewAuditResultsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="insight" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="insight" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Moving from Activity to Insight</h2>
                         <SectionImage src={sectionImages.insight} alt="Moving management reviews from activity reporting to strategic audit insight" />
                         <p style={para(font)}>
@@ -485,7 +486,7 @@ export default function ManagementReviewAuditResultsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="hotspots" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="hotspots" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Identifying Systemic Hotspots</h2>
                         <SectionImage src={sectionImages.hotspots} alt="Identifying systemic audit hotspots across sites and projects" />
                         <p style={para(font)}>
@@ -499,7 +500,7 @@ export default function ManagementReviewAuditResultsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="pdca" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="pdca" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Closing the PDCA Loop at the Board Level</h2>
                         <SectionImage src={sectionImages.pdca} alt="Closing the PDCA loop at board level using internal audit results" />
                         <p style={para(font)}>
@@ -513,7 +514,7 @@ export default function ManagementReviewAuditResultsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="questions" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="questions" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Three Questions for Your Next Management Review</h2>
                         <SectionImage src={sectionImages.questions} alt="Three strategic questions for your next management review" />
                         <p style={para(font)}>
@@ -529,7 +530,7 @@ export default function ManagementReviewAuditResultsBlogContent() {
                         ))}
                     </div>
 
-                    <div id="data" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="data" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Turning Scattered Data into Board-Level Insight</h2>
                         <SectionImage src={sectionImages.iaudit} alt="Turning scattered audit data into board-level insight with iAudit Global" />
                         <p style={para(font)}>
@@ -543,7 +544,7 @@ export default function ManagementReviewAuditResultsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Management Review Is a Leadership Forum</h2>
                         <p style={para(font)}>Internal audit results should not be treated as paperwork to be filed.</p>
                         <p style={para(font)}>They are a signal.</p>
@@ -636,7 +637,7 @@ export default function ManagementReviewAuditResultsBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -773,9 +774,11 @@ export default function ManagementReviewAuditResultsBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

@@ -91,6 +91,8 @@ async function sendWithSmtp(to: string, code: string) {
 
     const port = Number(process.env.SMTP_PORT || 587);
     const secure = process.env.SMTP_SECURE === "true" || port === 465;
+    // Explicit SMTP options — avoids nodemailer overload resolution picking TransportOptions
+    // (which has no `host`) when extra keys like `pool` are present.
     const transporter = nodemailer.createTransport({
         host,
         port,
@@ -102,7 +104,6 @@ async function sendWithSmtp(to: string, code: string) {
         socketTimeout: 10_000,
         tls: { minVersion: "TLSv1.2" },
         requireTLS: !secure && port === 587,
-        pool: false,
     });
 
     try {

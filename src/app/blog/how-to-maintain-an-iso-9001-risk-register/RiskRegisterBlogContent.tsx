@@ -214,6 +214,7 @@ export default function RiskRegisterBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: fontFamily }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -285,8 +286,8 @@ export default function RiskRegisterBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -389,7 +390,7 @@ export default function RiskRegisterBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p style={contentsLabelStyle}>Contents</p>
                         <div style={{ position: "relative" }}>
                             <div
@@ -435,7 +436,7 @@ export default function RiskRegisterBlogContent() {
                         How to Maintain an ISO 9001 Risk Register: Keeping Risk Management Current and Actionable
                     </h1>
 
-                    <div id="tldr" style={{ scrollMarginTop: "58px", marginBottom: "2rem" }}>
+                    <div id="tldr" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginBottom: "2rem" }}>
                         <div
                             style={{
                                 background: "rgba(0,102,68,0.05)",
@@ -457,7 +458,7 @@ export default function RiskRegisterBlogContent() {
                         </div>
                     </div>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={paraStyle}>An ISO 9001 risk register can look perfectly complete on paper. Every risk has a score, an owner and an action. The problem is what happens after it has been completed.</p>
                         <p style={paraStyle}>Processes change. Suppliers change. People change. Customer requirements change. Audits uncover new problems. Corrective actions are raised. Yet the risk register can remain exactly as it was six months earlier.</p>
                         <p style={paraStyle}>That is why how to maintain an ISO 9001 risk register is more important than simply knowing how to create one.</p>
@@ -615,11 +616,11 @@ export default function RiskRegisterBlogContent() {
                         </p>
                     </div>
 
-                    <div id="faq" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <FAQAccordion items={faqAccordionItems} heading="Frequently asked questions" sparkleText="Support" />
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.5rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.5rem" }}>
                         <div style={conclusionStyle}>
                             <div style={patternStyle} />
                             <h2 style={conclusionHeadingStyle(isMobile)}>Keep Risk Information Current and Connected</h2>
@@ -649,12 +650,14 @@ export default function RiskRegisterBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <AuthorCard />
                     </aside>
                 )}
                 {isMobile && <AuthorCard mobile />}
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />
@@ -691,7 +694,7 @@ function NumberedStep({ number, title, children }: { number: string; title: stri
     );
 }
 
-const sectionStyle: React.CSSProperties = { scrollMarginTop: "58px", marginTop: "2.25rem" };
+const sectionStyle: React.CSSProperties = { scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" };
 const paraStyle: React.CSSProperties = { fontSize: "0.98rem", color: "#374151", lineHeight: 1.85, margin: "0 0 1rem", fontFamily: fontFamily };
 const inlineLinkStyle: React.CSSProperties = { color: "#006644", fontWeight: 600, textDecoration: "underline", textUnderlineOffset: "3px" };
 const contentsLabelStyle: React.CSSProperties = { fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#374151", margin: "0 0 0.625rem", fontFamily: fontFamily };

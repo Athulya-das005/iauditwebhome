@@ -165,6 +165,7 @@ export default function IsoAuditReportTemplateBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             {/* Hero */}
             <div style={{ position: "relative", width: "100%", height: isMobile ? "55vw" : "70vh", minHeight: isMobile ? "240px" : "440px", maxHeight: "700px", overflow: "hidden" }}>
                 <Image src={HERO_IMAGE} alt="ISO internal audit report template free download and best practices" fill priority sizes="100vw" style={{ objectFit: "cover", objectPosition: "center" }} />
@@ -180,7 +181,7 @@ export default function IsoAuditReportTemplateBlogContent() {
             </div>
 
             {/* Top bar */}
-            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: 0, zIndex: 40 }}>
+            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: "var(--blog-sticky-top)", zIndex: 50 }}>
                 <div style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 1.5rem", height: "50px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     <Link href="/blog" style={{ display: "inline-flex", alignItems: "center", gap: "5px", color: "#6B7280", fontSize: "0.79rem", fontWeight: 500, textDecoration: "none", letterSpacing: "0.04em", textTransform: "uppercase", fontFamily: font }}>
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
@@ -200,7 +201,7 @@ export default function IsoAuditReportTemplateBlogContent() {
 
                 {/* LEFT TOC */}
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#374151", margin: "0 0 0.625rem", fontFamily: font }}>Contents</p>
                         <div style={{ position: "relative" }}>
                             <div style={{ position: "absolute", left: "10px", top: 0, bottom: 0, width: "1px", background: "#e4e0db" }} />
@@ -218,7 +219,7 @@ export default function IsoAuditReportTemplateBlogContent() {
                     </h1>
 
                     {/* INTRO */}
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <div style={{ background: "rgba(0,102,68,0.05)", borderRadius: "0.875rem", border: "1px solid rgba(0,102,68,0.12)", padding: "1.25rem 1.5rem", margin: "0 0 1.25rem" }}>
                             <p style={{ ...para(font), margin: "0 0 0.75rem" }}>
                                 An effective ISO internal audit report template is more than just a record of compliance; it is a tool for organisational oversight. To drive real improvement, reports must move beyond vague observations and follow a structured &ldquo;Requirement-Evidence-Gap&rdquo; model.
@@ -234,7 +235,7 @@ export default function IsoAuditReportTemplateBlogContent() {
                     </div>
 
                     {/* TEMPLATES */}
-                    <div id="templates" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="templates" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How to Access iAudit ISO Internal Audit Report Templates</h2>
                         <SectionImage src={sectionImages.templates} alt="ISO internal audit report templates for ISO 9001, 14001 and 45001" />
                         <p style={para(font)}>We have developed a suite of editable internal audit report templates designed to follow the principles of ISO 19011. These are structured to ensure you capture the objective evidence required for compliance while identifying the specific risks that matter to your operations.</p>
@@ -262,7 +263,7 @@ export default function IsoAuditReportTemplateBlogContent() {
                     </div>
 
                     {/* PROFESSIONAL REPORT */}
-                    <div id="professional" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="professional" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>What Makes a Professional ISO Audit Report?</h2>
                         <SectionImage src={sectionImages.professional} alt="What makes a professional ISO audit report with clear evidence" />
                         <p style={para(font)}>A template is only as good as the information you put into it. If your reports are being ignored, it is usually because the findings lack context or clarity.</p>
@@ -291,7 +292,7 @@ export default function IsoAuditReportTemplateBlogContent() {
                     </div>
 
                     {/* INDUSTRY SPECIFIC */}
-                    <div id="industry" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="industry" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Industry-Specific Reporting Nuances</h2>
                         <SectionImage src={sectionImages.industry} alt="Industry-specific ISO audit report nuances for manufacturing, construction, healthcare" />
                         <p style={para(font)}>A generic audit report often fails because it ignores the operational reality of the environment being audited. To be truly effective, the structure of your report must capture the specific risks inherent to your sector. Whether you are auditing a factory floor, a construction site, or a clinical ward, the &ldquo;So What?&rdquo; of your findings depends on this context.</p>
@@ -319,7 +320,7 @@ export default function IsoAuditReportTemplateBlogContent() {
                     </div>
 
                     {/* MISTAKES */}
-                    <div id="mistakes" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="mistakes" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Common Mistakes in Internal Audit Reporting</h2>
                         <SectionImage src={sectionImages.mistakes} alt="Common mistakes in internal audit report writing" />
                         <p style={para(font)}>Over the years, I have seen the same three mistakes slow down audit programmes.</p>
@@ -332,7 +333,7 @@ export default function IsoAuditReportTemplateBlogContent() {
                     </div>
 
                     {/* MULTI-SITE */}
-                    <div id="multisite" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="multisite" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Why Static Templates Fail for Multi-Site Programmes</h2>
                         <SectionImage src={sectionImages.multisite} alt="Why static Word and Excel templates fail for multi-site audit programmes" />
                         <p style={para(font)}>A Word or Excel template is a good starting point for a single audit, but it is a difficult way to manage a whole programme. If you are managing multiple sites, static templates create several hidden problems.</p>
@@ -351,7 +352,7 @@ export default function IsoAuditReportTemplateBlogContent() {
                     </div>
 
                     {/* IAUDIT CTA */}
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Moving from &ldquo;Check&rdquo; to &ldquo;Act&rdquo; with iAudit Global</h2>
                         <SectionImage src={sectionImages.iaudit} alt="iAudit Global PDCA cycle audit software for ISO audit reporting" />
                         <p style={para(font)}>
@@ -381,7 +382,7 @@ export default function IsoAuditReportTemplateBlogContent() {
 
                 {/* RIGHT AUTHOR */}
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div style={{ background: "#fff", borderRadius: "1.1rem", border: "1px solid #e8e4df", padding: "2rem 1.5rem", textAlign: "center" }}>
                             <div style={{ width: "90px", height: "90px", borderRadius: "50%", backgroundImage: 'url("/images/mathew-chiweda.webp")',
                                     backgroundSize: "cover",
@@ -418,9 +419,11 @@ export default function IsoAuditReportTemplateBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

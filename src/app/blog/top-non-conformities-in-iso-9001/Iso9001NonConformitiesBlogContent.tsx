@@ -134,6 +134,7 @@ export default function Iso9001NonConformitiesBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -231,8 +232,8 @@ export default function Iso9001NonConformitiesBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -343,7 +344,7 @@ export default function Iso9001NonConformitiesBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -406,7 +407,7 @@ export default function Iso9001NonConformitiesBlogContent() {
                         Top Non-Conformities in ISO 9001 and How to Stop Them Returning
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <h2 style={h2(font)}>Introduction: Why These Non-Conformities Keep Appearing</h2>
                         <SectionImage src={sectionImages.intro} alt="Quality team reviewing ISO 9001 audit findings" />
                         <p style={para(font)}>Most ISO 9001 findings are not surprising.</p>
@@ -419,7 +420,7 @@ export default function Iso9001NonConformitiesBlogContent() {
                         </p>
                     </div>
 
-                    <div id="summary" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="summary" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Key Takeaways</h2>
                         <p style={para(font)}>
                             Most ISO 9001 audits repeatedly find the same issues, known as top Non-Conformities. The most common include poor document control, weak corrective action follow-up, inadequate training records, lack of process monitoring, unresolved customer complaint trends, and generic internal audits.
@@ -492,7 +493,7 @@ export default function Iso9001NonConformitiesBlogContent() {
                         </div>
                     </div>
 
-                    <div id="what" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="what" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>What Counts as a Nonconformity in ISO 9001?</h2>
                         <SectionImage src={sectionImages.what} alt="Documented evidence and compliance records for ISO 9001" />
                         <p style={para(font)}>
@@ -504,7 +505,7 @@ export default function Iso9001NonConformitiesBlogContent() {
                         </p>
                     </div>
 
-                    <div id="top" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="top" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>The Top Non-Conformities in ISO 9001</h2>
                         <SectionImage src={sectionImages.top} alt="Audit team reviewing recurring ISO 9001 non-conformities" />
 
@@ -576,7 +577,7 @@ export default function Iso9001NonConformitiesBlogContent() {
                         ))}
                     </div>
 
-                    <div id="common" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="common" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>What These Non-Conformities Have in Common</h2>
                         <SectionImage src={sectionImages.common} alt="Dashboard showing patterns across ISO audit findings" />
                         <p style={para(font)}>
@@ -618,7 +619,7 @@ export default function Iso9001NonConformitiesBlogContent() {
                         </p>
                     </div>
 
-                    <div id="reduce" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="reduce" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>How to Reduce Repeat ISO 9001 Nonconformities</h2>
                         <SectionImage src={sectionImages.reduce} alt="Team strengthening corrective action and PDCA follow-up" />
                         <p style={para(font)}>
@@ -654,7 +655,7 @@ export default function Iso9001NonConformitiesBlogContent() {
                         <p style={{ ...para(font), marginTop: "0.5rem" }}>That is how nonconformities become useful.</p>
                     </div>
 
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Where iAudit Helps</h2>
                         <div
                             style={{
@@ -748,7 +749,7 @@ export default function Iso9001NonConformitiesBlogContent() {
                         </div>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.5rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.5rem" }}>
                         <h2 style={h2(font)}>Final Thought: Turning Findings into Improvement</h2>
                         <p style={para(font)}>
                             The top Non-Conformities in ISO 9001 are common because the underlying weaknesses are common too.
@@ -760,7 +761,7 @@ export default function Iso9001NonConformitiesBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -901,9 +902,11 @@ export default function Iso9001NonConformitiesBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={pricingFaqs} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

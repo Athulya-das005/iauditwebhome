@@ -137,6 +137,7 @@ export default function BlogPost() {
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
 
+            <div className="blog-reading-scope">
             {/* ── Big Hero Image ─────────────────────────────────────────── */}
             <div style={{
                 position: "relative",
@@ -213,8 +214,8 @@ export default function BlogPost() {
                 borderBottom: "1px solid #e8e4df",
                 backgroundColor: "#f9f7f4",
                 position: "sticky",
-                top: 0,
-                zIndex: 40,
+                top: "var(--blog-sticky-top)",
+                zIndex: 50,
             }}>
                 <div style={{
                     maxWidth: "1260px",
@@ -311,7 +312,7 @@ export default function BlogPost() {
 
                 {/* ── LEFT: Table of Contents ─────────────────────────── */}
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p style={{
                             fontSize: "0.68rem",
                             fontWeight: 700,
@@ -384,7 +385,7 @@ export default function BlogPost() {
                     </h1>
 
                     {/* ── Intro ────────────────────────────────────────── */}
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             For many organisations, internal audits are still treated as periodic compliance checks. Something to prepare for, pass, and move on from. Yet ISO standards were never intended to support a tick-box culture. At their core, ISO 9001, ISO 14001 and ISO 45001 are frameworks for learning, adaptation, and improvement.
                         </p>
@@ -396,7 +397,7 @@ export default function BlogPost() {
                         </p>
                     </div>
 
-                    <div id="tldr" style={{ scrollMarginTop: "58px", marginTop: "1.5rem" }}>
+                    <div id="tldr" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "1.5rem" }}>
                         <div style={{ background: "rgba(0,102,68,0.05)", border: "1px solid rgba(0,102,68,0.14)", borderRadius: "0.875rem", padding: isMobile ? "1.25rem" : "1.5rem 1.75rem" }}>
                             <h2 style={{ ...h2(font), marginBottom: "0.75rem" }}>TL;DR</h2>
                             <p style={{ ...para(font), marginBottom: 0 }}>
@@ -409,7 +410,7 @@ export default function BlogPost() {
                     </p>
 
                     {/* ── Section 1 ─────────────────────────────────────── */}
-                    <div id="what-ci-means" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="what-ci-means" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>What a Continuous Improvement Culture Really Means</h2>
                         <SectionImage src={sectionImages["what-ci-means"]} alt="Continuous improvement culture" />
                         <p style={para(font)}>
@@ -424,7 +425,7 @@ export default function BlogPost() {
                     </div>
 
                     {/* ── Section 2 ─────────────────────────────────────── */}
-                    <div id="iso-standards" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="iso-standards" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>How ISO Standards Embed Continuous Improvement</h2>
                         <SectionImage src={sectionImages["iso-standards"]} alt="ISO standards continuous improvement" />
                         <p style={para(font)}>
@@ -467,7 +468,7 @@ export default function BlogPost() {
                     </div>
 
                     {/* ── Section 3 ─────────────────────────────────────── */}
-                    <div id="role-of-audit" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="role-of-audit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>The Role of Audit in Driving Continuous Improvement</h2>
                         <SectionImage src={sectionImages["role-of-audit"]} alt="Role of internal audit" />
                         <p style={para(font)}>
@@ -493,7 +494,7 @@ export default function BlogPost() {
                     </div>
 
                     {/* ── Section 4 ─────────────────────────────────────── */}
-                    <div id="closing-loop" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="closing-loop" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Closing the Loop: From Nonconformance to Improvement</h2>
                         <SectionImage src={sectionImages["closing-loop"]} alt="Closing the loop in audit" />
                         <p style={para(font)}>
@@ -511,7 +512,7 @@ export default function BlogPost() {
                     </div>
 
                     {/* ── Section 5 ─────────────────────────────────────── */}
-                    <div id="compliance-to-culture" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="compliance-to-culture" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>From Compliance to Culture: What High-Maturity Organisations Do Differently</h2>
                         <p style={para(font)}>Organisations with strong continuous improvement cultures share several common behaviours.</p>
                         {[
@@ -533,7 +534,7 @@ export default function BlogPost() {
                     </div>
 
                     {/* ── Section 6 ─────────────────────────────────────── */}
-                    <div id="audit-software" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="audit-software" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>How Internal Audit Software Enables a Culture of Improvement</h2>
                         <SectionImage src={sectionImages["audit-software"]} alt="Audit software dashboard" />
                         <p style={para(font)}>
@@ -556,7 +557,7 @@ export default function BlogPost() {
                     </div>
 
                     {/* ── Section 7 ─────────────────────────────────────── */}
-                    <div id="leadership" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="leadership" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Leadership, Risk, and Beyond-Compliance Thinking</h2>
                         <p style={para(font)}>
                             Leadership commitment is a core principle of ISO 9001. Leaders set priorities, allocate resources, and review performance through the lens of improvement. Evidence from certification bodies consistently shows findings related to planning and risk management, particularly in linking risks to actions.
@@ -570,7 +571,7 @@ export default function BlogPost() {
                     </div>
 
                     {/* ── Section 8 ─────────────────────────────────────── */}
-                    <div id="building-blocks" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="building-blocks" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Practical Building Blocks of a CI-Through-Audit Programme</h2>
                         <p style={para(font)}>Organisations that successfully embed continuous improvement through audit typically adopt the following practices:</p>
                         <ul style={{ margin: "0.5rem 0 1.25rem", paddingLeft: 0, listStyle: "none", fontFamily: font }}>
@@ -590,7 +591,7 @@ export default function BlogPost() {
                     </div>
 
                     {/* ── Section 9 ─────────────────────────────────────── */}
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Why Pilot-Led Platforms Like iAudit Global Matter</h2>
                         <p style={para(font)}>
                             Traditional audit software often treats audits as isolated events. ISO-focused platforms designed around PDCA treat them as part of a continuous improvement loop.
@@ -604,7 +605,7 @@ export default function BlogPost() {
                     </div>
 
                     {/* ── Section 10: Pilot CTA (no button) ────────────── */}
-                    <div id="pilot" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="pilot" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <div style={{
                             background: "linear-gradient(135deg, #002e1d 0%, #006644 100%)",
                             borderRadius: "1.1rem",
@@ -641,7 +642,7 @@ export default function BlogPost() {
                     </div>
 
                     {/* ── FAQ ──────────────────────────────────────────── */}
-                    <div id="faq" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Frequently Asked Questions</h2>
                         <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                             {faqs.map((faq, i) => {
@@ -702,7 +703,7 @@ export default function BlogPost() {
 
                 {/* ── RIGHT: Author card (desktop only, no pilot card) ── */}
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div style={{
                             background: "#fff",
                             borderRadius: "1.1rem",
@@ -794,6 +795,8 @@ export default function BlogPost() {
                     </div>
                 )}
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

@@ -192,6 +192,7 @@ export default function AuditRiskBasedThinkingBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div style={{ position: "relative", width: "100%", height: isMobile ? "55vw" : "70vh", minHeight: isMobile ? "240px" : "440px", maxHeight: "700px", overflow: "hidden" }}>
                 <Image src={HERO_IMAGE} alt="How to audit risk-based thinking in ISO 9001" fill priority sizes="100vw" style={{ objectFit: "cover", objectPosition: "center" }} />
                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0) 30%, rgba(0,0,0,0.58) 100%)" }} />
@@ -205,7 +206,7 @@ export default function AuditRiskBasedThinkingBlogContent() {
                 </div>
             </div>
 
-            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: 0, zIndex: 40 }}>
+            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: "var(--blog-sticky-top)", zIndex: 50 }}>
                 <div style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 1.5rem", height: "50px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     <Link href="/blog" style={{ display: "inline-flex", alignItems: "center", gap: "5px", color: "#6B7280", fontSize: "0.79rem", fontWeight: 500, textDecoration: "none", letterSpacing: "0.04em", textTransform: "uppercase", fontFamily: font }}>
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
@@ -233,7 +234,7 @@ export default function AuditRiskBasedThinkingBlogContent() {
 
             <div style={{ maxWidth: "1260px", margin: "0 auto", padding: isMobile ? "2rem 1.25rem" : "3rem 1.5rem 5rem", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "210px 1fr 240px", gap: isMobile ? "2rem" : "3rem", alignItems: "start" }}>
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#374151", margin: "0 0 0.625rem", fontFamily: font }}>Contents</p>
                         <div style={{ position: "relative" }}>
                             <div style={{ position: "absolute", left: "10px", top: 0, bottom: 0, width: "1px", background: "#e4e0db" }} />
@@ -256,7 +257,7 @@ export default function AuditRiskBasedThinkingBlogContent() {
                         How to Audit Risk-based Thinking in ISO 9001
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>Auditing risk-based thinking is one of the more challenging aspects of an ISO 9001 internal audit.</p>
                         <p style={para(font)}>Most audit competencies focus on evidence. Show me the procedure. Show me the record. Show me the certificate.</p>
                         <p style={para(font)}>Risk-based thinking does not work that way.</p>
@@ -265,7 +266,7 @@ export default function AuditRiskBasedThinkingBlogContent() {
                         <p style={para(font)}>This blog explains how to audit risk-based thinking properly, what evidence to look for and where to find it across the standard.</p>
                     </div>
 
-                    <div id="why" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="why" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Why Auditing Risk-based Thinking Is Different</h2>
                         <SectionImage src={sectionImages.why} alt="Why auditing ISO 9001 risk-based thinking is different from traditional audits" />
                         <p style={para(font)}>Traditional ISO auditing is relatively straightforward.</p>
@@ -278,7 +279,7 @@ export default function AuditRiskBasedThinkingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="evidence" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="evidence" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>What Auditors Should Look for Beyond the Risk Register</h2>
                         <SectionImage src={sectionImages.evidence} alt="Audit evidence beyond the ISO 9001 risk register" />
                         <p style={para(font)}>A risk register is useful. It is also only one piece of evidence.</p>
@@ -305,7 +306,7 @@ export default function AuditRiskBasedThinkingBlogContent() {
                         ))}
                     </div>
 
-                    <div id="clauses" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="clauses" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How to Audit Risk-based Thinking Across ISO 9001 Clauses</h2>
                         <SectionImage src={sectionImages.clauses} alt="Auditing risk-based thinking across ISO 9001 clauses" />
                         <p style={para(font)}>One of the most important insights from Ideagen&apos;s analysis of ISO 9001:2015 is that risk-based thinking is not confined to Clause 6.1. It is distributed across the standard.</p>
@@ -321,7 +322,7 @@ export default function AuditRiskBasedThinkingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="interview" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="interview" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Interview Techniques for Auditing Risk-based Thinking</h2>
                         <SectionImage src={sectionImages.interview} alt="Interview techniques for auditing ISO 9001 risk-based thinking" />
                         <p style={para(font)}>How to audit risk-based thinking effectively depends heavily on questioning technique.</p>
@@ -342,7 +343,7 @@ export default function AuditRiskBasedThinkingBlogContent() {
                         <p style={para(font)}>The answers reveal whether risk awareness is a management system feature or a lived operational reality.</p>
                     </div>
 
-                    <div id="proportional" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="proportional" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Proportionality: The Forgotten Element</h2>
                         <SectionImage src={sectionImages.proportional} alt="Proportionate risk-based thinking for small businesses" />
                         <p style={para(font)}>Effivity&apos;s analysis of risk-based thinking makes a point that auditors sometimes overlook.</p>
@@ -356,7 +357,7 @@ export default function AuditRiskBasedThinkingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="effectiveness" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="effectiveness" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Effectiveness: The Final Test</h2>
                         <SectionImage src={sectionImages.effectiveness} alt="Verifying effectiveness of ISO 9001 risk-based thinking" />
                         <p style={para(font)}>The most important question when auditing risk-based thinking is simple.</p>
@@ -370,7 +371,7 @@ export default function AuditRiskBasedThinkingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How iAudit Supports Risk-based Audit Planning</h2>
                         <SectionImage src={sectionImages.iaudit} alt="iAudit Global risk-based ISO audit planning" />
                         <p style={para(font)}>When I was developing iAudit, one of the core design principles was that audit programmes should reflect risk, not just calendars.</p>
@@ -411,7 +412,7 @@ export default function AuditRiskBasedThinkingBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div style={{ background: "#fff", borderRadius: "1.1rem", border: "1px solid #e8e4df", padding: "2rem 1.5rem", textAlign: "center" }}>
                             <div style={{ width: "90px", height: "90px", borderRadius: "50%", backgroundImage: 'url("/images/mathew-chiweda.webp")',
                                     backgroundSize: "cover",
@@ -448,9 +449,11 @@ export default function AuditRiskBasedThinkingBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

@@ -154,6 +154,7 @@ export default function Iso140012026UpdateBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -251,8 +252,8 @@ export default function Iso140012026UpdateBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -363,7 +364,7 @@ export default function Iso140012026UpdateBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -426,7 +427,7 @@ export default function Iso140012026UpdateBlogContent() {
                         ISO 14001:2026 Update: What Is Changing and How to Prepare
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             Every time a major ISO standard undergoes a revision, the reaction is predictable. People worry that they will need to rewrite their entire management system from scratch.
                         </p>
@@ -441,7 +442,7 @@ export default function Iso140012026UpdateBlogContent() {
                         </p>
                     </div>
 
-                    <div id="why" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="why" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Why ISO 14001 is being revised</h2>
                         <SectionImage src={sectionImages.why} alt="Why environmental management standards are being updated" />
                         <p style={para(font)}>Standards have to reflect reality. The environmental landscape has shifted significantly since the last major update in 2015.</p>
@@ -453,7 +454,7 @@ export default function Iso140012026UpdateBlogContent() {
                         </p>
                     </div>
 
-                    <div id="changes" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="changes" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>What is likely to change in the ISO 14001:2026 update</h2>
                         <SectionImage src={sectionImages.changes} alt="Climate action and lifecycle thinking in ISO 14001:2026" />
                         <p style={para(font)}>
@@ -467,7 +468,7 @@ export default function Iso140012026UpdateBlogContent() {
                         ))}
                     </div>
 
-                    <div id="same" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="same" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>What is not changing</h2>
                         <SectionImage src={sectionImages.same} alt="ISO 14001 Annex SL structure and PDCA cycle remaining in place" />
                         <p style={para(font)}>When you start planning for the ISO 14001 transition, it helps to remember what remains intact.</p>
@@ -482,7 +483,7 @@ export default function Iso140012026UpdateBlogContent() {
                         </p>
                     </div>
 
-                    <div id="prepare" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="prepare" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How to prepare your audit programme right now</h2>
                         <SectionImage src={sectionImages.prepare} alt="Preparing an ISO 14001 audit programme for the 2026 revision" />
                         <p style={para(font)}>
@@ -502,7 +503,7 @@ export default function Iso140012026UpdateBlogContent() {
                         ))}
                     </div>
 
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <div
                             style={{
                                 background: "linear-gradient(145deg, #002e1d 0%, #006644 55%, #058c42 100%)",
@@ -588,7 +589,7 @@ export default function Iso140012026UpdateBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -729,9 +730,11 @@ export default function Iso140012026UpdateBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

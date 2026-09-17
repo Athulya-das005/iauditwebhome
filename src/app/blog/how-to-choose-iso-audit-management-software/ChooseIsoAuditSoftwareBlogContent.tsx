@@ -154,6 +154,7 @@ export default function ChooseIsoAuditSoftwareBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -251,8 +252,8 @@ export default function ChooseIsoAuditSoftwareBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -363,7 +364,7 @@ export default function ChooseIsoAuditSoftwareBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -426,7 +427,7 @@ export default function ChooseIsoAuditSoftwareBlogContent() {
                         How to Choose ISO Audit Management Software That Drives Real Improvement
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             Three months ago, I sat in a quality manager’s office watching her toggle between five different Excel files just to prepare for one internal audit.
                         </p>
@@ -444,7 +445,7 @@ export default function ChooseIsoAuditSoftwareBlogContent() {
                         </p>
                     </div>
 
-                    <div id="why" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="why" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Why the Right Audit Software Matters</h2>
                         <SectionImage src={sectionImages.why} alt="Spreadsheets and scattered files making ISO audits harder" />
                         <p style={para(font)}>
@@ -462,7 +463,7 @@ export default function ChooseIsoAuditSoftwareBlogContent() {
                         <p style={para(font)}>If the tool does not do that, it is not solving the right problem.</p>
                     </div>
 
-                    <div id="look" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="look" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>What to Look for in ISO Audit Management Software</h2>
                         <SectionImage src={sectionImages.look} alt="Planning ISO audits with structured software instead of spreadsheets" />
                         <p style={para(font)}>Here are the features that actually matter when choosing a platform for ISO internal audits.</p>
@@ -552,7 +553,7 @@ export default function ChooseIsoAuditSoftwareBlogContent() {
                         </p>
                     </div>
 
-                    <div id="avoid" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="avoid" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>What to Avoid When Choosing Audit Software</h2>
                         <SectionImage src={sectionImages.avoid} alt="Reviewing audit software options that do not fit ISO work" />
                         <p style={para(font)}>Not every platform labelled as ISO audit management software will actually help your team.</p>
@@ -563,7 +564,7 @@ export default function ChooseIsoAuditSoftwareBlogContent() {
                         </ul>
                     </div>
 
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How iAudit Global Supports ISO Audit Teams</h2>
                         <SectionImage src={sectionImages.iaudit} alt="ISO audit teams using a PDCA-driven audit platform" />
                         <p style={para(font)}>
@@ -591,7 +592,7 @@ export default function ChooseIsoAuditSoftwareBlogContent() {
                         </p>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <div
                             style={{
                                 background: "linear-gradient(145deg, #002e1d 0%, #006644 55%, #058c42 100%)",
@@ -675,7 +676,7 @@ export default function ChooseIsoAuditSoftwareBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -816,9 +817,11 @@ export default function ChooseIsoAuditSoftwareBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

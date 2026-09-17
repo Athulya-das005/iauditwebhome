@@ -180,6 +180,7 @@ export default function Iso140012026ManufacturingBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -277,8 +278,8 @@ export default function Iso140012026ManufacturingBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -389,7 +390,7 @@ export default function Iso140012026ManufacturingBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -452,7 +453,7 @@ export default function Iso140012026ManufacturingBlogContent() {
                         ISO 14001:2026 requirements for manufacturing industry: what to review first (and how to transition)
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             The new ISO 14001:2026 requirements for the manufacturing industry shift the focus from environmental intent to measurable performance, demanding data-backed evidence for emissions, waste, and resource efficiency. Key changes include a stronger emphasis on leadership accountability, value chain and supplier controls, and setting specific, measurable environmental objectives. Start your transition early with a gap analysis to avoid the last-minute scramble before the 2029 deadline. iAudit Global&apos;s tools support this process with a free 14-day trial at{" "}
                             <a href="https://www.iaudit.global/" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>
@@ -462,7 +463,7 @@ export default function Iso140012026ManufacturingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="what" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="what" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>What ISO 14001:2026 means for manufacturing companies</h2>
                         <SectionImage src={sectionImages.what} alt="Manufacturing plant environmental management under ISO 14001:2026" />
                         <p style={para(font)}>
@@ -476,7 +477,7 @@ export default function Iso140012026ManufacturingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="why" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="why" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Why the ISO 14001:2026 update matters for manufacturing operations</h2>
                         <SectionImage src={sectionImages.why} alt="Environmental performance and value chain impacts in manufacturing" />
                         <p style={para(font)}>
@@ -493,7 +494,7 @@ export default function Iso140012026ManufacturingBlogContent() {
                         ))}
                     </div>
 
-                    <div id="priority" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="priority" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>ISO 14001:2026 requirements for manufacturing: priority areas to address</h2>
                         <SectionImage src={sectionImages.priority} alt="Priority environmental areas for ISO 14001:2026 in manufacturing" />
                         {priorityAreas.map((item) => (
@@ -511,7 +512,7 @@ export default function Iso140012026ManufacturingBlogContent() {
                         ))}
                     </div>
 
-                    <div id="weak" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="weak" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Where weak evidence will fail ISO 14001:2026 audits in manufacturing</h2>
                         <SectionImage src={sectionImages.weak} alt="Common ISO 14001:2026 audit evidence gaps in manufacturing" />
                         <p style={para(font)}>
@@ -525,7 +526,7 @@ export default function Iso140012026ManufacturingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="prepare" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="prepare" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How to prepare for ISO 14001:2026 transition in manufacturing</h2>
                         <SectionImage src={sectionImages.prepare} alt="Preparing for ISO 14001:2026 transition in manufacturing" />
                         <p style={para(font)}>
@@ -545,7 +546,7 @@ export default function Iso140012026ManufacturingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="start-now" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="start-now" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Why manufacturing companies should start the transition now</h2>
                         <SectionImage src={sectionImages.start} alt="Starting ISO 14001:2026 transition early in manufacturing" />
                         <p style={para(font)}>
@@ -562,7 +563,7 @@ export default function Iso140012026ManufacturingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How iAudit Global supports ISO 14001:2026 transition for manufacturing</h2>
                         <p style={para(font)}>
                             The patterns I kept seeing in real audits, fragmented evidence, weak follow-up, repeat non-conformities, are exactly why we started building iAudit Global. We built it to keep the audit trail connected from planning to evidence, to findings, to verified closure.
@@ -575,7 +576,7 @@ export default function Iso140012026ManufacturingBlogContent() {
                         </p>
                     </div>
 
-                    <div id="cta" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="cta" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <div
                             style={{
                                 background: "linear-gradient(145deg, #002e1d 0%, #006644 55%, #058c42 100%)",
@@ -646,7 +647,7 @@ export default function Iso140012026ManufacturingBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -783,9 +784,11 @@ export default function Iso140012026ManufacturingBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

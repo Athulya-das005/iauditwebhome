@@ -213,6 +213,7 @@ export default function PdcaIso27001BlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -310,8 +311,8 @@ export default function PdcaIso27001BlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -422,7 +423,7 @@ export default function PdcaIso27001BlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -485,7 +486,7 @@ export default function PdcaIso27001BlogContent() {
                         PDCA cycle in ISO 27001: How to make your ISMS actually work
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             A lot of organisations start ISO 27001 with a simple aim: “get the certificate”. Policies are written, controls are chosen, audits are booked. Then, once the certificate arrives, the whole thing quietly drifts into the background until the next surveillance visit.
                         </p>
@@ -495,7 +496,7 @@ export default function PdcaIso27001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="what-pdca" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="what-pdca" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>What is the PDCA cycle in ISO 27001?</h2>
                         <SectionImage
                             src={sectionImages["what-pdca"]}
@@ -516,7 +517,7 @@ export default function PdcaIso27001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="why-matters" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="why-matters" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Why PDCA matters more than a controls checklist</h2>
                         <SectionImage
                             src={sectionImages["why-matters"]}
@@ -541,7 +542,7 @@ export default function PdcaIso27001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="plan" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="plan" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Plan – setting up your ISMS with intention</h2>
                         <SectionImage src={sectionImages.plan} alt="Team planning ISMS scope, risks and objectives" />
                         <p style={para(font)}>
@@ -559,7 +560,7 @@ export default function PdcaIso27001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="do" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="do" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Do – putting controls into practice</h2>
                         <SectionImage src={sectionImages.do} alt="Implementing information security controls in daily work" />
                         <p style={para(font)}>
@@ -576,7 +577,7 @@ export default function PdcaIso27001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="check" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="check" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Check – measuring whether your ISMS works</h2>
                         <SectionImage src={sectionImages.check} alt="Monitoring ISMS performance with metrics and audits" />
                         <p style={para(font)}>The Check phase of the PDCA cycle in iso 27001 is about evidence.</p>
@@ -596,7 +597,7 @@ export default function PdcaIso27001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="act" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="act" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Act – fixing problems and improving the ISMS</h2>
                         <SectionImage src={sectionImages.act} alt="Team reviewing findings and improving the ISMS" />
                         <p style={para(font)}>
@@ -614,7 +615,7 @@ export default function PdcaIso27001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="mistakes" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="mistakes" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Common mistakes with the PDCA cycle in ISO 27001</h2>
                         <SectionImage src={sectionImages.mistakes} alt="Common pitfalls when running an ISO 27001 PDCA cycle" />
                         <p style={para(font)}>There are some familiar patterns that break the PDCA cycle in iso 27001:</p>
@@ -629,7 +630,7 @@ export default function PdcaIso27001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="daily" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="daily" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Making the PDCA cycle part of daily work</h2>
                         <SectionImage
                             src={sectionImages.daily}
@@ -649,7 +650,7 @@ export default function PdcaIso27001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <div
                             style={{
                                 background: "linear-gradient(145deg, #002e1d 0%, #006644 55%, #058c42 100%)",
@@ -729,7 +730,7 @@ export default function PdcaIso27001BlogContent() {
                         </div>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Bringing it all together</h2>
                         <p style={para(font)}>
                             The PDCA cycle in iso 27001 is not a theoretical model. It is the basic rhythm that keeps an ISMS alive.
@@ -744,7 +745,7 @@ export default function PdcaIso27001BlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -885,13 +886,15 @@ export default function PdcaIso27001BlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion
                     items={faqItems}
                     heading="Frequently asked questions about the PDCA cycle in ISO 27001"
                     sparkleText="Support"
                 />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

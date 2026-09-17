@@ -90,6 +90,7 @@ export default function HealthcareIsoBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -187,8 +188,8 @@ export default function HealthcareIsoBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -299,7 +300,7 @@ export default function HealthcareIsoBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -362,7 +363,7 @@ export default function HealthcareIsoBlogContent() {
                         ISO Audit in Healthcare Is Not Like Other Audits. Here Is Why.
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             When a manufacturing process fails, you get a defective product. When a healthcare process fails, you risk patient safety.
                         </p>
@@ -374,7 +375,7 @@ export default function HealthcareIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="why-iso" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="why-iso" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Why Healthcare Needs ISO Standards</h2>
                         <SectionImage src={sectionImages["why-iso"]} alt="Healthcare professionals collaborating on patient care quality" />
                         <p style={para(font)}>
@@ -394,7 +395,7 @@ export default function HealthcareIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="standards" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="standards" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Key ISO Standards for Healthcare</h2>
                         <SectionImage src={sectionImages.standards} alt="Healthcare technology and clinical systems supporting ISO quality frameworks" />
                         <p style={para(font)}>
@@ -438,7 +439,7 @@ export default function HealthcareIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="different" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="different" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>What Makes ISO Audit in Healthcare Different</h2>
                         <SectionImage src={sectionImages.different} alt="Hospital corridor reflecting the complexity of clinical audit environments" />
                         <p style={para(font)}>
@@ -464,7 +465,7 @@ export default function HealthcareIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="pdca" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="pdca" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Making Audits Effective: The PDCA Approach</h2>
                         <SectionImage src={sectionImages.pdca} alt="Quality team planning a PDCA-based healthcare audit programme" />
                         <p style={para(font)}>
@@ -487,7 +488,7 @@ export default function HealthcareIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <div
                             style={{
                                 background: "linear-gradient(145deg, #002e1d 0%, #006644 55%, #058c42 100%)",
@@ -619,7 +620,7 @@ export default function HealthcareIsoBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -759,6 +760,8 @@ export default function HealthcareIsoBlogContent() {
                     </div>
                 )}
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

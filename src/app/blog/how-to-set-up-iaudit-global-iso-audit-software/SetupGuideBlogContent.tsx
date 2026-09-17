@@ -67,6 +67,7 @@ export default function SetupGuideBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             {/* Hero */}
             <div style={{ position: "relative", width: "100%", height: isMobile ? "55vw" : "70vh", minHeight: isMobile ? "240px" : "440px", maxHeight: "700px", overflow: "hidden" }}>
                 <Image src={HERO_IMAGE} alt="How to set up iAudit Global ISO audit software step by step guide" fill priority sizes="100vw" style={{ objectFit: "cover", objectPosition: "center" }} />
@@ -82,7 +83,7 @@ export default function SetupGuideBlogContent() {
             </div>
 
             {/* Top bar */}
-            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: 0, zIndex: 40 }}>
+            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: "var(--blog-sticky-top)", zIndex: 50 }}>
                 <div style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 1.5rem", height: "50px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     <Link href="/blog" style={{ display: "inline-flex", alignItems: "center", gap: "5px", color: "#6B7280", fontSize: "0.79rem", fontWeight: 500, textDecoration: "none", letterSpacing: "0.04em", textTransform: "uppercase", fontFamily: font }}>
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
@@ -102,7 +103,7 @@ export default function SetupGuideBlogContent() {
 
                 {/* LEFT TOC */}
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#374151", margin: "0 0 0.625rem", fontFamily: font }}>Contents</p>
                         <div style={{ position: "relative" }}>
                             <div style={{ position: "absolute", left: "10px", top: 0, bottom: 0, width: "1px", background: "#e4e0db" }} />
@@ -120,7 +121,7 @@ export default function SetupGuideBlogContent() {
                     </h1>
 
                     {/* INTRO */}
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={ps}>In my experience, the greatest barrier to digital transformation in the ISO world is not budget. It is not desire. It is fear of complexity.</p>
                         <p style={ps}>I have seen many quality and safety teams remain stuck with fragmented spreadsheets simply because the alternative feels like a six-month IT project.</p>
                         <p style={ps}>When we developed iAudit Global, we focused on one principle: <strong>Time to Value.</strong></p>
@@ -130,7 +131,7 @@ export default function SetupGuideBlogContent() {
                     </div>
 
                     {/* WHY STRUCTURE */}
-                    <div id="structure" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="structure" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2s}>Why Structure Matters from Day One</h2>
                         <SectionImage src={sectionImages.structure} alt="Why structure matters when setting up ISO audit software" />
                         <p style={ps}>Digital transformation is often misunderstood.</p>
@@ -143,7 +144,7 @@ export default function SetupGuideBlogContent() {
                     </div>
 
                     {/* STEP 1 */}
-                    <div id="step1" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="step1" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2s}>Step 1 – Secure Your Private Audit Workspace</h2>
                         <SectionImage src={sectionImages.step1} alt="Secure your private audit workspace with iAudit Global" />
                         <div style={{ background: "#fff", borderRadius: "0.875rem", padding: "1.25rem 1.4rem", border: "1px solid #e8e4df", position: "relative", marginBottom: "1rem" }}>
@@ -159,7 +160,7 @@ export default function SetupGuideBlogContent() {
                     </div>
 
                     {/* STEP 2 */}
-                    <div id="step2" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="step2" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2s}>Step 2 – Define Your ISO Standards and Organisational Context</h2>
                         <SectionImage src={sectionImages.step2} alt="Define ISO standards and organisational context in iAudit" />
                         <div style={{ background: "#fff", borderRadius: "0.875rem", padding: "1.25rem 1.4rem", border: "1px solid #e8e4df", position: "relative", marginBottom: "1rem" }}>
@@ -187,7 +188,7 @@ export default function SetupGuideBlogContent() {
                     </div>
 
                     {/* STEP 3 */}
-                    <div id="step3" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="step3" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2s}>Step 3 – Mapping Multi-Site Infrastructure</h2>
                         <SectionImage src={sectionImages.step3} alt="Map multi-site infrastructure across manufacturing, construction, logistics" />
                         <div style={{ background: "#fff", borderRadius: "0.875rem", padding: "1.25rem 1.4rem", border: "1px solid #e8e4df", position: "relative", marginBottom: "1rem" }}>
@@ -205,7 +206,7 @@ export default function SetupGuideBlogContent() {
                     </div>
 
                     {/* STEP 4 */}
-                    <div id="step4" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="step4" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2s}>Step 4 – Building a Resilient Team Structure</h2>
                         <SectionImage src={sectionImages.step4} alt="Build resilient audit team structure with clear roles" />
                         <div style={{ background: "#fff", borderRadius: "0.875rem", padding: "1.25rem 1.4rem", border: "1px solid #e8e4df", position: "relative", marginBottom: "1rem" }}>
@@ -233,7 +234,7 @@ export default function SetupGuideBlogContent() {
                     </div>
 
                     {/* STEP 5 */}
-                    <div id="step5" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="step5" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2s}>Step 5 – Baselining Maturity with a Self-Assessment</h2>
                         <SectionImage src={sectionImages.step5} alt="Baseline maturity with ISO self-assessment in iAudit" />
                         <div style={{ background: "#fff", borderRadius: "0.875rem", padding: "1.25rem 1.4rem", border: "1px solid #e8e4df", position: "relative", marginBottom: "1rem" }}>
@@ -261,7 +262,7 @@ export default function SetupGuideBlogContent() {
                     </div>
 
                     {/* STEP 6 */}
-                    <div id="step6" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="step6" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2s}>Step 6 – Identifying Gaps and Planning Action</h2>
                         <SectionImage src={sectionImages.step6} alt="Gap analysis and action planning in iAudit Global" />
                         <div style={{ background: "#fff", borderRadius: "0.875rem", padding: "1.25rem 1.4rem", border: "1px solid #e8e4df", position: "relative", marginBottom: "1rem" }}>
@@ -297,7 +298,7 @@ export default function SetupGuideBlogContent() {
                     </div>
 
                     {/* PDCA */}
-                    <div id="pdca" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="pdca" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2s}>Maintaining the PDCA Cycle</h2>
                         <SectionImage src={sectionImages.pdca} alt="PDCA cycle continuity with iAudit Global audit software" />
                         <p style={ps}>The real purpose of learning how to set up iAudit Global ISO audit software is not setup efficiency. It is <strong>PDCA continuity</strong>.</p>
@@ -322,7 +323,7 @@ export default function SetupGuideBlogContent() {
                     </div>
 
                     {/* TAKE CONTROL */}
-                    <div id="control" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="control" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2s}>Take Control of Your Audit History</h2>
                         <p style={ps}>Setting up ISO audit software is not a technical project. It is a structural decision.</p>
                         <p style={ps}>It ensures your audit records stay with the organisation. It protects continuity. It strengthens governance.</p>
@@ -349,7 +350,7 @@ export default function SetupGuideBlogContent() {
 
                 {/* RIGHT AUTHOR */}
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div style={{ background: "#fff", borderRadius: "1.1rem", border: "1px solid #e8e4df", padding: "2rem 1.5rem", textAlign: "center" }}>
                             <div style={{ width: "90px", height: "90px", borderRadius: "50%", backgroundImage: 'url("/images/mathew-chiweda.webp")',
                                     backgroundSize: "cover",
@@ -385,6 +386,8 @@ export default function SetupGuideBlogContent() {
                     </div>
                 )}
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

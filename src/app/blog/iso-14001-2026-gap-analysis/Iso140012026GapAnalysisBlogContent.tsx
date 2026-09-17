@@ -188,6 +188,7 @@ export default function Iso140012026GapAnalysisBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -262,7 +263,7 @@ export default function Iso140012026GapAnalysisBlogContent() {
                 </div>
             </div>
 
-            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: 0, zIndex: 40 }}>
+            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: "var(--blog-sticky-top)", zIndex: 50 }}>
                 <div style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 1.5rem", height: "50px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     <Link
                         href="/blog"
@@ -352,7 +353,7 @@ export default function Iso140012026GapAnalysisBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#374151", margin: "0 0 0.625rem", fontFamily: font }}>
                             Contents
                         </p>
@@ -404,7 +405,7 @@ export default function Iso140012026GapAnalysisBlogContent() {
                         ISO 14001:2026 Gap Analysis: How to Identify and Close Compliance Gaps
                     </h1>
 
-                    <div id="tldr" style={{ scrollMarginTop: "58px", marginBottom: "2rem" }}>
+                    <div id="tldr" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginBottom: "2rem" }}>
                         <div
                             style={{
                                 background: "rgba(0,102,68,0.05)",
@@ -430,7 +431,7 @@ export default function Iso140012026GapAnalysisBlogContent() {
                         </div>
                     </div>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             If you already have an ISO 14001 environmental management system in place, I would not start your transition to ISO 14001:2026 by rewriting everything.
                         </p>
@@ -443,7 +444,7 @@ export default function Iso140012026GapAnalysisBlogContent() {
                         </p>
                     </div>
 
-                    <div id="what" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="what" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>What is an ISO 14001:2026 gap analysis?</h2>
                         <SectionImage src={sectionImages.what} alt="Structured ISO 14001 gap analysis review" />
                         <p style={para(font)}>An ISO 14001:2026 gap analysis compares your current EMS with the requirements of ISO 14001:2026.</p>
@@ -466,7 +467,7 @@ export default function Iso140012026GapAnalysisBlogContent() {
                         </p>
                     </div>
 
-                    <div id="why" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="why" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Why carry out an ISO 14001:2026 gap analysis?</h2>
                         <SectionImage src={sectionImages.why} alt="Preparing EMS for ISO 14001:2026 transition" />
                         <p style={para(font)}>
@@ -487,7 +488,7 @@ export default function Iso140012026GapAnalysisBlogContent() {
                         </p>
                     </div>
 
-                    <div id="check" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="check" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>What should an ISO 14001:2026 gap analysis check?</h2>
                         <SectionImage src={sectionImages.check} alt="Environmental context and EMS review areas" />
                         <p style={para(font)}>
@@ -570,7 +571,7 @@ export default function Iso140012026GapAnalysisBlogContent() {
                         <p style={para(font)}>And perhaps most importantly, are you checking whether actions have actually been effective?</p>
                     </div>
 
-                    <div id="how" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="how" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>How to conduct an ISO 14001:2026 gap analysis</h2>
                         <SectionImage src={sectionImages.how} alt="Step-by-step gap analysis process" />
                         <p style={para(font)}>There is no need to make the process unnecessarily complicated.</p>
@@ -625,7 +626,7 @@ export default function Iso140012026GapAnalysisBlogContent() {
                         </div>
                     </div>
 
-                    <div id="mistakes" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="mistakes" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Common mistakes in an ISO 14001:2026 gap analysis</h2>
                         <SectionImage src={sectionImages.mistakes} alt="Avoiding common gap analysis mistakes" />
                         <p style={para(font)}>I see a few approaches that are worth avoiding.</p>
@@ -672,7 +673,7 @@ export default function Iso140012026GapAnalysisBlogContent() {
                         </p>
                     </div>
 
-                    <div id="after" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="after" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>What should you do after the gap analysis?</h2>
                         <SectionImage src={sectionImages.after} alt="Turning gap analysis results into a transition plan" />
                         <p style={para(font)}>Once the assessment is complete, turn the results into a transition plan.</p>
@@ -690,7 +691,7 @@ export default function Iso140012026GapAnalysisBlogContent() {
                         </p>
                     </div>
 
-                    <div id="start" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="start" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Start your free ISO 14001:2026 gap analysis</h2>
                         <SectionImage src={sectionImages.start} alt="Free ISO 14001:2026 gap analysis with iAudit Global" />
                         <p style={para(font)}>
@@ -715,9 +716,11 @@ export default function Iso140012026GapAnalysisBlogContent() {
                 {isMobile && <AuthorCard font={font} mobile />}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently Asked Questions" sparkleText="FAQ" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />
@@ -727,7 +730,7 @@ export default function Iso140012026GapAnalysisBlogContent() {
 
 function AuthorCard({ font, mobile = false }: { font: string; mobile?: boolean }) {
     return (
-        <aside style={mobile ? undefined : { position: "sticky", top: "58px", alignSelf: "start" }}>
+        <aside style={mobile ? undefined : { position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
             <div
                 style={{
                     background: "#fff",

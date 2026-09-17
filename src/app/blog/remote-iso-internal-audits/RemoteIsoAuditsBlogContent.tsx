@@ -203,6 +203,7 @@ export default function RemoteIsoAuditsBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -300,8 +301,8 @@ export default function RemoteIsoAuditsBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -412,7 +413,7 @@ export default function RemoteIsoAuditsBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -475,7 +476,7 @@ export default function RemoteIsoAuditsBlogContent() {
                         Remote ISO Internal Audits: A Practical Guide for Audit Teams
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             Remote auditing is no longer something organisations do because they have to. It has become a practical option for internal audit teams managing ISO 9001, ISO 14001, ISO 45001 and ISO 27001 programmes, especially when sites are spread across different locations or countries.
                         </p>
@@ -484,7 +485,7 @@ export default function RemoteIsoAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="what" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="what" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>What Are Remote ISO Internal Audits?</h2>
                         <SectionImage src={sectionImages.what} alt="Audit team running a remote ISO internal audit by video call" />
                         <p style={para(font)}>
@@ -498,7 +499,7 @@ export default function RemoteIsoAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="when" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="when" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>When Remote ISO Internal Audits Make Sense</h2>
                         <SectionImage src={sectionImages.when} alt="Audit team collaborating remotely across locations" />
                         <p style={para(font)}>
@@ -529,7 +530,7 @@ export default function RemoteIsoAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="planning" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="planning" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Planning Remote ISO Internal Audits in a Risk Based Way</h2>
                         <SectionImage src={sectionImages.planning} alt="Planning a risk based remote ISO internal audit programme" />
                         <p style={para(font)}>The planning step makes or breaks remote work.</p>
@@ -550,7 +551,7 @@ export default function RemoteIsoAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="tools" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="tools" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Tools and Evidence for Remote ISO Internal Audits</h2>
                         <SectionImage src={sectionImages.tools} alt="Screen sharing and video tools used in a remote ISO audit" />
                         <p style={para(font)}>
@@ -573,7 +574,7 @@ export default function RemoteIsoAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="challenges" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="challenges" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Challenges Auditors Face During Remote ISO Audits</h2>
                         <SectionImage src={sectionImages.challenges} alt="Audit team managing technology challenges during a remote session" />
                         <p style={para(font)}>Remote ISO internal audits are not without their problems. Common issues include:</p>
@@ -589,7 +590,7 @@ export default function RemoteIsoAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="evidence" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="evidence" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Collecting Evidence During Remote Audits</h2>
                         <SectionImage src={sectionImages.evidence} alt="Reviewing audit records and evidence during a remote session" />
                         <p style={para(font)}>
@@ -606,7 +607,7 @@ export default function RemoteIsoAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="pdca" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="pdca" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Using PDCA for Remote Audit Programmes</h2>
                         <SectionImage src={sectionImages.pdca} alt="Reviewing a remote audit programme using the PDCA cycle" />
                         <p style={para(font)}>
@@ -623,7 +624,7 @@ export default function RemoteIsoAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <div
                             style={{
                                 background: "linear-gradient(145deg, #002e1d 0%, #006644 55%, #058c42 100%)",
@@ -703,7 +704,7 @@ export default function RemoteIsoAuditsBlogContent() {
                         </div>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Conclusion</h2>
                         <p style={para(font)}>
                             Remote ISO internal audits are here to stay. They offer real benefits when planned well and used for the right processes, but they are not a replacement for on site audits where physical verification matters.
@@ -715,7 +716,7 @@ export default function RemoteIsoAuditsBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -855,6 +856,8 @@ export default function RemoteIsoAuditsBlogContent() {
                     </div>
                 )}
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

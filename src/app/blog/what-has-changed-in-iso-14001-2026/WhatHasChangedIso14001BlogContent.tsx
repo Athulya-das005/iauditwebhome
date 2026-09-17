@@ -258,6 +258,7 @@ export default function WhatHasChangedIso14001BlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -355,8 +356,8 @@ export default function WhatHasChangedIso14001BlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -468,7 +469,7 @@ export default function WhatHasChangedIso14001BlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -540,7 +541,7 @@ export default function WhatHasChangedIso14001BlogContent() {
                         What Has Changed in ISO 14001:2026? Key Changes from the 2015 Edition
                     </h1>
 
-                    <div id="tldr" style={{ scrollMarginTop: "58px", marginBottom: "2rem" }}>
+                    <div id="tldr" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginBottom: "2rem" }}>
                         <div
                             style={{
                                 background: "rgba(0,102,68,0.05)",
@@ -569,7 +570,7 @@ export default function WhatHasChangedIso14001BlogContent() {
                         </div>
                     </div>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             The question I am getting most often since ISO 14001:2026 was published is fairly simple: what has actually changed?
                         </p>
@@ -582,7 +583,7 @@ export default function WhatHasChangedIso14001BlogContent() {
                         <p style={para(font)}>So, what has changed in ISO 14001:2026, and what should you actually be doing about it?</p>
                     </div>
 
-                    <div id="changes" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="changes" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>What has changed in ISO 14001:2026?</h2>
                         <SectionImage src={sectionImages.changes} alt="ISO 14001:2026 environmental management landscape" />
                         <p style={para(font)}>
@@ -656,7 +657,7 @@ export default function WhatHasChangedIso14001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="context" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="context" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>1. Environmental context is broader</h2>
                         <SectionImage src={sectionImages.context} alt="Organisational environmental context and landscape" />
                         <p style={para(font)}>One of the areas I would review first is Clause 4.1 and the context of the organisation.</p>
@@ -693,7 +694,7 @@ export default function WhatHasChangedIso14001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="climate" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="climate" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>2. Climate change is now integrated into ISO 14001:2026</h2>
                         <SectionImage src={sectionImages.climate} alt="Climate change and environmental transition" />
                         <p style={para(font)}>There is an important distinction here.</p>
@@ -711,7 +712,7 @@ export default function WhatHasChangedIso14001BlogContent() {
                         <p style={para(font)}>Simply adding the words &ldquo;climate change&rdquo; to a register is unlikely to demonstrate much.</p>
                     </div>
 
-                    <div id="biodiversity" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="biodiversity" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>3. Biodiversity and natural resources have greater visibility</h2>
                         <SectionImage src={sectionImages.biodiversity} alt="Biodiversity and natural resource considerations" />
                         <p style={para(font)}>
@@ -727,7 +728,7 @@ export default function WhatHasChangedIso14001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="lifecycle" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="lifecycle" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>4. Lifecycle thinking is clearer</h2>
                         <SectionImage src={sectionImages.lifecycle} alt="Lifecycle thinking across supply chain and operations" />
                         <p style={para(font)}>Lifecycle perspective is another area where I would be careful with the language.</p>
@@ -754,7 +755,7 @@ export default function WhatHasChangedIso14001BlogContent() {
                         <p style={para(font)}>The point is to understand where you can control or influence environmental impacts.</p>
                     </div>
 
-                    <div id="risks" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="risks" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>5. Risks, opportunities and planning have been reorganised</h2>
                         <SectionImage src={sectionImages.risks} alt="Environmental risks and opportunities planning" />
                         <p style={para(font)}>There are also changes to the way planning requirements are structured.</p>
@@ -771,7 +772,7 @@ export default function WhatHasChangedIso14001BlogContent() {
                         <p style={para(font)}>An EMS should work as a system, rather than a collection of separate registers.</p>
                     </div>
 
-                    <div id="change" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="change" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>6. Change management is now explicit</h2>
                         <SectionImage src={sectionImages.change} alt="Planning organisational and operational change" />
                         <p style={para(font)}>
@@ -817,7 +818,7 @@ export default function WhatHasChangedIso14001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="providers" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="providers" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>7. External providers are described more broadly</h2>
                         <SectionImage src={sectionImages.providers} alt="External providers and supply chain environmental controls" />
                         <p style={para(font)}>The wording around external providers has also changed.</p>
@@ -845,7 +846,7 @@ export default function WhatHasChangedIso14001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="audits" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="audits" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>8. Internal audits and management review need a closer look</h2>
                         <SectionImage src={sectionImages.audits} alt="Internal audit programme and management review" />
                         <p style={para(font)}>This is particularly relevant during transition.</p>
@@ -867,7 +868,7 @@ export default function WhatHasChangedIso14001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="same" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="same" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>What has stayed the same in ISO 14001:2026?</h2>
                         <SectionImage src={sectionImages.same} alt="Continuity of the Environmental Management System framework" />
                         <p style={para(font)}>There is a tendency with a new edition to focus entirely on what is different.</p>
@@ -881,7 +882,7 @@ export default function WhatHasChangedIso14001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="next-steps" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="next-steps" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>What should you do now?</h2>
                         <SectionImage src={sectionImages.next} alt="Practical next steps for ISO 14001:2026 transition" />
                         <p style={para(font)}>I would approach the transition in a fairly straightforward order.</p>
@@ -934,7 +935,7 @@ export default function WhatHasChangedIso14001BlogContent() {
                         </p>
                     </div>
 
-                    <div id="meaning" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="meaning" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>What Do the ISO 14001:2026 Changes Mean for Your Organisation?</h2>
                         <p style={para(font)}>
                             If you are asking what has changed in ISO 14001:2026, my view is that the revision is more about strengthening the way an Environmental Management System works than starting again with a completely different system.
@@ -971,9 +972,11 @@ export default function WhatHasChangedIso14001BlogContent() {
                 {isMobile && <AuthorCard font={font} mobile />}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently Asked Questions" sparkleText="FAQ" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />
@@ -983,7 +986,7 @@ export default function WhatHasChangedIso14001BlogContent() {
 
 function AuthorCard({ font, mobile = false }: { font: string; mobile?: boolean }) {
     return (
-        <aside style={mobile ? undefined : { position: "sticky", top: "58px", alignSelf: "start" }}>
+        <aside style={mobile ? undefined : { position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
             <div
                 style={{
                     background: "#fff",

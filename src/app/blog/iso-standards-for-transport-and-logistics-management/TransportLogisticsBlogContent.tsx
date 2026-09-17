@@ -136,6 +136,7 @@ export default function TransportLogisticsBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -233,8 +234,8 @@ export default function TransportLogisticsBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -345,7 +346,7 @@ export default function TransportLogisticsBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -408,7 +409,7 @@ export default function TransportLogisticsBlogContent() {
                         ISO Standards for Reliable Transport and Logistics Operations
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             Transport and logistics is an industry with zero margin for error. A late delivery, a temperature breach in the cold chain, or a damaged pallet costs money and damages client trust immediately. When your workforce is out on the road and your assets are constantly moving, managing quality and compliance is significantly harder than it is in a fixed office or factory.
                         </p>
@@ -417,7 +418,7 @@ export default function TransportLogisticsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="summary" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="summary" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Key Takeaways</h2>
                         <p style={para(font)}>
                             In logistics, a single compliance failure can ground your fleet or cost you a major contract. Implementing ISO standards for transport and logistics management is not about writing office procedures. It is about proving you have total control over a fast moving, high-risk supply chain.
@@ -490,7 +491,7 @@ export default function TransportLogisticsBlogContent() {
                         </div>
                     </div>
 
-                    <div id="core-standards" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="core-standards" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>The Core ISO Standards for Transport and Logistics</h2>
                         <SectionImage src={sectionImages["core-standards"]} alt="Transport fleet and logistics depot operations" />
                         <p style={para(font)}>
@@ -533,7 +534,7 @@ export default function TransportLogisticsBlogContent() {
                         ))}
                     </div>
 
-                    <div id="subcontractors" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="subcontractors" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Why Sub-Contractor Management is Your Biggest ISO Risk</h2>
                         <SectionImage src={sectionImages.subcontractors} alt="Freight trucks and sub-contractor logistics operations" />
                         <p style={para(font)}>
@@ -547,7 +548,7 @@ export default function TransportLogisticsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="regulations" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="regulations" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>The Overlap Between ISO and Transport Regulations</h2>
                         <SectionImage src={sectionImages.regulations} alt="Transport compliance documentation and regulatory checks" />
                         <p style={para(font)}>
@@ -621,7 +622,7 @@ export default function TransportLogisticsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="cold-chain" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="cold-chain" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Auditing the Cold Chain and Specialist Freight</h2>
                         <SectionImage src={sectionImages["cold-chain"]} alt="Cold chain and warehouse logistics operations" />
                         <p style={para(font)}>
@@ -635,7 +636,7 @@ export default function TransportLogisticsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="common-failures" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="common-failures" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Why Transport Audits Fail: Common Non-Conformities</h2>
                         <SectionImage src={sectionImages["common-failures"]} alt="Audit review meeting discussing logistics non-conformities" />
                         <p style={para(font)}>
@@ -713,7 +714,7 @@ export default function TransportLogisticsBlogContent() {
                         </div>
                     </div>
 
-                    <div id="pdca" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="pdca" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Using PDCA Across Fleets and Depots</h2>
                         <SectionImage src={sectionImages.pdca} alt="PDCA cycle applied to transport fleet and depot operations" />
                         <p style={para(font)}>
@@ -757,7 +758,7 @@ export default function TransportLogisticsBlogContent() {
                         </div>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.5rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.5rem" }}>
                         <div
                             style={{
                                 background: "linear-gradient(135deg, #002e1d 0%, #006644 100%)",
@@ -857,7 +858,7 @@ export default function TransportLogisticsBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -994,9 +995,11 @@ export default function TransportLogisticsBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={pricingFaqs} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

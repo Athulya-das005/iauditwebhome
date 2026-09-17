@@ -332,6 +332,7 @@ export default function InternalAuditFindingsBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -396,7 +397,7 @@ export default function InternalAuditFindingsBlogContent() {
                 </div>
             </div>
 
-            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: 0, zIndex: 40 }}>
+            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: "var(--blog-sticky-top)", zIndex: 50 }}>
                 <div style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 1.5rem", height: "50px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     <Link href="/blog" style={{ display: "inline-flex", alignItems: "center", gap: "5px", color: "#6B7280", fontSize: "0.79rem", fontWeight: 500, textDecoration: "none", letterSpacing: "0.04em", textTransform: "uppercase", fontFamily: font }}>
                         Back To Blog
@@ -423,7 +424,7 @@ export default function InternalAuditFindingsBlogContent() {
 
             <div style={{ maxWidth: "1260px", margin: "0 auto", padding: isMobile ? "2rem 1.25rem" : "3rem 1.5rem 5rem", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "210px 1fr 240px", gap: isMobile ? "2rem" : "3rem", alignItems: "start" }}>
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#374151", margin: "0 0 0.625rem", fontFamily: font }}>Contents</p>
                         <div style={{ position: "relative" }}>
                             <div style={{ position: "absolute", left: "10px", top: 0, bottom: 0, width: "1px", background: "#e4e0db" }} />
@@ -446,7 +447,7 @@ export default function InternalAuditFindingsBlogContent() {
                         Internal Audit Findings Explained: NC, OFI, Observation &amp; Positive Findings
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <div style={{ background: "rgba(0,102,68,0.05)", borderRadius: "0.875rem", border: "1px solid rgba(0,102,68,0.12)", padding: "1.25rem 1.5rem", margin: "0 0 1.25rem" }}>
                             <p style={{ ...para(font), margin: "0 0 0.75rem" }}>
                                 Internal audit findings help organisations understand whether their management systems are working effectively and where improvement is needed. During an ISO audit, findings are typically classified as Nonconformities (NCs), Observations, Opportunities for Improvement (OFIs), or Positive Findings.
@@ -477,7 +478,7 @@ export default function InternalAuditFindingsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="what" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="what" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>What Are Internal Audit Findings?</h2>
                         <SectionImage src={sectionImages.what} alt="What are internal audit findings in ISO audits" />
                         <p style={para(font)}>
@@ -505,7 +506,7 @@ export default function InternalAuditFindingsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="classifying" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="classifying" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Why Classifying Findings Correctly Matters</h2>
                         <p style={para(font)}>It&apos;s tempting to think that every issue should become a nonconformity.</p>
                         <p style={para(font)}>
@@ -526,7 +527,7 @@ export default function InternalAuditFindingsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="positive" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="positive" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Positive Findings</h2>
                         <SectionImage src={sectionImages.positive} alt="Positive findings in internal ISO audits" />
                         <p style={para(font)}>Not every audit finding needs to highlight a weakness.</p>
@@ -551,7 +552,7 @@ export default function InternalAuditFindingsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="observation" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="observation" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Observation</h2>
                         <p style={para(font)}>
                             An observation identifies something that isn&apos;t currently a nonconformity but could become one if it&apos;s ignored.
@@ -571,7 +572,7 @@ export default function InternalAuditFindingsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="ofi" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="ofi" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Opportunity for Improvement (OFI)</h2>
                         <p style={para(font)}>An Opportunity for Improvement is different.</p>
                         <p style={para(font)}>The requirement has already been met.</p>
@@ -596,7 +597,7 @@ export default function InternalAuditFindingsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="nc" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="nc" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Nonconformity (NC)</h2>
                         <p style={para(font)}>
                             A nonconformity is raised when objective evidence shows that a requirement has not been fulfilled.
@@ -632,7 +633,7 @@ export default function InternalAuditFindingsBlogContent() {
                         <p style={para(font)}>The organisation decides how it will correct it.</p>
                     </div>
 
-                    <div id="comparison" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="comparison" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Observation vs OFI vs NC</h2>
                         <p style={para(font)}>If you&apos;re unsure how to classify a finding, this simple comparison usually helps.</p>
 
@@ -655,7 +656,7 @@ export default function InternalAuditFindingsBlogContent() {
                         <p style={para(font)}>The answer is usually much clearer.</p>
                     </div>
 
-                    <div id="lead-somewhere" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="lead-somewhere" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Every Finding Should Lead Somewhere</h2>
                         <p style={para(font)}>One mistake I see is treating audit findings as the end of the process.</p>
                         <p style={para(font)}>They aren&apos;t.</p>
@@ -674,7 +675,7 @@ export default function InternalAuditFindingsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="connected" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="connected" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Keep Findings Connected</h2>
                         <SectionImage src={sectionImages.connected} alt="Keeping internal audit findings connected from evidence to follow-up" />
                         <p style={para(font)}>
@@ -688,7 +689,7 @@ export default function InternalAuditFindingsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="improvement" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="improvement" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Turning Audit Findings Into Real Improvement</h2>
                         <p style={para(font)}>Every audit finding tells a story.</p>
                         <p style={para(font)}>Sometimes that story is about a requirement that hasn&apos;t been met.</p>
@@ -726,7 +727,7 @@ export default function InternalAuditFindingsBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div style={{ background: "#fff", borderRadius: "1.1rem", border: "1px solid #e8e4df", padding: "2rem 1.5rem", textAlign: "center" }}>
                             <div style={{ width: "90px", height: "90px", borderRadius: "50%", backgroundImage: 'url("/images/mathew-chiweda.webp")',
                                     backgroundSize: "cover",
@@ -767,9 +768,11 @@ export default function InternalAuditFindingsBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

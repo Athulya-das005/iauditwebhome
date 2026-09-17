@@ -23,6 +23,12 @@
   --header-height: 104px;
   --header-gap: 3.25rem;
   --page-top-offset: calc(var(--header-height) + var(--header-gap));
+  /* Floating condensed nav bottom (~94px) + tiny breathing room */
+  --sticky-under-nav: 5.85rem;
+  /* Blog reading chrome (no main nav): back bar height */
+  --blog-backbar-height: 50px;
+  --blog-sticky-top: 0px;
+  --blog-sticky-offset: var(--blog-backbar-height);
   --radius: 0.5rem;
 
   /* Typography */
@@ -381,6 +387,7 @@ button {
   :root {
     --header-height: 90px;
     --header-gap: 2.5rem;
+    --sticky-under-nav: 5.65rem;
   }
 
   .container {
@@ -587,6 +594,11 @@ img {
     min-height: 68px;
     padding: 0 1.15rem;
   }
+}
+
+/* Blog post reading scope: sticky Back bar only lasts through the article */
+.blog-reading-scope {
+  position: relative;
 }
 
 

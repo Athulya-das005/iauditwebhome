@@ -193,6 +193,7 @@ export default function InternalAuditProgrammeScheduleBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -290,8 +291,8 @@ export default function InternalAuditProgrammeScheduleBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -402,7 +403,7 @@ export default function InternalAuditProgrammeScheduleBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -465,7 +466,7 @@ export default function InternalAuditProgrammeScheduleBlogContent() {
                         How to Schedule an Effective Internal Audit Programme
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             A static internal audit programme schedule is a major risk to any organisation. Most businesses fall into the &ldquo;fixed calendar trap&rdquo;, auditing by a set date rather than by operational risk or past performance. This often leads to the &ldquo;audit scramble&rdquo; and poor-quality findings.
                         </p>
@@ -484,7 +485,7 @@ export default function InternalAuditProgrammeScheduleBlogContent() {
                         </p>
                     </div>
 
-                    <div id="calendar" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="calendar" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>The Difference Between a Calendar and a Programme</h2>
                         <SectionImage src={sectionImages.calendar} alt="Planning a risk-based internal audit programme instead of a static calendar" />
                         <p style={para(font)}>
@@ -496,7 +497,7 @@ export default function InternalAuditProgrammeScheduleBlogContent() {
                         <p style={para(font)}>The goal of scheduling is to put the auditor where the risk is highest.</p>
                     </div>
 
-                    <div id="pain" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="pain" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Common Pain Points in Audit Scheduling</h2>
                         <SectionImage src={sectionImages.pain} alt="Common pain points in multi-site internal audit scheduling" />
                         <p style={para(font)}>
@@ -512,7 +513,7 @@ export default function InternalAuditProgrammeScheduleBlogContent() {
                         ))}
                     </div>
 
-                    <div id="risk" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="risk" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Moving to a Risk-Based Schedule</h2>
                         <SectionImage src={sectionImages.risk} alt="Risk-based internal audit scheduling using performance data" />
                         <p style={para(font)}>
@@ -526,7 +527,7 @@ export default function InternalAuditProgrammeScheduleBlogContent() {
                         ))}
                     </div>
 
-                    <div id="multisite" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="multisite" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Scheduling for Multi-Site Consistency</h2>
                         <SectionImage src={sectionImages.multisite} alt="Multi-site internal audit programme scheduling across locations" />
                         <p style={para(font)}>
@@ -537,7 +538,7 @@ export default function InternalAuditProgrammeScheduleBlogContent() {
                         </p>
                     </div>
 
-                    <div id="living" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="living" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Turning the Schedule into a Living Programme</h2>
                         <SectionImage src={sectionImages.living} alt="Turning an internal audit schedule into a living PDCA programme" />
                         <p style={para(font)}>An internal audit schedule should not be static.</p>
@@ -584,7 +585,7 @@ export default function InternalAuditProgrammeScheduleBlogContent() {
                         </p>
                     </div>
 
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How iAudit Global Strengthens Internal Audit Scheduling</h2>
                         <SectionImage src={sectionImages.iaudit} alt="iAudit Global dashboard for dynamic internal audit programme scheduling" />
                         <p style={para(font)}>
@@ -601,7 +602,7 @@ export default function InternalAuditProgrammeScheduleBlogContent() {
                         ))}
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>From Static Schedules to Structured Audit Control</h2>
                         <p style={para(font)}>
                             Internal audits should not be a paperwork routine. They are the clearest way for a Director to see how the business is performing on the ground. But that insight starts with a schedule that is built around risk, performance, and reality.
@@ -688,7 +689,7 @@ export default function InternalAuditProgrammeScheduleBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -825,9 +826,11 @@ export default function InternalAuditProgrammeScheduleBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

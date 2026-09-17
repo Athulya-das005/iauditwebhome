@@ -346,6 +346,7 @@ export default function PdcaBasicMetalBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -443,8 +444,8 @@ export default function PdcaBasicMetalBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -555,7 +556,7 @@ export default function PdcaBasicMetalBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -618,7 +619,7 @@ export default function PdcaBasicMetalBlogContent() {
                         Using the PDCA Cycle to Improve Performance in the Basic Metal and Fabrication Industry
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             Successful metal fabrication depends on precision, but reactive fixes often lead to high scrap rates and wasted material. The PDCA in basic metal industry framework, Plan, Do, Check, Act, provides a structured way to turn these quality challenges into systematic improvements.
                         </p>
@@ -667,7 +668,7 @@ export default function PdcaBasicMetalBlogContent() {
                         </p>
                     </div>
 
-                    <div id="meaning" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="meaning" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>What the PDCA Cycle Really Means in Manufacturing</h2>
                         <SectionImage src={sectionImages.meaning} alt="PDCA cycle applied in metal fabrication manufacturing" />
                         <p style={para(font)}>
@@ -700,7 +701,7 @@ export default function PdcaBasicMetalBlogContent() {
                         </p>
                     </div>
 
-                    <div id="wrong" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="wrong" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Where Fabrication Companies Go Wrong with PDCA</h2>
                         <SectionImage src={sectionImages.wrong} alt="Common PDCA mistakes in metal fabrication companies" />
                         <p style={para(font)}>
@@ -714,7 +715,7 @@ export default function PdcaBasicMetalBlogContent() {
                         ))}
                     </div>
 
-                    <div id="iso9001" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iso9001" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How Metal Fabricators Use PDCA for ISO 9001 Compliance</h2>
                         <SectionImage src={sectionImages.iso9001} alt="PDCA cycle supporting ISO 9001 compliance in metal fabrication" />
                         <p style={para(font)}>
@@ -734,7 +735,7 @@ export default function PdcaBasicMetalBlogContent() {
                         </p>
                     </div>
 
-                    <div id="mistakes" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="mistakes" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Common PDCA Mistakes in Metal Fabrication (and How to Avoid Them)</h2>
                         <SectionImage src={sectionImages.mistakes} alt="Avoiding common PDCA mistakes in metal fabrication" />
                         <p style={para(font)}>Even when fabricators commit to using PDCA properly, a few traps keep showing up.</p>
@@ -746,7 +747,7 @@ export default function PdcaBasicMetalBlogContent() {
                         ))}
                     </div>
 
-                    <div id="digital" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="digital" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How Digital Audit Tools Strengthen the PDCA Cycle</h2>
                         <SectionImage src={sectionImages.digital} alt="Digital audit tools for PDCA cycle management" />
                         <p style={para(font)}>
@@ -772,12 +773,12 @@ export default function PdcaBasicMetalBlogContent() {
                         </p>
                     </div>
 
-                    <div id="comparison" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="comparison" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Tracking PDCA Cycles in Metal Fabrication: Spreadsheets vs. Audit Software</h2>
                         <ComparisonTable font={font} isMobile={isMobile} />
                     </div>
 
-                    <div id="checklist" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="checklist" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Start Your Next PDCA Cycle with a Metal Fabrication Audit Checklist</h2>
                         <SectionImage src={sectionImages.checklist} alt="Metal fabrication audit checklist for PDCA planning" />
                         <p style={para(font)}>
@@ -798,7 +799,7 @@ export default function PdcaBasicMetalBlogContent() {
                         </p>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>PDCA Works When You Give It Structure</h2>
                         <p style={para(font)}>
                             The PDCA cycle isn&apos;t complicated. Plan a test, run it, check the results, then either standardise the improvement or try again with better information. What makes it hard is doing that consistently, documenting it properly and making sure the changes actually stick.
@@ -887,7 +888,7 @@ export default function PdcaBasicMetalBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -1024,9 +1025,11 @@ export default function PdcaBasicMetalBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

@@ -181,6 +181,7 @@ export default function DocumentationIsoBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -278,8 +279,8 @@ export default function DocumentationIsoBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -390,7 +391,7 @@ export default function DocumentationIsoBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -453,7 +454,7 @@ export default function DocumentationIsoBlogContent() {
                         Why Documentation Is Important for ISO Certification
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             Most organisations know ISO requires documentation, but there is often confusion about what that really means in practice. Some teams feel buried under paperwork. Others have almost nothing written down and hope that “everyone knows what to do” will be enough.
                         </p>
@@ -465,7 +466,7 @@ export default function DocumentationIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="what" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="what" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>What “documentation” really means in ISO standards</h2>
                         <SectionImage src={sectionImages.what} alt="Reviewing ISO policies, procedures and documented information" />
                         <p style={para(font)}>
@@ -485,7 +486,7 @@ export default function DocumentationIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="audits" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="audits" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Why documentation is important for ISO certification audits</h2>
                         <SectionImage src={sectionImages.audits} alt="Auditor reviewing ISO records and certification evidence" />
                         <p style={para(font)}>
@@ -505,7 +506,7 @@ export default function DocumentationIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="memory" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="memory" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Documentation as the memory of your management system</h2>
                         <SectionImage src={sectionImages.memory} alt="Organised records keeping the memory of a management system" />
                         <p style={para(font)}>Documentation is more than a snapshot for audit day. It is the memory of your management system.</p>
@@ -523,7 +524,7 @@ export default function DocumentationIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="problems" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="problems" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Common documentation problems that hurt audits</h2>
                         <SectionImage src={sectionImages.problems} alt="Scattered paperwork and version control problems in ISO documentation" />
                         <p style={para(font)}>Most audit findings about documentation fall into a few familiar patterns:</p>
@@ -538,7 +539,7 @@ export default function DocumentationIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="internal-audits" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="internal-audits" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How documentation and internal audits support each other</h2>
                         <SectionImage src={sectionImages["internal-audits"]} alt="Internal audit comparing documented procedures with real practice" />
                         <p style={para(font)}>Internal audits are where your documentation is really tested.</p>
@@ -556,7 +557,7 @@ export default function DocumentationIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="practical" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="practical" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Making documentation work for you, not against you</h2>
                         <SectionImage src={sectionImages.practical} alt="Keeping ISO documents short, current and easy to find" />
                         <p style={para(font)}>
@@ -574,7 +575,7 @@ export default function DocumentationIsoBlogContent() {
                         </p>
                     </div>
 
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <div
                             style={{
                                 background: "linear-gradient(145deg, #002e1d 0%, #006644 55%, #058c42 100%)",
@@ -665,7 +666,7 @@ export default function DocumentationIsoBlogContent() {
                         </div>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Bringing it together</h2>
                         <p style={para(font)}>
                             In the end, why documentation is important for ISO certification comes down to three simple things:
@@ -685,7 +686,7 @@ export default function DocumentationIsoBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -825,6 +826,8 @@ export default function DocumentationIsoBlogContent() {
                     </div>
                 )}
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

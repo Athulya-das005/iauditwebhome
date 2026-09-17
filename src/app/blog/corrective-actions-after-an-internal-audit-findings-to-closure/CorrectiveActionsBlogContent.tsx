@@ -133,6 +133,7 @@ export default function CorrectiveActionsBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             {/* Hero */}
             <div style={{ position: "relative", width: "100%", height: isMobile ? "55vw" : "70vh", minHeight: isMobile ? "240px" : "440px", maxHeight: "700px", overflow: "hidden" }}>
                 <Image src={HERO_IMAGE} alt="Corrective actions after an internal audit - from findings to closure" fill priority sizes="100vw" style={{ objectFit: "cover", objectPosition: "center" }} />
@@ -148,7 +149,7 @@ export default function CorrectiveActionsBlogContent() {
             </div>
 
             {/* Top bar */}
-            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: 0, zIndex: 40 }}>
+            <div style={{ borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4", position: "sticky", top: "var(--blog-sticky-top)", zIndex: 50 }}>
                 <div style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 1.5rem", height: "50px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     <Link href="/blog" style={{ display: "inline-flex", alignItems: "center", gap: "5px", color: "#6B7280", fontSize: "0.79rem", fontWeight: 500, textDecoration: "none", letterSpacing: "0.04em", textTransform: "uppercase", fontFamily: font }}>
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
@@ -168,7 +169,7 @@ export default function CorrectiveActionsBlogContent() {
 
                 {/* LEFT TOC */}
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#374151", margin: "0 0 0.625rem", fontFamily: font }}>Contents</p>
                         <div style={{ position: "relative" }}>
                             <div style={{ position: "absolute", left: "10px", top: 0, bottom: 0, width: "1px", background: "#e4e0db" }} />
@@ -186,7 +187,7 @@ export default function CorrectiveActionsBlogContent() {
                     </h1>
 
                     {/* INTRO */}
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <div style={{ background: "rgba(0,102,68,0.05)", borderRadius: "0.875rem", border: "1px solid rgba(0,102,68,0.12)", padding: "1.25rem 1.5rem", margin: "0 0 1.25rem" }}>
                             <p style={p({ margin: "0 0 0.75rem" })}>Managing corrective actions after an internal audit is the most critical part of the PDCA cycle, yet it is often where compliance programmes fail. While many organisations stop at a &ldquo;correction&rdquo; (the immediate fix), ISO standards require a permanent &ldquo;corrective action&rdquo; that eliminates the root cause to prevent recurrence.</p>
                             <p style={p({ margin: 0 })}>iAudit Global helps teams move beyond fragmented spreadsheets by centralising findings, assigning clear ownership, and ensuring every action is verified for effectiveness. This structured approach to ISO audit management software ensures that nonconformities are actually resolved rather than just recorded, protecting your certification and driving real operational oversight.</p>
@@ -198,7 +199,7 @@ export default function CorrectiveActionsBlogContent() {
                     </div>
 
                     {/* MEANING */}
-                    <div id="meaning" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="meaning" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2s}>What Corrective Actions After an Internal Audit Really Mean</h2>
                         <SectionImage src={sectionImages.meaning} alt="Correction vs corrective action after an internal audit" />
                         <p style={p()}>One of the most common misunderstandings I encounter is the confusion between correction and corrective action.</p>
@@ -235,7 +236,7 @@ export default function CorrectiveActionsBlogContent() {
                     </div>
 
                     {/* PROCESS */}
-                    <div id="process" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="process" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2s}>The Step-by-Step Process: From Finding to Closure</h2>
                         <SectionImage src={sectionImages.process} alt="Step by step corrective action process from finding to closure" />
                         <p style={p()}>If you want corrective actions after an internal audit to work, the process must be structured.</p>
@@ -277,7 +278,7 @@ export default function CorrectiveActionsBlogContent() {
                     </div>
 
                     {/* FAIL */}
-                    <div id="fail" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="fail" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2s}>Why Corrective Actions After an Internal Audit Fail in Practice</h2>
                         <SectionImage src={sectionImages.fail} alt="Why corrective actions fail in practice" />
                         <p style={p()}>There are patterns I see repeatedly:</p>
@@ -294,7 +295,7 @@ export default function CorrectiveActionsBlogContent() {
                     </div>
 
                     {/* INDUSTRY */}
-                    <div id="industry" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="industry" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2s}>Industry Examples of Weak Corrective Action</h2>
                         <SectionImage src={sectionImages.industry} alt="Industry examples of weak corrective action in manufacturing construction healthcare" />
                         <p style={p()}>The risk looks different across sectors. Corrective actions after an internal audit must reflect operational reality, not generic theory.</p>
@@ -317,7 +318,7 @@ export default function CorrectiveActionsBlogContent() {
                     </div>
 
                     {/* SPREADSHEETS */}
-                    <div id="spreadsheets" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="spreadsheets" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2s}>Why Spreadsheets Struggle With Corrective Action Tracking</h2>
                         <SectionImage src={sectionImages.spreadsheets} alt="Why spreadsheets fail for corrective action tracking" />
                         <p style={p()}>A spreadsheet can list actions. It cannot:</p>
@@ -337,7 +338,7 @@ export default function CorrectiveActionsBlogContent() {
                     </div>
 
                     {/* PDCA */}
-                    <div id="pdca" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="pdca" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2s}>Connecting Corrective Actions to the PDCA Cycle</h2>
                         <SectionImage src={sectionImages.pdca} alt="PDCA cycle and corrective action integration" />
                         <p style={p()}>Corrective action sits in the &ldquo;Act&rdquo; phase of PDCA.</p>
@@ -365,7 +366,7 @@ export default function CorrectiveActionsBlogContent() {
                     </div>
 
                     {/* CLOSURE */}
-                    <div id="closure" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="closure" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2s}>From Static Closure to Verified Improvement</h2>
                         <p style={p()}>There is a difference between:</p>
 
@@ -413,7 +414,7 @@ export default function CorrectiveActionsBlogContent() {
 
                 {/* RIGHT AUTHOR */}
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div style={{ background: "#fff", borderRadius: "1.1rem", border: "1px solid #e8e4df", padding: "2rem 1.5rem", textAlign: "center" }}>
                             <div style={{ width: "90px", height: "90px", borderRadius: "50%", backgroundImage: 'url("/images/mathew-chiweda.webp")',
                                     backgroundSize: "cover",
@@ -450,9 +451,11 @@ export default function CorrectiveActionsBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

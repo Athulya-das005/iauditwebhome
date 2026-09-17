@@ -139,6 +139,7 @@ export default function MultiSiteBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             {/* Hero */}
             <div
                 style={{
@@ -238,8 +239,8 @@ export default function MultiSiteBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -352,7 +353,7 @@ export default function MultiSiteBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -415,7 +416,7 @@ export default function MultiSiteBlogContent() {
                         How to Manage ISO Audits Across Multiple Sites Without Losing Visibility
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             If you have ever tried to coordinate a quality or safety audit programme for an organisation with ten, twenty or fifty locations, you know the feeling.
                         </p>
@@ -430,7 +431,7 @@ export default function MultiSiteBlogContent() {
                         </p>
                     </div>
 
-                    <div id="blueprint" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="blueprint" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>The Practical Blueprint</h2>
                         <p style={para(font)}>
                             Managing ISO audits across 10, 20 or 50 sites should not feel like a guessing game. If you are struggling with how to manage ISO audits across multiple sites, here is the practical blueprint to regain control:
@@ -511,7 +512,7 @@ export default function MultiSiteBlogContent() {
                         </div>
                     </div>
 
-                    <div id="challenge" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="challenge" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>The Challenge of Multi-Site Audit Programmes</h2>
                         <SectionImage src={sectionImages.challenge} alt="Teams struggling with fragmented multi-site audit reporting" />
                         <p style={para(font)}>The biggest issue with how to manage ISO audits across multiple sites is inconsistency.</p>
@@ -526,7 +527,7 @@ export default function MultiSiteBlogContent() {
                         </p>
                     </div>
 
-                    <div id="central-function" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="central-function" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Step 1: Establish a Strong Central Function</h2>
                         <SectionImage src={sectionImages["central-function"]} alt="Central QHSE team setting multi-site audit standards" />
                         <p style={para(font)}>
@@ -585,7 +586,7 @@ export default function MultiSiteBlogContent() {
                         </p>
                     </div>
 
-                    <div id="standardise" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="standardise" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Step 2: Standardise Your Audit Checklists and Scoring</h2>
                         <SectionImage src={sectionImages.standardise} alt="Standardised ISO audit checklists and scoring criteria" />
                         <p style={para(font)}>
@@ -673,7 +674,7 @@ export default function MultiSiteBlogContent() {
                         </p>
                     </div>
 
-                    <div id="plan-execute" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="plan-execute" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Step 3: Plan Centrally, Execute Locally</h2>
                         <SectionImage src={sectionImages["plan-execute"]} alt="Hybrid audit model planning centrally and executing locally" />
                         <p style={para(font)}>A common question in how to manage ISO audits across multiple sites is who should do the auditing.</p>
@@ -728,7 +729,7 @@ export default function MultiSiteBlogContent() {
                         </p>
                     </div>
 
-                    <div id="sampling" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="sampling" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Step 4: Use Sampling Intelligently</h2>
                         <SectionImage src={sectionImages.sampling} alt="Risk-based multi-site audit sampling dashboard" />
                         <p style={para(font)}>
@@ -755,7 +756,7 @@ export default function MultiSiteBlogContent() {
                         </div>
                     </div>
 
-                    <div id="centralise-findings" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="centralise-findings" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Step 5: Centralise Your Findings and Actions</h2>
                         <SectionImage src={sectionImages["centralise-findings"]} alt="Centralised findings and corrective action log across sites" />
                         <p style={para(font)}>
@@ -805,7 +806,7 @@ export default function MultiSiteBlogContent() {
                         </div>
                     </div>
 
-                    <div id="technology" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="technology" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>The Role of Technology in Multi-Site Audits</h2>
                         <SectionImage src={sectionImages.technology} alt="ISO audit management software dashboards for multi-site oversight" />
                         <p style={para(font)}>
@@ -921,7 +922,7 @@ export default function MultiSiteBlogContent() {
                         </div>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.5rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.5rem" }}>
                         <div
                             style={{
                                 background: "linear-gradient(135deg, #002e1d 0%, #006644 100%)",
@@ -1024,7 +1025,7 @@ export default function MultiSiteBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -1162,9 +1163,11 @@ export default function MultiSiteBlogContent() {
             </div>
 
             {/* Pricing-style FAQ */}
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={pricingFaqs} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

@@ -93,6 +93,7 @@ export default function ManufacturingAuditsBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -190,8 +191,8 @@ export default function ManufacturingAuditsBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -302,7 +303,7 @@ export default function ManufacturingAuditsBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -365,7 +366,7 @@ export default function ManufacturingAuditsBlogContent() {
                         Why Internal Audits Are Critical in Manufacturing
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             A few years ago, I walked into a steel fabrication facility for a routine internal audit. The quality manager greeted me with a familiar line: &ldquo;We only do this because we have to for ISO.&rdquo;
                         </p>
@@ -380,7 +381,7 @@ export default function ManufacturingAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="neglected" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="neglected" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>What Happens When Internal Audits Are Neglected</h2>
                         <SectionImage src={sectionImages.neglected} alt="Manufacturing facility where process gaps go unnoticed" />
                         <p style={para(font)}>
@@ -410,7 +411,7 @@ export default function ManufacturingAuditsBlogContent() {
                         </div>
                     </div>
 
-                    <div id="challenges" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="challenges" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Why Manufacturing Presents Unique Audit Challenges</h2>
                         <SectionImage src={sectionImages.challenges} alt="Shop floor manufacturing environment with production equipment" />
                         <p style={para(font)}>
@@ -436,7 +437,7 @@ export default function ManufacturingAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="benefits" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="benefits" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>The Real Benefits of Effective Internal Audits</h2>
                         <SectionImage src={sectionImages.benefits} alt="Quality engineer reviewing manufacturing process controls" />
                         <p style={para(font)}>
@@ -490,7 +491,7 @@ export default function ManufacturingAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="pdca" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="pdca" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>What Good Looks Like: The PDCA Approach</h2>
                         <SectionImage src={sectionImages.pdca} alt="PDCA planning for manufacturing internal audit programmes" />
                         <p style={para(font)}>
@@ -539,7 +540,7 @@ export default function ManufacturingAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="mistakes" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="mistakes" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Common Mistakes to Avoid</h2>
                         <SectionImage src={sectionImages.mistakes} alt="Audit team discussing manufacturing process findings" />
                         <p style={para(font)}>Over 18 years, I have seen internal audit programmes fail for predictable reasons.</p>
@@ -618,7 +619,7 @@ export default function ManufacturingAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.5rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.5rem" }}>
                         <div
                             style={{
                                 background: "linear-gradient(135deg, #002e1d 0%, #006644 100%)",
@@ -737,7 +738,7 @@ export default function ManufacturingAuditsBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -877,6 +878,8 @@ export default function ManufacturingAuditsBlogContent() {
                     </div>
                 )}
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

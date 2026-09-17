@@ -110,6 +110,7 @@ export default function BlogPost3() {
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
 
+            <div className="blog-reading-scope">
             {/* ── Big Hero Image ───────────────────────────────────────── */}
             <div style={{
                 position: "relative", width: "100%",
@@ -165,7 +166,7 @@ export default function BlogPost3() {
             {/* ── Top bar ──────────────────────────────────────────────── */}
             <div style={{
                 borderBottom: "1px solid #e8e4df", backgroundColor: "#f9f7f4",
-                position: "sticky", top: 0, zIndex: 40,
+                position: "sticky", top: "var(--blog-sticky-top)", zIndex: 50,
             }}>
                 <div style={{
                     maxWidth: "1260px", margin: "0 auto", padding: "0 1.5rem",
@@ -235,7 +236,7 @@ export default function BlogPost3() {
 
                 {/* ── LEFT: TOC ─────────────────────────────────────────── */}
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p style={{
                             fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.13em",
                             textTransform: "uppercase", color: "#374151", margin: "0 0 0.625rem", fontFamily: font,
@@ -278,7 +279,7 @@ export default function BlogPost3() {
                     </h1>
 
                     {/* ── Intro ─────────────────────────────────────────── */}
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>If you have ever tried to coordinate a quality or safety audit programme for an organisation with ten, twenty or fifty locations, you know the feeling.</p>
                         <p style={para(font)}>Emails flying back and forth. Spreadsheets that are out of date the moment you save them. Site managers sending reports in three different formats. And the constant worry that a major nonconformity is sitting on someone&rsquo;s laptop where you cannot see it.</p>
                         <p style={para(font)}>The challenge of how to manage ISO audits across multiple sites is not just about logistics. It is about visibility. Without a central view, you are flying blind.</p>
@@ -286,7 +287,7 @@ export default function BlogPost3() {
                     </div>
 
                     {/* ── Section 1: Challenge ──────────────────────────── */}
-                    <div id="challenge" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="challenge" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>The Challenge of Multi-Site Audit Programmes</h2>
                         <SectionImage src={sectionImages["challenge"]} alt="Multi-site audit challenges" />
                         <p style={para(font)}>The biggest issue with how to manage ISO audits across multiple sites is inconsistency.</p>
@@ -296,7 +297,7 @@ export default function BlogPost3() {
                     </div>
 
                     {/* ── Section 2: Central Function ───────────────────── */}
-                    <div id="central-function" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="central-function" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Step 1: Establish a Strong Central Function</h2>
                         <SectionImage src={sectionImages["central-function"]} alt="Central audit function" />
                         <p style={para(font)}>ISO standards for multi-site certification (like IAF MD1) require a &ldquo;central function&rdquo; that has authority over the management system across all sites. This is not just a certification rule. It is the foundation of how to manage ISO audits across multiple sites effectively.</p>
@@ -318,7 +319,7 @@ export default function BlogPost3() {
                     </div>
 
                     {/* ── Section 3: Standardise ────────────────────────── */}
-                    <div id="standardise" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="standardise" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Step 2: Standardise Your Audit Checklists and Scoring</h2>
                         <SectionImage src={sectionImages["standardise"]} alt="Standardised audit checklists" />
                         <p style={para(font)}>If one auditor writes &ldquo;Housekeeping is poor&rdquo; and another writes &ldquo;3/5 for 5S implementation&rdquo;, you cannot compare them.</p>
@@ -348,7 +349,7 @@ export default function BlogPost3() {
                     </div>
 
                     {/* ── Section 4: Plan Centrally ─────────────────────── */}
-                    <div id="plan-execute" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="plan-execute" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Step 3: Plan Centrally, Execute Locally</h2>
                         <p style={para(font)}>A common question in how to manage ISO audits across multiple sites is who should do the auditing.</p>
                         <p style={para(font)}>Fully central teams are expensive and travel-heavy. Fully local teams can lack independence and rigour.</p>
@@ -369,7 +370,7 @@ export default function BlogPost3() {
                     </div>
 
                     {/* ── Section 5: Sampling ─────────────────────────────── */}
-                    <div id="sampling" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="sampling" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Step 4: Use Sampling Intelligently</h2>
                         <SectionImage src={sectionImages["sampling"]} alt="Risk-based audit sampling" />
                         <p style={para(font)}>You do not need to audit every process at every site every year. In fact, trying to do so is a recipe for burnout.</p>
@@ -384,7 +385,7 @@ export default function BlogPost3() {
                     </div>
 
                     {/* ── Section 6: Centralise Findings ────────────────── */}
-                    <div id="centralise-findings" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="centralise-findings" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>Step 5: Centralise Your Findings and Actions</h2>
                         <p style={para(font)}>This is the most critical step. You must move findings and corrective actions out of local spreadsheets and into a central log.</p>
                         <p style={para(font)}>When you have a single view of all nonconformities, you can spot systemic issues.</p>
@@ -400,7 +401,7 @@ export default function BlogPost3() {
                     </div>
 
                     {/* ── Section 7: Technology ─────────────────────────── */}
-                    <div id="technology" style={{ scrollMarginTop: "58px", marginTop: "2.25rem" }}>
+                    <div id="technology" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.25rem" }}>
                         <h2 style={h2(font)}>The Role of Technology in Multi-Site Audits</h2>
                         <SectionImage src={sectionImages["technology"]} alt="ISO audit management software" />
                         <p style={para(font)}>Let us be honest. You can try to do all of this with Excel, Word and email. For a while it works. Then the admin burden becomes heavier than the audit value.</p>
@@ -447,7 +448,7 @@ export default function BlogPost3() {
                     </div>
 
                     {/* ── FAQ ───────────────────────────────────────────── */}
-                    <div id="faq" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Frequently Asked Questions</h2>
                         <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                             {faqs.map((faq, i) => {
@@ -476,7 +477,7 @@ export default function BlogPost3() {
                     </div>
 
                     {/* ── Conclusion / Pilot CTA ────────────────────────── */}
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.5rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.5rem" }}>
                         <div style={{ background: "linear-gradient(135deg, #002e1d 0%, #006644 100%)", borderRadius: "1.1rem", padding: isMobile ? "2rem 1.5rem" : "2.5rem", color: "#fff", position: "relative", overflow: "hidden" }}>
                             <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.055) 1px, transparent 0)", backgroundSize: "24px 24px", pointerEvents: "none" }} />
                             <h2 style={{ fontSize: isMobile ? "1.45rem" : "1.85rem", fontWeight: 600, color: "#fff", margin: "0 0 0.75rem", fontFamily: font, lineHeight: 1.25, position: "relative" }}>
@@ -517,7 +518,7 @@ export default function BlogPost3() {
 
                 {/* ── RIGHT: Author card ────────────────────────────────── */}
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div style={{ background: "#fff", borderRadius: "1.1rem", border: "1px solid #e8e4df", padding: "2rem 1.5rem", textAlign: "center" }}>
                             <div style={{ width: "90px", height: "90px", borderRadius: "50%", backgroundImage: 'url("/images/mathew-chiweda.webp")',
                                     backgroundSize: "cover",
@@ -558,6 +559,8 @@ export default function BlogPost3() {
                     </div>
                 )}
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />

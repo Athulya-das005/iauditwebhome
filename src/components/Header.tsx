@@ -204,8 +204,14 @@ export default function Header() {
     const hasDarkHero = pathname === "/iso-14001-2026-self-assessment-tool" || pathname === "/iso-audit-assessments/gap-analysis";
     // Hide-on-scroll only on the /blog listing page (not individual posts or other routes)
     const hideNavOnScroll = pathname === "/blog";
+    // Individual blog posts use a Flowergrid-style reading chrome (Back to Blog only).
+    const isBlogPost = Boolean(pathname?.startsWith("/blog/") && pathname !== "/blog");
     const isHeaderVisible =
-        !hideNavOnScroll || !isScrolled || isMenuOpen || Boolean(hoveredItem);
+        !isBlogPost && (!hideNavOnScroll || !isScrolled || isMenuOpen || Boolean(hoveredItem));
+
+    if (isBlogPost) {
+        return null;
+    }
 
     return (
         <header

@@ -166,6 +166,7 @@ export default function HybridInternalAuditsBlogContent() {
 
     return (
         <div style={{ backgroundColor: "#f9f7f4", minHeight: "100vh", fontFamily: font }}>
+            <div className="blog-reading-scope">
             <div
                 style={{
                     position: "relative",
@@ -263,8 +264,8 @@ export default function HybridInternalAuditsBlogContent() {
                     borderBottom: "1px solid #e8e4df",
                     backgroundColor: "#f9f7f4",
                     position: "sticky",
-                    top: 0,
-                    zIndex: 40,
+                    top: "var(--blog-sticky-top)",
+                    zIndex: 50,
                 }}
             >
                 <div
@@ -375,7 +376,7 @@ export default function HybridInternalAuditsBlogContent() {
                 }}
             >
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <p
                             style={{
                                 fontSize: "0.68rem",
@@ -438,7 +439,7 @@ export default function HybridInternalAuditsBlogContent() {
                         How to Plan Hybrid Internal Audits: A Practical Guide for ISO Standards
                     </h1>
 
-                    <div id="intro" style={{ scrollMarginTop: "58px" }}>
+                    <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             If you manage an ISO internal audit programme, you have likely moved past the stage of doing remote audits simply because you have to. During the pandemic, virtual assessments were a necessary workaround. Today, they have evolved into a strategic choice. The most effective audit programmes now use a hybrid model, combining the efficiency of remote work with the depth of on-site observation.
                         </p>
@@ -450,7 +451,7 @@ export default function HybridInternalAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="mindset" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="mindset" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>A Shift in Mindset</h2>
                         <SectionImage src={sectionImages.mindset} alt="Audit team combining remote and on-site planning" />
                         <p style={para(font)}>
@@ -461,7 +462,7 @@ export default function HybridInternalAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="step-1" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="step-1" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Step 1: Risk-Based Process Mapping</h2>
                         <SectionImage src={sectionImages.mapping} alt="Mapping ISO processes by risk for hybrid audit planning" />
                         <p style={para(font)}>
@@ -490,7 +491,7 @@ export default function HybridInternalAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="step-2" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="step-2" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Step 2: Logistics and Video Fatigue</h2>
                         <SectionImage src={sectionImages.logistics} alt="Shorter remote audit sessions to avoid video fatigue" />
                         <p style={para(font)}>
@@ -504,7 +505,7 @@ export default function HybridInternalAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="evidence" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="evidence" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>The Evidence Problem in Hybrid Programmes</h2>
                         <SectionImage src={sectionImages.evidence} alt="Scattered audit records that need a single evidence trail" />
                         <p style={para(font)}>
@@ -515,7 +516,7 @@ export default function HybridInternalAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="iaudit" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="iaudit" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>How iAudit Global Bridges the Gap</h2>
                         <p style={para(font)}>
                             We built iAudit Global because we saw too many hybrid programmes failing at the reporting stage. Our platform acts as the single workspace that unifies the hybrid model.
@@ -528,7 +529,7 @@ export default function HybridInternalAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="audit-mate" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="audit-mate" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Using Audit Mate for Audit Preparation</h2>
                         <SectionImage src={sectionImages["audit-mate"]} alt="Building clause-aligned checklists for hybrid audits" />
                         <p style={para(font)}>
@@ -539,7 +540,7 @@ export default function HybridInternalAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="step-3" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="step-3" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Step 3: Closing the Loop with PDCA</h2>
                         <SectionImage src={sectionImages.pdca} alt="Reviewing whether a hybrid audit programme is working" />
                         <p style={para(font)}>
@@ -553,7 +554,7 @@ export default function HybridInternalAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="step-4" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="step-4" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <h2 style={h2(font)}>Step 4: Preparing the Auditees</h2>
                         <SectionImage src={sectionImages.auditees} alt="Briefing site teams before a hybrid internal audit" />
                         <p style={para(font)}>
@@ -564,7 +565,7 @@ export default function HybridInternalAuditsBlogContent() {
                         </p>
                     </div>
 
-                    <div id="conclusion" style={{ scrollMarginTop: "58px", marginTop: "2.75rem" }}>
+                    <div id="conclusion" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)", marginTop: "2.75rem" }}>
                         <div
                             style={{
                                 background: "linear-gradient(145deg, #002e1d 0%, #006644 55%, #058c42 100%)",
@@ -645,7 +646,7 @@ export default function HybridInternalAuditsBlogContent() {
                 </article>
 
                 {!isMobile && (
-                    <aside style={{ position: "sticky", top: "58px", alignSelf: "start" }}>
+                    <aside style={{ position: "sticky", top: "calc(var(--blog-sticky-offset) + 8px)", alignSelf: "start" }}>
                         <div
                             style={{
                                 background: "#fff",
@@ -786,9 +787,11 @@ export default function HybridInternalAuditsBlogContent() {
                 )}
             </div>
 
-            <div id="faq" style={{ scrollMarginTop: "58px" }}>
+            <div id="faq" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                 <FAQAccordion items={faqItems} heading="Frequently asked questions" sparkleText="Support" />
             </div>
+
+            </div>{/* /blog-reading-scope */}
 
             <CTA />
             <Footer />
