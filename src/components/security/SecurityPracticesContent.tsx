@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { PP_NEUE_MONTREAL } from "@/constants/typography";
 import SecurityPageHero, { SECURITY_HERO_IMAGES } from "@/components/security/SecurityPageHero";
+import { SecurityMailLink } from "@/components/security/SecurityMailLink";
+import { SECURITY_EMAIL } from "@/constants/securityContact";
 
 /* ─── Design tokens ─────────────────────────────────────── */
 const GREY_DARK   = "#1f2937";
@@ -681,6 +683,140 @@ export default function SecurityPracticesContent() {
                         </div>
                     </div>
                 </div>
+
+                {/* ─── Contact CTA ─── */}
+                <section
+                    id="contact-security"
+                    aria-labelledby="trust-contact-heading"
+                    style={{
+                        marginTop: isMobile ? "2.75rem" : "3.5rem",
+                        padding: isMobile ? "1.75rem 1.35rem" : "2.35rem 2.5rem",
+                        borderRadius: isMobile ? "1rem" : "1.25rem",
+                        background: `linear-gradient(145deg, ${GREEN_LIGHT} 0%, #ffffff 48%, #f8fafc 100%)`,
+                        border: `1px solid ${BORDER}`,
+                        position: "relative",
+                        overflow: "hidden",
+                    }}
+                >
+                    <div
+                        aria-hidden
+                        style={{
+                            position: "absolute",
+                            right: isMobile ? "-40px" : "-20px",
+                            top: isMobile ? "-40px" : "-30px",
+                            width: isMobile ? "140px" : "200px",
+                            height: isMobile ? "140px" : "200px",
+                            borderRadius: "50%",
+                            background: "radial-gradient(circle, rgba(5,140,66,0.12) 0%, transparent 70%)",
+                            pointerEvents: "none",
+                        }}
+                    />
+                    <div
+                        style={{
+                            position: "relative",
+                            display: "grid",
+                            gridTemplateColumns: isMobile ? "1fr" : "1.35fr 0.85fr",
+                            gap: isMobile ? "1.5rem" : "2rem",
+                            alignItems: "center",
+                        }}
+                    >
+                        <div>
+                            <p
+                                style={{
+                                    margin: "0 0 0.55rem",
+                                    fontSize: "0.72rem",
+                                    fontWeight: 700,
+                                    letterSpacing: "0.1em",
+                                    textTransform: "uppercase",
+                                    color: GREEN,
+                                }}
+                            >
+                                Talk to us
+                            </p>
+                            <h2
+                                id="trust-contact-heading"
+                                style={{
+                                    margin: "0 0 0.7rem",
+                                    fontSize: isMobile ? "1.35rem" : "1.65rem",
+                                    fontWeight: 700,
+                                    color: GREY_DARK,
+                                    lineHeight: 1.25,
+                                    letterSpacing: "-0.02em",
+                                }}
+                            >
+                                Have a question about our security practices?
+                            </h2>
+                            <p
+                                style={{
+                                    margin: 0,
+                                    fontSize: isMobile ? "0.92rem" : "0.98rem",
+                                    lineHeight: 1.7,
+                                    color: GREY_BODY,
+                                    maxWidth: "34rem",
+                                }}
+                            >
+                                Whether you need a security questionnaire filled, want to review our controls with your team, or have a specific concern — we&apos;re happy to help.
+                            </p>
+                        </div>
+
+                        <div
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "0.75rem",
+                                alignItems: isMobile ? "stretch" : "flex-end",
+                            }}
+                        >
+                            <Link
+                                href="/contact"
+                                style={{
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    gap: "0.5rem",
+                                    background: GREEN,
+                                    color: "#fff",
+                                    fontWeight: 700,
+                                    fontSize: isMobile ? "0.9rem" : "0.95rem",
+                                    padding: isMobile ? "0.85rem 1.25rem" : "0.9rem 1.5rem",
+                                    borderRadius: "999px",
+                                    textDecoration: "none",
+                                    fontFamily: PP_NEUE_MONTREAL,
+                                    width: isMobile ? "100%" : "auto",
+                                    minWidth: isMobile ? undefined : "220px",
+                                    boxShadow: "0 8px 20px rgba(5, 140, 66, 0.22)",
+                                }}
+                            >
+                                Contact iAudit Global
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                                    <line x1="5" y1="12" x2="19" y2="12" />
+                                    <polyline points="12 5 19 12 12 19" />
+                                </svg>
+                            </Link>
+                            <p
+                                style={{
+                                    margin: 0,
+                                    fontSize: "0.82rem",
+                                    lineHeight: 1.55,
+                                    color: GREY_MUTED,
+                                    textAlign: isMobile ? "left" : "right",
+                                }}
+                            >
+                                Security reports:{" "}
+                                <SecurityMailLink
+                                    style={{
+                                        color: GREEN,
+                                        fontWeight: 600,
+                                        textDecoration: "none",
+                                        borderBottom: `1px solid ${GREEN}`,
+                                    }}
+                                >
+                                    {SECURITY_EMAIL}
+                                </SecurityMailLink>
+                            </p>
+                        </div>
+                    </div>
+                </section>
 
                 {/* ─── Footer strip ─── */}
                 <div
