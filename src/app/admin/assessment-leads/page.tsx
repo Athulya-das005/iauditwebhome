@@ -160,7 +160,42 @@ export default function AssessmentLeadsAdminPage() {
                             </div>
                             <div style={{ display: "grid", gap: "0.5rem", color: "#374151", fontSize: "0.95rem", lineHeight: 1.5 }}>
                                 <div><strong>Full name:</strong> {lead.fullName || "—"}</div>
-                                <div><strong>Email:</strong> {lead.email}</div>
+                                <div>
+                                    <strong>Email:</strong> {lead.email}{" "}
+                                    {lead.emailVerified ? (
+                                        <span
+                                            style={{
+                                                display: "inline-flex",
+                                                alignItems: "center",
+                                                marginLeft: "0.35rem",
+                                                padding: "0.12rem 0.5rem",
+                                                borderRadius: "999px",
+                                                background: "#dcfce7",
+                                                color: "#166534",
+                                                fontSize: "0.78rem",
+                                                fontWeight: 700,
+                                            }}
+                                        >
+                                            ✓ Verified
+                                        </span>
+                                    ) : (
+                                        <span
+                                            style={{
+                                                display: "inline-flex",
+                                                alignItems: "center",
+                                                marginLeft: "0.35rem",
+                                                padding: "0.12rem 0.5rem",
+                                                borderRadius: "999px",
+                                                background: "#f3f4f6",
+                                                color: "#6b7280",
+                                                fontSize: "0.78rem",
+                                                fontWeight: 600,
+                                            }}
+                                        >
+                                            Unverified
+                                        </span>
+                                    )}
+                                </div>
                                 {lead.company ? <div><strong>Company:</strong> {lead.company}</div> : null}
                                 {lead.industry ? <div><strong>Industry:</strong> {lead.industry}</div> : null}
                                 {lead.organisationSize ? <div><strong>Employees:</strong> {lead.organisationSize}</div> : null}

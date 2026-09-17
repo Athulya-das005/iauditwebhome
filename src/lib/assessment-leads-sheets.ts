@@ -28,6 +28,7 @@ const HEADERS = [
     "Audit Scope",
     "Email Opt In",
     "Email Sent At",
+    "Email Verified",
 ];
 
 function getAssessmentSpreadsheetId() {
@@ -105,6 +106,7 @@ function leadToRow(lead: AssessmentLead) {
         lead.auditScope ?? "",
         lead.emailOptIn ? "TRUE" : "FALSE",
         lead.emailSentAt ?? "",
+        lead.emailVerified ? "TRUE" : "FALSE",
     ];
 }
 
@@ -135,6 +137,7 @@ function rowToLead(row: string[], fallbackType?: AssessmentType): AssessmentLead
         auditScope: row[15] || undefined,
         emailOptIn: row[16] === "TRUE" || row[16] === "true",
         emailSentAt: row[17]?.trim() ? row[17] : null,
+        emailVerified: row[18] === "TRUE" || row[18] === "true",
     };
 }
 
@@ -178,14 +181,22 @@ async function ensureTabAndHeaders(
         exactTitle = resolveExactTabTitle(titles, preferredTabName) ?? preferredTabName;
     }
 
-    const headerRange = quoteSheetRange(exactTitle, "A1:R1");
+    const headerRange = quoteSheetRange(exactTitle, "A1:S1");
     const headerRes = await sheets.spreadsheets.values.get({ spreadsheetId, range: headerRange });
-    if (!headerRes.data.values?.[0]?.[0]) {
+    const existingHeader = headerRes.data.values?.[0] ?? [];
+    if (!existingHeader[0]) {
         await sheets.spreadsheets.values.update({
             spreadsheetId,
             range: headerRange,
             valueInputOption: "RAW",
             requestBody: { values: [HEADERS] },
+        });
+    } else if ((existingHeader[18] ?? "").toString().trim().toLowerCase() !== "email verified") {
+        await sheets.spreadsheets.values.update({
+            spreadsheetId,
+            range: quoteSheetRange(exactTitle, "S1"),
+            valueInputOption: "RAW",
+            requestBody: { values: [["Email Verified"]] },
         });
     }
 
@@ -201,7 +212,7 @@ async function readLeadsFromTab(
     const tabName = await ensureTabAndHeaders(sheets, spreadsheetId, preferredTabName);
     const res = await sheets.spreadsheets.values.get({
         spreadsheetId,
-        range: quoteSheetRange(tabName, "A2:R"),
+        range: quoteSheetRange(tabName, "A2:S"),
     });
     const rows = res.data.values ?? [];
     return rows
@@ -221,7 +232,7 @@ async function findLeadRow(
         const tabName = await ensureTabAndHeaders(sheets, spreadsheetId, preferred);
         const res = await sheets.spreadsheets.values.get({
             spreadsheetId,
-            range: quoteSheetRange(tabName, "A2:R"),
+            range: quoteSheetRange(tabName, "A2:S"),
         });
         const rows = res.data.values ?? [];
         const rowIndex = rows.findIndex((row) => row[0] === id);
@@ -269,7 +280,7 @@ export async function appendAssessmentLeadToSheet(lead: AssessmentLead) {
     const tabName = await ensureTabAndHeaders(sheets, spreadsheetId, preferred);
     await sheets.spreadsheets.values.append({
         spreadsheetId,
-        range: quoteSheetRange(tabName, "A:R"),
+        range: quoteSheetRange(tabName, "A:S"),
         valueInputOption: "USER_ENTERED",
         insertDataOption: "INSERT_ROWS",
         requestBody: { values: [leadToRow(lead)] },

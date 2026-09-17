@@ -257,6 +257,7 @@ export async function ensureAssessmentLeadSaved(input: {
         isoStandard?: string;
         auditScope?: string;
         emailOptIn?: boolean;
+        emailVerified?: boolean;
     };
     assessmentType: AssessmentLead["assessmentType"];
     assessmentTitle: string;
@@ -294,6 +295,7 @@ export async function ensureAssessmentLeadSaved(input: {
         isoStandard: input.session.isoStandard?.trim() ?? "",
         auditScope: input.session.auditScope?.trim() ?? "",
         emailOptIn: Boolean(input.session.emailOptIn),
+        emailVerified: Boolean(input.session.emailVerified),
     };
 
     await addAssessmentLead(lead);

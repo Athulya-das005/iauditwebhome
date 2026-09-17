@@ -12,4 +12,5 @@ export type GapAnalysisSession = {
     isoStandard: IsoStandardValue;
     auditScope: string;
     emailOptIn: boolean;
+    emailVerified?: boolean;
 };

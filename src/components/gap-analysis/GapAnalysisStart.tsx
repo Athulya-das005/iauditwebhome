@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState, type CSSProperties, type ComponentType, type FormEvent, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ComponentType, type FormEvent, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import Footer from "@/components/Footer";
 import {
     assessmentIndustries,
@@ -75,9 +76,25 @@ export default function GapAnalysisStart({
     const [standardOpen, setStandardOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [otpInfo, setOtpInfo] = useState("");
+    const [otpCode, setOtpCode] = useState("");
+    const [otpSending, setOtpSending] = useState(false);
+    const [otpVerifying, setOtpVerifying] = useState(false);
+    const [otpSent, setOtpSent] = useState(false);
+    const [emailVerified, setEmailVerified] = useState(false);
+    const [emailVerificationToken, setEmailVerificationToken] = useState("");
     const [isMobile, setIsMobile] = useState(false);
     const standardOptions =
         config.assessmentType === "self-assessment" ? isoStandardOptions : gapIsoStandardOptions;
+    const canStart = emailVerified && Boolean(emailVerificationToken) && !loading;
+
+    function resetEmailVerification() {
+        setOtpCode("");
+        setOtpSent(false);
+        setOtpInfo("");
+        setEmailVerified(false);
+        setEmailVerificationToken("");
+    }
 
     useEffect(() => {
         const check = () => setIsMobile(window.innerWidth < 800);
@@ -100,10 +117,105 @@ export default function GapAnalysisStart({
         };
     }, [open]);
 
+    async function handleSendOtp() {
+        const normalized = email.trim().toLowerCase();
+        if (!normalized || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalized)) {
+            setError("Enter a valid email address before verifying.");
+            return;
+        }
+        // Show OTP UI immediately so it feels instant while the email is sending.
+        setOtpSending(true);
+        setError("");
+        setOtpInfo("Sending code…");
+        setOtpSent(true);
+        setEmailVerified(false);
+        setEmailVerificationToken("");
+        setOtpCode("");
+        try {
+            const response = await fetch("/api/assessment-email-otp/send", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: normalized }),
+            });
+            const data = (await response.json()) as { error?: string; message?: string };
+            if (!response.ok) {
+                setError(data.error ?? "Unable to send verification code.");
+                setOtpInfo("");
+                return;
+            }
+            setOtpInfo("Code sent — check your inbox (and spam).");
+        } catch {
+            setError("Unable to send verification code. Please try again.");
+            setOtpInfo("");
+        } finally {
+            setOtpSending(false);
+        }
+    }
+
+    async function handleVerifyOtp(codeOverride?: string) {
+        const normalized = email.trim().toLowerCase();
+        const code = (codeOverride ?? otpCode).trim();
+        if (!normalized) {
+            setError("Enter your email address first.");
+            return;
+        }
+        if (!/^\d{6}$/.test(code)) {
+            setError("Enter the 6-digit code from your email.");
+            return;
+        }
+        setOtpVerifying(true);
+        setError("");
+        setOtpInfo("");
+        try {
+            const response = await fetch("/api/assessment-email-otp/verify", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: normalized, code }),
+            });
+            const data = (await response.json()) as {
+                error?: string;
+                emailVerificationToken?: string;
+            };
+            if (!response.ok || !data.emailVerificationToken) {
+                setError(data.error ?? "Unable to verify that code.");
+                setEmailVerified(false);
+                setEmailVerificationToken("");
+                return;
+            }
+            setEmailVerified(true);
+            setEmailVerificationToken(data.emailVerificationToken);
+            setOtpInfo("");
+        } catch {
+            setError("Unable to verify that code. Please try again.");
+        } finally {
+            setOtpVerifying(false);
+        }
+    }
+
+    const autoVerifyRef = useRef(false);
+    useEffect(() => {
+        if (emailVerified || otpVerifying || !otpSent) {
+            autoVerifyRef.current = false;
+            return;
+        }
+        if (otpCode.trim().length === 6 && !autoVerifyRef.current) {
+            autoVerifyRef.current = true;
+            void handleVerifyOtp(otpCode);
+        }
+        if (otpCode.trim().length < 6) {
+            autoVerifyRef.current = false;
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- only react to code length changes
+    }, [otpCode, emailVerified, otpVerifying, otpSent]);
+
     async function handleStart(event: FormEvent) {
         event.preventDefault();
         if (!isoStandard) {
             setError("Please select an ISO standard.");
+            return;
+        }
+        if (!emailVerified || !emailVerificationToken) {
+            setError("Please verify your email before starting.");
             return;
         }
         setLoading(true);
@@ -121,6 +233,7 @@ export default function GapAnalysisStart({
             isoStandard,
             auditScope: auditScope.trim(),
             emailOptIn,
+            emailVerified: true,
         };
 
         try {
@@ -140,6 +253,7 @@ export default function GapAnalysisStart({
                     isoStandard: session.isoStandard,
                     auditScope: session.auditScope,
                     emailOptIn: session.emailOptIn,
+                    emailVerificationToken,
                     assessmentType: config.assessmentType,
                     assessmentTitle: config.assessmentTitle,
                     pagePath: config.pagePath,
@@ -247,9 +361,152 @@ export default function GapAnalysisStart({
                             <Field label="Last name*">
                                 <input required value={lastName} onChange={(e) => setLastName(e.target.value)} style={inputStyle} />
                             </Field>
-                            <Field label="Email*">
-                                <input type="email" required autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} style={inputStyle} />
-                            </Field>
+                            <div style={{ display: "grid", gap: "0.35rem" }}>
+                                <span style={{ color: "#4b5563", fontSize: "0.86rem", fontWeight: 600 }}>Email*</span>
+                                <div
+                                    style={{
+                                        display: "grid",
+                                        gap: "0.55rem",
+                                        padding: emailVerified || otpSent ? "0.7rem" : 0,
+                                        borderRadius: "0.85rem",
+                                        background: emailVerified ? "#eff6ff" : otpSent ? "#f8fafc" : "transparent",
+                                        border: emailVerified
+                                            ? "1px solid #bfdbfe"
+                                            : otpSent
+                                              ? "1px solid #e5e7eb"
+                                              : "1px solid transparent",
+                                        transition: "background 0.25s ease, border-color 0.25s ease",
+                                    }}
+                                >
+                                    <div style={{ display: "flex", gap: "0.5rem", alignItems: "stretch", flexWrap: isMobile ? "wrap" : "nowrap" }}>
+                                        <input
+                                            type="email"
+                                            required
+                                            autoComplete="email"
+                                            value={email}
+                                            onChange={(e) => {
+                                                setEmail(e.target.value);
+                                                resetEmailVerification();
+                                            }}
+                                            style={{
+                                                ...inputStyle,
+                                                flex: 1,
+                                                minWidth: 0,
+                                                borderColor: emailVerified ? "#93c5fd" : "#e5e7eb",
+                                            }}
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={handleSendOtp}
+                                            disabled={otpSending || emailVerified}
+                                            style={{
+                                                ...verifyBtn,
+                                                opacity: otpSending || emailVerified ? 0.75 : 1,
+                                                cursor: otpSending || emailVerified ? "not-allowed" : "pointer",
+                                                width: isMobile ? "100%" : "auto",
+                                                background: emailVerified ? "#16a34a" : "#2563eb",
+                                            }}
+                                        >
+                                            {emailVerified ? (
+                                                <span style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
+                                                    <AnimatedCheck small />
+                                                    Verified
+                                                </span>
+                                            ) : otpSending ? (
+                                                "Sending…"
+                                            ) : otpSent ? (
+                                                "Resend"
+                                            ) : (
+                                                "Verify"
+                                            )}
+                                        </button>
+                                    </div>
+
+                                    <AnimatePresence mode="wait">
+                                        {emailVerified ? (
+                                            <motion.div
+                                                key="verified"
+                                                initial={{ opacity: 0, y: 6, scale: 0.98 }}
+                                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                exit={{ opacity: 0 }}
+                                                transition={{ duration: 0.28 }}
+                                                style={{
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                    gap: "0.65rem",
+                                                    padding: "0.35rem 0.15rem 0.1rem",
+                                                }}
+                                            >
+                                                <AnimatedCheck />
+                                                <p style={{ margin: 0, color: "#1d4ed8", fontSize: "0.88rem", fontWeight: 600, lineHeight: 1.4 }}>
+                                                    Email verified — you can start the assessment.
+                                                </p>
+                                            </motion.div>
+                                        ) : otpSent ? (
+                                            <motion.div
+                                                key="otp"
+                                                initial={{ opacity: 0, y: 8 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0 }}
+                                                transition={{ duration: 0.22 }}
+                                                style={{ display: "grid", gap: "0.5rem" }}
+                                            >
+                                                <p style={{ margin: 0, color: "#4b5563", fontSize: "0.84rem", lineHeight: 1.45 }}>
+                                                    {otpSending
+                                                        ? "Sending your code now…"
+                                                        : otpInfo || "Enter the 6-digit code from your email."}
+                                                </p>
+                                                <div style={{ display: "flex", gap: "0.5rem", flexWrap: isMobile ? "wrap" : "nowrap" }}>
+                                                    <input
+                                                        inputMode="numeric"
+                                                        autoComplete="one-time-code"
+                                                        pattern="[0-9]{6}"
+                                                        maxLength={6}
+                                                        placeholder="••••••"
+                                                        value={otpCode}
+                                                        onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                                                        style={{
+                                                            ...inputStyle,
+                                                            flex: 1,
+                                                            letterSpacing: "0.28em",
+                                                            fontWeight: 700,
+                                                            textAlign: "center",
+                                                            borderColor: "#93c5fd",
+                                                        }}
+                                                    />
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleVerifyOtp()}
+                                                        disabled={otpVerifying || otpCode.trim().length !== 6 || otpSending}
+                                                        style={{
+                                                            ...verifyBtn,
+                                                            background: "#1d4ed8",
+                                                            opacity: otpVerifying || otpCode.trim().length !== 6 || otpSending ? 0.6 : 1,
+                                                            cursor:
+                                                                otpVerifying || otpCode.trim().length !== 6 || otpSending
+                                                                    ? "not-allowed"
+                                                                    : "pointer",
+                                                            width: isMobile ? "100%" : "auto",
+                                                        }}
+                                                    >
+                                                        {otpVerifying ? "Checking…" : "Confirm"}
+                                                    </button>
+                                                </div>
+                                            </motion.div>
+                                        ) : (
+                                            <motion.p
+                                                key="hint"
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                exit={{ opacity: 0 }}
+                                                style={{ margin: 0, color: "#6b7280", fontSize: "0.82rem", lineHeight: 1.45 }}
+                                            >
+                                                Verify your work email with a one-time code before starting.
+                                            </motion.p>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                            </div>
                             <Field label="What is the name of your organisation?*">
                                 <input required value={organisation} onChange={(e) => setOrganisation(e.target.value)} style={inputStyle} />
                             </Field>
@@ -332,8 +589,18 @@ export default function GapAnalysisStart({
                                 Opt in to receive updates via email
                             </label>
                             {error ? <p style={{ margin: 0, color: "#b91c1c", fontSize: "0.88rem", gridColumn: isMobile ? "auto" : "1 / -1" }}>{error}</p> : null}
-                            <button type="submit" disabled={loading} style={{ ...primaryBtn, width: "100%", gridColumn: isMobile ? "auto" : "1 / -1", opacity: loading ? 0.75 : 1, cursor: loading ? "wait" : "pointer" }}>
-                                {loading ? "Starting..." : "Start"}
+                            <button
+                                type="submit"
+                                disabled={!canStart}
+                                style={{
+                                    ...primaryBtn,
+                                    width: "100%",
+                                    gridColumn: isMobile ? "auto" : "1 / -1",
+                                    opacity: canStart ? 1 : 0.45,
+                                    cursor: canStart ? "pointer" : "not-allowed",
+                                }}
+                            >
+                                {loading ? "Starting..." : emailVerified ? "Start" : "Verify email to start"}
                             </button>
                         </form>
                     </div>
@@ -349,6 +616,48 @@ function Field({ label, children }: { label: string; children: ReactNode }) {
             <span style={{ color: "#4b5563", fontSize: "0.86rem", fontWeight: 600 }}>{label}</span>
             {children}
         </label>
+    );
+}
+
+function AnimatedCheck({ small = false }: { small?: boolean }) {
+    const size = small ? 16 : 22;
+    return (
+        <motion.span
+            initial={{ scale: 0.4, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ type: "spring", stiffness: 420, damping: 18 }}
+            style={{
+                width: size,
+                height: size,
+                borderRadius: "50%",
+                background: small ? "rgba(255,255,255,0.22)" : "#2563eb",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0,
+                boxShadow: small ? "none" : "0 6px 14px rgba(37, 99, 235, 0.28)",
+            }}
+        >
+            <motion.svg
+                width={small ? 10 : 12}
+                height={small ? 10 : 12}
+                viewBox="0 0 24 24"
+                fill="none"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+            >
+                <motion.path
+                    d="M5 13l4 4L19 7"
+                    stroke="#fff"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 1 }}
+                    transition={{ duration: 0.35, delay: 0.08, ease: "easeOut" }}
+                />
+            </motion.svg>
+        </motion.span>
     );
 }
 
@@ -378,4 +687,21 @@ const primaryBtn: CSSProperties = {
     fontSize: "0.95rem",
     cursor: "pointer",
     fontFamily: font,
+};
+
+const verifyBtn: CSSProperties = {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+    background: "#2563eb",
+    color: "#fff",
+    border: "none",
+    borderRadius: "0.65rem",
+    padding: "0 1rem",
+    minHeight: "44px",
+    fontWeight: 700,
+    fontSize: "0.88rem",
+    fontFamily: font,
+    whiteSpace: "nowrap",
 };

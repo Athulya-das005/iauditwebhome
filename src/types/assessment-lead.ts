@@ -18,6 +18,8 @@ export type AssessmentLead = {
     isoStandard?: string;
     auditScope?: string;
     emailOptIn?: boolean;
+    /** True when the user verified ownership of the email via OTP before starting */
+    emailVerified?: boolean;
     /** ISO timestamp when the report was emailed manually; unset = not sent yet */
     emailSentAt?: string | null;
 };

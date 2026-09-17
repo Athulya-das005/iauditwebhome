@@ -6,6 +6,7 @@ import {
     readAssessmentLeads,
     setAssessmentLeadEmailSent,
 } from "@/lib/assessment-leads-store";
+import { verifyEmailVerificationToken } from "@/lib/assessment-email-otp";
 import type { AssessmentLead, AssessmentType } from "@/types/assessment-lead";
 
 function isValidEmail(email: string) {
@@ -59,7 +60,9 @@ export async function PATCH(request: Request) {
 
 export async function POST(request: Request) {
     try {
-        const body = (await request.json()) as Partial<AssessmentLead>;
+        const body = (await request.json()) as Partial<AssessmentLead> & {
+            emailVerificationToken?: string;
+        };
         const email = body.email?.trim().toLowerCase() ?? "";
         const fullName =
             body.fullName?.trim() ||
@@ -78,6 +81,7 @@ export async function POST(request: Request) {
         const isoStandard = body.isoStandard?.trim() ?? "";
         const auditScope = body.auditScope?.trim() ?? "";
         const emailOptIn = Boolean(body.emailOptIn);
+        const emailVerificationToken = body.emailVerificationToken?.trim() ?? "";
 
         if (!email || !assessmentType || !assessmentTitle) {
             return NextResponse.json({ error: "Please enter a valid work email." }, { status: 400 });
@@ -87,6 +91,12 @@ export async function POST(request: Request) {
         }
         if (!isValidEmail(email)) {
             return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
+        }
+        if (!verifyEmailVerificationToken(emailVerificationToken, email)) {
+            return NextResponse.json(
+                { error: "Please verify your email with the code we sent before starting." },
+                { status: 403 }
+            );
         }
 
         const lead: AssessmentLead = {
@@ -107,6 +117,7 @@ export async function POST(request: Request) {
             isoStandard,
             auditScope,
             emailOptIn,
+            emailVerified: true,
         };
 
         const result = await addAssessmentLead(lead);
