@@ -20,6 +20,7 @@ import type { AssessmentStartConfig } from "@/data/self-assessment-clauses";
 import { SELF_SESSION_KEY } from "@/data/self-assessment-clauses";
 import { SELF_ASSESSMENT_PAGE_PATH } from "@/data/selfAssessmentPageSchema";
 import type { GapAnalysisSession } from "@/types/gap-analysis-session";
+import { REQUIRE_ASSESSMENT_EMAIL_OTP } from "@/constants/assessmentEmailOtp";
 
 const font = '"Pp Neue Montreal", sans-serif';
 
@@ -86,7 +87,10 @@ export default function GapAnalysisStart({
     const [isMobile, setIsMobile] = useState(false);
     const standardOptions =
         config.assessmentType === "self-assessment" ? isoStandardOptions : gapIsoStandardOptions;
-    const canStart = emailVerified && Boolean(emailVerificationToken) && !loading;
+    // OTP temporarily disabled — flip REQUIRE_ASSESSMENT_EMAIL_OTP to re-enable.
+    const canStart = REQUIRE_ASSESSMENT_EMAIL_OTP
+        ? emailVerified && Boolean(emailVerificationToken) && !loading
+        : !loading;
 
     function resetEmailVerification() {
         setOtpCode("");
@@ -214,7 +218,8 @@ export default function GapAnalysisStart({
             setError("Please select an ISO standard.");
             return;
         }
-        if (!emailVerified || !emailVerificationToken) {
+        // TEMP: email OTP verification disabled — see REQUIRE_ASSESSMENT_EMAIL_OTP.
+        if (REQUIRE_ASSESSMENT_EMAIL_OTP && (!emailVerified || !emailVerificationToken)) {
             setError("Please verify your email before starting.");
             return;
         }
@@ -233,7 +238,7 @@ export default function GapAnalysisStart({
             isoStandard,
             auditScope: auditScope.trim(),
             emailOptIn,
-            emailVerified: true,
+            emailVerified: REQUIRE_ASSESSMENT_EMAIL_OTP ? true : false,
         };
 
         try {
@@ -253,7 +258,8 @@ export default function GapAnalysisStart({
                     isoStandard: session.isoStandard,
                     auditScope: session.auditScope,
                     emailOptIn: session.emailOptIn,
-                    emailVerificationToken,
+                    // Only send when OTP is enabled; API skips token check when flag is off.
+                    ...(REQUIRE_ASSESSMENT_EMAIL_OTP ? { emailVerificationToken } : {}),
                     assessmentType: config.assessmentType,
                     assessmentTitle: config.assessmentTitle,
                     pagePath: config.pagePath,
@@ -363,6 +369,8 @@ export default function GapAnalysisStart({
                             </Field>
                             <div style={{ display: "grid", gap: "0.35rem" }}>
                                 <span style={{ color: "#4b5563", fontSize: "0.86rem", fontWeight: 600 }}>Email*</span>
+                                {/* TEMP: email OTP UI disabled — set REQUIRE_ASSESSMENT_EMAIL_OTP to true to restore. */}
+                                {REQUIRE_ASSESSMENT_EMAIL_OTP ? (
                                 <div
                                     style={{
                                         display: "grid",
@@ -506,6 +514,16 @@ export default function GapAnalysisStart({
                                         )}
                                     </AnimatePresence>
                                 </div>
+                                ) : (
+                                <input
+                                    type="email"
+                                    required
+                                    autoComplete="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    style={inputStyle}
+                                />
+                                )}
                             </div>
                             <Field label="What is the name of your organisation?*">
                                 <input required value={organisation} onChange={(e) => setOrganisation(e.target.value)} style={inputStyle} />
@@ -600,7 +618,7 @@ export default function GapAnalysisStart({
                                     cursor: canStart ? "pointer" : "not-allowed",
                                 }}
                             >
-                                {loading ? "Starting..." : emailVerified ? "Start" : "Verify email to start"}
+                                {loading ? "Starting..." : REQUIRE_ASSESSMENT_EMAIL_OTP && !emailVerified ? "Verify email to start" : "Start"}
                             </button>
                         </form>
                     </div>

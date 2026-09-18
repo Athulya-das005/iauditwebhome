@@ -7,6 +7,7 @@ import {
     setAssessmentLeadEmailSent,
 } from "@/lib/assessment-leads-store";
 import { verifyEmailVerificationToken } from "@/lib/assessment-email-otp";
+import { REQUIRE_ASSESSMENT_EMAIL_OTP } from "@/constants/assessmentEmailOtp";
 import type { AssessmentLead, AssessmentType } from "@/types/assessment-lead";
 
 function isValidEmail(email: string) {
@@ -92,7 +93,8 @@ export async function POST(request: Request) {
         if (!isValidEmail(email)) {
             return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
         }
-        if (!verifyEmailVerificationToken(emailVerificationToken, email)) {
+        // TEMP: email OTP check disabled — set REQUIRE_ASSESSMENT_EMAIL_OTP to true to restore.
+        if (REQUIRE_ASSESSMENT_EMAIL_OTP && !verifyEmailVerificationToken(emailVerificationToken, email)) {
             return NextResponse.json(
                 { error: "Please verify your email with the code we sent before starting." },
                 { status: 403 }
@@ -117,7 +119,7 @@ export async function POST(request: Request) {
             isoStandard,
             auditScope,
             emailOptIn,
-            emailVerified: true,
+            emailVerified: REQUIRE_ASSESSMENT_EMAIL_OTP,
         };
 
         const result = await addAssessmentLead(lead);
