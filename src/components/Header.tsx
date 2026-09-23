@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { gsap } from "gsap";
 import { motion, AnimatePresence } from "framer-motion";
 import { industries } from "@/data/industries";
@@ -88,7 +89,12 @@ export default function Header() {
 
     const [hoveredItem, setHoveredItem] = useState<string | null>(null);
     const [expandedItem, setExpandedItem] = useState<string | null>(null);
+    const [portalReady, setPortalReady] = useState(false);
     const closeMenuTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    useEffect(() => {
+        setPortalReady(true);
+    }, []);
 
     const openMegamenu = (label: string | null) => {
         if (closeMenuTimeoutRef.current) {
@@ -198,10 +204,14 @@ export default function Header() {
         }
     }, [isMenuOpen]);
 
-    // Floating capsule after scroll (or while mobile menu / megamenu is open)
-    const isCondensed = isScrolled || isMenuOpen;
+    // Floating capsule after scroll only — keep full-width while the mobile menu is open
+    const isCondensed = isScrolled && !isMenuOpen;
     // These landing pages place a darkened image directly behind the transparent header.
-    const hasDarkHero = pathname === "/iso-14001-2026-self-assessment-tool" || pathname === "/iso-audit-assessments/gap-analysis";
+    // /blog uses the same light contrast bar so dark menu labels stay readable.
+    const hasDarkHero =
+        pathname === "/iso-14001-2026-self-assessment-tool" ||
+        pathname === "/iso-audit-assessments/gap-analysis" ||
+        pathname === "/blog";
     // Hide-on-scroll only on the /blog listing page (not individual posts or other routes)
     const hideNavOnScroll = pathname === "/blog";
     // Individual blog posts use a Flowergrid-style reading chrome (Back to Blog only).
@@ -562,219 +572,298 @@ export default function Header() {
                 })()}
             </AnimatePresence>
 
-            {/* Mobile Menu Drawer */}
-            <AnimatePresence>
-                {isMenuOpen && (
-                    <motion.div
-                        initial={{ x: "100%" }}
-                        animate={{ x: 0 }}
-                        exit={{ x: "100%" }}
-                        transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                        style={{
-                            position: "fixed",
-                            top: 0,
-                            right: 0,
-                            width: "100%",
-                            height: "100dvh",
-                            backgroundColor: "#fff",
-                            zIndex: 1050,
-                            display: "flex",
-                            flexDirection: "column",
-                            boxShadow: "-10px 0 30px rgba(0,0,0,0.1)",
-                            pointerEvents: "auto",
-                        }}
-                    >
-                        {/* Close button row */}
-                        <div style={{ height: "80px", display: "flex", alignItems: "center", justifyContent: "flex-end", padding: "0 1.5rem", flexShrink: 0 }}>
-                            <button
-                                onClick={() => setIsMenuOpen(false)}
-                                style={{
-                                    background: "none",
-                                    border: "none",
-                                    cursor: "pointer",
-                                    padding: "0.5rem",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    width: "44px",
-                                    height: "44px",
-                                }}
-                                aria-label="Close menu"
-                            >
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                                    <line x1="5" y1="5" x2="19" y2="19" />
-                                    <line x1="19" y1="5" x2="5" y2="19" />
-                                </svg>
-                            </button>
-                        </div>
+            {/* Mobile Menu — portaled fullscreen so it is not clipped by the header capsule */}
+            {portalReady
+                ? createPortal(
+                      <AnimatePresence>
+                          {isMenuOpen && (
+                              <motion.div
+                                  key="mobile-nav"
+                                  initial={{ opacity: 0 }}
+                                  animate={{ opacity: 1 }}
+                                  exit={{ opacity: 0 }}
+                                  transition={{ duration: 0.2 }}
+                                  style={{
+                                      position: "fixed",
+                                      inset: 0,
+                                      width: "100vw",
+                                      height: "100dvh",
+                                      maxHeight: "100dvh",
+                                      backgroundColor: "#fff",
+                                      zIndex: 4000,
+                                      display: "flex",
+                                      flexDirection: "column",
+                                      pointerEvents: "auto",
+                                      overflow: "hidden",
+                                  }}
+                                  role="dialog"
+                                  aria-modal="true"
+                                  aria-label="Main menu"
+                              >
+                                  {/* Top bar: logo + close (Flowergrid-style fit) */}
+                                  <div
+                                      style={{
+                                          flexShrink: 0,
+                                          display: "flex",
+                                          alignItems: "center",
+                                          justifyContent: "space-between",
+                                          gap: "1rem",
+                                          padding:
+                                              "max(0.75rem, env(safe-area-inset-top)) max(1.15rem, env(safe-area-inset-right)) 0.75rem max(1.15rem, env(safe-area-inset-left))",
+                                          minHeight: "64px",
+                                          borderBottom: "1px solid #f1f5f9",
+                                      }}
+                                  >
+                                      <Link
+                                          href="/"
+                                          onClick={() => setIsMenuOpen(false)}
+                                          style={{ display: "flex", alignItems: "center", flexShrink: 0 }}
+                                      >
+                                          <Image
+                                              src="/iaudit-logo-nav.png"
+                                              alt="iAudit Global"
+                                              width={180}
+                                              height={133}
+                                              style={{ height: "40px", width: "auto", objectFit: "contain", display: "block" }}
+                                          />
+                                      </Link>
+                                      <button
+                                          type="button"
+                                          onClick={() => setIsMenuOpen(false)}
+                                          style={{
+                                              background: "#f3f4f6",
+                                              border: "none",
+                                              cursor: "pointer",
+                                              padding: 0,
+                                              display: "flex",
+                                              alignItems: "center",
+                                              justifyContent: "center",
+                                              width: "44px",
+                                              height: "44px",
+                                              borderRadius: "999px",
+                                              flexShrink: 0,
+                                          }}
+                                          aria-label="Close menu"
+                                      >
+                                          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                                              <line x1="5" y1="5" x2="19" y2="19" />
+                                              <line x1="19" y1="5" x2="5" y2="19" />
+                                          </svg>
+                                      </button>
+                                  </div>
 
-                        {/* Nav items — scrollable middle */}
-                        <div style={{ flex: 1, overflowY: "auto", padding: "0 2rem" }}>
-                            {navItems.map((item, index) => (
-                                <motion.div
-                                    key={item.label}
-                                    initial={{ opacity: 0, x: 20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: index * 0.05 }}
-                                >
-                                    <div style={{ borderBottom: "1px solid #f1f5f9" }}>
-                                        <div
-                                            onClick={() => {
-                                                if (item.megamenu) {
-                                                    setExpandedItem(expandedItem === item.label ? null : item.label);
-                                                } else {
-                                                    setIsMenuOpen(false);
-                                                }
-                                            }}
-                                            style={{
-                                                fontSize: "1.1rem",
-                                                fontWeight: 600,
-                                                color: "#111827",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                justifyContent: "space-between",
-                                                padding: "1.25rem 0",
-                                                cursor: "pointer"
-                                            }}
-                                        >
-                                            {item.megamenu ? (
-                                                <>
-                                                    {item.label}
-                                                    <svg
-                                                        width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-                                                        style={{
-                                                            transition: "transform 0.3s",
-                                                            transform: expandedItem === item.label ? "rotate(180deg)" : "rotate(0deg)",
-                                                            color: "#9ca3af"
-                                                        }}
-                                                    >
-                                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                                    </svg>
-                                                </>
-                                            ) : (
-                                                <Link
-                                                    href={item.href}
-                                                    onClick={() => setIsMenuOpen(false)}
-                                                    style={{ color: "inherit", textDecoration: "none", width: "100%" }}
-                                                >
-                                                    {item.label}
-                                                </Link>
-                                            )}
-                                        </div>
+                                  {/* Nav links — fill remaining space */}
+                                  <div
+                                      style={{
+                                          flex: 1,
+                                          minHeight: 0,
+                                          overflowY: "auto",
+                                          WebkitOverflowScrolling: "touch",
+                                          padding: "0.5rem 1.25rem 1rem",
+                                          display: "flex",
+                                          flexDirection: "column",
+                                          justifyContent: "flex-start",
+                                      }}
+                                  >
+                                      {navItems.map((item, index) => (
+                                          <motion.div
+                                              key={item.label}
+                                              initial={{ opacity: 0, y: 10 }}
+                                              animate={{ opacity: 1, y: 0 }}
+                                              transition={{ delay: 0.04 + index * 0.04 }}
+                                              style={{ borderBottom: "1px solid #f1f5f9" }}
+                                          >
+                                              <div
+                                                  onClick={() => {
+                                                      if (item.megamenu) {
+                                                          setExpandedItem(expandedItem === item.label ? null : item.label);
+                                                      } else {
+                                                          setIsMenuOpen(false);
+                                                      }
+                                                  }}
+                                                  style={{
+                                                      fontSize: "1.15rem",
+                                                      fontWeight: 600,
+                                                      color: "#111827",
+                                                      display: "flex",
+                                                      alignItems: "center",
+                                                      justifyContent: "space-between",
+                                                      padding: "1.05rem 0",
+                                                      cursor: "pointer",
+                                                      minHeight: "52px",
+                                                  }}
+                                              >
+                                                  {item.megamenu ? (
+                                                      <>
+                                                          <span>{item.label}</span>
+                                                          <svg
+                                                              width="18"
+                                                              height="18"
+                                                              viewBox="0 0 24 24"
+                                                              fill="none"
+                                                              stroke="currentColor"
+                                                              strokeWidth="2.5"
+                                                              strokeLinecap="round"
+                                                              strokeLinejoin="round"
+                                                              style={{
+                                                                  transition: "transform 0.25s ease",
+                                                                  transform: expandedItem === item.label ? "rotate(180deg)" : "rotate(0deg)",
+                                                                  color: "#9ca3af",
+                                                                  flexShrink: 0,
+                                                              }}
+                                                          >
+                                                              <polyline points="6 9 12 15 18 9" />
+                                                          </svg>
+                                                      </>
+                                                  ) : (
+                                                      <Link
+                                                          href={item.href}
+                                                          onClick={() => setIsMenuOpen(false)}
+                                                          style={{ color: "inherit", textDecoration: "none", width: "100%" }}
+                                                      >
+                                                          {item.label}
+                                                      </Link>
+                                                  )}
+                                              </div>
 
-                                        <AnimatePresence>
-                                            {item.megamenu && expandedItem === item.label && (
-                                                <motion.div
-                                                    initial={{ height: 0, opacity: 0 }}
-                                                    animate={{ height: "auto", opacity: 1 }}
-                                                    exit={{ height: 0, opacity: 0 }}
-                                                    style={{ overflow: "hidden" }}
-                                                >
-                                                    <div style={{ padding: "0 0 1.5rem 1rem", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-                                                        {item.megamenu.map((section, sIdx) => (
-                                                            <div key={sIdx}>
-                                                                {section.title ? (
-                                                                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.05em" }}>{section.title}</span>
-                                                                ) : null}
-                                                                <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem", marginTop: section.title ? "0.75rem" : 0 }}>
-                                                                    {section.items.map((link, lIdx) => (
-                                                                        <Link
-                                                                            key={lIdx}
-                                                                            href={link.href}
-                                                                            onClick={() => setIsMenuOpen(false)}
-                                                                            style={{
-                                                                                fontSize: "1rem",
-                                                                                color: "#4b5563",
-                                                                                fontWeight: 400,
-                                                                            }}
-                                                                        >
-                                                                            {link.label}
-                                                                        </Link>
-                                                                    ))}
-                                                                    {section.card && (
-                                                                        <Link
-                                                                            href={section.card.href}
-                                                                            onClick={() => setIsMenuOpen(false)}
-                                                                            style={{
-                                                                                marginTop: "0.5rem",
-                                                                                padding: "1rem",
-                                                                                borderRadius: "12px",
-                                                                                background: "#f8faf9",
-                                                                                border: "1px solid #e8f0ec",
-                                                                                textDecoration: "none",
-                                                                            }}
-                                                                        >
-                                                                            <div style={{ fontSize: "0.95rem", fontWeight: 600, color: "#111827", marginBottom: "0.35rem" }}>
-                                                                                {section.card.title}
-                                                                            </div>
-                                                                            <div style={{ fontSize: "0.85rem", color: "#6b7280", lineHeight: 1.5 }}>
-                                                                                {section.card.description}
-                                                                            </div>
-                                                                        </Link>
-                                                                    )}
-                                                                </div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
+                                              <AnimatePresence>
+                                                  {item.megamenu && expandedItem === item.label && (
+                                                      <motion.div
+                                                          initial={{ height: 0, opacity: 0 }}
+                                                          animate={{ height: "auto", opacity: 1 }}
+                                                          exit={{ height: 0, opacity: 0 }}
+                                                          style={{ overflow: "hidden" }}
+                                                      >
+                                                          <div style={{ padding: "0 0 1.15rem 0.15rem", display: "flex", flexDirection: "column", gap: "1.1rem" }}>
+                                                              {item.megamenu.map((section, sIdx) => (
+                                                                  <div key={sIdx}>
+                                                                      {section.title ? (
+                                                                          <span
+                                                                              style={{
+                                                                                  fontSize: "0.72rem",
+                                                                                  fontWeight: 700,
+                                                                                  color: "#9ca3af",
+                                                                                  textTransform: "uppercase",
+                                                                                  letterSpacing: "0.06em",
+                                                                              }}
+                                                                          >
+                                                                              {section.title}
+                                                                          </span>
+                                                                      ) : null}
+                                                                      <div
+                                                                          style={{
+                                                                              display: "flex",
+                                                                              flexDirection: "column",
+                                                                              gap: "0.75rem",
+                                                                              marginTop: section.title ? "0.65rem" : 0,
+                                                                              paddingLeft: "0.85rem",
+                                                                          }}
+                                                                      >
+                                                                          {section.items.map((link, lIdx) => (
+                                                                              <Link
+                                                                                  key={lIdx}
+                                                                                  href={link.href}
+                                                                                  onClick={() => setIsMenuOpen(false)}
+                                                                                  style={{
+                                                                                      fontSize: "1rem",
+                                                                                      color: "#4b5563",
+                                                                                      fontWeight: 500,
+                                                                                      textDecoration: "none",
+                                                                                      lineHeight: 1.35,
+                                                                                  }}
+                                                                              >
+                                                                                  {link.label}
+                                                                              </Link>
+                                                                          ))}
+                                                                          {section.card && (
+                                                                              <Link
+                                                                                  href={section.card.href}
+                                                                                  onClick={() => setIsMenuOpen(false)}
+                                                                                  style={{
+                                                                                      marginTop: "0.25rem",
+                                                                                      padding: "0.9rem 1rem",
+                                                                                      borderRadius: "12px",
+                                                                                      background: "#f8faf9",
+                                                                                      border: "1px solid #e8f0ec",
+                                                                                      textDecoration: "none",
+                                                                                  }}
+                                                                              >
+                                                                                  <div style={{ fontSize: "0.95rem", fontWeight: 600, color: "#111827", marginBottom: "0.3rem" }}>
+                                                                                      {section.card.title}
+                                                                                  </div>
+                                                                                  <div style={{ fontSize: "0.85rem", color: "#6b7280", lineHeight: 1.5 }}>
+                                                                                      {section.card.description}
+                                                                                  </div>
+                                                                              </Link>
+                                                                          )}
+                                                                      </div>
+                                                                  </div>
+                                                              ))}
+                                                          </div>
+                                                      </motion.div>
+                                                  )}
+                                              </AnimatePresence>
+                                          </motion.div>
+                                      ))}
+                                  </div>
 
-                        {/* Bottom CTA buttons — always visible, never cut off */}
-                        <div style={{
-                            flexShrink: 0,
-                            padding: "1.25rem 2rem 2rem",
-                            backgroundColor: "#f9fafb",
-                            borderTop: "1px solid #f1f5f9",
-                        }}>
-                            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-                                <Link
-                                    href="https://apps.iaudit.global/login"
-                                    onClick={() => setIsMenuOpen(false)}
-                                    className="btn-animate"
-                                    style={{
-                                        width: "100%",
-                                        padding: "0.85rem",
-                                        borderRadius: "8px",
-                                        fontSize: "1rem",
-                                        fontWeight: 500,
-                                        textAlign: "center",
-                                        justifyContent: "center",
-                                        backgroundColor: "white",
-                                        border: "1px solid #e5e7eb",
-                                        display: "flex",
-                                        boxSizing: "border-box",
-                                    }}
-                                >
-                                    <span>Log in</span>
-                                </Link>
-                                <Link
-                                    href="https://apps.iaudit.global"
-                                    onClick={() => setIsMenuOpen(false)}
-                                    className="btn-animate"
-                                    style={{
-                                        width: "100%",
-                                        padding: "0.85rem",
-                                        borderRadius: "8px",
-                                        fontSize: "1rem",
-                                        fontWeight: 500,
-                                        textAlign: "center",
-                                        justifyContent: "center",
-                                        display: "flex",
-                                        boxSizing: "border-box",
-                                    }}
-                                >
-                                    <span>Sign up for free</span>
-                                </Link>
-                            </div>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                                  {/* Bottom CTAs — pinned to viewport bottom */}
+                                  <div
+                                      style={{
+                                          flexShrink: 0,
+                                          padding:
+                                              "1rem 1.25rem max(1.25rem, env(safe-area-inset-bottom))",
+                                          backgroundColor: "#f9fafb",
+                                          borderTop: "1px solid #f1f5f9",
+                                      }}
+                                  >
+                                      <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
+                                          <Link
+                                              href="https://apps.iaudit.global/login"
+                                              onClick={() => setIsMenuOpen(false)}
+                                              style={{
+                                                  width: "100%",
+                                                  padding: "0.9rem 1rem",
+                                                  borderRadius: "10px",
+                                                  fontSize: "1rem",
+                                                  fontWeight: 600,
+                                                  textAlign: "center",
+                                                  textDecoration: "none",
+                                                  color: "#111827",
+                                                  backgroundColor: "#fff",
+                                                  border: "1px solid #e5e7eb",
+                                                  boxSizing: "border-box",
+                                              }}
+                                          >
+                                              Log in
+                                          </Link>
+                                          <Link
+                                              href="https://apps.iaudit.global"
+                                              onClick={() => setIsMenuOpen(false)}
+                                              className="btn-animate"
+                                              style={{
+                                                  width: "100%",
+                                                  padding: "0.9rem 1rem",
+                                                  borderRadius: "10px",
+                                                  fontSize: "1rem",
+                                                  fontWeight: 600,
+                                                  textAlign: "center",
+                                                  justifyContent: "center",
+                                                  display: "flex",
+                                                  boxSizing: "border-box",
+                                                  textDecoration: "none",
+                                              }}
+                                          >
+                                              <span>Sign up for free</span>
+                                          </Link>
+                                      </div>
+                                  </div>
+                              </motion.div>
+                          )}
+                      </AnimatePresence>,
+                      document.body
+                  )
+                : null}
             </div>
         </header>
     );
