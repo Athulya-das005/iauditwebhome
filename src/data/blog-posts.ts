@@ -13,6 +13,17 @@ export type BlogPost = {
 /** Single source of truth for the /blog listing. Add new posts here when published. */
 export const blogPosts: BlogPost[] = [
     {
+        slug: "iso-9001-2026-key-changes-transition",
+        title: "ISO 9001:2026: Key Changes and Transition Guide",
+        excerpt:
+            "Explore ISO 9001:2026 key changes, transition requirements and practical steps organisations can take to prepare for the new standard.",
+        datePublished: "2026-09-23",
+        readTime: "12 Min Read",
+        image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=700&fit=crop&q=80&fm=webp",
+        author: "Mathew Chiweda",
+        categories: ["ISO 9001", "Compliance"],
+    },
+    {
         slug: "iso-14001-2026-gap-analysis",
         title: "ISO 14001:2026 Gap Analysis: Identify & Close Gaps",
         excerpt:
@@ -505,6 +516,11 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
         image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&h=420&fit=crop&q=80&fm=webp",
         subs: [
             {
+                id: "iso-9001-2026",
+                label: "ISO 9001:2026",
+                slugs: ["iso-9001-2026-key-changes-transition"],
+            },
+            {
                 id: "iso-9001-auditing",
                 label: "ISO 9001 Auditing",
                 slugs: [
@@ -540,7 +556,11 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
             {
                 id: "certification",
                 label: "Certification",
-                slugs: ["prepare-for-iso-9001-in-construction", "iso-certification-for-metal-fabrication"],
+                slugs: [
+                    "iso-9001-2026-key-changes-transition",
+                    "prepare-for-iso-9001-in-construction",
+                    "iso-certification-for-metal-fabrication",
+                ],
             },
         ],
     },

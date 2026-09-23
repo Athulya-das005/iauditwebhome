@@ -157,7 +157,7 @@ function AuthorCard({ mobile = false }: { mobile?: boolean }) {
                 performance across complex operational environments and multiple sectors.
             </p>
             <Link
-                href="/contact"
+                href="/author/mathew-chiweda"
                 style={{
                     display: "block",
                     background: "#3d5a47",

@@ -7,8 +7,11 @@ import { motion } from "framer-motion";
 import Footer from "@/components/Footer";
 import {
     blogHref,
+    blogTaxonomy,
     formatBlogDate,
     getMatthewChiwedaPosts,
+    getPostsForCategory,
+    getPostsForSubcategory,
     type BlogPost,
 } from "@/data/blog-posts";
 
@@ -98,10 +101,61 @@ function useViewport() {
 export default function MatthewChiwedaAuthor() {
     const { isMobile, isTablet, isSmall } = useViewport();
     const publishedPosts = getMatthewChiwedaPosts();
+    const [activeCategory, setActiveCategory] = useState<string | null>(null);
+    const [activeSub, setActiveSub] = useState<string | null>(null);
 
-    const articleCols = isMobile ? "1fr" : isTablet ? "1fr 1fr" : "repeat(3, 1fr)";
+    const articleCols = isMobile ? "1fr" : isTablet ? "1fr 1fr" : "1fr 1fr";
     const heroCols = isMobile ? "1fr" : "minmax(280px, 0.95fr) minmax(0, 1.15fr)";
     const sectionPadX = isMobile ? "1rem" : "2rem";
+
+    const authorTaxonomy = blogTaxonomy.filter(
+        (cat) => getPostsForCategory(cat.id, publishedPosts).length > 0
+    );
+    const activeGroup = authorTaxonomy.find((c) => c.id === activeCategory) ?? null;
+
+    const filteredPosts = (() => {
+        if (activeCategory && activeSub) {
+            return getPostsForSubcategory(activeCategory, activeSub, publishedPosts);
+        }
+        if (activeCategory) return getPostsForCategory(activeCategory, publishedPosts);
+        return publishedPosts;
+    })();
+
+    const categoryGroups =
+        activeGroup && !activeSub
+            ? activeGroup.subs
+                  .map((sub) => ({
+                      sub,
+                      posts: getPostsForSubcategory(activeGroup.id, sub.id, publishedPosts),
+                  }))
+                  .filter((g) => g.posts.length > 0)
+            : null;
+
+    const singleSubPosts =
+        activeCategory && activeSub
+            ? getPostsForSubcategory(activeCategory, activeSub, publishedPosts)
+            : null;
+    const singleSubLabel = activeSub
+        ? activeGroup?.subs.find((s) => s.id === activeSub)?.label ?? null
+        : null;
+
+    function selectCategory(id: string) {
+        if (activeCategory === id) {
+            setActiveCategory(null);
+            setActiveSub(null);
+            return;
+        }
+        setActiveCategory(id);
+        setActiveSub(null);
+        requestAnimationFrame(() => {
+            document.getElementById("author-categories")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+    }
+
+    function clearFilter() {
+        setActiveCategory(null);
+        setActiveSub(null);
+    }
 
     return (
         <div
@@ -110,8 +164,7 @@ export default function MatthewChiwedaAuthor() {
                 minHeight: "100vh",
                 fontFamily: font,
                 width: "100%",
-                maxWidth: "100vw",
-                overflowX: "hidden",
+                maxWidth: "100%",
                 boxSizing: "border-box",
             }}
         >
@@ -386,38 +439,322 @@ export default function MatthewChiwedaAuthor() {
                 </div>
             </section>
 
-            {/* Published articles */}
+            {/* Published articles — sticky Categories sidebar (same scroll behaviour as /blog) */}
             <section
+                id="author-categories"
                 style={{
-                    padding: isMobile ? "2rem 1rem 2.5rem" : "4rem 2rem 4.5rem",
+                    maxWidth: "1320px",
+                    margin: "0 auto",
+                    padding: isMobile ? "2.5rem 1.25rem 2.5rem" : "3.25rem 2rem 4.5rem",
+                    scrollMarginTop: "0.75rem",
                     background: "#faf8f5",
                 }}
             >
-                <div style={{ maxWidth: "1120px", margin: "0 auto", minWidth: 0 }}>
-                    <motion.div
-                        {...fadeUp}
+                <motion.div
+                    {...fadeUp}
+                    style={{
+                        marginBottom: isMobile ? "1.5rem" : "2rem",
+                        textAlign: isMobile ? "center" : "left",
+                        maxWidth: isMobile ? "100%" : activeGroup ? "100%" : "320px",
+                    }}
+                >
+                    <p style={sectionEyebrow}>Published writing</p>
+                    <p style={{ margin: 0, color: "#6b7280", fontSize: isMobile ? "0.88rem" : "0.95rem" }}>
+                        {activeGroup
+                            ? `${filteredPosts.length} article${filteredPosts.length === 1 ? "" : "s"} in ${activeGroup.label}${
+                                  singleSubLabel ? ` · ${singleSubLabel}` : ""
+                              }`
+                            : `${publishedPosts.length} insights on ISO auditing &amp; compliance`}
+                    </p>
+                </motion.div>
+
+                {activeGroup ? (
+                    <div
                         style={{
-                            marginBottom: isMobile ? "1.35rem" : "2.5rem",
+                            maxWidth: isMobile ? "100%" : "320px",
+                            marginBottom: isMobile ? "2rem" : "2.5rem",
                             textAlign: isMobile ? "center" : "left",
                         }}
                     >
-                        <p style={sectionEyebrow}>Published writing</p>
-                        <p style={{ margin: 0, color: "#6b7280", fontSize: isMobile ? "0.88rem" : "0.95rem" }}>
-                            {publishedPosts.length} insights on ISO auditing &amp; compliance
-                        </p>
-                    </motion.div>
+                        <h2
+                            style={{
+                                margin: "0 0 0.4rem",
+                                fontSize: isMobile ? "1.45rem" : "1.85rem",
+                                fontWeight: 600,
+                                letterSpacing: "-0.02em",
+                                lineHeight: 1.25,
+                                fontFamily: font,
+                            }}
+                        >
+                            <span style={{ color: "#111827" }}>Category: </span>
+                            <span style={{ color: "#6B7280" }}>{activeGroup.label}</span>
+                            {singleSubLabel ? (
+                                <span style={{ color: "#9CA3AF" }}> · {singleSubLabel}</span>
+                            ) : null}
+                        </h2>
+                        <button
+                            type="button"
+                            onClick={clearFilter}
+                            style={{
+                                background: "none",
+                                border: "none",
+                                padding: 0,
+                                color: "#006644",
+                                fontSize: "0.95rem",
+                                fontWeight: 600,
+                                textDecoration: "underline",
+                                textUnderlineOffset: "3px",
+                                cursor: "pointer",
+                                fontFamily: font,
+                            }}
+                        >
+                            Clear Filter
+                        </button>
+                    </div>
+                ) : null}
 
-                    <div
+                <div
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: isMobile
+                            ? "1fr"
+                            : isTablet
+                              ? "280px minmax(0, 1fr)"
+                              : "320px minmax(0, 1fr)",
+                        gap: isMobile ? "2rem" : "2.5rem",
+                        alignItems: isMobile ? "start" : "stretch",
+                        paddingBottom: isMobile ? "1.5rem" : "2rem",
+                    }}
+                >
+                    <aside
                         style={{
-                            display: "grid",
-                            gridTemplateColumns: articleCols,
-                            gap: isMobile ? "1rem" : "1.5rem",
+                            display: "flex",
+                            flexDirection: "column",
+                            width: "100%",
+                            maxWidth: "100%",
                             minWidth: 0,
+                            minHeight: isMobile ? undefined : "100%",
+                            boxSizing: "border-box",
                         }}
                     >
-                        {publishedPosts.map((post, index) => (
-                            <AuthorArticleCard key={post.slug} post={post} index={index} isMobile={isMobile} />
-                        ))}
+                        {/* Sticky track — Categories stay in view while posts scroll, same as /blog */}
+                        <div
+                            style={{
+                                flex: isMobile ? "0 0 auto" : "1 1 auto",
+                                minHeight: 0,
+                                position: "relative",
+                            }}
+                        >
+                            <div
+                                style={{
+                                    position: isMobile ? "relative" : "sticky",
+                                    top: isMobile
+                                        ? undefined
+                                        : "max(1rem, calc((100svh - 34rem) / 2))",
+                                    zIndex: 20,
+                                    background: "#faf8f5",
+                                    paddingBottom: "1rem",
+                                }}
+                            >
+                                <h2
+                                    style={{
+                                        margin: "0 0 1.35rem",
+                                        fontSize: "clamp(1.55rem, 2.4vw, 1.9rem)",
+                                        fontWeight: 600,
+                                        letterSpacing: "-0.02em",
+                                        lineHeight: 1.2,
+                                        color: "#111827",
+                                        fontFamily: font,
+                                    }}
+                                >
+                                    Categories
+                                </h2>
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        gap: "0.7rem",
+                                        width: "100%",
+                                    }}
+                                >
+                                    {authorTaxonomy.map((cat) => {
+                                        const selected = activeCategory === cat.id;
+                                        return (
+                                            <button
+                                                key={cat.id}
+                                                type="button"
+                                                onClick={() => selectCategory(cat.id)}
+                                                style={{
+                                                    position: "relative",
+                                                    display: "block",
+                                                    width: "100%",
+                                                    height: 58,
+                                                    border: selected
+                                                        ? "1.5px solid rgba(255,255,255,0.85)"
+                                                        : "1.5px solid transparent",
+                                                    padding: 0,
+                                                    borderRadius: 11,
+                                                    overflow: "hidden",
+                                                    cursor: "pointer",
+                                                    fontFamily: font,
+                                                    boxShadow: "0 4px 14px rgba(15,23,42,0.07)",
+                                                    boxSizing: "border-box",
+                                                }}
+                                            >
+                                                <img
+                                                    src={cat.image}
+                                                    alt=""
+                                                    style={{
+                                                        width: "100%",
+                                                        height: "100%",
+                                                        objectFit: "cover",
+                                                        display: "block",
+                                                    }}
+                                                />
+                                                <div
+                                                    style={{
+                                                        position: "absolute",
+                                                        inset: 0,
+                                                        background: selected
+                                                            ? "linear-gradient(90deg, rgba(0,46,29,0.92), rgba(0,102,68,0.55))"
+                                                            : "linear-gradient(90deg, rgba(8,18,14,0.8), rgba(8,18,14,0.38))",
+                                                    }}
+                                                />
+                                                <span
+                                                    style={{
+                                                        position: "absolute",
+                                                        inset: 0,
+                                                        display: "flex",
+                                                        alignItems: "center",
+                                                        justifyContent: "space-between",
+                                                        gap: "0.75rem",
+                                                        padding: "0 1.1rem",
+                                                        color: "#fff",
+                                                        fontWeight: 600,
+                                                        fontSize: "0.92rem",
+                                                        letterSpacing: "0.01em",
+                                                        textAlign: "left",
+                                                    }}
+                                                >
+                                                    <span style={{ lineHeight: 1.2 }}>{cat.label}</span>
+                                                    {selected ? (
+                                                        <span
+                                                            aria-hidden
+                                                            style={{
+                                                                width: 20,
+                                                                height: 20,
+                                                                borderRadius: "50%",
+                                                                background: "#fff",
+                                                                color: "#006644",
+                                                                display: "inline-flex",
+                                                                alignItems: "center",
+                                                                justifyContent: "center",
+                                                                fontSize: "0.72rem",
+                                                                fontWeight: 800,
+                                                                flexShrink: 0,
+                                                            }}
+                                                        >
+                                                            ✓
+                                                        </span>
+                                                    ) : (
+                                                        <span style={{ width: 20, flexShrink: 0 }} aria-hidden />
+                                                    )}
+                                                </span>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <div style={{ minWidth: 0 }}>
+                        {!activeGroup ? (
+                            filteredPosts.length === 0 ? (
+                                <p style={{ color: "#6B7280", fontFamily: font, margin: 0 }}>No posts yet.</p>
+                            ) : (
+                                <div
+                                    style={{
+                                        display: "grid",
+                                        gridTemplateColumns: articleCols,
+                                        gap: isMobile ? "1.5rem" : "1.75rem 1.5rem",
+                                        minWidth: 0,
+                                    }}
+                                >
+                                    {filteredPosts.map((post, index) => (
+                                        <AuthorArticleCard key={post.slug} post={post} index={index} isMobile={isMobile} />
+                                    ))}
+                                </div>
+                            )
+                        ) : singleSubPosts ? (
+                            <div>
+                                <AuthorSubcategoryHeading>{singleSubLabel}</AuthorSubcategoryHeading>
+                                {singleSubPosts.length === 0 ? (
+                                    <p style={{ color: "#6B7280", fontFamily: font, margin: 0 }}>
+                                        No posts in this topic yet.
+                                    </p>
+                                ) : (
+                                    <div
+                                        style={{
+                                            display: "grid",
+                                            gridTemplateColumns: articleCols,
+                                            gap: isMobile ? "1.5rem" : "1.75rem 1.5rem",
+                                            minWidth: 0,
+                                        }}
+                                    >
+                                        {singleSubPosts.map((post, index) => (
+                                            <AuthorArticleCard
+                                                key={post.slug}
+                                                post={post}
+                                                index={index}
+                                                isMobile={isMobile}
+                                            />
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <div style={{ display: "flex", flexDirection: "column", gap: "2.75rem" }}>
+                                {categoryGroups?.map(({ sub, posts }) => (
+                                    <div key={sub.id}>
+                                        <button
+                                            type="button"
+                                            onClick={() => setActiveSub(sub.id)}
+                                            style={{
+                                                display: "block",
+                                                width: "100%",
+                                                textAlign: "left",
+                                                background: "none",
+                                                border: "none",
+                                                padding: 0,
+                                                margin: "0 0 1.15rem",
+                                                cursor: "pointer",
+                                                fontFamily: font,
+                                            }}
+                                        >
+                                            <AuthorSubcategoryHeading as="span">{sub.label}</AuthorSubcategoryHeading>
+                                        </button>
+                                        <div
+                                            style={{
+                                                display: "grid",
+                                                gridTemplateColumns: articleCols,
+                                                gap: isMobile ? "1.5rem" : "1.75rem 1.5rem",
+                                                minWidth: 0,
+                                            }}
+                                        >
+                                            {posts.map((post, index) => (
+                                                <AuthorArticleCard
+                                                    key={`${sub.id}-${post.slug}`}
+                                                    post={post}
+                                                    index={index}
+                                                    isMobile={isMobile}
+                                                />
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
             </section>
@@ -527,6 +864,55 @@ function Stat({ value, label, compact }: { value: string; label: string; compact
             >
                 {label}
             </p>
+        </div>
+    );
+}
+
+function AuthorSubcategoryHeading({
+    children,
+    as = "h3",
+}: {
+    children: ReactNode;
+    as?: "h3" | "span";
+}) {
+    const Tag = as;
+    return (
+        <div
+            style={{
+                margin: as === "h3" ? "0 0 1.15rem" : 0,
+                padding: "0.65rem 0 0.85rem 0.9rem",
+                borderLeft: "3px solid #006644",
+                borderBottom: "1px solid #e5e0d8",
+            }}
+        >
+            <p
+                style={{
+                    margin: "0 0 0.28rem",
+                    fontSize: "0.68rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: "#006644",
+                    fontFamily: font,
+                }}
+            >
+                Topic
+            </p>
+            <Tag
+                style={{
+                    display: "block",
+                    margin: 0,
+                    fontSize: "1.05rem",
+                    fontWeight: 600,
+                    letterSpacing: "0.04em",
+                    textTransform: "uppercase",
+                    lineHeight: 1.3,
+                    color: "#374151",
+                    fontFamily: font,
+                }}
+            >
+                {children}
+            </Tag>
         </div>
     );
 }

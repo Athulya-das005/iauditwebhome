@@ -864,7 +864,7 @@ export default function PdcaBasicMetalBlogContent() {
                                     </svg>
                                 </a>
                                 <Link
-                                    href="/contact"
+                                    href="/author/mathew-chiweda"
                                     style={{
                                         display: "inline-flex",
                                         alignItems: "center",
@@ -1004,7 +1004,7 @@ export default function PdcaBasicMetalBlogContent() {
                                 Mathew Chiweda is a PDCA ISO Audit Specialist and Co-founder of iAudit Global. With extensive experience across quality, health and safety, environmental management and auditing, he supports organisations in implementing practical management systems, conducting effective audits and improving performance across complex operational environments and multiple sectors.
                             </p>
                         <Link
-                            href="/contact"
+                            href="/author/mathew-chiweda"
                             style={{
                                 display: "block",
                                 background: "#3d5a47",

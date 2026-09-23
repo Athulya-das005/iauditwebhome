@@ -26,6 +26,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Start cookieyes banner */}
+        <script
+          id="cookieyes"
+          type="text/javascript"
+          src="https://cdn-cookieyes.com/client_data/0e52d59590f655b78410117c77315021/script.js"
+        />
+        {/* End cookieyes banner */}
         {/* Google tag (gtag.js) — Google Ads AW-17863252154 */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17863252154" />
         <script

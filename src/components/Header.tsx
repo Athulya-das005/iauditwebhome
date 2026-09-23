@@ -207,13 +207,14 @@ export default function Header() {
     // Floating capsule after scroll only — keep full-width while the mobile menu is open
     const isCondensed = isScrolled && !isMenuOpen;
     // These landing pages place a darkened image directly behind the transparent header.
-    // /blog uses the same light contrast bar so dark menu labels stay readable.
+    // /blog and author pages use the same light contrast bar so dark menu labels stay readable.
     const hasDarkHero =
         pathname === "/iso-14001-2026-self-assessment-tool" ||
         pathname === "/iso-audit-assessments/gap-analysis" ||
-        pathname === "/blog";
-    // Hide-on-scroll only on the /blog listing page (not individual posts or other routes)
-    const hideNavOnScroll = pathname === "/blog";
+        pathname === "/blog" ||
+        pathname === "/author/mathew-chiweda";
+    // Hide-on-scroll on the /blog listing and author page (not individual blog posts)
+    const hideNavOnScroll = pathname === "/blog" || pathname === "/author/mathew-chiweda";
     // Individual blog posts use a Flowergrid-style reading chrome (Back to Blog only).
     const isBlogPost = Boolean(pathname?.startsWith("/blog/") && pathname !== "/blog");
     const isHeaderVisible =
