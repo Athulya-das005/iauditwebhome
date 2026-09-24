@@ -35,7 +35,7 @@ export default function Footer() {
                 { name: "ISO 9001 Software", path: "/standards/iso-9001-audit-management-software" },
                 { name: "ISO 14001 Software", path: "/standards/iso-14001-audit-management-software" },
                 { name: "ISO 45001 Software", path: "/standards/iso-45001-audit-management-software" },
-                { name: "ISO 14001:2026 Update", path: "/ISO14001-2026" },
+                { name: "ISO 14001:2026 Update", path: "/iso-14001-2026" },
             ],
         },
         {
@@ -53,6 +53,9 @@ export default function Footer() {
                 { name: "Blog", path: "/blog" },
                 { name: "About Us", path: "/about" },
                 { name: "Contact", path: "/contact" },
+                { name: "Privacy Policy", path: "/privacy-policy" },
+                { name: "Cookie Policy", path: "/cookie-policy" },
+                { name: "Terms and Conditions", path: "/terms-and-conditions" },
             ],
         },
     ];

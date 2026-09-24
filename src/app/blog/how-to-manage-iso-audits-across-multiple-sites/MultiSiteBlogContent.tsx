@@ -1053,7 +1053,7 @@ export default function MultiSiteBlogContent() {
 
                             </div>
                             <p style={{ margin: "0 0 0.3rem", fontWeight: 700, color: "#111827", fontSize: "1.05rem", fontFamily: font }}>
-                                Mathew Chiweda
+                                <Link href="/author/mathew-chiweda" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>Mathew Chiweda</Link>
                             </p>
                             <p
                                 style={{
@@ -1073,7 +1073,7 @@ export default function MultiSiteBlogContent() {
                                 Mathew Chiweda is a PDCA ISO Audit Specialist and Co-founder of iAudit Global. With extensive experience across quality, health and safety, environmental management and auditing, he supports organisations in implementing practical management systems, conducting effective audits and improving performance across complex operational environments and multiple sectors.
                             </p>
                             <Link
-                                href="/author/mathew-chiweda"
+                                href="/contact"
                                 style={{
                                     display: "block",
                                     background: "#3d5a47",
@@ -1122,7 +1122,7 @@ export default function MultiSiteBlogContent() {
 
                         </div>
                         <p style={{ margin: "0 0 0.3rem", fontWeight: 700, color: "#111827", fontSize: "1rem", fontFamily: font }}>
-                            Mathew Chiweda
+                            <Link href="/author/mathew-chiweda" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>Mathew Chiweda</Link>
                         </p>
                         <p
                             style={{
@@ -1141,7 +1141,7 @@ export default function MultiSiteBlogContent() {
                                 Mathew Chiweda is a PDCA ISO Audit Specialist and Co-founder of iAudit Global. With extensive experience across quality, health and safety, environmental management and auditing, he supports organisations in implementing practical management systems, conducting effective audits and improving performance across complex operational environments and multiple sectors.
                             </p>
                         <Link
-                            href="/author/mathew-chiweda"
+                            href="/contact"
                             style={{
                                 display: "block",
                                 background: "#3d5a47",

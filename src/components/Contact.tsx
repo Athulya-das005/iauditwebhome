@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { aboutType } from "@/constants/typography";
 
@@ -369,7 +370,13 @@ export default function Contact() {
                                         style={{ width: "18px", height: "18px", cursor: "pointer", accentColor: "#006644" }}
                                     />
                                     <label htmlFor="agreed" style={{ fontSize: "0.85rem", color: "#6B7280", cursor: "pointer" }}>
-                                        I understand and agree to the terms and conditions
+                                        I understand and agree to the{" "}
+                                        <Link
+                                            href="/terms-and-conditions"
+                                            style={{ color: "#006644", fontWeight: 600, textDecoration: "underline" }}
+                                        >
+                                            terms and conditions
+                                        </Link>
                                     </label>
                                 </div>
                                 <div style={{ gridColumn: "span " + (isMobile ? "1" : "2"), marginTop: "1rem" }}>

@@ -34,6 +34,11 @@ const nextConfig: NextConfig = {
         destination: "/author/mathew-chiweda",
         permanent: true,
       },
+      {
+        source: "/ISO14001-2026",
+        destination: "/iso-14001-2026",
+        permanent: true,
+      },
     ];
   },
 };

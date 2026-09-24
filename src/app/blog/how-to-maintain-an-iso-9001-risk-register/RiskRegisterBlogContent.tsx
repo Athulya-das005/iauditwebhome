@@ -126,7 +126,9 @@ function AuthorCard({ mobile = false }: { mobile?: boolean }) {
                     fontFamily: fontFamily,
                 }}
             >
-                Mathew Chiweda
+                <Link href="/author/mathew-chiweda" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>
+                    Mathew Chiweda
+                </Link>
             </p>
             <p
                 style={{
@@ -157,7 +159,7 @@ function AuthorCard({ mobile = false }: { mobile?: boolean }) {
                 performance across complex operational environments and multiple sectors.
             </p>
             <Link
-                href="/author/mathew-chiweda"
+                href="/contact"
                 style={{
                     display: "block",
                     background: "#3d5a47",
