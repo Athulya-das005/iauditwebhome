@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
     customerStoryCards,
     storyIndustries,
@@ -12,6 +12,184 @@ import {
 } from "@/data/customerStories";
 import { PP_NEUE_MONTREAL, aboutType } from "@/constants/typography";
 import { useIndustriesBreakpoints } from "@/hooks/useIndustriesBreakpoints";
+
+const TEAL = "#003E3A";
+const GREEN = "#058c42";
+
+function FilterDropdown({
+    label,
+    value,
+    options,
+    placeholder,
+    onChange,
+    isOpen,
+    onOpenChange,
+    fullWidth,
+}: {
+    label: string;
+    value: string;
+    options: readonly string[];
+    placeholder: string;
+    onChange: (value: string) => void;
+    isOpen: boolean;
+    onOpenChange: (open: boolean) => void;
+    fullWidth?: boolean;
+}) {
+    const rootRef = useRef<HTMLDivElement>(null);
+    const displayLabel = value === options[0] ? placeholder : value;
+
+    useEffect(() => {
+        if (!isOpen) return;
+        const onPointerDown = (e: MouseEvent | TouchEvent) => {
+            if (!rootRef.current?.contains(e.target as Node)) onOpenChange(false);
+        };
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === "Escape") onOpenChange(false);
+        };
+        document.addEventListener("mousedown", onPointerDown);
+        document.addEventListener("touchstart", onPointerDown);
+        document.addEventListener("keydown", onKey);
+        return () => {
+            document.removeEventListener("mousedown", onPointerDown);
+            document.removeEventListener("touchstart", onPointerDown);
+            document.removeEventListener("keydown", onKey);
+        };
+    }, [isOpen, onOpenChange]);
+
+    return (
+        <div
+            ref={rootRef}
+            style={{
+                position: "relative",
+                flex: "1 1 150px",
+                minWidth: fullWidth ? "100%" : 150,
+                maxWidth: fullWidth ? "100%" : 210,
+            }}
+        >
+            <button
+                type="button"
+                aria-label={label}
+                aria-expanded={isOpen}
+                aria-haspopup="listbox"
+                onClick={() => onOpenChange(!isOpen)}
+                style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: "0.5rem",
+                    background: isOpen ? "#fff" : "#fff",
+                    border: isOpen ? `1.5px solid ${GREEN}` : "1px solid #e5e7eb",
+                    borderRadius: "999px",
+                    padding: "0.72rem 0.95rem 0.72rem 1.1rem",
+                    fontSize: "0.86rem",
+                    fontWeight: 600,
+                    color: value === options[0] ? "#6b7280" : "#111827",
+                    fontFamily: PP_NEUE_MONTREAL,
+                    cursor: "pointer",
+                    boxShadow: isOpen ? "0 0 0 3px rgba(5,140,66,0.12)" : "0 1px 2px rgba(15,23,42,0.03)",
+                    transition: "border-color 0.2s ease, box-shadow 0.2s ease",
+                }}
+            >
+                <span
+                    style={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                    }}
+                >
+                    {displayLabel}
+                </span>
+                <motion.span
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                    style={{ display: "inline-flex", flexShrink: 0, color: isOpen ? GREEN : "#6b7280" }}
+                >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </motion.span>
+            </button>
+
+            <AnimatePresence>
+                {isOpen ? (
+                    <motion.ul
+                        role="listbox"
+                        aria-label={label}
+                        initial={{ opacity: 0, y: -6, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -4, scale: 0.98 }}
+                        transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                        style={{
+                            position: "absolute",
+                            left: 0,
+                            right: 0,
+                            top: "calc(100% + 8px)",
+                            zIndex: 120,
+                            margin: 0,
+                            padding: "0.4rem",
+                            listStyle: "none",
+                            background: "#fff",
+                            borderRadius: 16,
+                            border: "1px solid #e8eaed",
+                            boxShadow: "0 18px 40px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(15, 23, 42, 0.06)",
+                            maxHeight: 280,
+                            overflowY: "auto",
+                        }}
+                    >
+                        {options.map((option) => {
+                            const selected = option === value;
+                            return (
+                                <li key={option} role="option" aria-selected={selected}>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            onChange(option);
+                                            onOpenChange(false);
+                                        }}
+                                        style={{
+                                            width: "100%",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "space-between",
+                                            gap: "0.5rem",
+                                            textAlign: "left",
+                                            border: "none",
+                                            borderRadius: 12,
+                                            padding: "0.7rem 0.85rem",
+                                            background: selected ? "rgba(5,140,66,0.1)" : "transparent",
+                                            color: selected ? TEAL : "#374151",
+                                            fontSize: "0.9rem",
+                                            fontWeight: selected ? 600 : 500,
+                                            fontFamily: PP_NEUE_MONTREAL,
+                                            cursor: "pointer",
+                                            transition: "background 0.15s ease",
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            if (!selected) e.currentTarget.style.background = "#f3fbf6";
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.currentTarget.style.background = selected
+                                                ? "rgba(5,140,66,0.1)"
+                                                : "transparent";
+                                        }}
+                                    >
+                                        <span>{option}</span>
+                                        {selected ? (
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={GREEN} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
+                                                <polyline points="20 6 9 17 4 12" />
+                                            </svg>
+                                        ) : null}
+                                    </button>
+                                </li>
+                            );
+                        })}
+                    </motion.ul>
+                ) : null}
+            </AnimatePresence>
+        </div>
+    );
+}
 
 function CompanyLogo({ company, light = false }: { company: string; light?: boolean }) {
     return (
@@ -37,6 +215,7 @@ function ArrowChip({ light = false }: { light?: boolean }) {
     return (
         <span
             aria-hidden
+            className="cs-arrow"
             style={{
                 width: 38,
                 height: 38,
@@ -48,6 +227,7 @@ function ArrowChip({ light = false }: { light?: boolean }) {
                 alignItems: "center",
                 justifyContent: "center",
                 flexShrink: 0,
+                transition: "transform 0.3s ease, background 0.3s ease",
             }}
         >
             <svg
@@ -88,9 +268,13 @@ function CardShell({
                 borderRadius: "22px",
                 overflow: "hidden",
                 background: "#fff",
-                boxShadow: "0 10px 36px rgba(15, 23, 42, 0.08)",
-                transition: "transform 0.35s ease, box-shadow 0.35s ease",
+                boxShadow: "0 8px 28px rgba(5, 140, 66, 0.08), 0 2px 8px rgba(15, 23, 42, 0.04)",
+                transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease, border-color 0.3s ease",
                 width: "100%",
+                border: "1.5px solid rgba(5, 140, 66, 0.22)",
+                outline: "4px solid rgba(5, 140, 66, 0.07)",
+                outlineOffset: "0px",
+                boxSizing: "border-box",
             }}
         >
             {children}
@@ -99,7 +283,11 @@ function CardShell({
 
     if (card.href) {
         return (
-            <Link href={card.href} className="cs-card-link" style={{ textDecoration: "none", color: "inherit", display: "block", height: "100%" }}>
+            <Link
+                href={card.href}
+                className="cs-card-link"
+                style={{ textDecoration: "none", color: "inherit", display: "block", height: "100%" }}
+            >
                 {body}
             </Link>
         );
@@ -107,11 +295,17 @@ function CardShell({
     return body;
 }
 
-function QuoteBleedCard({ card, expanded }: { card: CustomerStoryCard; expanded?: boolean }) {
-    const minH = expanded ? 320 : 440;
+function QuoteBleedCard({ card, expanded, isMobile }: { card: CustomerStoryCard; expanded?: boolean; isMobile?: boolean }) {
+    const minH = isMobile ? 360 : expanded ? 320 : 440;
     return (
         <CardShell card={card} minHeight={minH}>
-            <Image src={card.image} alt="" fill sizes="(max-width: 900px) 100vw, 60vw" style={{ objectFit: "cover" }} />
+            <Image
+                src={card.image}
+                alt={card.company}
+                fill
+                sizes="(max-width: 900px) 100vw, 60vw"
+                style={{ objectFit: "cover", objectPosition: "center 18%" }}
+            />
             <div
                 style={{
                     position: "absolute",
@@ -129,8 +323,8 @@ function QuoteBleedCard({ card, expanded }: { card: CustomerStoryCard; expanded?
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
-                    padding: expanded ? "1.5rem 2rem 1.75rem" : "1.35rem 1.4rem 1.5rem",
-                    maxWidth: expanded ? 720 : undefined,
+                    padding: isMobile ? "1.15rem 1.15rem 1.25rem" : expanded ? "1.5rem 2rem 1.75rem" : "1.35rem 1.4rem 1.5rem",
+                    maxWidth: expanded && !isMobile ? 720 : undefined,
                 }}
             >
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "0.75rem" }}>
@@ -142,7 +336,7 @@ function QuoteBleedCard({ card, expanded }: { card: CustomerStoryCard; expanded?
                         style={{
                             margin: "0 0 1.1rem",
                             color: "#fff",
-                            fontSize: "clamp(1.15rem, 1.6vw, 1.45rem)",
+                            fontSize: isMobile ? "1.1rem" : "clamp(1.15rem, 1.6vw, 1.45rem)",
                             fontWeight: 500,
                             lineHeight: 1.35,
                             letterSpacing: "-0.025em",
@@ -165,7 +359,7 @@ function QuoteBleedCard({ card, expanded }: { card: CustomerStoryCard; expanded?
                         </div>
                     ) : null}
                     {card.role ? (
-                        <div style={{ color: "rgba(255,255,255,0.72)", fontSize: "0.9rem" }}>{card.role}</div>
+                        <div style={{ color: "rgba(255,255,255,0.72)", fontSize: isMobile ? "0.85rem" : "0.9rem" }}>{card.role}</div>
                     ) : null}
                 </div>
             </div>
@@ -173,8 +367,8 @@ function QuoteBleedCard({ card, expanded }: { card: CustomerStoryCard; expanded?
     );
 }
 
-function SplitMetricCard({ card, expanded }: { card: CustomerStoryCard; expanded?: boolean }) {
-    if (expanded) {
+function SplitMetricCard({ card, expanded, isMobile }: { card: CustomerStoryCard; expanded?: boolean; isMobile?: boolean }) {
+    if (expanded && !isMobile) {
         return (
             <CardShell card={card} minHeight={300} className="cs-card-long">
                 <div
@@ -273,9 +467,9 @@ function SplitMetricCard({ card, expanded }: { card: CustomerStoryCard; expanded
     }
 
     return (
-        <CardShell card={card} minHeight={480}>
-            <div style={{ display: "flex", flexDirection: "column", height: "100%", minHeight: 480 }}>
-                <div style={{ position: "relative", flex: "1 1 55%", minHeight: 240 }}>
+        <CardShell card={card} minHeight={isMobile ? 420 : 480}>
+            <div style={{ display: "flex", flexDirection: "column", height: "100%", minHeight: isMobile ? 420 : 480 }}>
+                <div style={{ position: "relative", flex: "1 1 55%", minHeight: isMobile ? 200 : 240 }}>
                     <Image src={card.image} alt="" fill sizes="(max-width: 900px) 100vw, 40vw" style={{ objectFit: "cover" }} />
                     <div
                         style={{
@@ -289,7 +483,7 @@ function SplitMetricCard({ card, expanded }: { card: CustomerStoryCard; expanded
                         style={{
                             position: "absolute",
                             inset: 0,
-                            padding: "1.15rem 1.2rem",
+                            padding: isMobile ? "1rem 1.05rem" : "1.15rem 1.2rem",
                             display: "flex",
                             flexDirection: "column",
                             justifyContent: "space-between",
@@ -302,7 +496,7 @@ function SplitMetricCard({ card, expanded }: { card: CustomerStoryCard; expanded
                         <div>
                             <div
                                 style={{
-                                    fontSize: "clamp(2.4rem, 3.4vw, 3rem)",
+                                    fontSize: isMobile ? "2.35rem" : "clamp(2.4rem, 3.4vw, 3rem)",
                                     fontWeight: 600,
                                     color: "#fff",
                                     letterSpacing: "-0.04em",
@@ -315,7 +509,7 @@ function SplitMetricCard({ card, expanded }: { card: CustomerStoryCard; expanded
                             <div
                                 style={{
                                     marginTop: "0.35rem",
-                                    fontSize: "0.68rem",
+                                    fontSize: isMobile ? "0.64rem" : "0.68rem",
                                     fontWeight: 700,
                                     letterSpacing: "0.1em",
                                     textTransform: "uppercase",
@@ -327,12 +521,12 @@ function SplitMetricCard({ card, expanded }: { card: CustomerStoryCard; expanded
                         </div>
                     </div>
                 </div>
-                <div style={{ flex: "0 0 auto", padding: "1.25rem 1.3rem 1.4rem", background: "#fff" }}>
+                <div style={{ flex: "0 0 auto", padding: isMobile ? "1.1rem 1.15rem 1.25rem" : "1.25rem 1.3rem 1.4rem", background: "#fff" }}>
                     {card.title ? (
                         <h3
                             style={{
                                 margin: "0 0 0.55rem",
-                                fontSize: "1.05rem",
+                                fontSize: isMobile ? "1rem" : "1.05rem",
                                 fontWeight: 600,
                                 lineHeight: 1.3,
                                 letterSpacing: "-0.02em",
@@ -344,7 +538,7 @@ function SplitMetricCard({ card, expanded }: { card: CustomerStoryCard; expanded
                         </h3>
                     ) : null}
                     {card.summary ? (
-                        <p style={{ margin: 0, color: "#6b7280", fontSize: "0.9rem", lineHeight: 1.45 }}>{card.summary}</p>
+                        <p style={{ margin: 0, color: "#6b7280", fontSize: isMobile ? "0.88rem" : "0.9rem", lineHeight: 1.45 }}>{card.summary}</p>
                     ) : null}
                 </div>
             </div>
@@ -352,8 +546,8 @@ function SplitMetricCard({ card, expanded }: { card: CustomerStoryCard; expanded
     );
 }
 
-function MetricPortraitCard({ card, expanded }: { card: CustomerStoryCard; expanded?: boolean }) {
-    if (expanded) {
+function MetricPortraitCard({ card, expanded, isMobile }: { card: CustomerStoryCard; expanded?: boolean; isMobile?: boolean }) {
+    if (expanded && !isMobile) {
         return (
             <CardShell card={card} minHeight={300} className="cs-card-long">
                 <div
@@ -483,7 +677,15 @@ function MetricPortraitCard({ card, expanded }: { card: CustomerStoryCard; expan
                     }}
                 >
                     <div style={{ position: "absolute", inset: 0, right: "28%" }}>
-                        <div style={{ padding: "1.25rem 1.3rem", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                        <div
+                            style={{
+                                padding: "1.25rem 1.3rem",
+                                height: "100%",
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "space-between",
+                            }}
+                        >
                             <div style={{ display: "flex", justifyContent: "space-between", gap: "0.5rem" }}>
                                 <CompanyLogo company={card.company} light />
                                 <ArrowChip />
@@ -556,11 +758,11 @@ function MetricPortraitCard({ card, expanded }: { card: CustomerStoryCard; expan
     );
 }
 
-function StoryCard({ card, expanded }: { card: CustomerStoryCard; expanded?: boolean }) {
+function StoryCard({ card, expanded, isMobile }: { card: CustomerStoryCard; expanded?: boolean; isMobile?: boolean }) {
     const layout = card.layout ?? (card.type === "quote" ? "quote-bleed" : "split-metric");
-    if (layout === "split-metric") return <SplitMetricCard card={card} expanded={expanded} />;
-    if (layout === "metric-portrait") return <MetricPortraitCard card={card} expanded={expanded} />;
-    return <QuoteBleedCard card={card} expanded={expanded} />;
+    if (layout === "split-metric") return <SplitMetricCard card={card} expanded={expanded} isMobile={isMobile} />;
+    if (layout === "metric-portrait") return <MetricPortraitCard card={card} expanded={expanded} isMobile={isMobile} />;
+    return <QuoteBleedCard card={card} expanded={expanded} isMobile={isMobile} />;
 }
 
 function spanClass(span?: CustomerStoryCard["span"], forceFull?: boolean) {
@@ -576,15 +778,16 @@ export default function CustomerStoriesResults() {
     const [industry, setIndustry] = useState<string>(storyIndustries[0]);
     const [standard, setStandard] = useState<string>(storyStandards[0]);
     const [filterStuck, setFilterStuck] = useState(false);
+    const [openDropdown, setOpenDropdown] = useState<"industry" | "standard" | null>(null);
     const filterSentinelRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const el = filterSentinelRef.current;
         if (!el) return;
-        const observer = new IntersectionObserver(
-            ([entry]) => setFilterStuck(!entry.isIntersecting),
-            { threshold: 0, rootMargin: "-1px 0px 0px 0px" }
-        );
+        const observer = new IntersectionObserver(([entry]) => setFilterStuck(!entry.isIntersecting), {
+            threshold: 0,
+            rootMargin: "-1px 0px 0px 0px",
+        });
         observer.observe(el);
         return () => observer.disconnect();
     }, []);
@@ -624,60 +827,49 @@ export default function CustomerStoriesResults() {
         setQuery("");
         setIndustry(storyIndustries[0]);
         setStandard(storyStandards[0]);
+        setOpenDropdown(null);
     };
 
-    const fieldStyle: React.CSSProperties = {
-        width: "100%",
-        appearance: "none",
-        WebkitAppearance: "none",
-        backgroundColor: "#fff",
-        border: "1px solid #e5e7eb",
-        borderRadius: "12px",
-        padding: "0.72rem 2.2rem 0.72rem 0.95rem",
-        fontSize: "0.78rem",
-        fontWeight: 600,
-        letterSpacing: "0.06em",
-        textTransform: "uppercase",
-        color: "#374151",
-        fontFamily: PP_NEUE_MONTREAL,
-        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")`,
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "right 0.85rem center",
-        cursor: "pointer",
-    };
-
-    // Insert CTA quote after first 2 cards when enough results (Synthesia mid-feed quote)
-    const beforeQuote = featured.slice(0, 2);
-    const afterQuote = featured.slice(2);
+    const beforeQuote = featured.slice(0, 4);
+    const afterQuote = featured.slice(4);
 
     return (
         <section
             style={{
-                background: "#f7f8fa",
-                padding: isMobile ? "2.75rem 0 4rem" : "3.75rem 0 5.5rem",
+                background: "#ffffff",
+                padding: isMobile ? "2rem 0 3.25rem" : "3.25rem 0 5.5rem",
                 fontFamily: PP_NEUE_MONTREAL,
+                borderTop: "1px solid #f0f2f4",
             }}
         >
             <style
                 dangerouslySetInnerHTML={{
                     __html: `
-                    .cs-masonry-card:hover { transform: translateY(-4px); box-shadow: 0 18px 48px rgba(15, 23, 42, 0.14); }
+                    .cs-masonry-card:hover {
+                        transform: translateY(-6px);
+                        box-shadow: 0 20px 48px rgba(5, 140, 66, 0.14), 0 8px 20px rgba(15, 23, 42, 0.06);
+                        border-color: rgba(5, 140, 66, 0.38);
+                        outline-color: rgba(5, 140, 66, 0.12);
+                    }
+                    .cs-masonry-card:hover .cs-arrow { transform: translate(2px, -2px); }
                     .cs-filter-bar {
                         position: sticky;
                         top: calc(var(--header-height) - 8px);
                         z-index: 90;
+                        overflow: visible;
                         transition: box-shadow 0.25s ease, background 0.25s ease, backdrop-filter 0.25s ease;
                     }
                     .cs-filter-bar.is-stuck {
-                        background: rgba(255, 255, 255, 0.86);
-                        backdrop-filter: blur(14px);
-                        -webkit-backdrop-filter: blur(14px);
+                        background: rgba(255, 255, 255, 0.9);
+                        backdrop-filter: blur(16px);
+                        -webkit-backdrop-filter: blur(16px);
                         box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+                        border-bottom: 1px solid rgba(15,23,42,0.06);
                     }
                     .cs-masonry-grid {
                         display: grid;
                         grid-template-columns: repeat(12, 1fr);
-                        gap: 1.25rem;
+                        gap: 1.35rem;
                         align-items: stretch;
                     }
                     .cs-span-wide { grid-column: span 7; }
@@ -692,8 +884,15 @@ export default function CustomerStoriesResults() {
                         .cs-filter-bar { top: calc(var(--header-height) - 18px); }
                         .cs-card-long > div { grid-template-columns: 1fr !important; }
                     }
-                    @media (max-width: 640px) {
+                    @media (max-width: 768px) {
                         .cs-masonry-grid { gap: 1rem; }
+                        .cs-masonry-card {
+                            border-radius: 18px !important;
+                            outline-width: 2px !important;
+                        }
+                        .cs-masonry-card:hover {
+                            transform: none;
+                        }
                     }
                 `,
                 }}
@@ -706,15 +905,14 @@ export default function CustomerStoriesResults() {
                     viewport={{ once: true }}
                     style={{
                         ...aboutType.sectionH2(),
-                        fontSize: isMobile ? "1.9rem" : "clamp(2.1rem, 3.6vw, 2.85rem)",
-                        margin: "0 0 1.35rem",
+                        fontSize: isMobile ? "1.85rem" : "clamp(2rem, 3.4vw, 2.75rem)",
+                        margin: "0 0 1.5rem",
                     }}
                 >
-                    Audit results in detail
+                    All Case Studies
                 </motion.h2>
             </div>
 
-            {/* Sentinel: when this leaves the viewport, filter is stuck */}
             <div ref={filterSentinelRef} aria-hidden style={{ height: 1, marginTop: -1 }} />
 
             <div className={`cs-filter-bar${filterStuck ? " is-stuck" : ""}`}>
@@ -731,11 +929,10 @@ export default function CustomerStoriesResults() {
                             flexWrap: "wrap",
                             gap: "0.65rem",
                             alignItems: "center",
-                            padding: isMobile ? "0.75rem" : "0.75rem 0.85rem",
-                            borderRadius: "16px",
-                            background: filterStuck ? "transparent" : "#fff",
+                            padding: isMobile ? "0.75rem" : "0.7rem 0.85rem",
+                            borderRadius: isMobile ? "18px" : "999px",
+                            background: filterStuck ? "transparent" : "#f7f8fa",
                             border: filterStuck ? "1px solid transparent" : "1px solid #e8eaed",
-                            boxShadow: filterStuck ? "none" : "0 4px 18px rgba(15, 23, 42, 0.04)",
                         }}
                     >
                         {!isMobile ? (
@@ -745,7 +942,7 @@ export default function CustomerStoriesResults() {
                                     fontWeight: 600,
                                     letterSpacing: "0.04em",
                                     color: "#6b7280",
-                                    paddingLeft: "0.25rem",
+                                    paddingLeft: "0.5rem",
                                     whiteSpace: "nowrap",
                                 }}
                             >
@@ -753,35 +950,27 @@ export default function CustomerStoriesResults() {
                             </span>
                         ) : null}
 
-                        <div style={{ flex: "1 1 150px", minWidth: isMobile ? "100%" : 150, maxWidth: isMobile ? "100%" : 200 }}>
-                            <select
-                                value={industry}
-                                onChange={(e) => setIndustry(e.target.value)}
-                                style={fieldStyle}
-                                aria-label="Industry"
-                            >
-                                {storyIndustries.map((o) => (
-                                    <option key={o} value={o}>
-                                        {o === "All industries" ? "Industry" : o}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                        <FilterDropdown
+                            label="Industry"
+                            placeholder="Industry"
+                            value={industry}
+                            options={storyIndustries}
+                            onChange={setIndustry}
+                            isOpen={openDropdown === "industry"}
+                            onOpenChange={(open) => setOpenDropdown(open ? "industry" : null)}
+                            fullWidth={isMobile}
+                        />
 
-                        <div style={{ flex: "1 1 150px", minWidth: isMobile ? "100%" : 150, maxWidth: isMobile ? "100%" : 200 }}>
-                            <select
-                                value={standard}
-                                onChange={(e) => setStandard(e.target.value)}
-                                style={fieldStyle}
-                                aria-label="Standards"
-                            >
-                                {storyStandards.map((o) => (
-                                    <option key={o} value={o}>
-                                        {o === "All standards" ? "Standards" : o}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                        <FilterDropdown
+                            label="Standards"
+                            placeholder="Standards"
+                            value={standard}
+                            options={storyStandards}
+                            onChange={setStandard}
+                            isOpen={openDropdown === "standard"}
+                            onOpenChange={(open) => setOpenDropdown(open ? "standard" : null)}
+                            fullWidth={isMobile}
+                        />
 
                         <div style={{ position: "relative", flex: "1 1 240px", minWidth: isMobile ? "100%" : 200 }}>
                             <svg
@@ -793,7 +982,7 @@ export default function CustomerStoriesResults() {
                                 strokeWidth="2.2"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
-                                style={{ position: "absolute", left: "0.9rem", top: "50%", transform: "translateY(-50%)" }}
+                                style={{ position: "absolute", left: "1rem", top: "50%", transform: "translateY(-50%)" }}
                             >
                                 <circle cx="11" cy="11" r="7" />
                                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -807,8 +996,8 @@ export default function CustomerStoriesResults() {
                                     width: "100%",
                                     boxSizing: "border-box",
                                     border: "1px solid #e5e7eb",
-                                    borderRadius: "12px",
-                                    padding: "0.72rem 1rem 0.72rem 2.45rem",
+                                    borderRadius: "999px",
+                                    padding: "0.72rem 1rem 0.72rem 2.55rem",
                                     fontSize: "0.9rem",
                                     fontFamily: PP_NEUE_MONTREAL,
                                     background: "#fff",
@@ -836,7 +1025,16 @@ export default function CustomerStoriesResults() {
                                 flexShrink: 0,
                             }}
                         >
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#374151" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                            <svg
+                                width="15"
+                                height="15"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#374151"
+                                strokeWidth="2.2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            >
                                 <polyline points="1 4 1 10 7 10" />
                                 <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
                             </svg>
@@ -845,7 +1043,13 @@ export default function CustomerStoriesResults() {
                 </div>
             </div>
 
-            <div style={{ maxWidth: "1240px", margin: "0 auto", padding: isMobile ? "1.35rem 1.25rem 0" : "1.75rem 2rem 0" }}>
+            <div
+                style={{
+                    maxWidth: "1240px",
+                    margin: "0 auto",
+                    padding: isMobile ? "1.35rem 1.25rem 0" : "1.75rem 2rem 0",
+                }}
+            >
                 {featured.length === 0 ? (
                     <p style={{ textAlign: "center", color: "#6b7280", padding: "3rem 1rem" }}>
                         No stories match your filters. Try a different search or filter combination.
@@ -853,46 +1057,55 @@ export default function CustomerStoriesResults() {
                 ) : (
                     <>
                         <div className="cs-masonry-grid">
-                            {beforeQuote.map((card) => {
+                            {beforeQuote.map((card, i) => {
                                 const alone = beforeQuote.length === 1;
                                 return (
-                                    <div key={card.id} className={spanClass(card.span, alone)}>
-                                        <StoryCard card={card} expanded={alone} />
-                                    </div>
+                                    <motion.div
+                                        key={card.id}
+                                        className={spanClass(card.span, alone)}
+                                        initial={{ opacity: 0, y: 24 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, amount: 0.2 }}
+                                        transition={{ duration: 0.45, delay: i * 0.08 }}
+                                    >
+                                        <StoryCard card={card} expanded={alone} isMobile={isMobile} />
+                                    </motion.div>
                                 );
                             })}
                         </div>
 
                         {ctaQuote && beforeQuote.length > 0 ? (
                             <motion.blockquote
-                                initial={{ opacity: 0, y: 16 }}
+                                initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 style={{
-                                    margin: isMobile ? "2.25rem 0" : "3rem 0",
-                                    padding: isMobile ? "1.75rem 1rem" : "2.75rem 2rem",
+                                    margin: isMobile ? "2.75rem 0" : "4rem 0",
+                                    padding: isMobile ? "0.5rem 0.25rem" : "0.75rem 1rem",
                                     textAlign: "center",
                                     border: "none",
+                                    background: "transparent",
                                 }}
                             >
                                 <div
                                     style={{
-                                        marginBottom: "1rem",
-                                        fontSize: "0.95rem",
+                                        marginBottom: "1.15rem",
+                                        fontSize: isMobile ? "0.95rem" : "1.05rem",
                                         fontWeight: 700,
                                         letterSpacing: "-0.02em",
                                         color: "#111827",
+                                        fontFamily: PP_NEUE_MONTREAL,
                                     }}
                                 >
                                     {ctaQuote.company}
                                 </div>
                                 <p
                                     style={{
-                                        margin: "0 auto 1.25rem",
-                                        maxWidth: 820,
-                                        fontSize: isMobile ? "1.35rem" : "clamp(1.5rem, 2.4vw, 2rem)",
-                                        fontWeight: 500,
-                                        lineHeight: 1.35,
+                                        margin: "0 auto 1.5rem",
+                                        maxWidth: 760,
+                                        fontSize: isMobile ? "1.4rem" : "clamp(1.65rem, 2.6vw, 2.15rem)",
+                                        fontWeight: 600,
+                                        lineHeight: 1.3,
                                         letterSpacing: "-0.03em",
                                         color: "#0d1117",
                                         fontFamily: PP_NEUE_MONTREAL,
@@ -901,27 +1114,30 @@ export default function CustomerStoriesResults() {
                                     “{ctaQuote.quote}”
                                 </p>
                                 <footer>
-                                    <div style={{ fontWeight: 700, color: "#111827", fontSize: "0.85rem", letterSpacing: "0.08em" }}>
-                                        {ctaQuote.name?.toUpperCase()}
-                                    </div>
-                                    <div style={{ color: "#6b7280", fontSize: "0.92rem", marginTop: "0.25rem" }}>{ctaQuote.role}</div>
-                                </footer>
-                                {ctaQuote.href ? (
-                                    <Link
-                                        href={ctaQuote.href}
-                                        className="btn-animate btn-animate-pill"
+                                    <div
                                         style={{
-                                            display: "inline-flex",
-                                            marginTop: "1.5rem",
-                                            padding: "0.8rem 1.4rem",
-                                            borderRadius: "999px",
-                                            fontWeight: 500,
-                                            fontSize: "0.92rem",
+                                            fontWeight: 700,
+                                            color: "#111827",
+                                            fontSize: "0.8rem",
+                                            letterSpacing: "0.1em",
+                                            textTransform: "uppercase",
+                                            fontFamily: PP_NEUE_MONTREAL,
                                         }}
                                     >
-                                        <span>Get started</span>
-                                    </Link>
-                                ) : null}
+                                        {ctaQuote.name?.toUpperCase()}
+                                    </div>
+                                    <div
+                                        style={{
+                                            color: "#6b7280",
+                                            fontSize: "0.95rem",
+                                            marginTop: "0.35rem",
+                                            fontWeight: 400,
+                                            fontFamily: PP_NEUE_MONTREAL,
+                                        }}
+                                    >
+                                        {ctaQuote.role}
+                                    </div>
+                                </footer>
                             </motion.blockquote>
                         ) : null}
 
@@ -932,9 +1148,16 @@ export default function CustomerStoriesResults() {
                                         afterQuote.length === 1 ||
                                         (afterQuote.length % 2 === 1 && index === afterQuote.length - 1);
                                     return (
-                                        <div key={card.id} className={spanClass(card.span, alone)}>
-                                            <StoryCard card={card} expanded={alone} />
-                                        </div>
+                                        <motion.div
+                                            key={card.id}
+                                            className={spanClass(card.span, alone)}
+                                            initial={{ opacity: 0, y: 24 }}
+                                            whileInView={{ opacity: 1, y: 0 }}
+                                            viewport={{ once: true, amount: 0.15 }}
+                                            transition={{ duration: 0.45, delay: Math.min(index * 0.07, 0.28) }}
+                                        >
+                                            <StoryCard card={card} expanded={alone} isMobile={isMobile} />
+                                        </motion.div>
                                     );
                                 })}
                             </div>

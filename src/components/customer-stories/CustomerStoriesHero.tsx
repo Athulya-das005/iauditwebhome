@@ -35,6 +35,83 @@ const heroCards = [
     },
 ] as const;
 
+function StarRow({ isMobile }: { isMobile?: boolean }) {
+    return (
+        <div
+            style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: isMobile ? "0.4rem" : "0.55rem",
+                justifyContent: "center",
+                flexWrap: "wrap",
+                maxWidth: isMobile ? "100%" : undefined,
+                rowGap: isMobile ? "0.45rem" : undefined,
+                padding: isMobile ? "0 0.25rem" : 0,
+            }}
+            aria-label="Rated 4.9 out of 5"
+        >
+            <span
+                style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.4rem",
+                }}
+            >
+                <span
+                    style={{
+                        width: 22,
+                        height: 22,
+                        borderRadius: "50%",
+                        background: "linear-gradient(135deg, #058c42 0%, #003E3A 100%)",
+                        color: "#fff",
+                        fontSize: "0.65rem",
+                        fontWeight: 700,
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0,
+                    }}
+                    aria-hidden
+                >
+                    iA
+                </span>
+                <span style={{ display: "inline-flex", gap: 2 }} aria-hidden>
+                    {[0, 1, 2, 3].map((i) => (
+                        <svg key={i} width={isMobile ? 14 : 16} height={isMobile ? 14 : 16} viewBox="0 0 24 24" fill="#F5A524">
+                            <path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l7.1-1.01L12 2z" />
+                        </svg>
+                    ))}
+                    <svg width={isMobile ? 14 : 16} height={isMobile ? 14 : 16} viewBox="0 0 24 24">
+                        <defs>
+                            <linearGradient id="csHalfStar" x1="0" x2="1">
+                                <stop offset="50%" stopColor="#F5A524" />
+                                <stop offset="50%" stopColor="#E5E7EB" />
+                            </linearGradient>
+                        </defs>
+                        <path
+                            d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l7.1-1.01L12 2z"
+                            fill="url(#csHalfStar)"
+                        />
+                    </svg>
+                </span>
+            </span>
+            <span
+                style={{
+                    fontSize: isMobile ? "0.82rem" : "0.9rem",
+                    fontWeight: 500,
+                    color: "#4b5563",
+                    letterSpacing: "0.01em",
+                    lineHeight: 1.35,
+                    textAlign: "center",
+                    flexBasis: isMobile ? "100%" : "auto",
+                }}
+            >
+                From ISO professionals across 18+ sectors
+            </span>
+        </div>
+    );
+}
+
 function MiniWindowChrome() {
     return (
         <div style={{ display: "flex", gap: 5, marginBottom: 10 }}>
@@ -45,25 +122,32 @@ function MiniWindowChrome() {
     );
 }
 
-/** Linked audit trail across sites */
 function HistoryAnimation() {
     const sites = ["Site A", "Site B", "Site C"];
     return (
-        <div style={{ position: "relative", width: "100%", height: "100%", padding: "0.85rem 0.9rem" }}>
+        <div style={{ position: "relative", width: "100%", height: "100%", padding: "0.9rem 0.95rem" }}>
             <div
                 style={{
                     height: "100%",
-                    background: "rgba(255,255,255,0.92)",
+                    background: "rgba(255,255,255,0.94)",
                     borderRadius: 16,
                     border: "1px solid rgba(5,140,66,0.12)",
                     boxShadow: "0 12px 32px rgba(15,23,42,0.06)",
-                    padding: "0.85rem",
+                    padding: "0.9rem",
                     display: "flex",
                     flexDirection: "column",
                 }}
             >
                 <MiniWindowChrome />
-                <div style={{ fontSize: "0.68rem", fontWeight: 600, color: "#64748b", marginBottom: 10, letterSpacing: "0.04em" }}>
+                <div
+                    style={{
+                        fontSize: "0.68rem",
+                        fontWeight: 600,
+                        color: "#64748b",
+                        marginBottom: 10,
+                        letterSpacing: "0.04em",
+                    }}
+                >
                     AUDIT TRAIL
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 8, flex: 1, justifyContent: "center" }}>
@@ -77,7 +161,7 @@ function HistoryAnimation() {
                                 display: "flex",
                                 alignItems: "center",
                                 gap: 8,
-                                padding: "0.45rem 0.55rem",
+                                padding: "0.48rem 0.55rem",
                                 borderRadius: 10,
                                 background: "#f8fafc",
                                 border: "1px solid #eef2f7",
@@ -117,13 +201,13 @@ function HistoryAnimation() {
                 transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
                 style={{
                     position: "absolute",
-                    right: 6,
-                    bottom: 10,
+                    right: 8,
+                    bottom: 14,
                     background: GREEN,
                     color: "#fff",
                     borderRadius: 12,
-                    padding: "0.45rem 0.65rem",
-                    fontSize: "0.65rem",
+                    padding: "0.5rem 0.7rem",
+                    fontSize: "0.72rem",
                     fontWeight: 700,
                     boxShadow: "0 10px 24px rgba(5,140,66,0.35)",
                 }}
@@ -134,19 +218,18 @@ function HistoryAnimation() {
     );
 }
 
-/** Report generation speeding up */
 function ReportsAnimation() {
     const bars = [42, 58, 48, 72, 64, 88, 78, 96];
     return (
-        <div style={{ position: "relative", width: "100%", height: "100%", padding: "0.85rem 0.9rem" }}>
+        <div style={{ position: "relative", width: "100%", height: "100%", padding: "0.9rem 0.95rem" }}>
             <div
                 style={{
                     height: "100%",
-                    background: "rgba(255,255,255,0.92)",
+                    background: "rgba(255,255,255,0.94)",
                     borderRadius: 16,
                     border: "1px solid rgba(5,140,66,0.12)",
                     boxShadow: "0 12px 32px rgba(15,23,42,0.06)",
-                    padding: "0.85rem",
+                    padding: "0.9rem",
                     display: "flex",
                     flexDirection: "column",
                 }}
@@ -203,14 +286,14 @@ function ReportsAnimation() {
                 transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
                 style={{
                     position: "absolute",
-                    left: 4,
-                    top: 12,
+                    left: 6,
+                    top: 14,
                     background: "#fff",
                     borderRadius: 12,
-                    padding: "0.5rem 0.7rem",
+                    padding: "0.55rem 0.75rem",
                     boxShadow: "0 12px 28px rgba(15,23,42,0.1)",
                     border: "1px solid #eef2f7",
-                    fontSize: "0.68rem",
+                    fontSize: "0.78rem",
                     fontWeight: 700,
                     color: TEAL,
                 }}
@@ -221,7 +304,6 @@ function ReportsAnimation() {
     );
 }
 
-/** Closing repeat nonconformities */
 function FindingsAnimation() {
     const items = [
         { label: "Housekeeping NC", done: true },
@@ -229,21 +311,29 @@ function FindingsAnimation() {
         { label: "Repeat finding", done: false },
     ];
     return (
-        <div style={{ position: "relative", width: "100%", height: "100%", padding: "0.85rem 0.9rem" }}>
+        <div style={{ position: "relative", width: "100%", height: "100%", padding: "0.9rem 0.95rem" }}>
             <div
                 style={{
                     height: "100%",
-                    background: "rgba(255,255,255,0.92)",
+                    background: "rgba(255,255,255,0.94)",
                     borderRadius: 16,
                     border: "1px solid rgba(5,140,66,0.12)",
                     boxShadow: "0 12px 32px rgba(15,23,42,0.06)",
-                    padding: "0.85rem",
+                    padding: "0.9rem",
                     display: "flex",
                     flexDirection: "column",
                 }}
             >
                 <MiniWindowChrome />
-                <div style={{ fontSize: "0.68rem", fontWeight: 600, color: "#64748b", marginBottom: 10, letterSpacing: "0.04em" }}>
+                <div
+                    style={{
+                        fontSize: "0.68rem",
+                        fontWeight: 600,
+                        color: "#64748b",
+                        marginBottom: 10,
+                        letterSpacing: "0.04em",
+                    }}
+                >
                     CORRECTIVE ACTIONS
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 7, flex: 1 }}>
@@ -257,7 +347,7 @@ function FindingsAnimation() {
                                 display: "flex",
                                 alignItems: "center",
                                 gap: 8,
-                                padding: "0.42rem 0.5rem",
+                                padding: "0.45rem 0.55rem",
                                 borderRadius: 10,
                                 background: item.done ? "rgba(5,140,66,0.06)" : "#f8fafc",
                                 border: `1px solid ${item.done ? "rgba(5,140,66,0.18)" : "#eef2f7"}`,
@@ -330,34 +420,79 @@ function HeroStoryCard({
     isMobile: boolean;
 }) {
     const featured = "featured" in card && card.featured;
-    const cardHeight = isMobile ? 360 : featured ? 430 : 390;
+    // Wider Synthesia-like portrait cards; mobile peeks next card
+    const cardWidth = isMobile ? Math.min(300, typeof window !== "undefined" ? window.innerWidth * 0.78 : 300) : featured ? 400 : 380;
+    const cardHeight = isMobile ? 400 : featured ? 540 : 500;
 
     return (
         <motion.article
             initial={{ opacity: 0, y: 36 }}
-            animate={{ opacity: 1, y: featured && !isMobile ? -28 : 0 }}
-            transition={{ duration: 0.55, delay: 0.2 + index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            animate={{ opacity: 1, y: featured && !isMobile ? -36 : 0 }}
+            transition={{ duration: 0.55, delay: 0.18 + index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={isMobile ? undefined : { y: featured ? -44 : -10 }}
             style={{
                 position: "relative",
-                flex: isMobile ? "0 0 82%" : "1 1 0",
-                maxWidth: isMobile ? 290 : featured ? 310 : 290,
-                minWidth: isMobile ? 250 : 0,
+                flex: isMobile ? "0 0 auto" : "1 1 0",
+                width: isMobile ? cardWidth : undefined,
+                minWidth: isMobile ? cardWidth : 0,
+                maxWidth: isMobile ? cardWidth : cardWidth,
                 height: cardHeight,
-                borderRadius: 24,
+                borderRadius: isMobile ? 20 : 24,
                 overflow: "hidden",
                 background: `
-                    radial-gradient(ellipse 80% 50% at 70% 10%, rgba(5,140,66,0.14) 0%, transparent 55%),
+                    radial-gradient(ellipse 80% 50% at 70% 10%, rgba(5,140,66,0.16) 0%, transparent 55%),
                     linear-gradient(165deg, #f3fbf6 0%, #e7f5ee 48%, #f8fafc 100%)
                 `,
-                border: "1px solid rgba(5,140,66,0.14)",
+                border: "1.5px solid rgba(5,140,66,0.28)",
+                outline: isMobile ? "2px solid rgba(5, 140, 66, 0.08)" : "4px solid rgba(5, 140, 66, 0.08)",
                 boxShadow: featured
-                    ? "0 28px 60px rgba(15, 23, 42, 0.14)"
-                    : "0 18px 44px rgba(15, 23, 42, 0.1)",
+                    ? "0 28px 60px rgba(5, 140, 66, 0.14), 0 12px 28px rgba(15, 23, 42, 0.08)"
+                    : "0 16px 40px rgba(5, 140, 66, 0.1), 0 8px 20px rgba(15, 23, 42, 0.06)",
                 display: "flex",
                 flexDirection: "column",
                 fontFamily: PP_NEUE_MONTREAL,
             }}
         >
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-start",
+                    padding: "1.05rem 1.1rem 0",
+                    position: "relative",
+                    zIndex: 2,
+                }}
+            >
+                <span
+                    style={{
+                        fontSize: "0.88rem",
+                        fontWeight: 700,
+                        color: "#111827",
+                        letterSpacing: "-0.02em",
+                    }}
+                >
+                    {card.company}
+                </span>
+                <span
+                    aria-hidden
+                    style={{
+                        width: 34,
+                        height: 34,
+                        borderRadius: "50%",
+                        background: "rgba(255,255,255,0.85)",
+                        border: "1px solid rgba(5,140,66,0.15)",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        boxShadow: "0 4px 14px rgba(15,23,42,0.08)",
+                    }}
+                >
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill={TEAL}>
+                        <path d="M8 5v14l11-7z" />
+                    </svg>
+                </span>
+            </div>
+
             <motion.div
                 animate={{ y: [0, featured ? -6 : -4, 0] }}
                 transition={{
@@ -377,23 +512,12 @@ function HeroStoryCard({
 
             <div
                 style={{
-                    padding: "0.85rem 1.05rem 1.15rem",
+                    padding: "0.65rem 1.15rem 1.25rem",
                     textAlign: "left",
-                    background: "linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.72) 28%, #fff 100%)",
+                    background: "linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.85) 22%, #fff 100%)",
                     borderTop: "1px solid rgba(5,140,66,0.08)",
                 }}
             >
-                <div
-                    style={{
-                        fontSize: "0.78rem",
-                        fontWeight: 700,
-                        color: "#111827",
-                        marginBottom: "0.35rem",
-                        letterSpacing: "-0.02em",
-                    }}
-                >
-                    {card.company}
-                </div>
                 <div
                     style={{
                         display: "flex",
@@ -402,25 +526,28 @@ function HeroStoryCard({
                         marginBottom: "0.35rem",
                     }}
                 >
-                    <span
+                    <motion.span
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 + index * 0.1, duration: 0.45 }}
                         style={{
-                            fontSize: featured && !isMobile ? "1.85rem" : "1.55rem",
+                            fontSize: featured && !isMobile ? "3rem" : "2.55rem",
                             fontWeight: 700,
                             color: TEAL,
-                            letterSpacing: "-0.04em",
+                            letterSpacing: "-0.05em",
                             lineHeight: 1,
                         }}
                     >
                         {card.metric}
-                    </span>
+                    </motion.span>
                 </div>
                 <p
                     style={{
-                        margin: "0 0 0.7rem",
+                        margin: "0 0 0.75rem",
                         color: "#64748b",
-                        fontSize: "0.65rem",
-                        fontWeight: 600,
-                        letterSpacing: "0.05em",
+                        fontSize: "0.68rem",
+                        fontWeight: 700,
+                        letterSpacing: "0.07em",
                         lineHeight: 1.35,
                         textTransform: "uppercase",
                     }}
@@ -433,13 +560,13 @@ function HeroStoryCard({
                             key={tag}
                             style={{
                                 display: "inline-flex",
-                                padding: "0.22rem 0.55rem",
+                                padding: "0.24rem 0.58rem",
                                 borderRadius: 999,
                                 background: "rgba(5,140,66,0.08)",
                                 color: TEAL,
                                 fontSize: "0.62rem",
                                 fontWeight: 600,
-                                letterSpacing: "0.03em",
+                                letterSpacing: "0.04em",
                                 textTransform: "uppercase",
                             }}
                         >
@@ -466,15 +593,16 @@ export default function CustomerStoriesHero() {
                 paddingTop: "var(--page-top-offset)",
                 paddingLeft: isMobile ? "1.25rem" : "2rem",
                 paddingRight: isMobile ? "1.25rem" : "2rem",
-                paddingBottom: 0,
+                paddingBottom: isMobile ? "2.25rem" : "3rem",
                 textAlign: "center",
                 fontFamily: PP_NEUE_MONTREAL,
                 overflow: "hidden",
                 background: `
-                    radial-gradient(ellipse 80% 60% at 78% 35%, rgba(5, 140, 66, 0.16) 0%, transparent 58%),
-                    radial-gradient(ellipse 70% 55% at 12% 75%, rgba(5, 140, 66, 0.10) 0%, transparent 55%),
-                    radial-gradient(ellipse 50% 40% at 50% 0%, rgba(16, 185, 129, 0.08) 0%, transparent 60%),
-                    linear-gradient(180deg, #f3fbf6 0%, #e8f7ef 45%, #f7fcf9 100%)
+                    radial-gradient(ellipse 55% 65% at 0% 0%, rgba(0,166,81,0.26) 0%, transparent 72%),
+                    radial-gradient(ellipse 55% 65% at 100% 0%, rgba(0,166,81,0.24) 0%, transparent 72%),
+                    radial-gradient(ellipse 50% 45% at 50% 100%, rgba(5,140,66,0.12) 0%, transparent 70%),
+                    radial-gradient(ellipse 70% 50% at 50% 35%, rgba(5,140,66,0.08) 0%, transparent 65%),
+                    #f5fbf7
                 `,
             }}
         >
@@ -484,7 +612,7 @@ export default function CustomerStoriesHero() {
                     position: "absolute",
                     inset: 0,
                     background:
-                        "radial-gradient(ellipse 45% 35% at 62% 40%, rgba(5,140,66,0.12) 0%, transparent 70%)",
+                        "radial-gradient(ellipse 45% 40% at 70% 25%, rgba(5,140,66,0.14) 0%, transparent 70%)",
                     pointerEvents: "none",
                 }}
             />
@@ -493,21 +621,50 @@ export default function CustomerStoriesHero() {
                 style={{
                     position: "relative",
                     zIndex: 2,
-                    maxWidth: isMobile ? "100%" : "880px",
+                    maxWidth: 820,
                     margin: "0 auto",
                     width: "100%",
-                    paddingTop: isMobile ? "3.25rem" : isStacked ? "4.5rem" : "5.75rem",
-                    paddingBottom: isMobile ? "1.1rem" : "1.5rem",
+                    // Tighter under the nav — header sits higher like Synthesia
+                    paddingTop: isMobile ? "0.85rem" : isStacked ? "1rem" : "1.15rem",
+                    paddingBottom: isMobile ? "1.1rem" : "1.25rem",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
                 }}
             >
-                <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
+                <motion.div
+                    initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.55 }}
+                    transition={{ duration: 0.45 }}
+                    style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.4rem",
+                        padding: "0.35rem 0.85rem",
+                        borderRadius: 999,
+                        background: "rgba(5,140,66,0.08)",
+                        border: "1px solid rgba(5,140,66,0.14)",
+                        color: GREEN,
+                        fontSize: isMobile ? "0.78rem" : "0.85rem",
+                        fontWeight: 600,
+                        letterSpacing: "0.02em",
+                        marginBottom: "1rem",
+                    }}
+                >
+                    <span aria-hidden>✦</span>
+                    Case Studies
+                    <span aria-hidden>✦</span>
+                </motion.div>
+
+                <motion.h1
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.55, delay: 0.05 }}
                     style={{
                         ...aboutType.heroH1(isMobile),
-                        margin: "0 auto 1.35rem",
-                        maxWidth: isMobile ? "100%" : "760px",
+                        margin: "0 auto 0.85rem",
+                        maxWidth: isMobile ? "100%" : 720,
                     }}
                 >
                     Proven audit control
@@ -516,19 +673,26 @@ export default function CustomerStoriesHero() {
                 </motion.h1>
 
                 <motion.p
-                    initial={{ opacity: 0, y: 16 }}
+                    initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
                     style={{
                         ...aboutType.heroLead(),
-                        maxWidth: isMobile ? "100%" : "640px",
-                        margin: "0 auto",
-                        padding: isMobile ? "0 0.15rem" : 0,
+                        maxWidth: isMobile ? "100%" : 560,
+                        margin: "0 auto 1.35rem",
                     }}
                 >
                     See how quality, safety and compliance teams use iAudit to centralise audit
                     history, reduce repeat findings and strengthen multi‑site oversight.
                 </motion.p>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.45, delay: 0.18 }}
+                >
+                    <StarRow isMobile={isMobile} />
+                </motion.div>
             </div>
 
             <div
@@ -536,10 +700,12 @@ export default function CustomerStoriesHero() {
                     position: "relative",
                     zIndex: 3,
                     width: "100%",
-                    maxWidth: 1000,
+                    maxWidth: 1280,
                     margin: "0 auto",
-                    paddingTop: isMobile ? "1.25rem" : "1.75rem",
-                    paddingBottom: isMobile ? "0.5rem" : "0.75rem",
+                    paddingTop: isMobile ? "0.35rem" : "0.85rem",
+                    display: "flex",
+                    alignItems: "flex-end",
+                    justifyContent: "center",
                 }}
             >
                 <div
@@ -547,13 +713,27 @@ export default function CustomerStoriesHero() {
                         display: "flex",
                         alignItems: "flex-end",
                         justifyContent: isMobile ? "flex-start" : "center",
-                        gap: isMobile ? "0.85rem" : isStacked ? "1rem" : "1.25rem",
+                        gap: isMobile ? "0.85rem" : isStacked ? "1.25rem" : "1.5rem",
                         overflowX: isMobile ? "auto" : "visible",
-                        paddingBottom: isMobile ? "0.5rem" : "2.25rem",
+                        width: isMobile ? "100vw" : "100%",
+                        marginLeft: isMobile ? "calc(50% - 50vw)" : 0,
+                        marginRight: isMobile ? "calc(50% - 50vw)" : 0,
+                        paddingBottom: isMobile ? "1rem" : "2rem",
+                        paddingTop: isMobile ? "0.35rem" : "2.25rem",
+                        paddingLeft: isMobile ? "1.25rem" : 0,
+                        paddingRight: isMobile ? "1.25rem" : 0,
                         scrollSnapType: isMobile ? "x mandatory" : undefined,
+                        scrollPaddingLeft: isMobile ? "1.25rem" : undefined,
                         WebkitOverflowScrolling: "touch",
+                        scrollbarWidth: "none",
                     }}
+                    className="cs-hero-anim-row"
                 >
+                    <style
+                        dangerouslySetInnerHTML={{
+                            __html: `.cs-hero-anim-row::-webkit-scrollbar { display: none; }`,
+                        }}
+                    />
                     {heroCards.map((card, index) => (
                         <div
                             key={card.id}
@@ -561,85 +741,15 @@ export default function CustomerStoriesHero() {
                                 scrollSnapAlign: isMobile ? "center" : undefined,
                                 display: "flex",
                                 justifyContent: "center",
+                                flex: isMobile ? "0 0 auto" : "1 1 0",
+                                minWidth: 0,
+                                maxWidth: isMobile ? undefined : "featured" in card && card.featured ? 400 : 380,
                             }}
                         >
                             <HeroStoryCard card={card} index={index} isMobile={isMobile} />
                         </div>
                     ))}
                 </div>
-            </div>
-
-            <div
-                aria-hidden
-                style={{
-                    position: "relative",
-                    zIndex: 1,
-                    width: "100%",
-                    marginTop: isMobile ? "-0.5rem" : "-1.25rem",
-                    lineHeight: 0,
-                }}
-            >
-                <svg
-                    viewBox="0 0 1440 220"
-                    preserveAspectRatio="none"
-                    style={{
-                        display: "block",
-                        width: "100%",
-                        height: isMobile ? "100px" : isStacked ? "130px" : "160px",
-                    }}
-                >
-                    <defs>
-                        <linearGradient id="cs-hill-fill" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stopColor="rgba(5,140,66,0.10)" />
-                            <stop offset="55%" stopColor="rgba(5,140,66,0.05)" />
-                            <stop offset="100%" stopColor="rgba(5,140,66,0)" />
-                        </linearGradient>
-                        <linearGradient id="cs-hill-stroke" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stopColor="rgba(5,140,66,0)" />
-                            <stop offset="18%" stopColor="rgba(5,140,66,0.35)" />
-                            <stop offset="48%" stopColor="rgba(5,140,66,0.55)" />
-                            <stop offset="78%" stopColor="rgba(5,140,66,0.28)" />
-                            <stop offset="100%" stopColor="rgba(5,140,66,0)" />
-                        </linearGradient>
-                        <filter id="cs-hill-glow" x="-10%" y="-40%" width="120%" height="180%">
-                            <feGaussianBlur stdDeviation="2.5" result="blur" />
-                            <feMerge>
-                                <feMergeNode in="blur" />
-                                <feMergeNode in="SourceGraphic" />
-                            </feMerge>
-                        </filter>
-                    </defs>
-
-                    <path
-                        d="M0 110
-                           C 160 70, 280 35, 420 28
-                           C 560 20, 660 75, 780 58
-                           C 920 38, 1040 8, 1180 18
-                           C 1280 26, 1360 52, 1440 72
-                           L 1440 220 L 0 220 Z"
-                        fill="url(#cs-hill-fill)"
-                    />
-                    <path
-                        d="M -20 118
-                           C 150 72, 270 38, 410 28
-                           C 555 18, 655 72, 775 55
-                           C 915 34, 1035 6, 1175 16
-                           C 1285 24, 1370 50, 1460 75"
-                        fill="none"
-                        stroke="url(#cs-hill-stroke)"
-                        strokeWidth={isMobile ? 1.4 : 1.8}
-                        filter="url(#cs-hill-glow)"
-                    />
-                    <path
-                        d="M -20 145
-                           C 180 95, 320 70, 480 62
-                           C 640 54, 760 95, 900 80
-                           C 1060 60, 1200 40, 1460 78"
-                        fill="none"
-                        stroke="rgba(5,140,66,0.18)"
-                        strokeWidth={isMobile ? 1 : 1.2}
-                    />
-                </svg>
             </div>
         </section>
     );

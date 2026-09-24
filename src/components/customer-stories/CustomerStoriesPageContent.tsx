@@ -13,7 +13,12 @@ export default function CustomerStoriesPageContent() {
             <CustomerStoriesHero />
             <CustomerStoriesLogoStrip />
             <CustomerStoriesResults />
-            <CTA />
+            <CTA
+                tag="Ready to upgrade?"
+                description="Join the global community of auditors who have moved beyond spreadsheets. Create oversight in days, not months."
+                buttonText="Start Free Trial"
+                buttonHref="https://apps.iaudit.global"
+            />
             <Footer />
         </div>
     );

@@ -1,12 +1,29 @@
 import type { Metadata } from "next";
-import CaseStudyPageContent from "@/components/case-study/CaseStudyPageContent";
+import CustomerStoriesPageContent from "@/components/customer-stories/CustomerStoriesPageContent";
+
+const pageUrl = "https://www.iaudit.global/case-studies";
 
 export const metadata: Metadata = {
-    title: "How iAudit helped Apex Engineering secure 100% audit history continuity | iAudit Global",
+    title: "Case Studies | Proven Audit Control Across Industries | iAudit Global",
     description:
-        "How iAudit helped Apex Engineering secure 100% audit history continuity across three sites with unified ISO 9001 and ISO 14001 audit management.",
+        "See how quality, safety and compliance teams use iAudit to centralise audit history, reduce repeat findings and strengthen multi-site oversight across 18+ sectors.",
+    alternates: {
+        canonical: pageUrl,
+    },
+    openGraph: {
+        title: "Case Studies | Proven Audit Control Across Industries | iAudit Global",
+        description:
+            "See how quality, safety and compliance teams use iAudit to centralise audit history, reduce repeat findings and strengthen multi-site oversight.",
+        url: pageUrl,
+        siteName: "iAudit Global",
+        type: "website",
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 export default function CaseStudiesPage() {
-    return <CaseStudyPageContent />;
+    return <CustomerStoriesPageContent />;
 }

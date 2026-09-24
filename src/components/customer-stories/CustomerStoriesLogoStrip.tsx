@@ -16,20 +16,23 @@ export default function CustomerStoriesLogoStrip() {
                 zIndex: 2,
                 width: "100%",
                 background: "#ffffff",
-                borderTop: "1px solid rgba(5, 140, 66, 0.08)",
-                paddingTop: isMobile ? "1.5rem" : isStacked ? "1.75rem" : "2rem",
-                paddingBottom: isMobile ? "2.5rem" : isStacked ? "3rem" : "3.5rem",
+                borderTop: "1px solid #f0f2f4",
+                paddingTop: isMobile ? "2rem" : isStacked ? "2.25rem" : "2.5rem",
+                paddingBottom: isMobile ? "2.25rem" : isStacked ? "2.75rem" : "3.25rem",
                 fontFamily: PP_NEUE_MONTREAL,
             }}
         >
-            <p
+            <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 style={{
-                    margin: "0 auto 2rem",
+                    margin: "0 auto 1.75rem",
                     maxWidth: "640px",
                     padding: isMobile ? "0 1.25rem" : 0,
-                    fontSize: isMobile ? "0.9rem" : "1rem",
+                    fontSize: isMobile ? "0.92rem" : "1.02rem",
                     fontWeight: 500,
-                    color: "#374151",
+                    color: "#4b5563",
                     letterSpacing: "0.01em",
                     lineHeight: 1.5,
                     textAlign: "center",
@@ -37,7 +40,7 @@ export default function CustomerStoriesLogoStrip() {
                 }}
             >
                 Trusted by ISO professionals across 18+ sectors
-            </p>
+            </motion.p>
 
             <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -54,7 +57,7 @@ export default function CustomerStoriesLogoStrip() {
                     logos={[...partnerLogos]}
                     speed={isMobile ? 30 : 50}
                     direction="left"
-                    logoHeight={isMobile ? 42 : isStacked ? 56 : 70}
+                    logoHeight={isMobile ? 40 : isStacked ? 52 : 64}
                     gap={isMobile ? 72 : isStacked ? 100 : 140}
                     scaleOnHover
                     ariaLabel="Trusted client brands"

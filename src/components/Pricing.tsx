@@ -102,7 +102,13 @@ export default function Pricing({ isPageHero = false }: { isPageHero?: boolean }
         <section id="pricing" style={{
             paddingTop: isPageHero ? "var(--page-top-offset)" : (isMobile ? "3.5rem" : "5rem"),
             paddingBottom: isMobile ? "3.5rem" : "5rem",
-            backgroundColor: "#fff",
+            background: isPageHero
+                ? `
+                radial-gradient(ellipse 50% 60% at 0% 0%, rgba(0,166,81,0.15) 0%, transparent 100%),
+                radial-gradient(ellipse 50% 60% at 100% 0%, rgba(0,166,81,0.15) 0%, transparent 100%),
+                #ffffff
+            `
+                : "#fff",
             fontFamily: '"Pp Neue Montreal", sans-serif',
             overflow: "hidden"
         }}>

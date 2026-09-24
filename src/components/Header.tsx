@@ -213,11 +213,8 @@ export default function Header() {
         pathname === "/iso-audit-assessments/gap-analysis" ||
         pathname === "/blog" ||
         pathname === "/author/mathew-chiweda";
-    // Hide-on-scroll on the /blog listing, author page, and case studies (not individual blog posts)
-    const hideNavOnScroll =
-        pathname === "/blog" ||
-        pathname === "/author/mathew-chiweda" ||
-        pathname === "/case-studies";
+    // Hide-on-scroll on the /blog listing and author page (not individual blog posts)
+    const hideNavOnScroll = pathname === "/blog" || pathname === "/author/mathew-chiweda";
     // Individual blog posts use a Flowergrid-style reading chrome (Back to Blog only).
     const isBlogPost = Boolean(pathname?.startsWith("/blog/") && pathname !== "/blog");
     const isHeaderVisible =

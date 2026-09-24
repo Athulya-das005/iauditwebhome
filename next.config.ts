@@ -39,6 +39,11 @@ const nextConfig: NextConfig = {
         destination: "/iso-14001-2026",
         permanent: true,
       },
+      {
+        source: "/customer-stories",
+        destination: "/case-studies",
+        permanent: true,
+      },
     ];
   },
 };
