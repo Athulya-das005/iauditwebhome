@@ -8,7 +8,9 @@ import {
 import { sendContactNotificationEmail } from "@/lib/send-contact-email";
 import { COUNTRIES } from "@/data/countries";
 
-const SUBJECT = "Cyphers Pen Test Quote";
+const SUBJECT = "Cyphers Page – Pen Test Quote";
+const SOURCE_TAG = "Cyphers Page Form";
+const SOURCE_LABEL = "Cyphers page (iaudit.global/cyphers) – Get a Pen Test Quote form";
 const COUNTRY_SET = new Set(COUNTRIES);
 
 type QuoteBody = {
@@ -63,11 +65,23 @@ export async function POST(request: Request) {
             phone,
             email,
             subject: SUBJECT,
-            message: [`Company: ${company}`, `Country: ${country}`, "", details].join("\n"),
+            message: [`Source: ${SOURCE_LABEL}`, `Company: ${company}`, `Country: ${country}`, "", details].join("\n"),
         };
 
         await appendContactSubmission(row);
-        const emailSent = await sendContactNotificationEmail(row);
+        const emailSent = await sendContactNotificationEmail(
+            { ...row, message: details },
+            {
+                tag: SOURCE_TAG,
+                label: SOURCE_LABEL,
+                subject: `New Pen Test Quote Request from ${firstName} ${lastName} (${company})`,
+                heading: "New enquiry from the Cyphers page – Pen Test Quote",
+                extraFields: [
+                    { label: "Company", value: company },
+                    { label: "Country", value: country },
+                ],
+            }
+        );
 
         return NextResponse.json({
             ok: true,

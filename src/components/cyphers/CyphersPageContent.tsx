@@ -60,8 +60,18 @@ const LINKS = {
     hallOfFame: "/cyphers/hall-of-fame",
     methodology: "/cyphers/methodology",
     methodologySection: "#methodology",
-    contact: "/cyphers/contact",
+    contact: "/contact",
 };
+
+/** Sub-pages not built yet — CTAs pointing here render without a link so they never lead to a 404. */
+const PENDING_PAGES = new Set<string>([
+    LINKS.web,
+    LINKS.api,
+    LINKS.mobile,
+    LINKS.assessments,
+    LINKS.hallOfFame,
+    LINKS.methodology,
+]);
 
 const SERVICES: { icon: IconType; title: string; body: string; cta: string; href: string }[] = [
     {
@@ -483,6 +493,14 @@ function CtaLink({
     );
 
     const handlers = { onMouseEnter: () => setHover(true), onMouseLeave: () => setHover(false) };
+
+    if (PENDING_PAGES.has(href)) {
+        return (
+            <span style={{ ...style, cursor: "pointer" }} {...handlers}>
+                {content}
+            </span>
+        );
+    }
 
     return href.startsWith("#") ? (
         <a href={href} style={style} {...handlers}>
@@ -946,27 +964,6 @@ export default function CyphersPageContent() {
                             <CtaLink href={LINKS.quote} variant="secondary" dark fullWidth={isMobile}>
                                 Get Fee Quote
                             </CtaLink>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.6, delay: 0.45 }}
-                            style={{
-                                display: "flex",
-                                flexWrap: "wrap",
-                                gap: isMobile ? "0.6rem 1.1rem" : "0.75rem 1.5rem",
-                                marginTop: "2.25rem",
-                                fontSize: "0.86rem",
-                                color: "rgba(255,255,255,0.65)",
-                            }}
-                        >
-                            {["Manual, human-led testing", "OWASP-aligned methodology", "Every finding validated"].map((item) => (
-                                <span key={item} style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
-                                    <FiCheck size={14} color={MINT} />
-                                    {item}
-                                </span>
-                            ))}
                         </motion.div>
                     </div>
 
@@ -1626,9 +1623,9 @@ export default function CyphersPageContent() {
                         {RECOGNISED_BY.map((name) => (
                             <Wordmark key={name} name={name} />
                         ))}
-                        <Link
-                            href={LINKS.hallOfFame}
+                        <span
                             style={{
+                                cursor: "pointer",
                                 display: "inline-flex",
                                 alignItems: "center",
                                 justifyContent: "center",
@@ -1645,7 +1642,7 @@ export default function CyphersPageContent() {
                             }}
                         >
                             + More
-                        </Link>
+                        </span>
                     </div>
                 </Reveal>
                 <Reveal delay={0.12} style={{ maxWidth: "720px", margin: "0 auto", textAlign: "center" }}>

@@ -4,6 +4,24 @@ import type { ContactSheetRow } from "@/lib/google-sheets";
 const FROM_NAME = "iAudit Global Website";
 const DEFAULT_NOTIFY_EMAIL = "info@iaudit.global";
 
+/** Where an enquiry came from — shown in the email subject and body so the team can classify it. */
+export type ContactEmailSource = {
+    /** Short tag prefixed to the subject line, e.g. "Cyphers Page Form". */
+    tag: string;
+    /** Human-readable origin shown in the email body, e.g. "Cyphers page (/cyphers) – Get a Pen Test Quote form". */
+    label: string;
+    /** Subject line after the tag. */
+    subject: string;
+    heading: string;
+    extraFields?: { label: string; value: string }[];
+};
+
+const DEFAULT_SOURCE: Omit<ContactEmailSource, "subject"> = {
+    tag: "Contact Page Form",
+    label: "Contact page (/contact)",
+    heading: "New contact form submission",
+};
+
 function escapeHtml(value: string) {
     return value
         .replace(/&/g, "&amp;")
@@ -23,18 +41,46 @@ function getNotifyEmail() {
     return process.env.CONTACT_NOTIFY_EMAIL?.trim() || DEFAULT_NOTIFY_EMAIL;
 }
 
-function contactEmailHtml(row: ContactSheetRow) {
-    const fullName = `${row.firstName} ${row.lastName}`.trim();
+function resolveSource(row: ContactSheetRow, source?: ContactEmailSource): ContactEmailSource {
+    return source ?? { ...DEFAULT_SOURCE, subject: `New iAudit Contact: ${row.subject}` };
+}
+
+function emailSubject(source: ContactEmailSource) {
+    return `[${source.tag}] ${source.subject}`;
+}
+
+function emailFields(row: ContactSheetRow, source: ContactEmailSource) {
+    return [
+        { label: "Source", value: source.label },
+        { label: "Name", value: `${row.firstName} ${row.lastName}`.trim() },
+        { label: "Email", value: row.email },
+        { label: "Phone", value: row.phone },
+        ...(source.extraFields ?? []),
+        { label: "Subject", value: row.subject },
+    ];
+}
+
+function contactEmailHtml(row: ContactSheetRow, source: ContactEmailSource) {
+    const rows = emailFields(row, source)
+        .map(({ label, value }) => {
+            const cell =
+                label === "Email"
+                    ? `<a href="mailto:${escapeHtml(value)}">${escapeHtml(value)}</a>`
+                    : label === "Source"
+                      ? `<strong>${escapeHtml(value)}</strong>`
+                      : escapeHtml(value);
+            return `      <tr><td style="padding:8px 0;font-weight:700;width:140px;">${escapeHtml(label)}</td><td style="padding:8px 0;">${cell}</td></tr>`;
+        })
+        .join("\n");
+
     return `<!DOCTYPE html>
 <html>
 <body style="margin:0;padding:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#222;">
   <div style="max-width:640px;margin:0 auto;padding:28px 24px 40px;">
-    <h2 style="margin:0 0 16px;font-size:20px;color:#006644;">New contact form submission</h2>
+    <p style="display:inline-block;margin:0 0 12px;padding:4px 10px;border-radius:999px;background:#e3f0ea;color:#0d4a38;font-size:12px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;">${escapeHtml(source.tag)}</p>
+    <h2 style="margin:0 0 16px;font-size:20px;color:#006644;">${escapeHtml(source.heading)}</h2>
     <table style="width:100%;border-collapse:collapse;font-size:15px;line-height:1.6;">
-      <tr><td style="padding:8px 0;font-weight:700;width:140px;">Name</td><td style="padding:8px 0;">${escapeHtml(fullName)}</td></tr>
-      <tr><td style="padding:8px 0;font-weight:700;">Email</td><td style="padding:8px 0;"><a href="mailto:${escapeHtml(row.email)}">${escapeHtml(row.email)}</a></td></tr>
-      <tr><td style="padding:8px 0;font-weight:700;">Phone</td><td style="padding:8px 0;">${escapeHtml(row.phone)}</td></tr>
-      <tr><td style="padding:8px 0;font-weight:700;">Subject</td><td style="padding:8px 0;">${escapeHtml(row.subject)}</td></tr>
+${rows}
       <tr><td style="padding:8px 0;font-weight:700;vertical-align:top;">Message</td><td style="padding:8px 0;white-space:pre-wrap;">${escapeHtml(row.message || "—")}</td></tr>
     </table>
   </div>
@@ -42,20 +88,16 @@ function contactEmailHtml(row: ContactSheetRow) {
 </html>`;
 }
 
-function contactEmailText(row: ContactSheetRow) {
-    const fullName = `${row.firstName} ${row.lastName}`.trim();
+function contactEmailText(row: ContactSheetRow, source: ContactEmailSource) {
     return [
-        "New contact form submission",
+        source.heading,
         "",
-        `Name: ${fullName}`,
-        `Email: ${row.email}`,
-        `Phone: ${row.phone}`,
-        `Subject: ${row.subject}`,
+        ...emailFields(row, source).map(({ label, value }) => `${label}: ${value}`),
         `Message: ${row.message || "—"}`,
     ].join("\n");
 }
 
-async function sendWithResend(row: ContactSheetRow) {
+async function sendWithResend(row: ContactSheetRow, source: ContactEmailSource) {
     const apiKey = process.env.RESEND_API_KEY?.trim();
     if (!apiKey) return false;
 
@@ -70,9 +112,9 @@ async function sendWithResend(row: ContactSheetRow) {
             from,
             to: [getNotifyEmail()],
             replyTo: row.email,
-            subject: `New iAudit Contact: ${row.subject}`,
-            html: contactEmailHtml(row),
-            text: contactEmailText(row),
+            subject: emailSubject(source),
+            html: contactEmailHtml(row, source),
+            text: contactEmailText(row, source),
         }),
     });
 
@@ -83,7 +125,7 @@ async function sendWithResend(row: ContactSheetRow) {
     return true;
 }
 
-async function sendWithSmtp(row: ContactSheetRow) {
+async function sendWithSmtp(row: ContactSheetRow, source: ContactEmailSource) {
     const host = process.env.SMTP_HOST?.trim();
     const user = process.env.SMTP_USER?.trim();
     const pass = process.env.SMTP_PASS?.replace(/\s+/g, "");
@@ -108,27 +150,29 @@ async function sendWithSmtp(row: ContactSheetRow) {
         from: fromAddress.includes("<") ? fromAddress : `"${FROM_NAME}" <${fromAddress}>`,
         to: getNotifyEmail(),
         replyTo: row.email,
-        subject: `New iAudit Contact: ${row.subject}`,
-        html: contactEmailHtml(row),
-        text: contactEmailText(row),
+        subject: emailSubject(source),
+        html: contactEmailHtml(row, source),
+        text: contactEmailText(row, source),
     });
     return true;
 }
 
-export async function sendContactNotificationEmail(row: ContactSheetRow) {
+export async function sendContactNotificationEmail(row: ContactSheetRow, source?: ContactEmailSource) {
     if (!isContactMailConfigured()) {
         console.warn("Contact notification email skipped — mail is not configured.");
         return false;
     }
 
+    const resolved = resolveSource(row, source);
+
     try {
-        if (await sendWithResend(row)) return true;
+        if (await sendWithResend(row, resolved)) return true;
     } catch (error) {
         console.error("Contact email (Resend) failed:", error);
     }
 
     try {
-        if (await sendWithSmtp(row)) return true;
+        if (await sendWithSmtp(row, resolved)) return true;
     } catch (error) {
         console.error("Contact email (SMTP) failed:", error);
     }
