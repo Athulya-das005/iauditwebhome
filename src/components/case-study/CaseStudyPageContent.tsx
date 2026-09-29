@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 import CaseStudyAuditAnimation from "@/components/case-study/CaseStudyAuditAnimation";
@@ -261,7 +261,31 @@ export default function CaseStudyPageContent() {
     }, []);
 
     const stacked = isTablet;
-    const stickySidebarTop = isMobile ? HEADER_HEIGHT + SUBNAV_HEIGHT : HEADER_HEIGHT;
+    const stickySidebarTop = isMobile ? SUBNAV_HEIGHT : HEADER_HEIGHT;
+    const subnavSentinelRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const root = document.documentElement;
+        if (!isMobile) {
+            delete root.dataset.siteNavHidden;
+            return;
+        }
+        const update = () => {
+            const sentinel = subnavSentinelRef.current;
+            if (!sentinel) return;
+            if (sentinel.getBoundingClientRect().top <= HEADER_HEIGHT) {
+                root.dataset.siteNavHidden = "true";
+            } else {
+                delete root.dataset.siteNavHidden;
+            }
+        };
+        update();
+        window.addEventListener("scroll", update, { passive: true });
+        return () => {
+            window.removeEventListener("scroll", update);
+            delete root.dataset.siteNavHidden;
+        };
+    }, [isMobile]);
 
     useEffect(() => {
         const onScroll = () => {
@@ -424,13 +448,14 @@ export default function CaseStudyPageContent() {
                 </div>
             </section>
 
-            {/* Sticky sub-nav — mobile Contents toggle only */}
+            {/* Sticky sub-nav — mobile Contents toggle only; the site nav slides away once this reaches it */}
+            {isMobile && <div ref={subnavSentinelRef} aria-hidden style={{ height: 0 }} />}
             {isMobile && (
             <div style={{
                 borderBottom: "1px solid #e8e4df",
                 backgroundColor: BODY_BG,
                 position: "sticky",
-                top: HEADER_HEIGHT,
+                top: 0,
                 zIndex: 40,
             }}>
                 <div style={{

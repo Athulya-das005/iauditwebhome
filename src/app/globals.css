@@ -475,6 +475,17 @@ img {
   pointer-events: none;
 }
 
+/* Set by pages whose own sticky bar takes over the top of the viewport (e.g. case study Contents bar on mobile) */
+html[data-site-nav-hidden="true"] .site-header-chrome {
+  transform: translateY(-120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+html[data-site-nav-hidden="true"] .site-header-chrome .site-header-nav {
+  pointer-events: none;
+}
+
 .site-header-nav {
   /* Explicit 100% so width can animate into the capsule (auto won't interpolate) */
   width: 100%;
