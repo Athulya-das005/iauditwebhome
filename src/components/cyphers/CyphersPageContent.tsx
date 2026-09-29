@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { IconType } from "react-icons";
 import {
     FiActivity,
@@ -12,7 +12,6 @@ import {
     FiBox,
     FiCalendar,
     FiCheck,
-    FiChevronDown,
     FiCode,
     FiCompass,
     FiCreditCard,
@@ -827,40 +826,8 @@ function ReportPreview({ isMobile }: { isMobile: boolean }) {
     );
 }
 
-function CertificateCard({ company }: { company: string }) {
-    return (
-        <div
-            style={{
-                position: "relative",
-                borderRadius: "16px",
-                padding: "1.5rem 1.25rem",
-                background: "linear-gradient(160deg, #ffffff, #f3f8f5)",
-                color: INK,
-                textAlign: "center",
-                boxShadow: "0 18px 40px -22px rgba(0,0,0,0.6)",
-            }}
-        >
-            <div
-                aria-hidden
-                style={{ position: "absolute", inset: "8px", borderRadius: "11px", border: "1px solid #cfe6d9", pointerEvents: "none" }}
-            />
-            <FiAward size={26} color={GREEN} />
-            <p style={{ margin: "0.6rem 0 0.2rem", fontSize: "0.66rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTED }}>
-                Security acknowledgement
-            </p>
-            <p style={{ margin: 0, fontSize: "1.3rem", fontWeight: 700, letterSpacing: company === "Sony" ? "0.16em" : "-0.01em" }}>
-                {company === "Sony" ? "SONY" : company}
-            </p>
-            <p style={{ margin: "0.55rem 0 0", fontSize: "0.8rem", lineHeight: 1.5, color: BODY }}>
-                Responsible vulnerability disclosure
-            </p>
-        </div>
-    );
-}
-
 export default function CyphersPageContent() {
     const { isMobile, isTablet } = useViewport();
-    const [showCertificates, setShowCertificates] = useState(false);
 
     return (
         <article style={{ fontFamily: PP_NEUE_MONTREAL, background: "#fff" }}>
@@ -1046,100 +1013,48 @@ export default function CyphersPageContent() {
 
             {/* Recognised by Leading Technology Companies */}
             <Section tone="dark" isMobile={isMobile}>
-                <div
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: isTablet ? "1fr" : "1fr 1fr",
-                        gap: isTablet ? "2.25rem" : "4rem",
-                        alignItems: "center",
-                    }}
-                >
-                    <Reveal>
-                        <Eyebrow dark>Recognition</Eyebrow>
-                        <H2 dark isMobile={isMobile}>
-                            Recognised by Leading Technology Companies
-                        </H2>
-                        <Lead dark>
-                            Our researchers have responsibly identified and reported vulnerabilities recognised by leading
-                            technology companies through their security programmes.
-                        </Lead>
-                        <div
+                <Reveal style={{ maxWidth: "760px" }}>
+                    <H2 dark isMobile={isMobile}>
+                        Recognised by Leading Technology Companies
+                    </H2>
+                    <Lead dark>
+                        Our researchers have responsibly identified and reported vulnerabilities recognised by leading
+                        technology companies through their security programmes.
+                    </Lead>
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: isMobile ? "column" : "row",
+                            gap: "0.85rem",
+                            marginTop: "1.75rem",
+                        }}
+                    >
+                        <button
+                            type="button"
                             style={{
-                                display: "flex",
-                                flexDirection: isMobile ? "column" : "row",
-                                gap: "0.85rem",
-                                marginTop: "1.75rem",
+                                display: "inline-flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                gap: "0.5rem",
+                                padding: "0.9rem 1.6rem",
+                                borderRadius: "999px",
+                                border: "1px solid rgba(255,255,255,0.3)",
+                                background: "transparent",
+                                color: "#fff",
+                                fontFamily: PP_NEUE_MONTREAL,
+                                fontSize: "0.95rem",
+                                fontWeight: 600,
+                                cursor: "pointer",
                             }}
                         >
-                            <button
-                                type="button"
-                                onClick={() => setShowCertificates((v) => !v)}
-                                aria-expanded={showCertificates}
-                                aria-controls="cyphers-certificates"
-                                style={{
-                                    display: "inline-flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    gap: "0.5rem",
-                                    padding: "0.9rem 1.6rem",
-                                    borderRadius: "999px",
-                                    border: "1px solid rgba(255,255,255,0.3)",
-                                    background: showCertificates ? "rgba(255,255,255,0.12)" : "transparent",
-                                    color: "#fff",
-                                    fontFamily: PP_NEUE_MONTREAL,
-                                    fontSize: "0.95rem",
-                                    fontWeight: 600,
-                                    cursor: "pointer",
-                                    transition: "background 0.2s ease",
-                                }}
-                            >
-                                <FiAward size={16} />
-                                {showCertificates ? "Hide certificates" : "Show certificates"}
-                                <FiChevronDown
-                                    size={16}
-                                    style={{ transition: "transform 0.25s ease", transform: showCertificates ? "rotate(180deg)" : "none" }}
-                                />
-                            </button>
-                            <CtaLink href={LINKS.hallOfFame} dark fullWidth={isMobile}>
-                                Explore the Cyphers Hall of Fame
-                            </CtaLink>
-                        </div>
-                    </Reveal>
-                    <Reveal delay={0.1}>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.85rem" }}>
-                            {RECOGNISED_BY.map((name) => (
-                                <Wordmark key={name} name={name} dark />
-                            ))}
-                        </div>
-                    </Reveal>
-                </div>
-
-                <AnimatePresence initial={false}>
-                    {showCertificates && (
-                        <motion.div
-                            id="cyphers-certificates"
-                            key="certificates"
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.35, ease: [0.22, 0.61, 0.36, 1] }}
-                            style={{ overflow: "hidden" }}
-                        >
-                            <div
-                                style={{
-                                    display: "grid",
-                                    gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)",
-                                    gap: "1rem",
-                                    paddingTop: "2.5rem",
-                                }}
-                            >
-                                {RECOGNISED_BY.map((name) => (
-                                    <CertificateCard key={name} company={name} />
-                                ))}
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                            <FiAward size={16} />
+                            Show certificates
+                        </button>
+                        <CtaLink href={LINKS.hallOfFame} dark fullWidth={isMobile}>
+                            Explore the Cyphers Hall of Fame
+                        </CtaLink>
+                    </div>
+                </Reveal>
             </Section>
 
             {/* What Is Penetration Testing? */}
