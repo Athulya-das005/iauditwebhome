@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 import FAQAccordion from "@/components/FAQAccordion";
 
-const HERO_IMAGE = "/images/blog-process-automation.webp";
+const HERO_IMAGE = "/images/blog/risk-based-thinking-in-iso-9001.jpg";
 const ISO9001_URL = "/standards/iso-9001-audit-management-software";
 const BUILT_BY_AUDITORS_URL = "/audit-management-software-built-by-auditors";
 const AUDIT_REPORT_URL = "/blog/how-to-write-an-iso-internal-audit-report-that-matters";

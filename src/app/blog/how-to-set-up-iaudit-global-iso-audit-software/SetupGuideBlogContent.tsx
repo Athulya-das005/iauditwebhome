@@ -6,7 +6,7 @@ import Image from "next/image";
 import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 
-const HERO_IMAGE = "/images/blog-ai-transform.webp";
+const HERO_IMAGE = "/images/blog/how-to-set-up-iaudit-global-iso-audit-software.jpg";
 const BUILT_BY_AUDITORS_URL = "/audit-management-software-built-by-auditors";
 const PRICING_URL = "/pricing";
 const CORRECTIVE_ACTIONS_URL = "/blog/corrective-actions-after-an-internal-audit-findings-to-closure";

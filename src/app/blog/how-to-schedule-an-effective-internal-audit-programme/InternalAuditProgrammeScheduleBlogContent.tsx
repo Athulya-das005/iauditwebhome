@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 import FAQAccordion from "@/components/FAQAccordion";
 
-const HERO_IMAGE = "/images/blog-complex-workflows.webp";
+const HERO_IMAGE = "/images/blog/how-to-schedule-an-effective-internal-audit-programme.jpg";
 
 const sectionImages: Record<string, string> = {
     calendar: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=900&h=480&fit=crop&q=80&fm=webp",

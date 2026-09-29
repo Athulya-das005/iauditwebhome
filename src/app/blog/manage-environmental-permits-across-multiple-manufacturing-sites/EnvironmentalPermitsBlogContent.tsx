@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 import FAQAccordion from "@/components/FAQAccordion";
 
-const HERO_IMAGE = "/images/manufacturing-bg.webp";
+const HERO_IMAGE = "/images/blog/manage-environmental-permits-across-multiple-manufacturing-sites.jpg";
 
 const sectionImages: Record<string, string> = {
     complexity:

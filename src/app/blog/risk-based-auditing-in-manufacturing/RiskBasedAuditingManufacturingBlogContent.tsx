@@ -7,8 +7,7 @@ import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 import FAQAccordion from "@/components/FAQAccordion";
 
-const HERO_IMAGE =
-    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&h=1080&fit=crop&q=90&fm=webp";
+const HERO_IMAGE = "/images/blog/risk-based-auditing-in-manufacturing.jpg";
 
 const RBT_URL = "/blog/risk-based-thinking-in-iso-9001";
 const MANUFACTURING_URL = "/industries/manufacturing-iso-audit-software";

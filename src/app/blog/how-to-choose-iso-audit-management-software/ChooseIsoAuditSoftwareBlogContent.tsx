@@ -7,8 +7,7 @@ import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 import FAQAccordion from "@/components/FAQAccordion";
 
-const HERO_IMAGE =
-    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&h=1080&fit=crop&q=90&fm=webp";
+const HERO_IMAGE = "/images/blog/how-to-choose-iso-audit-management-software.jpg";
 
 const sectionImages: Record<string, string> = {
     why: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=900&h=480&fit=crop&q=80&fm=webp",

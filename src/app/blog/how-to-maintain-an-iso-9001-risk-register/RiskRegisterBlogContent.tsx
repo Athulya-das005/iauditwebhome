@@ -8,8 +8,7 @@ import CTA from "@/components/CTA";
 import FAQAccordion from "@/components/FAQAccordion";
 import { riskRegisterFaqs } from "@/data/riskRegisterFaqs";
 
-const HERO_IMAGE =
-    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&h=1080&fit=crop&q=90&fm=webp";
+const HERO_IMAGE = "/images/blog/how-to-maintain-an-iso-9001-risk-register.jpg";
 
 const sectionImages: Record<string, string> = {
     requirements:

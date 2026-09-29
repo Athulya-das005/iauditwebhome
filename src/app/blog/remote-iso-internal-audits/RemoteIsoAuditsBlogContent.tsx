@@ -6,8 +6,7 @@ import Image from "next/image";
 import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 
-const HERO_IMAGE =
-    "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=1920&h=1080&fit=crop&q=90&fm=webp";
+const HERO_IMAGE = "/images/blog/remote-iso-internal-audits.jpg";
 
 const sectionImages: Record<string, string> = {
     what: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=900&h=480&fit=crop&q=80&fm=webp",

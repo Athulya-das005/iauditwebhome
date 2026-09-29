@@ -6,8 +6,7 @@ import Image from "next/image";
 import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 
-const HERO_IMAGE =
-    "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1920&h=1080&fit=crop&q=90&fm=webp";
+const HERO_IMAGE = "/images/blog/iso-audit-in-healthcare.jpg";
 
 const sectionImages: Record<string, string> = {
     "why-iso":

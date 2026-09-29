@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 import FAQAccordion from "@/components/FAQAccordion";
 
-const HERO_IMAGE = "/images/manufacturing-bg.webp";
+const HERO_IMAGE = "/images/blog/common-iso-9001-nonconformities-manufacturing.jpg";
 
 const sectionImages: Record<string, string> = {
     why: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=900&h=480&fit=crop&q=80&fm=webp",

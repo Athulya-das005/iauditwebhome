@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 import FAQAccordion from "@/components/FAQAccordion";
 
-const HERO_IMAGE = "/images/blog-process-automation.webp";
+const HERO_IMAGE = "/images/blog/why-audit-data-arrives-too-late-costing-control.jpg";
 
 const sectionImages: Record<string, string> = {
     cost: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=900&h=480&fit=crop&q=80&fm=webp",

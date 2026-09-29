@@ -212,7 +212,8 @@ export default function Header() {
         pathname === "/iso-14001-2026-self-assessment-tool" ||
         pathname === "/iso-audit-assessments/gap-analysis" ||
         pathname === "/blog" ||
-        pathname === "/author/mathew-chiweda";
+        pathname === "/author/mathew-chiweda" ||
+        pathname === "/cyphers";
     // Hide-on-scroll on the /blog listing and author page (not individual blog posts)
     const hideNavOnScroll = pathname === "/blog" || pathname === "/author/mathew-chiweda";
     // Individual blog posts use a Flowergrid-style reading chrome (Back to Blog only).

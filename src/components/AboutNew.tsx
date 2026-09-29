@@ -783,7 +783,7 @@ export default function AboutNew() {
                         boxShadow: "0 6px 16px rgba(0, 102, 68, 0.12), 0 24px 64px rgba(0, 102, 68, 0.22)",
                     }}
                 >
-                    {/* Sparkle icon with pulse */}
+                    {/* Avatar with pulse */}
                     <div style={{ display: "flex", justifyContent: "center", marginBottom: "1.4rem" }}>
                         <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
                             <motion.div
@@ -799,16 +799,17 @@ export default function AboutNew() {
                             <div style={{
                                 width: "68px", height: "68px",
                                 borderRadius: "50%",
-                                background: "#f9fafb",
-                                border: "1px solid #f3f4f6",
-                                display: "flex", alignItems: "center", justifyContent: "center",
+                                overflow: "hidden",
                                 position: "relative", zIndex: 1,
+                                boxShadow: "0 4px 14px rgba(0, 102, 68, 0.18)",
                             }}>
-                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                                    <path d="M16 4 L18 13 L27 16 L18 19 L16 28 L14 19 L5 16 L14 13 Z" fill="#f97316" />
-                                    <circle cx="25" cy="8" r="2.5" fill="#f97316" opacity="0.6" />
-                                    <circle cx="8" cy="25" r="1.8" fill="#f97316" opacity="0.4" />
-                                </svg>
+                                <img
+                                    src="/images/audit-mate-avatar.png"
+                                    alt="Audit Mate avatar"
+                                    width={68}
+                                    height={68}
+                                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                                />
                             </div>
                         </div>
                     </div>

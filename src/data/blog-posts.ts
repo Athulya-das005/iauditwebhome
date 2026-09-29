@@ -2,7 +2,7 @@ export type BlogPost = {
     slug: string;
     title: string;
     excerpt: string;
-    /** ISO date YYYY-MM-DD — used to pick Latest Post automatically */
+    /** ISO date YYYY-MM-DD — drives Latest Post and Featured Posts order */
     datePublished: string;
     readTime: string;
     image: string;
@@ -19,7 +19,7 @@ export const blogPosts: BlogPost[] = [
             "Explore ISO 9001:2026 key changes, transition requirements and practical steps organisations can take to prepare for the new standard.",
         datePublished: "2026-09-23",
         readTime: "12 Min Read",
-        image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=700&fit=crop&q=80&fm=webp",
+        image: "/images/blog/iso-9001-2026-key-changes-transition.jpg",
         author: "Mathew Chiweda",
         categories: ["ISO 9001", "Compliance"],
     },
@@ -30,7 +30,7 @@ export const blogPosts: BlogPost[] = [
             "How to conduct an ISO 14001:2026 gap analysis, identify compliance gaps, prioritise actions and prepare your EMS for transition.",
         datePublished: "2026-09-14",
         readTime: "11 Min Read",
-        image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&h=700&fit=crop&q=80&fm=webp",
+        image: "/images/blog/iso-14001-2026-gap-analysis.jpg",
         author: "Mathew Chiweda",
         categories: ["ISO 14001", "Compliance"],
     },
@@ -41,7 +41,7 @@ export const blogPosts: BlogPost[] = [
             "Key changes from ISO 14001:2015 — climate change, biodiversity, lifecycle thinking, change management and what to do next for transition.",
         datePublished: "2026-09-02",
         readTime: "12 Min Read",
-        image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=700&fit=crop&q=80&fm=webp",
+        image: "/images/blog/what-has-changed-in-iso-14001-2026.jpg",
         author: "Mathew Chiweda",
         categories: ["ISO 14001", "Compliance"],
     },
@@ -52,7 +52,7 @@ export const blogPosts: BlogPost[] = [
             "Learn how to keep risks current, review controls, track actions and use audit findings to improve risk-based thinking.",
         datePublished: "2026-08-31",
         readTime: "10 Min Read",
-        image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=700&fit=crop&q=80&fm=webp",
+        image: "/images/blog/how-to-maintain-an-iso-9001-risk-register.jpg",
         author: "Mathew Chiweda",
         categories: ["Risk-Based Auditing", "ISO 9001"],
     },
@@ -63,7 +63,7 @@ export const blogPosts: BlogPost[] = [
             "Shift from a fixed audit calendar to data-led priorities—focus limited audit time on the processes, shifts and suppliers with the highest uncertainty.",
         datePublished: "2026-08-21",
         readTime: "10 Min Read",
-        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=700&fit=crop&q=80&fm=webp",
+        image: "/images/blog/risk-based-auditing-in-manufacturing.jpg",
         author: "Mathew Chiweda",
         categories: ["Manufacturing", "Risk & Compliance", "Internal Auditing"],
     },
@@ -74,7 +74,7 @@ export const blogPosts: BlogPost[] = [
             "Move beyond the risk register spreadsheet and apply Clause 6.1 as a practical mindset across planning, operations and internal audit.",
         datePublished: "2026-08-19",
         readTime: "11 Min Read",
-        image: "/images/blog-process-automation.webp",
+        image: "/images/blog/risk-based-thinking-in-iso-9001.jpg",
         author: "Mathew Chiweda",
         categories: ["ISO 9001", "Risk & Compliance"],
     },
@@ -85,7 +85,7 @@ export const blogPosts: BlogPost[] = [
             "How researchers can report security issues safely, what to include in a strong report, and how iAudit handles disclosure responsibly.",
         datePublished: "2026-08-19",
         readTime: "8 Min Read",
-        image: "/images/blog-ai-transform.webp",
+        image: "/images/blog/vulnerability-disclosure-programme-iaudit-global.jpg",
         author: "Mathew Chiweda",
         categories: ["Audit Management Software", "Compliance"],
     },
@@ -96,7 +96,7 @@ export const blogPosts: BlogPost[] = [
             "Clear definitions for major and minor NCs, OFIs and observations—so teams grade findings consistently and act with the right urgency.",
         datePublished: "2026-08-19",
         readTime: "9 Min Read",
-        image: "/images/blog-complex-workflows.webp",
+        image: "/images/blog/internal-audit-findings-explained.jpg",
         author: "Mathew Chiweda",
         categories: ["Internal Auditing", "Continuous Improvement"],
     },
@@ -107,7 +107,7 @@ export const blogPosts: BlogPost[] = [
             "Structure reports around evidence, risk and action—so management reviews and external auditors can use them with confidence.",
         datePublished: "2026-08-19",
         readTime: "10 Min Read",
-        image: "/images/blog-1.webp",
+        image: "/images/blog/how-to-write-an-iso-internal-audit-report-that-matters.jpg",
         author: "Mathew Chiweda",
         categories: ["Internal Auditing", "ISO 9001"],
     },
@@ -118,7 +118,7 @@ export const blogPosts: BlogPost[] = [
             "Use a practical template to capture scope, findings and actions without drowning the reader in admin.",
         datePublished: "2026-08-19",
         readTime: "8 Min Read",
-        image: "/images/blog-2.webp",
+        image: "/images/blog/iso-internal-audit-report-template-free-download.jpg",
         author: "Mathew Chiweda",
         categories: ["Internal Auditing", "Continuous Improvement"],
     },
@@ -129,7 +129,7 @@ export const blogPosts: BlogPost[] = [
             "The manufacturing NCs that keep recurring—and how to close them with stronger process control and evidence.",
         datePublished: "2026-08-19",
         readTime: "9 Min Read",
-        image: "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=1200&h=700&fit=crop&q=80&fm=webp",
+        image: "/images/blog/common-iso-9001-nonconformities-manufacturing.jpg",
         author: "Mathew Chiweda",
         categories: ["ISO 9001", "Manufacturing"],
     },
@@ -140,7 +140,7 @@ export const blogPosts: BlogPost[] = [
             "Move findings from identification through root cause, action and effectiveness checks without losing ownership.",
         datePublished: "2026-08-19",
         readTime: "10 Min Read",
-        image: "/images/blog-continuous-improvement.webp",
+        image: "/images/blog/corrective-actions-after-an-internal-audit-findings-to-closure.jpg",
         author: "Mathew Chiweda",
         categories: ["Continuous Improvement", "Internal Auditing"],
     },
@@ -151,7 +151,7 @@ export const blogPosts: BlogPost[] = [
             "Keep legal registers, evidence and site accountability aligned when permits span multiple factories.",
         datePublished: "2026-08-19",
         readTime: "9 Min Read",
-        image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&h=700&fit=crop&q=80&fm=webp",
+        image: "/images/blog/manage-environmental-permits-across-multiple-manufacturing-sites.jpg",
         author: "Mathew Chiweda",
         categories: ["ISO 14001", "Manufacturing"],
     },
@@ -162,7 +162,7 @@ export const blogPosts: BlogPost[] = [
             "A practical setup path from first login to live audits, checklists and findings workflows.",
         datePublished: "2026-08-19",
         readTime: "8 Min Read",
-        image: "/images/blog-ai-transform.webp",
+        image: "/images/blog/how-to-set-up-iaudit-global-iso-audit-software.jpg",
         author: "Mathew Chiweda",
         categories: ["Audit Management Software"],
     },
@@ -173,7 +173,7 @@ export const blogPosts: BlogPost[] = [
             "Practical questions and evidence trails auditors use to verify that risk-based thinking is real—not paperwork.",
         datePublished: "2026-08-19",
         readTime: "10 Min Read",
-        image: "/images/blog-process-automation.webp",
+        image: "/images/blog/how-to-audit-risk-based-thinking.jpg",
         author: "Mathew Chiweda",
         categories: ["ISO 9001", "Risk & Compliance", "Internal Auditing"],
     },
@@ -184,7 +184,7 @@ export const blogPosts: BlogPost[] = [
             "Late findings kill PDCA. See why delayed audit data weakens decisions—and how to keep evidence flowing in real time.",
         datePublished: "2026-08-19",
         readTime: "8 Min Read",
-        image: "/images/blog-complex-workflows.webp",
+        image: "/images/blog/why-audit-data-arrives-too-late-costing-control.jpg",
         author: "Mathew Chiweda",
         categories: ["Audit Management Software", "Continuous Improvement"],
     },
@@ -195,7 +195,7 @@ export const blogPosts: BlogPost[] = [
             "Turn audit outputs into management review inputs that drive decisions, resources and improvement priorities.",
         datePublished: "2026-08-18",
         readTime: "9 Min Read",
-        image: "/images/blog-1.webp",
+        image: "/images/blog/how-management-reviews-use-internal-audit-results.jpg",
         author: "Mathew Chiweda",
         categories: ["Internal Auditing", "Continuous Improvement"],
     },
@@ -206,7 +206,7 @@ export const blogPosts: BlogPost[] = [
             "Build a risk-based programme calendar that covers the system without burning out the audit team.",
         datePublished: "2026-08-18",
         readTime: "9 Min Read",
-        image: "/images/blog-2.webp",
+        image: "/images/blog/how-to-schedule-an-effective-internal-audit-programme.jpg",
         author: "Mathew Chiweda",
         categories: ["Internal Auditing", "Risk & Compliance"],
     },
@@ -217,7 +217,7 @@ export const blogPosts: BlogPost[] = [
             "The admin friction, politics and spreadsheet fatigue behind auditor burnout—and what better systems change.",
         datePublished: "2026-08-18",
         readTime: "8 Min Read",
-        image: "/images/blog-auditor-training.webp",
+        image: "/images/blog/why-most-auditors-secretly-hate-internal-auditing.jpg",
         author: "Mathew Chiweda",
         categories: ["Internal Auditing", "Continuous Improvement"],
     },
@@ -228,7 +228,7 @@ export const blogPosts: BlogPost[] = [
             "Documented information that supports control, evidence and improvement—without creating a paperwork mountain.",
         datePublished: "2026-05-01",
         readTime: "8 Min Read",
-        image: "/images/blog-3.webp",
+        image: "/images/blog/why-documentation-is-important-for-iso-certification.jpg",
         author: "Mathew Chiweda",
         categories: ["Compliance", "ISO 9001"],
     },
@@ -239,7 +239,7 @@ export const blogPosts: BlogPost[] = [
             "Plan remote and hybrid audits that still deliver objective evidence and credible findings.",
         datePublished: "2026-04-24",
         readTime: "9 Min Read",
-        image: "/images/blog-ai-transform.webp",
+        image: "/images/blog/remote-iso-internal-audits.jpg",
         author: "Mathew Chiweda",
         categories: ["Internal Auditing", "Audit Management Software"],
     },
@@ -250,7 +250,7 @@ export const blogPosts: BlogPost[] = [
             "Site-ready prep for construction compliance audits—evidence, roles and common risk traps.",
         datePublished: "2026-04-18",
         readTime: "9 Min Read",
-        image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&h=700&fit=crop&q=80&fm=webp",
+        image: "/images/blog/how-to-prepare-for-a-construction-compliance-audit.jpg",
         author: "Mathew Chiweda",
         categories: ["Compliance", "ISO 9001"],
     },
@@ -272,7 +272,7 @@ export const blogPosts: BlogPost[] = [
             "How fabrication and metal shops use PDCA to tighten process control, quality and audit readiness.",
         datePublished: "2026-04-17",
         readTime: "8 Min Read",
-        image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&h=700&fit=crop&q=80&fm=webp",
+        image: "/images/blog/pdca-cycle-in-basic-metal-industry-fabrication-industry.jpg",
         author: "Mathew Chiweda",
         categories: ["Manufacturing", "Continuous Improvement"],
     },
@@ -283,7 +283,7 @@ export const blogPosts: BlogPost[] = [
             "What manufacturing teams should prepare for as ISO 14001 evolves—climate, lifecycle and operational control.",
         datePublished: "2026-04-15",
         readTime: "10 Min Read",
-        image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&h=700&fit=crop&q=80&fm=webp",
+        image: "/images/blog/iso-14001-2026-requirements-for-manufacturing-industry.jpg",
         author: "Mathew Chiweda",
         categories: ["ISO 14001", "Manufacturing"],
     },
@@ -294,7 +294,7 @@ export const blogPosts: BlogPost[] = [
             "A practical path to ISO readiness for metal fabrication—audits, gaps and evidence that stands up.",
         datePublished: "2026-04-15",
         readTime: "10 Min Read",
-        image: "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=1200&h=700&fit=crop&q=80&fm=webp",
+        image: "/images/blog/iso-certification-for-metal-fabrication.jpg",
         author: "Mathew Chiweda",
         categories: ["Manufacturing", "ISO 9001"],
     },
@@ -305,7 +305,7 @@ export const blogPosts: BlogPost[] = [
             "Focus on the construction QMS essentials auditors expect—without generic template clutter.",
         datePublished: "2026-04-10",
         readTime: "9 Min Read",
-        image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&h=700&fit=crop&q=80&fm=webp",
+        image: "/images/blog/prepare-for-iso-9001-in-construction.jpg",
         author: "Mathew Chiweda",
         categories: ["ISO 9001", "Compliance"],
     },
@@ -316,7 +316,7 @@ export const blogPosts: BlogPost[] = [
             "What to look for in purpose-built audit software versus generic tools and spreadsheets.",
         datePublished: "2026-04-08",
         readTime: "9 Min Read",
-        image: "/images/blog-ai-transform.webp",
+        image: "/images/blog/how-to-choose-iso-audit-management-software.jpg",
         author: "Mathew Chiweda",
         categories: ["Audit Management Software"],
     },
@@ -327,7 +327,7 @@ export const blogPosts: BlogPost[] = [
             "Why healthcare audits demand different evidence, risk sensitivity and stakeholder handling.",
         datePublished: "2026-04-03",
         readTime: "8 Min Read",
-        image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=700&fit=crop&q=80&fm=webp",
+        image: "/images/blog/iso-audit-in-healthcare.jpg",
         author: "Mathew Chiweda",
         categories: ["Internal Auditing", "Compliance"],
     },
@@ -338,7 +338,7 @@ export const blogPosts: BlogPost[] = [
             "A clear briefing on the ISO 14001:2026 direction and how EMS teams can prepare early.",
         datePublished: "2026-04-01",
         readTime: "9 Min Read",
-        image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1200&h=700&fit=crop&q=80&fm=webp",
+        image: "/images/blog/iso-14001-2026-update.jpg",
         author: "Mathew Chiweda",
         categories: ["ISO 14001", "Compliance"],
     },
@@ -431,13 +431,6 @@ export const blogPosts: BlogPost[] = [
         categories: ["Internal Auditing", "Compliance"],
     },
 ];
-
-/** Featured Posts order on /blog (fixed slots). */
-export const FEATURED_SLUGS = [
-    "vulnerability-disclosure-programme-iaudit-global",
-    "empowering-culture-continuous-improvement",
-    "train-motivate-internal-auditors",
-] as const;
 
 export type BlogSubcategory = {
     id: string;
@@ -730,11 +723,12 @@ export function formatBlogDate(iso: string) {
 }
 
 export function getLatestPost(posts: BlogPost[] = blogPosts) {
-    return [...posts].sort((a, b) => (a.datePublished < b.datePublished ? 1 : -1))[0];
+    return getAllPostsSorted(posts)[0];
 }
 
-export function getFeaturedPosts(posts: BlogPost[] = blogPosts) {
-    return FEATURED_SLUGS.map((slug) => posts.find((p) => p.slug === slug)).filter(Boolean) as BlogPost[];
+/** Next 3 posts after Latest, newest-first — updates automatically when a post is added. */
+export function getFeaturedPosts(posts: BlogPost[] = blogPosts, limit = 3) {
+    return getAllPostsSorted(posts).slice(1, 1 + limit);
 }
 
 export function getAllPostsSorted(posts: BlogPost[] = blogPosts) {

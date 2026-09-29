@@ -6,8 +6,7 @@ import Image from "next/image";
 import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 
-const HERO_IMAGE =
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&h=1080&fit=crop&q=90&fm=webp";
+const HERO_IMAGE = "/images/blog/prepare-for-iso-9001-in-construction.jpg";
 
 const sectionImages: Record<string, string> = {
     "why-matters":

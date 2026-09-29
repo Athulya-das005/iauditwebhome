@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 import FAQAccordion from "@/components/FAQAccordion";
 
-const HERO_IMAGE = "/images/blog-auditor-training.webp";
+const HERO_IMAGE = "/images/blog/how-to-audit-risk-based-thinking.jpg";
 const RBT_URL = "/blog/risk-based-thinking-in-iso-9001";
 const CORRECTIVE_ACTIONS_URL = "/blog/corrective-actions-after-an-internal-audit-findings-to-closure";
 const ISO9001_URL = "/standards/iso-9001-audit-management-software";

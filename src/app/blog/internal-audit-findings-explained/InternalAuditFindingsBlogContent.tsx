@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 import FAQAccordion from "@/components/FAQAccordion";
 
-const HERO_IMAGE = "/images/blog-auditor-training.webp";
+const HERO_IMAGE = "/images/blog/internal-audit-findings-explained.jpg";
 const AUDIT_REPORT_BLOG_URL = "/blog/how-to-write-an-iso-internal-audit-report-that-matters";
 
 const sectionImages: Record<string, string> = {

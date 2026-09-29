@@ -6,7 +6,7 @@ import Image from "next/image";
 import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 
-const HERO_IMAGE = "/images/blog-auditor-training.webp";
+const HERO_IMAGE = "/images/blog/how-to-write-an-iso-internal-audit-report-that-matters.jpg";
 const PDCA_URL = "/pdca-cycle-audit-software";
 const ISO9001_URL = "/standards/iso-9001-audit-management-software";
 const ISO14001_URL = "/standards/iso-14001-audit-management-software";

@@ -7,8 +7,7 @@ import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 import FAQAccordion from "@/components/FAQAccordion";
 
-const HERO_IMAGE =
-    "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1920&h=1080&fit=crop&q=90&fm=webp";
+const HERO_IMAGE = "/images/blog/iso-14001-2026-update.jpg";
 
 const sectionImages: Record<string, string> = {
     why: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=900&h=480&fit=crop&q=80&fm=webp",

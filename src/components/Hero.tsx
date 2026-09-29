@@ -19,12 +19,13 @@ export default function Hero() {
     const outlineArrowRef = useRef<HTMLSpanElement>(null);
     const [isMobile, setIsMobile] = useState(false);
 
+    const logoDir = isMobile ? "/images/clients/mobile" : "/images/clients";
     const partnerLogos = [
-        { src: "/images/clients/stannah.png", alt: "Stannah client logo", title: "Stannah" },
-        { src: "/images/clients/fujitec.png", alt: "Fujitec client logo", title: "Fujitec" },
-        { src: "/images/clients/construct-lifts.png", alt: "Construct Lifts client logo", title: "Construct Lifts" },
-        { src: "/images/clients/peerless.png", alt: "Peerless Lift Services client logo", title: "Peerless Lift Services" },
-        { src: "/images/clients/adstone.png", alt: "Adstone Construction Limited client logo", title: "Adstone Construction Limited" },
+        { src: `${logoDir}/stannah.png`, alt: "Stannah client logo", title: "Stannah" },
+        { src: `${logoDir}/fujitec.png`, alt: "Fujitec client logo", title: "Fujitec" },
+        { src: `${logoDir}/construct-lifts.png`, alt: "Construct Lifts client logo", title: "Construct Lifts" },
+        { src: `${logoDir}/peerless.png`, alt: "Peerless Lift Services client logo", title: "Peerless Lift Services" },
+        { src: `${logoDir}/adstone.png`, alt: "Adstone Construction Limited client logo", title: "Adstone Construction Limited" },
     ];
 
     useEffect(() => {
@@ -295,8 +296,8 @@ export default function Hero() {
                         logos={partnerLogos}
                         speed={isMobile ? 30 : 50}
                         direction="left"
-                        logoHeight={isMobile ? 45 : 70}
-                        gap={isMobile ? 80 : 140}
+                        logoHeight={isMobile ? 60 : 70}
+                        gap={isMobile ? 36 : 140}
                         scaleOnHover
                         ariaLabel="Our trusted partners"
                     />

@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 import FAQAccordion from "@/components/FAQAccordion";
 
-const HERO_IMAGE = "/images/blog-complex-workflows.webp";
+const HERO_IMAGE = "/images/blog/iso-internal-audit-report-template-free-download.jpg";
 
 const ISO9001_URL = "/standards/iso-9001-audit-management-software";
 const ISO14001_URL = "/standards/iso-14001-audit-management-software";
