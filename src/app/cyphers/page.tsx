@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 const pageUrl = "https://www.iaudit.global/cyphers";
 const title = "Penetration Testing & Cyber Security Testing UK | Cyphers";
 const description =
-    "Cyphers at iAudit Global provides penetration testing and cyber security testing for web applications, APIs and digital products across the UK.";
+    "Cyphers by iAudit Global provides penetration testing and cyber security testing for web applications, APIs and digital products across the UK.";
 
 export const metadata: Metadata = {
     title,
@@ -15,7 +15,6 @@ export const metadata: Metadata = {
         "cyber security testing",
         "web application penetration testing",
         "API security testing",
-        "mobile application security testing",
         "security assessment",
         "Cyphers",
         "iAudit Global",
@@ -53,7 +52,7 @@ const serviceJsonLd = {
     areaServed: { "@type": "Country", name: "United Kingdom" },
     provider: {
         "@type": "Organization",
-        name: "Cyphers at iAudit Global",
+        name: "Cyphers by iAudit Global",
         url: "https://www.iaudit.global",
     },
     hasOfferCatalog: {
@@ -62,7 +61,6 @@ const serviceJsonLd = {
         itemListElement: [
             "Web Application Penetration Testing",
             "API Security Testing",
-            "Mobile Application Security Testing",
             "Security Assessments",
         ].map((name) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name } })),
     },

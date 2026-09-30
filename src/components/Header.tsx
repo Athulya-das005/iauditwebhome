@@ -44,6 +44,7 @@ export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isScrollingDown, setIsScrollingDown] = useState(false);
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 1024);
@@ -56,12 +57,24 @@ export default function Header() {
         // Open Design–style condense with hysteresis (avoids jitter near threshold)
         const CONDENSE_ON = 64;
         const CONDENSE_OFF = 24;
+        const DIRECTION_DELTA = 6;
+        const HIDE_AFTER = 120;
         let condensed = false;
         let ticking = false;
+        let lastY = window.scrollY;
+        let goingDown = false;
 
         const apply = () => {
             ticking = false;
             const y = window.scrollY;
+            if (!goingDown && y > HIDE_AFTER && y - lastY > DIRECTION_DELTA) {
+                goingDown = true;
+                setIsScrollingDown(true);
+            } else if (goingDown && (lastY - y > DIRECTION_DELTA || y <= HIDE_AFTER)) {
+                goingDown = false;
+                setIsScrollingDown(false);
+            }
+            if (Math.abs(y - lastY) > DIRECTION_DELTA || y <= HIDE_AFTER) lastY = y;
             if (!condensed && y > CONDENSE_ON) {
                 condensed = true;
                 setIsScrolled(true);
@@ -212,14 +225,18 @@ export default function Header() {
         pathname === "/iso-14001-2026-self-assessment-tool" ||
         pathname === "/iso-audit-assessments/gap-analysis" ||
         pathname === "/blog" ||
-        pathname === "/author/mathew-chiweda" ||
-        pathname === "/cyphers";
+        pathname === "/author/mathew-chiweda";
     // Hide-on-scroll on the /blog listing and author page (not individual blog posts)
     const hideNavOnScroll = pathname === "/blog" || pathname === "/author/mathew-chiweda";
     // Individual blog posts use a Flowergrid-style reading chrome (Back to Blog only).
     const isBlogPost = Boolean(pathname?.startsWith("/blog/") && pathname !== "/blog");
+    // Hide while scrolling down, reveal on scroll up
+    const hideNavOnScrollDown = pathname === "/cyphers";
     const isHeaderVisible =
-        !isBlogPost && (!hideNavOnScroll || !isScrolled || isMenuOpen || Boolean(hoveredItem));
+        !isBlogPost &&
+        (isMenuOpen ||
+            Boolean(hoveredItem) ||
+            ((!hideNavOnScroll || !isScrolled) && (!hideNavOnScrollDown || !isScrollingDown)));
 
     if (isBlogPost) {
         return null;
