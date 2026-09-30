@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import SelfAssessmentChecklistViewer from "@/components/self-assessment/SelfAssessmentChecklistViewer";
 
-const pageUrl = "https://www.iaudit.global/iso-audit-assessments/self-assessment/checklist";
+const pageUrl = "https://www.iaudit.global/iso-14001-2026-self-assessment-tool/checklist";
 const title = "ISO 14001:2026 Self-Assessment Checklist | iAudit Global";
 const description =
     "Interactive ISO 14001:2026 self-assessment checklist with climate and 2026 DIS alignment. Tick Yes/No, see your live score and maturity guidance before starting the full assessment.";

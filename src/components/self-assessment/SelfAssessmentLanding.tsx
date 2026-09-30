@@ -389,7 +389,7 @@ export default function SelfAssessmentLanding({ onStart }: Props) {
                             from our checklist.
                         </p>
                         <Link
-                            href="/iso-audit-assessments/self-assessment/checklist"
+                            href="/iso-14001-2026-self-assessment-tool/checklist"
                             style={{
                                 display: "inline-flex",
                                 alignItems: "center",

@@ -33,7 +33,7 @@ const STATIC_PAGES: StaticPage[] = [
     { path: "/iso-14001-2026-self-assessment-tool", changeFrequency: "monthly", priority: 0.8 },
     { path: "/iso-audit-assessments/gap-analysis", changeFrequency: "monthly", priority: 0.8 },
     { path: "/iso-audit-assessments/gap-analysis/checklist", changeFrequency: "monthly", priority: 0.6 },
-    { path: "/iso-audit-assessments/self-assessment/checklist", changeFrequency: "monthly", priority: 0.6 },
+    { path: "/iso-14001-2026-self-assessment-tool/checklist", changeFrequency: "monthly", priority: 0.6 },
 
     // Case studies
     { path: "/case-studies", changeFrequency: "monthly", priority: 0.8 },

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PP_NEUE_MONTREAL } from "@/constants/typography";
@@ -8,14 +9,33 @@ import { PP_NEUE_MONTREAL } from "@/constants/typography";
 const TOP_THRESHOLD = 80;
 const TRIAL_URL = "https://apps.iaudit.global";
 const ARROW_HIDE_DELAY_MS = 900;
+const NEAR_BOTTOM_PX = 400;
+/** Pages without the trial CTA: only a back-to-top arrow once the visitor reaches the bottom. */
+const NO_TRIAL_PATHS = new Set(["/cyphers"]);
 
 export default function StickyScrollButton() {
+    const pathname = usePathname();
+    const hideTrial = NO_TRIAL_PATHS.has(pathname ?? "");
     const [showScrollTop, setShowScrollTop] = useState(false);
     const lastScrollY = useRef(0);
     const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useEffect(() => {
         lastScrollY.current = window.scrollY;
+
+        if (hideTrial) {
+            const onScrollNearBottom = () => {
+                const doc = document.documentElement;
+                const nearBottom = window.scrollY + window.innerHeight >= doc.scrollHeight - NEAR_BOTTOM_PX;
+                setShowScrollTop(window.scrollY > TOP_THRESHOLD && nearBottom);
+            };
+            const initialCheck = requestAnimationFrame(onScrollNearBottom);
+            window.addEventListener("scroll", onScrollNearBottom, { passive: true });
+            return () => {
+                cancelAnimationFrame(initialCheck);
+                window.removeEventListener("scroll", onScrollNearBottom);
+            };
+        }
 
         const onScroll = () => {
             const currentY = window.scrollY;
@@ -47,11 +67,11 @@ export default function StickyScrollButton() {
             window.removeEventListener("scroll", onScroll);
             if (hideTimer.current) clearTimeout(hideTimer.current);
         };
-    }, []);
+    }, [hideTrial]);
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
-        setShowScrollTop(false);
+        if (!hideTrial) setShowScrollTop(false);
     };
 
     return (
@@ -109,7 +129,7 @@ export default function StickyScrollButton() {
                             <polyline points="18 15 12 9 6 15" />
                         </svg>
                     </motion.button>
-                ) : (
+                ) : hideTrial ? null : (
                     <motion.div
                         key="start-trial"
                         initial={{ opacity: 0, scale: 0.92, y: 8 }}

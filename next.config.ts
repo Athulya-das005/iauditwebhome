@@ -30,6 +30,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/iso-audit-assessments/self-assessment/checklist",
+        destination: "/iso-14001-2026-self-assessment-tool/checklist",
+        permanent: true,
+      },
+      {
         source: "/author/matthew-chiweda",
         destination: "/author/mathew-chiweda",
         permanent: true,
