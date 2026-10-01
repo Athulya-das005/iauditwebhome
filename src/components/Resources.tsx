@@ -3,30 +3,20 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { blogHref, getAllPostsSorted } from "@/data/blog-posts";
 
-const resources = [
-    {
-        id: 1,
-        title: "Internal Audit Best Practices For Small Businesses",
-        date: "November 20, 2025",
-        image: "/images/blog-small-business.webp",
-        link: "/blog/internal-audit-best-practices-small-businesses"
-    },
-    {
-        id: 2,
-        title: "Empowering A Culture Of Continuous Improvement Through Audit",
-        date: "November 20, 2025",
-        image: "/images/blog-continuous-improvement.webp",
-        link: "/blog/empowering-culture-continuous-improvement"
-    },
-    {
-        id: 3,
-        title: "How To Train And Motivate Internal Auditors Without Burning Them Out",
-        date: "November 20, 2025",
-        image: "/images/blog-auditor-training.webp",
-        link: "/blog/train-motivate-internal-auditors"
-    }
-];
+const formatLongDate = (iso: string) =>
+    new Date(`${iso}T12:00:00`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+
+const resources = getAllPostsSorted()
+    .slice(0, 3)
+    .map((post, i) => ({
+        id: i + 1,
+        title: post.title,
+        date: formatLongDate(post.datePublished),
+        image: post.image,
+        link: blogHref(post.slug),
+    }));
 
 export default function Resources() {
     const [isMobile, setIsMobile] = useState(false);

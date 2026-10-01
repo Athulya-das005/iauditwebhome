@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Iso140012026InternalAuditChecklistBlogContent from "./Iso140012026InternalAuditChecklistBlogContent";
 
 const pageUrl = "https://www.iaudit.global/blog/iso-14001-2026-internal-audit-checklist";
-const ogImage =
-    "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1920&h=1080&fit=crop&q=90&fm=webp";
+const ogImage = "https://www.iaudit.global/images/blog/iso-14001-2026-internal-audit-checklist.jpg";
 const title = "ISO 14001:2026 Internal Audit Checklist: What to Check";
 const description =
     "Use this ISO 14001:2026 internal audit checklist to understand what auditors should check, what evidence to collect and how to identify findings.";

@@ -11,8 +11,7 @@ const CHECKLIST_URL = "https://www.iaudit.global/iso-14001-2026-self-assessment-
 const GAP_ANALYSIS_URL = "https://www.iaudit.global/blog/iso-14001-2026-gap-analysis";
 const CHANGES_URL = "https://www.iaudit.global/blog/what-has-changed-in-iso-14001-2026";
 
-const HERO_IMAGE =
-    "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1920&h=1080&fit=crop&q=90&fm=webp";
+const HERO_IMAGE = "/images/blog/iso-14001-2026-internal-audit-checklist.jpg";
 
 const unsplash = (id: string) => `https://images.unsplash.com/${id}?w=900&h=480&fit=crop&q=80&fm=webp`;
 
@@ -270,7 +269,7 @@ export default function Iso140012026InternalAuditChecklistBlogContent() {
                 >
                     <Image
                         src={HERO_IMAGE}
-                        alt="Wind turbines at sunset representing ISO 14001:2026 environmental management"
+                        alt="Auditor using an ISO 14001:2026 internal audit checklist on a tablet beside waste segregation bins and chemical drums"
                         fill
                         priority
                         sizes="100vw"

@@ -19,7 +19,7 @@ export const blogPosts: BlogPost[] = [
             "Use this ISO 14001:2026 internal audit checklist to understand what auditors should check, what evidence to collect and how to identify findings.",
         datePublished: "2026-10-01",
         readTime: "10 Min Read",
-        image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1200&h=675&fit=crop&q=85&fm=webp",
+        image: "/images/blog/iso-14001-2026-internal-audit-checklist.jpg",
         author: "Mathew Chiweda",
         categories: ["ISO 14001", "Internal Auditing"],
     },
