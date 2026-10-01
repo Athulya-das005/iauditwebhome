@@ -13,6 +13,17 @@ export type BlogPost = {
 /** Single source of truth for the /blog listing. Add new posts here when published. */
 export const blogPosts: BlogPost[] = [
     {
+        slug: "iso-14001-2026-internal-audit-checklist",
+        title: "ISO 14001:2026 Internal Audit Checklist: What to Check",
+        excerpt:
+            "Use this ISO 14001:2026 internal audit checklist to understand what auditors should check, what evidence to collect and how to identify findings.",
+        datePublished: "2026-10-01",
+        readTime: "10 Min Read",
+        image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1200&h=675&fit=crop&q=85&fm=webp",
+        author: "Mathew Chiweda",
+        categories: ["ISO 14001", "Internal Auditing"],
+    },
+    {
         slug: "iso-9001-2026-key-changes-transition",
         title: "ISO 9001:2026: Key Changes and Transition Guide",
         excerpt:
@@ -456,6 +467,7 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
                 id: "iso-internal-audits",
                 label: "ISO Internal Audits",
                 slugs: [
+                    "iso-14001-2026-internal-audit-checklist",
                     "empowering-culture-continuous-improvement",
                     "why-internal-audits-are-critical-in-manufacturing",
                     "remote-iso-internal-audits",
@@ -566,6 +578,7 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
                 id: "iso-14001-2026",
                 label: "ISO 14001:2026",
                 slugs: [
+                    "iso-14001-2026-internal-audit-checklist",
                     "iso-14001-2026-gap-analysis",
                     "what-has-changed-in-iso-14001-2026",
                     "iso-14001-2026-update",
@@ -575,7 +588,10 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
             {
                 id: "environmental-auditing",
                 label: "Environmental Auditing",
-                slugs: ["manage-environmental-permits-across-multiple-manufacturing-sites"],
+                slugs: [
+                    "iso-14001-2026-internal-audit-checklist",
+                    "manage-environmental-permits-across-multiple-manufacturing-sites",
+                ],
             },
             {
                 id: "environmental-compliance",
