@@ -56,11 +56,11 @@ const ABOUT_ITEMS = [
 ];
 
 const CLIENT_LOGOS = [
-    { src: "/images/clients/mobile/stannah.png", alt: "Stannah" },
-    { src: "/images/clients/mobile/fujitec.png", alt: "Fujitec" },
-    { src: "/images/clients/mobile/construct-lifts.png", alt: "Construct Lifts" },
-    { src: "/images/clients/mobile/peerless.png", alt: "Peerless Lift Services" },
-    { src: "/images/clients/mobile/adstone.png", alt: "Adstone Construction" },
+    { src: "/images/Cypher-Logos/Siemens%20logo.png", alt: "Siemens" },
+    { src: "/images/Cypher-Logos/Panasonic%20logo.png", alt: "Panasonic" },
+    { src: "/images/Cypher-Logos/Gea%20logo.png", alt: "GEA" },
+    { src: "/images/Cypher-Logos/Latvian%20Govt%20logo.png", alt: "Latvian Government" },
+    { src: "/images/Cypher-Logos/Sweethawk%20logo.png", alt: "SweetHawk" },
 ];
 
 type TextPart = string | { grey: string };

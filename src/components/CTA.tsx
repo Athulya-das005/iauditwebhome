@@ -16,6 +16,7 @@ interface CTAProps {
     secondaryButtonHref?: string;
     badges?: string[];
     hideTag?: boolean;
+    stackButtons?: boolean;
 }
 
 export default function CTA({
@@ -29,6 +30,7 @@ export default function CTA({
     secondaryButtonHref = "/contact",
     badges,
     hideTag = false,
+    stackButtons = false,
 }: CTAProps) {
     const [isMobile, setIsMobile] = useState(false);
 
@@ -142,10 +144,10 @@ export default function CTA({
                             style={{
                                 width: isMobile ? "100%" : "fit-content",
                                 display: "flex",
-                                flexDirection: isMobile ? "column" : "row",
+                                flexDirection: isMobile || stackButtons ? "column" : "row",
                                 gap: "0.75rem",
-                                marginBottom: isMobile ? "1.75rem" : "3rem",
-                                alignItems: isMobile ? "stretch" : "center",
+                                marginBottom: resolvedBadges.length === 0 ? 0 : isMobile ? "1.75rem" : "3rem",
+                                alignItems: isMobile ? "stretch" : stackButtons ? "flex-start" : "center",
                             }}
                         >
                             <Link
@@ -190,6 +192,7 @@ export default function CTA({
                             )}
                         </motion.div>
 
+                        {resolvedBadges.length > 0 && (
                         <motion.div
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
@@ -219,6 +222,7 @@ export default function CTA({
                             </div>
                             ))}
                         </motion.div>
+                        )}
                     </div>
 
                     {/* Right Mockup (High-Fidelity) */}

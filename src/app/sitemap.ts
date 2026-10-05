@@ -28,6 +28,7 @@ const STATIC_PAGES: StaticPage[] = [
     { path: "/standards/iso-14001-audit-management-software", changeFrequency: "monthly", priority: 0.9 },
     { path: "/standards/iso-45001-audit-management-software", changeFrequency: "monthly", priority: 0.9 },
     { path: "/iso-14001-2026", changeFrequency: "monthly", priority: 0.8 },
+    { path: "/iso-9001-2026-transition", changeFrequency: "monthly", priority: 0.8 },
 
     // Free tools
     { path: "/iso-14001-2026-self-assessment-tool", changeFrequency: "monthly", priority: 0.8 },
