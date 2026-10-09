@@ -38,22 +38,6 @@
     background: var(--t9-tint);
 }
 
-.t9-split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
-}
-
-.t9-split--sticky {
-    grid-template-columns: 5fr 7fr;
-}
-
-.t9-sticky {
-    position: sticky;
-    top: calc(var(--sticky-under-nav, 6rem) + 1rem);
-}
-
 /* ---------- Type ---------- */
 .t9-kicker {
     font-size: 0.95rem;
@@ -86,22 +70,10 @@
     color: var(--t9-ink);
 }
 
-.t9 .t9-subhead {
-    margin-top: 1.25rem;
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: 1.4;
-    color: var(--t9-green);
-}
-
 .t9-lead {
     font-size: 1.125rem;
     line-height: 1.65;
     color: var(--t9-body);
-}
-
-.t9 .t9-subhead + .t9-lead {
-    margin-top: 1rem;
 }
 
 .t9-text {
@@ -120,11 +92,6 @@
     font-weight: 500;
     font-variant-numeric: tabular-nums;
     color: var(--t9-green);
-}
-
-.t9-note {
-    font-size: 0.95rem;
-    color: var(--t9-muted);
 }
 
 /* ---------- Buttons ---------- */
@@ -361,11 +328,6 @@
     grid-template-columns: repeat(4, 1fr);
 }
 
-.t9-cols--3 {
-    grid-template-columns: repeat(3, 1fr);
-    margin-top: 4rem;
-}
-
 .t9-col {
     padding-top: 1.5rem;
     border-top: 1px solid var(--t9-line);
@@ -373,56 +335,6 @@
 
 .t9-col .t9-index {
     margin-bottom: 1.25rem;
-}
-
-/* ---------- Moving from 2015 ---------- */
-.t9-quote {
-    padding: 0.35rem 0 0.35rem 1.5rem;
-    border-left: 2px solid var(--t9-green);
-}
-
-.t9-quote small {
-    display: block;
-    font-size: 0.95rem;
-    color: var(--t9-muted);
-    margin-bottom: 0.5rem;
-}
-
-.t9-quote p {
-    font-size: clamp(1.4rem, 2.2vw, 1.75rem);
-    font-weight: 500;
-    line-height: 1.3;
-    letter-spacing: -0.02em;
-    color: var(--t9-ink);
-}
-
-.t9-flow {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    margin: 2.5rem 0 1.5rem !important;
-    border: 1px solid var(--t9-line);
-    border-radius: 12px;
-    background: #fff;
-    overflow: hidden;
-}
-
-.t9-flow li {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    padding: 1rem 1.1rem;
-    font-weight: 500;
-    color: var(--t9-ink);
-}
-
-.t9-flow li + li {
-    border-left: 1px solid var(--t9-line);
-}
-
-.t9-flow li span {
-    font-size: 0.8rem;
-    font-variant-numeric: tabular-nums;
-    color: var(--t9-green);
 }
 
 /* ---------- What has changed ---------- */
@@ -459,7 +371,8 @@
     align-items: center;
     margin-top: 4rem;
     padding: 2.25rem 2.5rem;
-    background: var(--t9-tint);
+    background: #fff;
+    border: 1px solid var(--t9-line);
     border-radius: 16px;
 }
 
@@ -503,103 +416,6 @@
 
 .t9-statement .t9-btn {
     flex: none;
-}
-
-/* ---------- Who should prepare ---------- */
-.t9-list {
-    border-top: 1px solid #d8e6dc;
-}
-
-.t9-list__item {
-    padding: 1.75rem 0;
-    border-bottom: 1px solid #d8e6dc;
-}
-
-.t9-list__item .t9-h3 {
-    font-size: 1.3rem;
-}
-
-/* ---------- Transition plan ---------- */
-.t9-plan {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem 2rem;
-    counter-reset: none;
-}
-
-.t9-plan__step {
-    position: relative;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--t9-line);
-}
-
-.t9-plan__step::before {
-    content: "";
-    position: absolute;
-    top: -1px;
-    left: 0;
-    width: 2.5rem;
-    height: 2px;
-    background: var(--t9-green);
-}
-
-.t9-plan__num {
-    display: block;
-    margin-bottom: 1rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--t9-green);
-}
-
-.t9-deadline {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 3rem;
-    align-items: center;
-    margin-top: 4.5rem;
-    padding: 2.25rem 2.5rem;
-    border-radius: 16px;
-    background: var(--t9-deep);
-    color: #fff;
-}
-
-.t9-deadline strong {
-    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
-    font-weight: 500;
-    letter-spacing: -0.025em;
-    color: var(--t9-green-soft);
-    white-space: nowrap;
-}
-
-.t9-deadline p {
-    max-width: 36rem;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.85);
-}
-
-/* ---------- Platform ---------- */
-.t9-head__aside .t9-lead + .t9-lead {
-    margin-top: -0.25rem;
-}
-
-.t9-shot {
-    padding: 0.6rem;
-    border: 1px solid var(--t9-line);
-    border-radius: 18px;
-    background: #fff;
-    box-shadow: 0 30px 60px -40px rgba(0, 62, 58, 0.35);
-}
-
-.t9-shot img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-}
-
-.t9-more {
-    margin-top: 3.5rem;
 }
 
 /* ---------- Three steps (dark) ---------- */
@@ -673,61 +489,11 @@
     margin-bottom: 2rem;
 }
 
-.t9-book__text .t9-note {
-    margin-top: 1rem;
-}
-
 .t9-calendly {
     border: 1px solid var(--t9-line);
     border-radius: 16px;
     background: #fff;
     overflow: hidden;
-}
-
-/* ---------- Trial ---------- */
-.t9-trial {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 5rem;
-    align-items: center;
-}
-
-.t9-trial .t9-lead {
-    margin-top: 1.25rem;
-    max-width: 34rem;
-}
-
-.t9-trial__cta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem 1.5rem;
-    margin-top: 2.25rem;
-}
-
-.t9-trial__list {
-    background: #fff;
-    border: 1px solid var(--t9-line);
-    border-radius: 16px;
-    padding: 0.5rem 1.75rem;
-}
-
-.t9-trial__list li {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    padding: 1.1rem 0;
-    font-weight: 500;
-    color: var(--t9-ink);
-}
-
-.t9-trial__list li + li {
-    border-top: 1px solid #f0f4f1;
-}
-
-.t9-trial__list svg {
-    flex: none;
-    color: var(--t9-green);
 }
 
 /* ---------- Responsive ---------- */
@@ -737,11 +503,8 @@
     }
 
     .t9-hero__grid,
-    .t9-split,
-    .t9-split--sticky,
     .t9-head,
-    .t9-book,
-    .t9-trial {
+    .t9-book {
         grid-template-columns: 1fr;
         gap: 2.5rem;
     }
@@ -759,17 +522,11 @@
         margin: 0;
     }
 
-    .t9-sticky,
     .t9-book__text {
         position: static;
     }
 
     .t9-cols--4 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .t9-cols--3,
-    .t9-plan {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -824,9 +581,7 @@
         padding: 1.25rem;
     }
 
-    .t9-cols--4,
-    .t9-cols--3,
-    .t9-plan {
+    .t9-cols--4 {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
@@ -841,21 +596,8 @@
         grid-column: auto;
     }
 
-    .t9-row .t9-h3,
-    .t9-list__item .t9-h3 {
+    .t9-row .t9-h3 {
         font-size: 1.15rem;
-    }
-
-    .t9-flow {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .t9-flow li:nth-child(3) {
-        border-left: none;
-    }
-
-    .t9-flow li:nth-child(n + 3) {
-        border-top: 1px solid var(--t9-line);
     }
 
     .t9-same {
@@ -864,12 +606,6 @@
 
     .t9-same__list {
         grid-template-columns: 1fr;
-    }
-
-    .t9-deadline {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-        padding: 1.75rem 1.5rem;
     }
 
     .t9-steps {
@@ -889,10 +625,6 @@
     .t9-steps__num {
         margin-bottom: 1.25rem;
         font-size: 2rem;
-    }
-
-    .t9-trial__list {
-        padding: 0.25rem 1.25rem;
     }
 }
 

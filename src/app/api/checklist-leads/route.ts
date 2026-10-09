@@ -109,7 +109,10 @@ export async function POST(request: Request) {
             publishedToGitHub: result.publishedToGitHub,
         });
     } catch (error) {
-        const message = error instanceof Error ? error.message : "Unable to save your details.";
-        return NextResponse.json({ error: message }, { status: 500 });
+        console.error("Checklist lead submission failed:", error);
+        return NextResponse.json(
+            { error: "Unable to submit right now. Please try again or reach out to us at info@iaudit.global." },
+            { status: 500 }
+        );
     }
 }

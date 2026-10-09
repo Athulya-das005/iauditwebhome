@@ -1,11 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
-import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import "./transition.css";
 
@@ -57,30 +55,13 @@ const changes = [
 
 const fundamentals = ["Customer focus", "The process approach", "Risk-based thinking", "Continual improvement"];
 
-const audiences = [
-    { title: "ISO 9001:2015 certified organisations", desc: "Review your existing QMS and identify the changes needed to transition to ISO 9001:2026." },
-    { title: "Quality and compliance teams", desc: "Understand the revised requirements and plan the internal audits, evidence reviews and corrective actions needed for transition." },
-    { title: "Internal auditors", desc: "Review your audit programmes, checklists and evidence requirements against the 2026 edition." },
-    { title: "Organisations preparing for certification", desc: "Build your quality management system around the current ISO 9001:2026 requirements." },
-    { title: "ISO consultants", desc: "Support clients with readiness assessments, gap analysis, internal audit preparation and transition planning." },
-];
-
 const planSteps = [
-    { title: "Understand the changes", desc: "Review ISO 9001:2026 and identify the changes that are relevant to your organisation." },
-    { title: "Assess your current QMS", desc: "Compare your existing quality management system with the revised requirements." },
-    { title: "Identify the gaps", desc: "Determine where processes, responsibilities, evidence or documented information need attention." },
-    { title: "Update your QMS", desc: "Make the necessary changes while looking for opportunities to simplify and improve how your QMS supports the business." },
-    { title: "Verify the changes", desc: "Use internal audits, performance evaluation and management review to check whether the changes are working as intended." },
-    { title: "Plan your transition", desc: "Work with your certification body to determine the appropriate timing and transition arrangements for your organisation." },
-];
-
-const platformFeatures = [
-    { title: "PDCA-driven audits", desc: "Plan, conduct, review and act on audit findings through a structured PDCA workflow." },
-    { title: "Gap analysis and assessments", desc: "Record findings against requirements and see where your QMS needs attention." },
-    { title: "Evidence capture", desc: "Capture notes, observations and supporting evidence during internal audits." },
-    { title: "Findings and corrective actions", desc: "Assign actions, monitor progress and verify corrective action effectiveness." },
-    { title: "Multi-site audit management", desc: "Maintain consistent audit processes across locations with central visibility." },
-    { title: "Multi-standard support", desc: "Manage ISO 9001, ISO 14001 and ISO 45001 audits within the same platform." },
+    { title: "Understand the changes" },
+    { title: "Assess your current QMS" },
+    { title: "Identify the gaps" },
+    { title: "Update your QMS" },
+    { title: "Verify the changes" },
+    { title: "Plan your transition" },
 ];
 
 const claritySteps = [
@@ -88,8 +69,6 @@ const claritySteps = [
     { title: "Share your current setup", desc: "If useful, share your current audit plan, QMS information or a recent audit report before the call." },
     { title: "Get clear next steps", desc: "Discuss the areas you should review and how you can approach your ISO 9001:2026 transition." },
 ];
-
-const trialFeatures = ["Gap Analysis", "Self Assessment", "Findings Dashboard", "Data Analytics Summary", "Report Download"];
 
 const num = (i: number) => String(i + 1).padStart(2, "0");
 
@@ -303,39 +282,8 @@ export default function Iso90012026TransitionContent() {
                     </div>
                 </section>
 
-                {/* Moving from 2015 to 2026 */}
-                <section className="t9-section t9-section--tint">
-                    <div className="t9-container t9-split">
-                        <Reveal>
-                            <h2 className="t9-h2">Moving from ISO 9001:2015 to ISO 9001:2026</h2>
-                            <h3 className="t9-subhead">You do not need to start your QMS from scratch</h3>
-                            <p className="t9-lead">
-                                ISO 9001:2026 builds on the established ISO 9001 framework. Existing organisations should build on what already works and make targeted changes where the revised requirements affect their quality management system.
-                            </p>
-                        </Reveal>
-
-                        <Reveal delay={0.08}>
-                            <blockquote className="t9-quote">
-                                <small>The practical question is:</small>
-                                <p>Where does your existing QMS need to change?</p>
-                            </blockquote>
-                            <ol className="t9-flow" aria-label="Review, identify, update, verify">
-                                {["Review", "Identify", "Update", "Verify"].map((w, i) => (
-                                    <li key={w}>
-                                        <span>{num(i)}</span>
-                                        {w}
-                                    </li>
-                                ))}
-                            </ol>
-                            <p className="t9-text">
-                                Review your current system, identify the gaps, make the necessary updates and verify the changes through your internal audit process.
-                            </p>
-                        </Reveal>
-                    </div>
-                </section>
-
                 {/* What has changed */}
-                <section className="t9-section">
+                <section className="t9-section t9-section--tint">
                     <div className="t9-container">
                         <SectionHead title="What has changed in ISO 9001:2026?">
                             <p className="t9-lead">
@@ -377,78 +325,6 @@ export default function Iso90012026TransitionContent() {
                     </div>
                 </section>
 
-                {/* Who should prepare */}
-                <section className="t9-section t9-section--tint">
-                    <div className="t9-container t9-split t9-split--sticky">
-                        <Reveal className="t9-sticky">
-                            <h2 className="t9-h2">Who should start preparing for ISO 9001:2026?</h2>
-                        </Reveal>
-                        <div className="t9-list">
-                            {audiences.map((a, i) => (
-                                <Reveal key={a.title} delay={i * 0.04} className="t9-list__item">
-                                    <h3 className="t9-h3">{a.title}</h3>
-                                    <p className="t9-text">{a.desc}</p>
-                                </Reveal>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Transition plan */}
-                <section className="t9-section">
-                    <div className="t9-container">
-                        <SectionHead title="A practical ISO 9001:2026 transition plan" />
-
-                        <div className="t9-plan">
-                            {planSteps.map((s, i) => (
-                                <Reveal key={s.title} delay={(i % 3) * 0.06} className="t9-plan__step">
-                                    <span className="t9-plan__num">Step {i + 1}</span>
-                                    <h3 className="t9-h3">{s.title}</h3>
-                                    <p className="t9-text">{s.desc}</p>
-                                </Reveal>
-                            ))}
-                        </div>
-
-                        <Reveal className="t9-deadline">
-                            <strong>30 September 2029</strong>
-                            <p>Organisations certified to ISO 9001:2015 have until 30 September 2029 to complete their transition to ISO 9001:2026.</p>
-                        </Reveal>
-                    </div>
-                </section>
-
-                {/* Platform */}
-                <section className="t9-section t9-section--tint">
-                    <div className="t9-container">
-                        <SectionHead title="Manage your ISO 9001:2026 transition in one place">
-                            <p className="t9-lead">Once you know what needs to change, you need a practical way to manage the work.</p>
-                            <p className="t9-lead">iAudit Global brings assessments, audits, evidence, findings and corrective actions together in one platform.</p>
-                        </SectionHead>
-
-                        <Reveal className="t9-shot">
-                            <Image
-                                src="/scrollstack/hero-dashboard-2.png"
-                                alt="iAudit Global dashboard showing finding distribution, audit status, self assessment scores and gap analysis scores"
-                                width={1876}
-                                height={1080}
-                                sizes="(max-width: 1240px) 100vw, 1200px"
-                            />
-                        </Reveal>
-
-                        <div className="t9-cols t9-cols--3">
-                            {platformFeatures.map((f, i) => (
-                                <Reveal key={f.title} delay={(i % 3) * 0.06} className="t9-col">
-                                    <h3 className="t9-h3">{f.title}</h3>
-                                    <p className="t9-text">{f.desc}</p>
-                                </Reveal>
-                            ))}
-                        </div>
-
-                        <Reveal className="t9-more">
-                            <OutlineButton href="/">Explore iAudit Global →</OutlineButton>
-                        </Reveal>
-                    </div>
-                </section>
-
                 {/* Three steps */}
                 <section className="t9-section t9-dark">
                     <div className="t9-container">
@@ -480,7 +356,6 @@ export default function Iso90012026TransitionContent() {
                                 Speak with a certified ISO auditor about the changes, the areas you may need to review and the next steps for your transition.
                             </p>
                             <PrimaryButton href={CALENDLY_URL}>Book your free consultation →</PrimaryButton>
-                            <p className="t9-note">No obligation. Just a practical conversation about your transition.</p>
                         </Reveal>
                         <Reveal delay={0.08} className="t9-calendly">
                             <div ref={calendlyRef} style={{ minWidth: "300px", height: "700px", width: "100%" }} />
@@ -488,45 +363,7 @@ export default function Iso90012026TransitionContent() {
                     </div>
                 </section>
 
-                {/* Trial */}
-                <section className="t9-section t9-section--tint">
-                    <div className="t9-container t9-trial">
-                        <Reveal>
-                            <h2 className="t9-h2">Prefer to explore the platform yourself?</h2>
-                            <h3 className="t9-subhead">Try iAudit Global free for 14 days</h3>
-                            <p className="t9-lead">
-                                Manage gap assessments, internal audits, evidence, findings and corrective actions in one platform.
-                            </p>
-                            <div className="t9-trial__cta">
-                                <PrimaryButton href={TRIAL_URL}>Start 14-day free trial →</PrimaryButton>
-                                <span className="t9-note">No credit card required.</span>
-                            </div>
-                        </Reveal>
-                        <Reveal delay={0.08}>
-                            <ul className="t9-trial__list">
-                                {trialFeatures.map((t) => (
-                                    <li key={t}>
-                                        <Tick size={13} />
-                                        {t}
-                                    </li>
-                                ))}
-                            </ul>
-                        </Reveal>
-                    </div>
-                </section>
-
             </div>
-            <CTA
-                hideTag
-                title="Ready to start your ISO 9001:2026 transition?"
-                description="Understand the changes. Review your QMS. Plan your next steps."
-                buttonText="Book your free ISO 9001:2026 transition consultation →"
-                buttonHref={CALENDLY_URL}
-                secondaryButtonText="Try iAudit Global free for 14 days →"
-                secondaryButtonHref={TRIAL_URL}
-                badges={[]}
-                stackButtons
-            />
             <Footer />
         </>
     );

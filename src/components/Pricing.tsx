@@ -71,7 +71,7 @@ export default function Pricing({ isPageHero = false }: { isPageHero?: boolean }
                 6: { USD: 18.90, GBP: 14.90 }
             },
             features: [
-                "All features of Starter",
+                "All features of Unos",
                 "Multi-site audits (2 ISO)",
                 "NC Dashboards",
                 "Priority Email Support",
@@ -89,7 +89,7 @@ export default function Pricing({ isPageHero = false }: { isPageHero?: boolean }
                 6: { USD: 21.10, GBP: 17.10 }
             },
             features: [
-                "AI features of Advanced",
+                "All features of Dos",
                 "Up to 10 sites (3 ISO)",
                 "Audit Performance Analytics",
                 "Custom Checklists",
