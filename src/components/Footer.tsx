@@ -2,10 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function Footer() {
+    const pathname = usePathname();
+    const isCyphers = pathname === "/cyphers";
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -276,16 +279,32 @@ export default function Footer() {
 
                     <div style={{ display: "flex", gap: "1.25rem", justifyContent: isMobile ? "center" : "flex-end" }}>
                         {socialLinks.map((social) => (
-                            <Link key={social.name} href={social.href} target="_blank" rel="noopener noreferrer"
-                                style={{
-                                    color: "rgba(0,0,0,0.6)",
-                                    transition: "color 0.2s ease"
-                                }}
-                                onMouseOver={(e: React.MouseEvent<HTMLAnchorElement>) => e.currentTarget.style.color = "#006644"}
-                                onMouseOut={(e: React.MouseEvent<HTMLAnchorElement>) => e.currentTarget.style.color = "rgba(0,0,0,0.6)"}
-                            >
-                                <social.icon width="20" height="20" />
-                            </Link>
+                            isCyphers ? (
+                                <span
+                                    key={social.name}
+                                    style={{
+                                        color: "rgba(0,0,0,0.6)",
+                                        display: "inline-flex",
+                                        alignItems: "center",
+                                        cursor: "default",
+                                    }}
+                                    aria-label={social.name}
+                                    title={social.name}
+                                >
+                                    <social.icon width="20" height="20" />
+                                </span>
+                            ) : (
+                                <Link key={social.name} href={social.href} target="_blank" rel="noopener noreferrer"
+                                    style={{
+                                        color: "rgba(0,0,0,0.6)",
+                                        transition: "color 0.2s ease"
+                                    }}
+                                    onMouseOver={(e: React.MouseEvent<HTMLAnchorElement>) => e.currentTarget.style.color = "#006644"}
+                                    onMouseOut={(e: React.MouseEvent<HTMLAnchorElement>) => e.currentTarget.style.color = "rgba(0,0,0,0.6)"}
+                                >
+                                    <social.icon width="20" height="20" />
+                                </Link>
+                            )
                         ))}
                     </div>
                 </div>

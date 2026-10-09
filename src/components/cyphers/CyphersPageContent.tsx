@@ -390,7 +390,7 @@ export default function CyphersPageContent() {
             <link rel="stylesheet" href={FONT_STYLESHEET} precedence="default" />
 
             {/* Hero */}
-            <section className="cy-hero">
+            <section className="cy-hero" id="overview">
                 <div className="cy-container cy-perspective">
                     <div className="cy-card">
                         <div className="cy-hero__visual">
@@ -496,7 +496,7 @@ export default function CyphersPageContent() {
             </section>
 
             {/* Built on Experience */}
-            <section className="cy-section">
+            <section className="cy-section" id="experience">
                 <div className="cy-container cy-partners">
                     <div className="cy-partners__intro">
                         <p className="cy-tag" data-cy-lines>
@@ -514,7 +514,7 @@ export default function CyphersPageContent() {
             </section>
 
             {/* Cyphers by iAudit */}
-            <section className="cy-section">
+            <section className="cy-section" id="about">
                 <div className="cy-container cy-perspective">
                     <div className="cy-card cy-about" data-cy-tilt>
                         <div className="cy-about__left">

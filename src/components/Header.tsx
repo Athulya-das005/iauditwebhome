@@ -232,6 +232,37 @@ export default function Header() {
     const isBlogPost = Boolean(pathname?.startsWith("/blog/") && pathname !== "/blog");
     // Hide while scrolling down, reveal on scroll up
     const hideNavOnScrollDown = pathname === "/cyphers";
+    const isCyphers = pathname === "/cyphers";
+
+    const cyphersNavLinks = [
+        { label: "Overview", href: "#overview" },
+        { label: "Services", href: "#services" },
+        { label: "Experience", href: "#experience" },
+        { label: "About", href: "#about" },
+    ];
+
+    const handleCyphersScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault();
+        setIsMenuOpen(false);
+        const targetId = href.replace("#", "");
+        if (targetId === "overview") {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            return;
+        }
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            const offset = 90;
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = targetElement.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth",
+            });
+        }
+    };
+
     const isHeaderVisible =
         !isBlogPost &&
         (isMenuOpen ||
@@ -262,132 +293,229 @@ export default function Header() {
             <div className="site-header-nav-inner">
                 {/* Left: Logo */}
                 <div className="site-header-brand" style={{ display: "flex", alignItems: "center", minWidth: 0, zIndex: 10 }}>
-                    <Link href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
-                        <Image
-                            src="/iaudit-logo-nav.png"
-                            alt="iAudit Global company logo"
-                            width={271}
-                            height={200}
-                            style={{
-                                height: isMobile ? "44px" : isCondensed ? "48px" : "52px",
-                                width: "auto",
-                                objectFit: "contain",
-                                display: "block",
-                                transition: "height 420ms cubic-bezier(0.22, 0.61, 0.36, 1)",
-                            }}
-                            priority
-                        />
-                    </Link>
+                    {isCyphers ? (
+                        <a
+                            href="#overview"
+                            onClick={(e) => handleCyphersScroll(e, "#overview")}
+                            style={{ display: "flex", alignItems: "center", flexShrink: 0, textDecoration: "none" }}
+                        >
+                            <Image
+                                src="/iaudit-logo-nav.png"
+                                alt="iAudit Global company logo"
+                                width={271}
+                                height={200}
+                                style={{
+                                    height: isMobile ? "44px" : isCondensed ? "48px" : "52px",
+                                    width: "auto",
+                                    objectFit: "contain",
+                                    display: "block",
+                                    transition: "height 420ms cubic-bezier(0.22, 0.61, 0.36, 1)",
+                                }}
+                                priority
+                            />
+                        </a>
+                    ) : (
+                        <Link href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
+                            <Image
+                                src="/iaudit-logo-nav.png"
+                                alt="iAudit Global company logo"
+                                width={271}
+                                height={200}
+                                style={{
+                                    height: isMobile ? "44px" : isCondensed ? "48px" : "52px",
+                                    width: "auto",
+                                    objectFit: "contain",
+                                    display: "block",
+                                    transition: "height 420ms cubic-bezier(0.22, 0.61, 0.36, 1)",
+                                }}
+                                priority
+                            />
+                        </Link>
+                    )}
                 </div>
 
                 {/* Center: Desktop Navigation */}
-                <nav
-                    className="hidden-mobile site-header-links"
-                    style={{
-                        display: "flex",
-                        gap: "1.35rem",
-                        alignItems: "center",
-                        zIndex: 10,
-                    }}
-                >
-                    {navItems.map((item) => {
-                        const isIso2026 = item.label === "ISO 14001:2026";
-                        return (
-                        <div
-                            key={item.label}
-                            onMouseEnter={() => openMegamenu(item.megamenu ? item.label : null)}
-                            style={{ position: "relative", padding: "1rem 0", flexShrink: 0 }}
-                        >
-                            <Link
+                {isCyphers ? (
+                    <nav
+                        className="hidden-mobile site-header-links"
+                        style={{
+                            display: "flex",
+                            gap: "2.2rem",
+                            alignItems: "center",
+                            zIndex: 10,
+                        }}
+                    >
+                        {cyphersNavLinks.map((item) => (
+                            <a
+                                key={item.label}
                                 href={item.href}
+                                onClick={(e) => handleCyphersScroll(e, item.href)}
                                 style={{
                                     fontWeight: 500,
-                                    fontSize: isIso2026 ? "0.875rem" : "0.9375rem",
-                                    color: hoveredItem === item.label ? "#058c42" : (isIso2026 ? "#03624c" : "#1f2937"),
+                                    fontSize: "0.9375rem",
+                                    color: "#1f2937",
                                     letterSpacing: "-0.01em",
                                     whiteSpace: "nowrap",
                                     transition: "color 0.2s ease",
                                     fontFamily: '"Pp Neue Montreal", sans-serif',
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: "5px",
+                                    textDecoration: "none",
+                                    padding: "0.5rem 0.25rem",
+                                    cursor: "pointer",
                                 }}
+                                onMouseEnter={(e) => (e.currentTarget.style.color = "#058c42")}
+                                onMouseLeave={(e) => (e.currentTarget.style.color = "#1f2937")}
                             >
                                 {item.label}
-                                {item.megamenu && (
-                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{
-                                        transition: "transform 0.3s",
-                                        transform: hoveredItem === item.label ? "rotate(180deg)" : "rotate(0deg)"
-                                    }}>
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
-                                )}
-                            </Link>
-                        </div>
-                        );
-                    })}
-                </nav>
+                            </a>
+                        ))}
+                    </nav>
+                ) : (
+                    <nav
+                        className="hidden-mobile site-header-links"
+                        style={{
+                            display: "flex",
+                            gap: "1.35rem",
+                            alignItems: "center",
+                            zIndex: 10,
+                        }}
+                    >
+                        {navItems.map((item) => {
+                            const isIso2026 = item.label === "ISO 14001:2026";
+                            return (
+                            <div
+                                key={item.label}
+                                onMouseEnter={() => openMegamenu(item.megamenu ? item.label : null)}
+                                style={{ position: "relative", padding: "1rem 0", flexShrink: 0 }}
+                            >
+                                <Link
+                                    href={item.href}
+                                    style={{
+                                        fontWeight: 500,
+                                        fontSize: isIso2026 ? "0.875rem" : "0.9375rem",
+                                        color: hoveredItem === item.label ? "#058c42" : (isIso2026 ? "#03624c" : "#1f2937"),
+                                        letterSpacing: "-0.01em",
+                                        whiteSpace: "nowrap",
+                                        transition: "color 0.2s ease",
+                                        fontFamily: '"Pp Neue Montreal", sans-serif',
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "5px",
+                                    }}
+                                >
+                                    {item.label}
+                                    {item.megamenu && (
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{
+                                            transition: "transform 0.3s",
+                                            transform: hoveredItem === item.label ? "rotate(180deg)" : "rotate(0deg)"
+                                        }}>
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    )}
+                                </Link>
+                            </div>
+                            );
+                        })}
+                    </nav>
+                )}
 
                 {/* Right Actions (Desktop) */}
-                <div
-                    className="hidden-mobile site-header-actions"
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.75rem",
-                        zIndex: 10,
-                    }}
-                >
-                    <Link
-                        href="https://apps.iaudit.global/login"
-                        className="btn-animate btn-animate-pill"
+                {isCyphers ? (
+                    <div
+                        className="hidden-mobile site-header-actions"
                         style={{
-                            padding: "0.55rem 1.2rem",
-                            borderRadius: "9999px",
-                            fontWeight: 500,
-                            fontSize: "0.88rem",
-                            fontFamily: '"Pp Neue Montreal", sans-serif',
-                            letterSpacing: "0.01em",
-                            backgroundColor: "#058c42",
-                            border: "none",
-                            boxShadow: "none",
-                            isolation: "isolate",
-                            transform: "translateZ(0)",
+                            display: "flex",
+                            alignItems: "center",
+                            zIndex: 10,
                         }}
                     >
-                        <span>Login</span>
-                    </Link>
-                    <Link
-                        href="https://apps.iaudit.global"
-                        ref={buttonRef}
-                        className="btn-animate btn-animate-pill"
+                        <a
+                            href="#contact"
+                            onClick={(e) => handleCyphersScroll(e, "#contact")}
+                            className="btn-animate btn-animate-pill"
+                            style={{
+                                padding: "0.58rem 1.65rem",
+                                borderRadius: "9999px",
+                                fontWeight: 500,
+                                fontSize: "0.88rem",
+                                fontFamily: '"Pp Neue Montreal", sans-serif',
+                                letterSpacing: "0.01em",
+                                backgroundColor: "#058c42",
+                                color: "#ffffff",
+                                textDecoration: "none",
+                                border: "none",
+                                boxShadow: "none",
+                                isolation: "isolate",
+                                transform: "translateZ(0)",
+                                display: "inline-flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                cursor: "pointer",
+                            }}
+                        >
+                            <span>Contact</span>
+                        </a>
+                    </div>
+                ) : (
+                    <div
+                        className="hidden-mobile site-header-actions"
                         style={{
-                            gap: "0.4rem",
-                            padding: "0.55rem 1.35rem",
-                            borderRadius: "9999px",
-                            fontWeight: 500,
-                            fontSize: "0.88rem",
-                            fontFamily: '"Pp Neue Montreal", sans-serif',
-                            letterSpacing: "0.01em",
-                            willChange: "transform",
-                            backgroundColor: "#058c42",
-                            border: "none",
-                            boxShadow: "none",
-                            isolation: "isolate",
-                            transform: "translateZ(0)",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.75rem",
+                            zIndex: 10,
                         }}
                     >
-                        <span>
-                            Get started free
-                            <span ref={arrowRef} style={{ display: "inline-flex", alignItems: "center" }}>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <line x1="7" y1="17" x2="17" y2="7" />
-                                    <polyline points="7 7 17 7 17 17" />
-                                </svg>
+                        <Link
+                            href="https://apps.iaudit.global/login"
+                            className="btn-animate btn-animate-pill"
+                            style={{
+                                padding: "0.55rem 1.2rem",
+                                borderRadius: "9999px",
+                                fontWeight: 500,
+                                fontSize: "0.88rem",
+                                fontFamily: '"Pp Neue Montreal", sans-serif',
+                                letterSpacing: "0.01em",
+                                backgroundColor: "#058c42",
+                                border: "none",
+                                boxShadow: "none",
+                                isolation: "isolate",
+                                transform: "translateZ(0)",
+                            }}
+                        >
+                            <span>Login</span>
+                        </Link>
+                        <Link
+                            href="https://apps.iaudit.global"
+                            ref={buttonRef}
+                            className="btn-animate btn-animate-pill"
+                            style={{
+                                gap: "0.4rem",
+                                padding: "0.55rem 1.35rem",
+                                borderRadius: "9999px",
+                                fontWeight: 500,
+                                fontSize: "0.88rem",
+                                fontFamily: '"Pp Neue Montreal", sans-serif',
+                                letterSpacing: "0.01em",
+                                willChange: "transform",
+                                backgroundColor: "#058c42",
+                                border: "none",
+                                boxShadow: "none",
+                                isolation: "isolate",
+                                transform: "translateZ(0)",
+                            }}
+                        >
+                            <span>
+                                Get started free
+                                <span ref={arrowRef} style={{ display: "inline-flex", alignItems: "center" }}>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <line x1="7" y1="17" x2="17" y2="7" />
+                                        <polyline points="7 7 17 7 17 17" />
+                                    </svg>
+                                </span>
                             </span>
-                        </span>
-                    </Link>
-                </div>
+                        </Link>
+                    </div>
+                )}
 
                 {/* Mobile Menu Toggle */}
                 <button
@@ -430,7 +558,7 @@ export default function Header() {
 
             {/* Desktop Megamenu Popup */}
             <AnimatePresence>
-                {hoveredItem && navItems.find(n => n.label === hoveredItem)?.megamenu && (() => {
+                {!isCyphers && hoveredItem && navItems.find(n => n.label === hoveredItem)?.megamenu && (() => {
                     const activeMegamenu = navItems.find(n => n.label === hoveredItem)?.megamenu ?? [];
                     const isIndustriesMenu = hoveredItem === "Industries & Solutions";
                     const columnCount = Math.min(activeMegamenu.length, 4);
@@ -633,19 +761,38 @@ export default function Header() {
                                           borderBottom: "1px solid #f1f5f9",
                                       }}
                                   >
-                                      <Link
-                                          href="/"
-                                          onClick={() => setIsMenuOpen(false)}
-                                          style={{ display: "flex", alignItems: "center", flexShrink: 0 }}
-                                      >
-                                          <Image
-                                              src="/iaudit-logo-nav.png"
-                                              alt="iAudit Global"
-                                              width={180}
-                                              height={133}
-                                              style={{ height: "40px", width: "auto", objectFit: "contain", display: "block" }}
-                                          />
-                                      </Link>
+                                      {isCyphers ? (
+                                          <a
+                                              href="#overview"
+                                              onClick={(e) => {
+                                                  handleCyphersScroll(e, "#overview");
+                                                  setIsMenuOpen(false);
+                                              }}
+                                              style={{ display: "flex", alignItems: "center", flexShrink: 0 }}
+                                          >
+                                              <Image
+                                                  src="/iaudit-logo-nav.png"
+                                                  alt="iAudit Global"
+                                                  width={180}
+                                                  height={133}
+                                                  style={{ height: "40px", width: "auto", objectFit: "contain", display: "block" }}
+                                              />
+                                          </a>
+                                      ) : (
+                                          <Link
+                                              href="/"
+                                              onClick={() => setIsMenuOpen(false)}
+                                              style={{ display: "flex", alignItems: "center", flexShrink: 0 }}
+                                          >
+                                              <Image
+                                                  src="/iaudit-logo-nav.png"
+                                                  alt="iAudit Global"
+                                                  width={180}
+                                                  height={133}
+                                                  style={{ height: "40px", width: "auto", objectFit: "contain", display: "block" }}
+                                              />
+                                          </Link>
+                                      )}
                                       <button
                                           type="button"
                                           onClick={() => setIsMenuOpen(false)}
@@ -684,7 +831,40 @@ export default function Header() {
                                           justifyContent: "flex-start",
                                       }}
                                   >
-                                      {navItems.map((item, index) => (
+                                      {isCyphers ? (
+                                          cyphersNavLinks.map((item, index) => (
+                                              <motion.div
+                                                  key={item.label}
+                                                  initial={{ opacity: 0, y: 10 }}
+                                                  animate={{ opacity: 1, y: 0 }}
+                                                  transition={{ delay: 0.04 + index * 0.04 }}
+                                                  style={{ borderBottom: "1px solid #f1f5f9" }}
+                                              >
+                                                  <a
+                                                      href={item.href}
+                                                      onClick={(e) => {
+                                                          handleCyphersScroll(e, item.href);
+                                                          setIsMenuOpen(false);
+                                                      }}
+                                                      style={{
+                                                          fontSize: "1.15rem",
+                                                          fontWeight: 600,
+                                                          color: "#111827",
+                                                          display: "flex",
+                                                          alignItems: "center",
+                                                          justifyContent: "space-between",
+                                                          padding: "1.05rem 0",
+                                                          cursor: "pointer",
+                                                          minHeight: "52px",
+                                                          textDecoration: "none",
+                                                      }}
+                                                  >
+                                                      <span>{item.label}</span>
+                                                  </a>
+                                              </motion.div>
+                                          ))
+                                      ) : (
+                                          navItems.map((item, index) => (
                                           <motion.div
                                               key={item.label}
                                               initial={{ opacity: 0, y: 10 }}
@@ -823,7 +1003,8 @@ export default function Header() {
                                                   )}
                                               </AnimatePresence>
                                           </motion.div>
-                                      ))}
+                                      ))
+                                      )}
                                   </div>
 
                                   {/* Bottom CTAs — pinned to viewport bottom */}
@@ -836,46 +1017,75 @@ export default function Header() {
                                           borderTop: "1px solid #f1f5f9",
                                       }}
                                   >
-                                      <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
-                                          <Link
-                                              href="https://apps.iaudit.global/login"
-                                              onClick={() => setIsMenuOpen(false)}
-                                              style={{
-                                                  width: "100%",
-                                                  padding: "0.9rem 1rem",
-                                                  borderRadius: "10px",
-                                                  fontSize: "1rem",
-                                                  fontWeight: 600,
-                                                  textAlign: "center",
-                                                  textDecoration: "none",
-                                                  color: "#111827",
-                                                  backgroundColor: "#fff",
-                                                  border: "1px solid #e5e7eb",
-                                                  boxSizing: "border-box",
-                                              }}
-                                          >
-                                              Log in
-                                          </Link>
-                                          <Link
-                                              href="https://apps.iaudit.global"
-                                              onClick={() => setIsMenuOpen(false)}
-                                              className="btn-animate"
-                                              style={{
-                                                  width: "100%",
-                                                  padding: "0.9rem 1rem",
-                                                  borderRadius: "10px",
-                                                  fontSize: "1rem",
-                                                  fontWeight: 600,
-                                                  textAlign: "center",
-                                                  justifyContent: "center",
-                                                  display: "flex",
-                                                  boxSizing: "border-box",
-                                                  textDecoration: "none",
-                                              }}
-                                          >
-                                              <span>Sign up for free</span>
-                                          </Link>
-                                      </div>
+                                      {isCyphers ? (
+                                          <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
+                                              <a
+                                                  href="#contact"
+                                                  onClick={(e) => {
+                                                      handleCyphersScroll(e, "#contact");
+                                                      setIsMenuOpen(false);
+                                                  }}
+                                                  className="btn-animate"
+                                                  style={{
+                                                      width: "100%",
+                                                      padding: "0.9rem 1rem",
+                                                      borderRadius: "10px",
+                                                      fontSize: "1rem",
+                                                      fontWeight: 600,
+                                                      textAlign: "center",
+                                                      justifyContent: "center",
+                                                      display: "flex",
+                                                      boxSizing: "border-box",
+                                                      textDecoration: "none",
+                                                      backgroundColor: "#16a34a",
+                                                      color: "#ffffff",
+                                                  }}
+                                              >
+                                                  <span>Contact</span>
+                                              </a>
+                                          </div>
+                                      ) : (
+                                          <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
+                                              <Link
+                                                  href="https://apps.iaudit.global/login"
+                                                  onClick={() => setIsMenuOpen(false)}
+                                                  style={{
+                                                      width: "100%",
+                                                      padding: "0.9rem 1rem",
+                                                      borderRadius: "10px",
+                                                      fontSize: "1rem",
+                                                      fontWeight: 600,
+                                                      textAlign: "center",
+                                                      textDecoration: "none",
+                                                      color: "#111827",
+                                                      backgroundColor: "#fff",
+                                                      border: "1px solid #e5e7eb",
+                                                      boxSizing: "border-box",
+                                                  }}
+                                              >
+                                                  Log in
+                                              </Link>
+                                              <Link
+                                                  href="https://apps.iaudit.global"
+                                                  onClick={() => setIsMenuOpen(false)}
+                                                  className="btn-animate"
+                                                  style={{
+                                                      width: "100%",
+                                                      padding: "0.9rem 1rem",
+                                                      borderRadius: "10px",
+                                                      fontSize: "1rem",
+                                                      fontWeight: 600,
+                                                      textAlign: "center",
+                                                      justifyContent: "center",
+                                                      display: "flex",
+                                                      boxSizing: "border-box",
+                                                      textDecoration: "none",
+                                                  }}
+                                              >
+                                                  <span>Sign up for free</span>
+                                              </Link>
+                                          </div>
+                                      )}
                                   </div>
                               </motion.div>
                           )}
