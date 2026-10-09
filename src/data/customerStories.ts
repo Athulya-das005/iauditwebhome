@@ -83,7 +83,7 @@ export const customerStoryCards: CustomerStoryCard[] = [
         company: "Grandview Hotels & Resorts",
         industry: "Hospitality",
         standards: ["ISO 14001", "ISO 9001"],
-        image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&h=900&fit=crop&q=85&fm=webp",
+        image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1200&h=900&fit=crop&q=85&fm=webp",
         href: "/case-studies/grandview-hotels",
         metric: "40%",
         statDescription: "REDUCTION IN REPEAT NONCONFORMITIES",
