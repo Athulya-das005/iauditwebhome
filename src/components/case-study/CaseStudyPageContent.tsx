@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 import CaseStudyAuditAnimation from "@/components/case-study/CaseStudyAuditAnimation";
-import { apexCaseStudy, moreCaseStudies } from "@/data/caseStudies";
+import { apexCaseStudy, moreCaseStudies, type CaseStudyData } from "@/data/caseStudies";
 import { PP_NEUE_MONTREAL, aboutType } from "@/constants/typography";
 
 const ACCENT = "#006644";
@@ -219,8 +219,7 @@ function SidebarPromoCard({
     );
 }
 
-function KeyResultsBlock({ compact = false }: { compact?: boolean }) {
-    const data = apexCaseStudy;
+function KeyResultsBlock({ data, compact = false }: { data: CaseStudyData; compact?: boolean }) {
     return (
         <div style={{ marginBottom: compact ? 0 : "0" }}>
             <h2 style={{ fontSize: compact ? "1.05rem" : "1.15rem", fontWeight: 600, margin: "0 0 1.25rem", color: "#111827", fontFamily: PP_NEUE_MONTREAL }}>
@@ -242,12 +241,11 @@ function KeyResultsBlock({ compact = false }: { compact?: boolean }) {
     );
 }
 
-export default function CaseStudyPageContent() {
+export default function CaseStudyPageContent({ data = apexCaseStudy }: { data?: CaseStudyData }) {
     const [isMobile, setIsMobile] = useState(false);
     const [isTablet, setIsTablet] = useState(false);
     const [activeSection, setActiveSection] = useState("challenge");
     const [tocOpen, setTocOpen] = useState(false);
-    const data = apexCaseStudy;
 
     useEffect(() => {
         const check = () => {
@@ -518,7 +516,7 @@ export default function CaseStudyPageContent() {
                     {/* LEFT: Contents + Key Results + promo — sticky */}
                     {!isMobile && (
                         <aside style={{ position: "sticky", top: stickySidebarTop, alignSelf: "start", display: "flex", flexDirection: "column", gap: "2rem" }}>
-                            <KeyResultsBlock />
+                            <KeyResultsBlock data={data} />
                             <SidebarPromoCard activeSection={activeSection} onNavigate={scrollTo} />
                         </aside>
                     )}
@@ -527,7 +525,7 @@ export default function CaseStudyPageContent() {
                     <article>
                         <CaseStudyAuditAnimation />
                         <p style={{ margin: "1.25rem 0 0", fontSize: "0.92rem", lineHeight: 1.7, color: "#6b7280", fontStyle: "italic", fontFamily: PP_NEUE_MONTREAL }}>
-                            Apex Engineering unified ISO 9001 and ISO 14001 audits across three production sites with iAudit Global — protecting audit history, accelerating reporting, and giving leadership real-time visibility of corrective actions.
+                            {data.summaryParagraph || `${data.company.name} unified their audits with iAudit Global.`}
                         </p>
 
                         <div id="challenge" style={{ scrollMarginTop: stickySidebarTop, marginTop: "2.5rem" }}>
@@ -548,7 +546,7 @@ export default function CaseStudyPageContent() {
                                 ))}
                             </div>
                             <BlockQuote {...data.challenge.quote} />
-                            <SectionImage src={data.challenge.image} alt="Manufacturing facility audit challenge" />
+                            <SectionImage src={data.challenge.image} alt={`${data.company.name} audit challenge`} />
                         </div>
 
                         <div id="solution" style={{ scrollMarginTop: stickySidebarTop, marginTop: "2.5rem" }}>
@@ -569,7 +567,7 @@ export default function CaseStudyPageContent() {
                                     </div>
                                 ))}
                             </div>
-                            <SectionImage src={data.solution.image} alt="Unified audit platform across manufacturing sites" />
+                            <SectionImage src={data.solution.image} alt={`Unified audit platform at ${data.company.name}`} />
                         </div>
 
                         <div id="results" style={{ scrollMarginTop: stickySidebarTop, marginTop: "2.5rem" }}>
@@ -595,7 +593,7 @@ export default function CaseStudyPageContent() {
                     {isMobile && (
                         <aside>
                             <div style={{ marginBottom: "1.75rem", background: "#fff", borderRadius: "16px", padding: "1.5rem", border: "1px solid #e8e4df" }}>
-                                <KeyResultsBlock compact />
+                                <KeyResultsBlock data={data} compact />
                             </div>
                             <SidebarPromoCard activeSection={activeSection} onNavigate={scrollTo} />
                         </aside>
@@ -650,7 +648,10 @@ export default function CaseStudyPageContent() {
                             gap: "1.25rem",
                         }}
                     >
-                        {moreCaseStudies.map((card, index) => (
+                        {moreCaseStudies
+                            .filter((card) => card.slug !== data.slug)
+                            .slice(0, 3)
+                            .map((card, index) => (
                             <motion.article
                                 key={card.slug}
                                 initial={{ opacity: 0, y: 20 }}
@@ -690,7 +691,7 @@ export default function CaseStudyPageContent() {
                                         {card.excerpt}
                                     </p>
                                     <Link
-                                        href="/case-studies"
+                                        href={card.href || `/case-studies/${card.slug}`}
                                         style={{
                                             display: "inline-flex",
                                             alignItems: "center",

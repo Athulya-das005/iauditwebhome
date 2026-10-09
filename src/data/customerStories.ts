@@ -69,6 +69,7 @@ export const customerStoryCards: CustomerStoryCard[] = [
         industry: "Infrastructure",
         standards: ["ISO 45001", "ISO 9001"],
         image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&h=900&fit=crop&q=85&fm=webp",
+        href: "/case-studies/meridian-infrastructure",
         metric: "70%",
         statDescription: "FASTER REPORT GENERATION",
         title: "How Meridian Infrastructure unified safety audits across 12 project sites",

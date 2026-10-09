@@ -9,10 +9,51 @@ export type CaseStudyCard = {
     excerpt: string;
     image: string;
     logoText: string;
+    href?: string;
 };
 
-export const apexCaseStudy = {
-    slug: "apex-engineering-fabrication",
+export type CaseStudyData = {
+    slug: string;
+    breadcrumb: string;
+    title: string;
+    insightsFrom: {
+        name: string;
+        role: string;
+        avatar: string;
+    };
+    useCases: string[];
+    departments: string[];
+    company: {
+        name: string;
+        logoText: string;
+        description: string;
+        tags: string[];
+    };
+    keyResults: CaseStudyMetric[];
+    summaryParagraph?: string;
+    challenge: {
+        heading: string;
+        intro: string;
+        points: { num: string; title: string; text: string }[];
+        quote: { text: string; author: string; role: string };
+        image: string;
+    };
+    solution: {
+        heading: string;
+        intro: string;
+        highlights: { num: string; title: string; text: string }[];
+        image: string;
+    };
+    results: {
+        heading: string;
+        intro: string;
+        points: { num: string; title: string; text: string }[];
+        quote: { text: string; author: string; role: string };
+    };
+};
+
+export const apexCaseStudy: CaseStudyData = {
+    slug: "apex-engineering",
     breadcrumb: "Apex Engineering & Fabrication",
     title: "How iAudit helped Apex Engineering secure 100% audit history continuity across three sites",
     insightsFrom: {
@@ -22,6 +63,8 @@ export const apexCaseStudy = {
     },
     useCases: ["ISO 9001 & 14001 Internal Audits"],
     departments: ["Operations & Quality Assurance"],
+    summaryParagraph:
+        "Apex Engineering unified ISO 9001 and ISO 14001 audits across three production sites with iAudit Global — protecting audit history, accelerating reporting, and giving leadership real-time visibility of corrective actions.",
     company: {
         name: "Apex Engineering & Fabrication",
         logoText: "apex",
@@ -110,26 +153,142 @@ David's team utilised Audit Mate, the built-in AI assistant, to generate 12 clau
     },
 };
 
+export const meridianCaseStudy: CaseStudyData = {
+    slug: "meridian-infrastructure",
+    breadcrumb: "Meridian Infrastructure",
+    title: "Meridian Infrastructure: 70 per cent faster safety report generation across 12 project sites",
+    insightsFrom: {
+        name: "Marcus Vance",
+        role: "Head of Health & Safety",
+        avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&q=80&fm=webp",
+    },
+    useCases: ["ISO 45001 Safety Audits", "Mobile Evidence Capture"],
+    departments: ["Health, Safety & Environment (HSE)", "Site Operations"],
+    company: {
+        name: "Meridian Infrastructure",
+        logoText: "meridian",
+        description:
+            "Meridian Infrastructure is a main contractor managing 12 active project sites. Specialising in civil engineering and commercial construction, they required a centralised digital system to standardise ISO 45001 safety audits, eliminate paper logs, and protect their workforce with real-time risk visibility.",
+        tags: ["Main Contractor: 12 Sites", "Civil & Construction", "United Kingdom"],
+    },
+    keyResults: [
+        { value: "12 Sites", label: "unified under one safety programme" },
+        { value: "70%", label: "reduction in report generation time" },
+        { value: "55%", label: "faster closure of safety non-conformities" },
+        { value: "0", label: "manual spreadsheets required for safety tracking" },
+    ],
+    summaryParagraph:
+        "Meridian Infrastructure is a main contractor managing 12 active sites. Like many firms in the construction sector, they struggled to maintain a consistent safety audit programme while relying on manual spreadsheets and paper records. This case study demonstrates how moving to a digital platform unified their safety oversight and removed the administrative reporting bottleneck.",
+    challenge: {
+        heading: "The Challenge: Fragmented Safety Data and Slow Feedback Loops Across 12 Project Sites",
+        intro: `Before adopting iAudit Global, Meridian relied on site managers capturing safety observations on paper and emailing photos separately to the central office. This led to several operational bottlenecks that compromised site safety and compliance tracking:`,
+        points: [
+            {
+                num: "01",
+                title: "Reporting Bottlenecks",
+                text: "Safety managers spent approximately five hours writing a single report after a two hour site audit.",
+            },
+            {
+                num: "02",
+                title: "Lack of Visibility",
+                text: "The head of safety could not see real time trends across all 12 sites, making it difficult to spot recurring hazards early.",
+            },
+            {
+                num: "03",
+                title: "Delayed Actions",
+                text: "High risk findings often sat in email inboxes for days before being assigned as corrective actions.",
+            },
+            {
+                num: "04",
+                title: "Inconsistent Evidence",
+                text: "Photo evidence was often poor quality and not linked to specific safety controls.",
+            },
+        ],
+        quote: {
+            text: "We were spending more time consolidating spreadsheets and chasing photos than actually managing safety risks on site. Chasing paper logs across 12 projects was unsustainable.",
+            author: "Marcus Vance",
+            role: "Head of Health & Safety",
+        },
+        image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&h=640&fit=crop&q=80&fm=webp",
+    },
+    solution: {
+        heading: "The Solution: Centralised ISO 45001 Safety Audits with Mobile Evidence Capture",
+        intro: `Meridian replaced their manual logs with iAudit Global. They focused on three areas of the PDCA cycle to improve their results across all 12 active construction sites:`,
+        highlights: [
+            {
+                num: "01",
+                title: "Mobile Site Audits",
+                text: "Auditors stopped using clipboards. They used the iAudit mobile app to conduct safety walks. This allowed them to capture photos of site conditions and link them directly to ISO 45001 safety controls in real time.",
+            },
+            {
+                num: "02",
+                title: "Automated Report Generation",
+                text: "The manual process of re-typing notes and formatting documents was removed. iAudit generated professional safety reports the moment the auditor finished the site walk.",
+            },
+            {
+                num: "03",
+                title: "Closed Loop Accountability",
+                text: "Non-conformities were assigned to site supervisors immediately. The central safety team tracked the progress of every finding across all 12 sites from a single dashboard.",
+            },
+        ],
+        image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&h=640&fit=crop&q=85&fm=webp",
+    },
+    results: {
+        heading: "The Results: 70 Per Cent Reduction in Administrative Time and Proactive Project Control",
+        intro: `By digitalising their safety audits, Meridian Infrastructure moved from reactive reporting to proactive project control across their entire project portfolio:`,
+        points: [
+            {
+                num: "01",
+                title: "70 per cent faster reporting",
+                text: "The time taken to produce a final audit report dropped from five hours to less than 45 minutes.",
+            },
+            {
+                num: "02",
+                title: "100 per cent audit visibility",
+                text: "The leadership team gained a real time view of safety performance across every active site.",
+            },
+            {
+                num: "03",
+                title: "Faster risk mitigation",
+                text: "The time taken to close out high risk safety findings improved by 55 per cent.",
+            },
+            {
+                num: "04",
+                title: "Audit consistency",
+                text: "All 12 sites now follow the same structured safety checklists.",
+            },
+        ],
+        quote: {
+            text: "iAudit Global removed the paperwork barrier. We no longer spend days writing reports. We spend our time on site where the safety risks actually are. The 70 per cent time saving on admin has allowed our safety team to be 100 per cent more present on our projects.",
+            author: "Marcus Vance",
+            role: "Head of Health & Safety, Meridian Infrastructure",
+        },
+    },
+};
+
 export const moreCaseStudies: CaseStudyCard[] = [
     {
-        slug: "apex-engineering-fabrication",
+        slug: "apex-engineering",
         title: "How iAudit helped Apex Engineering secure 100% audit history continuity across three sites",
         excerpt: "Learn how a multi-site manufacturer replaced spreadsheets with a unified ISO audit trail.",
         image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=500&fit=crop&q=80&fm=webp",
         logoText: "APEX",
+        href: "/case-studies/apex-engineering",
     },
     {
-        slug: "stannah-lifts-compliance",
-        title: "How Stannah standardised ISO 9001 audits across global service teams",
-        excerpt: "See how structured checklists improved consistency across field and factory operations.",
-        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&h=500&fit=crop&q=80&fm=webp",
-        logoText: "Stannah",
+        slug: "meridian-infrastructure",
+        title: "Meridian Infrastructure: 70% faster safety report generation across 12 project sites",
+        excerpt: "Discover how a main contractor unified ISO 45001 safety audits and eliminated spreadsheets.",
+        image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=500&fit=crop&q=80&fm=webp",
+        logoText: "MERIDIAN",
+        href: "/case-studies/meridian-infrastructure",
     },
     {
-        slug: "construct-lifts-safety",
-        title: "How Construct Lifts cut corrective action closure time by 40%",
-        excerpt: "Discover how real-time NCR tracking transformed their ISO 45001 programme.",
-        image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=500&fit=crop&q=80&fm=webp",
-        logoText: "Construct",
+        slug: "grandview-hotels",
+        title: "How Grandview Hotels standardised brand and environmental audits across 15 properties",
+        excerpt: "See how this hospitality group unified housekeeping inspections and ISO 14001 waste tracking.",
+        image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=500&fit=crop&q=80&fm=webp",
+        logoText: "GRANDVIEW",
+        href: "/case-studies",
     },
 ];

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CaseStudyPageContent from "@/components/case-study/CaseStudyPageContent";
+import { apexCaseStudy } from "@/data/caseStudies";
 
 const pageUrl = "https://www.iaudit.global/case-studies/apex-engineering";
 
@@ -21,5 +22,6 @@ export const metadata: Metadata = {
 };
 
 export default function ApexEngineeringCaseStudyPage() {
-    return <CaseStudyPageContent />;
+    return <CaseStudyPageContent data={apexCaseStudy} />;
 }
+
