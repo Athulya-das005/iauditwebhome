@@ -115,6 +115,7 @@ export const customerStoryCards: CustomerStoryCard[] = [
         industry: "Engineering",
         standards: ["ISO 45001", "ISO 9001"],
         image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&h=900&fit=crop&q=85&fm=webp",
+        href: "/case-studies/buildcore",
         metric: "5x",
         statDescription: "FASTER SITE INSPECTION REPORTING",
         title: "How BuildCore moved from paper site walks to real-time digital evidence capture",

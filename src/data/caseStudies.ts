@@ -492,6 +492,119 @@ export const urbanRetailCaseStudy: CaseStudyData = {
     },
 };
 
+export const buildCoreCaseStudy: CaseStudyData = {
+    slug: "buildcore",
+    breadcrumb: "BuildCore Civil Engineering",
+    title: "BuildCore Civil Engineering: 5x faster site inspection reporting with real time evidence capture",
+    insightsFrom: {
+        name: "Operations Manager",
+        role: "Operations Manager",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&q=80&fm=webp",
+    },
+    useCases: ["Site Safety & Quality Inspections", "Civil Infrastructure Oversight"],
+    departments: ["Operations & Site Safety", "Civil Engineering"],
+    company: {
+        name: "BuildCore Civil Engineering",
+        logoText: "BUILDCORE",
+        description:
+            "BuildCore Civil Engineering manages large scale infrastructure and civil works. Their site safety and quality inspections were traditionally recorded on paper before adopting iAudit Global.",
+        tags: ["Civil Engineering", "Infrastructure Projects", "Site Safety"],
+    },
+    keyResults: [
+        { value: "5x", label: "Increase in reporting speed" },
+        { value: "80%", label: "Reduction in administrative documentation time" },
+        { value: "60%", label: "Improvement in time to close high risk findings" },
+        { value: "100%", label: "Real time visibility for project directors" },
+    ],
+    summaryParagraph:
+        "BuildCore Civil Engineering manages large scale infrastructure and civil works. Their site safety and quality inspections were traditionally recorded on paper. This led to significant administrative lag and delayed reporting. This case study shows how BuildCore moved to digital evidence capture to improve site visibility and accelerate their reporting cycle.",
+    challenge: {
+        heading: "The Challenge: Administrative Lag and Disconnected Site Data",
+        intro: `Before adopting iAudit Global, BuildCore engineers conducted site walks with notebooks and digital cameras. The process was slow and created several bottlenecks:`,
+        points: [
+            {
+                num: "01",
+                title: "The Reporting Gap",
+                text: "For every two hour site inspection, engineers spent an additional five hours re-typing notes and formatting photos into a report.",
+            },
+            {
+                num: "02",
+                title: "Delayed Safety Visibility",
+                text: "Critical safety findings often remained in paper notebooks for several days before being formally logged.",
+            },
+            {
+                num: "03",
+                title: "Traceability Issues",
+                text: "It was difficult to link specific photos to exact locations or ISO clauses once the engineer had returned to the office.",
+            },
+            {
+                num: "04",
+                title: "Manual Follow-up",
+                text: "Corrective actions were tracked via email, meaning many minor quality issues were overlooked or forgotten.",
+            },
+        ],
+        quote: {
+            text: "iAudit Global changed the way we work on site. We no longer spend our evenings re-typing notes and fighting with Word documents. Our reports are 5x faster and our safety visibility has never been better. We are finally auditing the work, not just the paperwork.",
+            author: "Operations Manager",
+            role: "Operations Manager, BuildCore Civil Engineering",
+        },
+        image: "https://images.unsplash.com/photo-1541888946425-d0fbb1861593?w=1200&h=640&fit=crop&q=80&fm=webp",
+    },
+    solution: {
+        heading: "The Solution: Real Time Digital Site Walks with Integrated Photo Capture",
+        intro: `BuildCore replaced their paper based system with iAudit Global. They focused on moving the entire reporting process to the point of inspection.`,
+        highlights: [
+            {
+                num: "01",
+                title: "Mobile Site Inspections",
+                text: "Engineers now use tablets to conduct site walks. As they find an issue, they capture a photo and link it directly to the relevant safety or quality control. The report is built as they walk the site.",
+            },
+            {
+                num: "02",
+                title: "Instant Digital Evidence",
+                text: "Every photo is time stamped and geo-tagged within the iAudit platform. This provides an immutable digital thread of evidence that is far more robust than manual photo folders.",
+            },
+            {
+                num: "03",
+                title: "Live Corrective Action Tracking",
+                text: "Nonconformities are raised and assigned to supervisors before the engineer even leaves the site. This removes the days of delay between finding a problem and starting the fix.",
+            },
+        ],
+        image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&h=640&fit=crop&q=80&fm=webp",
+    },
+    results: {
+        heading: "The Results: 5x Faster Reporting and 80 Per Cent Less Admin",
+        intro: `By moving to a digital system, BuildCore transformed their site inspection efficiency:`,
+        points: [
+            {
+                num: "01",
+                title: "5x faster reporting",
+                text: "The time taken to finalise and distribute a site inspection report dropped from five hours to just one hour.",
+            },
+            {
+                num: "02",
+                title: "80 per cent reduction in admin",
+                text: "Engineers reclaimed four hours of administrative time for every single site walk they performed.",
+            },
+            {
+                num: "03",
+                title: "60 per cent faster action closure",
+                text: "High risk safety findings are now addressed 60 per cent faster due to immediate notification and tracking.",
+            },
+            {
+                num: "04",
+                title: "Total visibility",
+                text: "The central management team has a live view of safety and quality performance across all active civil projects.",
+            },
+        ],
+        quote: {
+            text: "iAudit Global changed the way we work on site. We no longer spend our evenings re-typing notes and fighting with Word documents. Our reports are 5x faster and our safety visibility has never been better. We are finally auditing the work, not just the paperwork.",
+            author: "Operations Manager",
+            role: "Operations Manager | BuildCore Civil Engineering",
+        },
+    },
+};
+
 export const moreCaseStudies: CaseStudyCard[] = [
     {
         slug: "apex-engineering",
@@ -524,5 +637,13 @@ export const moreCaseStudies: CaseStudyCard[] = [
         image: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=800&h=500&fit=crop&q=80&fm=webp",
         logoText: "URBAN RETAIL",
         href: "/case-studies/urban-retail",
+    },
+    {
+        slug: "buildcore",
+        title: "BuildCore Civil Engineering: 5x faster site inspection reporting with real time evidence capture",
+        excerpt: "Learn how this engineering firm replaced paper site walks with digital evidence capture and reduced admin by 80%.",
+        image: "https://images.unsplash.com/photo-1541888946425-d0fbb1861593?w=800&h=500&fit=crop&q=80&fm=webp",
+        logoText: "BUILDCORE",
+        href: "/case-studies/buildcore",
     },
 ];
