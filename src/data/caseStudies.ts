@@ -266,6 +266,119 @@ export const meridianCaseStudy: CaseStudyData = {
     },
 };
 
+export const grandviewCaseStudy: CaseStudyData = {
+    slug: "grandview-hotels",
+    breadcrumb: "Grandview Hotels & Resorts",
+    title: "Grandview Hotels & Resorts: 40 per cent reduction in repeat nonconformities across 15 properties",
+    insightsFrom: {
+        name: "Group Operations Director",
+        role: "Grandview Hotels & Resorts",
+        avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=80&fm=webp",
+    },
+    useCases: ["Brand Standards & Housekeeping", "ISO 14001 Waste Tracking"],
+    departments: ["Group Operations", "Housekeeping & Facilities"],
+    company: {
+        name: "Grandview Hotels & Resorts",
+        logoText: "grandview",
+        description:
+            "Grandview Hotels & Resorts operates 15 luxury properties. Maintaining consistent brand standards and environmental compliance across multiple locations was a significant challenge while using different manual systems.",
+        tags: ["Luxury Hospitality: 15 Properties", "Hotels & Resorts", "United Kingdom"],
+    },
+    keyResults: [
+        { value: "15 Properties", label: "unified under one quality programme" },
+        { value: "40%", label: "reduction in repeat audit findings" },
+        { value: "60%", label: "improvement in corrective action closure speed" },
+        { value: "100%", label: "digital traceability for ISO 14001 waste management" },
+    ],
+    summaryParagraph:
+        "Grandview Hotels & Resorts operates 15 luxury properties. Maintaining consistent brand standards and environmental compliance across multiple locations was a significant challenge while using different manual systems. This case study shows how the group standardised their audit programme to improve housekeeping quality and ISO 14001 waste management tracking.",
+    challenge: {
+        heading: "The Challenge: Inconsistent Brand Standards and Recurring Environmental Gaps",
+        intro: `Before implementing iAudit Global, each of the 15 hotels managed its own inspections. This fragmented approach led to several operational issues:`,
+        points: [
+            {
+                num: "01",
+                title: "Brand Inconsistency",
+                text: "Housekeeping standards varied between properties because there was no unified inspection checklist.",
+            },
+            {
+                num: "02",
+                title: "Repeat Findings",
+                text: "Maintenance issues and safety gaps were identified but often not fixed. The same nonconformities appeared in every audit cycle.",
+            },
+            {
+                num: "03",
+                title: "Manual Waste Tracking",
+                text: "ISO 14001 data for energy and waste was recorded on paper, making it impossible for the group to track environmental performance accurately.",
+            },
+            {
+                num: "04",
+                title: "Delayed Oversight",
+                text: "The head office received audit results weeks late, meaning they could not react to declining standards in real time.",
+            },
+        ],
+        quote: {
+            text: "Managing inspections on paper meant issues were documented but rarely resolved. By the time head office saw the reports, weeks had passed and the same guest-facing defects had recurred.",
+            author: "Group Operations Director",
+            role: "Grandview Hotels & Resorts",
+        },
+        image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&h=640&fit=crop&q=80&fm=webp",
+    },
+    solution: {
+        heading: "The Solution: Standardised Hospitality Audit Programme with Centralised PDCA Tracking",
+        intro: `Grandview Hotels moved all 15 properties onto the iAudit Global platform to create a single, group-wide quality and environmental management system.`,
+        highlights: [
+            {
+                num: "01",
+                title: "Unified Housekeeping Inspections",
+                text: "The group created one master housekeeping checklist for all properties. Supervisors used mobile devices to conduct room inspections, attaching photos of defects or standard deviations directly to the audit questions.",
+            },
+            {
+                num: "02",
+                title: "ISO 14001 Digital Workflows",
+                text: "Paper waste logs were replaced with digital evidence capture. Maintenance teams recorded waste segregation and energy data directly into iAudit, providing a live digital thread of environmental compliance for the entire group.",
+            },
+            {
+                num: "03",
+                title: "Closed Loop Nonconformity Tracking",
+                text: "Every issue found during an inspection was automatically logged in the nonconformity register. Corrective actions were assigned to department heads with strict deadlines, ensuring that problems were fixed, not just documented.",
+            },
+        ],
+        image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&h=640&fit=crop&q=80&fm=webp",
+    },
+    results: {
+        heading: "The Results: 40 Per Cent Fewer Recurring Quality and Environmental Issues",
+        intro: `By centralising their audit data and enforcing accountability, Grandview Hotels significantly improved their operational performance:`,
+        points: [
+            {
+                num: "01",
+                title: "40 per cent reduction in repeat nonconformities",
+                text: "The closed loop tracking system ensured that once a problem was found, the root cause was addressed.",
+            },
+            {
+                num: "02",
+                title: "100 per cent brand alignment",
+                text: "Standardised checklists ensured every hotel in the group followed the exact same housekeeping and service protocols.",
+            },
+            {
+                num: "03",
+                title: "Real time environmental oversight",
+                text: "The group head office gained instant visibility of waste and energy performance across all 15 sites.",
+            },
+            {
+                num: "04",
+                title: "Faster reporting cycles",
+                text: "Management reports that previously took days to compile were generated instantly upon audit completion.",
+            },
+        ],
+        quote: {
+            text: "iAudit Global gave us the visibility we were missing. We can now see exactly which properties are struggling and why. The 40 per cent drop in repeat issues proves that our teams are finally fixing problems rather than just ticking boxes on a page. Our brand standards have never been more consistent.",
+            author: "Group Operations Director",
+            role: "Grandview Hotels & Resorts",
+        },
+    },
+};
+
 export const moreCaseStudies: CaseStudyCard[] = [
     {
         slug: "apex-engineering",
@@ -289,6 +402,6 @@ export const moreCaseStudies: CaseStudyCard[] = [
         excerpt: "See how this hospitality group unified housekeeping inspections and ISO 14001 waste tracking.",
         image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=500&fit=crop&q=80&fm=webp",
         logoText: "GRANDVIEW",
-        href: "/case-studies",
+        href: "/case-studies/grandview-hotels",
     },
 ];

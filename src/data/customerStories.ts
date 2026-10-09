@@ -84,6 +84,7 @@ export const customerStoryCards: CustomerStoryCard[] = [
         industry: "Hospitality",
         standards: ["ISO 14001", "ISO 9001"],
         image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&h=900&fit=crop&q=85&fm=webp",
+        href: "/case-studies/grandview-hotels",
         metric: "40%",
         statDescription: "REDUCTION IN REPEAT NONCONFORMITIES",
         title: "How Grandview Hotels standardised brand and environmental audits across 15 properties",
