@@ -98,8 +98,9 @@ export const customerStoryCards: CustomerStoryCard[] = [
         span: "mid",
         company: "Urban Retail Group",
         industry: "Retail",
-        standards: ["ISO 9001", "ISO 14001"],
+        standards: ["ISO 9001", "ISO 45001"],
         image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1400&h=1600&fit=crop&q=85&fm=webp",
+        href: "/case-studies/urban-retail",
         quote:
             "We used to hunt through site-specific spreadsheets for weeks. Now we have total visibility of our audit history across every store.",
         name: "SARAH JENKINS",

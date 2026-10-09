@@ -379,6 +379,119 @@ export const grandviewCaseStudy: CaseStudyData = {
     },
 };
 
+export const urbanRetailCaseStudy: CaseStudyData = {
+    slug: "urban-retail",
+    breadcrumb: "Urban Retail Group",
+    title: "Urban Retail Group: Total visibility of audit history across every store",
+    insightsFrom: {
+        name: "Sarah Jenkins",
+        role: "Group Compliance Director",
+        avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=80&fm=webp",
+    },
+    useCases: ["ISO 9001 & ISO 45001 Audits", "Retail & Distribution Oversight"],
+    departments: ["Compliance & Quality", "Retail Operations"],
+    company: {
+        name: "Urban Retail Group",
+        logoText: "urban retail",
+        description:
+            "Urban Retail Group operates a national network of retail outlets and distribution centres. Managing a consistent ISO 9001 and ISO 45001 audit programme across dispersed locations was a significant administrative burden before moving to iAudit Global.",
+        tags: ["National Retail Network", "Retail & Distribution", "United Kingdom"],
+    },
+    keyResults: [
+        { value: "Nationwide", label: "store and warehouse network unified" },
+        { value: "90%", label: "reduction in time spent gathering audit data" },
+        { value: "100%", label: "visibility of audit history for every location" },
+        { value: "45%", label: "faster closure of site safety findings" },
+    ],
+    summaryParagraph:
+        "Urban Retail Group operates a national network of retail outlets and distribution centres. Managing a consistent ISO 9001 and ISO 45001 audit programme across dispersed locations was a significant administrative burden. This case study shows how the group moved from site specific spreadsheets to a centralised digital platform to regain control of their compliance history.",
+    challenge: {
+        heading: "The Challenge: Information Silos and Lost Audit History Across a Dispersed Store Network",
+        intro: `Before adopting iAudit Global, Urban Retail Group lacked a central view of their compliance status. Each store manager maintained their own audit records, leading to several risks:`,
+        points: [
+            {
+                num: "01",
+                title: "The Spreadsheet Hunt",
+                text: "The central compliance team spent weeks every quarter manually gathering spreadsheets from different stores to prepare for management reviews.",
+            },
+            {
+                num: "02",
+                title: "Missing Evidence",
+                text: "Findings were often logged without supporting photos or documents, making it difficult to verify if a store was actually compliant.",
+            },
+            {
+                num: "03",
+                title: "Loss of Context",
+                text: "When a store manager left, their audit history and local spreadsheets often disappeared, leaving the organisation with significant data gaps.",
+            },
+            {
+                num: "04",
+                title: "Ineffective Follow-up",
+                text: "There was no central way to track if a safety finding in one store had been addressed or if the same risk existed in other locations.",
+            },
+        ],
+        quote: {
+            text: "We used to hunt through site specific spreadsheets for weeks. Now we have total visibility of our audit history across every store. iAudit Global has turned our compliance data from a hidden burden into a strategic asset. We finally know exactly where we stand.",
+            author: "Sarah Jenkins",
+            role: "Group Compliance Director, Urban Retail Group",
+        },
+        image: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=1200&h=640&fit=crop&q=80&fm=webp",
+    },
+    solution: {
+        heading: "The Solution: A Unified Digital Command Centre for Retail Compliance",
+        intro: `Urban Retail Group replaced their scattered spreadsheets with the iAudit Global platform to provide one single source of truth for the entire organisation.`,
+        highlights: [
+            {
+                num: "01",
+                title: "Centralised Audit Programme",
+                text: "The compliance director now schedules and assigns audits for every store from a central dashboard. Store managers receive notifications and conduct audits using standardised mobile checklists, ensuring consistency across the country.",
+            },
+            {
+                num: "02",
+                title: "Instant Evidence Capture",
+                text: "Auditors use their phones to take photos of store conditions, fire exits and warehouse racking during the audit. These images are automatically linked to the specific audit question, providing an immutable record of evidence.",
+            },
+            {
+                num: "03",
+                title: "Real Time Performance Dashboards",
+                text: "All audit data flows into a central reporting suite. The leadership team can see compliance scores, open nonconformities and audit trends for every store at a glance, without needing to request a single file.",
+            },
+        ],
+        image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&h=640&fit=crop&q=80&fm=webp",
+    },
+    results: {
+        heading: "The Results: 100 Per Cent Visibility and Significantly Faster Management Reviews",
+        intro: `By centralising their audit records, Urban Retail Group transformed their compliance culture from reactive to proactive:`,
+        points: [
+            {
+                num: "01",
+                title: "90 per cent faster data aggregation",
+                text: "The weeks spent hunting for spreadsheets were eliminated. Management reports are now generated in minutes.",
+            },
+            {
+                num: "02",
+                title: "Total audit traceability",
+                text: "Every store now has a complete, searchable digital history of every audit, finding and corrective action.",
+            },
+            {
+                num: "03",
+                title: "Improved safety accountability",
+                text: "The speed of closing safety related nonconformities improved by 45 per cent across the group.",
+            },
+            {
+                num: "04",
+                title: "Reduced certification risk",
+                text: "The organisation can now prove a consistent audit trail to external certification bodies with confidence.",
+            },
+        ],
+        quote: {
+            text: "We used to hunt through site specific spreadsheets for weeks. Now we have total visibility of our audit history across every store. iAudit Global has turned our compliance data from a hidden burden into a strategic asset. We finally know exactly where we stand.",
+            author: "Sarah Jenkins",
+            role: "Group Compliance Director | Urban Retail Group",
+        },
+    },
+};
+
 export const moreCaseStudies: CaseStudyCard[] = [
     {
         slug: "apex-engineering",
@@ -403,5 +516,13 @@ export const moreCaseStudies: CaseStudyCard[] = [
         image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=500&fit=crop&q=80&fm=webp",
         logoText: "GRANDVIEW",
         href: "/case-studies/grandview-hotels",
+    },
+    {
+        slug: "urban-retail",
+        title: "Urban Retail Group: Total visibility of audit history across every store",
+        excerpt: "Discover how a nationwide retail and warehouse network unified ISO 9001 and ISO 45001 audits.",
+        image: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=800&h=500&fit=crop&q=80&fm=webp",
+        logoText: "URBAN RETAIL",
+        href: "/case-studies/urban-retail",
     },
 ];

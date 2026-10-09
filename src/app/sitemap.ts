@@ -41,6 +41,7 @@ const STATIC_PAGES: StaticPage[] = [
     { path: "/case-studies/apex-engineering", changeFrequency: "monthly", priority: 0.7 },
     { path: "/case-studies/meridian-infrastructure", changeFrequency: "monthly", priority: 0.7 },
     { path: "/case-studies/grandview-hotels", changeFrequency: "monthly", priority: 0.7 },
+    { path: "/case-studies/urban-retail", changeFrequency: "monthly", priority: 0.7 },
 
     // Company
     { path: "/about", changeFrequency: "monthly", priority: 0.7 },
