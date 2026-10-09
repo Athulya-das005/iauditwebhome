@@ -130,6 +130,7 @@ export const customerStoryCards: CustomerStoryCard[] = [
         industry: "Food & Beverage",
         standards: ["ISO 9001", "ISO 14001", "ISO 45001"],
         image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=1400&h=1600&fit=crop&q=85&fm=webp",
+        href: "/case-studies/sterling-food-beverage",
         quote:
             "iAudit has finally closed the gap between our audit findings and our corrective actions. Accountability is now part of the process.",
         name: "MARK THOMPSON",

@@ -43,6 +43,7 @@ const STATIC_PAGES: StaticPage[] = [
     { path: "/case-studies/grandview-hotels", changeFrequency: "monthly", priority: 0.7 },
     { path: "/case-studies/urban-retail", changeFrequency: "monthly", priority: 0.7 },
     { path: "/case-studies/buildcore", changeFrequency: "monthly", priority: 0.7 },
+    { path: "/case-studies/sterling-food-beverage", changeFrequency: "monthly", priority: 0.7 },
 
     // Company
     { path: "/about", changeFrequency: "monthly", priority: 0.7 },

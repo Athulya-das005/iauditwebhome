@@ -605,6 +605,119 @@ export const buildCoreCaseStudy: CaseStudyData = {
     },
 };
 
+export const sterlingFoodBeverageCaseStudy: CaseStudyData = {
+    slug: "sterling-food-beverage",
+    breadcrumb: "Sterling Food & Beverage",
+    title: "Sterling Food & Beverage: Closing the accountability gap in quality assurance",
+    insightsFrom: {
+        name: "Mark Thompson",
+        role: "Head of Quality Assurance",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&q=80&fm=webp",
+    },
+    useCases: ["ISO 9001 & Food Safety Protocols", "Corrective Action & PDCA Management"],
+    departments: ["Quality Assurance", "Food Production & Operations"],
+    company: {
+        name: "Sterling Food & Beverage",
+        logoText: "STERLING",
+        description:
+            "Sterling Food & Beverage operates high volume production lines and a complex distribution network. Maintaining ISO 9001 quality standards and food safety protocols requires absolute precision.",
+        tags: ["Food & Beverage", "High-Volume Production", "ISO 9001 Quality"],
+    },
+    keyResults: [
+        { value: "50%", label: "Reduction in time to close audit findings" },
+        { value: "95%", label: "Rate of corrective actions completed on time" },
+        { value: "45%", label: "Decrease in re-occurrence of quality issues" },
+        { value: "100%", label: "Evidence based verification for every closed finding" },
+    ],
+    summaryParagraph:
+        "Sterling Food & Beverage operates high volume production lines and a complex distribution network. Maintaining ISO 9001 quality standards and food safety protocols requires absolute precision. This case study shows how the organisation moved from fragmented tracking to a centralised system to ensure every audit finding results in a verified action.",
+    challenge: {
+        heading: "The Challenge: The Accountability Gap Between Findings and Actions",
+        intro: `Before implementing iAudit Global, Sterling identified non-conformities during their internal audits but struggled to ensure they were actually fixed. Their process suffered from several weaknesses:`,
+        points: [
+            {
+                num: "01",
+                title: "Disconnected Tracking",
+                text: "Audit findings were logged in one document, while corrective actions were managed in separate spreadsheets or via email.",
+            },
+            {
+                num: "02",
+                title: "Lack of Ownership",
+                text: "It was often unclear who was responsible for closing a finding. Deadlines were frequently missed because there was no central reminder system.",
+            },
+            {
+                num: "03",
+                title: "The Verification Problem",
+                text: "Actions were often marked as closed without any evidence being provided to prove the root cause had been addressed.",
+            },
+            {
+                num: "04",
+                title: "Recurring Issues",
+                text: "Because the \"Act\" part of the PDCA cycle was weak, the same hygiene and quality issues appeared in every audit cycle.",
+            },
+        ],
+        quote: {
+            text: "iAudit has finally closed the gap between our audit findings and our corrective actions. Accountability is now part of the process. We no longer have to chase people for updates. The system does it for us, and the results are visible to everyone.",
+            author: "Mark Thompson",
+            role: "Head of Quality Assurance, Sterling Food & Beverage",
+        },
+        image: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=1200&h=640&fit=crop&q=80&fm=webp",
+    },
+    solution: {
+        heading: "The Solution: A Structured PDCA Workflow for Closed Loop Accountability",
+        intro: `Sterling adopted iAudit Global to unify their quality management and ensure that every audit finding followed a strict path to verified closure.`,
+        highlights: [
+            {
+                num: "01",
+                title: "Centralised Non-Conformity (NC) Register",
+                text: "Every finding from an audit is now automatically pushed to a central register. This eliminates the need for manual data entry and ensures that no finding is ever lost or forgotten.",
+            },
+            {
+                num: "02",
+                title: "Automated Action Ownership",
+                text: "Each corrective action is assigned to a specific owner with a clear deadline. The platform sends automated reminders to the responsible person, ensuring accountability is built into the process from the start.",
+            },
+            {
+                num: "03",
+                title: "Mandatory Verification Evidence",
+                text: "Owners cannot close an action without attaching evidence. This might be a photo of a repaired machine or a new training record. This ensures that the head of quality can verify the fix before the finding is officially closed.",
+            },
+        ],
+        image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1200&h=640&fit=crop&q=80&fm=webp",
+    },
+    results: {
+        heading: "The Results: 50 Per Cent Faster Closure of Corrective Actions",
+        intro: `By enforcing accountability through the iAudit platform, Sterling Food & Beverage significantly improved their compliance culture:`,
+        points: [
+            {
+                num: "01",
+                title: "50 per cent faster action closure",
+                text: "The time taken to resolve audit findings dropped from weeks to just a few days.",
+            },
+            {
+                num: "02",
+                title: "95 per cent on-time completion",
+                text: "The automated reminder system ensured that nearly all corrective actions were completed by their assigned deadline.",
+            },
+            {
+                num: "03",
+                title: "45 per cent reduction in recurring issues",
+                text: "By verifying the effectiveness of every fix, the organisation stopped the cycle of repeat findings.",
+            },
+            {
+                num: "04",
+                title: "Total management oversight",
+                text: "The leadership team now has a live view of all open actions across every production facility.",
+            },
+        ],
+        quote: {
+            text: "iAudit has finally closed the gap between our audit findings and our corrective actions. Accountability is now part of the process. We no longer have to chase people for updates. The system does it for us, and the results are visible to everyone.",
+            author: "Mark Thompson",
+            role: "Head of Quality Assurance | Sterling Food & Beverage",
+        },
+    },
+};
+
 export const moreCaseStudies: CaseStudyCard[] = [
     {
         slug: "apex-engineering",
@@ -645,5 +758,13 @@ export const moreCaseStudies: CaseStudyCard[] = [
         image: "https://images.unsplash.com/photo-1541888946425-d0fbb1861593?w=800&h=500&fit=crop&q=80&fm=webp",
         logoText: "BUILDCORE",
         href: "/case-studies/buildcore",
+    },
+    {
+        slug: "sterling-food-beverage",
+        title: "Sterling Food & Beverage: Closing the accountability gap in quality assurance",
+        excerpt: "See how a high-volume food producer closed the gap between audit findings and verified actions with automated PDCA workflows.",
+        image: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800&h=500&fit=crop&q=80&fm=webp",
+        logoText: "STERLING",
+        href: "/case-studies/sterling-food-beverage",
     },
 ];
