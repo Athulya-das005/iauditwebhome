@@ -63,6 +63,84 @@ const CLIENT_LOGOS = [
     { src: "/images/Cypher-Logos/Sweethawk%20logo.png", alt: "SweetHawk" },
 ];
 
+interface HallOfFameEntry {
+    num: string;
+    organization: string;
+    status: string;
+    badgeType: "green" | "blue" | "amber";
+    link?: string;
+    linkLabel?: string;
+    note?: string;
+    logo?: string;
+}
+
+const HALL_OF_FAME_LIST: HallOfFameEntry[] = [
+    {
+        num: "01",
+        organization: "Gea",
+        status: "GOT HALL OF FAME",
+        badgeType: "green",
+        link: "https://www.gea.com/en/about-us/information-security/products/responsible-disclosure-of-security-issues/hall-of-fame/",
+        linkLabel: "View Hall of Fame",
+        logo: "/images/Cypher-Logos/Gea%20logo.png",
+    },
+    {
+        num: "02",
+        organization: "PANASONIC",
+        status: "GOT LETTER",
+        badgeType: "blue",
+        note: "Official Letter of Appreciation",
+        logo: "/images/Cypher-Logos/Panasonic%20logo.png",
+    },
+    {
+        num: "03",
+        organization: "Siemens",
+        status: "HOF CONFIRMED, NOT LISTED YET",
+        badgeType: "amber",
+        note: "Confirmed by Security Team",
+        logo: "/images/Cypher-Logos/Siemens%20logo.png",
+    },
+    {
+        num: "04",
+        organization: "Shell Orbit",
+        status: "GOT HOF",
+        badgeType: "green",
+        link: "https://shellorbit.com/legal/hall-of-fame/",
+        linkLabel: "View Hall of Fame",
+    },
+    {
+        num: "05",
+        organization: "Sweethawk",
+        status: "GOT HOF",
+        badgeType: "green",
+        link: "https://sweethawk.com/responsible-disclosure",
+        linkLabel: "View Hall of Fame",
+        logo: "/images/Cypher-Logos/Sweethawk%20logo.png",
+    },
+    {
+        num: "06",
+        organization: "Latvian Government",
+        status: "GOT LETTER",
+        badgeType: "blue",
+        note: "Official Recognition Letter",
+        logo: "/images/Cypher-Logos/Latvian%20Govt%20logo.png",
+    },
+    {
+        num: "07",
+        organization: "WHO",
+        status: "HOF CONFIRMED, NOT LISTED YET",
+        badgeType: "amber",
+        note: "Confirmed by Security Team",
+    },
+    {
+        num: "08",
+        organization: "Pipefy",
+        status: "HOF CONFIRMED, NOT LISTED YET",
+        badgeType: "amber",
+        note: "Confirmed by Security Team",
+    },
+];
+
 type TextPart = string | { grey: string };
 
 /** Words wrapped in masks so each can slide up into view (line-reveal effect). */
@@ -540,6 +618,147 @@ export default function CyphersPageContent() {
                                     </p>
                                 </div>
                             ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Our Hall of Fame Recognition */}
+            <section className="cy-section cy-recognition" id="recognition">
+                <div className="cy-container cy-perspective">
+                    <div className="cy-recognition__header">
+                        <p className="cy-tag" data-cy-lines>
+                            <RevealWords parts={["Recognition & Trust"]} />
+                        </p>
+                        <h2 className="cy-h2" data-cy-lines>
+                            <RevealWords parts={["Our Hall of Fame ", { grey: "Recognition" }]} />
+                        </h2>
+                        <p className="cy-lead" style={{ maxWidth: "48rem", marginTop: "1rem" }} data-cy-lines>
+                            <RevealWords
+                                parts={[
+                                    "Our vulnerability research has earned recognition from leading technology companies.",
+                                ]}
+                            />
+                        </p>
+                    </div>
+
+                    <div className="cy-recognition__card" data-cy-tilt>
+                        <div className="cy-recognition__meta">
+                            <div className="cy-recognition__meta-tags">
+                                <span className="cy-recognition__stat-pill">
+                                    <span className="cy-recognition__stat-pill-dot" />
+                                    8 Verified Recognitions
+                                </span>
+                                <span className="cy-recognition__stat-pill">
+                                    <span className="cy-recognition__stat-pill-dot" style={{ backgroundColor: "#2e90fa" }} />
+                                    Global Industry Leaders
+                                </span>
+                                <span className="cy-recognition__stat-pill">
+                                    <span className="cy-recognition__stat-pill-dot" style={{ backgroundColor: "#f79009" }} />
+                                    Responsible Disclosure
+                                </span>
+                            </div>
+                        </div>
+
+                        <div className="cy-table-wrapper">
+                            <table className="cy-table">
+                                <thead>
+                                    <tr>
+                                        <th style={{ width: "60px" }}>#</th>
+                                        <th style={{ width: "240px" }}>Organization</th>
+                                        <th style={{ width: "260px" }}>Recognition Status</th>
+                                        <th>Verification & Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {HALL_OF_FAME_LIST.map((item) => (
+                                        <tr key={item.num}>
+                                            <td>
+                                                <span className="cy-entity-index">{item.num}</span>
+                                            </td>
+                                            <td>
+                                                <div className="cy-entity-cell">
+                                                    {item.logo ? (
+                                                        <span
+                                                            style={{
+                                                                width: "36px",
+                                                                height: "36px",
+                                                                borderRadius: "8px",
+                                                                background: "#f8fafc",
+                                                                border: "1px solid #e2e8f0",
+                                                                display: "inline-flex",
+                                                                alignItems: "center",
+                                                                justifyContent: "center",
+                                                                padding: "4px",
+                                                                flexShrink: 0,
+                                                            }}
+                                                        >
+                                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                            <img
+                                                                src={item.logo}
+                                                                alt={item.organization}
+                                                                style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
+                                                            />
+                                                        </span>
+                                                    ) : (
+                                                        <span
+                                                            style={{
+                                                                width: "36px",
+                                                                height: "36px",
+                                                                borderRadius: "8px",
+                                                                background: "#f1f5f9",
+                                                                border: "1px solid #e2e8f0",
+                                                                display: "inline-flex",
+                                                                alignItems: "center",
+                                                                justifyContent: "center",
+                                                                fontWeight: 700,
+                                                                fontSize: "0.8rem",
+                                                                color: "#475569",
+                                                                flexShrink: 0,
+                                                            }}
+                                                        >
+                                                            {item.organization.slice(0, 2).toUpperCase()}
+                                                        </span>
+                                                    )}
+                                                    <span className="cy-entity-name">{item.organization}</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span className={`cy-badge cy-badge--${item.badgeType}`}>
+                                                    <span className="cy-badge-dot" />
+                                                    {item.status}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                {item.link ? (
+                                                    <a
+                                                        href={item.link}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="cy-ref-link"
+                                                    >
+                                                        <span>{item.linkLabel || "View Hall of Fame"}</span>
+                                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                                                            <line x1="7" y1="17" x2="17" y2="7" />
+                                                            <polyline points="7 7 17 7 17 17" />
+                                                        </svg>
+                                                    </a>
+                                                ) : (
+                                                    <span className="cy-ref-muted">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                                            <polyline points="14 2 14 8 20 8" />
+                                                            <line x1="16" y1="13" x2="8" y2="13" />
+                                                            <line x1="16" y1="17" x2="8" y2="17" />
+                                                        </svg>
+                                                        {item.note}
+                                                    </span>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

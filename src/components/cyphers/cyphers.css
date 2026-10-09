@@ -1153,3 +1153,225 @@ html.lenis body {
         display: none;
     }
 }
+
+/* ---------- Hall of Fame Recognition Section ---------- */
+.cy-recognition {
+    position: relative;
+}
+
+.cy-recognition__header {
+    margin-bottom: 2.5rem;
+}
+
+.cy-recognition__card {
+    background: var(--cy-white);
+    border-radius: 24px;
+    box-shadow: var(--cy-card-shadow);
+    border: 1px solid var(--cy-line);
+    padding: 2.75rem 2.5rem 2.25rem;
+    overflow: hidden;
+    transform-origin: 50% 100%;
+    will-change: transform;
+}
+
+.cy-recognition__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eef6f1;
+}
+
+.cy-recognition__meta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.cy-recognition__stat-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #475569;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+}
+
+.cy-recognition__stat-pill-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--cy-accent);
+}
+
+.cy-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 16px;
+    border: 1px solid #e5eee8;
+    background: #ffffff;
+}
+
+.cy-table {
+    width: 100%;
+    min-width: 680px;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.cy-table th {
+    background: #f8fbf9;
+    padding: 1rem 1.25rem;
+    font-family: var(--cy-heading);
+    font-size: 0.825rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #475569;
+    border-bottom: 1px solid #dcebe1;
+    white-space: nowrap;
+}
+
+.cy-table td {
+    padding: 1.15rem 1.25rem;
+    border-bottom: 1px solid #f1f6f3;
+    color: var(--cy-ink);
+    vertical-align: middle;
+    transition: background-color 0.15s ease;
+}
+
+.cy-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.cy-table tbody tr:hover td {
+    background-color: #f7fbf8;
+}
+
+.cy-entity-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.cy-entity-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    background: #f1f5f9;
+    color: #64748b;
+    font-size: 0.775rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.cy-entity-name {
+    font-family: var(--cy-heading);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+}
+
+/* Badges */
+.cy-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.cy-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.cy-badge--green {
+    background-color: #ecfdf3;
+    color: #027a48;
+    border: 1px solid #b2efcc;
+}
+.cy-badge--green .cy-badge-dot {
+    background-color: #12b76a;
+}
+
+.cy-badge--blue {
+    background-color: #eff8ff;
+    color: #175cd3;
+    border: 1px solid #b2ddff;
+}
+.cy-badge--blue .cy-badge-dot {
+    background-color: #2e90fa;
+}
+
+.cy-badge--amber {
+    background-color: #fffaeb;
+    color: #b54708;
+    border: 1px solid #fedf89;
+}
+.cy-badge--amber .cy-badge-dot {
+    background-color: #f79009;
+}
+
+/* Reference links / buttons */
+.cy-ref-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: #027a48;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
+    background: #ecfdf3;
+    border: 1px solid #b2efcc;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+}
+
+.cy-ref-link:hover {
+    background: var(--cy-accent);
+    color: #ffffff;
+    border-color: var(--cy-accent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(5, 140, 66, 0.22);
+}
+
+.cy-ref-muted {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .cy-recognition__card {
+        padding: 1.75rem 1.25rem 1.5rem;
+    }
+}
+

@@ -239,6 +239,7 @@ export default function Header() {
         { label: "Services", href: "#services" },
         { label: "Experience", href: "#experience" },
         { label: "About", href: "#about" },
+        { label: "Recognition", href: "#recognition" },
     ];
 
     const handleCyphersScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
