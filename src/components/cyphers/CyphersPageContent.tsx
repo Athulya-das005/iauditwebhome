@@ -84,24 +84,26 @@ const HALL_OF_FAME_LIST: HallOfFameEntry[] = [
         linkLabel: "View Hall of Fame",
         logo: "/images/Cypher-Logos/Gea%20logo.png",
     },
+    // Entries without a public Hall of Fame link yet are commented out below.
+    // Uncomment once official Hall of Fame links are received.
+    // {
+    //     num: "02",
+    //     organization: "PANASONIC",
+    //     status: "GOT LETTER",
+    //     badgeType: "blue",
+    //     note: "Official Letter of Appreciation",
+    //     logo: "/images/Cypher-Logos/Panasonic%20logo.png",
+    // },
+    // {
+    //     num: "03",
+    //     organization: "Siemens",
+    //     status: "HOF CONFIRMED, NOT LISTED YET",
+    //     badgeType: "amber",
+    //     note: "Confirmed by Security Team",
+    //     logo: "/images/Cypher-Logos/Siemens%20logo.png",
+    // },
     {
         num: "02",
-        organization: "PANASONIC",
-        status: "GOT LETTER",
-        badgeType: "blue",
-        note: "Official Letter of Appreciation",
-        logo: "/images/Cypher-Logos/Panasonic%20logo.png",
-    },
-    {
-        num: "03",
-        organization: "Siemens",
-        status: "HOF CONFIRMED, NOT LISTED YET",
-        badgeType: "amber",
-        note: "Confirmed by Security Team",
-        logo: "/images/Cypher-Logos/Siemens%20logo.png",
-    },
-    {
-        num: "04",
         organization: "Shell Orbit",
         status: "GOT HOF",
         badgeType: "green",
@@ -109,7 +111,7 @@ const HALL_OF_FAME_LIST: HallOfFameEntry[] = [
         linkLabel: "View Hall of Fame",
     },
     {
-        num: "05",
+        num: "03",
         organization: "Sweethawk",
         status: "GOT HOF",
         badgeType: "green",
@@ -117,28 +119,28 @@ const HALL_OF_FAME_LIST: HallOfFameEntry[] = [
         linkLabel: "View Hall of Fame",
         logo: "/images/Cypher-Logos/Sweethawk%20logo.png",
     },
-    {
-        num: "06",
-        organization: "Latvian Government",
-        status: "GOT LETTER",
-        badgeType: "blue",
-        note: "Official Recognition Letter",
-        logo: "/images/Cypher-Logos/Latvian%20Govt%20logo.png",
-    },
-    {
-        num: "07",
-        organization: "WHO",
-        status: "HOF CONFIRMED, NOT LISTED YET",
-        badgeType: "amber",
-        note: "Confirmed by Security Team",
-    },
-    {
-        num: "08",
-        organization: "Pipefy",
-        status: "HOF CONFIRMED, NOT LISTED YET",
-        badgeType: "amber",
-        note: "Confirmed by Security Team",
-    },
+    // {
+    //     num: "06",
+    //     organization: "Latvian Government",
+    //     status: "GOT LETTER",
+    //     badgeType: "blue",
+    //     note: "Official Recognition Letter",
+    //     logo: "/images/Cypher-Logos/Latvian%20Govt%20logo.png",
+    // },
+    // {
+    //     num: "07",
+    //     organization: "WHO",
+    //     status: "HOF CONFIRMED, NOT LISTED YET",
+    //     badgeType: "amber",
+    //     note: "Confirmed by Security Team",
+    // },
+    // {
+    //     num: "08",
+    //     organization: "Pipefy",
+    //     status: "HOF CONFIRMED, NOT LISTED YET",
+    //     badgeType: "amber",
+    //     note: "Confirmed by Security Team",
+    // },
 ];
 
 type TextPart = string | { grey: string };
@@ -647,7 +649,7 @@ export default function CyphersPageContent() {
                             <div className="cy-recognition__meta-tags">
                                 <span className="cy-recognition__stat-pill">
                                     <span className="cy-recognition__stat-pill-dot" />
-                                    8 Verified Recognitions
+                                    {HALL_OF_FAME_LIST.length} Verified Recognitions
                                 </span>
                                 <span className="cy-recognition__stat-pill">
                                     <span className="cy-recognition__stat-pill-dot" style={{ backgroundColor: "#2e90fa" }} />
@@ -671,10 +673,12 @@ export default function CyphersPageContent() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {HALL_OF_FAME_LIST.map((item) => (
-                                        <tr key={item.num}>
+                                    {HALL_OF_FAME_LIST.map((item, index) => (
+                                        <tr key={item.organization}>
                                             <td>
-                                                <span className="cy-entity-index">{item.num}</span>
+                                                <span className="cy-entity-index">
+                                                    {String(index + 1).padStart(2, "0")}
+                                                </span>
                                             </td>
                                             <td>
                                                 <div className="cy-entity-cell">
