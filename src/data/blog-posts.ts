@@ -13,6 +13,17 @@ export type BlogPost = {
 /** Single source of truth for the /blog listing. Add new posts here when published. */
 export const blogPosts: BlogPost[] = [
     {
+        slug: "iso-9001-2015-vs-iso-9001-2026",
+        title: "ISO 9001:2015 vs ISO 9001:2026: What Really Changed?",
+        excerpt:
+            "Compare ISO 9001:2015 vs ISO 9001:2026. See the key changes, what remains the same, and what organisations should review in their QMS.",
+        datePublished: "2026-10-12",
+        readTime: "11 Min Read",
+        image: "/images/blog/iso-9001-2015-vs-iso-9001-2026.jpg",
+        author: "Mathew Chiweda",
+        categories: ["ISO 9001", "Compliance"],
+    },
+    {
         slug: "iso-14001-2026-internal-audit-checklist",
         title: "ISO 14001:2026 Internal Audit Checklist: What to Check",
         excerpt:
@@ -523,7 +534,10 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
             {
                 id: "iso-9001-2026",
                 label: "ISO 9001:2026",
-                slugs: ["iso-9001-2026-key-changes-transition"],
+                slugs: [
+                    "iso-9001-2015-vs-iso-9001-2026",
+                    "iso-9001-2026-key-changes-transition",
+                ],
             },
             {
                 id: "iso-9001-auditing",
@@ -562,6 +576,7 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
                 id: "certification",
                 label: "Certification",
                 slugs: [
+                    "iso-9001-2015-vs-iso-9001-2026",
                     "iso-9001-2026-key-changes-transition",
                     "prepare-for-iso-9001-in-construction",
                     "iso-certification-for-metal-fabrication",
