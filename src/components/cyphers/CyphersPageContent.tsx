@@ -78,7 +78,7 @@ const HALL_OF_FAME_LIST: HallOfFameEntry[] = [
     {
         num: "01",
         organization: "Gea",
-        status: "GOT HALL OF FAME",
+        status: "Got Hall of Fame",
         badgeType: "green",
         link: "https://www.gea.com/en/about-us/information-security/products/responsible-disclosure-of-security-issues/hall-of-fame/",
         linkLabel: "View Hall of Fame",
@@ -89,7 +89,7 @@ const HALL_OF_FAME_LIST: HallOfFameEntry[] = [
     // {
     //     num: "02",
     //     organization: "PANASONIC",
-    //     status: "GOT LETTER",
+    //     status: "Got Letter",
     //     badgeType: "blue",
     //     note: "Official Letter of Appreciation",
     //     logo: "/images/Cypher-Logos/Panasonic%20logo.png",
@@ -97,7 +97,7 @@ const HALL_OF_FAME_LIST: HallOfFameEntry[] = [
     // {
     //     num: "03",
     //     organization: "Siemens",
-    //     status: "HOF CONFIRMED, NOT LISTED YET",
+    //     status: "Hall of Fame Confirmed, Not Listed Yet",
     //     badgeType: "amber",
     //     note: "Confirmed by Security Team",
     //     logo: "/images/Cypher-Logos/Siemens%20logo.png",
@@ -105,7 +105,7 @@ const HALL_OF_FAME_LIST: HallOfFameEntry[] = [
     {
         num: "02",
         organization: "Shell Orbit",
-        status: "GOT HOF",
+        status: "Got Hall of Fame",
         badgeType: "green",
         link: "https://shellorbit.com/legal/hall-of-fame/",
         linkLabel: "View Hall of Fame",
@@ -113,7 +113,7 @@ const HALL_OF_FAME_LIST: HallOfFameEntry[] = [
     {
         num: "03",
         organization: "Sweethawk",
-        status: "GOT HOF",
+        status: "Got Hall of Fame",
         badgeType: "green",
         link: "https://sweethawk.com/responsible-disclosure",
         linkLabel: "View Hall of Fame",
@@ -122,7 +122,7 @@ const HALL_OF_FAME_LIST: HallOfFameEntry[] = [
     // {
     //     num: "06",
     //     organization: "Latvian Government",
-    //     status: "GOT LETTER",
+    //     status: "Got Letter",
     //     badgeType: "blue",
     //     note: "Official Recognition Letter",
     //     logo: "/images/Cypher-Logos/Latvian%20Govt%20logo.png",
@@ -130,14 +130,14 @@ const HALL_OF_FAME_LIST: HallOfFameEntry[] = [
     // {
     //     num: "07",
     //     organization: "WHO",
-    //     status: "HOF CONFIRMED, NOT LISTED YET",
+    //     status: "Hall of Fame Confirmed, Not Listed Yet",
     //     badgeType: "amber",
     //     note: "Confirmed by Security Team",
     // },
     // {
     //     num: "08",
     //     organization: "Pipefy",
-    //     status: "HOF CONFIRMED, NOT LISTED YET",
+    //     status: "Hall of Fame Confirmed, Not Listed Yet",
     //     badgeType: "amber",
     //     note: "Confirmed by Security Team",
     // },
