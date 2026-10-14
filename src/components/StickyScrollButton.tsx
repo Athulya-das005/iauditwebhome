@@ -11,7 +11,7 @@ const TRIAL_URL = "https://apps.iaudit.global";
 const ARROW_HIDE_DELAY_MS = 900;
 const NEAR_BOTTOM_PX = 400;
 /** Pages without the trial CTA: only a back-to-top arrow once the visitor reaches the bottom. */
-const NO_TRIAL_PATHS = new Set(["/cyphers"]);
+const NO_TRIAL_PATHS = new Set(["/cybersecurity/cyphers"]);
 
 export default function StickyScrollButton() {
     const pathname = usePathname();

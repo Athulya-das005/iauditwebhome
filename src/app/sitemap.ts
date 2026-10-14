@@ -51,7 +51,7 @@ const STATIC_PAGES: StaticPage[] = [
     { path: "/author/mathew-chiweda", changeFrequency: "weekly", priority: 0.6 },
 
     // Cyphers (penetration testing)
-    { path: "/cyphers", changeFrequency: "monthly", priority: 0.7 },
+    { path: "/cybersecurity/cyphers", changeFrequency: "monthly", priority: 0.7 },
 
     // Trust & security
     { path: "/trust-and-security", changeFrequency: "monthly", priority: 0.6 },

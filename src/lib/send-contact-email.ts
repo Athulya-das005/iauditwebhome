@@ -8,7 +8,7 @@ const DEFAULT_NOTIFY_EMAIL = "info@iaudit.global";
 export type ContactEmailSource = {
     /** Short tag prefixed to the subject line, e.g. "Cyphers Page Form". */
     tag: string;
-    /** Human-readable origin shown in the email body, e.g. "Cyphers page (/cyphers) – Get a Pen Test Quote form". */
+    /** Human-readable origin shown in the email body, e.g. "Cyphers page (/cybersecurity/cyphers) – Get a Pen Test Quote form". */
     label: string;
     /** Subject line after the tag. */
     subject: string;

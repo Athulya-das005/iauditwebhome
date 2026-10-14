@@ -183,7 +183,7 @@ export default function Header() {
                 {
                     title: "Cybersecurity",
                     items: [
-                        { label: "Cyphers", href: "/cyphers" },
+                        { label: "Cyphers", href: "/cybersecurity/cyphers" },
                     ],
                 },
             ],
@@ -237,8 +237,8 @@ export default function Header() {
     // Individual blog posts use a Flowergrid-style reading chrome (Back to Blog only).
     const isBlogPost = Boolean(pathname?.startsWith("/blog/") && pathname !== "/blog");
     // Hide while scrolling down, reveal on scroll up
-    const hideNavOnScrollDown = pathname === "/cyphers";
-    const isCyphers = pathname === "/cyphers";
+    const hideNavOnScrollDown = pathname === "/cybersecurity/cyphers";
+    const isCyphers = pathname === "/cybersecurity/cyphers";
 
     const cyphersNavLinks = [
         { label: "Overview", href: "#overview" },

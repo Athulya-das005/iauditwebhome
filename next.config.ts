@@ -49,6 +49,11 @@ const nextConfig: NextConfig = {
         destination: "/case-studies",
         permanent: true,
       },
+      {
+        source: "/cyphers",
+        destination: "/cybersecurity/cyphers",
+        permanent: true,
+      },
     ];
   },
 };

@@ -10,7 +10,7 @@ import { COUNTRIES } from "@/data/countries";
 
 const SUBJECT = "Cyphers Page – Pen Test Quote";
 const SOURCE_TAG = "Cyphers Page Form";
-const SOURCE_LABEL = "Cyphers page (iaudit.global/cyphers) – Get a Pen Test Quote form";
+const SOURCE_LABEL = "Cyphers page (iaudit.global/cybersecurity/cyphers) – Get a Pen Test Quote form";
 const COUNTRY_SET = new Set(COUNTRIES);
 
 type QuoteBody = {

@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function Footer() {
     const pathname = usePathname();
-    const isCyphers = pathname === "/cyphers";
+    const isCyphers = pathname === "/cybersecurity/cyphers";
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -210,7 +210,7 @@ export default function Footer() {
                     }}>
                         {/* Brand Column */}
                         <div style={{ display: "flex", flexDirection: "column", alignItems: isMobile ? "center" : "flex-start" }}>
-                            <Link href={isCyphers ? "/cyphers" : "/"} style={{
+                            <Link href={isCyphers ? "/cybersecurity/cyphers" : "/"} style={{
                                 display: "inline-block",
                                 marginBottom: "1.5rem",
                                 textDecoration: "none"

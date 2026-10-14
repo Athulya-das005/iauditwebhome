@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CyphersPageContent from "@/components/cyphers/CyphersPageContent";
 import Footer from "@/components/Footer";
 
-const pageUrl = "https://www.iaudit.global/cyphers";
+const pageUrl = "https://www.iaudit.global/cybersecurity/cyphers";
 const title = "Penetration Testing & Cyber Security Testing UK | Cyphers";
 const description =
     "Cyphers by iAudit Global provides penetration testing and cyber security testing for web applications, APIs and digital products across the UK.";
