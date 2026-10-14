@@ -180,6 +180,12 @@ export default function Header() {
                         { label: "Contact", href: "/contact" },
                     ],
                 },
+                {
+                    title: "Cybersecurity",
+                    items: [
+                        { label: "Cyphers", href: "/cyphers" },
+                    ],
+                },
             ],
         },
     ];
@@ -301,12 +307,12 @@ export default function Header() {
                             style={{ display: "flex", alignItems: "center", flexShrink: 0, textDecoration: "none" }}
                         >
                             <Image
-                                src="/iaudit-logo-nav.png"
-                                alt="iAudit Global company logo"
-                                width={271}
-                                height={200}
+                                src="/cyphers-logo.png"
+                                alt="Cyphers"
+                                width={513}
+                                height={640}
                                 style={{
-                                    height: isMobile ? "44px" : isCondensed ? "48px" : "52px",
+                                    height: isMobile ? "40px" : isCondensed ? "44px" : "48px",
                                     width: "auto",
                                     objectFit: "contain",
                                     display: "block",
@@ -562,6 +568,7 @@ export default function Header() {
                 {!isCyphers && hoveredItem && navItems.find(n => n.label === hoveredItem)?.megamenu && (() => {
                     const activeMegamenu = navItems.find(n => n.label === hoveredItem)?.megamenu ?? [];
                     const isIndustriesMenu = hoveredItem === "Industries & Solutions";
+                    const isCompanyMenu = hoveredItem === "Company";
                     const columnCount = Math.min(activeMegamenu.length, 4);
                     return (
                     <motion.div
@@ -601,7 +608,10 @@ export default function Header() {
                             display: "grid",
                             gridTemplateColumns: isIndustriesMenu
                                 ? "1.1fr 1.1fr 1.1fr 0.85fr"
-                                : `repeat(${columnCount}, 1fr)`,
+                                : isCompanyMenu
+                                    ? "max-content max-content"
+                                    : `repeat(${columnCount}, 1fr)`,
+                            justifyContent: isCompanyMenu ? "start" : undefined,
                             gap: isIndustriesMenu ? "1rem" : "4rem",
                             padding: "0 2rem",
                             alignItems: "stretch",
@@ -772,10 +782,10 @@ export default function Header() {
                                               style={{ display: "flex", alignItems: "center", flexShrink: 0 }}
                                           >
                                               <Image
-                                                  src="/iaudit-logo-nav.png"
-                                                  alt="iAudit Global"
-                                                  width={180}
-                                                  height={133}
+                                                  src="/cyphers-logo.png"
+                                                  alt="Cyphers"
+                                                  width={513}
+                                                  height={640}
                                                   style={{ height: "40px", width: "auto", objectFit: "contain", display: "block" }}
                                               />
                                           </a>

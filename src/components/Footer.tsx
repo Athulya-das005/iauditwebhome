@@ -128,102 +128,116 @@ export default function Footer() {
                 padding: "3.5rem 0 2rem", // Keep logo after a standard space from footer top
             }}>
                 <div style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 2rem" }}>
-                    {/* Upper Footer Section (Flovity Style) */}
-                    <div style={{
-                        textAlign: 'center',
-                        marginBottom: '4.5rem',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center'
-                    }}>
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                            style={{
-                                marginBottom: "-1.5rem", // Aggressive negative margin to swallow the image's invisible transparent boundary
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "flex-end" // Anchors image to bottom
-                            }}
-                        >
-                            <Image
-                                src="/iAudit Global-01.png"
-                                alt="iAudit Global company logo"
-                                width={180} // Size increased a little bit more
-                                height={68}
-                                style={{ height: "auto", objectFit: "contain", objectPosition: "bottom" }}
-                            />
-                        </motion.div>
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                            style={{
-                                fontSize: isMobile ? "2.2rem" : "3.2rem",
-                                fontWeight: 500,
-                                lineHeight: 1.1,
-                                marginTop: "0",
-                                marginBottom: "1rem", // Tight description spacing
-                                letterSpacing: "-0.03em",
-                                maxWidth: "800px"
-                            }}
-                        >
-                            Empower Your Audit Process With iAudit
-                        </motion.h2>
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.1 }}
-                            style={{
-                                fontSize: "1.1rem",
-                                fontWeight: 400,
-                                color: "rgba(0,0,0,0.6)",
-                                maxWidth: "600px",
-                                lineHeight: 1.5
-                            }}
-                        >
-                            Enhance efficiency and innovation with our comprehensive ISO audit management software designed for precision and compliance.
-                        </motion.p>
-                    </div>
+                    {!isCyphers && (
+                        <>
+                            {/* Upper Footer Section (Flovity Style) */}
+                            <div style={{
+                                textAlign: 'center',
+                                marginBottom: '4.5rem',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center'
+                            }}>
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5 }}
+                                    style={{
+                                        marginBottom: "-1.5rem", // Aggressive negative margin to swallow the image's invisible transparent boundary
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "flex-end" // Anchors image to bottom
+                                    }}
+                                >
+                                    <Image
+                                        src="/iAudit Global-01.png"
+                                        alt="iAudit Global company logo"
+                                        width={180}
+                                        height={68}
+                                        style={{ height: "auto", objectFit: "contain", objectPosition: "bottom" }}
+                                    />
+                                </motion.div>
+                                <motion.h2
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6 }}
+                                    style={{
+                                        fontSize: isMobile ? "2.2rem" : "3.2rem",
+                                        fontWeight: 500,
+                                        lineHeight: 1.1,
+                                        marginTop: "0",
+                                        marginBottom: "1rem", // Tight description spacing
+                                        letterSpacing: "-0.03em",
+                                        maxWidth: "800px"
+                                    }}
+                                >
+                                    Empower Your Audit Process With iAudit
+                                </motion.h2>
+                                <motion.p
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6, delay: 0.1 }}
+                                    style={{
+                                        fontSize: "1.1rem",
+                                        fontWeight: 400,
+                                        color: "rgba(0,0,0,0.6)",
+                                        maxWidth: "600px",
+                                        lineHeight: 1.5
+                                    }}
+                                >
+                                    Enhance efficiency and innovation with our comprehensive ISO audit management software designed for precision and compliance.
+                                </motion.p>
+                            </div>
 
-                    {/* Separator Line */}
-                    <div style={{ width: "100%", height: "1px", backgroundColor: "rgba(0,0,0,0.15)", marginBottom: "4rem" }} />
+                            {/* Separator Line */}
+                            <div style={{ width: "100%", height: "1px", backgroundColor: "rgba(0,0,0,0.15)", marginBottom: "4rem" }} />
+                        </>
+                    )}
 
                     {/* Main Footer Content */}
                     <div style={{
                         display: "grid",
-                        gridTemplateColumns: isMobile ? "1fr" : "1.3fr repeat(4, 1fr)",
+                        gridTemplateColumns: isMobile
+                            ? "1fr"
+                            : isCyphers
+                                ? "minmax(220px, 300px) minmax(0, 1fr)"
+                                : "1.3fr repeat(4, 1fr)",
                         gap: isMobile ? "2.5rem" : "2.5rem",
                         textAlign: isMobile ? "center" : "left"
                     }}>
                         {/* Brand Column */}
                         <div style={{ display: "flex", flexDirection: "column", alignItems: isMobile ? "center" : "flex-start" }}>
-                            <Link href="/" style={{
+                            <Link href={isCyphers ? "/cyphers" : "/"} style={{
                                 display: "inline-block",
                                 marginBottom: "1.5rem",
                                 textDecoration: "none"
                             }}>
                                 <Image
-                                    src="/iAudit Global-01.png"
-                                    alt="iAudit Global company logo"
-                                    width={isMobile ? 120 : 150}
-                                    height={isMobile ? 40 : 50}
-                                    style={{ height: "auto", objectFit: "contain" }}
+                                    src={isCyphers ? "/cyphers-logo.png" : "/iAudit Global-01.png"}
+                                    alt={isCyphers ? "Cyphers" : "iAudit Global company logo"}
+                                    width={isCyphers ? 513 : (isMobile ? 120 : 150)}
+                                    height={isCyphers ? 640 : (isMobile ? 40 : 50)}
+                                    style={{
+                                        height: isCyphers ? (isMobile ? "64px" : "72px") : "auto",
+                                        width: isCyphers ? "auto" : undefined,
+                                        objectFit: "contain",
+                                    }}
                                 />
                             </Link>
                             <p style={{
                                 fontSize: "1rem",
                                 lineHeight: 1.5,
                                 color: "rgba(0,0,0,0.6)",
-                                maxWidth: isMobile ? "100%" : "280px",
+                                maxWidth: isMobile ? "100%" : isCyphers ? "420px" : "280px",
                                 fontWeight: 400,
                                 marginBottom: "2.5rem"
                             }}>
-                                ISO audit management software built by auditors, for auditors.
+                                {isCyphers
+                                    ? "Finding vulnerabilities. Strengthening security. Building confidence."
+                                    : "ISO audit management software built by auditors, for auditors."}
                             </p>
                             <Link href="https://apps.iaudit.global" className="btn-animate" style={{
                                 padding: "0.8rem 2.5rem",
@@ -236,7 +250,46 @@ export default function Footer() {
                             </Link>
                         </div>
 
-                        {footerColumns.map((column) => (
+                        {isCyphers && (
+                            <div style={{
+                                display: "grid",
+                                gridTemplateColumns: isMobile ? "1fr" : "max-content max-content",
+                                justifyContent: isMobile ? "center" : "start",
+                                gap: isMobile ? "1.25rem" : "1.5rem",
+                                alignItems: "start",
+                            }}>
+                                <div style={{ display: "flex", flexDirection: "column", alignItems: isMobile ? "center" : "flex-start" }}>
+                                    <h4 style={{ fontSize: "1rem", fontWeight: 500, margin: "0 0 0.75rem" }}>Reach Us</h4>
+                                    <p style={{ ...linkStyle, margin: 0, lineHeight: 1.5 }}>
+                                        Unit 17f, The Lansbury Estates, Surrey,<br />
+                                        England, United Kingdom
+                                    </p>
+                                </div>
+                                <div style={{ display: "flex", flexDirection: "column", alignItems: isMobile ? "center" : "flex-start" }}>
+                                    <h4 style={{ fontSize: "1rem", fontWeight: 500, margin: "0 0 0.75rem" }}>Contact us</h4>
+                                    <div style={{ display: "flex", flexDirection: "column", gap: "0.55rem", alignItems: isMobile ? "center" : "flex-start" }}>
+                                        <a
+                                            href="mailto:cyphers@iaudit.global"
+                                            style={linkStyle}
+                                            onMouseOver={(e) => { e.currentTarget.style.color = "#006644"; }}
+                                            onMouseOut={(e) => { e.currentTarget.style.color = "rgba(0,0,0,0.6)"; }}
+                                        >
+                                            cyphers@iaudit.global
+                                        </a>
+                                        <a
+                                            href="tel:+447944829129"
+                                            style={linkStyle}
+                                            onMouseOver={(e) => { e.currentTarget.style.color = "#006644"; }}
+                                            onMouseOut={(e) => { e.currentTarget.style.color = "rgba(0,0,0,0.6)"; }}
+                                        >
+                                            +44 7944 829129
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {!isCyphers && footerColumns.map((column) => (
                             <div
                                 key={column.title}
                                 style={{ display: "flex", flexDirection: "column", alignItems: isMobile ? "center" : "flex-start" }}
