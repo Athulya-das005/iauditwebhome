@@ -125,7 +125,7 @@ export default function Footer() {
         }}>
             {/* Main Footer Area */}
             <div style={{
-                padding: "3.5rem 0 2rem", // Keep logo after a standard space from footer top
+                padding: isCyphers ? "4.5rem 0 1.5rem" : "3.5rem 0 2rem",
             }}>
                 <div style={{ maxWidth: "1260px", margin: "0 auto", padding: "0 2rem" }}>
                     {!isCyphers && (
@@ -203,9 +203,9 @@ export default function Footer() {
                         gridTemplateColumns: isMobile
                             ? "1fr"
                             : isCyphers
-                                ? "minmax(220px, 300px) minmax(0, 1fr)"
+                                ? "minmax(260px, 320px) minmax(0, 1fr)"
                                 : "1.3fr repeat(4, 1fr)",
-                        gap: isMobile ? "2.5rem" : "2.5rem",
+                        gap: isMobile ? "2.5rem" : isCyphers ? "4.5rem" : "2.5rem",
                         textAlign: isMobile ? "center" : "left"
                     }}>
                         {/* Brand Column */}
@@ -239,35 +239,55 @@ export default function Footer() {
                                     ? "Finding vulnerabilities. Strengthening security. Building confidence."
                                     : "ISO audit management software built by auditors, for auditors."}
                             </p>
-                            <Link href="https://apps.iaudit.global" className="btn-animate" style={{
-                                padding: "0.8rem 2.5rem",
-                                borderRadius: "6px",
-                                fontSize: "0.95rem",
-                                fontWeight: 500,
-                                textDecoration: "none",
-                            }}>
-                                <span>Get started ↗</span>
+                            <Link
+                                href={isCyphers ? "/contact" : "https://apps.iaudit.global"}
+                                className="btn-animate"
+                                style={{
+                                    padding: "0.8rem 2.5rem",
+                                    borderRadius: "6px",
+                                    fontSize: "0.95rem",
+                                    fontWeight: 500,
+                                    textDecoration: "none",
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                }}
+                            >
+                                <span>{isCyphers ? "Contact us" : "Get started ↗"}</span>
                             </Link>
                         </div>
 
                         {isCyphers && (
                             <div style={{
                                 display: "grid",
-                                gridTemplateColumns: isMobile ? "1fr" : "max-content max-content",
+                                gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
                                 justifyContent: isMobile ? "center" : "start",
-                                gap: isMobile ? "1.25rem" : "1.5rem",
+                                gap: isMobile ? "2.25rem" : "3.5rem",
                                 alignItems: "start",
                             }}>
                                 <div style={{ display: "flex", flexDirection: "column", alignItems: isMobile ? "center" : "flex-start" }}>
-                                    <h4 style={{ fontSize: "1rem", fontWeight: 500, margin: "0 0 0.75rem" }}>Reach Us</h4>
-                                    <p style={{ ...linkStyle, margin: 0, lineHeight: 1.5 }}>
+                                    <h4 style={{ fontSize: "1rem", fontWeight: 500, margin: "0 0 1.25rem" }}>Company</h4>
+                                    <div style={{ display: "flex", flexDirection: "column", gap: "0.8rem", alignItems: isMobile ? "center" : "flex-start" }}>
+                                        <Link
+                                            href="https://iaudit.global"
+                                            style={linkStyle}
+                                            onMouseOver={(e) => { e.currentTarget.style.color = "#006644"; }}
+                                            onMouseOut={(e) => { e.currentTarget.style.color = "rgba(0,0,0,0.6)"; }}
+                                        >
+                                            iAudit
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div style={{ display: "flex", flexDirection: "column", alignItems: isMobile ? "center" : "flex-start" }}>
+                                    <h4 style={{ fontSize: "1rem", fontWeight: 500, margin: "0 0 1.25rem" }}>Reach Us</h4>
+                                    <p style={{ ...linkStyle, margin: 0, lineHeight: 1.6 }}>
                                         Unit 17f, The Lansbury Estates, Surrey,<br />
                                         England, United Kingdom
                                     </p>
                                 </div>
                                 <div style={{ display: "flex", flexDirection: "column", alignItems: isMobile ? "center" : "flex-start" }}>
-                                    <h4 style={{ fontSize: "1rem", fontWeight: 500, margin: "0 0 0.75rem" }}>Contact us</h4>
-                                    <div style={{ display: "flex", flexDirection: "column", gap: "0.55rem", alignItems: isMobile ? "center" : "flex-start" }}>
+                                    <h4 style={{ fontSize: "1rem", fontWeight: 500, margin: "0 0 1.25rem" }}>Contact us</h4>
+                                    <div style={{ display: "flex", flexDirection: "column", gap: "0.8rem", alignItems: isMobile ? "center" : "flex-start" }}>
                                         <a
                                             href="mailto:cyphers@iaudit.global"
                                             style={linkStyle}
@@ -310,9 +330,10 @@ export default function Footer() {
 
             {/* Bottom Bar */}
             <div style={{
-                padding: "1.5rem 0",
+                padding: "1.75rem 0",
                 width: "100%",
-                borderTop: "1px solid rgba(0,0,0,0.06)"
+                borderTop: "1px solid rgba(0,0,0,0.06)",
+                marginTop: isCyphers ? "3.5rem" : 0,
             }}>
                 <div style={{
                     maxWidth: "1260px",

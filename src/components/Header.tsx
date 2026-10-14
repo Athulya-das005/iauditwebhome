@@ -152,6 +152,7 @@ export default function Header() {
             href: "#",
             megamenu: industriesAndStandardsMegamenu,
         },
+        { label: "ISO 9001:2026", href: "/iso-9001-2026-transition" },
         { label: "ISO 14001:2026", href: "/iso-14001-2026" },
         { label: "Pricing", href: "/pricing" },
         {
@@ -381,13 +382,13 @@ export default function Header() {
                         className="hidden-mobile site-header-links"
                         style={{
                             display: "flex",
-                            gap: "1.35rem",
+                            gap: "clamp(0.65rem, 1.1vw, 1.25rem)",
                             alignItems: "center",
                             zIndex: 10,
                         }}
                     >
                         {navItems.map((item) => {
-                            const isIso2026 = item.label === "ISO 14001:2026";
+                            const isIso2026 = item.label === "ISO 14001:2026" || item.label === "ISO 9001:2026";
                             return (
                             <div
                                 key={item.label}
@@ -470,6 +471,8 @@ export default function Header() {
                             alignItems: "center",
                             gap: "0.75rem",
                             zIndex: 10,
+                            flexShrink: 0,
+                            whiteSpace: "nowrap",
                         }}
                     >
                         <Link
@@ -487,9 +490,11 @@ export default function Header() {
                                 boxShadow: "none",
                                 isolation: "isolate",
                                 transform: "translateZ(0)",
+                                whiteSpace: "nowrap",
+                                flexShrink: 0,
                             }}
                         >
-                            <span>Login</span>
+                            <span style={{ whiteSpace: "nowrap" }}>Login</span>
                         </Link>
                         <Link
                             href="https://apps.iaudit.global"
@@ -509,11 +514,13 @@ export default function Header() {
                                 boxShadow: "none",
                                 isolation: "isolate",
                                 transform: "translateZ(0)",
+                                whiteSpace: "nowrap",
+                                flexShrink: 0,
                             }}
                         >
-                            <span>
+                            <span style={{ whiteSpace: "nowrap", display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
                                 Get started free
-                                <span ref={arrowRef} style={{ display: "inline-flex", alignItems: "center" }}>
+                                <span ref={arrowRef} style={{ display: "inline-flex", alignItems: "center", flexShrink: 0 }}>
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                         <line x1="7" y1="17" x2="17" y2="7" />
                                         <polyline points="7 7 17 7 17 17" />

@@ -545,7 +545,7 @@ html[data-site-nav-hidden="true"] .site-header-chrome .site-header-nav {
   gap: 1rem;
   /* Resting: keep logo + CTAs near the menus (not pinned to viewport edges) */
   width: 100%;
-  max-width: 1180px;
+  max-width: 1260px;
   margin-inline: auto;
   min-height: 72px;
   padding: 0 1.75rem;
@@ -565,7 +565,7 @@ html[data-site-nav-hidden="true"] .site-header-chrome .site-header-nav {
 @media (min-width: 1024px) {
   .site-header-nav-inner {
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: minmax(max-content, 1fr) auto minmax(max-content, 1fr);
     align-items: center;
     column-gap: 1.25rem;
     padding: 0 1.75rem;
@@ -577,7 +577,7 @@ html[data-site-nav-hidden="true"] .site-header-chrome .site-header-nav {
 
   .site-header-brand {
     justify-self: start;
-    min-width: 0;
+    min-width: max-content;
   }
 
   .site-header-links {
@@ -586,7 +586,8 @@ html[data-site-nav-hidden="true"] .site-header-chrome .site-header-nav {
 
   .site-header-actions {
     justify-self: end;
-    min-width: 0;
+    min-width: max-content;
+    white-space: nowrap;
   }
 }
 
