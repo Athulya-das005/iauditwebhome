@@ -309,10 +309,10 @@ export default function Header() {
                             <Image
                                 src="/cyphers-logo.png"
                                 alt="Cyphers"
-                                width={513}
-                                height={640}
+                                width={1400}
+                                height={1425}
                                 style={{
-                                    height: isMobile ? "40px" : isCondensed ? "44px" : "48px",
+                                    height: isMobile ? "56px" : isCondensed ? "56px" : "68px",
                                     width: "auto",
                                     objectFit: "contain",
                                     display: "block",
@@ -784,9 +784,9 @@ export default function Header() {
                                               <Image
                                                   src="/cyphers-logo.png"
                                                   alt="Cyphers"
-                                                  width={513}
-                                                  height={640}
-                                                  style={{ height: "40px", width: "auto", objectFit: "contain", display: "block" }}
+                                                  width={1400}
+                                                  height={1425}
+                                                  style={{ height: "52px", width: "auto", objectFit: "contain", display: "block" }}
                                               />
                                           </a>
                                       ) : (

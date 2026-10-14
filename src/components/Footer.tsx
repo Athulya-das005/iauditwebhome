@@ -218,10 +218,10 @@ export default function Footer() {
                                 <Image
                                     src={isCyphers ? "/cyphers-logo.png" : "/iAudit Global-01.png"}
                                     alt={isCyphers ? "Cyphers" : "iAudit Global company logo"}
-                                    width={isCyphers ? 513 : (isMobile ? 120 : 150)}
-                                    height={isCyphers ? 640 : (isMobile ? 40 : 50)}
+                                    width={isCyphers ? 1400 : (isMobile ? 120 : 150)}
+                                    height={isCyphers ? 1425 : (isMobile ? 40 : 50)}
                                     style={{
-                                        height: isCyphers ? (isMobile ? "64px" : "72px") : "auto",
+                                        height: isCyphers ? (isMobile ? "104px" : "128px") : "auto",
                                         width: isCyphers ? "auto" : undefined,
                                         objectFit: "contain",
                                     }}
