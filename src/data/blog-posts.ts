@@ -13,6 +13,17 @@ export type BlogPost = {
 /** Single source of truth for the /blog listing. Add new posts here when published. */
 export const blogPosts: BlogPost[] = [
     {
+        slug: "iso-9001-2026-requirements-explained",
+        title: "ISO 9001:2026 Requirements Explained: What to Review",
+        excerpt:
+            "Understand ISO 9001:2026 requirements, what has changed, and what organisations should review across leadership, risk, audits and improvement.",
+        datePublished: "2026-10-19",
+        readTime: "10 Min Read",
+        image: "/images/blog/iso-9001-2026-requirements-explained.jpg",
+        author: "Mathew Chiweda",
+        categories: ["ISO 9001", "Compliance"],
+    },
+    {
         slug: "iso-9001-2015-vs-iso-9001-2026",
         title: "ISO 9001:2015 vs ISO 9001:2026: What Really Changed?",
         excerpt:
@@ -535,6 +546,7 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
                 id: "iso-9001-2026",
                 label: "ISO 9001:2026",
                 slugs: [
+                    "iso-9001-2026-requirements-explained",
                     "iso-9001-2015-vs-iso-9001-2026",
                     "iso-9001-2026-key-changes-transition",
                 ],
@@ -543,6 +555,7 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
                 id: "iso-9001-auditing",
                 label: "ISO 9001 Auditing",
                 slugs: [
+                    "iso-9001-2026-requirements-explained",
                     "why-internal-audits-are-critical-in-manufacturing",
                     "how-to-audit-risk-based-thinking",
                     "common-iso-9001-nonconformities-manufacturing",
