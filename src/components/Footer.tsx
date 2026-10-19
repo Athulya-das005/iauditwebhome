@@ -49,6 +49,12 @@ export default function Footer() {
             ],
         },
         {
+            title: "Cyber Security",
+            items: [
+                { name: "Cyphers", path: "/cybersecurity/cyphers" },
+            ],
+        },
+        {
             title: "Resources & Company",
             items: [
                 { name: "Vulnerability Disclosure", path: "/security/vulnerability-disclosure-policy" },
@@ -204,8 +210,8 @@ export default function Footer() {
                             ? "1fr"
                             : isCyphers
                                 ? "minmax(260px, 320px) minmax(0, 1fr)"
-                                : "1.3fr repeat(4, 1fr)",
-                        gap: isMobile ? "2.5rem" : isCyphers ? "4.5rem" : "2.5rem",
+                                : "1.25fr repeat(5, 1fr)",
+                        gap: isMobile ? "2.5rem" : isCyphers ? "4.5rem" : "2rem",
                         textAlign: isMobile ? "center" : "left"
                     }}>
                         {/* Brand Column */}
@@ -274,7 +280,7 @@ export default function Footer() {
                                             onMouseOver={(e) => { e.currentTarget.style.color = "#006644"; }}
                                             onMouseOut={(e) => { e.currentTarget.style.color = "rgba(0,0,0,0.6)"; }}
                                         >
-                                            iAudit
+                                            iAudit Global
                                         </Link>
                                     </div>
                                 </div>
