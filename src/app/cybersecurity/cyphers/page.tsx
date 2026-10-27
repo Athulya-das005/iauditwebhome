@@ -54,6 +54,10 @@ const serviceJsonLd = {
         "@type": "Organization",
         name: "Cyphers by iAudit Global",
         url: "https://www.iaudit.global",
+        sameAs: [
+            "https://www.linkedin.com/company/cyphers-by-iaudit-global",
+            "https://www.instagram.com/cyphers.cybersecurity/",
+        ],
     },
     hasOfferCatalog: {
         "@type": "OfferCatalog",
