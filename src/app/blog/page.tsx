@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import BlogListing from "@/components/blog/BlogListing";
 
-const pageUrl = "https://www.iaudit.global/blog";
+const pageUrl = "https://iaudit.global/blog";
 const title = "ISO Auditing & Compliance Blog | iAudit Global";
 const headline = "ISO Auditing, Compliance & Continuous Improvement Insights";
 const description =
     "Explore practical insights on ISO internal audits, ISO 9001, ISO 14001, audit management, compliance, risk-based thinking, corrective actions and continuous improvement.";
-const ogImage = "https://www.iaudit.global/iaudit-logo-new.png";
+const ogImage = "https://iaudit.global/iaudit-logo-new.png";
 
 export const metadata: Metadata = {
     title,
@@ -50,31 +50,31 @@ const jsonLd = {
     "@graph": [
         {
             "@type": "CollectionPage",
-            "@id": "https://www.iaudit.global/blog/#webpage",
-            url: "https://www.iaudit.global/blog/",
+            "@id": "https://iaudit.global/blog/#webpage",
+            url: "https://iaudit.global/blog/",
             name: "ISO Auditing & Compliance Blog",
             headline,
             description,
             inLanguage: "en-GB",
-            isPartOf: { "@id": "https://www.iaudit.global/#website" },
-            about: { "@id": "https://www.iaudit.global/#organization" },
-            breadcrumb: { "@id": "https://www.iaudit.global/blog/#breadcrumb" },
+            isPartOf: { "@id": "https://iaudit.global/#website" },
+            about: { "@id": "https://iaudit.global/#organization" },
+            breadcrumb: { "@id": "https://iaudit.global/blog/#breadcrumb" },
         },
         {
             "@type": "BreadcrumbList",
-            "@id": "https://www.iaudit.global/blog/#breadcrumb",
+            "@id": "https://iaudit.global/blog/#breadcrumb",
             itemListElement: [
                 {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Blog",
-                    item: "https://www.iaudit.global/blog/",
+                    item: "https://iaudit.global/blog/",
                 },
             ],
         },
