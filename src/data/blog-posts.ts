@@ -13,6 +13,17 @@ export type BlogPost = {
 /** Single source of truth for the /blog listing. Add new posts here when published. */
 export const blogPosts: BlogPost[] = [
     {
+        slug: "internal-audit-software-vs-spreadsheets",
+        title: "Internal Audit Software vs Spreadsheets: When to Change",
+        excerpt:
+            "Compare internal audit software vs spreadsheets and learn when dedicated audit software can improve findings, evidence, reporting and follow-up.",
+        datePublished: "2026-10-27",
+        readTime: "6 Min Read",
+        image: "/images/blog/internal-audit-software-vs-spreadsheets.jpg",
+        author: "Mathew Chiweda",
+        categories: ["Audit Management", "Internal Auditing"],
+    },
+    {
         slug: "iso-9001-2026-requirements-explained",
         title: "ISO 9001:2026 Requirements Explained: What to Review",
         excerpt:
@@ -680,7 +691,11 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
             {
                 id: "audit-management-software",
                 label: "Audit Management Software",
-                slugs: ["how-to-choose-iso-audit-management-software", "how-to-set-up-iaudit-global-iso-audit-software"],
+                slugs: [
+                    "internal-audit-software-vs-spreadsheets",
+                    "how-to-choose-iso-audit-management-software",
+                    "how-to-set-up-iaudit-global-iso-audit-software",
+                ],
             },
             {
                 id: "multi-site-auditing",
