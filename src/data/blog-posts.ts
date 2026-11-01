@@ -13,6 +13,17 @@ export type BlogPost = {
 /** Single source of truth for the /blog listing. Add new posts here when published. */
 export const blogPosts: BlogPost[] = [
     {
+        slug: "iso-audit-programme-software",
+        title: "ISO Audit Programme Software: What Should It Do?",
+        excerpt:
+            "Learn what ISO audit programme software should manage, from planning and evidence to findings, corrective actions, reporting and audit history.",
+        datePublished: "2026-11-01",
+        readTime: "7 Min Read",
+        image: "/images/blog/iso-audit-programme-software.jpg",
+        author: "Mathew Chiweda",
+        categories: ["Audit Management", "Audit Management Software"],
+    },
+    {
         slug: "internal-audit-software-vs-spreadsheets",
         title: "Internal Audit Software vs Spreadsheets: When to Change",
         excerpt:
@@ -692,6 +703,7 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
                 id: "audit-management-software",
                 label: "Audit Management Software",
                 slugs: [
+                    "iso-audit-programme-software",
                     "internal-audit-software-vs-spreadsheets",
                     "how-to-choose-iso-audit-management-software",
                     "how-to-set-up-iaudit-global-iso-audit-software",
