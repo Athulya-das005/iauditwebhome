@@ -91,7 +91,7 @@ const faqItems = [
     {
         question: "How does iAudit Global solve the audit data delay problem?",
         answer:
-            "iAudit Global centralises your entire audit programme in one system. Findings are logged and visible in real-time. Corrective actions have clear timelines and automated reminders. Follow-up audits are scheduled automatically based on severity and effectiveness requirements. Multi-site dashboards show trends instantly, eliminating the week-long consolidation delay. You can explore these features with a 14-day free trial at www.iaudit.global.",
+            "iAudit Global centralises your entire audit programme in one system. Findings are logged and visible in real-time. Corrective actions have clear timelines and automated reminders. Follow-up audits are scheduled automatically based on severity and effectiveness requirements. Multi-site dashboards show trends instantly, eliminating the week-long consolidation delay. You can explore these features with a 14-day free trial at iaudit.global.",
     },
 ];
 
@@ -577,8 +577,8 @@ export default function AuditDataDelayBlogContent() {
                         </p>
                         <p style={para(font)}>
                             Start your free trial at{" "}
-                            <a href="https://www.iaudit.global/" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>
-                                www.iaudit.global
+                            <a href="https://iaudit.global/" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>
+                                iaudit.global
                             </a>
                         </p>
 
@@ -621,7 +621,7 @@ export default function AuditDataDelayBlogContent() {
                                 Start a 14-day free trial of iAudit Global and see how real-time visibility, automated follow-ups and cross-site dashboards turn audit data into a preventive tool.
                             </p>
                             <a
-                                href="https://www.iaudit.global/"
+                                href="https://iaudit.global/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 style={{

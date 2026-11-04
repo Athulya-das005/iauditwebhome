@@ -558,8 +558,8 @@ export default function ManagementReviewAuditResultsBlogContent() {
                         </p>
                         <p style={para(font)}>
                             You can explore how iAudit Global supports structured, PDCA-driven management review with a 14-day free trial at{" "}
-                            <a href="https://www.iaudit.global/" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>
-                                www.iaudit.global
+                            <a href="https://iaudit.global/" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>
+                                iaudit.global
                             </a>
                             .
                         </p>
@@ -607,7 +607,7 @@ export default function ManagementReviewAuditResultsBlogContent() {
                                 Start a 14-day free trial of iAudit Global and see how real-time dashboards, recurring NCR tracking and PDCA workflows support smarter management reviews.
                             </p>
                             <a
-                                href="https://www.iaudit.global/"
+                                href="https://iaudit.global/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 style={{

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import ConstructionIso9001BlogContent from "./ConstructionIso9001BlogContent";
 
-const pageUrl = "https://www.iaudit.global/blog/prepare-for-iso-9001-in-construction";
-const ogImage = "https://www.iaudit.global/images/construction-bg.webp";
+const pageUrl = "https://iaudit.global/blog/prepare-for-iso-9001-in-construction";
+const ogImage = "https://iaudit.global/images/construction-bg.webp";
 const title = "Prepare for ISO 9001 in Construction: What You Actually Need";
 const description =
     "A practical guide to prepare for ISO 9001 in construction — scope, documentation, site checks, internal audits, common mistakes and a short checklist for audit day.";
@@ -40,12 +40,12 @@ const jsonLd = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
+            url: "https://iaudit.global",
             logo: {
                 "@type": "ImageObject",
-                url: "https://www.iaudit.global/iaudit-logo-new.png",
+                url: "https://iaudit.global/iaudit-logo-new.png",
             },
             sameAs: [
                 "https://www.linkedin.com/company/iaudit-global",
@@ -64,7 +64,7 @@ const jsonLd = {
             },
             publisher: {
                 "@type": "Organization",
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
             datePublished: "2026-04-10",
             dateModified: "2026-04-10",

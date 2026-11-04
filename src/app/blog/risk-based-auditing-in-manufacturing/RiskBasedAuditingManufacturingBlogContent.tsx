@@ -708,7 +708,7 @@ export default function RiskBasedAuditingManufacturingBlogContent() {
                                 evidence-linked findings and live dashboards.
                             </p>
                             <a
-                                href="https://www.iaudit.global/"
+                                href="https://iaudit.global/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 style={{

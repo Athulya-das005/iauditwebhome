@@ -6,7 +6,7 @@ import { MATTHEW_CHIWEDA_PAGE_URL } from "@/data/matthewChiwedaPageSchema";
 const title = "Mathew Chiweda | Co-founder iAudit Global";
 const description =
     "Meet Mathew Chiweda, Co-founder of iAudit Global and ISO audit specialist with 20+ years of experience in quality, HSE and management systems.";
-const ogImage = "https://www.iaudit.global/images/mathew-chiweda.webp";
+const ogImage = "https://iaudit.global/images/mathew-chiweda.webp";
 
 export const metadata: Metadata = {
     title,

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import PdcaCycleContent from "@/components/PdcaCycleContent";
 import PdcaPageJsonLd from "@/components/seo/PdcaPageJsonLd";
 
-const pageUrl = "https://www.iaudit.global/pdca-cycle-audit-software";
-const ogImage = "https://www.iaudit.global/og-image.jpg";
+const pageUrl = "https://iaudit.global/pdca-cycle-audit-software";
+const ogImage = "https://iaudit.global/og-image.jpg";
 
 export const metadata: Metadata = {
     title: "PDCA Cycle Audit Software for ISO Audits | iAudit Global",

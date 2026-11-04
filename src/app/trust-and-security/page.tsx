@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import SecurityPracticesContent from "@/components/security/SecurityPracticesContent";
 import Footer from "@/components/Footer";
 
-const pageUrl = "https://www.iaudit.global/trust-and-security";
+const pageUrl = "https://iaudit.global/trust-and-security";
 
 export const metadata: Metadata = {
     title: "Trust & Security | Security Practices | iAudit Global",

@@ -3,10 +3,10 @@ export const pdcaPageSchema = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
-            logo: "https://www.iaudit.global/iaudit-logo-new.png",
+            url: "https://iaudit.global",
+            logo: "https://iaudit.global/iaudit-logo-new.png",
             email: "info@iaudit.global",
             telephone: "+44 7944 829129",
             address: {
@@ -21,15 +21,15 @@ export const pdcaPageSchema = {
         },
         {
             "@type": "SoftwareApplication",
-            "@id": "https://www.iaudit.global/pdca-cycle-audit-software/#software",
+            "@id": "https://iaudit.global/pdca-cycle-audit-software/#software",
             name: "iAudit Global",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
-            url: "https://www.iaudit.global/pdca-cycle-audit-software",
+            url: "https://iaudit.global/pdca-cycle-audit-software",
             description:
                 "PDCA cycle audit software for ISO audits. Plan, Do, Check, Act in one connected workflow with evidence, dashboards and corrective actions.",
             creator: {
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
             featureList: [
                 "PDCA audit workflow",
@@ -48,25 +48,25 @@ export const pdcaPageSchema = {
         },
         {
             "@type": "BreadcrumbList",
-            "@id": "https://www.iaudit.global/pdca-cycle-audit-software/#breadcrumb",
+            "@id": "https://iaudit.global/pdca-cycle-audit-software/#breadcrumb",
             itemListElement: [
                 {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "PDCA Cycle Audit Software",
-                    item: "https://www.iaudit.global/pdca-cycle-audit-software",
+                    item: "https://iaudit.global/pdca-cycle-audit-software",
                 },
             ],
         },
         {
             "@type": "FAQPage",
-            "@id": "https://www.iaudit.global/pdca-cycle-audit-software/#faq",
+            "@id": "https://iaudit.global/pdca-cycle-audit-software/#faq",
             mainEntity: [
                 {
                     "@type": "Question",

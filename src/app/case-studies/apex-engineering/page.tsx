@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CaseStudyPageContent from "@/components/case-study/CaseStudyPageContent";
 import { apexCaseStudy } from "@/data/caseStudies";
 
-const pageUrl = "https://www.iaudit.global/case-studies/apex-engineering";
+const pageUrl = "https://iaudit.global/case-studies/apex-engineering";
 
 export const metadata: Metadata = {
     title: "How iAudit helped Apex Engineering secure 100% audit history continuity | iAudit Global",

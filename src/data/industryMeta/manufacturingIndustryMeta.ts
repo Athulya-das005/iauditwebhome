@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-const pageUrl = "https://www.iaudit.global/industries/manufacturing-iso-audit-software";
-const ogImage = "https://www.iaudit.global/iaudit-logo-new.png";
+const pageUrl = "https://iaudit.global/industries/manufacturing-iso-audit-software";
+const ogImage = "https://iaudit.global/iaudit-logo-new.png";
 
 export const manufacturingIndustryMetadata: Metadata = {
     title: "Manufacturing Audit Software for ISO Compliance | iAudit Global",

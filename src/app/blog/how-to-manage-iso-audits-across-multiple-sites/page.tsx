@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import MultiSiteBlogContent from "./MultiSiteBlogContent";
 
-const pageUrl = "https://www.iaudit.global/blog/how-to-manage-iso-audits-across-multiple-sites";
-const ogImage = "https://www.iaudit.global/assets/images/blog-multi-site-audits.jpg";
+const pageUrl = "https://iaudit.global/blog/how-to-manage-iso-audits-across-multiple-sites";
+const ogImage = "https://iaudit.global/assets/images/blog-multi-site-audits.jpg";
 const title = "How to Manage ISO Audits Across Multiple Sites Effectively";
 const description =
     "Learn how to manage ISO audits across multiple sites with centralised oversight, standardised checklists, and real-time visibility for better compliance.";
@@ -36,12 +36,12 @@ const jsonLd = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
+            url: "https://iaudit.global",
             logo: {
                 "@type": "ImageObject",
-                url: "https://www.iaudit.global/iaudit-logo-new.png",
+                url: "https://iaudit.global/iaudit-logo-new.png",
             },
             sameAs: [
                 "https://www.linkedin.com/company/iaudit-global",
@@ -50,7 +50,7 @@ const jsonLd = {
         },
         {
             "@type": "SoftwareApplication",
-            "@id": "https://www.iaudit.global/#software",
+            "@id": "https://iaudit.global/#software",
             name: "iAudit Global",
             operatingSystem: "Web",
             applicationCategory: "BusinessApplication",
@@ -59,7 +59,7 @@ const jsonLd = {
                 "ISO audit management software for ISO 9001, 14001, 45001, and 27001. Plan, execute, and track multi-site audits with PDCA workflows and real-time dashboards.",
             creator: {
                 "@type": "Organization",
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
         },
         {
@@ -74,7 +74,7 @@ const jsonLd = {
             },
             publisher: {
                 "@type": "Organization",
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
             datePublished: "2026-03-13",
             dateModified: "2026-03-13",

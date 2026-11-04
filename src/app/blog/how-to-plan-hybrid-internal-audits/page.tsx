@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import HybridInternalAuditsBlogContent from "./HybridInternalAuditsBlogContent";
 
-const pageUrl = "https://www.iaudit.global/blog/how-to-plan-hybrid-internal-audits";
-const ogImage = "https://www.iaudit.global/images/blog-complex-workflows.webp";
+const pageUrl = "https://iaudit.global/blog/how-to-plan-hybrid-internal-audits";
+const ogImage = "https://iaudit.global/images/blog-complex-workflows.webp";
 const title = "How to Plan Hybrid Internal Audits | ISO Guide";
 const description =
     "Learn how to plan hybrid internal audits using remote and on-site methods. Get practical steps, evidence tips and ISO 19011 aligned planning guidance.";
@@ -49,12 +49,12 @@ const jsonLd = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
+            url: "https://iaudit.global",
             logo: {
                 "@type": "ImageObject",
-                url: "https://www.iaudit.global/iaudit-logo-new.png",
+                url: "https://iaudit.global/iaudit-logo-new.png",
             },
             sameAs: [
                 "https://www.linkedin.com/company/iaudit-global",
@@ -63,16 +63,16 @@ const jsonLd = {
         },
         {
             "@type": "SoftwareApplication",
-            "@id": "https://www.iaudit.global/#software",
+            "@id": "https://iaudit.global/#software",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
+            url: "https://iaudit.global",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
             description:
                 "ISO audit management software built for planning, executing and reporting ISO 9001, 14001, 45001 and 27001 audits using a PDCA-driven approach.",
             creator: {
                 "@type": "Organization",
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
         },
         {
@@ -82,12 +82,12 @@ const jsonLd = {
             name: "How to Plan Hybrid Internal Audits: A Practical Guide for ISO Standards",
             description,
             inLanguage: "en-GB",
-            isPartOf: { "@id": "https://www.iaudit.global/#organization" },
+            isPartOf: { "@id": "https://iaudit.global/#organization" },
             breadcrumb: {
                 "@type": "BreadcrumbList",
                 itemListElement: [
-                    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.iaudit.global" },
-                    { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.iaudit.global/blog" },
+                    { "@type": "ListItem", position: 1, name: "Home", item: "https://iaudit.global" },
+                    { "@type": "ListItem", position: 2, name: "Blog", item: "https://iaudit.global/blog" },
                     { "@type": "ListItem", position: 3, name: "How to Plan Hybrid Internal Audits", item: pageUrl },
                 ],
             },
@@ -98,12 +98,12 @@ const jsonLd = {
             headline: "How to Plan Hybrid Internal Audits: A Practical Guide for ISO Standards",
             description:
                 "Learn how to plan hybrid internal audits using remote and on-site methods. Practical ISO 19011 guidance, risk-based planning tips and audit evidence management.",
-            author: { "@id": "https://www.iaudit.global/#organization" },
+            author: { "@id": "https://iaudit.global/#organization" },
             datePublished: "2026-03-25",
             dateModified: "2026-03-25",
             mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
             image: ogImage,
-            publisher: { "@id": "https://www.iaudit.global/#organization" },
+            publisher: { "@id": "https://iaudit.global/#organization" },
             keywords:
                 "hybrid internal audits, how to plan hybrid internal audits, ISO 19011 remote auditing, remote and on-site internal audits",
             articleSection: "ISO Audit Management",

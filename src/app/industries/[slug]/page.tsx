@@ -28,7 +28,7 @@ export async function generateMetadata({
         return customMetadata;
     }
 
-    const pageUrl = `https://www.iaudit.global/industries/${slug}`;
+    const pageUrl = `https://iaudit.global/industries/${slug}`;
 
     return {
         title: `${industry.title} ISO Audit Software | iAudit Global`,

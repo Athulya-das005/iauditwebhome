@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Iso90012026RequirementsBlogContent from "./Iso90012026RequirementsBlogContent";
 
-const pageUrl = "https://www.iaudit.global/blog/iso-9001-2026-requirements-explained";
-const ogImage = "https://www.iaudit.global/images/blog/iso-9001-2026-requirements-explained.jpg";
+const pageUrl = "https://iaudit.global/blog/iso-9001-2026-requirements-explained";
+const ogImage = "https://iaudit.global/images/blog/iso-9001-2026-requirements-explained.jpg";
 const title = "ISO 9001:2026 Requirements Explained: What to Review";
 const description =
     "Understand ISO 9001:2026 requirements, what has changed, and what organisations should review across leadership, risk, audits and improvement.";
@@ -49,10 +49,10 @@ const jsonLd = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
-            logo: { "@type": "ImageObject", url: "https://www.iaudit.global/iaudit-logo-new.png" },
+            url: "https://iaudit.global/",
+            logo: { "@type": "ImageObject", url: "https://iaudit.global/iaudit-logo-new.png" },
             description: "iAudit Global is an ISO audit management platform built by certified auditors.",
             sameAs: ["https://www.linkedin.com/company/iaudit-global", "https://twitter.com/iauditglobal"],
         },
@@ -63,12 +63,12 @@ const jsonLd = {
             name: title,
             description,
             inLanguage: "en-GB",
-            isPartOf: { "@id": "https://www.iaudit.global/#organization" },
+            isPartOf: { "@id": "https://iaudit.global/#organization" },
             breadcrumb: {
                 "@type": "BreadcrumbList",
                 itemListElement: [
-                    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.iaudit.global" },
-                    { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.iaudit.global/blog" },
+                    { "@type": "ListItem", position: 1, name: "Home", item: "https://iaudit.global" },
+                    { "@type": "ListItem", position: 2, name: "Blog", item: "https://iaudit.global/blog" },
                     { "@type": "ListItem", position: 3, name: "ISO 9001:2026 Requirements Explained", item: pageUrl },
                 ],
             },
@@ -83,9 +83,9 @@ const jsonLd = {
             author: {
                 "@type": "Person",
                 name: "Mathew Chiweda",
-                url: "https://www.iaudit.global/author/mathew-chiweda",
+                url: "https://iaudit.global/author/mathew-chiweda",
             },
-            publisher: { "@id": "https://www.iaudit.global/#organization" },
+            publisher: { "@id": "https://iaudit.global/#organization" },
             datePublished: "2026-10-19",
             dateModified: "2026-10-19",
             mainEntityOfPage: { "@id": `${pageUrl}#webpage` },

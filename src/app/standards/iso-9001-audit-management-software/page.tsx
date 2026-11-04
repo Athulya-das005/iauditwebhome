@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Iso9001Content from "@/components/Iso9001Content";
 import Iso9001PageJsonLd from "@/components/seo/Iso9001PageJsonLd";
 
-const pageUrl = "https://www.iaudit.global/standards/iso-9001-audit-management-software";
-const ogImage = "https://www.iaudit.global/assets/iso-9001-cover.jpg";
+const pageUrl = "https://iaudit.global/standards/iso-9001-audit-management-software";
+const ogImage = "https://iaudit.global/assets/iso-9001-cover.jpg";
 
 export const metadata: Metadata = {
     title: "ISO 9001 Audit Management Software | iAudit Global",

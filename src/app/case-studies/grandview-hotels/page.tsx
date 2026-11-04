@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CaseStudyPageContent from "@/components/case-study/CaseStudyPageContent";
 import { grandviewCaseStudy } from "@/data/caseStudies";
 
-const pageUrl = "https://www.iaudit.global/case-studies/grandview-hotels";
+const pageUrl = "https://iaudit.global/case-studies/grandview-hotels";
 
 export const metadata: Metadata = {
     title: "Grandview Hotels & Resorts Case Study | 40% Reduction in Repeat Nonconformities | iAudit Global",

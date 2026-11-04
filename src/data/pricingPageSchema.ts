@@ -3,9 +3,9 @@ export const pricingPageSchema = {
     "@graph": [
         {
             "@type": "SoftwareApplication",
-            "@id": "https://www.iaudit.global/#software",
+            "@id": "https://iaudit.global/#software",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
+            url: "https://iaudit.global/",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
             description:
@@ -17,7 +17,7 @@ export const pricingPageSchema = {
                     price: "15.60",
                     priceCurrency: "USD",
                     availability: "https://schema.org/InStock",
-                    url: "https://www.iaudit.global/pricing",
+                    url: "https://iaudit.global/pricing",
                 },
                 {
                     "@type": "Offer",
@@ -25,7 +25,7 @@ export const pricingPageSchema = {
                     price: "25.90",
                     priceCurrency: "USD",
                     availability: "https://schema.org/InStock",
-                    url: "https://www.iaudit.global/pricing",
+                    url: "https://iaudit.global/pricing",
                 },
                 {
                     "@type": "Offer",
@@ -33,7 +33,7 @@ export const pricingPageSchema = {
                     price: "30.10",
                     priceCurrency: "USD",
                     availability: "https://schema.org/InStock",
-                    url: "https://www.iaudit.global/pricing",
+                    url: "https://iaudit.global/pricing",
                 },
             ],
         },
@@ -51,30 +51,30 @@ export const pricingPageSchema = {
                 bestRating: "5",
             },
             itemReviewed: {
-                "@id": "https://www.iaudit.global/#software",
+                "@id": "https://iaudit.global/#software",
             },
         },
         {
             "@type": "BreadcrumbList",
-            "@id": "https://www.iaudit.global/pricing#breadcrumb",
+            "@id": "https://iaudit.global/pricing#breadcrumb",
             itemListElement: [
                 {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Pricing",
-                    item: "https://www.iaudit.global/pricing",
+                    item: "https://iaudit.global/pricing",
                 },
             ],
         },
         {
             "@type": "FAQPage",
-            "@id": "https://www.iaudit.global/pricing#faq",
+            "@id": "https://iaudit.global/pricing#faq",
             mainEntity: [
                 {
                     "@type": "Question",

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import AuditorsPageContent from "@/components/AuditorsPageContent";
 import AuditorsPageJsonLd from "@/components/seo/AuditorsPageJsonLd";
 
-const pageUrl = "https://www.iaudit.global/audit-management-software-built-by-auditors";
-const ogImage = "https://www.iaudit.global/og-image.jpg";
+const pageUrl = "https://iaudit.global/audit-management-software-built-by-auditors";
+const ogImage = "https://iaudit.global/og-image.jpg";
 
 export const metadata: Metadata = {
     title: "Audit Management software built by Auditors | iAudit Global",

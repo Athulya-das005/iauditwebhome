@@ -7,9 +7,9 @@ import Footer from "@/components/Footer";
 import CTA from "@/components/CTA";
 import FAQAccordion from "@/components/FAQAccordion";
 
-const CHECKLIST_URL = "https://www.iaudit.global/iso-14001-2026-self-assessment-tool/checklist";
-const GAP_ANALYSIS_URL = "https://www.iaudit.global/blog/iso-14001-2026-gap-analysis";
-const CHANGES_URL = "https://www.iaudit.global/blog/what-has-changed-in-iso-14001-2026";
+const CHECKLIST_URL = "https://iaudit.global/iso-14001-2026-self-assessment-tool/checklist";
+const GAP_ANALYSIS_URL = "https://iaudit.global/blog/iso-14001-2026-gap-analysis";
+const CHANGES_URL = "https://iaudit.global/blog/what-has-changed-in-iso-14001-2026";
 
 const HERO_IMAGE = "/images/blog/iso-14001-2026-internal-audit-checklist.jpg";
 

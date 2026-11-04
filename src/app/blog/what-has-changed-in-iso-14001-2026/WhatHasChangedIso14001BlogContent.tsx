@@ -139,7 +139,7 @@ const faqItems = [
             <>
                 A gap analysis is a good starting point. Review your current Environmental Management System against the ISO 14001:2026 requirements, paying particular attention to context, environmental aspects, risks and opportunities, lifecycle thinking, change management, external providers and internal auditing.{" "}
                 <a
-                    href="https://www.iaudit.global/iso-14001-2026-self-assessment-tool"
+                    href="https://iaudit.global/iso-14001-2026-self-assessment-tool"
                     style={{ color: "#006644", fontWeight: 600, textDecoration: "underline", textUnderlineOffset: "3px" }}
                 >
                     You can also use iAudit Global&apos;s free ISO 14001:2026 self-assessment to get an initial view of your organisation&apos;s readiness.
@@ -561,7 +561,7 @@ export default function WhatHasChangedIso14001BlogContent() {
                             </p>
                             <p style={{ ...para(font), marginBottom: 0 }}>
                                 If you are preparing for the transition,{" "}
-                                <a href="https://www.iaudit.global/iso-14001-2026-self-assessment-tool" style={linkStyle}>
+                                <a href="https://iaudit.global/iso-14001-2026-self-assessment-tool" style={linkStyle}>
                                     start with iAudit Global&apos;s free ISO 14001:2026 self-assessment
                                 </a>{" "}
                                 to check your current readiness and identify areas that may need attention.
@@ -945,21 +945,21 @@ export default function WhatHasChangedIso14001BlogContent() {
                         <p style={para(font)}>A good transition starts with understanding where you are now.</p>
                         <p style={para(font)}>
                             At iAudit Global, we have built our platform around the practical stages of ISO audit management, including audit planning, evidence capture, findings, corrective actions and reporting. You can{" "}
-                            <a href="https://www.iaudit.global/about" style={linkStyle}>
+                            <a href="https://iaudit.global/about" style={linkStyle}>
                                 learn more about iAudit Global
                             </a>
                             .
                         </p>
                         <p style={para(font)}>
                             If you are planning your transition and want to discuss what ISO 14001:2026 means for your organisation, you can{" "}
-                            <a href="https://www.iaudit.global/iso-14001-2026" style={linkStyle}>
+                            <a href="https://iaudit.global/iso-14001-2026" style={linkStyle}>
                                 book a free ISO 14001:2026 transition consultation
                             </a>
                             .
                         </p>
                         <p style={para(font)}>
                             Or, if you want to start by checking your current readiness, you can take our{" "}
-                            <a href="https://www.iaudit.global/iso-14001-2026-self-assessment-tool" style={linkStyle}>
+                            <a href="https://iaudit.global/iso-14001-2026-self-assessment-tool" style={linkStyle}>
                                 free ISO 14001:2026 self-assessment
                             </a>
                             .

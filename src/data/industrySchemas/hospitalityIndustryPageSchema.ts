@@ -1,12 +1,12 @@
-const logoUrl = "https://www.iaudit.global/iaudit-logo-new.png";
-const pageUrl = "https://www.iaudit.global/industries/hospitality-iso-audit-software";
+const logoUrl = "https://iaudit.global/iaudit-logo-new.png";
+const pageUrl = "https://iaudit.global/industries/hospitality-iso-audit-software";
 
 export const hospitalityIndustryPageSchema = {
     "@context": "https://schema.org",
     "@graph": [
         {
             "@type": "SoftwareApplication",
-            "@id": "https://www.iaudit.global/industries/hospitality-iso-audit-software#software",
+            "@id": "https://iaudit.global/industries/hospitality-iso-audit-software#software",
             name: "iAudit Global",
             url: pageUrl,
             image: logoUrl,
@@ -19,13 +19,13 @@ export const hospitalityIndustryPageSchema = {
                 "@type": "Offer",
                 priceCurrency: "USD",
                 price: "0",
-                url: "https://www.iaudit.global/pricing",
+                url: "https://iaudit.global/pricing",
                 priceValidUntil: "2026-12-31",
             },
         },
         {
             "@type": "Product",
-            "@id": "https://www.iaudit.global/industries/hospitality-iso-audit-software#product",
+            "@id": "https://iaudit.global/industries/hospitality-iso-audit-software#product",
             name: "iAudit Global Hospitality Audit Software",
             image: logoUrl,
             description:
@@ -33,11 +33,11 @@ export const hospitalityIndustryPageSchema = {
             brand: {
                 "@type": "Organization",
                 name: "iAudit Global",
-                url: "https://www.iaudit.global",
+                url: "https://iaudit.global",
             },
             offers: {
                 "@type": "Offer",
-                url: "https://www.iaudit.global/pricing",
+                url: "https://iaudit.global/pricing",
                 priceCurrency: "USD",
                 price: "0",
                 availability: "https://schema.org/InStock",
@@ -46,7 +46,7 @@ export const hospitalityIndustryPageSchema = {
         },
         {
             "@type": "FAQPage",
-            "@id": "https://www.iaudit.global/industries/hospitality-iso-audit-software#faq",
+            "@id": "https://iaudit.global/industries/hospitality-iso-audit-software#faq",
             mainEntity: [
                 {
                     "@type": "Question",
@@ -108,7 +108,7 @@ export const hospitalityIndustryPageSchema = {
         },
         {
             "@type": "Review",
-            "@id": "https://www.iaudit.global/industries/hospitality-iso-audit-software#reviews",
+            "@id": "https://iaudit.global/industries/hospitality-iso-audit-software#reviews",
             itemReviewed: {
                 "@type": "SoftwareApplication",
                 name: "iAudit Global",
@@ -127,19 +127,19 @@ export const hospitalityIndustryPageSchema = {
         },
         {
             "@type": "BreadcrumbList",
-            "@id": "https://www.iaudit.global/industries/hospitality-iso-audit-software#breadcrumb",
+            "@id": "https://iaudit.global/industries/hospitality-iso-audit-software#breadcrumb",
             itemListElement: [
                 {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Industries",
-                    item: "https://www.iaudit.global/industries",
+                    item: "https://iaudit.global/industries",
                 },
                 {
                     "@type": "ListItem",

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import WhatHasChangedIso14001BlogContent from "./WhatHasChangedIso14001BlogContent";
 
-const pageUrl = "https://www.iaudit.global/blog/what-has-changed-in-iso-14001-2026";
+const pageUrl = "https://iaudit.global/blog/what-has-changed-in-iso-14001-2026";
 const ogImage =
     "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&h=1080&fit=crop&q=90&fm=webp";
 const title = "What Has Changed in ISO 14001:2026? Key Changes Explained";
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
         "ISO 14001 transition",
         "Environmental Management System",
     ],
-    authors: [{ name: "Mathew Chiweda", url: "https://www.iaudit.global/author/mathew-chiweda" }],
+    authors: [{ name: "Mathew Chiweda", url: "https://iaudit.global/author/mathew-chiweda" }],
     robots: { index: true, follow: true },
     alternates: { canonical: pageUrl },
     openGraph: {
@@ -50,17 +50,17 @@ const jsonLd = {
             url: `${pageUrl}/`,
             name: "ISO 14001:2026 Changes: What Has Changed from ISO 14001:2015?",
             description,
-            isPartOf: { "@id": "https://www.iaudit.global/#website" },
+            isPartOf: { "@id": "https://iaudit.global/#website" },
             breadcrumb: { "@id": `${pageUrl}/#breadcrumb` },
             mainEntity: { "@id": `${pageUrl}/#article` },
             inLanguage: "en-GB",
         },
         {
             "@type": "WebSite",
-            "@id": "https://www.iaudit.global/#website",
-            url: "https://www.iaudit.global/",
+            "@id": "https://iaudit.global/#website",
+            url: "https://iaudit.global/",
             name: "iAudit Global",
-            publisher: { "@id": "https://www.iaudit.global/#organization" },
+            publisher: { "@id": "https://iaudit.global/#organization" },
             inLanguage: "en-GB",
         },
         {
@@ -70,8 +70,8 @@ const jsonLd = {
             headline: "ISO 14001:2026 Changes: What Has Changed from ISO 14001:2015?",
             description,
             image: { "@type": "ImageObject", url: ogImage },
-            author: { "@id": "https://www.iaudit.global/author/mathew-chiweda/#person" },
-            publisher: { "@id": "https://www.iaudit.global/#organization" },
+            author: { "@id": "https://iaudit.global/author/mathew-chiweda/#person" },
+            publisher: { "@id": "https://iaudit.global/#organization" },
             mainEntityOfPage: { "@id": `${pageUrl}/#webpage` },
             articleSection: "ISO 14001",
             keywords: [
@@ -88,13 +88,13 @@ const jsonLd = {
         },
         {
             "@type": "Person",
-            "@id": "https://www.iaudit.global/author/mathew-chiweda/#person",
+            "@id": "https://iaudit.global/author/mathew-chiweda/#person",
             name: "Mathew Chiweda",
-            url: "https://www.iaudit.global/author/mathew-chiweda/",
+            url: "https://iaudit.global/author/mathew-chiweda/",
             jobTitle: "Co-founder",
             description:
                 "Mathew Chiweda is a PDCA ISO Audit Specialist and Co-founder of iAudit Global, with more than 20 years of experience in quality, health and safety, environmental management and ISO management systems.",
-            worksFor: { "@id": "https://www.iaudit.global/#organization" },
+            worksFor: { "@id": "https://iaudit.global/#organization" },
             sameAs: ["https://www.linkedin.com/in/mathew-chiweda/"],
             knowsAbout: [
                 "ISO 9001",
@@ -110,14 +110,14 @@ const jsonLd = {
         },
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
+            url: "https://iaudit.global/",
             description:
                 "ISO audit management software built by auditors for ISO 9001, ISO 14001 and ISO 45001 audits.",
             logo: {
                 "@type": "ImageObject",
-                url: "https://www.iaudit.global/iaudit-logo-new.png",
+                url: "https://iaudit.global/iaudit-logo-new.png",
             },
             email: "info@iaudit.global",
             telephone: "+44 7944 829129",
@@ -132,8 +132,8 @@ const jsonLd = {
             "@type": "BreadcrumbList",
             "@id": `${pageUrl}/#breadcrumb`,
             itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: "https://www.iaudit.global/" },
-                { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.iaudit.global/blog/" },
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://iaudit.global/" },
+                { "@type": "ListItem", position: 2, name: "Blog", item: "https://iaudit.global/blog/" },
                 {
                     "@type": "ListItem",
                     position: 3,

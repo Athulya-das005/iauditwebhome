@@ -3,10 +3,10 @@ export const auditorsPageSchema = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
-            logo: "https://www.iaudit.global/iaudit-logo-new.png",
+            url: "https://iaudit.global",
+            logo: "https://iaudit.global/iaudit-logo-new.png",
             email: "info@iaudit.global",
             telephone: "+44 7944 829129",
             address: {
@@ -21,26 +21,26 @@ export const auditorsPageSchema = {
         },
         {
             "@type": "WebPage",
-            "@id": "https://www.iaudit.global/audit-management-software-built-by-auditors/#webpage",
-            url: "https://www.iaudit.global/audit-management-software-built-by-auditors",
+            "@id": "https://iaudit.global/audit-management-software-built-by-auditors/#webpage",
+            url: "https://iaudit.global/audit-management-software-built-by-auditors",
             name: "Audit Management software built by Auditors | iAudit Global",
             description:
                 "Streamline ISO compliance with Audit Management software built by auditors. Connect evidence, track PDCA cycles and eliminate spreadsheets.",
             isPartOf: {
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
         },
         {
             "@type": "SoftwareApplication",
-            "@id": "https://www.iaudit.global/audit-management-software-built-by-auditors/#software",
+            "@id": "https://iaudit.global/audit-management-software-built-by-auditors/#software",
             name: "iAudit Global",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
-            url: "https://www.iaudit.global/audit-management-software-built-by-auditors",
+            url: "https://iaudit.global/audit-management-software-built-by-auditors",
             description:
                 "Audit management software built by certified ISO auditors to streamline internal audits, connect evidence, track PDCA cycles, and ensure corrective actions solve problems.",
             creator: {
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
             featureList: [
                 "ISO audit planning and scheduling",
@@ -60,19 +60,19 @@ export const auditorsPageSchema = {
         },
         {
             "@type": "BreadcrumbList",
-            "@id": "https://www.iaudit.global/audit-management-software-built-by-auditors/#breadcrumb",
+            "@id": "https://iaudit.global/audit-management-software-built-by-auditors/#breadcrumb",
             itemListElement: [
                 {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Audit Management Software Built by Auditors",
-                    item: "https://www.iaudit.global/audit-management-software-built-by-auditors",
+                    item: "https://iaudit.global/audit-management-software-built-by-auditors",
                 },
             ],
         },

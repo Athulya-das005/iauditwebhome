@@ -4,8 +4,8 @@ import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import Link from "next/link";
 
 const FONT = '"Pp Neue Montreal", sans-serif';
-const SITE_URL = "https://www.iaudit.global/";
-const CONTACT_URL = "https://www.iaudit.global/contact";
+const SITE_URL = "https://iaudit.global/";
+const CONTACT_URL = "https://iaudit.global/contact";
 const GDPR_OBJECT = "https://gdpr-info.eu/art-21-gdpr/";
 const GDPR_RESTRICT = "https://gdpr-info.eu/art-18-gdpr/";
 const COOKIEYES_GENERATOR =

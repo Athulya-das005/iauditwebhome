@@ -4,8 +4,8 @@ export const transportLogisticsIndustryPageSchema = {
         {
             "@type": "Organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
-            logo: "https://www.iaudit.global/iaudit-logo-new.png",
+            url: "https://iaudit.global",
+            logo: "https://iaudit.global/iaudit-logo-new.png",
             sameAs: [
                 "https://www.linkedin.com/company/iaudit-global",
                 "https://twitter.com/iauditglobal",
@@ -20,7 +20,7 @@ export const transportLogisticsIndustryPageSchema = {
         {
             "@type": "SoftwareApplication",
             name: "Transport and Logistics ISO Audit Software",
-            url: "https://www.iaudit.global/industries/transport-and-logistics-iso-audit-software",
+            url: "https://iaudit.global/industries/transport-and-logistics-iso-audit-software",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
             softwareVersion: "v2.4.0",
@@ -28,7 +28,7 @@ export const transportLogisticsIndustryPageSchema = {
                 "Centralise fleet compliance, track driver safety and manage ISO 9001, 14001 and 45001 audits across depots and warehouses with iAudit.",
             offers: {
                 "@type": "Offer",
-                url: "https://www.iaudit.global/pricing",
+                url: "https://iaudit.global/pricing",
                 priceCurrency: "USD",
                 price: "0",
                 availability: "https://schema.org/InStock",
@@ -102,19 +102,19 @@ export const transportLogisticsIndustryPageSchema = {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global",
+                    item: "https://iaudit.global",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Industries",
-                    item: "https://www.iaudit.global/industries",
+                    item: "https://iaudit.global/industries",
                 },
                 {
                     "@type": "ListItem",
                     position: 3,
                     name: "Transport and Logistics ISO Audit Software",
-                    item: "https://www.iaudit.global/industries/transport-and-logistics-iso-audit-software",
+                    item: "https://iaudit.global/industries/transport-and-logistics-iso-audit-software",
                 },
             ],
         },

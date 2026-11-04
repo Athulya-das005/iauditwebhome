@@ -1,14 +1,14 @@
-const logoUrl = "https://www.iaudit.global/iaudit-logo-new.png";
-const pageUrl = "https://www.iaudit.global/industries/basic-metals-and-fabrication-iso-audit-software";
+const logoUrl = "https://iaudit.global/iaudit-logo-new.png";
+const pageUrl = "https://iaudit.global/industries/basic-metals-and-fabrication-iso-audit-software";
 
 export const basicMetalsFabricationIndustryPageSchema = {
     "@context": "https://schema.org",
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
+            url: "https://iaudit.global/",
             logo: logoUrl,
             sameAs: [
                 "https://www.linkedin.com/company/iaudit-global",
@@ -17,7 +17,7 @@ export const basicMetalsFabricationIndustryPageSchema = {
         },
         {
             "@type": "SoftwareApplication",
-            "@id": "https://www.iaudit.global/industries/basic-metals-and-fabrication-iso-audit-software#software",
+            "@id": "https://iaudit.global/industries/basic-metals-and-fabrication-iso-audit-software#software",
             name: "Basic Metals and Fabrication ISO Audit Software",
             url: pageUrl,
             description:
@@ -25,7 +25,7 @@ export const basicMetalsFabricationIndustryPageSchema = {
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web-based",
             author: {
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
             offers: {
                 "@type": "Offer",
@@ -38,19 +38,19 @@ export const basicMetalsFabricationIndustryPageSchema = {
         },
         {
             "@type": "BreadcrumbList",
-            "@id": "https://www.iaudit.global/industries/basic-metals-and-fabrication-iso-audit-software#breadcrumb",
+            "@id": "https://iaudit.global/industries/basic-metals-and-fabrication-iso-audit-software#breadcrumb",
             itemListElement: [
                 {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Industries",
-                    item: "https://www.iaudit.global/industries",
+                    item: "https://iaudit.global/industries",
                 },
                 {
                     "@type": "ListItem",
@@ -62,7 +62,7 @@ export const basicMetalsFabricationIndustryPageSchema = {
         },
         {
             "@type": "FAQPage",
-            "@id": "https://www.iaudit.global/industries/basic-metals-and-fabrication-iso-audit-software#faq",
+            "@id": "https://iaudit.global/industries/basic-metals-and-fabrication-iso-audit-software#faq",
             mainEntity: [
                 {
                     "@type": "Question",

@@ -1,5 +1,5 @@
 export const MATTHEW_CHIWEDA_PAGE_PATH = "/author/mathew-chiweda";
-export const MATTHEW_CHIWEDA_PAGE_URL = `https://www.iaudit.global${MATTHEW_CHIWEDA_PAGE_PATH}`;
+export const MATTHEW_CHIWEDA_PAGE_URL = `https://iaudit.global${MATTHEW_CHIWEDA_PAGE_PATH}`;
 
 export const matthewChiwedaPageSchema = {
     "@context": "https://schema.org",
@@ -12,7 +12,7 @@ export const matthewChiwedaPageSchema = {
             description:
                 "Meet Mathew Chiweda, Co-founder of iAudit Global and ISO audit specialist with 20+ years of experience in quality, HSE and management systems.",
             isPartOf: {
-                "@id": "https://www.iaudit.global/#website",
+                "@id": "https://iaudit.global/#website",
             },
             mainEntity: {
                 "@id": `${MATTHEW_CHIWEDA_PAGE_URL}/#person`,
@@ -29,20 +29,20 @@ export const matthewChiwedaPageSchema = {
             jobTitle: "Co-founder & Managing Director",
             description:
                 "Mathew Chiweda is a PDCA ISO Audit Specialist and Co-founder of iAudit Global, with more than 20 years of experience across quality, health and safety, environmental management and ISO management systems.",
-            image: "https://www.iaudit.global/images/mathew-chiweda.webp",
+            image: "https://iaudit.global/images/mathew-chiweda.webp",
             sameAs: ["https://www.linkedin.com/in/mathew-chiweda/"],
             worksFor: {
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
         },
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
+            url: "https://iaudit.global/",
             logo: {
                 "@type": "ImageObject",
-                url: "https://www.iaudit.global/iaudit-logo-new.png",
+                url: "https://iaudit.global/iaudit-logo-new.png",
             },
             email: "info@iaudit.global",
             telephone: "+44 7944 829129",
@@ -55,11 +55,11 @@ export const matthewChiwedaPageSchema = {
         },
         {
             "@type": "WebSite",
-            "@id": "https://www.iaudit.global/#website",
-            url: "https://www.iaudit.global/",
+            "@id": "https://iaudit.global/#website",
+            url: "https://iaudit.global/",
             name: "iAudit Global",
             publisher: {
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
         },
         {
@@ -70,13 +70,13 @@ export const matthewChiwedaPageSchema = {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Authors",
-                    item: "https://www.iaudit.global/author/",
+                    item: "https://iaudit.global/author/",
                 },
                 {
                     "@type": "ListItem",

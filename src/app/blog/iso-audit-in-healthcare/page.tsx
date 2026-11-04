@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import HealthcareIsoBlogContent from "./HealthcareIsoBlogContent";
 
-const pageUrl = "https://www.iaudit.global/blog/iso-audit-in-healthcare";
-const ogImage = "https://www.iaudit.global/images/healthcare-bg.webp";
+const pageUrl = "https://iaudit.global/blog/iso-audit-in-healthcare";
+const ogImage = "https://iaudit.global/images/healthcare-bg.webp";
 const title = "ISO Audit in Healthcare Is Not Like Other Audits. Here Is Why.";
 const description =
     "Why ISO audit in healthcare is different from other industries — patient safety stakes, clinical workflows, ISO 9001, ISO 27001, and how PDCA makes audits drive real improvement.";
@@ -40,12 +40,12 @@ const jsonLd = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
+            url: "https://iaudit.global",
             logo: {
                 "@type": "ImageObject",
-                url: "https://www.iaudit.global/iaudit-logo-new.png",
+                url: "https://iaudit.global/iaudit-logo-new.png",
             },
             sameAs: [
                 "https://www.linkedin.com/company/iaudit-global",
@@ -64,7 +64,7 @@ const jsonLd = {
             },
             publisher: {
                 "@type": "Organization",
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
             datePublished: "2026-04-03",
             dateModified: "2026-04-03",

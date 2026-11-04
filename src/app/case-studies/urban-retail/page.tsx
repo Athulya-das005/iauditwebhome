@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CaseStudyPageContent from "@/components/case-study/CaseStudyPageContent";
 import { urbanRetailCaseStudy } from "@/data/caseStudies";
 
-const pageUrl = "https://www.iaudit.global/case-studies/urban-retail";
+const pageUrl = "https://iaudit.global/case-studies/urban-retail";
 
 export const metadata: Metadata = {
     title: "Urban Retail Group Case Study | Total Visibility Across Every Store | iAudit Global",

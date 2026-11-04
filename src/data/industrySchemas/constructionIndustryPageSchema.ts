@@ -1,14 +1,14 @@
-const logoUrl = "https://www.iaudit.global/iaudit-logo-new.png";
-const pageUrl = "https://www.iaudit.global/industries/construction-iso-audit-software";
+const logoUrl = "https://iaudit.global/iaudit-logo-new.png";
+const pageUrl = "https://iaudit.global/industries/construction-iso-audit-software";
 
 export const constructionIndustryPageSchema = {
     "@context": "https://schema.org",
     "@graph": [
         {
             "@type": "SoftwareApplication",
-            "@id": "https://www.iaudit.global/industries/construction-iso-audit-software/#software",
+            "@id": "https://iaudit.global/industries/construction-iso-audit-software/#software",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
+            url: "https://iaudit.global/",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
             description:
@@ -19,7 +19,7 @@ export const constructionIndustryPageSchema = {
                 price: "0",
                 priceCurrency: "USD",
                 availability: "https://schema.org/InStock",
-                url: "https://www.iaudit.global/pricing",
+                url: "https://iaudit.global/pricing",
             },
         },
         {
@@ -34,7 +34,7 @@ export const constructionIndustryPageSchema = {
             },
             offers: {
                 "@type": "Offer",
-                url: "https://www.iaudit.global/pricing",
+                url: "https://iaudit.global/pricing",
                 priceCurrency: "USD",
                 price: "0",
                 availability: "https://schema.org/InStock",
@@ -47,13 +47,13 @@ export const constructionIndustryPageSchema = {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Industries",
-                    item: "https://www.iaudit.global/industries",
+                    item: "https://iaudit.global/industries",
                 },
                 {
                     "@type": "ListItem",

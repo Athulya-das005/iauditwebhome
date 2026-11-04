@@ -3,10 +3,10 @@ export const aboutPageSchema = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
-            logo: "https://www.iaudit.global/iaudit-logo-new.png",
+            url: "https://iaudit.global/",
+            logo: "https://iaudit.global/iaudit-logo-new.png",
             foundingDate: "2024",
             founders: [
                 {
@@ -30,31 +30,31 @@ export const aboutPageSchema = {
         },
         {
             "@type": "AboutPage",
-            "@id": "https://www.iaudit.global/about/#aboutpage",
+            "@id": "https://iaudit.global/about/#aboutpage",
             name: "About iAudit Global",
-            url: "https://www.iaudit.global/about",
+            url: "https://iaudit.global/about",
             mainEntity: {
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
             breadcrumb: {
-                "@id": "https://www.iaudit.global/about/#breadcrumb",
+                "@id": "https://iaudit.global/about/#breadcrumb",
             },
         },
         {
             "@type": "BreadcrumbList",
-            "@id": "https://www.iaudit.global/about/#breadcrumb",
+            "@id": "https://iaudit.global/about/#breadcrumb",
             itemListElement: [
                 {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "About iAudit Global",
-                    item: "https://www.iaudit.global/about",
+                    item: "https://iaudit.global/about",
                 },
             ],
         },

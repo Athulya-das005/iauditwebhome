@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import RiskRegisterBlogContent from "./RiskRegisterBlogContent";
 import { riskRegisterFaqs } from "@/data/riskRegisterFaqs";
 
-const pageUrl = "https://www.iaudit.global/blog/how-to-maintain-an-iso-9001-risk-register";
+const pageUrl = "https://iaudit.global/blog/how-to-maintain-an-iso-9001-risk-register";
 const title = "How to Maintain an ISO 9001 Risk Register | iAudit Global";
 const description =
     "Learn how to maintain an ISO 9001 risk register, keep risks current, review controls, track actions and use audit findings to improve risk-based thinking.";
@@ -47,7 +47,7 @@ const jsonLd = {
             "@type": "BreadcrumbList",
             "@id": `${pageUrl}#breadcrumb`,
             itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Blog", item: "https://www.iaudit.global/blog" },
+                { "@type": "ListItem", position: 1, name: "Blog", item: "https://iaudit.global/blog" },
                 { "@type": "ListItem", position: 2, name: title, item: pageUrl },
             ],
         },
@@ -59,13 +59,13 @@ const jsonLd = {
             url: pageUrl,
             mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
             image: ogImage,
-            author: { "@type": "Person", name: "Mathew Chiweda", url: "https://www.iaudit.global/author/mathew-chiweda" },
+            author: { "@type": "Person", name: "Mathew Chiweda", url: "https://iaudit.global/author/mathew-chiweda" },
             publisher: {
                 "@type": "Organization",
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
                 name: "iAudit Global",
-                url: "https://www.iaudit.global",
-                logo: { "@type": "ImageObject", url: "https://www.iaudit.global/iaudit-logo-new.png" },
+                url: "https://iaudit.global",
+                logo: { "@type": "ImageObject", url: "https://iaudit.global/iaudit-logo-new.png" },
             },
             datePublished: "2026-08-31",
             dateModified: "2026-08-31",

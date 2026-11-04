@@ -3,33 +3,33 @@ export const iso45001PageSchema = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
-            logo: "https://www.iaudit.global/iaudit-logo-new.png",
+            url: "https://iaudit.global/",
+            logo: "https://iaudit.global/iaudit-logo-new.png",
         },
         {
             "@type": "WebPage",
-            "@id": "https://www.iaudit.global/standards/iso-45001-audit-management-software/#webpage",
-            url: "https://www.iaudit.global/standards/iso-45001-audit-management-software",
+            "@id": "https://iaudit.global/standards/iso-45001-audit-management-software/#webpage",
+            url: "https://iaudit.global/standards/iso-45001-audit-management-software",
             name: "ISO 45001 Audit Management Software Built for Worker Safety",
             description:
                 "Manage occupational health, safety risks, and proactive hazard identification in one secure, auditor-led PDCA platform.",
             isPartOf: {
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
         },
         {
             "@type": "SoftwareApplication",
-            "@id": "https://www.iaudit.global/standards/iso-45001-audit-management-software/#software",
+            "@id": "https://iaudit.global/standards/iso-45001-audit-management-software/#software",
             name: "iAudit Global",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
             description:
                 "ISO 45001 audit management software for managing occupational health and safety audits, tracking hazards, capturing evidence, and ensuring corrective actions are verified through a PDCA workflow.",
-            url: "https://www.iaudit.global/standards/iso-45001-audit-management-software",
+            url: "https://iaudit.global/standards/iso-45001-audit-management-software",
             publisher: {
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
             offers: {
                 "@type": "Offer",
@@ -49,31 +49,31 @@ export const iso45001PageSchema = {
         },
         {
             "@type": "BreadcrumbList",
-            "@id": "https://www.iaudit.global/standards/iso-45001-audit-management-software/#breadcrumb",
+            "@id": "https://iaudit.global/standards/iso-45001-audit-management-software/#breadcrumb",
             itemListElement: [
                 {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Standards",
-                    item: "https://www.iaudit.global/standards/iso-9001-audit-management-software",
+                    item: "https://iaudit.global/standards/iso-9001-audit-management-software",
                 },
                 {
                     "@type": "ListItem",
                     position: 3,
                     name: "ISO 45001 Audit Management Software",
-                    item: "https://www.iaudit.global/standards/iso-45001-audit-management-software",
+                    item: "https://iaudit.global/standards/iso-45001-audit-management-software",
                 },
             ],
         },
         {
             "@type": "FAQPage",
-            "@id": "https://www.iaudit.global/standards/iso-45001-audit-management-software/#faq",
+            "@id": "https://iaudit.global/standards/iso-45001-audit-management-software/#faq",
             mainEntity: [
                 {
                     "@type": "Question",

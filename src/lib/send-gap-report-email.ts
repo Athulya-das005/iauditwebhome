@@ -4,8 +4,8 @@ import nodemailer from "nodemailer";
 import type { GapReportData } from "@/lib/gap-report-data";
 import { claimReportEmailSend, releaseReportEmailSend } from "@/lib/report-email-dedupe";
 
-const CONTACT_URL = "https://www.iaudit.global/contact";
-const LOGO_URL = "https://www.iaudit.global/iaudit-logo-nav.png";
+const CONTACT_URL = "https://iaudit.global/contact";
+const LOGO_URL = "https://iaudit.global/iaudit-logo-nav.png";
 const FROM_NAME = "iAudit Global";
 const REPORT_SENDER = "noreply@iaudit.global";
 const REPORT_FROM = `${FROM_NAME} <${REPORT_SENDER}>`;

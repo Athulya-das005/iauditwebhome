@@ -210,7 +210,7 @@ If you are preparing for the transition, this is a useful place to start.
 
 What part of the ISO 9001:2026 update do you think will require the most attention in practice?
 
-Read the full comparison: https://www.iaudit.global/blog/iso-9001-2015-vs-iso-9001-2026`;
+Read the full comparison: https://iaudit.global/blog/iso-9001-2015-vs-iso-9001-2026`;
         navigator.clipboard.writeText(text);
         setCopied(true);
         setTimeout(() => setCopied(false), 2500);

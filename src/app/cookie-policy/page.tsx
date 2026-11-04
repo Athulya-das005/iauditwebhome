@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CookiePolicyContent from "@/components/CookiePolicyContent";
 import Footer from "@/components/Footer";
 
-const pageUrl = "https://www.iaudit.global/cookie-policy";
+const pageUrl = "https://iaudit.global/cookie-policy";
 const title = "Cookie Policy | iAudit Global";
 const description =
     "Read the iAudit Global cookie policy to understand how cookies and similar technologies are used on our website.";

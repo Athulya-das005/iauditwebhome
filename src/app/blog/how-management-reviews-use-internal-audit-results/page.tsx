@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import ManagementReviewAuditResultsBlogContent from "./ManagementReviewAuditResultsBlogContent";
 
 const pageUrl =
-    "https://www.iaudit.global/blog/how-management-reviews-use-internal-audit-results";
-const ogImage = "https://www.iaudit.global/images/blog-continuous-improvement.webp";
+    "https://iaudit.global/blog/how-management-reviews-use-internal-audit-results";
+const ogImage = "https://iaudit.global/images/blog-continuous-improvement.webp";
 const title = "How Management Reviews Should Use Internal Audit Results";
 const description =
     "Learn how management reviews should use internal audit results to identify recurring NCRs, analyse trends and drive ISO 9001 continual improvement.";
@@ -48,12 +48,12 @@ const jsonLd = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
+            url: "https://iaudit.global/",
             logo: {
                 "@type": "ImageObject",
-                url: "https://www.iaudit.global/iaudit-logo-new.png",
+                url: "https://iaudit.global/iaudit-logo-new.png",
             },
             description:
                 "iAudit Global is an ISO audit management platform built by certified auditors to help organisations manage ISO 9001, ISO 14001, ISO 45001, and ISO 27001 audits using PDCA-driven workflows.",
@@ -64,11 +64,11 @@ const jsonLd = {
         },
         {
             "@type": "SoftwareApplication",
-            "@id": "https://www.iaudit.global/#product",
+            "@id": "https://iaudit.global/#product",
             name: "iAudit Global",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
-            url: "https://www.iaudit.global/",
+            url: "https://iaudit.global/",
             description:
                 "ISO audit management software for planning, executing, and reporting ISO 9001, 14001, 45001, and 27001 audits using PDCA-based workflows, dashboards, and automated reporting.",
             offers: {
@@ -78,7 +78,7 @@ const jsonLd = {
                 description: "14-day free trial available with no credit card required",
             },
             publisher: {
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
         },
         {
@@ -88,12 +88,12 @@ const jsonLd = {
             name: title,
             description,
             inLanguage: "en-GB",
-            isPartOf: { "@id": "https://www.iaudit.global/#organization" },
+            isPartOf: { "@id": "https://iaudit.global/#organization" },
             breadcrumb: {
                 "@type": "BreadcrumbList",
                 itemListElement: [
-                    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.iaudit.global" },
-                    { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.iaudit.global/blog" },
+                    { "@type": "ListItem", position: 1, name: "Home", item: "https://iaudit.global" },
+                    { "@type": "ListItem", position: 2, name: "Blog", item: "https://iaudit.global/blog" },
                     {
                         "@type": "ListItem",
                         position: 3,
@@ -115,7 +115,7 @@ const jsonLd = {
                 name: "iAudit Global",
             },
             publisher: {
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
             datePublished: "2026-08-18",
             dateModified: "2026-08-18",

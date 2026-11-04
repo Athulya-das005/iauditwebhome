@@ -128,7 +128,7 @@ const faqItems = [
     {
         question: "How does iAudit Global help with audit scheduling?",
         answer:
-            "iAudit Global replaces static spreadsheets with a dynamic dashboard for your entire internal audit programme schedule. Key features include Risk-Based Tagging to prioritise high-risk sites, Centralised Visibility to track overdue audits, and Automated Follow-ups to verify corrective actions. You can explore these features by starting a 14-day free trial at www.iaudit.global.",
+            "iAudit Global replaces static spreadsheets with a dynamic dashboard for your entire internal audit programme schedule. Key features include Risk-Based Tagging to prioritise high-risk sites, Centralised Visibility to track overdue audits, and Automated Follow-ups to verify corrective actions. You can explore these features by starting a 14-day free trial at iaudit.global.",
     },
 ];
 
@@ -615,8 +615,8 @@ export default function InternalAuditProgrammeScheduleBlogContent() {
                         </p>
                         <p style={para(font)}>
                             Start your free trial today at{" "}
-                            <a href="https://www.iaudit.global/" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>
-                                www.iaudit.global
+                            <a href="https://iaudit.global/" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>
+                                iaudit.global
                             </a>
                             .
                         </p>
@@ -660,7 +660,7 @@ export default function InternalAuditProgrammeScheduleBlogContent() {
                                 Start a 14-day free trial of iAudit Global and see how risk-based tagging, centralised visibility and automated follow-ups turn a static calendar into a living audit programme.
                             </p>
                             <a
-                                href="https://www.iaudit.global/"
+                                href="https://iaudit.global/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 style={{

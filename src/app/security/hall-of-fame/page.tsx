@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import HallOfFameContent from "@/components/security/HallOfFameContent";
 import Footer from "@/components/Footer";
 
-const pageUrl = "https://www.iaudit.global/security/hall-of-fame";
+const pageUrl = "https://iaudit.global/security/hall-of-fame";
 
 export const metadata: Metadata = {
     title: "Security Hall of Fame | Vulnerability Researchers | iAudit Global",

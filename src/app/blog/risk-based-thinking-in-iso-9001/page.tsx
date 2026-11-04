@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import RiskBasedThinkingBlogContent from "./RiskBasedThinkingBlogContent";
 
-const pageUrl = "https://www.iaudit.global/blog/risk-based-thinking-in-iso-9001";
-const ogImage = "https://www.iaudit.global/images/blog-process-automation.webp";
+const pageUrl = "https://iaudit.global/blog/risk-based-thinking-in-iso-9001";
+const ogImage = "https://iaudit.global/images/blog-process-automation.webp";
 const title = "Risk‑based Thinking in ISO 9001 | iAudit Global";
 const description =
     "Learn how to implement Risk‑based Thinking in ISO 9001. Move beyond spreadsheets to structured risk control and meet Clause 6.1 requirements effectively.";
@@ -45,25 +45,25 @@ const jsonLd = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
-            logo: { "@type": "ImageObject", url: "https://www.iaudit.global/iaudit-logo-new.png" },
+            url: "https://iaudit.global/",
+            logo: { "@type": "ImageObject", url: "https://iaudit.global/iaudit-logo-new.png" },
             description:
                 "iAudit Global is an ISO audit management platform built by certified auditors to help organisations manage ISO 9001, ISO 14001, ISO 45001, and ISO 27001 audits using PDCA-driven workflows.",
             sameAs: ["https://www.linkedin.com/company/iaudit-global", "https://twitter.com/iauditglobal"],
         },
         {
             "@type": "SoftwareApplication",
-            "@id": "https://www.iaudit.global/#product",
+            "@id": "https://iaudit.global/#product",
             name: "iAudit Global",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
-            url: "https://www.iaudit.global/",
+            url: "https://iaudit.global/",
             description:
                 "ISO audit management software for planning, executing, and reporting ISO 9001, 14001, 45001, and 27001 audits using PDCA-based workflows, dashboards, and automated reporting.",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD", description: "14-day free trial available with no credit card required" },
-            publisher: { "@id": "https://www.iaudit.global/#organization" },
+            publisher: { "@id": "https://iaudit.global/#organization" },
         },
         {
             "@type": "WebPage",
@@ -72,12 +72,12 @@ const jsonLd = {
             name: title,
             description,
             inLanguage: "en-GB",
-            isPartOf: { "@id": "https://www.iaudit.global/#organization" },
+            isPartOf: { "@id": "https://iaudit.global/#organization" },
             breadcrumb: {
                 "@type": "BreadcrumbList",
                 itemListElement: [
-                    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.iaudit.global" },
-                    { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.iaudit.global/blog" },
+                    { "@type": "ListItem", position: 1, name: "Home", item: "https://iaudit.global" },
+                    { "@type": "ListItem", position: 2, name: "Blog", item: "https://iaudit.global/blog" },
                     { "@type": "ListItem", position: 3, name: "Risk-based Thinking in ISO 9001", item: pageUrl },
                 ],
             },
@@ -90,7 +90,7 @@ const jsonLd = {
             url: pageUrl,
             inLanguage: "en-GB",
             author: { "@type": "Organization", name: "iAudit Global" },
-            publisher: { "@id": "https://www.iaudit.global/#organization" },
+            publisher: { "@id": "https://iaudit.global/#organization" },
             datePublished: "2026-08-19",
             dateModified: "2026-08-19",
             mainEntityOfPage: { "@id": `${pageUrl}#webpage` },

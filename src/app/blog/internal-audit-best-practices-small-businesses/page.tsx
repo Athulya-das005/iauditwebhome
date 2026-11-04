@@ -505,11 +505,11 @@ export default function BlogPost3() {
                             </ul>
                             <div style={{ height: "1px", background: "rgba(255,255,255,0.15)", margin: "0 0 1.25rem", position: "relative" }} />
                             <p style={{ color: "rgba(255,255,255,0.82)", fontSize: "0.975rem", lineHeight: 1.8, margin: "0 0 0.625rem", position: "relative", fontFamily: font }}>
-                                If you would like to take part, you can register your interest at:
+                                If you would like to test a structured audit programme, you can get started at:
                             </p>
                             <p style={{ margin: 0, position: "relative" }}>
-                                <a href="https://surveys.iaudit.global/" target="_blank" rel="noopener noreferrer" style={{ color: "#4ade80", fontSize: "0.975rem", fontFamily: font, textDecoration: "underline", textUnderlineOffset: "3px" }}>
-                                    https://surveys.iaudit.global/
+                                <a href="https://iaudit.global/pricing" style={{ color: "#4ade80", fontSize: "0.975rem", fontFamily: font, textDecoration: "underline", textUnderlineOffset: "3px" }}>
+                                    https://iaudit.global/pricing
                                 </a>
                             </p>
                         </div>

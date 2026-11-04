@@ -3,33 +3,33 @@ export const iso9001PageSchema = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
-            logo: "https://www.iaudit.global/iaudit-logo-new.png",
+            url: "https://iaudit.global/",
+            logo: "https://iaudit.global/iaudit-logo-new.png",
         },
         {
             "@type": "WebPage",
-            "@id": "https://www.iaudit.global/standards/iso-9001-audit-management-software/#webpage",
-            url: "https://www.iaudit.global/standards/iso-9001-audit-management-software",
+            "@id": "https://iaudit.global/standards/iso-9001-audit-management-software/#webpage",
+            url: "https://iaudit.global/standards/iso-9001-audit-management-software",
             name: "ISO 9001 Software Built for Quality Management Audits",
             description:
                 "Stop managing ISO 9001 audits in spreadsheets. Use purpose-built software with clause-level traceability and automated actions.",
             isPartOf: {
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
         },
         {
             "@type": "SoftwareApplication",
-            "@id": "https://www.iaudit.global/standards/iso-9001-audit-management-software/#software",
+            "@id": "https://iaudit.global/standards/iso-9001-audit-management-software/#software",
             name: "iAudit Global",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
             description:
                 "ISO 9001 audit management software for risk-based planning, clause traceability, evidence capture, CAPA tracking and automated reporting to support quality management systems.",
-            url: "https://www.iaudit.global/standards/iso-9001-audit-management-software",
+            url: "https://iaudit.global/standards/iso-9001-audit-management-software",
             publisher: {
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
             offers: {
                 "@type": "Offer",
@@ -49,31 +49,31 @@ export const iso9001PageSchema = {
         },
         {
             "@type": "BreadcrumbList",
-            "@id": "https://www.iaudit.global/standards/iso-9001-audit-management-software/#breadcrumb",
+            "@id": "https://iaudit.global/standards/iso-9001-audit-management-software/#breadcrumb",
             itemListElement: [
                 {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Standards",
-                    item: "https://www.iaudit.global/standards/iso-9001-audit-management-software",
+                    item: "https://iaudit.global/standards/iso-9001-audit-management-software",
                 },
                 {
                     "@type": "ListItem",
                     position: 3,
                     name: "ISO 9001 Audit Management Software",
-                    item: "https://www.iaudit.global/standards/iso-9001-audit-management-software",
+                    item: "https://iaudit.global/standards/iso-9001-audit-management-software",
                 },
             ],
         },
         {
             "@type": "FAQPage",
-            "@id": "https://www.iaudit.global/standards/iso-9001-audit-management-software/#faq",
+            "@id": "https://iaudit.global/standards/iso-9001-audit-management-software/#faq",
             mainEntity: [
                 {
                     "@type": "Question",

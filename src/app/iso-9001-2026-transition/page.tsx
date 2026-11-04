@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Iso90012026TransitionContent from "./Iso90012026TransitionContent";
 
-const pageUrl = "https://www.iaudit.global/iso-9001-2026-transition";
+const pageUrl = "https://iaudit.global/iso-9001-2026-transition";
 const title = "ISO 9001:2026 Transition | Free Consultation | iAudit Global";
 const description =
     "Transition from ISO 9001:2015 to ISO 9001:2026. Assess your QMS, identify gaps and plan your transition with certified ISO auditors. Book a free consultation.";
-const ogImage = "https://www.iaudit.global/images/blog/iso-9001-2026-key-changes-transition.jpg";
+const ogImage = "https://iaudit.global/images/blog/iso-9001-2026-key-changes-transition.jpg";
 
 export const metadata: Metadata = {
     title: { absolute: title },
@@ -47,7 +47,7 @@ const jsonLd = {
             name: title,
             description,
             inLanguage: "en-GB",
-            isPartOf: { "@id": "https://www.iaudit.global/#website" },
+            isPartOf: { "@id": "https://iaudit.global/#website" },
             breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
         },
         {
@@ -58,9 +58,9 @@ const jsonLd = {
             serviceType: "ISO 9001:2026 transition consultation",
             provider: {
                 "@type": "Organization",
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
                 name: "iAudit Global",
-                url: "https://www.iaudit.global",
+                url: "https://iaudit.global",
             },
             areaServed: "Worldwide",
             offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" },
@@ -69,7 +69,7 @@ const jsonLd = {
             "@type": "BreadcrumbList",
             "@id": `${pageUrl}#breadcrumb`,
             itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: "https://www.iaudit.global" },
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://iaudit.global" },
                 { "@type": "ListItem", position: 2, name: "ISO 9001:2026 Transition", item: pageUrl },
             ],
         },

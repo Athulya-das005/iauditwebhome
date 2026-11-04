@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CaseStudyPageContent from "@/components/case-study/CaseStudyPageContent";
 import { sterlingFoodBeverageCaseStudy } from "@/data/caseStudies";
 
-const pageUrl = "https://www.iaudit.global/case-studies/sterling-food-beverage";
+const pageUrl = "https://iaudit.global/case-studies/sterling-food-beverage";
 
 export const metadata: Metadata = {
     title: "Sterling Food & Beverage Case Study | Closing the Accountability Gap | iAudit Global",

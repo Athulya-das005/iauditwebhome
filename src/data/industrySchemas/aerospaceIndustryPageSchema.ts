@@ -1,5 +1,5 @@
-const logoUrl = "https://www.iaudit.global/iaudit-logo-new.png";
-const pageUrl = "https://www.iaudit.global/industries/aerospace-iso-audit-software";
+const logoUrl = "https://iaudit.global/iaudit-logo-new.png";
+const pageUrl = "https://iaudit.global/industries/aerospace-iso-audit-software";
 
 export const aerospaceIndustryPageSchema = {
     "@context": "https://schema.org",
@@ -7,7 +7,7 @@ export const aerospaceIndustryPageSchema = {
         {
             "@type": "Organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
+            url: "https://iaudit.global/",
             logo: logoUrl,
             contactPoint: {
                 "@type": "ContactPoint",
@@ -48,13 +48,13 @@ export const aerospaceIndustryPageSchema = {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Industries",
-                    item: "https://www.iaudit.global/industries",
+                    item: "https://iaudit.global/industries",
                 },
                 {
                     "@type": "ListItem",

@@ -20,6 +20,39 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "www.iaudit.global",
+          },
+        ],
+        destination: "https://iaudit.global/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "survey.iaudit.global",
+          },
+        ],
+        destination: "https://iaudit.global/",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "surveys.iaudit.global",
+          },
+        ],
+        destination: "https://iaudit.global/",
+        permanent: true,
+      },
+      {
         source: "/.well-known/security",
         destination: "/.well-known/security.txt",
         permanent: true,

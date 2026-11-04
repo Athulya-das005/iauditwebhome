@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { blogHref, blogPosts } from "@/data/blog-posts";
 import { industries } from "@/data/industries";
 
-const SITE_URL = "https://www.iaudit.global";
+const SITE_URL = "https://iaudit.global";
 
 type ChangeFrequency = NonNullable<MetadataRoute.Sitemap[number]["changeFrequency"]>;
 

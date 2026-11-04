@@ -1,4 +1,4 @@
-const pageUrl = "https://www.iaudit.global/industries/health-and-safety-iso-audit-software";
+const pageUrl = "https://iaudit.global/industries/health-and-safety-iso-audit-software";
 
 export const healthAndSafetyIndustryPageSchema = {
     "@context": "https://schema.org",
@@ -6,7 +6,7 @@ export const healthAndSafetyIndustryPageSchema = {
         {
             "@type": "Organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
+            url: "https://iaudit.global/",
             email: "info@iaudit.global",
             telephone: "1234567899",
             address: {
@@ -43,13 +43,13 @@ export const healthAndSafetyIndustryPageSchema = {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Industries",
-                    item: "https://www.iaudit.global/industries",
+                    item: "https://iaudit.global/industries",
                 },
                 {
                     "@type": "ListItem",

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import ManufacturingAuditsBlogContent from "./ManufacturingAuditsBlogContent";
 
-const pageUrl = "https://www.iaudit.global/blog/why-internal-audits-are-critical-in-manufacturing";
-const ogImage = "https://www.iaudit.global/images/blog-process-automation.webp";
+const pageUrl = "https://iaudit.global/blog/why-internal-audits-are-critical-in-manufacturing";
+const ogImage = "https://iaudit.global/images/blog-process-automation.webp";
 const title = "Why Internal Audits Are Critical in Manufacturing";
 const description =
     "Learn why internal audits are critical in manufacturing — from catching process gaps early to building continuous improvement, certification readiness and supply chain confidence.";
@@ -36,12 +36,12 @@ const jsonLd = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
+            url: "https://iaudit.global",
             logo: {
                 "@type": "ImageObject",
-                url: "https://www.iaudit.global/iaudit-logo-new.png",
+                url: "https://iaudit.global/iaudit-logo-new.png",
             },
             sameAs: [
                 "https://www.linkedin.com/company/iaudit-global",
@@ -60,7 +60,7 @@ const jsonLd = {
             },
             publisher: {
                 "@type": "Organization",
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
             datePublished: "2026-03-27",
             dateModified: "2026-03-27",

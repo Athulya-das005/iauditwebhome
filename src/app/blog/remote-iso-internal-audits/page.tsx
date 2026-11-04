@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import RemoteIsoAuditsBlogContent from "./RemoteIsoAuditsBlogContent";
 
-const pageUrl = "https://www.iaudit.global/blog/remote-iso-internal-audits";
-const ogImage = "https://www.iaudit.global/images/blog-complex-workflows.webp";
+const pageUrl = "https://iaudit.global/blog/remote-iso-internal-audits";
+const ogImage = "https://iaudit.global/images/blog-complex-workflows.webp";
 const title = "Remote ISO Internal Audits: A Practical Guide for Audit Teams";
 const description =
     "A practical guide to remote ISO internal audits — when they work, where they fall short, how to plan them, collect evidence, and use PDCA without losing audit rigour.";
@@ -40,12 +40,12 @@ const jsonLd = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
+            url: "https://iaudit.global",
             logo: {
                 "@type": "ImageObject",
-                url: "https://www.iaudit.global/iaudit-logo-new.png",
+                url: "https://iaudit.global/iaudit-logo-new.png",
             },
             sameAs: [
                 "https://www.linkedin.com/company/iaudit-global",
@@ -64,7 +64,7 @@ const jsonLd = {
             },
             publisher: {
                 "@type": "Organization",
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
             datePublished: "2026-04-24",
             dateModified: "2026-04-24",

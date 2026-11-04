@@ -1,5 +1,5 @@
-const logoUrl = "https://www.iaudit.global/iaudit-logo-new.png";
-const pageUrl = "https://www.iaudit.global/industries/machinery-and-equipment-iso-audit-software";
+const logoUrl = "https://iaudit.global/iaudit-logo-new.png";
+const pageUrl = "https://iaudit.global/industries/machinery-and-equipment-iso-audit-software";
 
 export const machineryEquipmentIndustryPageSchema = {
     "@context": "https://schema.org",
@@ -7,7 +7,7 @@ export const machineryEquipmentIndustryPageSchema = {
         {
             "@type": "Organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
+            url: "https://iaudit.global/",
             logo: logoUrl,
             description:
                 "ISO audit management software built by certified auditors for ISO 9001, 14001 and 45001 audits.",
@@ -60,13 +60,13 @@ export const machineryEquipmentIndustryPageSchema = {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Industries",
-                    item: "https://www.iaudit.global/industries",
+                    item: "https://iaudit.global/industries",
                 },
                 {
                     "@type": "ListItem",

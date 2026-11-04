@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Iso140012026UpdateBlogContent from "./Iso140012026UpdateBlogContent";
 
-const pageUrl = "https://www.iaudit.global/blog/iso-14001-2026-update";
-const ogImage = "https://www.iaudit.global/images/blog-continuous-improvement.webp";
+const pageUrl = "https://iaudit.global/blog/iso-14001-2026-update";
+const ogImage = "https://iaudit.global/images/blog-continuous-improvement.webp";
 const title = "ISO 14001:2026 Update: What Is Changing and How to Prepare";
 const description =
     "Learn what the ISO 14001:2026 update means for your environmental management system. Explore expected changes, transition timelines, and practical preparation steps.";
@@ -47,12 +47,12 @@ const jsonLd = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
+            url: "https://iaudit.global",
             logo: {
                 "@type": "ImageObject",
-                url: "https://www.iaudit.global/iaudit-logo-new.png",
+                url: "https://iaudit.global/iaudit-logo-new.png",
             },
             sameAs: [
                 "https://www.linkedin.com/company/iaudit-global",
@@ -61,16 +61,16 @@ const jsonLd = {
         },
         {
             "@type": "SoftwareApplication",
-            "@id": "https://www.iaudit.global/#software",
+            "@id": "https://iaudit.global/#software",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
+            url: "https://iaudit.global",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
             description:
                 "iAudit Global is an ISO audit management platform built for ISO 9001, 14001, 45001, and 27001 audits. Plan, execute, and report audits in one PDCA-driven platform.",
             creator: {
                 "@type": "Organization",
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
         },
         {
@@ -80,12 +80,12 @@ const jsonLd = {
             name: title,
             description,
             inLanguage: "en-GB",
-            isPartOf: { "@id": "https://www.iaudit.global/#organization" },
+            isPartOf: { "@id": "https://iaudit.global/#organization" },
             breadcrumb: {
                 "@type": "BreadcrumbList",
                 itemListElement: [
-                    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.iaudit.global" },
-                    { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.iaudit.global/blog" },
+                    { "@type": "ListItem", position: 1, name: "Home", item: "https://iaudit.global" },
+                    { "@type": "ListItem", position: 2, name: "Blog", item: "https://iaudit.global/blog" },
                     { "@type": "ListItem", position: 3, name: "ISO 14001:2026 Update", item: pageUrl },
                 ],
             },
@@ -95,12 +95,12 @@ const jsonLd = {
             "@id": `${pageUrl}#blogpost`,
             headline: title,
             description,
-            author: { "@id": "https://www.iaudit.global/#organization" },
+            author: { "@id": "https://iaudit.global/#organization" },
             datePublished: "2026-04-01",
             dateModified: "2026-04-01",
             mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
             image: ogImage,
-            publisher: { "@id": "https://www.iaudit.global/#organization" },
+            publisher: { "@id": "https://iaudit.global/#organization" },
             keywords:
                 "ISO 14001:2026 update, ISO 14001 revision 2026, ISO 14001 transition, environmental management system",
             articleSection: "ISO Audit Management",

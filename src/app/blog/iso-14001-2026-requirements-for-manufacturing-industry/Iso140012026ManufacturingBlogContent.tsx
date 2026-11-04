@@ -455,8 +455,8 @@ export default function Iso140012026ManufacturingBlogContent() {
                     <div id="intro" style={{ scrollMarginTop: "calc(var(--blog-sticky-offset) + 8px)" }}>
                         <p style={para(font)}>
                             The new ISO 14001:2026 requirements for the manufacturing industry shift the focus from environmental intent to measurable performance, demanding data-backed evidence for emissions, waste, and resource efficiency. Key changes include a stronger emphasis on leadership accountability, value chain and supplier controls, and setting specific, measurable environmental objectives. Start your transition early with a gap analysis to avoid the last-minute scramble before the 2029 deadline. iAudit Global&apos;s tools support this process with a free 14-day trial at{" "}
-                            <a href="https://www.iaudit.global/" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>
-                                https://www.iaudit.global/
+                            <a href="https://iaudit.global/" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>
+                                https://iaudit.global/
                             </a>
                             .
                         </p>
@@ -617,7 +617,7 @@ export default function Iso140012026ManufacturingBlogContent() {
                                 Start a 14-day free trial with full access to Gap Analysis, ISO 14001:2026 checklists, Findings Dashboard, Data Analytics Summary, and Report Download. No credit card required.
                             </p>
                             <a
-                                href="https://www.iaudit.global/"
+                                href="https://iaudit.global/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 style={{
@@ -635,7 +635,7 @@ export default function Iso140012026ManufacturingBlogContent() {
                                     fontFamily: font,
                                 }}
                             >
-                                Visit https://www.iaudit.global/ to get started
+                                Visit https://iaudit.global/ to get started
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="5" y1="12" x2="19" y2="12" />
                                     <polyline points="12 5 19 12 12 19" />

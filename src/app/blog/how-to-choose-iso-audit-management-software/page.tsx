@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import ChooseIsoAuditSoftwareBlogContent from "./ChooseIsoAuditSoftwareBlogContent";
 
-const pageUrl = "https://www.iaudit.global/blog/how-to-choose-iso-audit-management-software";
-const ogImage = "https://www.iaudit.global/images/blog-process-automation.webp";
+const pageUrl = "https://iaudit.global/blog/how-to-choose-iso-audit-management-software";
+const ogImage = "https://iaudit.global/images/blog-process-automation.webp";
 const title = "How to Choose ISO Audit Management Software | iAudit Global";
 const description =
     "Learn what to look for in ISO audit management software. Features that matter for ISO 9001, 14001, 45001 audits, PDCA workflows and corrective action tracking.";
@@ -50,12 +50,12 @@ const jsonLd = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
+            url: "https://iaudit.global/",
             logo: {
                 "@type": "ImageObject",
-                url: "https://www.iaudit.global/iaudit-logo-new.png",
+                url: "https://iaudit.global/iaudit-logo-new.png",
             },
             sameAs: [
                 "https://www.linkedin.com/company/iaudit-global",
@@ -64,16 +64,16 @@ const jsonLd = {
         },
         {
             "@type": "SoftwareApplication",
-            "@id": "https://www.iaudit.global/#software",
+            "@id": "https://iaudit.global/#software",
             name: "iAudit Global ISO Audit Management Software",
-            url: "https://www.iaudit.global/",
+            url: "https://iaudit.global/",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
             description:
                 "ISO audit management, PDCA workflows, audit planning, corrective action tracking, multi-site dashboards, AI-assisted Audit Mate, automated reporting.",
             creator: {
                 "@type": "Organization",
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
         },
         {
@@ -83,12 +83,12 @@ const jsonLd = {
             name: title,
             description,
             inLanguage: "en-GB",
-            isPartOf: { "@id": "https://www.iaudit.global/#organization" },
+            isPartOf: { "@id": "https://iaudit.global/#organization" },
             breadcrumb: {
                 "@type": "BreadcrumbList",
                 itemListElement: [
-                    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.iaudit.global/" },
-                    { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.iaudit.global/blog/" },
+                    { "@type": "ListItem", position: 1, name: "Home", item: "https://iaudit.global/" },
+                    { "@type": "ListItem", position: 2, name: "Blog", item: "https://iaudit.global/blog/" },
                     { "@type": "ListItem", position: 3, name: "How to Choose ISO Audit Management Software", item: pageUrl },
                 ],
             },
@@ -107,7 +107,7 @@ const jsonLd = {
             dateModified: "2026-04-08",
             mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
             image: ogImage,
-            publisher: { "@id": "https://www.iaudit.global/#organization" },
+            publisher: { "@id": "https://iaudit.global/#organization" },
             keywords:
                 "ISO 9001, ISO 14001, ISO 45001, ISO 27001, PDCA, audit software, corrective actions, audit management",
             articleSection: "ISO Audit Management",
@@ -172,7 +172,7 @@ const jsonLd = {
                     name: "Does iAudit Global offer a free trial?",
                     acceptedAnswer: {
                         "@type": "Answer",
-                        text: "Yes. iAudit Global offers a 14-day free trial that includes Gap Analysis, Self Assessment, Findings Dashboard, Data Analytics Summary and Report Download. No credit card required. You can access the free trial at https://www.iaudit.global/ or reach out at https://www.iaudit.global/contact if you have questions.",
+                        text: "Yes. iAudit Global offers a 14-day free trial that includes Gap Analysis, Self Assessment, Findings Dashboard, Data Analytics Summary and Report Download. No credit card required. You can access the free trial at https://iaudit.global/ or reach out at https://iaudit.global/contact if you have questions.",
                     },
                 },
             ],

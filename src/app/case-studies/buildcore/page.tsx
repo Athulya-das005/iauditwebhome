@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CaseStudyPageContent from "@/components/case-study/CaseStudyPageContent";
 import { buildCoreCaseStudy } from "@/data/caseStudies";
 
-const pageUrl = "https://www.iaudit.global/case-studies/buildcore";
+const pageUrl = "https://iaudit.global/case-studies/buildcore";
 
 export const metadata: Metadata = {
     title: "BuildCore Civil Engineering Case Study | 5x Faster Site Inspection Reporting | iAudit Global",

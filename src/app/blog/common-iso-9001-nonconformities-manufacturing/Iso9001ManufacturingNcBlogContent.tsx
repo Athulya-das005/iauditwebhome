@@ -714,7 +714,7 @@ export default function Iso9001ManufacturingNcBlogContent() {
 
                         <p style={para(font)}>
                             If you are reviewing your internal audit process and want to move away from scattered spreadsheets, you can explore how we structure manufacturing audits at{" "}
-                            <a href="https://www.iaudit.global/" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>
+                            <a href="https://iaudit.global/" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>
                                 iaudit.global
                             </a>
                             .
@@ -762,7 +762,7 @@ export default function Iso9001ManufacturingNcBlogContent() {
                                 Start a 14-day free trial of iAudit Global and see how clause-mapped checklists, centralised audit history and corrective action tracking help manufacturing teams close gaps before they become certification risks.
                             </p>
                             <a
-                                href="https://www.iaudit.global/"
+                                href="https://iaudit.global/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 style={{

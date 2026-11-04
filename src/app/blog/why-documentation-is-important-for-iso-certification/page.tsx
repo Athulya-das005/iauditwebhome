@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import DocumentationIsoBlogContent from "./DocumentationIsoBlogContent";
 
-const pageUrl = "https://www.iaudit.global/blog/why-documentation-is-important-for-iso-certification";
-const ogImage = "https://www.iaudit.global/images/blog-process-automation.webp";
+const pageUrl = "https://iaudit.global/blog/why-documentation-is-important-for-iso-certification";
+const ogImage = "https://iaudit.global/images/blog-process-automation.webp";
 const title = "Why Documentation Is Important for ISO Certification";
 const description =
     "Why documentation is important for ISO certification — what documented information really means, how auditors use it, common problems, and how to make it work for you.";
@@ -40,12 +40,12 @@ const jsonLd = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
+            url: "https://iaudit.global",
             logo: {
                 "@type": "ImageObject",
-                url: "https://www.iaudit.global/iaudit-logo-new.png",
+                url: "https://iaudit.global/iaudit-logo-new.png",
             },
             sameAs: [
                 "https://www.linkedin.com/company/iaudit-global",
@@ -64,7 +64,7 @@ const jsonLd = {
             },
             publisher: {
                 "@type": "Organization",
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
             datePublished: "2026-05-01",
             dateModified: "2026-05-01",

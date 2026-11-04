@@ -100,7 +100,7 @@ const faqItems = [
             <>
                 Yes. iAudit is built by auditors, for ISO audits, and provides tools for audit planning, ISO-focused checklists, evidence capture, findings management, corrective actions and reporting. Organisations preparing for ISO 9001:2026 can use a structured audit process to identify gaps, document evidence and track actions throughout the transition. iAudit also offers a{" "}
                 <a
-                    href="https://www.iaudit.global/contact"
+                    href="https://iaudit.global/contact"
                     style={{ color: "#006644", fontWeight: 600, textDecoration: "underline", textUnderlineOffset: "3px" }}
                 >
                     free consultation
@@ -423,7 +423,7 @@ export default function Iso90012026KeyChangesBlogContent() {
                                 </p>
                                 <p style={{ ...para(font), marginBottom: 0 }}>
                                     iAudit Global can help organisations prepare through structured ISO audit management and offers a{" "}
-                                    <a href="https://www.iaudit.global/contact" style={linkStyle}>
+                                    <a href="https://iaudit.global/contact" style={linkStyle}>
                                         free consultation to discuss the transition
                                     </a>
                                     .
@@ -710,7 +710,7 @@ export default function Iso90012026KeyChangesBlogContent() {
                                     Book a free consultation with iAudit Global to discuss your transition and audit requirements.
                                 </p>
                                 <p style={{ ...para(font), marginBottom: 0 }}>
-                                    <a href="https://www.iaudit.global/contact" style={linkStyle}>
+                                    <a href="https://iaudit.global/contact" style={linkStyle}>
                                         Contact iAudit Global
                                     </a>
                                 </p>

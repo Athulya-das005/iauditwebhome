@@ -62,7 +62,7 @@ const faqItems = [
     {
         question: "Does iAudit Global offer a free trial?",
         answer:
-            "Yes. iAudit Global offers a 14-day free trial that includes Gap Analysis, Self Assessment, Findings Dashboard, Data Analytics Summary and Report Download. No credit card required. You can access the free trial at https://www.iaudit.global/ or reach out at https://www.iaudit.global/contact if you have questions.",
+            "Yes. iAudit Global offers a 14-day free trial that includes Gap Analysis, Self Assessment, Findings Dashboard, Data Analytics Summary and Report Download. No credit card required. You can access the free trial at https://iaudit.global/ or reach out at https://iaudit.global/contact if you have questions.",
     },
 ];
 

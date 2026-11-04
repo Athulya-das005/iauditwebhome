@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Iso9001NonConformitiesBlogContent from "./Iso9001NonConformitiesBlogContent";
 
-const pageUrl = "https://www.iaudit.global/blog/top-non-conformities-in-iso-9001";
-const ogImage = "https://www.iaudit.global/images/blog-continuous-improvement.webp";
+const pageUrl = "https://iaudit.global/blog/top-non-conformities-in-iso-9001";
+const ogImage = "https://iaudit.global/images/blog-continuous-improvement.webp";
 const title = "Top Non-Conformities in ISO 9001 and How to Fix Them";
 const description =
     "Discover the top Non-Conformities in ISO 9001, why they repeat, and how to fix them using stronger audits, corrective action, and a proper PDCA approach.";
@@ -49,12 +49,12 @@ const jsonLd = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
+            url: "https://iaudit.global",
             logo: {
                 "@type": "ImageObject",
-                url: "https://www.iaudit.global/iaudit-logo-new.png",
+                url: "https://iaudit.global/iaudit-logo-new.png",
             },
             sameAs: [
                 "https://www.linkedin.com/company/iaudit-global",
@@ -63,16 +63,16 @@ const jsonLd = {
         },
         {
             "@type": "SoftwareApplication",
-            "@id": "https://www.iaudit.global/#software",
+            "@id": "https://iaudit.global/#software",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
+            url: "https://iaudit.global",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
             description:
                 "ISO audit management software for ISO 9001, 14001, 45001, and 27001 audits, with PDCA-driven platform, AI Audit Mate assistant, and centralized compliance tracking.",
             creator: {
                 "@type": "Organization",
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
         },
         {
@@ -82,12 +82,12 @@ const jsonLd = {
             name: title,
             description,
             inLanguage: "en-GB",
-            isPartOf: { "@id": "https://www.iaudit.global/#organization" },
+            isPartOf: { "@id": "https://iaudit.global/#organization" },
             breadcrumb: {
                 "@type": "BreadcrumbList",
                 itemListElement: [
-                    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.iaudit.global" },
-                    { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.iaudit.global/blog" },
+                    { "@type": "ListItem", position: 1, name: "Home", item: "https://iaudit.global" },
+                    { "@type": "ListItem", position: 2, name: "Blog", item: "https://iaudit.global/blog" },
                     { "@type": "ListItem", position: 3, name: "Top Non-Conformities in ISO 9001", item: pageUrl },
                 ],
             },
@@ -98,12 +98,12 @@ const jsonLd = {
             headline: title,
             description:
                 "Learn why ISO 9001 non-conformities keep returning and how to stop them with better audits, corrective action and PDCA.",
-            author: { "@id": "https://www.iaudit.global/#organization" },
+            author: { "@id": "https://iaudit.global/#organization" },
             datePublished: "2026-03-18",
             dateModified: "2026-03-18",
             mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
             image: ogImage,
-            publisher: { "@id": "https://www.iaudit.global/#organization" },
+            publisher: { "@id": "https://iaudit.global/#organization" },
             keywords:
                 "ISO 9001 nonconformities, ISO audit findings, corrective action ISO, PDCA ISO, audit nonconformities",
             articleSection: "ISO Audit Management",

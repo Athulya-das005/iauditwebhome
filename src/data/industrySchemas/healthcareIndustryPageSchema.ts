@@ -1,5 +1,5 @@
-const logoUrl = "https://www.iaudit.global/iaudit-logo-new.png";
-const pageUrl = "https://www.iaudit.global/industries/healthcare-compliance-software";
+const logoUrl = "https://iaudit.global/iaudit-logo-new.png";
+const pageUrl = "https://iaudit.global/industries/healthcare-compliance-software";
 
 export const healthcareIndustryPageSchema = {
     "@context": "https://schema.org",
@@ -19,7 +19,7 @@ export const healthcareIndustryPageSchema = {
                 priceCurrency: "USD",
                 description: "Free trial available",
                 availability: "https://schema.org/InStock",
-                url: "https://www.iaudit.global/pricing",
+                url: "https://iaudit.global/pricing",
             },
             brand: {
                 "@type": "Brand",
@@ -43,7 +43,7 @@ export const healthcareIndustryPageSchema = {
                 priceCurrency: "USD",
                 price: "0",
                 availability: "https://schema.org/InStock",
-                url: "https://www.iaudit.global/pricing",
+                url: "https://iaudit.global/pricing",
             },
         },
         {
@@ -53,13 +53,13 @@ export const healthcareIndustryPageSchema = {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Industries",
-                    item: "https://www.iaudit.global/industries",
+                    item: "https://iaudit.global/industries",
                 },
                 {
                     "@type": "ListItem",

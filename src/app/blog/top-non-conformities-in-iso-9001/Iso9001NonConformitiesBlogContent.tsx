@@ -715,7 +715,7 @@ export default function Iso9001NonConformitiesBlogContent() {
                                 During the free 14-day trial, you can run gap analysis and self-assessments, explore audit templates, view findings dashboards, download reports and track actions in one place. Audit Mate can also help you generate checklists faster and work through clause-based audit preparation without starting from a blank page.
                             </p>
                             <a
-                                href="https://www.iaudit.global"
+                                href="https://iaudit.global"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 style={{

@@ -1,5 +1,15 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # 1. Survey subdomain permanent redirect: survey.iaudit.global & surveys.iaudit.global -> https://iaudit.global/
+  RewriteCond %{HTTP_HOST} ^survey(s)?\.iaudit\.global$ [NC]
+  RewriteRule ^(.*)$ https://iaudit.global/ [R=301,L]
+
+  # 2. Canonical domain permanent redirect: www.iaudit.global -> https://iaudit.global/*
+  RewriteCond %{HTTP_HOST} ^www\.iaudit\.global$ [NC]
+  RewriteRule ^(.*)$ https://iaudit.global/$1 [R=301,L]
+
+  # 3. Security.txt redirects
   RewriteRule ^\.well-known/security$ /.well-known/security.txt [R=301,L]
   RewriteRule ^security$ /.well-known/security.txt [R=301,L]
 </IfModule>

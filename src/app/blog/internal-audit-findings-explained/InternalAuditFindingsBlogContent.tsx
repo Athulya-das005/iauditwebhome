@@ -715,7 +715,7 @@ export default function InternalAuditFindingsBlogContent() {
                             <p style={greenPara(font)}>
                                 Start a free 14-day trial of iAudit Global and see how structured finding workflows, corrective action tracking and connected audit reporting help your team turn every NC, OFI and observation into real improvement.
                             </p>
-                            <a href="https://www.iaudit.global/" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "#fff", color: "#006644", padding: "0.85rem 1.4rem", borderRadius: "999px", fontWeight: 600, fontSize: "0.92rem", textDecoration: "none", position: "relative", fontFamily: font }}>
+                            <a href="https://iaudit.global/" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "#fff", color: "#006644", padding: "0.85rem 1.4rem", borderRadius: "999px", fontWeight: 600, fontSize: "0.92rem", textDecoration: "none", position: "relative", fontFamily: font }}>
                                 Start your free trial
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="5" y1="12" x2="19" y2="12" />

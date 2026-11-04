@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import PrivacyPolicyContent from "@/components/PrivacyPolicyContent";
 import Footer from "@/components/Footer";
 
-const pageUrl = "https://www.iaudit.global/privacy-policy";
+const pageUrl = "https://iaudit.global/privacy-policy";
 const title = "Privacy Policy | iAudit Global";
 const description =
-    "Learn how iAudit Global collects, uses and protects your personal information when you visit https://www.iaudit.global/.";
+    "Learn how iAudit Global collects, uses and protects your personal information when you visit https://iaudit.global/.";
 
 export const metadata: Metadata = {
     title,

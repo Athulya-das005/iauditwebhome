@@ -666,7 +666,7 @@ export default function IsoAuditReportBlogContent() {
                             <p style={greenPara(font)}>
                                 Start your free 14 day trial of iAudit Global and see how evidence capture, automated reporting and corrective action tracking keep your audit programme connected from finding to verification.
                             </p>
-                            <a href="https://www.iaudit.global/" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "#fff", color: "#006644", padding: "0.85rem 1.4rem", borderRadius: "999px", fontWeight: 600, fontSize: "0.92rem", textDecoration: "none", position: "relative", fontFamily: font }}>
+                            <a href="https://iaudit.global/" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "#fff", color: "#006644", padding: "0.85rem 1.4rem", borderRadius: "999px", fontWeight: 600, fontSize: "0.92rem", textDecoration: "none", position: "relative", fontFamily: font }}>
                                 Start Your Free 14 Day Trial
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="5" y1="12" x2="19" y2="12" />

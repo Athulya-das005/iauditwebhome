@@ -680,7 +680,7 @@ export default function MetalFabricationIsoBlogContent() {
                             <p style={{ ...greenPara(font), marginBottom: "1.25rem" }}>
                                 No setup fees. No training required. Just sign up and start building better fabrication audits.
                             </p>
-                            <a href="https://www.iaudit.global/contact" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "#fff", color: "#006644", padding: "0.85rem 1.4rem", borderRadius: "999px", fontWeight: 600, fontSize: "0.92rem", textDecoration: "none", position: "relative", fontFamily: font }}>
+                            <a href="https://iaudit.global/contact" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "#fff", color: "#006644", padding: "0.85rem 1.4rem", borderRadius: "999px", fontWeight: 600, fontSize: "0.92rem", textDecoration: "none", position: "relative", fontFamily: font }}>
                                 Start your 14-day free trial
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="5" y1="12" x2="19" y2="12" />
@@ -708,7 +708,7 @@ export default function MetalFabricationIsoBlogContent() {
                             <p style={para(font)}>
                                 This offer is limited to the first 500 requests. Once we reach that number, the free review programme closes.
                             </p>
-                            <a href="https://www.iaudit.global/contact" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "#006644", color: "#fff", padding: "0.85rem 1.4rem", borderRadius: "999px", fontWeight: 600, fontSize: "0.92rem", textDecoration: "none", fontFamily: font }}>
+                            <a href="https://iaudit.global/contact" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "#006644", color: "#fff", padding: "0.85rem 1.4rem", borderRadius: "999px", fontWeight: 600, fontSize: "0.92rem", textDecoration: "none", fontFamily: font }}>
                                 Request your free ISO programme review
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="5" y1="12" x2="19" y2="12" />

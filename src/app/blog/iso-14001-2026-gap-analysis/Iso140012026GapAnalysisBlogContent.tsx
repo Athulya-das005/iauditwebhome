@@ -422,7 +422,7 @@ export default function Iso140012026GapAnalysisBlogContent() {
                             </p>
                             <p style={{ ...para(font), marginBottom: 0 }}>
                                 Once the gaps are identified, you can prioritise actions, assign responsibility and track progress towards transition.{" "}
-                                <a href="https://www.iaudit.global/iso-audit-assessments/gap-analysis" style={linkStyle}>
+                                <a href="https://iaudit.global/iso-audit-assessments/gap-analysis" style={linkStyle}>
                                     iAudit Global offers a free ISO 14001:2026 gap analysis
                                 </a>{" "}
                                 covering 61 auditable questions across clauses 4 to 10, helping you see where your EMS needs attention.
@@ -476,7 +476,7 @@ export default function Iso140012026GapAnalysisBlogContent() {
                             There are, however, areas that deserve a closer look, including environmental context, climate change, biodiversity, natural resources, lifecycle thinking, planning of changes, external providers, internal auditing and management review.
                         </p>
                         <p style={para(font)}>
-                            <a href="https://www.iaudit.global/blog/what-has-changed-in-iso-14001-2026" style={linkStyle}>
+                            <a href="https://iaudit.global/blog/what-has-changed-in-iso-14001-2026" style={linkStyle}>
                                 I have covered the detail of what has changed in ISO 14001:2026 separately, but understanding those changes is only the first step.
                             </a>
                         </p>
@@ -701,7 +701,7 @@ export default function Iso140012026GapAnalysisBlogContent() {
                         </p>
                         <p style={para(font)}>You can use the results to prioritise actions and build a clearer transition plan.</p>
                         <p style={para(font)}>
-                            <a href="https://www.iaudit.global/iso-audit-assessments/gap-analysis" style={linkStyle}>
+                            <a href="https://iaudit.global/iso-audit-assessments/gap-analysis" style={linkStyle}>
                                 Start your free ISO 14001:2026 gap analysis
                             </a>
                         </p>

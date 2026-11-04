@@ -1,5 +1,5 @@
 export const GAP_ANALYSIS_PAGE_PATH = "/iso-audit-assessments/gap-analysis";
-export const GAP_ANALYSIS_PAGE_URL = `https://www.iaudit.global${GAP_ANALYSIS_PAGE_PATH}`;
+export const GAP_ANALYSIS_PAGE_URL = `https://iaudit.global${GAP_ANALYSIS_PAGE_PATH}`;
 
 export const gapAnalysisFaqItems = [
     {
@@ -69,8 +69,8 @@ export const gapAnalysisPageSchema = {
                 "Complete a free ISO 14001:2026 Gap Analysis to identify EMS gaps, assess transition readiness and plan the actions needed.",
             url: GAP_ANALYSIS_PAGE_URL,
             inLanguage: "en-GB",
-            isPartOf: { "@id": "https://www.iaudit.global/#website" },
-            publisher: { "@id": "https://www.iaudit.global/#organization" },
+            isPartOf: { "@id": "https://iaudit.global/#website" },
+            publisher: { "@id": "https://iaudit.global/#organization" },
         },
         {
             "@type": "SoftwareApplication",
@@ -86,7 +86,7 @@ export const gapAnalysisPageSchema = {
                 price: "0",
                 priceCurrency: "GBP",
             },
-            publisher: { "@id": "https://www.iaudit.global/#organization" },
+            publisher: { "@id": "https://iaudit.global/#organization" },
         },
         {
             "@type": "HowTo",
@@ -114,12 +114,12 @@ export const gapAnalysisPageSchema = {
         },
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
+            url: "https://iaudit.global",
             logo: {
                 "@type": "ImageObject",
-                url: "https://www.iaudit.global/logo.png",
+                url: "https://iaudit.global/logo.png",
             },
             description:
                 "iAudit Global is ISO audit management software built by certified ISO auditors for ISO 9001, ISO 14001 and ISO 45001 internal audits.",
@@ -135,10 +135,10 @@ export const gapAnalysisPageSchema = {
         },
         {
             "@type": "WebSite",
-            "@id": "https://www.iaudit.global/#website",
+            "@id": "https://iaudit.global/#website",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
-            publisher: { "@id": "https://www.iaudit.global/#organization" },
+            url: "https://iaudit.global",
+            publisher: { "@id": "https://iaudit.global/#organization" },
             inLanguage: "en-GB",
         },
     ],

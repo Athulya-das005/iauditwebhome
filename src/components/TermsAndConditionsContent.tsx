@@ -182,7 +182,7 @@ export default function TermsAndConditionsContent() {
                         </p>
                         <p style={{ ...para, marginBottom: "0.5rem" }}>
                             <strong style={{ color: "#111827" }}>Website:</strong>{" "}
-                            <InlineLink href="https://www.iaudit.global">https://www.iaudit.global</InlineLink>
+                            <InlineLink href="https://iaudit.global">https://iaudit.global</InlineLink>
                         </p>
                         <p style={{ ...para, marginBottom: 0 }}>
                             <strong style={{ color: "#111827" }}>Email:</strong>{" "}
@@ -277,8 +277,8 @@ export default function TermsAndConditionsContent() {
                     <p style={para}>Certain features and services require a paid subscription.</p>
                     <p style={para}>
                         Current pricing is available at:{" "}
-                        <InlineLink href="https://www.iaudit.global/pricing">
-                            https://www.iaudit.global/pricing
+                        <InlineLink href="https://iaudit.global/pricing">
+                            https://iaudit.global/pricing
                         </InlineLink>
                     </p>
                     <p style={para}>
@@ -369,8 +369,8 @@ export default function TermsAndConditionsContent() {
                     </p>
                     <p style={para}>
                         Our Privacy Policy is available at:{" "}
-                        <InlineLink href="https://www.iaudit.global/privacy-policy">
-                            https://www.iaudit.global/privacy-policy
+                        <InlineLink href="https://iaudit.global/privacy-policy">
+                            https://iaudit.global/privacy-policy
                         </InlineLink>
                     </p>
                     <p style={para}>
@@ -775,7 +775,7 @@ United Kingdom`}
                         </p>
                         <p style={{ ...para, marginBottom: 0 }}>
                             <strong style={{ color: "#111827" }}>Website:</strong>{" "}
-                            <InlineLink href="https://www.iaudit.global">https://www.iaudit.global</InlineLink>
+                            <InlineLink href="https://iaudit.global">https://iaudit.global</InlineLink>
                         </p>
                     </div>
                 </Section>

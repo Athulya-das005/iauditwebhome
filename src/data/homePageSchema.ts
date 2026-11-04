@@ -3,9 +3,10 @@ export const homePageSchema = {
     "@graph": [
         {
             "@type": "Organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
-            logo: "https://www.iaudit.global/iaudit-logo-new.png",
+            url: "https://iaudit.global/",
+            logo: "https://iaudit.global/iaudit-logo-new.png",
             email: "info@iaudit.global",
             telephone: "+44 1233 456 789",
             address: {
@@ -15,23 +16,34 @@ export const homePageSchema = {
                 addressCountry: "United Kingdom",
             },
             sameAs: [
-                "https://www.instagram.com/iauditglobal/?hl=en",
-                "https://www.facebook.com/profile.php?id=61578820557173",
                 "https://www.linkedin.com/company/iaudit-global/",
+                "https://twitter.com/iauditglobal",
+                "https://www.facebook.com/profile.php?id=61578820557173",
+                "https://www.instagram.com/iauditglobal/?hl=en",
             ],
+        },
+        {
+            "@type": "WebSite",
+            "@id": "https://iaudit.global/#website",
+            name: "iAudit Global",
+            url: "https://iaudit.global/",
+            description:
+                "iAudit Global helps organizations manage ISO audits, compliance, corrective actions, and integrated management systems.",
+            publisher: {
+                "@id": "https://iaudit.global/#organization",
+            },
         },
         {
             "@type": "SoftwareApplication",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
+            url: "https://iaudit.global/",
             applicationCategory: "BusinessApplication",
             applicationSubCategory: "ISO Audit Software",
             operatingSystem: "Web",
             description:
                 "iAudit Global is a cloud-based ISO audit software designed for ISO 9001, ISO 14001, ISO 45001, audits. Plan, execute and report audits in one PDCA-driven platform aligned with ISO 19011.",
             publisher: {
-                "@type": "Organization",
-                name: "iAudit Global",
+                "@id": "https://iaudit.global/#organization",
             },
             featureList: [
                 "ISO audit planning and scheduling",
@@ -53,7 +65,7 @@ export const homePageSchema = {
                 "@type": "Brand",
                 name: "iAudit Global",
             },
-            url: "https://www.iaudit.global",
+            url: "https://iaudit.global/",
             offers: [
                 {
                     "@type": "Offer",
@@ -61,7 +73,7 @@ export const homePageSchema = {
                     price: "0",
                     priceCurrency: "USD",
                     availability: "https://schema.org/InStock",
-                    url: "https://www.iaudit.global/pricing",
+                    url: "https://iaudit.global/pricing",
                 },
                 {
                     "@type": "Offer",
@@ -69,7 +81,7 @@ export const homePageSchema = {
                     price: "15.60",
                     priceCurrency: "USD",
                     availability: "https://schema.org/InStock",
-                    url: "https://www.iaudit.global/pricing",
+                    url: "https://iaudit.global/pricing",
                 },
                 {
                     "@type": "Offer",
@@ -77,7 +89,7 @@ export const homePageSchema = {
                     price: "25.90",
                     priceCurrency: "USD",
                     availability: "https://schema.org/InStock",
-                    url: "https://www.iaudit.global/pricing",
+                    url: "https://iaudit.global/pricing",
                 },
                 {
                     "@type": "Offer",
@@ -85,7 +97,7 @@ export const homePageSchema = {
                     price: "30.10",
                     priceCurrency: "USD",
                     availability: "https://schema.org/InStock",
-                    url: "https://www.iaudit.global/pricing",
+                    url: "https://iaudit.global/pricing",
                 },
             ],
         },
@@ -103,8 +115,7 @@ export const homePageSchema = {
                 bestRating: "5",
             },
             publisher: {
-                "@type": "Organization",
-                name: "iAudit Global",
+                "@id": "https://iaudit.global/#organization",
             },
         },
         {
@@ -114,61 +125,21 @@ export const homePageSchema = {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Features",
-                    item: "https://www.iaudit.global/#features",
+                    item: "https://iaudit.global/#features",
                 },
                 {
                     "@type": "ListItem",
                     position: 3,
                     name: "Pricing",
-                    item: "https://www.iaudit.global/#pricing",
+                    item: "https://iaudit.global/pricing",
                 },
             ],
-        },
-        {
-            "@type": "BlogPosting",
-            headline: "Continuous Improvement Through Internal Audits",
-            url: "https://www.iaudit.global/continuous-improvement-through-internal-audits",
-            publisher: {
-                "@type": "Organization",
-                name: "iAudit Global",
-                logo: {
-                    "@type": "ImageObject",
-                    url: "https://www.iaudit.global/iaudit-logo-new.png",
-                },
-            },
-        },
-        {
-            "@type": "BlogPosting",
-            headline: "Train And Motivate Internal Auditors For Better Audit Results",
-            url: "https://www.iaudit.global/train-and-motivate-internal-auditors-for-better-audit-results",
-            publisher: {
-                "@type": "Organization",
-                name: "iAudit Global",
-            },
-        },
-        {
-            "@type": "BlogPosting",
-            headline: "How To Manage ISO Audits Across Multiple Sites",
-            url: "https://www.iaudit.global/how-to-manage-iso-audits-across-multiple-sites",
-            publisher: {
-                "@type": "Organization",
-                name: "iAudit Global",
-            },
-        },
-        {
-            "@type": "BlogPosting",
-            headline: "Internal Audit Best Practices For Small Businesses",
-            url: "https://www.iaudit.global/internal-audit-best-practices-for-small-businesses",
-            publisher: {
-                "@type": "Organization",
-                name: "iAudit Global",
-            },
         },
     ],
 };

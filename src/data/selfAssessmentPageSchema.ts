@@ -1,5 +1,5 @@
 export const SELF_ASSESSMENT_PAGE_PATH = "/iso-14001-2026-self-assessment-tool";
-export const SELF_ASSESSMENT_PAGE_URL = `https://www.iaudit.global${SELF_ASSESSMENT_PAGE_PATH}`;
+export const SELF_ASSESSMENT_PAGE_URL = `https://iaudit.global${SELF_ASSESSMENT_PAGE_PATH}`;
 
 export const selfAssessmentFaqItems = [
     {
@@ -54,10 +54,10 @@ export const selfAssessmentPageSchema = {
             description:
                 "Check your environmental management system against ISO 14001:2026 with our free self assessment, and identify areas that may need attention before your next audit or transition review.",
             isPartOf: {
-                "@id": "https://www.iaudit.global/#website",
+                "@id": "https://iaudit.global/#website",
             },
             publisher: {
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
             breadcrumb: {
                 "@id": `${SELF_ASSESSMENT_PAGE_URL}/#breadcrumb`,
@@ -82,18 +82,18 @@ export const selfAssessmentPageSchema = {
         },
         {
             "@type": "WebSite",
-            "@id": "https://www.iaudit.global/#website",
-            url: "https://www.iaudit.global/",
+            "@id": "https://iaudit.global/#website",
+            url: "https://iaudit.global/",
             name: "iAudit Global",
             publisher: {
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
         },
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
+            url: "https://iaudit.global/",
             email: "info@iaudit.global",
             telephone: "+44 7944 829129",
             address: {
@@ -104,7 +104,7 @@ export const selfAssessmentPageSchema = {
             },
             logo: {
                 "@type": "ImageObject",
-                url: "https://www.iaudit.global/iaudit-logo-new.png",
+                url: "https://iaudit.global/iaudit-logo-new.png",
             },
         },
         {
@@ -115,7 +115,7 @@ export const selfAssessmentPageSchema = {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",

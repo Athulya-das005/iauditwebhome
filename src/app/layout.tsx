@@ -5,9 +5,39 @@ import StickyScrollButton from "@/components/StickyScrollButton";
 import Analytics from "@/components/Analytics";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.iaudit.global"),
-  title: "iAudit Global",
-  description: "Internal audit management software",
+  metadataBase: new URL("https://iaudit.global"),
+  title: {
+    default: "iAudit Global | ISO Audit Management Software",
+    template: "%s | iAudit Global",
+  },
+  description:
+    "iAudit Global helps organizations manage ISO audits, compliance, corrective actions, and integrated management systems.",
+  openGraph: {
+    type: "website",
+    siteName: "iAudit Global",
+    locale: "en_GB",
+    url: "https://iaudit.global/",
+    title: "iAudit Global | ISO Audit Management Software",
+    description:
+      "iAudit Global helps organizations manage ISO audits, compliance, corrective actions, and integrated management systems.",
+    images: [
+      {
+        url: "https://iaudit.global/iaudit-logo-new.png",
+        width: 1200,
+        height: 630,
+        alt: "iAudit Global",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@iAuditGlobal",
+    creator: "@iAuditGlobal",
+    title: "iAudit Global | ISO Audit Management Software",
+    description:
+      "iAudit Global helps organizations manage ISO audits, compliance, corrective actions, and integrated management systems.",
+    images: ["https://iaudit.global/iaudit-logo-new.png"],
+  },
   // Google Search Console verification
   verification: {
     google: "-Z7vE3YjIssRGM2QAtUMIbnJ6STeBiKSKl4pYtdl6U4",

@@ -17,13 +17,13 @@ import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import HomePageJsonLd from "@/components/seo/HomePageJsonLd";
 
-const siteUrl = "https://www.iaudit.global";
-const ogImage = "https://www.iaudit.global/iaudit-logo-new.png";
+const siteUrl = "https://iaudit.global/";
+const ogImage = "https://iaudit.global/iaudit-logo-new.png";
 
 export const metadata: Metadata = {
-    title: "ISO Audit Software | ISO 9001, 14001, and 45001 Audit Platform",
+    title: "iAudit Global | ISO Audit Management Software",
     description:
-        "ISO audit software for ISO 9001, ISO 14001, ISO 45001. Plan, execute and report audits in one PDCA-driven platform built by certified auditors.",
+        "iAudit Global helps organizations manage ISO audits, compliance, corrective actions, and integrated management systems.",
     keywords: [
         "ISO audit software",
         "ISO 9001 audit software",
@@ -43,32 +43,34 @@ export const metadata: Metadata = {
         canonical: siteUrl,
     },
     openGraph: {
-        title: "iAudit Global | ISO Audit Software for ISO 9001, 14001, 45001",
+        title: "iAudit Global | ISO Audit Management Software",
         description:
-            "Plan, execute and report ISO audits in one platform built by certified auditors and aligned with ISO 19011. Replace spreadsheets with structured ISO audit management.",
+            "iAudit Global helps organizations manage ISO audits, compliance, corrective actions, and integrated management systems.",
         type: "website",
         url: siteUrl,
         siteName: "iAudit Global",
-        locale: "en_US",
+        locale: "en_GB",
         images: [
             {
                 url: ogImage,
+                width: 1200,
+                height: 630,
                 alt: "iAudit Global",
             },
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "ISO Audit Software | iAudit Global",
+        title: "iAudit Global | ISO Audit Management Software",
         description:
-            "Run ISO 9001, 14001, and 45001 audits in one PDCA-driven platform built by auditors.",
+            "iAudit Global helps organizations manage ISO audits, compliance, corrective actions, and integrated management systems.",
         images: [ogImage],
-        site: "@iauditglobal",
+        site: "@iAuditGlobal",
+        creator: "@iAuditGlobal",
     },
     other: {
         "revisit-after": "7 days",
     },
-    themeColor: "#0a0a0a",
 };
 
 export default function Home() {

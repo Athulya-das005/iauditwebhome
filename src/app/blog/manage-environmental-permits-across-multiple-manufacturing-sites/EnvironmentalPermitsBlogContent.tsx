@@ -824,7 +824,7 @@ export default function EnvironmentalPermitsBlogContent() {
 
                         <p style={para(font)}>
                             If you are reviewing how you manage environmental permits across multiple manufacturing sites, you can explore our structured approach to ISO auditing at{" "}
-                            <a href="https://www.iaudit.global/" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>
+                            <a href="https://iaudit.global/" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>
                                 iaudit.global
                             </a>
                             . We also offer a 14-day free trial, so you can see firsthand how iAudit Global helps your organisation centralise its compliance history and protect its audit trail.
@@ -869,7 +869,7 @@ export default function EnvironmentalPermitsBlogContent() {
                                 Start a 14-day free trial of iAudit Global and see how centralised permit registers, multi-site dashboards and evidence-linked ISO 14001 audits keep your manufacturing compliance visible and secure.
                             </p>
                             <a
-                                href="https://www.iaudit.global/"
+                                href="https://iaudit.global/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 style={{

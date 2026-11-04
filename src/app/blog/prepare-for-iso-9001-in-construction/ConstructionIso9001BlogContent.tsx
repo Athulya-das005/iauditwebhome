@@ -638,12 +638,10 @@ export default function ConstructionIso9001BlogContent() {
                                 If you are interested, we are running a pilot programme for iAudit Global and inviting a small number of organisations to try the platform, give feedback and help shape how it works in real construction environments.
                             </p>
                             <p style={{ ...greenPara(font), marginBottom: "1.25rem" }}>
-                                If you would like to be part of that pilot, or just see whether it could make your next audit less painful, you can learn more and register your interest here.
+                                If you would like to see whether it could make your next audit less painful, you can start a 14-day free trial.
                             </p>
-                            <a
-                                href="https://surveys.iaudit.global/"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <Link
+                                href="/pricing"
                                 style={{
                                     display: "inline-flex",
                                     alignItems: "center",
@@ -659,12 +657,12 @@ export default function ConstructionIso9001BlogContent() {
                                     fontFamily: font,
                                 }}
                             >
-                                Register interest at surveys.iaudit.global
+                                Start a 14-day free trial
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="5" y1="12" x2="19" y2="12" />
                                     <polyline points="12 5 19 12 12 19" />
                                 </svg>
-                            </a>
+                            </Link>
                             <div style={{ height: "1px", background: "rgba(255,255,255,0.15)", margin: "1.5rem 0 1.15rem", position: "relative" }} />
                             <p style={{ margin: 0, color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", fontFamily: font, position: "relative", fontWeight: 600 }}>
                                 Mathew Chiweda

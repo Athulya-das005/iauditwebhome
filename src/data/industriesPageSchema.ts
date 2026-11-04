@@ -3,10 +3,10 @@ export const industriesPageSchema = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global",
-            logo: "https://www.iaudit.global/iaudit-logo-new.png",
+            url: "https://iaudit.global",
+            logo: "https://iaudit.global/iaudit-logo-new.png",
             email: "info@iaudit.global",
             telephone: "+44 7944 829129",
             address: {
@@ -21,15 +21,15 @@ export const industriesPageSchema = {
         },
         {
             "@type": "SoftwareApplication",
-            "@id": "https://www.iaudit.global/#software",
+            "@id": "https://iaudit.global/#software",
             name: "iAudit Global",
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
-            url: "https://www.iaudit.global/industries",
+            url: "https://iaudit.global/industries",
             description:
                 "Industry-specific ISO audit software to manage ISO 9001, 14001, and 45001 audits with structured PDCA workflows, evidence capture, dashboards, and corrective actions.",
             creator: {
-                "@id": "https://www.iaudit.global/#organization",
+                "@id": "https://iaudit.global/#organization",
             },
             featureList: [
                 "PDCA audit workflow",
@@ -50,25 +50,25 @@ export const industriesPageSchema = {
         },
         {
             "@type": "BreadcrumbList",
-            "@id": "https://www.iaudit.global/industries#breadcrumb",
+            "@id": "https://iaudit.global/industries#breadcrumb",
             itemListElement: [
                 {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Industries",
-                    item: "https://www.iaudit.global/industries",
+                    item: "https://iaudit.global/industries",
                 },
             ],
         },
         {
             "@type": "ItemList",
-            "@id": "https://www.iaudit.global/industries#industries",
+            "@id": "https://iaudit.global/industries#industries",
             name: "Industries Supported by iAudit Global",
             itemListElement: [
                 { "@type": "ListItem", position: 1, name: "Retail" },

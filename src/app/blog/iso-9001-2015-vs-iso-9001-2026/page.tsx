@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Iso90012015Vs2026BlogContent from "./Iso90012015Vs2026BlogContent";
 
-const pageUrl = "https://www.iaudit.global/blog/iso-9001-2015-vs-iso-9001-2026";
-const ogImage = "https://www.iaudit.global/images/blog/iso-9001-2015-vs-iso-9001-2026.jpg";
+const pageUrl = "https://iaudit.global/blog/iso-9001-2015-vs-iso-9001-2026";
+const ogImage = "https://iaudit.global/images/blog/iso-9001-2015-vs-iso-9001-2026.jpg";
 const title = "ISO 9001:2015 vs ISO 9001:2026: What Really Changed?";
 const description =
     "Compare ISO 9001:2015 vs ISO 9001:2026. See the key changes, what remains the same, and what organisations should review in their QMS.";
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
         "QMS comparison",
         "ISO 9001 audit changes",
     ],
-    authors: [{ name: "Mathew Chiweda", url: "https://www.iaudit.global/author/mathew-chiweda" }],
+    authors: [{ name: "Mathew Chiweda", url: "https://iaudit.global/author/mathew-chiweda" }],
     robots: { index: true, follow: true },
     alternates: { canonical: pageUrl },
     openGraph: {
@@ -61,10 +61,10 @@ const jsonLd = {
             inLanguage: "en-GB",
             datePublished: "2026-10-12",
             dateModified: "2026-10-12",
-            author: { "@id": "https://www.iaudit.global/author/mathew-chiweda#person" },
-            publisher: { "@id": "https://www.iaudit.global/#organization" },
+            author: { "@id": "https://iaudit.global/author/mathew-chiweda#person" },
+            publisher: { "@id": "https://iaudit.global/#organization" },
             mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
-            isPartOf: { "@id": "https://www.iaudit.global/#website" },
+            isPartOf: { "@id": "https://iaudit.global/#website" },
         },
         {
             "@type": "WebPage",
@@ -73,46 +73,46 @@ const jsonLd = {
             name: title,
             description,
             inLanguage: "en-GB",
-            isPartOf: { "@id": "https://www.iaudit.global/#website" },
+            isPartOf: { "@id": "https://iaudit.global/#website" },
             breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
             about: { "@type": "Thing", name: "ISO 9001:2015 vs ISO 9001:2026 comparison" },
         },
         {
             "@type": "Person",
-            "@id": "https://www.iaudit.global/author/mathew-chiweda#person",
+            "@id": "https://iaudit.global/author/mathew-chiweda#person",
             name: "Mathew Chiweda",
             jobTitle: "Co-founder & Managing Director",
             description:
                 "Mathew Chiweda is a PDCA ISO Audit Specialist and Co-founder of iAudit Global, with more than 20 years of experience in quality, health and safety, environmental management and ISO management systems. He specialises in ISO 9001, ISO 14001 and ISO 45001.",
-            url: "https://www.iaudit.global/author/mathew-chiweda",
-            worksFor: { "@id": "https://www.iaudit.global/#organization" },
+            url: "https://iaudit.global/author/mathew-chiweda",
+            worksFor: { "@id": "https://iaudit.global/#organization" },
         },
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
+            url: "https://iaudit.global/",
             description:
                 "ISO audit management software built by auditors for ISO 9001, ISO 14001 and ISO 45001 audit programmes.",
             logo: {
                 "@type": "ImageObject",
-                url: "https://www.iaudit.global/iaudit-logo-new.png",
+                url: "https://iaudit.global/iaudit-logo-new.png",
             },
         },
         {
             "@type": "WebSite",
-            "@id": "https://www.iaudit.global/#website",
-            url: "https://www.iaudit.global/",
+            "@id": "https://iaudit.global/#website",
+            url: "https://iaudit.global/",
             name: "iAudit Global",
-            publisher: { "@id": "https://www.iaudit.global/#organization" },
+            publisher: { "@id": "https://iaudit.global/#organization" },
             inLanguage: "en-GB",
         },
         {
             "@type": "BreadcrumbList",
             "@id": `${pageUrl}#breadcrumb`,
             itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: "https://www.iaudit.global/" },
-                { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.iaudit.global/blog/" },
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://iaudit.global/" },
+                { "@type": "ListItem", position: 2, name: "Blog", item: "https://iaudit.global/blog/" },
                 {
                     "@type": "ListItem",
                     position: 3,

@@ -7,8 +7,8 @@ import type { Metadata } from "next";
 import IndustriesDirectory from "@/components/IndustriesDirectory";
 import IndustriesPageJsonLd from "@/components/seo/IndustriesPageJsonLd";
 
-const pageUrl = "https://www.iaudit.global/industries";
-const ogImage = "https://www.iaudit.global/og-industries.jpg";
+const pageUrl = "https://iaudit.global/industries";
+const ogImage = "https://iaudit.global/og-industries.jpg";
 
 export const metadata: Metadata = {
     title: "Industry-Specific ISO Audit Software | iAudit Global",

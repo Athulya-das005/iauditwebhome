@@ -693,12 +693,10 @@ export default function PdcaIso27001BlogContent() {
                             </p>
                             <p style={greenPara(font)}>Your audit data stays with your organisation. We have no access to it.</p>
                             <p style={{ ...greenPara(font), marginBottom: "1.25rem" }}>
-                                If you want to see how a structured approach to PDCA can work in practice, we are running a pilot programme for organisations managing ISO 27001 and other management system audits.
+                                If you want to see how a structured approach to PDCA can work in practice, you can explore the platform with a 14-day free trial.
                             </p>
-                            <a
-                                href="https://surveys.iaudit.global/"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <Link
+                                href="/pricing"
                                 style={{
                                     display: "inline-flex",
                                     alignItems: "center",
@@ -714,12 +712,12 @@ export default function PdcaIso27001BlogContent() {
                                     fontFamily: font,
                                 }}
                             >
-                                Register interest at surveys.iaudit.global
+                                Start a 14-day free trial
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="5" y1="12" x2="19" y2="12" />
                                     <polyline points="12 5 19 12 12 19" />
                                 </svg>
-                            </a>
+                            </Link>
                             <div style={{ height: "1px", background: "rgba(255,255,255,0.15)", margin: "1.5rem 0 1.15rem", position: "relative" }} />
                             <p style={{ margin: 0, color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", fontFamily: font, position: "relative", fontWeight: 600 }}>
                                 Mathew Chiweda

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CaseStudyPageContent from "@/components/case-study/CaseStudyPageContent";
 import { meridianCaseStudy } from "@/data/caseStudies";
 
-const pageUrl = "https://www.iaudit.global/case-studies/meridian-infrastructure";
+const pageUrl = "https://iaudit.global/case-studies/meridian-infrastructure";
 
 export const metadata: Metadata = {
     title: "Meridian Infrastructure Case Study | 70% Faster Safety Reports | iAudit Global",

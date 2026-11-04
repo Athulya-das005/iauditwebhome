@@ -7,7 +7,7 @@ import { SELF_ASSESSMENT_PAGE_PATH, SELF_ASSESSMENT_PAGE_URL } from "@/data/self
 /*
 import AssessmentsLanding from "./AssessmentsLanding";
 
-const pageUrl = "https://www.iaudit.global/iso-audit-assessments";
+const pageUrl = "https://iaudit.global/iso-audit-assessments";
 const title = "ISO Self Assessment & Gap Analysis | iAudit Global";
 const description =
     "Run a free ISO self assessment or gap analysis. Identify strengths, gaps and next actions across ISO 9001, 14001 and 45001 in minutes.";

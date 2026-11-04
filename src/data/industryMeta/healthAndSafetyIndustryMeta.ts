@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-const pageUrl = "https://www.iaudit.global/industries/health-and-safety-iso-audit-software";
-const ogImage = "https://www.iaudit.global/images/health-safety-iso-audit-software.jpg";
+const pageUrl = "https://iaudit.global/industries/health-and-safety-iso-audit-software";
+const ogImage = "https://iaudit.global/images/health-safety-iso-audit-software.jpg";
 
 export const healthAndSafetyIndustryMetadata: Metadata = {
     title: "Health & Safety ISO Audit Software for Better Control",

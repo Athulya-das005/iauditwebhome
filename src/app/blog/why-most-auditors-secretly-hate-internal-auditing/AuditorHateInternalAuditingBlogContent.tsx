@@ -688,8 +688,8 @@ export default function AuditorHateInternalAuditingBlogContent() {
                         <p style={para(font)}>When those issues are addressed, internal auditing becomes strategic again.</p>
                         <p style={para(font)}>
                             If you want to move beyond spreadsheet fatigue and repeat NCR cycles, you can explore iAudit Global with a 14-day free trial at{" "}
-                            <a href="https://www.iaudit.global/" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>
-                                www.iaudit.global
+                            <a href="https://iaudit.global/" style={{ color: "#006644", textDecoration: "underline", textUnderlineOffset: "3px" }}>
+                                iaudit.global
                             </a>
                             .
                         </p>
@@ -736,7 +736,7 @@ export default function AuditorHateInternalAuditingBlogContent() {
                                 Start a 14-day free trial of iAudit Global and see how clause-mapped templates, real-time evidence capture and verified PDCA workflows change the audit experience.
                             </p>
                             <a
-                                href="https://www.iaudit.global/"
+                                href="https://iaudit.global/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 style={{

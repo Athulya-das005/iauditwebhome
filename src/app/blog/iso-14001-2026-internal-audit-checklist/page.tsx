@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Iso140012026InternalAuditChecklistBlogContent from "./Iso140012026InternalAuditChecklistBlogContent";
 
-const pageUrl = "https://www.iaudit.global/blog/iso-14001-2026-internal-audit-checklist";
-const ogImage = "https://www.iaudit.global/images/blog/iso-14001-2026-internal-audit-checklist.jpg";
+const pageUrl = "https://iaudit.global/blog/iso-14001-2026-internal-audit-checklist";
+const ogImage = "https://iaudit.global/images/blog/iso-14001-2026-internal-audit-checklist.jpg";
 const title = "ISO 14001:2026 Internal Audit Checklist: What to Check";
 const description =
     "Use this ISO 14001:2026 internal audit checklist to understand what auditors should check, what evidence to collect and how to identify findings.";
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title,
     description,
     keywords,
-    authors: [{ name: "Mathew Chiweda", url: "https://www.iaudit.global/author/mathew-chiweda" }],
+    authors: [{ name: "Mathew Chiweda", url: "https://iaudit.global/author/mathew-chiweda" }],
     robots: { index: true, follow: true },
     alternates: { canonical: pageUrl },
     openGraph: {
@@ -93,10 +93,10 @@ const jsonLd = {
             inLanguage: "en-GB",
             datePublished: "2026-10-01",
             dateModified: "2026-10-01",
-            author: { "@id": "https://www.iaudit.global/author/mathew-chiweda#person" },
-            publisher: { "@id": "https://www.iaudit.global/#organization" },
+            author: { "@id": "https://iaudit.global/author/mathew-chiweda#person" },
+            publisher: { "@id": "https://iaudit.global/#organization" },
             mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
-            isPartOf: { "@id": "https://www.iaudit.global/#website" },
+            isPartOf: { "@id": "https://iaudit.global/#website" },
         },
         {
             "@type": "WebPage",
@@ -105,19 +105,19 @@ const jsonLd = {
             name: headline,
             description,
             inLanguage: "en-GB",
-            isPartOf: { "@id": "https://www.iaudit.global/#website" },
+            isPartOf: { "@id": "https://iaudit.global/#website" },
             breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
             about: { "@type": "Thing", name: "ISO 14001:2026 internal audit checklist" },
         },
         {
             "@type": "Person",
-            "@id": "https://www.iaudit.global/author/mathew-chiweda#person",
+            "@id": "https://iaudit.global/author/mathew-chiweda#person",
             name: "Mathew Chiweda",
             jobTitle: "Co-founder & Managing Director",
             description:
                 "Mathew Chiweda is a PDCA ISO Audit Specialist and Co-founder of iAudit Global, with more than 20 years of experience in quality, health and safety, environmental management and ISO management systems. He specialises in ISO 9001, ISO 14001 and ISO 45001, with experience across internal auditing, implementation, training, consultancy and site inspections.",
-            url: "https://www.iaudit.global/author/mathew-chiweda",
-            worksFor: { "@id": "https://www.iaudit.global/#organization" },
+            url: "https://iaudit.global/author/mathew-chiweda",
+            worksFor: { "@id": "https://iaudit.global/#organization" },
             knowsAbout: [
                 "ISO 9001",
                 "ISO 14001",
@@ -129,14 +129,14 @@ const jsonLd = {
         },
         {
             "@type": "Organization",
-            "@id": "https://www.iaudit.global/#organization",
+            "@id": "https://iaudit.global/#organization",
             name: "iAudit Global",
-            url: "https://www.iaudit.global/",
+            url: "https://iaudit.global/",
             description:
                 "ISO audit management software built by auditors for ISO 9001, ISO 14001 and ISO 45001 audit programmes.",
             logo: {
                 "@type": "ImageObject",
-                url: "https://www.iaudit.global/iaudit-logo-new.png",
+                url: "https://iaudit.global/iaudit-logo-new.png",
             },
             address: {
                 "@type": "PostalAddress",
@@ -149,18 +149,18 @@ const jsonLd = {
         },
         {
             "@type": "WebSite",
-            "@id": "https://www.iaudit.global/#website",
-            url: "https://www.iaudit.global/",
+            "@id": "https://iaudit.global/#website",
+            url: "https://iaudit.global/",
             name: "iAudit Global",
-            publisher: { "@id": "https://www.iaudit.global/#organization" },
+            publisher: { "@id": "https://iaudit.global/#organization" },
             inLanguage: "en-GB",
         },
         {
             "@type": "BreadcrumbList",
             "@id": `${pageUrl}#breadcrumb`,
             itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: "https://www.iaudit.global/" },
-                { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.iaudit.global/blog/" },
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://iaudit.global/" },
+                { "@type": "ListItem", position: 2, name: "Blog", item: "https://iaudit.global/blog/" },
                 { "@type": "ListItem", position: 3, name: headline, item: pageUrl },
             ],
         },

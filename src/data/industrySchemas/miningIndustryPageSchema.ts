@@ -1,24 +1,24 @@
-const pageUrl = "https://www.iaudit.global/industries/mining-compliance-software";
-const ogImage = "https://www.iaudit.global/assets/images/mining-software-og.jpg";
+const pageUrl = "https://iaudit.global/industries/mining-compliance-software";
+const ogImage = "https://iaudit.global/assets/images/mining-software-og.jpg";
 
 export const miningIndustryPageSchema = {
     "@context": "https://schema.org",
     "@graph": [
         {
             "@type": "BreadcrumbList",
-            "@id": "https://www.iaudit.global/industries/mining-compliance-software#breadcrumb",
+            "@id": "https://iaudit.global/industries/mining-compliance-software#breadcrumb",
             itemListElement: [
                 {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://www.iaudit.global/",
+                    item: "https://iaudit.global/",
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Industries",
-                    item: "https://www.iaudit.global/industries",
+                    item: "https://iaudit.global/industries",
                 },
                 {
                     "@type": "ListItem",
@@ -30,7 +30,7 @@ export const miningIndustryPageSchema = {
         },
         {
             "@type": "SoftwareApplication",
-            "@id": "https://www.iaudit.global/industries/mining-compliance-software#software",
+            "@id": "https://iaudit.global/industries/mining-compliance-software#software",
             name: "iAudit",
             url: pageUrl,
             applicationCategory: "BusinessApplication",
@@ -40,7 +40,7 @@ export const miningIndustryPageSchema = {
                 "Mining compliance software for ISO 9001, 14001 and 45001. Audit TSFs, grade control and safety across remote sites with clear evidence and follow-up.",
             offers: {
                 "@type": "Offer",
-                url: "https://www.iaudit.global/industries/mining-compliance-software#signup",
+                url: "https://iaudit.global/industries/mining-compliance-software#signup",
                 price: "0",
                 priceCurrency: "USD",
                 availability: "https://schema.org/InStock",
@@ -60,14 +60,14 @@ export const miningIndustryPageSchema = {
         },
         {
             "@type": "Product",
-            "@id": "https://www.iaudit.global/industries/mining-compliance-software#product",
+            "@id": "https://iaudit.global/industries/mining-compliance-software#product",
             name: "iAudit Mining Compliance Software",
             description:
                 "Structured software to manage mining audits, TSF monitoring, contractor compliance and ISO standards with clear evidence and follow-up.",
             brand: {
                 "@type": "Organization",
                 name: "iAudit",
-                url: "https://www.iaudit.global/",
+                url: "https://iaudit.global/",
             },
             url: pageUrl,
             image: ogImage,
@@ -78,7 +78,7 @@ export const miningIndustryPageSchema = {
             },
             offers: {
                 "@type": "Offer",
-                url: "https://www.iaudit.global/industries/mining-compliance-software#signup",
+                url: "https://iaudit.global/industries/mining-compliance-software#signup",
                 price: "0",
                 priceCurrency: "USD",
                 availability: "https://schema.org/InStock",
@@ -86,7 +86,7 @@ export const miningIndustryPageSchema = {
         },
         {
             "@type": "FAQPage",
-            "@id": "https://www.iaudit.global/industries/mining-compliance-software#faq",
+            "@id": "https://iaudit.global/industries/mining-compliance-software#faq",
             mainEntity: [
                 {
                     "@type": "Question",
