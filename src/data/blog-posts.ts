@@ -13,6 +13,17 @@ export type BlogPost = {
 /** Single source of truth for the /blog listing. Add new posts here when published. */
 export const blogPosts: BlogPost[] = [
     {
+        slug: "how-to-choose-internal-audit-management-software",
+        title: "How to Choose Internal Audit Management Software",
+        excerpt:
+            "Learn how to choose internal audit management software based on workflow, usability, security, corrective actions, implementation and cost.",
+        datePublished: "2026-11-04",
+        readTime: "8 Min Read",
+        image: "/images/blog/how-to-choose-internal-audit-management-software.jpg",
+        author: "Mathew Chiweda",
+        categories: ["Audit Management", "Audit Management Software"],
+    },
+    {
         slug: "iso-audit-programme-software",
         title: "ISO Audit Programme Software: What Should It Do?",
         excerpt:
@@ -703,6 +714,7 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
                 id: "audit-management-software",
                 label: "Audit Management Software",
                 slugs: [
+                    "how-to-choose-internal-audit-management-software",
                     "iso-audit-programme-software",
                     "internal-audit-software-vs-spreadsheets",
                     "how-to-choose-iso-audit-management-software",
