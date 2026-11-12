@@ -1,54 +1,5 @@
 [
   {
-    "id": "assess-1783659917287-ibjkt2",
-    "createdAt": "2026-07-10T05:05:17.287Z",
-    "lead": {
-      "firstName": "Athulya",
-      "lastName": "Das",
-      "email": "veroji3619@imashr.com",
-      "organisation": "cv",
-      "industry": "Basic Metal & Fabrication",
-      "employees": "11–50",
-      "department": "HSE / EHS",
-      "existingCustomer": "No",
-      "emailOptIn": false
-    },
-    "answers": [
-      {
-        "questionId": "q1",
-        "question": "Which best describes your organisation’s current ISO / audit maturity?",
-        "answer": "Certified and actively maintaining an audit programme"
-      },
-      {
-        "questionId": "q2",
-        "question": "How do you currently plan and schedule internal audits?",
-        "answer": "Risk-based annual audit programme with clear ownership"
-      },
-      {
-        "questionId": "q3",
-        "question": "How consistently do you capture audit evidence across sites or teams?",
-        "answer": "Standardised digital checklists with photos and notes"
-      },
-      {
-        "questionId": "q4",
-        "question": "How effectively do you track findings and corrective actions to closure?",
-        "answer": "Every finding has an owner, due date and verified close-out"
-      },
-      {
-        "questionId": "q5",
-        "question": "How visible is audit performance to leadership?",
-        "answer": "Ad hoc summaries when requested"
-      },
-      {
-        "questionId": "q6",
-        "question": "What is your biggest gap today in self-assessment and gap analysis?",
-        "answer": "Knowing where we stand against ISO requirements"
-      }
-    ],
-    "status": "completed",
-    "scorePercent": 100
-  },
-  {
     "id": "assess-1783659603726-fovdv9",
     "createdAt": "2026-07-10T05:00:03.726Z",
     "lead": {
@@ -57,7 +8,7 @@
       "email": "athulyadas005@gmail.com",
       "organisation": "cv",
       "industry": "Healthcare",
-      "employees": "201–500",
+      "employees": "201\u2013500",
       "department": "Quality / Compliance",
       "existingCustomer": "Yes",
       "emailOptIn": true
@@ -65,7 +16,7 @@
     "answers": [
       {
         "questionId": "q1",
-        "question": "Which best describes your organisation’s current ISO / audit maturity?",
+        "question": "Which best describes your organisation\u2019s current ISO / audit maturity?",
         "answer": "Certified and actively maintaining an audit programme"
       },
       {

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { aboutType } from "@/constants/typography";
+import { isDisposableEmail } from "@/lib/spam-filter";
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -16,6 +17,8 @@ export default function Contact() {
         agreed: false
     });
 
+    const [honeypot, setHoneypot] = useState("");
+    const [loadTime] = useState<number>(() => Date.now());
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -47,6 +50,11 @@ export default function Contact() {
             return;
         }
 
+        if (isDisposableEmail(email)) {
+            alert("Please enter a valid work or personal email address. Disposable and temporary email addresses are not accepted.");
+            return;
+        }
+
         setIsSubmitting(true);
 
         try {
@@ -61,6 +69,8 @@ export default function Contact() {
                     email,
                     message,
                     agreed,
+                    company_website: honeypot,
+                    loadTime,
                 }),
             });
 
@@ -279,6 +289,32 @@ export default function Contact() {
                             </motion.div>
                         ) : (
                             <form onSubmit={handleSubmit} style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "1.5rem", width: "100%" }}>
+                                {/* Anti-spam honeypot - invisible to users, caught by bots */}
+                                <div
+                                    style={{
+                                        position: "absolute",
+                                        left: "-9999px",
+                                        opacity: 0,
+                                        pointerEvents: "none",
+                                        height: 0,
+                                        width: 0,
+                                        overflow: "hidden",
+                                    }}
+                                    aria-hidden="true"
+                                    tabIndex={-1}
+                                >
+                                    <label htmlFor="company_website">Company Website</label>
+                                    <input
+                                        type="text"
+                                        id="company_website"
+                                        name="company_website"
+                                        value={honeypot}
+                                        onChange={(e) => setHoneypot(e.target.value)}
+                                        tabIndex={-1}
+                                        autoComplete="off"
+                                    />
+                                </div>
+
                                 <div style={{ gridColumn: isMobile ? "auto" : "span 1" }}>
                                     <label htmlFor="firstName" style={labelStyle}>First Name*</label>
                                     <input

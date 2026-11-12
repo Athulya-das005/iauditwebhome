@@ -6,6 +6,7 @@ import {
     type ContactSheetRow,
 } from "@/lib/google-sheets";
 import { sendContactNotificationEmail } from "@/lib/send-contact-email";
+import { checkFormSpam, isDisposableEmail } from "@/lib/spam-filter";
 
 const ALLOWED_SUBJECTS = new Set([
     "Support Request",
@@ -26,7 +27,11 @@ function clean(value: unknown, maxLength: number) {
 
 export async function POST(request: Request) {
     try {
-        const body = (await request.json()) as Partial<ContactSheetRow> & { agreed?: boolean };
+        const body = (await request.json()) as Partial<ContactSheetRow> & {
+            agreed?: boolean;
+            company_website?: string;
+            loadTime?: number | string;
+        };
 
         const firstName = clean(body.firstName, 80);
         const lastName = clean(body.lastName, 80);
@@ -34,6 +39,8 @@ export async function POST(request: Request) {
         const email = clean(body.email, 160).toLowerCase();
         const subject = clean(body.subject, 80);
         const message = clean(body.message, 4000);
+        const honeypot = clean(body.company_website, 200);
+        const loadTime = body.loadTime;
 
         if (!firstName || !lastName || !phone || !email || !subject) {
             return NextResponse.json({ error: "Please fill in all required fields." }, { status: 400 });
@@ -41,11 +48,44 @@ export async function POST(request: Request) {
         if (!isValidEmail(email)) {
             return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
         }
+        if (isDisposableEmail(email)) {
+            return NextResponse.json(
+                { error: "Please enter a valid work or personal email address. Disposable or temporary emails are not accepted." },
+                { status: 400 }
+            );
+        }
         if (!ALLOWED_SUBJECTS.has(subject)) {
             return NextResponse.json({ error: "Please choose a valid subject." }, { status: 400 });
         }
         if (!body.agreed) {
             return NextResponse.json({ error: "Please agree to the terms and conditions." }, { status: 400 });
+        }
+
+        // Anti-spam verification
+        const spamCheck = checkFormSpam({
+            email,
+            firstName,
+            lastName,
+            phone,
+            message,
+            honeypot,
+            loadTime,
+        });
+
+        if (spamCheck.isSpam) {
+            console.warn(`[Anti-Spam] Blocked spam contact form submission from ${email}: ${spamCheck.reason}`);
+            // If silent drop (honeypot or speed bot), return success so bot does not retry
+            if (spamCheck.silentDrop) {
+                return NextResponse.json({
+                    ok: true,
+                    emailSent: false,
+                    message: "Thank you! Your message has been received.",
+                });
+            }
+            return NextResponse.json(
+                { error: spamCheck.reason || "Your submission was flagged as invalid." },
+                { status: 400 }
+            );
         }
 
         const row: ContactSheetRow = { firstName, lastName, phone, email, subject, message };

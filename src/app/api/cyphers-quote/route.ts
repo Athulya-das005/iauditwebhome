@@ -7,6 +7,7 @@ import {
 } from "@/lib/google-sheets";
 import { sendContactNotificationEmail } from "@/lib/send-contact-email";
 import { COUNTRIES } from "@/data/countries";
+import { isDisposableEmail } from "@/lib/spam-filter";
 
 const SUBJECT = "Cyphers Page – Pen Test Quote";
 const SOURCE_TAG = "Cyphers Page Form";
@@ -50,6 +51,12 @@ export async function POST(request: Request) {
         }
         if (!isValidEmail(email)) {
             return NextResponse.json({ error: "Please enter a valid business email address." }, { status: 400 });
+        }
+        if (isDisposableEmail(email)) {
+            return NextResponse.json(
+                { error: "Please enter a valid business email address. Disposable email addresses are not accepted." },
+                { status: 400 }
+            );
         }
         if (!COUNTRY_SET.has(country)) {
             return NextResponse.json({ error: "Please select a valid country." }, { status: 400 });

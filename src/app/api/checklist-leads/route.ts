@@ -6,6 +6,7 @@ import {
     readChecklistLeads,
     setChecklistLeadEmailSent,
 } from "@/lib/checklist-leads-store";
+import { isDisposableEmail } from "@/lib/spam-filter";
 import type { ChecklistLead } from "@/types/checklist-lead";
 
 function isValidEmail(email: string) {
@@ -89,6 +90,13 @@ export async function POST(request: Request) {
 
         if (!isValidEmail(email)) {
             return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
+        }
+
+        if (isDisposableEmail(email)) {
+            return NextResponse.json(
+                { error: "Please enter a valid work email address. Disposable email addresses are not accepted." },
+                { status: 400 }
+            );
         }
 
         const lead: ChecklistLead = {

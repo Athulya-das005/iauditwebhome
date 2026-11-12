@@ -115,25 +115,6 @@
     "emailOptIn": true
   },
   {
-    "id": "1787574761905-raqj11",
-    "createdAt": "2026-08-24T12:32:41.905Z",
-    "assessmentType": "gap-analysis",
-    "assessmentTitle": "ISO 14001:2026 Gap Analysis",
-    "pagePath": "/iso-audit-assessments/gap-analysis",
-    "fullName": "vero j",
-    "firstName": "vero",
-    "lastName": "j",
-    "email": "veroji3619@imashr.com",
-    "company": "cv",
-    "industry": "Manufacturing",
-    "organisationSize": "51-250",
-    "department": "Finance",
-    "existingCustomer": "Yes",
-    "isoStandard": "ISO 14001:2026",
-    "auditScope": "zczcz",
-    "emailOptIn": true
-  },
-  {
     "id": "1787547690834-djaw2u",
     "createdAt": "2026-08-24T05:01:30.834Z",
     "assessmentType": "self-assessment",
@@ -495,44 +476,6 @@
     "emailOptIn": false
   },
   {
-    "id": "1787148130167-zb4hpm",
-    "createdAt": "2026-08-19T14:02:10.167Z",
-    "assessmentType": "gap-analysis",
-    "assessmentTitle": "ISO Gap Analysis",
-    "pagePath": "/iso-audit-assessments/gap-analysis",
-    "fullName": "hina d",
-    "firstName": "hina",
-    "lastName": "d",
-    "email": "hinafa5237@homvela.com",
-    "company": "cv",
-    "industry": "Mining",
-    "organisationSize": "11-50",
-    "department": "Procurement / Supply Chain",
-    "existingCustomer": "Yes",
-    "isoStandard": "ISO 9001:2015",
-    "auditScope": "sfdfds",
-    "emailOptIn": false
-  },
-  {
-    "id": "1787145291957-yy7zja",
-    "createdAt": "2026-08-19T13:14:51.957Z",
-    "assessmentType": "gap-analysis",
-    "assessmentTitle": "ISO Gap Analysis",
-    "pagePath": "/iso-audit-assessments/gap-analysis",
-    "fullName": "hina d",
-    "firstName": "hina",
-    "lastName": "d",
-    "email": "hinafa5237@homvela.com",
-    "company": "abc company",
-    "industry": "Hospitality",
-    "organisationSize": "11-50",
-    "department": "Procurement / Supply Chain",
-    "existingCustomer": "No",
-    "isoStandard": "ISO 9001:2015",
-    "auditScope": "sfs",
-    "emailOptIn": false
-  },
-  {
     "id": "1787145259266-mdc8v4",
     "createdAt": "2026-08-19T13:14:19.266Z",
     "assessmentType": "gap-analysis",
@@ -549,25 +492,6 @@
     "existingCustomer": "Yes",
     "isoStandard": "ISO 9001:2015",
     "auditScope": "fffsdfdsfsd",
-    "emailOptIn": true
-  },
-  {
-    "id": "1787144518023-2q2vhr",
-    "createdAt": "2026-08-19T13:01:58.023Z",
-    "assessmentType": "gap-analysis",
-    "assessmentTitle": "ISO Gap Analysis",
-    "pagePath": "/iso-audit-assessments/gap-analysis",
-    "fullName": "dohe Das",
-    "firstName": "dohe",
-    "lastName": "Das",
-    "email": "doheh66497@itquoted.com",
-    "company": "sdv",
-    "industry": "Manufacturing",
-    "organisationSize": "11-50",
-    "department": "Operations",
-    "existingCustomer": "No",
-    "isoStandard": "ISO 9001:2015",
-    "auditScope": "defer",
     "emailOptIn": true
   },
   {
@@ -588,15 +512,5 @@
     "isoStandard": "ISO 9001:2015",
     "auditScope": "dwdwedewdwe",
     "emailOptIn": true
-  },
-  {
-    "id": "1787137757876-ym84ea",
-    "createdAt": "2026-08-19T11:09:17.876Z",
-    "assessmentType": "self-assessment",
-    "assessmentTitle": "ISO Self Assessment",
-    "pagePath": "/iso-audit-assessments/self-assessment",
-    "fullName": "Athulya Das",
-    "email": "yexoy23460@imashr.com",
-    "company": "cv"
   }
 ]
