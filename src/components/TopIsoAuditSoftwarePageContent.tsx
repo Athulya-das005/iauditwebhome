@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import SectionTag from "@/components/SectionTag";
 import FAQAccordion from "@/components/FAQAccordion";
@@ -115,7 +116,19 @@ type PlatformReview = {
     pricingText: React.ReactNode;
     cta?: { label: string; href: string; external?: boolean };
     featured?: boolean;
+    image?: { src: string; alt: string; width: number; height: number };
 };
+
+const supportedIndustries: { label: string; href: string; image: string }[] = [
+    { label: "Manufacturing", href: "/industries/manufacturing-iso-audit-software", image: "/images/manufacturing-bg.webp" },
+    { label: "Construction", href: "/industries/construction-iso-audit-software", image: "/images/construction-bg.webp" },
+    { label: "Transport and Logistics", href: "/industries/transport-and-logistics-iso-audit-software", image: "/images/logistics-bg.webp" },
+    { label: "Healthcare", href: "/industries/healthcare-compliance-software", image: "/images/healthcare-bg.webp" },
+    { label: "Food & Beverage", href: "/industries/food-and-beverage-iso-audit-software", image: "/images/food-beverage-bg.webp" },
+    { label: "Retail", href: "/industries/retail-iso-audit-software", image: "/images/retail-bg.webp" },
+    { label: "Hospitality", href: "/industries/hospitality-iso-audit-software", image: "/images/hospitality-bg.webp" },
+    { label: "Facilities Management", href: "/industries/facilities-management-iso-audit-software", image: "/images/facilities-bg.webp" },
+];
 
 const linkStyle: React.CSSProperties = {
     color: "#006644",
@@ -206,6 +219,12 @@ const platformReviews: PlatformReview[] = [
         id: "platform-2",
         number: "02",
         name: "isoTracker",
+        image: {
+            src: "/images/iso-software/isotracker.jpg",
+            alt: "isoTracker document control dashboard with to-do list, document ageing and workflow status chart",
+            width: 1440,
+            height: 943,
+        },
         subtitle: "For organisations considering a modular quality management system",
         intro: (
             <>
@@ -248,6 +267,12 @@ const platformReviews: PlatformReview[] = [
         id: "platform-3",
         number: "03",
         name: "GoAudits",
+        image: {
+            src: "/images/iso-software/goaudits.jpg",
+            alt: "GoAudits brand standards audit dashboard showing compliance score, audits completed and open actions by area",
+            width: 2000,
+            height: 1116,
+        },
         subtitle: "For teams carrying out regular site audits and inspections",
         intro: (
             <>
@@ -290,6 +315,12 @@ const platformReviews: PlatformReview[] = [
         id: "platform-4",
         number: "04",
         name: "Mitti by SafetyCulture",
+        image: {
+            src: "/images/iso-software/mitti-safetyculture.jpg",
+            alt: "Mitti by SafetyCulture inspection template builder with question and response types",
+            width: 2000,
+            height: 1116,
+        },
         subtitle: "For organisations combining audit activities with operational checks",
         intro: (
             <>
@@ -331,6 +362,12 @@ const platformReviews: PlatformReview[] = [
         id: "platform-5",
         number: "05",
         name: "Ideagen Quality Management",
+        image: {
+            src: "/images/iso-software/ideagen-quality-management.webp",
+            alt: "Ideagen chemical inventory and inspection management screen",
+            width: 2000,
+            height: 1116,
+        },
         subtitle: "For organisations connecting audits with wider quality processes",
         intro: (
             <>
@@ -373,6 +410,12 @@ const platformReviews: PlatformReview[] = [
         id: "platform-6",
         number: "06",
         name: "Intelex",
+        image: {
+            src: "/images/iso-software/intelex.jpg",
+            alt: "Intelex new chemical request form with details and request context sections",
+            width: 2000,
+            height: 1116,
+        },
         subtitle: "For organisations managing audits within an EHSQ system",
         intro: (
             <>
@@ -414,6 +457,12 @@ const platformReviews: PlatformReview[] = [
         id: "platform-7",
         number: "07",
         name: "ComplianceQuest",
+        image: {
+            src: "/images/iso-software/compliancequest.jpg",
+            alt: "ComplianceQuest quality dashboard showing overdue audits, NCRs and CAPAs by location",
+            width: 2000,
+            height: 1116,
+        },
         subtitle: "For organisations evaluating audits alongside manufacturing or life sciences quality processes",
         intro: (
             <>
@@ -456,6 +505,12 @@ const platformReviews: PlatformReview[] = [
         id: "platform-8",
         number: "08",
         name: "Octave Reliance",
+        image: {
+            src: "/images/iso-software/octave-reliance.jpg",
+            alt: "Octave Reliance (formerly ETQ Reliance) quality homepage with assignments, trainings and calendar",
+            width: 2000,
+            height: 1116,
+        },
         subtitle: "For organisations needing configurable enterprise quality workflows",
         intro: (
             <>
@@ -1016,6 +1071,29 @@ export default function TopIsoAuditSoftwarePageContent() {
                                     )}
                                 </div>
 
+                                {platform.image && (
+                                    <div
+                                        style={{
+                                            margin: "0 0 1.5rem 0",
+                                            borderRadius: "14px",
+                                            overflow: "hidden",
+                                            border: "1px solid #e5e7eb",
+                                            backgroundColor: "#f9fafb",
+                                            boxShadow: "0 8px 24px rgba(17, 24, 39, 0.06)",
+                                        }}
+                                    >
+                                        <Image
+                                            src={platform.image.src}
+                                            alt={platform.image.alt}
+                                            width={platform.image.width}
+                                            height={platform.image.height}
+                                            loading="lazy"
+                                            sizes="(max-width: 768px) 100vw, 900px"
+                                            style={{ width: "100%", height: "auto", display: "block" }}
+                                        />
+                                    </div>
+                                )}
+
                                 {/* Intro */}
                                 <p style={{ ...comparisonType.body(), margin: "0 0 0.9rem 0", color: "#374151" }}>
                                     {platform.intro}
@@ -1264,6 +1342,84 @@ export default function TopIsoAuditSoftwarePageContent() {
                             </div>
                         ))}
                     </div>
+                </div>
+            </section>
+
+            {/* Industries supported by iAudit */}
+            <section style={{ padding: isMobile ? "2.75rem 0" : "4.5rem 0", backgroundColor: "#ffffff" }}>
+                <div style={containerStyle}>
+                    <div style={{ maxWidth: "760px", marginBottom: "2rem" }}>
+                        <h2 style={{ ...comparisonType.sectionH2(isMobile), margin: "0 0 0.85rem 0" }}>
+                            Industries supported by iAudit
+                        </h2>
+                        <p style={{ ...comparisonType.body(), margin: 0, color: "#4b5563" }}>
+                            iAudit supports ISO audit programmes across manufacturing, construction, healthcare and other
+                            sectors. Teams can organise audits around the processes and locations relevant to their
+                            operations.
+                        </p>
+                    </div>
+
+                    <div
+                        style={{
+                            display: "grid",
+                            gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)",
+                            gap: isMobile ? "0.85rem" : "1.25rem",
+                        }}
+                    >
+                        {supportedIndustries.map((industry) => (
+                            <Link
+                                key={industry.href}
+                                href={industry.href}
+                                aria-label={`${industry.label} ISO audit software`}
+                                style={{
+                                    position: "relative",
+                                    display: "block",
+                                    aspectRatio: "4 / 3",
+                                    borderRadius: "14px",
+                                    overflow: "hidden",
+                                    textDecoration: "none",
+                                    backgroundColor: "#0d1117",
+                                    boxShadow: "0 6px 20px rgba(17, 24, 39, 0.06)",
+                                }}
+                            >
+                                <Image
+                                    src={industry.image}
+                                    alt={`${industry.label} ISO audit software`}
+                                    fill
+                                    loading="lazy"
+                                    sizes="(max-width: 768px) 50vw, 300px"
+                                    style={{ objectFit: "cover" }}
+                                />
+                                <span
+                                    style={{
+                                        position: "absolute",
+                                        inset: 0,
+                                        background: "linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,0.72) 100%)",
+                                    }}
+                                />
+                                <span
+                                    style={{
+                                        position: "absolute",
+                                        left: isMobile ? "0.75rem" : "1rem",
+                                        right: isMobile ? "0.75rem" : "1rem",
+                                        bottom: isMobile ? "0.7rem" : "0.9rem",
+                                        color: "#ffffff",
+                                        fontWeight: 600,
+                                        fontSize: isMobile ? "0.92rem" : "1.05rem",
+                                        lineHeight: 1.25,
+                                    }}
+                                >
+                                    {industry.label}
+                                </span>
+                            </Link>
+                        ))}
+                    </div>
+
+                    <p style={{ margin: "1.75rem 0 0 0" }}>
+                        <Link href="/pricing" style={{ ...linkStyle, fontWeight: 600 }}>
+                            Explore iAudit plans and start your 14-day free trial
+                        </Link>
+                    </p>
                 </div>
             </section>
 
