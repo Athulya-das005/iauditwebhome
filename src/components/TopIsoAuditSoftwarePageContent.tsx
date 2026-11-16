@@ -1214,7 +1214,7 @@ export default function TopIsoAuditSoftwarePageContent() {
                                                 >
                                                     <Image
                                                         src={industry.image}
-                                                        alt=""
+                                                        alt={`${industry.label} ISO audit software`}
                                                         fill
                                                         loading="lazy"
                                                         sizes="(max-width: 768px) 45vw, 220px"
