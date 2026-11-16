@@ -44,6 +44,7 @@ export default function Footer() {
         {
             title: "Compare",
             items: [
+                { name: "ISO Audit Software", path: "/top-iso-audit-management-software" },
                 { name: "SafetyCulture Alternative" },
                 { name: "GoAudits Alternative" },
             ],

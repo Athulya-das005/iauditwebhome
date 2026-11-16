@@ -164,6 +164,7 @@ export default function Header() {
                     items: [
                         { label: "Case Studies", href: "/case-studies" },
                         { label: "Blog", href: "/blog" },
+                        { label: "ISO Audit Software", href: "/top-iso-audit-management-software" },
                     ],
                 },
             ],

@@ -20,13 +20,31 @@ export const topIsoAuditSoftwareSchema = {
             description:
                 "Find ISO audit management software to plan audits, record evidence and track corrective actions across sites. Try iAudit Global free for 14 days.",
             datePublished: "2026-11-06",
-            dateModified: "2026-11-11",
+            dateModified: "2026-11-16",
             isPartOf: {
                 "@id": "https://iaudit.global/#website",
             },
             publisher: {
                 "@id": "https://iaudit.global/#organization",
             },
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": `${pageUrl}#breadcrumb`,
+            itemListElement: [
+                {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: "https://iaudit.global/",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Top ISO Audit Management Software",
+                    item: pageUrl,
+                },
+            ],
         },
         {
             "@type": "ItemList",

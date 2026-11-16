@@ -108,7 +108,7 @@ type PlatformReview = {
     subtitle: string;
     intro: React.ReactNode;
     extraIntro?: React.ReactNode;
-    features: { title: string; description: string }[];
+    features: { title: string; description: React.ReactNode }[];
     afterFeatures?: React.ReactNode;
     strengths: string;
     considerations: string;
@@ -146,9 +146,20 @@ const platformReviews: PlatformReview[] = [
         featured: true,
         intro: (
             <>
-                iAudit Global supports ISO 9001, ISO 14001 and ISO 45001 audits, bringing planning, evidence, findings
-                and corrective actions into one platform. Its workflow follows Plan, Do, Check, Act, with an emphasis on
-                following findings through to verified action closure.
+                iAudit Global supports{" "}
+                <Link href="/standards/iso-9001-audit-management-software" style={linkStyle}>
+                    ISO 9001
+                </Link>
+                {", "}
+                <Link href="/standards/iso-14001-audit-management-software" style={linkStyle}>
+                    ISO 14001
+                </Link>{" "}
+                and{" "}
+                <Link href="/standards/iso-45001-audit-management-software" style={linkStyle}>
+                    ISO 45001
+                </Link>{" "}
+                audits, bringing planning, evidence, findings and corrective actions into one platform. Its workflow
+                follows Plan, Do, Check, Act, with an emphasis on following findings through to verified action closure.
             </>
         ),
         extraIntro: (
@@ -179,7 +190,15 @@ const platformReviews: PlatformReview[] = [
             },
             {
                 title: "Multi-site oversight:",
-                description: "review findings and performance across locations, subject to the selected plan.",
+                description: (
+                    <>
+                        review findings and performance{" "}
+                        <Link href="/blog/how-to-manage-iso-audits-across-multiple-sites" style={linkStyle}>
+                            across locations
+                        </Link>
+                        {", subject to the selected plan."}
+                    </>
+                ),
             },
             {
                 title: "Audit Mate:",
@@ -198,22 +217,17 @@ const platformReviews: PlatformReview[] = [
         strengths:
             "Its dedicated ISO focus connects the audit programme to evidence and follow-up. This makes it relevant when your main requirement is to manage management system audits in one place.",
         considerations:
-            "plans differ in the number of supported standards, sites and reporting capabilities. Match your requirements to the selected plan.",
+            "Plans differ in the number of supported standards, sites and reporting capabilities. Match your requirements to the selected plan.",
         pricingLabel: "Trial and pricing:",
         pricingText: (
             <>
-                a 14-day free trial is available with no credit card required.{" "}
+                A 14-day free trial is available with no credit card required.{" "}
                 <Link href="/pricing" style={linkStyle}>
                     View iAudit plans and pricing
                 </Link>
-                .
+                {"."}
             </>
         ),
-        cta: {
-            label: "View iAudit plans and pricing",
-            href: "/pricing",
-            external: false,
-        },
     },
     {
         id: "platform-2",
@@ -254,9 +268,9 @@ const platformReviews: PlatformReview[] = [
         strengths:
             "The modular approach gives organisations a way to assess audit management separately from other quality functions. Reusable checklists and integrated corrective actions support repeatable audit processes.",
         considerations:
-            "establish which modules you need and how the licensing arrangement fits your team. Its published audit guidance describes downloading Excel checklists for offline completion, so assess whether that process suits your auditors.",
+            "Establish which modules you need and how the licensing arrangement fits your team. Its published audit guidance describes downloading Excel checklists for offline completion, so assess whether that process suits your auditors.",
         pricingLabel: "Pricing and evaluation:",
-        pricingText: "review current pricing and trial terms directly with the provider.",
+        pricingText: "Review current pricing and trial terms directly with the provider.",
         cta: {
             label: "Explore isoTracker audit management software",
             href: "https://www.isotracker.com/products/audit-management-software/",
@@ -302,9 +316,9 @@ const platformReviews: PlatformReview[] = [
         strengths:
             "Mobile and offline inspection tools support on-site work. Automatic reports and assigned follow-up tasks help teams act on what they record.",
         considerations:
-            "demonstrate a complete ISO audit using your own requirements. Assess how you would record clause references, root causes and effectiveness checks, as well as routine inspection results.",
+            "Demonstrate a complete ISO audit using your own requirements. Assess how you would record clause references, root causes and effectiveness checks, as well as routine inspection results.",
         pricingLabel: "Pricing and evaluation:",
-        pricingText: "check current plans, trial access and reporting options with the provider.",
+        pricingText: "Check current plans, trial access and reporting options with the provider.",
         cta: {
             label: "Explore GoAudits",
             href: "https://goaudits.com/",
@@ -349,9 +363,9 @@ const platformReviews: PlatformReview[] = [
         strengths:
             "Its broader operational scope makes it relevant where the same teams manage audits alongside regular safety and quality checks.",
         considerations:
-            "distinguish routine inspections from your formal management system audit requirements. Ask the provider to demonstrate how its templates, reporting and follow-up support the standards and audit depth you need.",
+            "Distinguish routine inspections from your formal management system audit requirements. Ask the provider to demonstrate how its templates, reporting and follow-up support the standards and audit depth you need.",
         pricingLabel: "Pricing and evaluation:",
-        pricingText: "confirm the current product package, pricing and available evaluation options.",
+        pricingText: "Confirm the current product package, pricing and available evaluation options.",
         cta: {
             label: "Explore Mitti's ISO audit software",
             href: "https://mitti.com/safety-and-compliance/iso-audit",
@@ -362,12 +376,6 @@ const platformReviews: PlatformReview[] = [
         id: "platform-5",
         number: "05",
         name: "Ideagen Quality Management",
-        image: {
-            src: "/images/iso-software/ideagen-quality-management.webp",
-            alt: "Ideagen chemical inventory and inspection management screen",
-            width: 2000,
-            height: 1116,
-        },
         subtitle: "For organisations connecting audits with wider quality processes",
         intro: (
             <>
@@ -399,7 +407,7 @@ const platformReviews: PlatformReview[] = [
         considerations:
             "Ideagen offers several products. Make sure the demonstration and proposal cover the specific Quality Management configuration you need. Ask about implementation, data migration and the modules included.",
         pricingLabel: "Pricing and evaluation:",
-        pricingText: "request a demonstration and a proposal based on your audit and quality requirements.",
+        pricingText: "Request a demonstration and a proposal based on your audit and quality requirements.",
         cta: {
             label: "Explore Ideagen Quality Management",
             href: "https://www.ideagen.com/solutions/quality/quality-management",
@@ -410,12 +418,6 @@ const platformReviews: PlatformReview[] = [
         id: "platform-6",
         number: "06",
         name: "Intelex",
-        image: {
-            src: "/images/iso-software/intelex.jpg",
-            alt: "Intelex new chemical request form with details and request context sections",
-            width: 2000,
-            height: 1116,
-        },
         subtitle: "For organisations managing audits within an EHSQ system",
         intro: (
             <>
@@ -444,9 +446,9 @@ const platformReviews: PlatformReview[] = [
         strengths:
             "The EHSQ portfolio is relevant to organisations that want to assess auditing alongside environmental, safety and quality management applications.",
         considerations:
-            "identify the applications required for your intended workflow. Ask how audits connect with action management, document control and other selected modules, and confirm what is included in the proposal.",
+            "Identify the applications required for your intended workflow. Ask how audits connect with action management, document control and other selected modules, and confirm what is included in the proposal.",
         pricingLabel: "Pricing and evaluation:",
-        pricingText: "request a demonstration using a representative audit and follow-up process.",
+        pricingText: "Request a demonstration using a representative audit and follow-up process.",
         cta: {
             label: "Explore Intelex applications",
             href: "https://www.intelex.com/products/applications/",
@@ -492,12 +494,12 @@ const platformReviews: PlatformReview[] = [
         strengths:
             "Its quality management scope is relevant when audit work forms part of a wider manufacturing or life sciences software project.",
         considerations:
-            "define your required modules, integrations and implementation scope before comparing costs. For regulated activities, confirm the applicable validation and record-control requirements with the provider.",
+            "Define your required modules, integrations and implementation scope before comparing costs. For regulated activities, confirm the applicable validation and record-control requirements with the provider.",
         pricingLabel: "Pricing and evaluation:",
-        pricingText: "request a demonstration and pricing for your intended configuration.",
+        pricingText: "Request a demonstration and pricing for your intended configuration.",
         cta: {
             label: "Explore ComplianceQuest",
-            href: "https://www.compliancequest.com/",
+            href: "https://www.compliancequest.com/audit-management/software/",
             external: true,
         },
     },
@@ -539,9 +541,9 @@ const platformReviews: PlatformReview[] = [
         strengths:
             "Configurable forms and workflows are useful when several teams need consistent quality processes with requirements specific to the organisation.",
         considerations:
-            "agree the configuration, integration and implementation work required. A broader QMS should be evaluated against your full quality requirements as well as the audit process.",
+            "Agree the configuration, integration and implementation work required. A broader QMS should be evaluated against your full quality requirements as well as the audit process.",
         pricingLabel: "Pricing and evaluation:",
-        pricingText: "request a demonstration and a proposal that identifies the applications and services included.",
+        pricingText: "Request a demonstration and a proposal that identifies the applications and services included.",
         cta: {
             label: "Explore Octave Reliance",
             href: "https://www.octave.com/reliance",
@@ -853,8 +855,13 @@ export default function TopIsoAuditSoftwarePageContent() {
                             </h2>
                             <p style={{ ...comparisonType.body(), margin: "0 0 1rem 0", color: "#374151" }}>
                                 ISO audit management software helps organisations plan audits, record evidence, document
-                                findings and track corrective actions. It gives auditors and managers a shared record of
-                                what was checked, what was found and what still needs attention.
+                                findings and track{" "}
+                                <Link href="/blog/corrective-actions-after-an-internal-audit-findings-to-closure" style={linkStyle}>
+                                    corrective actions
+                                </Link>
+                                {". "}
+                                It gives auditors and managers a shared record of what was checked, what was found and
+                                what still needs attention.
                             </p>
                             <p style={{ ...comparisonType.body(), margin: 0, color: "#374151" }}>
                                 A dedicated audit platform concentrates on this process. A broader quality management
@@ -1166,6 +1173,86 @@ export default function TopIsoAuditSoftwarePageContent() {
                                     </p>
                                 )}
 
+                                {platform.featured && (
+                                    <div style={{ marginBottom: "1.5rem" }}>
+                                        <h3
+                                            style={{
+                                                fontSize: "1.15rem",
+                                                fontWeight: 600,
+                                                color: "#0d1117",
+                                                margin: "0 0 0.75rem 0",
+                                            }}
+                                        >
+                                            Industries supported by iAudit
+                                        </h3>
+                                        <p style={{ ...comparisonType.body(), margin: "0 0 1.15rem 0", color: "#374151" }}>
+                                            iAudit supports ISO audit programmes across manufacturing, construction,
+                                            healthcare and other sectors. Teams can organise audits around the processes
+                                            and locations relevant to their operations.
+                                        </p>
+                                        <div
+                                            style={{
+                                                display: "grid",
+                                                gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)",
+                                                gap: isMobile ? "0.75rem" : "0.9rem",
+                                            }}
+                                        >
+                                            {supportedIndustries.map((industry) => (
+                                                <Link
+                                                    key={industry.href}
+                                                    href={industry.href}
+                                                    aria-label={`${industry.label} ISO audit software`}
+                                                    style={{
+                                                        position: "relative",
+                                                        display: "block",
+                                                        aspectRatio: "4 / 3",
+                                                        borderRadius: "12px",
+                                                        overflow: "hidden",
+                                                        textDecoration: "none",
+                                                        backgroundColor: "#0d1117",
+                                                    }}
+                                                >
+                                                    <Image
+                                                        src={industry.image}
+                                                        alt=""
+                                                        fill
+                                                        loading="lazy"
+                                                        sizes="(max-width: 768px) 45vw, 220px"
+                                                        style={{ objectFit: "cover" }}
+                                                    />
+                                                    <span
+                                                        style={{
+                                                            position: "absolute",
+                                                            inset: 0,
+                                                            background:
+                                                                "linear-gradient(180deg, rgba(0,0,0,0.05) 20%, rgba(0,0,0,0.72) 100%)",
+                                                        }}
+                                                    />
+                                                    <span
+                                                        style={{
+                                                            position: "absolute",
+                                                            left: "0.7rem",
+                                                            right: "0.7rem",
+                                                            bottom: "0.65rem",
+                                                            color: "#ffffff",
+                                                            fontWeight: 600,
+                                                            fontSize: isMobile ? "0.82rem" : "0.92rem",
+                                                            lineHeight: 1.25,
+                                                        }}
+                                                    >
+                                                        {industry.label}
+                                                    </span>
+                                                </Link>
+                                            ))}
+                                        </div>
+                                        <p style={{ margin: "1.15rem 0 0 0" }}>
+                                            <Link href="/pricing" style={{ ...linkStyle, fontWeight: 600 }}>
+                                                Explore iAudit plans and start your 14-day free trial
+                                            </Link>
+                                        </p>
+                                    </div>
+                                )}
+
                                 {/* Strengths, Considerations, Pricing */}
                                 <div
                                     style={{
@@ -1342,84 +1429,6 @@ export default function TopIsoAuditSoftwarePageContent() {
                             </div>
                         ))}
                     </div>
-                </div>
-            </section>
-
-            {/* Industries supported by iAudit */}
-            <section style={{ padding: isMobile ? "2.75rem 0" : "4.5rem 0", backgroundColor: "#ffffff" }}>
-                <div style={containerStyle}>
-                    <div style={{ maxWidth: "760px", marginBottom: "2rem" }}>
-                        <h2 style={{ ...comparisonType.sectionH2(isMobile), margin: "0 0 0.85rem 0" }}>
-                            Industries supported by iAudit
-                        </h2>
-                        <p style={{ ...comparisonType.body(), margin: 0, color: "#4b5563" }}>
-                            iAudit supports ISO audit programmes across manufacturing, construction, healthcare and other
-                            sectors. Teams can organise audits around the processes and locations relevant to their
-                            operations.
-                        </p>
-                    </div>
-
-                    <div
-                        style={{
-                            display: "grid",
-                            gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)",
-                            gap: isMobile ? "0.85rem" : "1.25rem",
-                        }}
-                    >
-                        {supportedIndustries.map((industry) => (
-                            <Link
-                                key={industry.href}
-                                href={industry.href}
-                                aria-label={`${industry.label} ISO audit software`}
-                                style={{
-                                    position: "relative",
-                                    display: "block",
-                                    aspectRatio: "4 / 3",
-                                    borderRadius: "14px",
-                                    overflow: "hidden",
-                                    textDecoration: "none",
-                                    backgroundColor: "#0d1117",
-                                    boxShadow: "0 6px 20px rgba(17, 24, 39, 0.06)",
-                                }}
-                            >
-                                <Image
-                                    src={industry.image}
-                                    alt={`${industry.label} ISO audit software`}
-                                    fill
-                                    loading="lazy"
-                                    sizes="(max-width: 768px) 50vw, 300px"
-                                    style={{ objectFit: "cover" }}
-                                />
-                                <span
-                                    style={{
-                                        position: "absolute",
-                                        inset: 0,
-                                        background: "linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,0.72) 100%)",
-                                    }}
-                                />
-                                <span
-                                    style={{
-                                        position: "absolute",
-                                        left: isMobile ? "0.75rem" : "1rem",
-                                        right: isMobile ? "0.75rem" : "1rem",
-                                        bottom: isMobile ? "0.7rem" : "0.9rem",
-                                        color: "#ffffff",
-                                        fontWeight: 600,
-                                        fontSize: isMobile ? "0.92rem" : "1.05rem",
-                                        lineHeight: 1.25,
-                                    }}
-                                >
-                                    {industry.label}
-                                </span>
-                            </Link>
-                        ))}
-                    </div>
-
-                    <p style={{ margin: "1.75rem 0 0 0" }}>
-                        <Link href="/pricing" style={{ ...linkStyle, fontWeight: 600 }}>
-                            Explore iAudit plans and start your 14-day free trial
-                        </Link>
-                    </p>
                 </div>
             </section>
 
