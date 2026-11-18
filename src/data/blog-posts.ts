@@ -13,6 +13,17 @@ export type BlogPost = {
 /** Single source of truth for the /blog listing. Add new posts here when published. */
 export const blogPosts: BlogPost[] = [
     {
+        slug: "how-to-track-internal-audit-findings",
+        title: "How to Track ISO Internal Audit Findings and Follow-Ups",
+        excerpt:
+            "Track ISO internal audit findings from report to closure. Assign owners, set follow-up dates, manage overdue actions and verify that corrective actions work.",
+        datePublished: "2026-11-18",
+        readTime: "8 Min Read",
+        image: "/images/blog/how-to-track-internal-audit-findings.jpg",
+        author: "Mathew Chiweda",
+        categories: ["Internal Auditing", "Continuous Improvement"],
+    },
+    {
         slug: "how-to-choose-internal-audit-management-software",
         title: "How to Choose Internal Audit Management Software",
         excerpt:
@@ -541,6 +552,7 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
                 id: "audit-findings",
                 label: "Audit Findings",
                 slugs: [
+                    "how-to-track-internal-audit-findings",
                     "internal-audit-findings-explained",
                     "how-to-write-an-iso-internal-audit-report-that-matters",
                     "iso-internal-audit-report-template-free-download",
@@ -550,6 +562,7 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
                 id: "corrective-actions",
                 label: "Corrective Actions",
                 slugs: [
+                    "how-to-track-internal-audit-findings",
                     "corrective-actions-after-an-internal-audit-findings-to-closure",
                     "top-non-conformities-in-iso-9001",
                 ],
@@ -759,6 +772,7 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
                 id: "corrective-action",
                 label: "Corrective Action",
                 slugs: [
+                    "how-to-track-internal-audit-findings",
                     "corrective-actions-after-an-internal-audit-findings-to-closure",
                     "top-non-conformities-in-iso-9001",
                 ],
