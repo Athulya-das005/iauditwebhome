@@ -13,6 +13,17 @@ export type BlogPost = {
 /** Single source of truth for the /blog listing. Add new posts here when published. */
 export const blogPosts: BlogPost[] = [
     {
+        slug: "internal-audit-software-for-small-business",
+        title: "Internal Audit Software for Small Businesses",
+        excerpt:
+            "Learn what small businesses really need from internal audit software, including audit planning, findings, corrective actions, reporting and security.",
+        datePublished: "2026-11-19",
+        readTime: "8 Min Read",
+        image: "/images/blog/internal-audit-software-for-small-business.jpg",
+        author: "Mathew Chiweda",
+        categories: ["Audit Management", "Audit Management Software"],
+    },
+    {
         slug: "how-to-track-internal-audit-findings",
         title: "How to Track ISO Internal Audit Findings and Follow-Ups",
         excerpt:
@@ -727,6 +738,7 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
                 id: "audit-management-software",
                 label: "Audit Management Software",
                 slugs: [
+                    "internal-audit-software-for-small-business",
                     "how-to-choose-internal-audit-management-software",
                     "iso-audit-programme-software",
                     "internal-audit-software-vs-spreadsheets",
