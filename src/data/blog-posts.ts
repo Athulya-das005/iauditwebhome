@@ -13,6 +13,17 @@ export type BlogPost = {
 /** Single source of truth for the /blog listing. Add new posts here when published. */
 export const blogPosts: BlogPost[] = [
     {
+        slug: "audit-findings-vs-nonconformities",
+        title: "Audit Findings vs Nonconformities: What Is the Difference?",
+        excerpt:
+            "Learn how to classify ISO internal audit findings, distinguish nonconformities from opportunities for improvement and document the evidence behind each decision.",
+        datePublished: "2026-11-24",
+        readTime: "7 Min Read",
+        image: "/images/blog/audit-findings-vs-nonconformities.jpg",
+        author: "Mathew Chiweda",
+        categories: ["Internal Auditing", "Audit Findings"],
+    },
+    {
         slug: "internal-audit-software-for-small-business",
         title: "Internal Audit Software for Small Businesses",
         excerpt:
@@ -563,6 +574,7 @@ export const blogTaxonomy: BlogCategoryGroup[] = [
                 id: "audit-findings",
                 label: "Audit Findings",
                 slugs: [
+                    "audit-findings-vs-nonconformities",
                     "how-to-track-internal-audit-findings",
                     "internal-audit-findings-explained",
                     "how-to-write-an-iso-internal-audit-report-that-matters",
