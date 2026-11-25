@@ -8,7 +8,7 @@ import CTA from "@/components/CTA";
 import FAQAccordion from "@/components/FAQAccordion";
 import { PP_NEUE_MONTREAL } from "@/constants/typography";
 
-const START_ASSESSMENT_URL = "https://iaudit.global/iso-audit-assessments/gap-analysis#start";
+const START_ASSESSMENT_URL = "/iso-audit-assessments/iso-9001-self-assessment";
 const CALENDLY_URL = "https://calendly.com/iauditgloballtd/30min";
 const TRIAL_URL = "https://apps.iaudit.global";
 const CONTACT_URL = "https://iaudit.global/contact";

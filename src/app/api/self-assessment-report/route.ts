@@ -35,7 +35,9 @@ export async function POST(request: Request) {
             session: body.session,
             assessmentType: "self-assessment",
             assessmentTitle: `${body.session.isoStandard} Self Assessment`,
-            pagePath: "/iso-14001-2026-self-assessment-tool",
+            pagePath: body.session.isoStandard.includes("9001")
+                ? "/iso-audit-assessments/iso-9001-self-assessment"
+                : "/iso-14001-2026-self-assessment-tool",
         }).catch((error) => console.error("Self assessment lead backup save failed:", error));
 
         const data = buildSelfReportData(body.session, body.clauses);
@@ -61,19 +63,21 @@ export async function POST(request: Request) {
 
         if (body.sendEmail !== false) {
             try {
+                const is9001 = body.session.isoStandard.includes("9001");
                 const selfPercent = data.total === 0 ? 0 : Math.round((data.yes / data.total) * 100);
+                const passed = is9001 ? selfPercent >= 68 : data.yes >= 44;
                 await sendGapReportEmail({
                     data: {
                         session: data.session,
                         auditDate: data.auditDate,
                         overall: data.yes,
-                        status: data.yes >= 44 ? "Pass" : "Fail",
+                        status: passed ? "Pass" : "Fail",
                         comply: data.yes,
                         ofi: 0,
                         nc: data.no,
                         totalQuestions: data.total,
-                        maturity: maturityForPercent(selfPercent),
-                        readiness: readinessForNcCount(data.no),
+                        maturity: maturityForPercent(selfPercent, is9001 ? "quality" : "environmental"),
+                        readiness: readinessForNcCount(data.no, is9001 ? "quality" : "environmental"),
                         clauses: data.clauses.map((clause) => ({
                             label: clause.label,
                             total: clause.total,

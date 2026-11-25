@@ -42,7 +42,19 @@ function buildQuestionsByClause(clauses: SelfAssessmentClause[]): QuestionState[
     return clauses.map((_, index) => makeQuestions(clauses, index));
 }
 
-export default function SelfAssessmentWorkspace() {
+export default function SelfAssessmentWorkspace({
+    sessionKey = SELF_SESSION_KEY,
+    setupPath = "/iso-14001-2026-self-assessment-tool",
+    clauses: providedClauses,
+    subtitle = "ISO 14001:2026 — Yes/No questions across clauses 4–10",
+    backHref = "/iso-14001-2026-self-assessment-tool",
+}: {
+    sessionKey?: string;
+    setupPath?: string;
+    clauses?: SelfAssessmentClause[];
+    subtitle?: string;
+    backHref?: string;
+} = {}) {
     const router = useRouter();
     const [session, setSession] = useState<GapAnalysisSession | null>(null);
     const [clauses, setClauses] = useState<SelfAssessmentClause[]>([]);
@@ -61,22 +73,22 @@ export default function SelfAssessmentWorkspace() {
     }, []);
 
     useEffect(() => {
-        const raw = sessionStorage.getItem(SELF_SESSION_KEY);
+        const raw = sessionStorage.getItem(sessionKey);
         if (!raw) {
-            router.replace("/iso-14001-2026-self-assessment-tool");
+            router.replace(setupPath);
             return;
         }
         try {
             const parsed = JSON.parse(raw) as GapAnalysisSession;
-            const nextClauses = getSelfAssessmentClauses(parsed.isoStandard);
+            const nextClauses = providedClauses ?? getSelfAssessmentClauses(parsed.isoStandard);
             setSession(parsed);
             setClauses(nextClauses);
             setQuestionsByClause(buildQuestionsByClause(nextClauses));
             setClauseIndex(0);
         } catch {
-            router.replace("/iso-14001-2026-self-assessment-tool");
+            router.replace(setupPath);
         }
-    }, [router]);
+    }, [router, sessionKey, setupPath, providedClauses]);
 
     const questions = questionsByClause[clauseIndex] ?? [];
     const clauseYes = useMemo(() => questions.filter((item) => item.answer === "yes").length, [questions]);
@@ -148,6 +160,7 @@ export default function SelfAssessmentWorkspace() {
                 clauses={clauses}
                 questionsByClause={questionsByClause}
                 isMobile={isMobile}
+                backHref={backHref}
             />
         );
     }
@@ -160,7 +173,7 @@ export default function SelfAssessmentWorkspace() {
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", marginBottom: "1.15rem" }}>
                     <div>
                         <h1 style={{ margin: 0, fontSize: isMobile ? "1.85rem" : "2.15rem", color: "#111827", letterSpacing: "-0.03em" }}>Self Assessment</h1>
-                        <p style={{ margin: "0.4rem 0 0", color: "#6b7280" }}>ISO 14001:2026 — Yes/No questions across clauses 4–10</p>
+                        <p style={{ margin: "0.4rem 0 0", color: "#6b7280" }}>{subtitle}</p>
                     </div>
                     <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: "0.85rem", padding: "0.55rem 0.85rem", minWidth: "92px", textAlign: "right" }}>
                         <div style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.08em", color: "#9ca3af" }}>PROGRESS</div>

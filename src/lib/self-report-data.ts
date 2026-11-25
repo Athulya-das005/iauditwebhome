@@ -136,9 +136,53 @@ const MATURE_ACTIONS = [
     "Explore external environmental communications and sustainability reporting (e.g. GRI, CDP, TCFD)",
 ];
 
-/** ISO 14001:2026 maturity bands — 1 point per Yes, max 65 (from self-assessment document). */
-export function maturityForYesCount(yes: number, isoStandard?: string): MaturityInfo {
-    const is14001 = (isoStandard ?? "").toLowerCase().includes("14001");
+/** Maturity from Yes answers. ISO 14001 uses fixed bands out of 65. Other standards use the share of Yes answers. */
+export function maturityForYesCount(yes: number, isoStandard?: string, total?: number): MaturityInfo {
+    const standard = (isoStandard ?? "").toLowerCase();
+    const is14001 = standard.includes("14001");
+    const is9001 = standard.includes("9001");
+
+    if (is9001) {
+        const percent = total && total > 0 ? Math.round((yes / total) * 100) : yes;
+        if (percent >= 68) {
+            return {
+                stage: "Mature Stage",
+                description:
+                    "Your organisation has a well-established quality management system aligned with ISO 9001:2026 and is likely ready for a certification or transition audit.",
+                actions: [
+                    "Schedule the ISO 9001:2026 transition or certification audit with your certification body",
+                    "Close any remaining gaps found in this self-assessment and keep the evidence with the action",
+                    "Confirm quality culture, ethical behaviour, and the distinction between risks and opportunities are visible in practice",
+                    "Use internal audits to check that the updated processes work before the external audit",
+                ],
+                timeline: "Timeline to certification: 2–4 months, depending on your certification body and any open actions",
+            };
+        }
+        if (percent >= 34) {
+            return {
+                stage: "Moderate Stage",
+                description:
+                    "Your organisation has a basic quality management system in place. Most requirements are addressed, but some still need clearer evidence or a more consistent practice.",
+                actions: [
+                    "Review the No answers with the process owners and agree what evidence is missing",
+                    "Update quality objectives, risks and opportunities, and the internal audit programme where the 2026 changes apply",
+                    "Assign owners and dates for the gaps before the next management review",
+                ],
+                timeline: "Timeline to a mature stage: 3–6 months with structured improvement",
+            };
+        }
+        return {
+            stage: "Early Stage",
+            description:
+                "Your organisation is at the foundation stage of its quality management system. Several ISO 9001 requirements still need defined processes and evidence.",
+            actions: [
+                "Define the QMS scope, interested parties and the processes needed for clauses 4 to 10",
+                "Put a quality policy, objectives and responsibilities in place",
+                "Start an internal audit programme and a way to record nonconformities and corrective actions",
+            ],
+            timeline: "Timeline to a moderate stage: 6–12 months with focused effort",
+        };
+    }
 
     if (is14001) {
         if (yes >= 44) {
@@ -247,12 +291,13 @@ export function buildSelfReportData(
         unanswered,
         total,
         overall,
-        maturity: maturityForYesCount(yes, session.isoStandard),
+        maturity: maturityForYesCount(yes, session.isoStandard, total),
         clauses: clauseRows,
     };
 }
 
 export function selfReportFileName(data: SelfReportData, format: "pdf" | "word") {
     const slug = (data.session.organisation || "organisation").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "organisation";
-    return `self-assessment-report-${slug}.${format === "pdf" ? "pdf" : "docx"}`;
+    const prefix = data.session.isoStandard.includes("9001") ? "iso-9001-self-assessment" : "self-assessment-report";
+    return `${prefix}-${slug}.${format === "pdf" ? "pdf" : "docx"}`;
 }

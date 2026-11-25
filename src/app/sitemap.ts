@@ -34,6 +34,7 @@ const STATIC_PAGES: StaticPage[] = [
     // Free tools
     { path: "/iso-9001-2026-gap-analysis", changeFrequency: "monthly", priority: 0.8 },
     { path: "/iso-9001-2026-self-assessment-tool", changeFrequency: "monthly", priority: 0.8 },
+    { path: "/iso-audit-assessments/iso-9001-self-assessment", changeFrequency: "monthly", priority: 0.8 },
     { path: "/iso-14001-2026-self-assessment-tool", changeFrequency: "monthly", priority: 0.8 },
     { path: "/iso-audit-assessments/gap-analysis", changeFrequency: "monthly", priority: 0.8 },
     { path: "/iso-audit-assessments/iso-9001-gap-analysis", changeFrequency: "monthly", priority: 0.8 },
