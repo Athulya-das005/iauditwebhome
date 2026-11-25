@@ -12,6 +12,7 @@ import {
     maturityForPercent,
     maturityTone,
     readinessForNcCount,
+    type GapSystemDomain,
 } from "@/lib/gap-report-data";
 import { getClientReportSendKey } from "@/lib/report-idempotency-client";
 import type { GapAnalysisSession } from "@/types/gap-analysis-session";
@@ -30,6 +31,10 @@ type Props = {
     session: GapAnalysisSession;
     questionsByClause: FindingRow[][];
     isMobile: boolean;
+    clauses?: { label: string }[];
+    totalQuestions?: number;
+    backHref?: string;
+    resultNote?: string;
 };
 
 const font = '"Pp Neue Montreal", sans-serif';
@@ -39,7 +44,15 @@ const NC = "#EF4E4E";
 const BAR_BLUE = "#00AEEF";
 const TRACK = "#1f2937";
 
-export default function GapAnalysisResults({ session, questionsByClause, isMobile }: Props) {
+export default function GapAnalysisResults({
+    session,
+    questionsByClause,
+    isMobile,
+    clauses = gapAnalysisClauses,
+    totalQuestions = GAP_TOTAL_QUESTIONS,
+    backHref = "/iso-audit-assessments/gap-analysis",
+    resultNote,
+}: Props) {
     const [step, setStep] = useState<"choose" | "sending" | "done">("choose");
     const [format, setFormat] = useState<"pdf" | "word">("pdf");
     const [error, setError] = useState("");
@@ -51,7 +64,8 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
         let comply = 0;
         let ofi = 0;
         let nc = 0;
-        const clauses = gapAnalysisClauses.map((clause, index) => {
+        const domain: GapSystemDomain = session.isoStandard.includes("9001") ? "quality" : "environmental";
+        const scoredClauses = clauses.map((clause, index) => {
             const rows = questionsByClause[index] ?? [];
             const clauseComply = rows.filter((row) => row.finding === "comply").length;
             const clauseOfi = rows.filter((row) => row.finding === "ofi").length;
@@ -73,11 +87,11 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
                 })),
             };
         });
-        const overall = compliancePercent(comply, GAP_TOTAL_QUESTIONS);
-        const maturity = maturityForPercent(overall);
-        const readiness = readinessForNcCount(nc);
-        return { comply, ofi, nc, overall, maturity, readiness, clauses };
-    }, [questionsByClause]);
+        const overall = compliancePercent(comply, totalQuestions);
+        const maturity = maturityForPercent(overall, domain);
+        const readiness = readinessForNcCount(nc, domain);
+        return { comply, ofi, nc, overall, maturity, readiness, clauses: scoredClauses };
+    }, [clauses, questionsByClause, session.isoStandard, totalQuestions]);
 
     const tone = maturityTone(stats.maturity.stage);
 
@@ -216,14 +230,15 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
                         {emailNote || `Your full report has been emailed to ${session.email}.`}
                     </p>
                     <p style={{ margin: "0.85rem 0 0", color: "#4b5563", fontSize: "1rem", lineHeight: 1.75 }}>
-                        Compliance % = (Total Comply ÷ {GAP_TOTAL_QUESTIONS}) × 100. Review maturity level and certification readiness by NC count from the ISO 14001:2026 Gap Analysis Checklist.
+                        {resultNote ??
+                            `Compliance % = (Total Comply ÷ ${GAP_TOTAL_QUESTIONS}) × 100. Review maturity level and certification readiness by NC count from the ISO 14001:2026 Gap Analysis Checklist.`}
                     </p>
                 </div>
 
                 <div style={{ display: "flex", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap", alignItems: "flex-start", marginBottom: "1.15rem" }}>
                     <div>
                         <p style={{ margin: 0, color: "#6b7280" }}>{displayName} · {session.isoStandard}</p>
-                        <Link href="/iso-audit-assessments/gap-analysis" style={{ color: "#006644", textDecoration: "none", fontWeight: 600, fontSize: "0.9rem" }}>
+                        <Link href={backHref} style={{ color: "#006644", textDecoration: "none", fontWeight: 600, fontSize: "0.9rem" }}>
                             ← Back to List
                         </Link>
                     </div>
@@ -242,7 +257,7 @@ export default function GapAnalysisResults({ session, questionsByClause, isMobil
                 <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "1rem", marginBottom: "1rem" }}>
                     <section style={cardStyle}>
                         <h2 style={cardTitle}>Scoring Summary</h2>
-                        <p style={cardSub}>Compliance Percentage: (Comply ÷ {GAP_TOTAL_QUESTIONS}) × 100</p>
+                        <p style={cardSub}>Compliance Percentage: (Comply ÷ {totalQuestions}) × 100</p>
                         <p style={{ margin: "0.35rem 0 0.45rem", fontSize: "3rem", fontWeight: 800, color: tone.accent, textAlign: "center", letterSpacing: "-0.03em" }}>{stats.overall}%</p>
                         <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.85rem" }}>
                             <span style={{ background: tone.badgeBg, color: tone.badgeText, borderRadius: "999px", padding: "0.28rem 0.85rem", fontSize: "0.85rem", fontWeight: 700 }}>

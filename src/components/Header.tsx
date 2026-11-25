@@ -232,6 +232,7 @@ export default function Header() {
     const hasDarkHero =
         pathname === "/iso-14001-2026-self-assessment-tool" ||
         pathname === "/iso-audit-assessments/gap-analysis" ||
+        pathname === "/iso-audit-assessments/iso-9001-gap-analysis" ||
         pathname === "/blog" ||
         pathname === "/author/mathew-chiweda";
     // Hide-on-scroll on the /blog listing and author page (not individual blog posts)

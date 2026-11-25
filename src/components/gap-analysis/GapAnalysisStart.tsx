@@ -24,6 +24,14 @@ import { REQUIRE_ASSESSMENT_EMAIL_OTP } from "@/constants/assessmentEmailOtp";
 
 const font = '"Pp Neue Montreal", sans-serif';
 
+type GapStartConfig = AssessmentStartConfig & {
+    defaultIsoStandard?: IsoStandardValue;
+    standardOptions?: readonly { value: IsoStandardValue; label: string }[];
+    openOnLoad?: boolean;
+    backHref?: string;
+    backLabel?: string;
+};
+
 const gapConfig: AssessmentStartConfig = {
     assessmentType: "gap-analysis",
     assessmentTitle: "ISO 14001:2026 Gap Analysis",
@@ -58,11 +66,11 @@ export default function GapAnalysisStart({
     config = gapConfig,
     Landing,
 }: {
-    config?: AssessmentStartConfig;
+    config?: GapStartConfig;
     Landing?: ComponentType<{ onStart: () => void }>;
 }) {
     const router = useRouter();
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(Boolean(config.openOnLoad));
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -71,7 +79,7 @@ export default function GapAnalysisStart({
     const [organisationSize, setOrganisationSize] = useState("");
     const [department, setDepartment] = useState("");
     const [existingCustomer, setExistingCustomer] = useState("");
-    const [isoStandard, setIsoStandard] = useState<IsoStandardValue | "">("ISO 14001:2026");
+    const [isoStandard, setIsoStandard] = useState<IsoStandardValue | "">(config.defaultIsoStandard ?? "ISO 14001:2026");
     const [auditScope, setAuditScope] = useState("");
     const [emailOptIn, setEmailOptIn] = useState(false);
     const [standardOpen, setStandardOpen] = useState(false);
@@ -86,7 +94,8 @@ export default function GapAnalysisStart({
     const [emailVerificationToken, setEmailVerificationToken] = useState("");
     const [isMobile, setIsMobile] = useState(false);
     const standardOptions =
-        config.assessmentType === "self-assessment" ? isoStandardOptions : gapIsoStandardOptions;
+        config.standardOptions ??
+        (config.assessmentType === "self-assessment" ? isoStandardOptions : gapIsoStandardOptions);
     // OTP temporarily disabled — flip REQUIRE_ASSESSMENT_EMAIL_OTP to re-enable.
     const canStart = REQUIRE_ASSESSMENT_EMAIL_OTP
         ? emailVerified && Boolean(emailVerificationToken) && !loading
@@ -305,8 +314,8 @@ export default function GapAnalysisStart({
                     </div>
 
                     <div style={{ maxWidth: "820px", margin: "0 auto", padding: "2.5rem 1.25rem 5rem" }}>
-                        <Link href={config.pagePath} style={{ color: "#006644", textDecoration: "none", fontWeight: 600, fontSize: "0.88rem" }}>
-                            ← Back to self assessment
+                        <Link href={config.backHref ?? config.pagePath} style={{ color: "#006644", textDecoration: "none", fontWeight: 600, fontSize: "0.88rem" }}>
+                            {config.backLabel ?? "← Back to self assessment"}
                         </Link>
                         <p style={{ margin: "1.25rem 0 1.75rem", color: "#4b5563", fontSize: "1.05rem", lineHeight: 1.8 }}>
                             {config.description}

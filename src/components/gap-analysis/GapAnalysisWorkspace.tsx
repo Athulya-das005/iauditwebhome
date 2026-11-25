@@ -6,12 +6,20 @@ import { useRouter } from "next/navigation";
 import GapAnalysisResults from "@/components/gap-analysis/GapAnalysisResults";
 import {
     GAP_SESSION_KEY,
-    GAP_TOTAL_QUESTIONS,
     formatClauseHeading,
     gapAnalysisClauses,
+    type GapClauseDef,
     type GapFinding,
 } from "@/data/gap-analysis-clauses";
 import type { GapAnalysisSession } from "@/types/gap-analysis-session";
+
+type WorkspaceProps = {
+    clauses?: GapClauseDef[];
+    sessionKey?: string;
+    setupPath?: string;
+    title?: string;
+    resultNote?: string;
+};
 
 type QuestionState = {
     id: string;
@@ -30,8 +38,8 @@ type QuestionState = {
 
 const font = '"Pp Neue Montreal", sans-serif';
 
-function makeQuestions(clauseIndex: number): QuestionState[] {
-    return gapAnalysisClauses[clauseIndex].questions.map((question) => ({
+function makeQuestions(clauses: GapClauseDef[], clauseIndex: number): QuestionState[] {
+    return clauses[clauseIndex].questions.map((question) => ({
         id: question.id,
         code: question.code,
         title: question.title,
@@ -101,12 +109,19 @@ function readImageAsDataUrl(file: File): Promise<string> {
     });
 }
 
-export default function GapAnalysisWorkspace() {
+export default function GapAnalysisWorkspace({
+    clauses = gapAnalysisClauses,
+    sessionKey = GAP_SESSION_KEY,
+    setupPath = "/iso-audit-assessments/gap-analysis",
+    title = "ISO 14001:2026 Gap Analysis",
+    resultNote,
+}: WorkspaceProps = {}) {
     const router = useRouter();
+    const totalQuestions = clauses.reduce((total, clause) => total + clause.questions.length, 0);
     const [session, setSession] = useState<GapAnalysisSession | null>(null);
     const [clauseIndex, setClauseIndex] = useState(0);
     const [questionsByClause, setQuestionsByClause] = useState<QuestionState[][]>(() =>
-        gapAnalysisClauses.map((_, index) => makeQuestions(index))
+        clauses.map((_, index) => makeQuestions(clauses, index))
     );
     const [isMobile, setIsMobile] = useState(false);
     const [finished, setFinished] = useState(false);
@@ -120,18 +135,18 @@ export default function GapAnalysisWorkspace() {
 
     useEffect(() => {
         try {
-            const raw = sessionStorage.getItem(GAP_SESSION_KEY);
+            const raw = sessionStorage.getItem(sessionKey);
             if (!raw) {
-                router.replace("/iso-audit-assessments/gap-analysis");
+                router.replace(setupPath);
                 return;
             }
             setSession(JSON.parse(raw) as GapAnalysisSession);
         } catch {
-            router.replace("/iso-audit-assessments/gap-analysis");
+            router.replace(setupPath);
         }
-    }, [router]);
+    }, [router, sessionKey, setupPath]);
 
-    const clause = gapAnalysisClauses[clauseIndex];
+    const clause = clauses[clauseIndex];
     const questions = questionsByClause[clauseIndex];
 
     const totals = useMemo(() => {
@@ -153,7 +168,7 @@ export default function GapAnalysisWorkspace() {
 
     const clauseAnswered = questions.filter((item) => item.finding).length;
     const clauseComply = questions.filter((item) => item.finding === "comply").length;
-    const progress = (totals.answered / GAP_TOTAL_QUESTIONS) * 100;
+    const progress = totalQuestions === 0 ? 0 : (totals.answered / totalQuestions) * 100;
 
     const displayName = useMemo(() => {
         if (!session) return "";
@@ -190,7 +205,17 @@ export default function GapAnalysisWorkspace() {
     }
 
     if (finished) {
-        return <GapAnalysisResults session={session} questionsByClause={toResultsRows(questionsByClause)} isMobile={isMobile} />;
+        return (
+            <GapAnalysisResults
+                session={session}
+                questionsByClause={toResultsRows(questionsByClause)}
+                isMobile={isMobile}
+                clauses={clauses}
+                totalQuestions={totalQuestions}
+                backHref={setupPath}
+                resultNote={resultNote}
+            />
+        );
     }
 
     return (
@@ -217,13 +242,13 @@ export default function GapAnalysisWorkspace() {
                 >
                     <div>
                         <h1 style={{ margin: 0, fontSize: isMobile ? "1.7rem" : "2.1rem", color: "#111827" }}>
-                            ISO 14001:2026 Gap Analysis
+                            {title}
                         </h1>
                         <p style={{ margin: "0.35rem 0 0.7rem", color: "#6b7280" }}>
-                            Mark Comply, OFI or NC across {GAP_TOTAL_QUESTIONS} questions
+                            Mark Comply, OFI or NC across {totalQuestions} questions
                         </p>
                         <Link
-                            href="/iso-audit-assessments/gap-analysis"
+                            href={setupPath}
                             style={{ color: "#006644", textDecoration: "none", fontWeight: 600, fontSize: "0.9rem" }}
                         >
                             ← Back to Setup
@@ -267,7 +292,7 @@ export default function GapAnalysisWorkspace() {
                             {session.isoStandard} • {displayName}
                         </span>
                         <span style={{ color: "#6b7280", fontSize: "0.9rem" }}>
-                            {totals.answered} / {GAP_TOTAL_QUESTIONS} answered · Comply {totals.comply} · OFI {totals.ofi} · NC{" "}
+                            {totals.answered} / {totalQuestions} answered · Comply {totals.comply} · OFI {totals.ofi} · NC{" "}
                             {totals.nc}
                         </span>
                     </div>
@@ -520,9 +545,9 @@ export default function GapAnalysisWorkspace() {
                         ← Previous Clause
                     </button>
                     <span style={{ color: "#6b7280", fontSize: "0.9rem" }}>
-                        Clause {clauseIndex + 1} of {gapAnalysisClauses.length}
+                        Clause {clauseIndex + 1} of {clauses.length}
                     </span>
-                    {clauseIndex === gapAnalysisClauses.length - 1 ? (
+                    {clauseIndex === clauses.length - 1 ? (
                         <button
                             type="button"
                             onClick={() => setFinished(true)}
@@ -533,7 +558,7 @@ export default function GapAnalysisWorkspace() {
                     ) : (
                         <button
                             type="button"
-                            onClick={() => setClauseIndex((i) => Math.min(gapAnalysisClauses.length - 1, i + 1))}
+                            onClick={() => setClauseIndex((i) => Math.min(clauses.length - 1, i + 1))}
                             style={{ ...navBtn, background: "#16a34a", color: "#fff", borderColor: "#16a34a" }}
                         >
                             Next Clause →

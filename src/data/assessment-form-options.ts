@@ -53,6 +53,12 @@ export const gapIsoStandardOptions = [
     { value: "ISO 14001:2026", label: "ISO 14001:2026" },
 ] as const;
 
+/** ISO 9001:2026 gap analysis */
+export const iso9001GapStandardOptions = [
+    { value: "ISO 9001:2026", label: "ISO 9001:2026" },
+] as const;
+
 export type IsoStandardValue =
     | (typeof isoStandardOptions)[number]["value"]
-    | (typeof gapIsoStandardOptions)[number]["value"];
+    | (typeof gapIsoStandardOptions)[number]["value"]
+    | (typeof iso9001GapStandardOptions)[number]["value"];

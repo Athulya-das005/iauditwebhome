@@ -64,13 +64,31 @@ export function findingLabel(finding: GapFinding | "") {
     return "Not answered";
 }
 
-/** Compliance % = (Total Comply ÷ 61) × 100 */
+/** Compliance % = (Total Comply ÷ question count) × 100 */
 export function compliancePercent(comply: number, total = GAP_TOTAL_QUESTIONS) {
     if (total <= 0) return 0;
     return Math.round((comply / total) * 100);
 }
 
-export function maturityForPercent(percent: number): GapMaturityInfo {
+export type GapSystemDomain = "environmental" | "quality";
+
+function maturityCopy(domain: GapSystemDomain) {
+    if (domain === "quality") {
+        return {
+            early: "Major quality gaps, inadequate controls, exposure at risk",
+            developing: "Inconsistent quality practices, significant gaps, some controls",
+            ready: "Excellent quality management system, no blocking issues",
+        };
+    }
+    return {
+        early: "Major environmental gaps, inadequate controls, exposure at risk",
+        developing: "Inconsistent environmental practices, significant gaps, some controls",
+        ready: "Excellent environmental system, no blocking issues",
+    };
+}
+
+export function maturityForPercent(percent: number, domain: GapSystemDomain = "environmental"): GapMaturityInfo {
+    const copy = maturityCopy(domain);
     if (percent <= 25) {
         return {
             id: "early",
@@ -78,7 +96,7 @@ export function maturityForPercent(percent: number): GapMaturityInfo {
             percentLabel: "0–25%",
             status: "Not Ready",
             timeline: "6+ months",
-            action: "Major environmental gaps, inadequate controls, exposure at risk",
+            action: copy.early,
             min: 0,
             max: 25,
         };
@@ -90,7 +108,7 @@ export function maturityForPercent(percent: number): GapMaturityInfo {
             percentLabel: "26–50%",
             status: "Not Ready",
             timeline: "6+ months",
-            action: "Inconsistent environmental practices, significant gaps, some controls",
+            action: copy.developing,
             min: 26,
             max: 50,
         };
@@ -119,14 +137,15 @@ export function maturityForPercent(percent: number): GapMaturityInfo {
     };
 }
 
-export function readinessForNcCount(nc: number): GapReadinessInfo {
+export function readinessForNcCount(nc: number, domain: GapSystemDomain = "environmental"): GapReadinessInfo {
+    const readyAction = maturityCopy(domain).ready;
     if (nc === 0) {
         return {
             id: "fully-ready",
             label: "FULLY READY",
             ncLabel: "0 NC",
             timeline: "Audit today",
-            action: "Excellent environmental system, no blocking issues",
+            action: readyAction,
         };
     }
     if (nc < 5) {
@@ -225,9 +244,11 @@ export function buildGapReportData(
         };
     });
 
-    const overall = compliancePercent(comply, GAP_TOTAL_QUESTIONS);
-    const maturity = maturityForPercent(overall);
-    const readiness = readinessForNcCount(nc);
+    const totalQuestions = clauses.reduce((sum, clause) => sum + clause.questions.length, 0) || GAP_TOTAL_QUESTIONS;
+    const domain: GapSystemDomain = session.isoStandard.includes("9001") ? "quality" : "environmental";
+    const overall = compliancePercent(comply, totalQuestions);
+    const maturity = maturityForPercent(overall, domain);
+    const readiness = readinessForNcCount(nc, domain);
 
     return {
         session,
@@ -237,7 +258,7 @@ export function buildGapReportData(
         comply,
         ofi,
         nc,
-        totalQuestions: GAP_TOTAL_QUESTIONS,
+        totalQuestions,
         maturity,
         readiness,
         clauses: clauseRows,
@@ -251,5 +272,6 @@ export function reportFileName(data: GapReportData, format: "pdf" | "word") {
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, "-")
             .replace(/^-|-$/g, "") || "organisation";
-    return `gap-analysis-report-${slug}.${format === "pdf" ? "pdf" : "docx"}`;
+    const prefix = data.session.isoStandard.includes("9001") ? "iso-9001-gap-analysis" : "gap-analysis-report";
+    return `${prefix}-${slug}.${format === "pdf" ? "pdf" : "docx"}`;
 }

@@ -44,7 +44,9 @@ export async function POST(request: Request) {
             session: body.session,
             assessmentType: "gap-analysis",
             assessmentTitle: `${body.session.isoStandard} Gap Analysis`,
-            pagePath: "/iso-audit-assessments/gap-analysis",
+            pagePath: body.session.isoStandard.includes("9001")
+                ? "/iso-audit-assessments/iso-9001-gap-analysis"
+                : "/iso-audit-assessments/gap-analysis",
         }).catch((error) => console.error("Gap analysis lead backup save failed:", error));
 
         const data = buildGapReportData(body.session, body.clauses);
