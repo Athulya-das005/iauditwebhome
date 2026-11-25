@@ -123,7 +123,7 @@ export default function Footer() {
             },
             {
                 name: "LinkedIn",
-                href: "https://www.linkedin.com/company/cyphers-by-iaudit-global",
+                href: "https://www.linkedin.com/company/cyphers-cybersecurity/posts/",
                 icon: (props: any) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
             }
         ]
@@ -296,6 +296,16 @@ export default function Footer() {
                                         >
                                             iAudit Global
                                         </Link>
+                                        <a
+                                            href="https://www.linkedin.com/company/cyphers-cybersecurity/posts/"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            style={linkStyle}
+                                            onMouseOver={(e) => { e.currentTarget.style.color = "#006644"; }}
+                                            onMouseOut={(e) => { e.currentTarget.style.color = "rgba(0,0,0,0.6)"; }}
+                                        >
+                                            LinkedIn
+                                        </a>
                                     </div>
                                 </div>
                                 <div style={{ display: "flex", flexDirection: "column", alignItems: isMobile ? "center" : "flex-start" }}>

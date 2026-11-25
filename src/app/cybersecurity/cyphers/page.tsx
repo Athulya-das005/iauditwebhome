@@ -55,7 +55,7 @@ const serviceJsonLd = {
         name: "Cyphers by iAudit Global",
         url: "https://iaudit.global",
         sameAs: [
-            "https://www.linkedin.com/company/cyphers-by-iaudit-global",
+            "https://www.linkedin.com/company/cyphers-cybersecurity/posts/",
             "https://www.instagram.com/cyphers.cybersecurity/",
         ],
     },
