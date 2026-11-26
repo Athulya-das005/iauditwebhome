@@ -103,7 +103,7 @@ export default function Hero() {
                     }}
                 >
                     <span>✦</span>
-                    Built by Auditors, For ISO Audits
+                    Built by Certified Auditors
                     <span>✦</span>
                 </motion.div>
 
@@ -120,8 +120,8 @@ export default function Hero() {
                         textAlign: "center",
                     }}
                 >
-                    ISO Audit Software That{" "}
-                    <span style={{ color: "#058c42", fontWeight: 600 }}>Thinks Like An Auditor</span>
+                    ISO Audit{" "}
+                    <span style={{ color: "#058c42", fontWeight: 600 }}>Management Software</span>
                 </motion.h1>
 
                 {/* Sub-description */}
@@ -130,17 +130,25 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.17 }}
                     style={{
-                        fontSize: isMobile ? "0.95rem" : "1rem",
+                        fontSize: isMobile ? "0.95rem" : "1.05rem",
                         fontWeight: 400,
                         lineHeight: 1.6,
                         color: "#6b7280",
-                        maxWidth: "600px",
+                        maxWidth: "680px",
                         margin: isMobile ? "0 auto 2.5rem" : "0 auto 4rem",
                         fontFamily: '"Pp Neue Montreal", sans-serif',
                         textAlign: "center"
                     }}
                 >
-                    Plan, execute, and report ISO 9001, 14001, and 45001 audits in one PDCA-driven platform. Built by certified auditors. Aligned to ISO 19011. Ready in minutes, not months.
+                    Plan ISO audits, capture evidence and track corrective actions in one place.
+                    <span
+                        style={{
+                            display: "block",
+                            marginTop: "0.4rem",
+                        }}
+                    >
+                        For ISO 9001, ISO 14001 and ISO 45001 internal audits. Aligned with ISO 19011.
+                    </span>
                 </motion.p>
 
                 {/* CTA Buttons */}
