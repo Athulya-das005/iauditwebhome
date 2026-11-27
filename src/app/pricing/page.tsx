@@ -1,9 +1,13 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import PricingPageContent from "@/components/PricingPageContent";
 import PricingPageJsonLd from "@/components/seo/PricingPageJsonLd";
 
 const pageUrl = "https://iaudit.global/pricing";
 const ogImage = "https://iaudit.global/iaudit-logo-new.png";
+
+export const viewport: Viewport = {
+    themeColor: "#0a0a0a",
+};
 
 export const metadata: Metadata = {
     title: "iAudit Global Pricing | ISO Audit Software Plans & Costs",
@@ -52,7 +56,6 @@ export const metadata: Metadata = {
     other: {
         "revisit-after": "7 days",
     },
-    themeColor: "#0a0a0a",
 };
 
 export default function PricingPage() {

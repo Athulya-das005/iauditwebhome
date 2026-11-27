@@ -23,6 +23,11 @@ const STATIC_PAGES: StaticPage[] = [
     { path: "/pdca-cycle-audit-software", changeFrequency: "monthly", priority: 0.9 },
     { path: "/top-iso-audit-management-software", changeFrequency: "monthly", priority: 0.9 },
     { path: "/isotracker-alternatives", changeFrequency: "monthly", priority: 0.9 },
+    { path: "/goaudits-alternatives", changeFrequency: "monthly", priority: 0.9 },
+    { path: "/mitti-by-safetyculture-alternatives", changeFrequency: "monthly", priority: 0.9 },
+    { path: "/intelex-alternatives", changeFrequency: "monthly", priority: 0.9 },
+    { path: "/compliancequest-alternatives", changeFrequency: "monthly", priority: 0.9 },
+    { path: "/octave-reliance-alternatives", changeFrequency: "monthly", priority: 0.9 },
     { path: "/pricing", changeFrequency: "monthly", priority: 0.9 },
 
     // ISO standards

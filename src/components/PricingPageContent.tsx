@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import Pricing from "@/components/Pricing";
 import CTA from "@/components/CTA";
@@ -47,35 +48,111 @@ const pricingTestimonials = [
 const pricingFaqs = [
     {
         question: "What is iAudit Global?",
-        answer: "iAudit Global is ISO audit management software for internal audits. It is purpose built for ISO 9001, 14001 and 45001, following ISO 19011 and the PDCA cycle so you can plan, execute and track your audit programme in one place.",
+        answer: (
+            <p style={{ margin: 0, lineHeight: 1.7, color: "#4b5563" }}>
+                iAudit Global is ISO audit management software built by auditors. It helps teams plan internal audits, capture evidence, report findings and track corrective actions for ISO 9001, ISO 14001 and ISO 45001.
+            </p>
+        ),
     },
     {
-        question: "Is the 14 day free trial really free and do I need a credit card?",
-        answer: "Yes. The 14 day trial is completely free and does not require a credit card. At the end of the trial you can choose a paid plan or stop without any charge.",
+        question: "Is there a free plan, and what does it include?",
+        answer: (
+            <p style={{ margin: 0, lineHeight: 1.7, color: "#4b5563" }}>
+                Yes. The Free plan is an ongoing option at £0 or $0 per user. You can run gap analyses and self-assessments, review your findings and analytics summaries, and download reports. The Free plan is separate from the 14-day trial.
+            </p>
+        ),
     },
     {
-        question: "How are the Starter, Professional and Enterprise plans different?",
-        answer: "Starter is for small teams starting their audit journey with core features. Professional adds collaboration tools, multiple companies and API access for growing organisations. Enterprise is for large or complex programmes that need unlimited sites and users, advanced security, custom integrations and a dedicated account manager.",
+        question: "What can I do during the 14-day free trial?",
+        answer: (
+            <p style={{ margin: 0, lineHeight: 1.7, color: "#4b5563" }}>
+                You can try iAudit with a real audit. Plan the audit, capture evidence, record findings and track follow-up actions to see how the workflow fits your team. You don’t need a credit card to start.
+            </p>
+        ),
     },
     {
-        question: "Can we upgrade, downgrade or cancel our plan?",
-        answer: "Yes. You can move between Starter, Professional and Enterprise or cancel your subscription. Changes take effect from the next billing period and you will not be tied into long contracts.",
+        question: "What happens when the free trial ends?",
+        answer: (
+            <p style={{ margin: 0, lineHeight: 1.7, color: "#4b5563" }}>
+                At the end of the 14 days, you can choose a paid plan or end your trial without being charged. If you choose a paid plan, you’ll see the price and billing terms before payment is required.
+            </p>
+        ),
     },
     {
-        question: "Do you offer annual billing or discounts for longer commitments?",
-        answer: "Monthly billing is available as standard. If you prefer annual invoicing or have a larger programme and need a tailored quote, speak to us and we can discuss options.",
+        question: "What’s the difference between Free, Unos, Dos and Tres?",
+        answer: (
+            <div>
+                <div style={{ overflowX: "auto", marginBottom: "0.85rem" }}>
+                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.93rem", textAlign: "left" }}>
+                        <thead>
+                            <tr style={{ borderBottom: "2px solid #e5e7eb" }}>
+                                <th style={{ padding: "0.5rem 0.75rem", color: "#111827", fontWeight: 600 }}>Plan</th>
+                                <th style={{ padding: "0.5rem 0.75rem", color: "#111827", fontWeight: 600 }}>What you can do</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                                <td style={{ padding: "0.6rem 0.75rem", fontWeight: 600, color: "#006644", verticalAlign: "top" }}>Free</td>
+                                <td style={{ padding: "0.6rem 0.75rem", color: "#4b5563", lineHeight: 1.5 }}>Run gap analyses and self-assessments, review your results and download reports.</td>
+                            </tr>
+                            <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                                <td style={{ padding: "0.6rem 0.75rem", fontWeight: 600, color: "#006644", verticalAlign: "top" }}>Unos</td>
+                                <td style={{ padding: "0.6rem 0.75rem", color: "#4b5563", lineHeight: 1.5 }}>Run unlimited audits against one ISO standard. Schedule audits, capture evidence, manage nonconformities and export reports in Excel, PDF or Word.</td>
+                            </tr>
+                            <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                                <td style={{ padding: "0.6rem 0.75rem", fontWeight: 600, color: "#006644", verticalAlign: "top" }}>Dos</td>
+                                <td style={{ padding: "0.6rem 0.75rem", color: "#4b5563", lineHeight: 1.5 }}>Manage audits against two ISO standards across multiple sites. Get all Unos features, plus dashboards for sites and nonconformities, and priority email support.</td>
+                            </tr>
+                            <tr style={{ borderBottom: "1px solid #f3f4f6" }}>
+                                <td style={{ padding: "0.6rem 0.75rem", fontWeight: 600, color: "#006644", verticalAlign: "top" }}>Tres</td>
+                                <td style={{ padding: "0.6rem 0.75rem", color: "#4b5563", lineHeight: 1.5 }}>Manage audits against three ISO standards across up to 10 sites. Get all Dos features, plus custom checklists, audit performance analytics and a dedicated account manager.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style={{ margin: 0, color: "#4b5563", lineHeight: 1.6 }}>
+                    Choose based on how many standards and sites you audit, and what your team needs to manage the programme.
+                </p>
+            </div>
+        ),
     },
     {
-        question: "Who actually has access to my audit data and findings?",
-        answer: "Only you and your authorised users. We have a zero access policy, meaning your findings, evidence, and reports are encrypted and stay entirely within your control. We do not mine your data or view your reports for any reason.",
+        question: "How do the monthly prices and contract terms work?",
+        answer: (
+            <p style={{ margin: 0, lineHeight: 1.7, color: "#4b5563" }}>
+                The prices shown for Unos, Dos and Tres are per user, per month for the 1-, 3- or 6-year contract you select. Select a term to see its rate in GBP or USD. Your subscription details show the payment schedule before you purchase.
+            </p>
+        ),
     },
     {
-        question: "Can I move my existing Excel checklists into iAudit?",
-        answer: "Yes. You can easily recreate your current checklists using our intuitive builder or ask Audit Mate to help you draft them. For Enterprise clients, our team provides hands-on support to help migrate your audit history and templates into the platform.",
+        question: "Can I upgrade, downgrade or cancel my plan?",
+        answer: (
+            <p style={{ margin: 0, lineHeight: 1.7, color: "#4b5563" }}>
+                Yes. You can request a plan change or cancel your subscription. When a change takes effect depends on your agreement. Cancellation normally takes effect at the end of your current paid billing period, unless your agreement says otherwise.{" "}
+                <Link href="/contact" style={{ color: "#006644", textDecoration: "underline", fontWeight: 500 }}>
+                    Contact our team about a plan change
+                </Link>.
+            </p>
+        ),
     },
     {
-        question: "Is the Audit Mate AI assistant included in the monthly price?",
-        answer: "Yes. Audit Mate is a core feature of the iAudit Global platform. It is designed to help you build checklists, suggest interview questions, and provide ISO guidance without any hidden fees or separate subscriptions.",
+        question: "Who can see my audit data and findings?",
+        answer: (
+            <p style={{ margin: 0, lineHeight: 1.7, color: "#4b5563" }}>
+                Your organisation retains ownership of the records, evidence and documents it adds to iAudit. Paid plans include access controls so you can manage what authorised users can see and do based on their roles.
+            </p>
+        ),
+    },
+    {
+        question: "Can I reuse my existing Excel audit checklists?",
+        answer: (
+            <p style={{ margin: 0, lineHeight: 1.7, color: "#4b5563" }}>
+                Yes. You can use your existing checklists as a starting point, and Audit Mate can help you draft questions. Tres includes custom checklists. If you need to import spreadsheet files or move historical audit records,{" "}
+                <Link href="/contact" style={{ color: "#006644", textDecoration: "underline", fontWeight: 500 }}>
+                    ask us about migration options
+                </Link>.
+            </p>
+        ),
     },
 ];
 

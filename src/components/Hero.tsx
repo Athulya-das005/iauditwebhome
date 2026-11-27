@@ -103,7 +103,7 @@ export default function Hero() {
                     }}
                 >
                     <span>✦</span>
-                    Built by Certified Auditors
+                    Built by Auditors, For ISO Audits
                     <span>✦</span>
                 </motion.div>
 
@@ -120,8 +120,8 @@ export default function Hero() {
                         textAlign: "center",
                     }}
                 >
-                    ISO Audit{" "}
-                    <span style={{ color: "#058c42", fontWeight: 600 }}>Management Software</span>
+                    ISO Audit Software That Thinks
+                    <span style={{ color: "#058c42", fontWeight: 600, display: "block" }}>Like An Auditor</span>
                 </motion.h1>
 
                 {/* Sub-description */}
@@ -134,21 +134,13 @@ export default function Hero() {
                         fontWeight: 400,
                         lineHeight: 1.6,
                         color: "#6b7280",
-                        maxWidth: "680px",
+                        maxWidth: "600px",
                         margin: isMobile ? "0 auto 2.5rem" : "0 auto 4rem",
                         fontFamily: '"Pp Neue Montreal", sans-serif',
                         textAlign: "center"
                     }}
                 >
-                    Plan ISO audits, capture evidence and track corrective actions in one place.
-                    <span
-                        style={{
-                            display: "block",
-                            marginTop: "0.4rem",
-                        }}
-                    >
-                        For ISO 9001, ISO 14001 and ISO 45001 internal audits. Aligned with ISO 19011.
-                    </span>
+                    Plan, execute, and report ISO 9001, 14001, and 45001 audits in one PDCA-driven platform. Built by certified auditors. Aligned to ISO 19011. Ready in minutes, not months.
                 </motion.p>
 
                 {/* CTA Buttons */}

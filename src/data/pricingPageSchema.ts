@@ -81,63 +81,71 @@ export const pricingPageSchema = {
                     name: "What is iAudit Global?",
                     acceptedAnswer: {
                         "@type": "Answer",
-                        text: "iAudit Global is ISO audit management software for internal audits. It is purpose built for ISO 9001, 14001, and 45001, following ISO 19011 and the PDCA cycle so organisations can plan, execute and track their audit programme in one place.",
+                        text: "iAudit Global is ISO audit management software built by auditors. It helps teams plan internal audits, capture evidence, report findings and track corrective actions for ISO 9001, ISO 14001 and ISO 45001.",
                     },
                 },
                 {
                     "@type": "Question",
-                    name: "Is the 14 day free trial really free and do I need a credit card?",
+                    name: "Is there a free plan, and what does it include?",
                     acceptedAnswer: {
                         "@type": "Answer",
-                        text: "Yes. The 14 day trial is completely free and does not require a credit card. At the end of the trial you can choose a paid plan or stop without any charge.",
+                        text: "Yes. The Free plan is an ongoing option at £0 or $0 per user. You can run gap analyses and self-assessments, review your findings and analytics summaries, and download reports. The Free plan is separate from the 14-day trial.",
                     },
                 },
                 {
                     "@type": "Question",
-                    name: "How are the Starter, Professional and Enterprise plans different?",
+                    name: "What can I do during the 14-day free trial?",
                     acceptedAnswer: {
                         "@type": "Answer",
-                        text: "Starter is for small teams starting their audit journey with core features. Professional adds collaboration tools, multiple companies and API access for growing organisations. Enterprise is designed for large or complex programmes that require unlimited sites and users, advanced security, custom integrations and a dedicated account manager.",
+                        text: "You can try iAudit with a real audit. Plan the audit, capture evidence, record findings and track follow-up actions to see how the workflow fits your team. You don’t need a credit card to start.",
                     },
                 },
                 {
                     "@type": "Question",
-                    name: "Can we upgrade, downgrade or cancel our plan?",
+                    name: "What happens when the free trial ends?",
                     acceptedAnswer: {
                         "@type": "Answer",
-                        text: "Yes. You can move between Starter, Professional and Enterprise or cancel your subscription. Changes take effect from the next billing period and there are no long-term contracts.",
+                        text: "At the end of the 14 days, you can choose a paid plan or end your trial without being charged. If you choose a paid plan, you’ll see the price and billing terms before payment is required.",
                     },
                 },
                 {
                     "@type": "Question",
-                    name: "Do you offer annual billing or discounts for longer commitments?",
+                    name: "What’s the difference between Free, Unos, Dos and Tres?",
                     acceptedAnswer: {
                         "@type": "Answer",
-                        text: "Monthly billing is available as standard. If you prefer annual invoicing or have a larger programme and need a tailored quote, you can contact the iAudit team to discuss available options.",
+                        text: "Free: Run gap analyses and self-assessments, review your results and download reports.\nUnos: Run unlimited audits against one ISO standard. Schedule audits, capture evidence, manage nonconformities and export reports in Excel, PDF or Word.\nDos: Manage audits against two ISO standards across multiple sites. Get all Unos features, plus dashboards for sites and nonconformities, and priority email support.\nTres: Manage audits against three ISO standards across up to 10 sites. Get all Dos features, plus custom checklists, audit performance analytics and a dedicated account manager.\nChoose based on how many standards and sites you audit, and what your team needs to manage the programme.",
                     },
                 },
                 {
                     "@type": "Question",
-                    name: "Who actually has access to my audit data and findings?",
+                    name: "How do the monthly prices and contract terms work?",
                     acceptedAnswer: {
                         "@type": "Answer",
-                        text: "Only you and your authorised users have access to your audit data. iAudit Global follows a zero-access policy, meaning findings, evidence and reports are encrypted and remain fully under your organisation's control.",
+                        text: "The prices shown for Unos, Dos and Tres are per user, per month for the 1-, 3- or 6-year contract you select. Select a term to see its rate in GBP or USD. Your subscription details show the payment schedule before you purchase.",
                     },
                 },
                 {
                     "@type": "Question",
-                    name: "Can I move my existing Excel checklists into iAudit?",
+                    name: "Can I upgrade, downgrade or cancel my plan?",
                     acceptedAnswer: {
                         "@type": "Answer",
-                        text: "Yes. You can recreate existing Excel audit checklists using the built-in checklist builder or use Audit Mate to help draft them. Enterprise customers can also receive hands-on migration support.",
+                        text: "Yes. You can request a plan change or cancel your subscription. When a change takes effect depends on your agreement. Cancellation normally takes effect at the end of your current paid billing period, unless your agreement says otherwise.",
                     },
                 },
                 {
                     "@type": "Question",
-                    name: "Is the Audit Mate AI assistant included in the monthly price?",
+                    name: "Who can see my audit data and findings?",
                     acceptedAnswer: {
                         "@type": "Answer",
-                        text: "Yes. Audit Mate is a core feature of the iAudit Global platform. It helps auditors create checklists, suggest interview questions and understand ISO requirements without additional fees.",
+                        text: "Your organisation retains ownership of the records, evidence and documents it adds to iAudit. Paid plans include access controls so you can manage what authorised users can see and do based on their roles.",
+                    },
+                },
+                {
+                    "@type": "Question",
+                    name: "Can I reuse my existing Excel audit checklists?",
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Yes. You can use your existing checklists as a starting point, and Audit Mate can help you draft questions. Tres includes custom checklists. If you need to import spreadsheet files or move historical audit records, ask us about migration options.",
                     },
                 },
             ],
